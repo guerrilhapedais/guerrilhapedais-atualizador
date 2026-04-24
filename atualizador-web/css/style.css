@@ -1,0 +1,426 @@
+/* Guerrilha Pedais — atualizador web */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+:root {
+  --bg: #121215;
+  --bg-card: #1e1e24;
+  --bg-elevated: #2b2b32;
+  --border: rgba(255, 255, 255, 0.08);
+  --text: #f3f3f4;
+  --text-muted: #9ca3af;
+  --accent: #0078d4;
+  --accent-hover: #106ebe;
+  --success: #107c10;
+  --error: #e81123;
+  --radius: 12px;
+  --shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+  background-image:
+    radial-gradient(ellipse 90% 60% at 20% 0%, rgba(0, 120, 212, 0.22), transparent 55%),
+    radial-gradient(ellipse 70% 50% at 100% 20%, rgba(0, 90, 180, 0.12), transparent 50%),
+    radial-gradient(ellipse 50% 40% at 100% 100%, rgba(0, 168, 232, 0.1), transparent 55%),
+    linear-gradient(180deg, #0a0a0c 0%, #121215 40%, #121215 100%);
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  z-index: 9999;
+  padding: 0.5rem 1rem;
+  background: var(--accent);
+  color: #fff;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  left: 0.5rem;
+  top: 0.5rem;
+}
+
+.layout {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1.5rem 1.25rem 3rem;
+}
+
+/* Header + logo */
+header.hero {
+  position: relative;
+  padding: 0.5rem 0 2rem;
+  margin-bottom: 0.25rem;
+}
+
+.hero-glow {
+  position: absolute;
+  inset: -2rem -1rem 40%;
+  background: radial-gradient(ellipse 80% 100% at 30% 0%, rgba(0, 120, 212, 0.25), transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: clamp(1.25rem, 4vw, 2.5rem);
+  padding: 1.25rem 1.5rem 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: calc(var(--radius) + 4px);
+  background: linear-gradient(145deg, rgba(30, 30, 36, 0.95) 0%, rgba(20, 20, 25, 0.85) 100%);
+  box-shadow: var(--shadow), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(12px);
+}
+
+@media (max-width: 640px) {
+  .hero-inner {
+    flex-direction: column;
+    text-align: center;
+    padding: 1.5rem 1.15rem 1.75rem;
+  }
+}
+
+.hero-logo-wrap {
+  flex-shrink: 0;
+  padding: 0.4rem;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.45),
+    0 0 0 1px rgba(0, 0, 0, 0.2) inset;
+}
+
+.hero-logo {
+  display: block;
+  width: clamp(4.5rem, 16vw, 6.5rem);
+  height: auto;
+  max-height: 6.5rem;
+  object-fit: contain;
+  border-radius: 16px;
+}
+
+.hero-copy {
+  flex: 1;
+  min-width: 0;
+  text-align: left;
+}
+
+@media (max-width: 640px) {
+  .hero-copy {
+    text-align: center;
+  }
+}
+
+.eyebrow {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #7dd3fc;
+  margin: 0 0 0.4rem;
+}
+
+h1 {
+  font-size: clamp(1.75rem, 4.5vw, 2.15rem);
+  font-weight: 700;
+  margin: 0 0 0.55rem;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  color: #fafafa;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.35);
+}
+
+.sub {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  line-height: 1.55;
+  max-width: 36rem;
+  margin: 0;
+}
+
+.sub code {
+  font-size: 0.85em;
+  padding: 0.12em 0.4em;
+  background: rgba(0, 0, 0, 0.35);
+  border-radius: 4px;
+  border: 1px solid var(--border);
+}
+
+/* Cards */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.35rem;
+  margin-bottom: 1rem;
+  box-shadow: var(--shadow);
+}
+
+.card h2 {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin: 0 0 1rem;
+  font-weight: 600;
+}
+
+/* Steps */
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  margin: 0 0 1.25rem;
+}
+
+@media (max-width: 600px) {
+  .steps {
+    grid-template-columns: 1fr;
+  }
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.65rem 0.8rem;
+  background: var(--bg-elevated);
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.step .num {
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1.25rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  font-family: inherit;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s, opacity 0.2s;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: var(--accent-hover);
+}
+
+.btn-success {
+  background: var(--success);
+  color: #fff;
+}
+
+.btn-success:hover:not(:disabled) {
+  filter: brightness(1.08);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+}
+
+.btn-ghost:hover:not(:disabled) {
+  color: var(--text);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  align-items: center;
+}
+
+/* File / fields */
+label.field {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 0.35rem;
+}
+
+input[type="file"] {
+  width: 100%;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+}
+
+select {
+  width: 100%;
+  max-width: 200px;
+  padding: 0.5rem 0.6rem;
+  background: var(--bg-elevated);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 0.9rem;
+}
+
+/* Progress */
+.progress-wrap {
+  margin: 0.75rem 0 0;
+}
+
+progress {
+  width: 100%;
+  height: 8px;
+  border: none;
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--bg-elevated);
+}
+
+progress::-webkit-progress-bar {
+  background: var(--bg-elevated);
+  border-radius: 4px;
+}
+
+progress::-webkit-progress-value {
+  background: linear-gradient(90deg, var(--accent), #00a8e8);
+  border-radius: 4px;
+}
+
+progress::-moz-progress-bar {
+  background: linear-gradient(90deg, var(--accent), #00a8e8);
+}
+
+.progress-label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 0.4rem;
+}
+
+/* Log */
+.log {
+  max-height: 200px;
+  overflow-y: auto;
+  background: #0d0d10;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  font-size: 0.75rem;
+  font-family: "SF Mono", "Consolas", "Monaco", monospace;
+  color: #c4c4c7;
+  line-height: 1.45;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.log-info {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 0.5rem;
+}
+
+/* Banner */
+.load-banner {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  padding: 0.85rem 1rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.load-banner.is-ready {
+  background: rgba(16, 124, 16, 0.15);
+  border-color: rgba(16, 124, 16, 0.4);
+  color: #86efac;
+}
+
+.warn {
+  background: rgba(232, 17, 35, 0.12);
+  border: 1px solid rgba(232, 17, 35, 0.35);
+  color: #fecaca;
+  padding: 0.85rem 1rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.ok {
+  background: rgba(16, 124, 16, 0.15);
+  border: 1px solid rgba(16, 124, 16, 0.4);
+  color: #86efac;
+}
+
+.hint {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 0.5rem;
+}
+
+footer {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+a {
+  color: var(--accent);
+}
+
+a:hover {
+  text-decoration: underline;
+}

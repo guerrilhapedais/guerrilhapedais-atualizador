@@ -1,0 +1,62 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+venv/
+.venv/
+env/
+ENV/
+
+# Build / instaladores
+build/
+dist/
+*.egg-info/
+*.egg
+MANIFEST
+
+# PyInstaller
+*.spec.bak
+
+# macOS: ícones e pastas intermédias (gerados localmente; não versionar)
+icon.icns
+GuerrilhaPedais.iconset
+GuerrilhaBox.iconset
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Logs
+*.log
+
+# Temporários
+temp/
+*.tmp
+.cache/
+
+# Variáveis locais (não commits)
+.env
+.env.*
+!.env.example
+
+# Opcional: certificados / assinaturas locais
+*.p12
+*.mobileprovision

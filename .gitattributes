@@ -1,0 +1,6 @@
+# Fins de linha: evita avisos LF vs CRLF e mantém o repo coerente (Windows + outros SO)
+* text=auto eol=lf
+
+# Ficheiros que no Windows costumam ser CRLF
+*.bat text eol=crlf
+*.cmd text eol=crlf

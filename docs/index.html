@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Atualizador de firmware Guerrilha Pedais no navegador, via cabo USB." />
+  <title>Guerrilha Pedais — Atualizador de firmware (web)</title>
+  <link rel="icon" href="assets/logo_final.png" type="image/png" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Saltar para o conteúdo</a>
+  <div class="layout">
+    <header class="hero" role="banner">
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="hero-inner">
+        <div class="hero-logo-wrap">
+          <img
+            class="hero-logo"
+            src="assets/logo_final.png"
+            width="120"
+            height="120"
+            alt="Guerrilha Pedais"
+            decoding="async"
+            fetchpriority="high"
+            onerror="this.parentElement && (this.parentElement.style.display='none')"
+          />
+        </div>
+        <div class="hero-copy">
+          <p class="eyebrow">Atualização por USB</p>
+          <h1>Guerrilha Pedais</h1>
+          <p class="sub">Ferramenta de atualização de firmware. Tabela de partições opcional.</p>
+        </div>
+      </div>
+    </header>
+
+    <div id="noSerial" class="warn" style="display: none" role="alert" aria-live="polite">
+      <strong>Browser incompatível.</strong> Isto precisa de <strong>Web Serial</strong> (normalmente
+      <strong>Google Chrome</strong> ou <strong>Microsoft Edge</strong> no Mac ou no Windows). O Safari não
+      suporta ligar a esta porta. Nenhum ficheiro sobe para a Internet — tudo acontece no teu computador.
+    </div>
+
+    <div id="loadOk" class="load-banner" style="display: block" role="status" aria-live="polite" aria-atomic="true">
+      A carregar a biblioteca de flash a partir da Internet (só a primeira abertura)…
+    </div>
+    <div id="bootError" class="warn" style="display: none" role="alert" aria-hidden="true">
+      <strong>Não deu a carregar o esptool.js.</strong> <span id="bootErrorMsg"></span>
+      <p class="hint" style="margin: 0.5rem 0 0">Desactiva bloqueio de anúncios <strong>nesta</strong> página, experimenta janela anónima, outra rede (menos comum) ou o DevTools (F12)  Consola  para o erro. Primeiro CDN: jsdelivr.</p>
+    </div>
+
+    <main id="main" tabindex="-1" aria-label="Ferramenta de atualização">
+      <div class="steps" aria-label="Passos">
+        <div class="step"><span class="num" aria-hidden="true">1</span> Liga o dispositivo por USB</div>
+        <div class="step"><span class="num" aria-hidden="true">2</span> Clica <strong>Ligar</strong> e escolhe a porta</div>
+        <div class="step"><span class="num" aria-hidden="true">3</span> Escolhe o .bin e <strong>Gravar</strong></div>
+      </div>
+
+      <section class="card" aria-labelledby="h-con">
+        <h2 id="h-con">Ligação</h2>
+        <div class="row" style="margin-bottom: 0.75rem; flex-wrap: wrap">
+          <label class="field" for="baudRate">Baud (ligação) — padrão do desktop: 460800, mas 115200 costuma ser mais fiável a ligar</label>
+          <select id="baudRate" name="baud" aria-label="Baud de ligação">
+            <option value="115200" selected>115200</option>
+            <option value="230400">230400</option>
+            <option value="460800">460800</option>
+            <option value="921600">921600</option>
+          </select>
+        </div>
+        <p class="hint">Se não ligar, tenta <strong>115200</strong> e desliga/religa o cabo.</p>
+        <div class="row" style="margin-top: 0.9rem">
+          <button type="button" class="btn btn-primary" id="connect" disabled>Ligar dispositivo</button>
+          <button type="button" class="btn btn-ghost" id="disconnect" disabled>Desligar</button>
+        </div>
+        <p class="hint" style="margin-top: 0.6rem">Ligação: <strong id="statusState">—</strong></p>
+      </section>
+
+      <section class="card" aria-labelledby="h-files">
+        <h2 id="h-files">Ficheiros</h2>
+        <label class="field" for="fileFw">Firmware (obrigatório) <code>*.bin</code> → <code>0x10000</code></label>
+        <input type="file" id="fileFw" accept=".bin,application/octet-stream" />
+        <label class="field" for="filePart">Tabela de partições (opcional) <code>*.bin</code> → <code>0x8000</code></label>
+        <input type="file" id="filePart" accept=".bin,application/octet-stream" />
+        <div class="row" style="margin-top: 0.9rem">
+          <button type="button" class="btn btn-success" id="flash" disabled>Gravar firmware</button>
+        </div>
+        <div class="progress-wrap">
+          <progress id="progress" value="0" max="100" aria-label="Progresso da gravação"></progress>
+          <p class="progress-label" id="progressLabel"></p>
+        </div>
+      </section>
+
+      <section class="card" aria-labelledby="h-log">
+        <h2 id="h-log">Registo</h2>
+        <div id="log" class="log" role="log" aria-live="polite" aria-atomic="false"></div>
+        <p class="log-info">Os ficheiros <strong>não</strong> são enviados para o servidor. Só o teu computador fala com o dispositivo USB.</p>
+        <div class="row" style="margin-top: 0.6rem">
+          <button type="button" class="btn btn-ghost" id="clearLog">Limpar registo</button>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>Guerrilha Pedais — atualizador web. Instruções de hospedagem: ficheiro <code>HOSPEDAR.md</code> na raiz de <code>atualizador-web</code> (repositório Git).</p>
+    </footer>
+  </div>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
