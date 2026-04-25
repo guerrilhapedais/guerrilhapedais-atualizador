@@ -41,8 +41,8 @@ python guerrilhabox_updater.py
 | Ficheiro / pasta        | Uso |
 |------------------------|-----|
 | `guerrilhabox_updater.py` | Aplicação (Tk) |
-| `atualizador-web/`     | Site estático (flash no browser) |
-| `docs/`                | Cópia do site (GitHub Pages) |
+| `atualizador-web/`     | Site estático (flash no browser); `firmware/latest/manifest.json` + `.bin` para a opção **versão do site** |
+| `docs/`                | Cópia do site (GitHub Pages) — manter alinhada com `atualizador-web/` |
 | `build_windows.bat`    | Gera o `.exe` no Windows |
 | `guerrilhabox_updater_windows.spec` | PyInstaller (Windows) |
 | `build_macos.sh`       | Só no Mac |

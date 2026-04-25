@@ -29,7 +29,7 @@
         <div class="hero-copy">
           <p class="eyebrow">Atualização por USB</p>
           <h1>Guerrilha Pedais</h1>
-          <p class="sub">Escolhe o firmware (.bin) e grava pelo cabo USB.</p>
+          <p class="sub">Usa a versão incluída no site ou os teus ficheiros .bin — a gravação é sempre pelo cabo USB no teu computador.</p>
         </div>
       </div>
     </header>
@@ -52,7 +52,7 @@
       <div class="steps" aria-label="Passos">
         <div class="step"><span class="num" aria-hidden="true">1</span> Liga o dispositivo por USB</div>
         <div class="step"><span class="num" aria-hidden="true">2</span> Clica <strong>Ligar</strong> e escolhe a porta</div>
-        <div class="step"><span class="num" aria-hidden="true">3</span> Escolhe o .bin e <strong>Gravar</strong></div>
+        <div class="step"><span class="num" aria-hidden="true">3</span> Escolhe a origem do firmware e <strong>Gravar</strong></div>
       </div>
 
       <section class="card" aria-labelledby="h-con">
@@ -65,11 +65,44 @@
       </section>
 
       <section class="card" aria-labelledby="h-files">
-        <h2 id="h-files">Ficheiros</h2>
-        <label class="field" for="fileFw">Firmware <code>.bin</code> (obrigatório)</label>
-        <input type="file" id="fileFw" accept=".bin,application/octet-stream" />
-        <label class="field" for="filePart">Tabela de partições <code>.bin</code> (só se fornecida — opcional)</label>
-        <input type="file" id="filePart" accept=".bin,application/octet-stream" />
+        <h2 id="h-files">Firmware</h2>
+        <p class="hint" id="firmwareIntro" style="margin: 0 0 0.85rem; color: var(--text-muted)">
+          Mesma ligação USB e o mesmo processo de gravação: só mudas a origem dos ficheiros.
+        </p>
+        <fieldset class="firmware-fieldset" aria-describedby="firmwareIntro">
+          <legend class="visually-hidden">Origem do firmware</legend>
+          <div class="firmware-source" role="radiogroup" aria-label="Origem do firmware">
+            <label class="firmware-source__opt">
+              <input type="radio" name="fwSource" id="fwSourceBundled" value="bundled" checked />
+              <span class="firmware-source__box">
+                <span class="firmware-source__title">Atualização pré-selecionada</span>
+                <span class="firmware-source__sub" id="bundledSourceSub">A carregar a versão…</span>
+              </span>
+            </label>
+            <label class="firmware-source__opt">
+              <input type="radio" name="fwSource" id="fwSourceManual" value="manual" />
+              <span class="firmware-source__box">
+                <span class="firmware-source__title">Ficheiros no computador</span>
+                <span class="firmware-source__sub">Escolhe o <code>.bin</code> da pasta de builds (modo clássico)</span>
+              </span>
+            </label>
+          </div>
+        </fieldset>
+
+        <div id="bundledPanel" class="firmware-bundled-panel" role="region" aria-label="Estado da atualização pré-selecionada">
+          <p id="bundledStatus" class="firmware-bundled-status" role="status">A carregar…</p>
+          <div class="row" style="margin-top: 0.5rem">
+            <button type="button" class="btn btn-ghost" id="reloadBundled">Recarregar do site</button>
+          </div>
+        </div>
+
+        <div id="manualPanel" class="firmware-manual-panel" role="region" hidden aria-label="Ficheiros locais">
+          <label class="field" for="fileFw">Firmware <code>.bin</code> (obrigatório)</label>
+          <input type="file" id="fileFw" accept=".bin,application/octet-stream" />
+          <label class="field" for="filePart">Tabela de partições <code>.bin</code> (opcional)</label>
+          <input type="file" id="filePart" accept=".bin,application/octet-stream" />
+        </div>
+
         <div class="row" style="margin-top: 0.9rem">
           <button type="button" class="btn btn-success" id="flash" disabled>Gravar firmware</button>
         </div>
@@ -82,7 +115,11 @@
       <section class="card" aria-labelledby="h-log">
         <h2 id="h-log">Registo</h2>
         <div id="log" class="log" role="log" aria-live="polite" aria-atomic="false"></div>
-        <p class="log-info">Os ficheiros <strong>não</strong> são enviados para o servidor. Só o teu computador fala com o dispositivo USB.</p>
+        <p class="log-info">
+          Com <strong>ficheiros no computador</strong>, o .bin não sai da tua máquina. Com <strong>atualização pré-selecionada</strong>,
+          o browser <strong>descarrega</strong> os .bin a partir desta página (a versão mostrada vem do <code>manifest.json</code>) e
+          grava no chip por USB.
+        </p>
         <div class="row" style="margin-top: 0.6rem">
           <button type="button" class="btn btn-ghost" id="clearLog">Limpar registo</button>
         </div>

@@ -30,23 +30,43 @@ let libVersion = null;
 let serialConnectBusy = false;
 let flashInProgress = false;
 
+/** «bundled» = manifest + .bin em firmware/latest/; «manual» = ficheiros locais. A gravação USB é a mesma. */
+let firmwareMode = "bundled";
+let bundledCache = {
+  ok: false,
+  version: "",
+  label: "",
+  fw: null,
+  part: null,
+  err: null,
+};
+
+const MANIFEST_URL = new URL("../firmware/latest/manifest.json", import.meta.url);
+
 const SYNC_TIMEOUT_MS = 90000;
 /** Baud da ROM na 1.ª ligação — tem de coincidir com `romBaudrate` do ESPLoader. */
 const ROM_BAUDRATE = 115200;
+/** Baud de gravação após sync (sem controlo na página). */
 const FLASH_BAUDRATE = 460800;
 
+/** PID típico da ROM USB Serial/JTAG no ESP32-S3 (esptool). */
 const USB_PID_ESP32S3_ROM_JTAG = 0x1001;
-/** PIDs TinyUSB só app — antes do esptool enviamos comando de preparação à app. */
+/** PIDs TinyUSB só app (MIDI/CDC) — antes do esptool enviamos comando de preparação à app. */
 const USB_PIDS_TINYUSB_APP_ONLY = new Set([0x4008, 0x4009]);
 
-/** Ao «Ligar» e de novo em «Gravar firmware» (TinyUSB) antes do esptool, se aplicável. */
+/** Linha enviada à CDC da app ao «Ligar» e de novo em «Gravar firmware» (TinyUSB) antes do esptool, se aplicável. */
 const CDC_UPDATE_CMD_LINE = "GUERRILHA_UPDATE\r\n";
+
+/** Após o comando na fase «Gravar» (firmware já não reinicia sozinho): breve pausa antes de fechar a CDC. */
 const CDC_UPDATE_GRAVAR_PAUSE_MS = 500;
 
 function sleepMs(ms) {
   return new Promise((r) => setTimeout(r, ms));
 }
 
+/**
+ * Fecha e volta a abrir a porta (evita «already open» se o close ainda não libertou no Chrome).
+ */
 async function serialReopenClean(p, baud) {
   if (!p) throw new Error("Sem porta série");
   try {
@@ -67,6 +87,10 @@ function withTimeout(promise, ms, errMsg) {
   ]);
 }
 
+/**
+ * Envia à CDC da app a linha de update (ao «Ligar» ou antes de fechar para o esptool).
+ * Não usar na porta ROM/JTAG — só TinyUSB app.
+ */
 async function sendCdcUpdateKick(p) {
   if (!p?.writable) throw new Error("Porta sem escrita");
   const data = new TextEncoder().encode(CDC_UPDATE_CMD_LINE);
@@ -78,6 +102,7 @@ async function sendCdcUpdateKick(p) {
   }
 }
 
+/** Só PID da ROM USB JTAG — sem filtro «só Espressif» (isso incluía a CDC 0x4009 e o esptool falhava). */
 const ESP32_ROM_JTAG_FILTERS = [{ usbVendorId: 0x303a, usbProductId: USB_PID_ESP32S3_ROM_JTAG }];
 
 async function loadSparkMd5() {
@@ -96,6 +121,7 @@ async function loadSparkMd5() {
   throw lastErr || new Error("spark-md5 indisponível");
 }
 
+/** Callback síncrono esperado pelo esptool-js (imagem já com pad + parâmetros de flash). */
 function makeFlashMd5Calculator(SparkMD5) {
   return function calculateMD5Hash(image) {
     const buf = image.buffer.slice(image.byteOffset, image.byteOffset + image.byteLength);
@@ -122,6 +148,7 @@ function tinyusbAppOnlyPid(pid) {
   return typeof pid === "number" && USB_PIDS_TINYUSB_APP_ONLY.has(pid);
 }
 
+/** Dica quando a porta é a app TinyUSB: comando ao «Ligar»; em «Gravar» pode reenviar-se antes do esptool. */
 function logRomFlashPortHintIfNeeded(p) {
   if (!p || typeof p.getInfo !== "function") return;
   const pid = p.getInfo().usbProductId;
@@ -232,11 +259,143 @@ async function loadEsptool() {
   throw lastErr || new Error("Nenhum CDN devolveu esptool-js");
 }
 
+function hasFirmwareReady() {
+  if (firmwareMode === "bundled") {
+    return bundledCache.ok === true;
+  }
+  return !!(el("fileFw")?.files?.[0]);
+}
+
+function getConnectedHint() {
+  if (firmwareMode === "bundled") {
+    if (bundledCache.ok) {
+      return "Ligado. Clica «Gravar firmware» para sincronizar e gravar.";
+    }
+    return "Ligado. A atualização pré-selecionada não carregou — recarrega ou escolhe «Ficheiros no computador».";
+  }
+  const hasFw = !!(el("fileFw")?.files?.[0]);
+  return hasFw
+    ? "Ligado. Clica «Gravar firmware» para sincronizar e gravar."
+    : "Ligado. Escolhe o ficheiro .bin e clica «Gravar firmware».";
+}
+
 function updateFlashButtonState() {
   const flashBtn = el("flash");
   if (!flashBtn) return;
-  const canTry = port != null && !flashInProgress && !serialConnectBusy;
+  const canTry = port != null && !flashInProgress && !serialConnectBusy && hasFirmwareReady();
   flashBtn.disabled = !canTry;
+}
+
+function setFirmwareMode(mode) {
+  firmwareMode = mode === "manual" ? "manual" : "bundled";
+  const bundledPanel = el("bundledPanel");
+  const manualPanel = el("manualPanel");
+  if (bundledPanel) bundledPanel.hidden = firmwareMode !== "bundled";
+  if (manualPanel) manualPanel.hidden = firmwareMode !== "manual";
+  updateFlashButtonState();
+  if (port) {
+    setProgress(0, getConnectedHint());
+  }
+}
+
+async function getFlashBinaries() {
+  if (firmwareMode === "bundled") {
+    if (!bundledCache.ok || !bundledCache.fw) {
+      throw new Error("Atualização pré-selecionada indisponível — recarrega a página ou usa ficheiros no computador.");
+    }
+    return { fwData: bundledCache.fw, partData: bundledCache.part };
+  }
+  const fileFw = el("fileFw");
+  const filePart = el("filePart");
+  const fw = fileFw?.files?.[0];
+  if (!fw) {
+    throw new Error("Escolhe o ficheiro de firmware .bin");
+  }
+  const fwData = new Uint8Array(await fw.arrayBuffer());
+  const partFile = filePart?.files?.[0] || null;
+  let partData = null;
+  if (partFile) {
+    partData = new Uint8Array(await partFile.arrayBuffer());
+  }
+  return { fwData, partData };
+}
+
+function setBundledSourceSubline(text, variant) {
+  const sub = el("bundledSourceSub");
+  if (!sub) return;
+  sub.textContent = text;
+  sub.classList.remove("firmware-source__sub--ok", "firmware-source__sub--err");
+  if (variant === "ok") sub.classList.add("firmware-source__sub--ok");
+  if (variant === "err") sub.classList.add("firmware-source__sub--err");
+}
+
+async function loadBundledFirmware() {
+  const statusEl = el("bundledStatus");
+  if (statusEl) {
+    statusEl.textContent = "A carregar ficheiros…";
+    statusEl.classList.remove("firmware-bundled-status--err", "firmware-bundled-status--ok");
+  }
+  setBundledSourceSubline("A carregar a versão…", null);
+  try {
+    const r = await fetch(MANIFEST_URL, { cache: "no-store" });
+    if (!r.ok) {
+      throw new Error("manifest.json em falta (HTTP " + r.status + ").");
+    }
+    const m = await r.json();
+    const base = new URL("./", MANIFEST_URL);
+    const fwName = m.firmware;
+    if (!fwName || typeof fwName !== "string") {
+      throw new Error("No manifest, o campo «firmware» (nome do .bin) é obrigatório.");
+    }
+    const fwRes = await fetch(new URL(fwName, base), { cache: "no-store" });
+    if (!fwRes.ok) {
+      throw new Error("Ficheiro «" + fwName + "» não encontrado (HTTP " + fwRes.status + ").");
+    }
+    const buf = await fwRes.arrayBuffer();
+    if (!buf || buf.byteLength === 0) {
+      throw new Error("O ficheiro de firmware está vazio.");
+    }
+    const fw = new Uint8Array(buf);
+    let part = null;
+    if (m.partition) {
+      if (typeof m.partition !== "string" || !m.partition.length) {
+        throw new Error("O campo «partition» tem de ser string ou ser omitido.");
+      }
+      const pRes = await fetch(new URL(m.partition, base), { cache: "no-store" });
+      if (!pRes.ok) {
+        throw new Error("Partition «" + m.partition + "» (HTTP " + pRes.status + ").");
+      }
+      const pBuf = await pRes.arrayBuffer();
+      part = new Uint8Array(pBuf);
+    }
+    const version = String(m.version != null ? m.version : "—");
+    const label = String(m.label != null ? m.label : "");
+    bundledCache = { ok: true, version, label, fw, part, err: null };
+    const vDisp =
+      version && version !== "—"
+        ? "Versão " + version
+        : "Define o campo «version» no manifesto";
+    setBundledSourceSubline(vDisp, "ok");
+    if (statusEl) {
+      const extra = m.partition ? " — com tabela de partições" : " — só app";
+      const head = label ? label + " — " : "";
+      statusEl.textContent =
+        head + (fw.length / 1024).toFixed(0) + " KB" + extra + " — pronto a gravar";
+      statusEl.classList.add("firmware-bundled-status--ok");
+    }
+  } catch (e) {
+    const msg = (e && e.message) || String(e);
+    bundledCache = { ok: false, version: "", label: "", fw: null, part: null, err: msg };
+    setBundledSourceSubline("Não disponível — escolhe ficheiros no computador", "err");
+    if (statusEl) {
+      statusEl.textContent = "Não carregou: " + msg;
+      statusEl.classList.add("firmware-bundled-status--err");
+    }
+  }
+  updateFlashButtonState();
+  if (port) {
+    setProgress(0, getConnectedHint());
+  }
 }
 
 function updateUiConnected(isConnected) {
@@ -249,13 +408,7 @@ function updateUiConnected(isConnected) {
   if (disconnectBtn) disconnectBtn.disabled = !isConnected;
   updateFlashButtonState();
   if (isConnected) {
-    const hasFw = !!(el("fileFw")?.files?.length);
-    setProgress(
-      0,
-      hasFw
-        ? "Ligado. Clica «Gravar firmware» para sincronizar e gravar."
-        : "Ligado. Escolhe o ficheiro .bin e clica «Gravar firmware»."
-    );
+    setProgress(0, getConnectedHint());
   }
 }
 
@@ -271,6 +424,7 @@ function isUserCancelledPortPick(err) {
  */
 const ESP32_S3_SERIAL_FILTERS = [
   { usbVendorId: 0x303a, usbProductId: 0x4008 },
+  /* CDC+MIDI composto (firmware Guerrilha com tud_cdc + MIDI): PID = 0x4000|CDC|MIDI */
   { usbVendorId: 0x303a, usbProductId: 0x4009 },
   { usbVendorId: 0x303a, usbProductId: 0x1001 },
   { usbVendorId: 0x303a },
@@ -374,6 +528,7 @@ function setupEventHandlers() {
       await cleanupPort();
     } finally {
       serialConnectBusy = false;
+      /* updateUiConnected já chamou updateFlashButtonState com busy=true; corrigir após libertar o lock. */
       updateFlashButtonState();
     }
   });
@@ -388,11 +543,12 @@ function setupEventHandlers() {
       logLine("Primeiro: «Ligar dispositivo» e escolhe a porta USB.");
       return;
     }
-    const fileFw = el("fileFw");
-    const filePart = el("filePart");
-    const flashBtn = el("flash");
-    const fw = fileFw?.files?.[0];
-    if (!fw) {
+    if (firmwareMode === "bundled") {
+      if (!bundledCache.ok) {
+        logLine("A atualização pré-selecionada não está pronta — recarrega ou escolhe «Ficheiros no computador».");
+        return;
+      }
+    } else if (!el("fileFw")?.files?.[0]) {
       logLine("Escolhe o ficheiro de firmware .bin");
       return;
     }
@@ -406,6 +562,10 @@ function setupEventHandlers() {
       /* getInfo opcional */
     }
 
+    /**
+     * O Chrome exige que `requestPort()` seja invocado no mesmo turno do clique (antes de qualquer await).
+     * Depois do CDC + esperas, o gesto expira — por isso o diálogo da ROM vem primeiro.
+     */
     let romPortRequestPromise = null;
     if (tinyusbAppOnlyPid(pidPrep)) {
       logLine(
@@ -423,6 +583,8 @@ function setupEventHandlers() {
     flashInProgress = true;
     updateFlashButtonState();
 
+    let fwData;
+    let partData;
     try {
       setProgress(0.02, "A preparar a porta USB…");
       if (tinyusbAppOnlyPid(pidPrep)) {
@@ -529,10 +691,24 @@ function setupEventHandlers() {
       );
 
       setProgress(0.12, "A ler ficheiros…");
-      const fwData = new Uint8Array(await fw.arrayBuffer());
-      const partFile = filePart?.files?.[0] || null;
-      let partData = null;
-      if (partFile) partData = new Uint8Array(await partFile.arrayBuffer());
+      try {
+        const bins = await getFlashBinaries();
+        fwData = bins.fwData;
+        partData = bins.partData;
+      } catch (err) {
+        logLine((err && err.message) || String(err));
+        setProgress(0, "Falha ao ler ficheiros.");
+        return;
+      }
+      if (firmwareMode === "bundled") {
+        logLine(
+          "A usar atualização pré-selecionada: " +
+            (bundledCache.label || "build") +
+            " (v" +
+            bundledCache.version +
+            ")"
+        );
+      }
 
       const fileArray = [];
       if (partData && partData.length) {
@@ -578,6 +754,7 @@ function setupEventHandlers() {
       }
 
       setProgress(0.98, "A concluir e reiniciar o chip…");
+      /* ESP32-S3 USB nativo: segundo argumento pede sequência de reset compatível com OTG. */
       await esploader.after("hard_reset", true);
       setProgress(1, "Concluído.");
       showFlashSuccessDialog();
@@ -622,19 +799,31 @@ function setupEventHandlers() {
   });
 
   function onFwFilePicked() {
+    if (firmwareMode !== "manual") return;
     updateFlashButtonState();
     if (port) {
-      const hasFw = !!(el("fileFw")?.files?.length);
-      setProgress(
-        0,
-        hasFw
-          ? "Ligado. Clica «Gravar firmware» para sincronizar e gravar."
-          : "Ligado. Escolhe o ficheiro .bin e clica «Gravar firmware»."
-      );
+      setProgress(0, getConnectedHint());
     }
   }
   el("fileFw")?.addEventListener("change", onFwFilePicked);
   el("fileFw")?.addEventListener("input", onFwFilePicked);
+  el("filePart")?.addEventListener("change", onFwFilePicked);
+  el("filePart")?.addEventListener("input", onFwFilePicked);
+
+  document.querySelectorAll('input[name="fwSource"]').forEach((radio) => {
+    radio.addEventListener("change", () => {
+      if (radio.checked) {
+        setFirmwareMode(radio.value);
+        logLine(
+          "Origem: " + (radio.value === "bundled" ? "atualização pré-selecionada" : "ficheiros no computador")
+        );
+      }
+    });
+  });
+  el("reloadBundled")?.addEventListener("click", () => {
+    logLine("A recarregar ficheiros da atualização pré-selecionada…");
+    loadBundledFirmware();
+  });
 
   el("clearLog")?.addEventListener("click", () => {
     const logBox = el("log");
@@ -642,6 +831,12 @@ function setupEventHandlers() {
   });
 
   setupFlashDoneDialog();
+  const rb = document.querySelector('input[name="fwSource"]:checked');
+  if (rb) {
+    setFirmwareMode(rb.value);
+  } else {
+    setFirmwareMode("bundled");
+  }
   updateUiConnected(false);
   logLine("Ferramenta pronta. Podes ligar o dispositivo.");
 }
@@ -660,6 +855,7 @@ async function start() {
   }
   try {
     setupEventHandlers();
+    await loadBundledFirmware();
     if (ok) {
       ok.textContent = "Ferramenta pronta. Usa Chrome ou Edge, liga o cabo USB e clica «Ligar dispositivo».";
       ok.classList.add("is-ready");
