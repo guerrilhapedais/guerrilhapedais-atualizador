@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Atualizador de firmware Guerrilha Pedais no navegador, via cabo USB." />
+  <meta name="description" content="Atualizador de firmware Guerrilha Pedais por USB no browser." />
   <title>Guerrilha Pedais — Atualizador de firmware (web)</title>
   <link rel="icon" href="assets/logo_final.png" type="image/png" />
   <link rel="stylesheet" href="css/style.css" />
@@ -29,7 +29,7 @@
         <div class="hero-copy">
           <p class="eyebrow">Atualização por USB</p>
           <h1>Guerrilha Pedais</h1>
-          <p class="sub">Ferramenta de atualização de firmware. Tabela de partições opcional.</p>
+          <p class="sub">Escolhe o firmware (.bin) e grava pelo cabo USB.</p>
         </div>
       </div>
     </header>
@@ -41,11 +41,11 @@
     </div>
 
     <div id="loadOk" class="load-banner" style="display: block" role="status" aria-live="polite" aria-atomic="true">
-      A carregar a biblioteca de flash a partir da Internet (só a primeira abertura)…
+      A preparar a ferramenta…
     </div>
     <div id="bootError" class="warn" style="display: none" role="alert" aria-hidden="true">
-      <strong>Não deu a carregar o esptool.js.</strong> <span id="bootErrorMsg"></span>
-      <p class="hint" style="margin: 0.5rem 0 0">Desactiva bloqueio de anúncios <strong>nesta</strong> página, experimenta janela anónima, outra rede (menos comum) ou o DevTools (F12)  Consola  para o erro. Primeiro CDN: jsdelivr.</p>
+      <strong>Não deu a carregar a ferramenta.</strong> <span id="bootErrorMsg"></span>
+      <p class="hint" style="margin: 0.5rem 0 0">Desactiva bloqueio de anúncios <strong>nesta</strong> página ou experimenta janela anónima. Se o erro continuar, abre a consola do browser (F12) para mais detalhes.</p>
     </div>
 
     <main id="main" tabindex="-1" aria-label="Ferramenta de atualização">
@@ -56,29 +56,19 @@
       </div>
 
       <section class="card" aria-labelledby="h-con">
-        <h2 id="h-con">Ligação</h2>
-        <div class="row" style="margin-bottom: 0.75rem; flex-wrap: wrap">
-          <label class="field" for="baudRate">Baud (ligação) — padrão do desktop: 460800, mas 115200 costuma ser mais fiável a ligar</label>
-          <select id="baudRate" name="baud" aria-label="Baud de ligação">
-            <option value="115200" selected>115200</option>
-            <option value="230400">230400</option>
-            <option value="460800">460800</option>
-            <option value="921600">921600</option>
-          </select>
-        </div>
-        <p class="hint">Se não ligar, tenta <strong>115200</strong> e desliga/religa o cabo.</p>
-        <div class="row" style="margin-top: 0.9rem">
+        <h2 id="h-con">Dispositivo</h2>
+        <div class="row">
           <button type="button" class="btn btn-primary" id="connect" disabled>Ligar dispositivo</button>
           <button type="button" class="btn btn-ghost" id="disconnect" disabled>Desligar</button>
         </div>
-        <p class="hint" style="margin-top: 0.6rem">Ligação: <strong id="statusState">—</strong></p>
+        <p class="hint" style="margin-top: 0.6rem">Estado: <strong id="statusState">—</strong></p>
       </section>
 
       <section class="card" aria-labelledby="h-files">
         <h2 id="h-files">Ficheiros</h2>
-        <label class="field" for="fileFw">Firmware (obrigatório) <code>*.bin</code> → <code>0x10000</code></label>
+        <label class="field" for="fileFw">Firmware <code>.bin</code> (obrigatório)</label>
         <input type="file" id="fileFw" accept=".bin,application/octet-stream" />
-        <label class="field" for="filePart">Tabela de partições (opcional) <code>*.bin</code> → <code>0x8000</code></label>
+        <label class="field" for="filePart">Tabela de partições <code>.bin</code> (só se fornecida — opcional)</label>
         <input type="file" id="filePart" accept=".bin,application/octet-stream" />
         <div class="row" style="margin-top: 0.9rem">
           <button type="button" class="btn btn-success" id="flash" disabled>Gravar firmware</button>
@@ -100,7 +90,7 @@
     </main>
 
     <footer>
-      <p>Guerrilha Pedais — atualizador web. Instruções de hospedagem: ficheiro <code>HOSPEDAR.md</code> na raiz de <code>atualizador-web</code> (repositório Git).</p>
+      <p>Guerrilha Pedais — atualização de firmware por USB.</p>
     </footer>
   </div>
   <script type="module" src="js/app.js"></script>
