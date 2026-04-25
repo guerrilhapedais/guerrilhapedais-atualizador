@@ -173,6 +173,29 @@ function setProgress(frac, text) {
   if (progressLabel && text) progressLabel.textContent = text;
 }
 
+/** Modal amigável após gravação bem-sucedida (reinício pelo USB do controlador). */
+function showFlashSuccessDialog() {
+  const dialog = el("flashDoneDialog");
+  const okBtn = el("flashDoneOk");
+  if (!dialog) return;
+  if (typeof dialog.showModal === "function") {
+    dialog.showModal();
+    okBtn?.focus();
+  }
+}
+
+function setupFlashDoneDialog() {
+  const dialog = el("flashDoneDialog");
+  const okBtn = el("flashDoneOk");
+  if (!dialog || !okBtn) return;
+  okBtn.addEventListener("click", () => {
+    if (typeof dialog.close === "function") dialog.close();
+  });
+  dialog.addEventListener("close", () => {
+    el("flash")?.focus();
+  });
+}
+
 function terminal() {
   return {
     clean() {},
@@ -579,8 +602,9 @@ function setupEventHandlers() {
       /* ESP32-S3 USB nativo: segundo argumento pede sequência de reset compatível com OTG. */
       await esploader.after("hard_reset", true);
       setProgress(1, "Concluído.");
+      showFlashSuccessDialog();
       logLine(
-        "Pronto — gravação verificada. O esptool pediu **reinício** (hard_reset). Com **USB JTAG/serial** (0x1001) o reset automático **nem sempre** tira o chip do modo download nem reinicia a app de forma visível — é **normal** teres de **desligar/ligar o USB** ou **RESET** físico."
+        "Pronto — gravação concluída. Reinicia o MT-Series desligando e voltando a ligar o USB do controlador se não arrancar sozinho; com **USB JTAG/serial** (0x1001) o reset automático **nem sempre** é visível."
       );
       if (el("statusState")) el("statusState").textContent = "Ligado";
     } catch (e) {
@@ -639,6 +663,7 @@ function setupEventHandlers() {
     if (logBox) logBox.textContent = "";
   });
 
+  setupFlashDoneDialog();
   updateUiConnected(false);
   logLine("Ferramenta pronta. Podes ligar o dispositivo.");
 }

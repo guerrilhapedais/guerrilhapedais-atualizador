@@ -424,3 +424,58 @@ a {
 a:hover {
   text-decoration: underline;
 }
+
+/* Diálogo pós-gravação */
+.done-dialog {
+  padding: 0;
+  border: none;
+  background: transparent;
+  max-width: calc(100vw - 2rem);
+  width: min(26rem, 100%);
+}
+
+.done-dialog::backdrop {
+  background: rgba(6, 8, 12, 0.72);
+  backdrop-filter: blur(6px);
+}
+
+.done-dialog__panel {
+  padding: 1.75rem 1.5rem 1.5rem;
+  border-radius: calc(var(--radius) + 4px);
+  background: linear-gradient(165deg, var(--bg-card) 0%, var(--bg-elevated) 100%);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow), 0 0 0 1px rgba(255, 255, 255, 0.04) inset;
+  text-align: center;
+}
+
+.done-dialog__icon {
+  color: var(--success);
+  margin: 0 auto 0.75rem;
+  display: flex;
+  justify-content: center;
+}
+
+.done-dialog__title {
+  margin: 0 0 0.75rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.done-dialog__text {
+  margin: 0 0 1.35rem;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+  text-align: left;
+}
+
+.done-dialog__text strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.done-dialog__ok {
+  min-width: 7rem;
+  padding: 0.55rem 1.35rem;
+}

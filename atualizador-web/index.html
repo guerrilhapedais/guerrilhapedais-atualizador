@@ -93,6 +93,24 @@
       <p>Guerrilha Pedais — atualização de firmware por USB.</p>
     </footer>
   </div>
+
+  <dialog id="flashDoneDialog" class="done-dialog" aria-labelledby="flashDoneTitle" aria-describedby="flashDoneDesc">
+    <div class="done-dialog__panel">
+      <div class="done-dialog__icon" aria-hidden="true">
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="24" cy="24" r="22" stroke="currentColor" stroke-width="2" opacity="0.35" />
+          <path d="M14 24.5l7 7 13-14" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </div>
+      <h2 id="flashDoneTitle" class="done-dialog__title">Gravação concluída</h2>
+      <p id="flashDoneDesc" class="done-dialog__text">
+        Reinicia o teu <strong>MT-Series</strong>: desliga e volta a ligar o USB do controlador. Assim o novo firmware
+        arranca de forma fiável.
+      </p>
+      <button type="button" class="btn btn-primary done-dialog__ok" id="flashDoneOk">OK</button>
+    </div>
+  </dialog>
+
   <script type="module" src="js/app.js"></script>
 </body>
 </html>
