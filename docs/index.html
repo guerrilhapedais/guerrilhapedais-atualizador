@@ -107,6 +107,7 @@
         </div>
 
         <div class="row" style="margin-top: 0.9rem">
+          <button type="button" class="btn btn-ghost" id="downloadNotes" disabled>Notas da versão</button>
           <button type="button" class="btn btn-success" id="flash" disabled>Gravar firmware</button>
         </div>
         <div class="progress-wrap">
@@ -144,8 +145,11 @@
       </div>
       <h2 id="flashDoneTitle" class="done-dialog__title">Gravação concluída</h2>
       <p id="flashDoneDesc" class="done-dialog__text">
-        Reinicia o teu <strong>MT-Series</strong>: desliga e volta a ligar o USB do controlador. Assim o novo firmware
-        arranca de forma fiável.
+        <strong>Reinicia o controlador:</strong> desliga e volta a ligar o USB do teu MT-Series para o novo firmware arrancar
+        com segurança.
+      </p>
+      <p class="done-dialog__text">
+        Depois disso clica em <strong>OK</strong> — a página atualiza (como com <kbd>F5</kbd>) para puderes ligar novamente ao dispositivo.
       </p>
       <button type="button" class="btn btn-primary done-dialog__ok" id="flashDoneOk">OK</button>
     </div>

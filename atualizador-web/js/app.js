@@ -39,6 +39,9 @@ let bundledCache = {
   fw: null,
   part: null,
   err: null,
+  /** Blob do ficheiro de notas (se existir em firmware/latest). */
+  notesBlob: null,
+  notesDownloadName: null,
 };
 
 const MANIFEST_URL = new URL("../firmware/latest/manifest.json", import.meta.url);
@@ -203,6 +206,7 @@ function setupFlashDoneDialog() {
   if (!dialog || !okBtn) return;
   okBtn.addEventListener("click", () => {
     if (typeof dialog.close === "function") dialog.close();
+    window.location.reload();
   });
   dialog.addEventListener("close", () => {
     el("flash")?.focus();
@@ -284,6 +288,40 @@ function updateFlashButtonState() {
   if (!flashBtn) return;
   const canTry = port != null && !flashInProgress && !serialConnectBusy && hasFirmwareReady();
   flashBtn.disabled = !canTry;
+  updateNotesButtonState();
+}
+
+function updateNotesButtonState() {
+  const notesBtn = el("downloadNotes");
+  if (!notesBtn) return;
+  if (firmwareMode !== "bundled") {
+    notesBtn.hidden = true;
+    return;
+  }
+  notesBtn.hidden = false;
+  const can =
+    bundledCache.ok &&
+    !flashInProgress &&
+    bundledCache.notesBlob != null &&
+    bundledCache.notesDownloadName;
+  notesBtn.disabled = !can;
+}
+
+function downloadBundledReleaseNotes() {
+  if (!bundledCache.notesBlob || !bundledCache.notesDownloadName) {
+    logLine("Notas da versão indisponíveis para esta build.");
+    return;
+  }
+  const url = URL.createObjectURL(bundledCache.notesBlob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = bundledCache.notesDownloadName;
+  a.rel = "noopener";
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 1500);
+  logLine("Notas da versão: descarregaste «" + bundledCache.notesDownloadName + "».");
 }
 
 function setFirmwareMode(mode) {
@@ -370,7 +408,23 @@ async function loadBundledFirmware() {
     }
     const version = String(m.version != null ? m.version : "—");
     const label = String(m.label != null ? m.label : "");
-    bundledCache = { ok: true, version, label, fw, part, err: null };
+    let notesBlob = null;
+    let notesDownloadName = null;
+    const notesFile =
+      m.notas != null && typeof m.notas === "string" && m.notas.trim()
+        ? m.notas.trim()
+        : "notas-da-versao.txt";
+    try {
+      const notesRes = await fetch(new URL(notesFile, base), { cache: "no-store" });
+      if (notesRes.ok) {
+        notesBlob = await notesRes.blob();
+        const baseName = notesFile.includes("/") ? notesFile.slice(notesFile.lastIndexOf("/") + 1) : notesFile;
+        notesDownloadName = baseName || "notas-da-versao.txt";
+      }
+    } catch (_) {
+      /* ficheiro opcional — ignora rede/CORS legítimos em dev */
+    }
+    bundledCache = { ok: true, version, label, fw, part, err: null, notesBlob, notesDownloadName };
     const vDisp =
       version && version !== "—"
         ? "Versão " + version
@@ -385,7 +439,16 @@ async function loadBundledFirmware() {
     }
   } catch (e) {
     const msg = (e && e.message) || String(e);
-    bundledCache = { ok: false, version: "", label: "", fw: null, part: null, err: msg };
+    bundledCache = {
+      ok: false,
+      version: "",
+      label: "",
+      fw: null,
+      part: null,
+      err: msg,
+      notesBlob: null,
+      notesDownloadName: null,
+    };
     setBundledSourceSubline("Não disponível — escolhe ficheiros no computador", "err");
     if (statusEl) {
       statusEl.textContent = "Não carregou: " + msg;
@@ -823,6 +886,10 @@ function setupEventHandlers() {
   el("reloadBundled")?.addEventListener("click", () => {
     logLine("A recarregar ficheiros da atualização pré-selecionada…");
     loadBundledFirmware();
+  });
+
+  el("downloadNotes")?.addEventListener("click", () => {
+    downloadBundledReleaseNotes();
   });
 
   el("clearLog")?.addEventListener("click", () => {

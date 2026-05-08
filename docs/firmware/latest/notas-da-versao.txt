@@ -1,0 +1,117 @@
+# 📋 Notas da Versão (Beta — sujeito a ajustes e correções)
+
+## 🎨 Interface
+
+### Controlador MIDI
+
+* Reformulação completa da dashboard
+
+### TONEX
+
+* Reformulação completa da dashboard
+* Novo sistema **Stomp**
+
+  * Alteração da posição dos stomps na cadeia de sinal
+  * Seleção rápida de stomps diretamente pelo app
+
+### HUB
+
+* Reformulação completa da dashboard
+
+---
+
+# 🦶 Footswitches (FS)
+
+## Novas Funções
+
+### Função Normal
+
+* Até 4 acionamentos configuráveis por footswitch
+
+### Função Momentânea
+
+* Envia um comando ao pressionar
+* Envia outro comando ao soltar
+
+### Função Tap Tempo
+
+* Sincronização do LED do footswitch com o tempo das pisadas
+
+### Função Ricochet
+
+* Simulação de efeito “ricochete”
+* Controle de tempo de ida e volta
+* Suporte à inversão de comando
+
+---
+
+## Melhorias Gerais
+
+* Mudança de banco acende todos os LEDs
+* Cor do Tap Tempo no modo Preset acompanha a cor do banco
+
+---
+
+# 🎛 Funções MIDI
+
+## Novos Recursos
+
+### PC Up
+
+* Incrementa o valor de Program Change
+
+### PC Down
+
+* Decrementa o valor de Program Change
+
+### CC Up
+
+* Incrementa o valor de Control Change
+
+### CC Down
+
+* Decrementa o valor de Control Change
+
+### MIDI Clock
+
+* Envio de clock MIDI com tempo predefinido
+
+### MIDI Clock Tap Tempo
+
+* Ajuste de tempo do clock MIDI via Tap Tempo
+
+### FS Sync
+
+* Sincronização do estado entre footswitches
+
+### BANK Interno
+
+* Sincronização de bancos internos escolhendo a chave desejada
+
+
+---
+
+# 🎚 Modo Live
+
+## Implementação do Modo Live no modo MIDI
+
+### Modos de Visualização
+
+* Visualização por ícones
+* Visualização por nome
+
+### Melhorias
+
+* Melhorias gerais de usabilidade
+* Correções de inconsistências
+
+---
+
+# 🔌 Modo USB
+
+## Novo modo USB HUB
+
+* Controle de pedais USB através de HUB USB
+
+---
+

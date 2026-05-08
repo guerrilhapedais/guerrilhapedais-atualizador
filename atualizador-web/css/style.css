@@ -601,6 +601,15 @@ a:hover {
   font-weight: 600;
 }
 
+.done-dialog .done-dialog__text kbd {
+  font-family: ui-monospace, monospace;
+  font-size: 0.85em;
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+}
+
 .done-dialog__ok {
   min-width: 7rem;
   padding: 0.55rem 1.35rem;
