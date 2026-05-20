@@ -283,6 +283,51 @@ h1 {
   color: #fecaca;
 }
 
+.firmware-source__opt--danger:has(input:checked) {
+  border-color: var(--error);
+  background: rgba(232, 17, 35, 0.14);
+}
+
+.firmware-source__opt--danger input {
+  accent-color: var(--error);
+}
+
+.firmware-source__opt input:disabled {
+  cursor: not-allowed;
+}
+
+.firmware-source__opt:has(input:disabled) {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.firmware-factory-panel {
+  margin-bottom: 0.9rem;
+  gap: 0.6rem;
+}
+
+.firmware-factory-panel:not([hidden]) {
+  display: grid;
+}
+
+.firmware-factory-list {
+  margin: 0;
+  padding-left: 1.1rem;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.firmware-factory-list code {
+  color: var(--text);
+}
+
+.warn--danger {
+  margin-bottom: 0;
+  background: rgba(232, 17, 35, 0.18);
+  border-color: rgba(232, 17, 35, 0.55);
+}
+
 .firmware-manual-panel {
   margin-bottom: 0.5rem;
 }
@@ -403,6 +448,15 @@ h1 {
 .btn-ghost:hover:not(:disabled) {
   color: var(--text);
   border-color: rgba(255, 255, 255, 0.2);
+}
+
+.btn-danger {
+  background: var(--error);
+  color: #fff;
+}
+
+.btn-danger:hover:not(:disabled) {
+  filter: brightness(1.08);
 }
 
 .row {

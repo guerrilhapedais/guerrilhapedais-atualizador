@@ -17,6 +17,8 @@ const SPARK_MD5_CDNS = [
 
 const ADDR_PART = 0x8000;
 const ADDR_APP = 0x10000;
+/** ESP32-S3: bootloader vive em 0x0 (no ESP32 clássico era 0x1000). */
+const ADDR_BOOTLOADER = 0x0;
 const FLASH_SIZE = "4MB";
 
 const el = (id) => document.getElementById(id);
@@ -30,7 +32,13 @@ let libVersion = null;
 let serialConnectBusy = false;
 let flashInProgress = false;
 
-/** «bundled» = manifest + .bin em firmware/latest/; «manual» = ficheiros locais. A gravação USB é a mesma. */
+/**
+ * Modos de gravação:
+ *  - «bundled»  = update normal: tabela (opcional) + app a partir do manifesto. Sem erase total.
+ *  - «manual»   = ficheiros locais escolhidos pelo utilizador.
+ *  - «factory»  = reposição de fábrica: bootloader + tabela + app com erase total.
+ *                 Apaga NVS, LittleFS e todo o estado do utilizador. Requer bootloader no manifesto.
+ */
 let firmwareMode = "bundled";
 let bundledCache = {
   ok: false,
@@ -38,6 +46,8 @@ let bundledCache = {
   label: "",
   fw: null,
   part: null,
+  /** Imagem do bootloader (opcional, só usada no modo «factory»). */
+  boot: null,
   err: null,
   /** Blob do ficheiro de notas (se existir em firmware/latest). */
   notesBlob: null,
@@ -107,6 +117,79 @@ async function sendCdcUpdateKick(p) {
 
 /** Só PID da ROM USB JTAG — sem filtro «só Espressif» (isso incluía a CDC 0x4009 e o esptool falhava). */
 const ESP32_ROM_JTAG_FILTERS = [{ usbVendorId: 0x303a, usbProductId: USB_PID_ESP32S3_ROM_JTAG }];
+
+/**
+ * Entre portas já autorizadas nesta origem, abre a primeira ROM (0x1001) que conseguir.
+ * Útil após comando CDC: o chip pode reenumerar e o SerialPort do 2.º diálogo falhar no open().
+ */
+async function tryOpenGrantedRomJtagPort() {
+  let list = [];
+  try {
+    list = await navigator.serial.getPorts();
+  } catch (_) {
+    return null;
+  }
+  for (const p of list) {
+    let info;
+    try {
+      info = typeof p.getInfo === "function" ? p.getInfo() : {};
+    } catch (_) {
+      continue;
+    }
+    if (info.usbVendorId !== 0x303a || info.usbProductId !== USB_PID_ESP32S3_ROM_JTAG) {
+      continue;
+    }
+    try {
+      if (p.readable != null && p.writable != null) {
+        continue;
+      }
+    } catch (_) {
+      /* objecto stale */
+    }
+    try {
+      await p.open({ baudRate: ROM_BAUDRATE });
+      return p;
+    } catch (_) {
+      continue;
+    }
+  }
+  return null;
+}
+
+/**
+ * Depois de fechar a CDC da app: tenta abrir a linha ROM com retries e getPorts().
+ * Não chamar close() no SerialPort ROM antes do primeiro open() — o fluxo antigo
+ * fechava-o e o Chrome/OS falhavam com «Failed to open serial port» após reinício USB.
+ */
+async function openRomPortAfterCdcKick(preferredRomHandle, logFn) {
+  const attempts = 16;
+  const gapMs = 400;
+  for (let i = 0; i < attempts; i++) {
+    if (i > 0) {
+      await sleepMs(gapMs);
+      if (i >= 2) {
+        logFn(
+          "A aguardar a porta USB JTAG/serial (0x1001) após o comando à app… " + i + "/" + (attempts - 1)
+        );
+      }
+    }
+    if (preferredRomHandle) {
+      try {
+        await preferredRomHandle.open({ baudRate: ROM_BAUDRATE });
+        return preferredRomHandle;
+      } catch (_) {
+        /* após reenumeração — tenta getPorts */
+      }
+    }
+    const found = await tryOpenGrantedRomJtagPort();
+    if (found) {
+      return found;
+    }
+  }
+  throw new Error(
+    "Não foi possível abrir a porta ROM (0x1001) a tempo. Desliga e liga o USB, confirma modo update (FS1) se precisares, volta a «Ligar» e repete «Gravar firmware»."
+  );
+}
 
 async function loadSparkMd5() {
   let lastErr;
@@ -267,6 +350,9 @@ function hasFirmwareReady() {
   if (firmwareMode === "bundled") {
     return bundledCache.ok === true;
   }
+  if (firmwareMode === "factory") {
+    return bundledCache.ok === true && bundledCache.boot != null;
+  }
   return !!(el("fileFw")?.files?.[0]);
 }
 
@@ -276,6 +362,12 @@ function getConnectedHint() {
       return "Ligado. Clica «Gravar firmware» para sincronizar e gravar.";
     }
     return "Ligado. A atualização pré-selecionada não carregou — recarrega ou escolhe «Ficheiros no computador».";
+  }
+  if (firmwareMode === "factory") {
+    if (bundledCache.ok && bundledCache.boot) {
+      return "Ligado. Clica «Gravar firmware» para reposição de fábrica (apaga presets/calibrações).";
+    }
+    return "Ligado. Reposição de fábrica indisponível — falta «bootloader.bin» no manifesto.";
   }
   const hasFw = !!(el("fileFw")?.files?.[0]);
   return hasFw
@@ -288,13 +380,16 @@ function updateFlashButtonState() {
   if (!flashBtn) return;
   const canTry = port != null && !flashInProgress && !serialConnectBusy && hasFirmwareReady();
   flashBtn.disabled = !canTry;
+  flashBtn.classList.toggle("btn-danger", firmwareMode === "factory");
+  flashBtn.classList.toggle("btn-success", firmwareMode !== "factory");
+  flashBtn.textContent = firmwareMode === "factory" ? "Gravar firmware (reposição)" : "Gravar firmware";
   updateNotesButtonState();
 }
 
 function updateNotesButtonState() {
   const notesBtn = el("downloadNotes");
   if (!notesBtn) return;
-  if (firmwareMode !== "bundled") {
+  if (firmwareMode === "manual") {
     notesBtn.hidden = true;
     return;
   }
@@ -325,23 +420,61 @@ function downloadBundledReleaseNotes() {
 }
 
 function setFirmwareMode(mode) {
-  firmwareMode = mode === "manual" ? "manual" : "bundled";
+  if (mode === "manual") firmwareMode = "manual";
+  else if (mode === "factory") firmwareMode = "factory";
+  else firmwareMode = "bundled";
   const bundledPanel = el("bundledPanel");
   const manualPanel = el("manualPanel");
+  const factoryPanel = el("factoryPanel");
   if (bundledPanel) bundledPanel.hidden = firmwareMode !== "bundled";
   if (manualPanel) manualPanel.hidden = firmwareMode !== "manual";
+  if (factoryPanel) factoryPanel.hidden = firmwareMode !== "factory";
+  updateFactoryPanel();
   updateFlashButtonState();
   if (port) {
     setProgress(0, getConnectedHint());
   }
 }
 
+function updateFactoryPanel() {
+  const radio = el("fwSourceFactory");
+  const statusEl = el("factoryStatus");
+  const hasBoot = bundledCache.ok && bundledCache.boot != null;
+  if (radio) {
+    radio.disabled = !hasBoot;
+  }
+  if (statusEl) {
+    if (!bundledCache.ok) {
+      statusEl.textContent = "Manifesto não disponível — não é possível repor de fábrica a partir do site.";
+      statusEl.classList.add("firmware-bundled-status--err");
+      statusEl.classList.remove("firmware-bundled-status--ok");
+    } else if (!hasBoot) {
+      statusEl.textContent =
+        "Falta «bootloader.bin» no manifesto — adiciona o campo «bootloader» para activar esta opção.";
+      statusEl.classList.add("firmware-bundled-status--err");
+      statusEl.classList.remove("firmware-bundled-status--ok");
+    } else {
+      const sizeKB = (bundledCache.boot.length / 1024).toFixed(0);
+      statusEl.textContent = "Bootloader pronto (" + sizeKB + " KB) — vai apagar a flash inteira.";
+      statusEl.classList.add("firmware-bundled-status--ok");
+      statusEl.classList.remove("firmware-bundled-status--err");
+    }
+  }
+}
+
 async function getFlashBinaries() {
-  if (firmwareMode === "bundled") {
+  if (firmwareMode === "bundled" || firmwareMode === "factory") {
     if (!bundledCache.ok || !bundledCache.fw) {
       throw new Error("Atualização pré-selecionada indisponível — recarrega a página ou usa ficheiros no computador.");
     }
-    return { fwData: bundledCache.fw, partData: bundledCache.part };
+    if (firmwareMode === "factory" && !bundledCache.boot) {
+      throw new Error("Reposição de fábrica indisponível — falta «bootloader.bin» no manifesto.");
+    }
+    return {
+      fwData: bundledCache.fw,
+      partData: bundledCache.part,
+      bootData: firmwareMode === "factory" ? bundledCache.boot : null,
+    };
   }
   const fileFw = el("fileFw");
   const filePart = el("filePart");
@@ -355,7 +488,7 @@ async function getFlashBinaries() {
   if (partFile) {
     partData = new Uint8Array(await partFile.arrayBuffer());
   }
-  return { fwData, partData };
+  return { fwData, partData, bootData: null };
 }
 
 function setBundledSourceSubline(text, variant) {
@@ -406,6 +539,25 @@ async function loadBundledFirmware() {
       const pBuf = await pRes.arrayBuffer();
       part = new Uint8Array(pBuf);
     }
+    /**
+     * Bootloader é OPCIONAL — só usado pelo modo «Reposição de fábrica».
+     * Se faltar ou falhar a descarregar, o update normal continua a funcionar
+     * (apenas a opção «factory» fica desactivada).
+     */
+    let boot = null;
+    if (m.bootloader && typeof m.bootloader === "string" && m.bootloader.length) {
+      try {
+        const bRes = await fetch(new URL(m.bootloader, base), { cache: "no-store" });
+        if (bRes.ok) {
+          const bBuf = await bRes.arrayBuffer();
+          if (bBuf && bBuf.byteLength > 0) {
+            boot = new Uint8Array(bBuf);
+          }
+        }
+      } catch (_) {
+        /* bootloader é opcional — silenciar erros de rede/CORS aqui */
+      }
+    }
     const version = String(m.version != null ? m.version : "—");
     const label = String(m.label != null ? m.label : "");
     let notesBlob = null;
@@ -424,7 +576,7 @@ async function loadBundledFirmware() {
     } catch (_) {
       /* ficheiro opcional — ignora rede/CORS legítimos em dev */
     }
-    bundledCache = { ok: true, version, label, fw, part, err: null, notesBlob, notesDownloadName };
+    bundledCache = { ok: true, version, label, fw, part, boot, err: null, notesBlob, notesDownloadName };
     const vDisp =
       version && version !== "—"
         ? "Versão " + version
@@ -445,6 +597,7 @@ async function loadBundledFirmware() {
       label: "",
       fw: null,
       part: null,
+      boot: null,
       err: msg,
       notesBlob: null,
       notesDownloadName: null,
@@ -455,6 +608,7 @@ async function loadBundledFirmware() {
       statusEl.classList.add("firmware-bundled-status--err");
     }
   }
+  updateFactoryPanel();
   updateFlashButtonState();
   if (port) {
     setProgress(0, getConnectedHint());
@@ -477,6 +631,8 @@ function updateUiConnected(isConnected) {
 
 function isUserCancelledPortPick(err) {
   const m = (err && err.message) || String(err);
+  /* Chrome: diálogo fechado sem escolher — costuma ser NotFoundError ou mensagem «no port selected». */
+  if (err && err.name === "NotFoundError") return true;
   return /no port selected/i.test(m);
 }
 
@@ -611,6 +767,11 @@ function setupEventHandlers() {
         logLine("A atualização pré-selecionada não está pronta — recarrega ou escolhe «Ficheiros no computador».");
         return;
       }
+    } else if (firmwareMode === "factory") {
+      if (!bundledCache.ok || !bundledCache.boot) {
+        logLine("Reposição de fábrica não está pronta — falta «bootloader.bin» no manifesto.");
+        return;
+      }
     } else if (!el("fileFw")?.files?.[0]) {
       logLine("Escolhe o ficheiro de firmware .bin");
       return;
@@ -626,20 +787,29 @@ function setupEventHandlers() {
     }
 
     /**
-     * O Chrome exige que `requestPort()` seja invocado no mesmo turno do clique (antes de qualquer await).
-     * Depois do CDC + esperas, o gesto expira — por isso o diálogo da ROM vem primeiro.
+     * O Chrome exige `requestPort()` no mesmo «user gesture» do clique. `window.confirm`,
+     * `logLine` (reflow) ou microtarefas podem invalidar o gesto →
+     * «Must be handling a user gesture to show a permission request».
+     * Por isso chamamos `requestPort` aqui, antes de confirm e antes das mensagens ao registo.
      */
     let romPortRequestPromise = null;
     if (tinyusbAppOnlyPid(pidPrep)) {
+      try {
+        /* Filtro só 0x1001: no Chrome muitas vezes essa linha AINDA NÃO existe enquanto a app está na USB — o diálogo fica vazio e o utilizador cancela. Listar todos os PID Espressif (como em «Ligar»). */
+        romPortRequestPromise = navigator.serial.requestPort({ filters: ESP32_S3_SERIAL_FILTERS });
+      } catch (e) {
+        logLine("ERRO: " + ((e && e.message) || e));
+        return;
+      }
+    }
+
+    if (tinyusbAppOnlyPid(pidPrep)) {
       logLine(
-        "No diálogo escolhe **USB JTAG/serial** (ROM, PID 0x" +
-          USB_PID_ESP32S3_ROM_JTAG.toString(16) +
-          "); a seguir envia-se o comando à CDC."
+        "Segundo diálogo: aparecem todas as interfaces Espressif (VID 0x303a) — escolhe **USB JTAG/serial** (ROM, PID **0x1001**), não a linha da aplicação (0x4008/0x4009)."
       );
       logLine(
-        "Se o Chrome **não** listar o dispositivo ou falhar a reconexão, **reinicia o USB** (desliga/liga) com o chip em modo update, volta a «Ligar» se precisares e escolhe **0x1001** em «Gravar»."
+        "Se **0x1001** não estiver na lista, cancela: arranca com FS1 (modo update) ou desliga/liga o USB e clica outra vez em «Gravar firmware» quando o Chrome listar a ROM."
       );
-      romPortRequestPromise = navigator.serial.requestPort({ filters: ESP32_ROM_JTAG_FILTERS });
     }
 
     const baud = FLASH_BAUDRATE;
@@ -648,7 +818,25 @@ function setupEventHandlers() {
 
     let fwData;
     let partData;
+    let bootData;
     try {
+      /* Reposição de fábrica sem 2.º diálogo ROM: confirm aqui (não invalida o gesture do requestPort). */
+      if (!tinyusbAppOnlyPid(pidPrep) && firmwareMode === "factory") {
+        const confirmed = window.confirm(
+          "Reposição de fábrica\n\n" +
+            "Vai apagar TODA a flash do dispositivo:\n" +
+            "  • Presets e configurações guardados\n" +
+            "  • Calibrações\n" +
+            "  • LittleFS / NVS\n\n" +
+            "A seguir grava bootloader + tabela + firmware do site.\n\n" +
+            "Continuar?"
+        );
+        if (!confirmed) {
+          logLine("Reposição de fábrica cancelada.");
+          return;
+        }
+      }
+
       setProgress(0.02, "A preparar a porta USB…");
       if (tinyusbAppOnlyPid(pidPrep)) {
         let romHandle;
@@ -691,6 +879,27 @@ function setupEventHandlers() {
               " para ROM). Se falhar a sincronização, confirma o cabo e o modo bootloader."
           );
         }
+        if (firmwareMode === "factory") {
+          const okFactory = window.confirm(
+            "Reposição de fábrica\n\n" +
+              "Vai apagar TODA a flash do dispositivo:\n" +
+              "  • Presets e configurações guardados\n" +
+              "  • Calibrações\n" +
+              "  • LittleFS / NVS\n\n" +
+              "A seguir grava bootloader + tabela + firmware do site.\n\n" +
+              "Continuar?"
+          );
+          if (!okFactory) {
+            logLine("Reposição de fábrica cancelada.");
+            try {
+              await romHandle.close();
+            } catch (_) {
+              /* */
+            }
+            setProgress(0, "");
+            return;
+          }
+        }
         logLine("CDC (TinyUSB): a reenviar comando de preparação…");
         try {
           await sendCdcUpdateKick(port);
@@ -699,30 +908,19 @@ function setupEventHandlers() {
         } catch (e) {
           logLine("Aviso: falha ao enviar à CDC (" + ((e && e.message) || e) + "). Continuação…");
         }
-        logLine("A fechar a CDC e a abrir a linha ROM para o esptool…");
+        logLine("A fechar a CDC da app; a seguir liga-se a linha ROM (0x1001) para o esptool…");
         try {
           await port.close();
         } catch (_) {
           /* */
         }
         port = null;
-        await sleepMs(450);
-        try {
-          await romHandle.close();
-        } catch (_) {
-          /* */
-        }
-        await sleepMs(120);
-        try {
-          await romHandle.open({ baudRate: ROM_BAUDRATE });
-        } catch (e) {
-          const name = e && e.name;
-          const em = (e && e.message) || String(e);
-          if (name !== "InvalidStateError" && !/already open/i.test(em)) {
-            throw e;
-          }
-        }
-        port = romHandle;
+        /**
+         * Não fechar `romHandle` aqui antes do primeiro open — estava a provocar falhas ao
+         * `open()` após reinício USB. Retries + navigator.serial.getPorts().
+         */
+        await sleepMs(550);
+        port = await openRomPortAfterCdcKick(romHandle, logLine);
         logSerialPortSummary(port);
         logLine("Porta USB pronta para sincronizar (interface ROM).");
       } else {
@@ -758,14 +956,16 @@ function setupEventHandlers() {
         const bins = await getFlashBinaries();
         fwData = bins.fwData;
         partData = bins.partData;
+        bootData = bins.bootData;
       } catch (err) {
         logLine((err && err.message) || String(err));
         setProgress(0, "Falha ao ler ficheiros.");
         return;
       }
-      if (firmwareMode === "bundled") {
+      if (firmwareMode === "bundled" || firmwareMode === "factory") {
+        const tag = firmwareMode === "factory" ? "Reposição de fábrica" : "Atualização pré-selecionada";
         logLine(
-          "A usar atualização pré-selecionada: " +
+          tag + ": " +
             (bundledCache.label || "build") +
             " (v" +
             bundledCache.version +
@@ -774,12 +974,21 @@ function setupEventHandlers() {
       }
 
       const fileArray = [];
+      if (bootData && bootData.length) {
+        fileArray.push({ data: bootData, address: ADDR_BOOTLOADER });
+        logLine("Bootloader → 0x" + ADDR_BOOTLOADER.toString(16) + " (" + bootData.length + " B)");
+      }
       if (partData && partData.length) {
         fileArray.push({ data: partData, address: ADDR_PART });
         logLine("Partition table → 0x" + ADDR_PART.toString(16) + " (" + partData.length + " B)");
       }
       fileArray.push({ data: fwData, address: ADDR_APP });
       logLine("Firmware → 0x" + ADDR_APP.toString(16) + " (" + fwData.length + " B)");
+
+      const doEraseAll = firmwareMode === "factory";
+      if (doEraseAll) {
+        logLine("Reposição de fábrica: vai apagar a flash inteira antes de gravar (presets/calibrações são perdidos).");
+      }
 
       setProgress(0.18, "A gravar (não desligues o USB)…");
 
@@ -800,7 +1009,7 @@ function setupEventHandlers() {
         flashMode: "dio",
         flashFreq: "40m",
         flashSize: FLASH_SIZE,
-        eraseAll: false,
+        eraseAll: doEraseAll,
         compress: true,
         ...(calculateMD5Hash ? { calculateMD5Hash } : {}),
         reportProgress: (fileIndex, written, total) => {
@@ -877,9 +1086,13 @@ function setupEventHandlers() {
     radio.addEventListener("change", () => {
       if (radio.checked) {
         setFirmwareMode(radio.value);
-        logLine(
-          "Origem: " + (radio.value === "bundled" ? "atualização pré-selecionada" : "ficheiros no computador")
-        );
+        const label =
+          radio.value === "factory"
+            ? "reposição de fábrica (apaga tudo)"
+            : radio.value === "manual"
+              ? "ficheiros no computador"
+              : "atualização pré-selecionada";
+        logLine("Origem: " + label);
       }
     });
   });

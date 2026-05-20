@@ -89,6 +89,13 @@
                 <span class="firmware-source__sub">Escolhe o <code>.bin</code> da pasta de builds (modo clássico)</span>
               </span>
             </label>
+            <label class="firmware-source__opt firmware-source__opt--danger">
+              <input type="radio" name="fwSource" id="fwSourceFactory" value="factory" disabled />
+              <span class="firmware-source__box">
+                <span class="firmware-source__title">Reposição de fábrica (avançado)</span>
+                <span class="firmware-source__sub">Apaga toda a flash e regrava bootloader + tabela + firmware</span>
+              </span>
+            </label>
           </div>
         </fieldset>
 
@@ -104,6 +111,20 @@
           <input type="file" id="fileFw" accept=".bin,application/octet-stream" />
           <label class="field" for="filePart">Tabela de partições <code>.bin</code> (opcional)</label>
           <input type="file" id="filePart" accept=".bin,application/octet-stream" />
+        </div>
+
+        <div id="factoryPanel" class="firmware-factory-panel" role="region" hidden aria-label="Reposição de fábrica">
+          <div class="warn warn--danger" role="alert">
+            <strong>Atenção:</strong> esta opção <strong>apaga TODA a flash</strong> do dispositivo antes de gravar.
+            Perdes <strong>presets, calibrações, NVS e LittleFS</strong>. Usa só se queres devolver o aparelho a um estado de fábrica
+            ou recuperar de um boot partido.
+          </div>
+          <p id="factoryStatus" class="firmware-bundled-status" role="status">A verificar bootloader…</p>
+          <ul class="firmware-factory-list">
+            <li>Bootloader → <code>0x0</code></li>
+            <li>Tabela de partições → <code>0x8000</code></li>
+            <li>Firmware (factory) → <code>0x10000</code></li>
+          </ul>
         </div>
 
         <div class="row" style="margin-top: 0.9rem">
@@ -145,8 +166,7 @@
       </div>
       <h2 id="flashDoneTitle" class="done-dialog__title">Gravação concluída</h2>
       <p id="flashDoneDesc" class="done-dialog__text">
-        <strong>Clique em ok</strong> para que o controlador possa terminar a atualização
-        com segurança.
+        Clique em<strong> ok</strong> para que o controlador possa terminar a atualização com segurança.
       </p>
       
       <button type="button" class="btn btn-primary done-dialog__ok" id="flashDoneOk">OK</button>
