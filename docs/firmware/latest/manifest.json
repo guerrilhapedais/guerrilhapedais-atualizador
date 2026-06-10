@@ -1,6 +1,6 @@
 {
-  "version": "2.4.6.5",
-  "label": "MT-Series (TONEXONE) — firmware 2.4.6.5 + partition-table",
+  "version": "2.4.6.6",
+  "label": "MT-Series (TONEXONE) — firmware 2.4.6.6 + partition-table",
   "firmware": "TONEXONE-MTSeries.bin",
   "partition": "partition-table.bin",
   "bootloader": "bootloader.bin"
