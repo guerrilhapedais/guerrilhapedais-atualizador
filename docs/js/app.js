@@ -54,7 +54,15 @@ let bundledCache = {
   notesDownloadName: null,
 };
 
-const MANIFEST_URL = new URL("../firmware/latest/manifest.json", import.meta.url);
+const FIRMWARE_DIR = document.documentElement.getAttribute("data-firmware-dir") || "latest";
+
+function getManifestUrl() {
+  return new URL(`../firmware/${FIRMWARE_DIR}/manifest.json`, import.meta.url);
+}
+
+function getFirmwareBaseUrl() {
+  return new URL(`../firmware/${FIRMWARE_DIR}/`, import.meta.url);
+}
 
 const SYNC_TIMEOUT_MS = 90000;
 /** Baud da ROM na 1.ª ligação — tem de coincidir com `romBaudrate` do ESPLoader. */
@@ -508,12 +516,12 @@ async function loadBundledFirmware() {
   }
   setBundledSourceSubline("A carregar a versão…", null);
   try {
-    const r = await fetch(MANIFEST_URL, { cache: "no-store" });
+    const r = await fetch(getManifestUrl(), { cache: "no-store" });
     if (!r.ok) {
       throw new Error("manifest.json em falta (HTTP " + r.status + ").");
     }
     const m = await r.json();
-    const base = new URL("./", MANIFEST_URL);
+    const base = getFirmwareBaseUrl();
     const fwName = m.firmware;
     if (!fwName || typeof fwName !== "string") {
       throw new Error("No manifest, o campo «firmware» (nome do .bin) é obrigatório.");
