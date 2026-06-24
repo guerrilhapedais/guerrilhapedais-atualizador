@@ -3,46 +3,40 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Atualizador de firmware MT-Series (TONEXONE) Guerrilha Pedais por USB no browser." />
+  <meta name="description" content="Atualizador de firmware MT-Series Guerrilha Pedais por USB no browser." />
   <title>Guerrilha Pedais — MT-Series · Atualizador</title>
   <link rel="icon" href="assets/logo_final.png" type="image/png" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
-<body>
+<body class="updater-page">
   <a class="skip-link" href="#main">Saltar para o conteúdo</a>
-  <div class="layout">
-    <p class="line-nav">
+  <div class="layout layout--updater">
+    <nav class="line-nav" aria-label="Navegação">
       <a href="index.html" class="line-nav__back">← Escolher linha</a>
       <span class="line-nav__pill line-nav__pill--mt">MT-Series</span>
-    </p>
+    </nav>
 
-    <header class="hero" role="banner">
+    <header class="hero hero--compact" role="banner">
       <div class="hero-glow" aria-hidden="true"></div>
-      <div class="hero-inner">
-        <div class="hero-logo-wrap">
-          <img
-            class="hero-logo"
-            src="assets/logo_final.png"
-            width="120"
-            height="120"
-            alt="Guerrilha Pedais"
-            decoding="async"
-            fetchpriority="high"
-            onerror="this.parentElement && (this.parentElement.style.display='none')"
-          />
-        </div>
+      <div class="hero-inner hero-inner--compact">
+        <img
+          class="hero-logo hero-logo--compact"
+          src="assets/logo_final.png"
+          width="72"
+          height="72"
+          alt=""
+          decoding="async"
+          onerror="this.style.display='none'"
+        />
         <div class="hero-copy">
-          <p class="eyebrow">MT-Series · TONEXONE</p>
-          <h1>Atualizador de firmware</h1>
-          <p class="sub">Versão pré-selecionada do site ou ficheiros <code>.bin</code> no computador — gravação sempre por USB.</p>
+          <h1>MT-Series</h1>
+          <p class="sub">Atualização de firmware por USB — usa Chrome ou Edge.</p>
         </div>
       </div>
     </header>
 
     <div id="noSerial" class="warn" style="display: none" role="alert" aria-live="polite">
-      <strong>Browser incompatível.</strong> Isto precisa de <strong>Web Serial</strong> (normalmente
-      <strong>Google Chrome</strong> ou <strong>Microsoft Edge</strong> no Mac ou no Windows). O Safari não
-      suporta ligar a esta porta. Nenhum ficheiro sobe para a Internet — tudo acontece no teu computador.
+      <strong>Browser incompatível.</strong> Usa <strong>Google Chrome</strong> ou <strong>Microsoft Edge</strong>. O Safari não permite ligar ao controlador por USB.
     </div>
 
     <div id="loadOk" class="load-banner" style="display: block" role="status" aria-live="polite" aria-atomic="true">
@@ -50,91 +44,83 @@
     </div>
     <div id="bootError" class="warn" style="display: none" role="alert" aria-hidden="true">
       <strong>Não deu a carregar a ferramenta.</strong> <span id="bootErrorMsg"></span>
-      <p class="hint" style="margin: 0.5rem 0 0">Desactiva bloqueio de anúncios <strong>nesta</strong> página ou experimenta janela anónima. Se o erro continuar, abre a consola do browser (F12) para mais detalhes.</p>
+      <p class="hint" style="margin: 0.5rem 0 0">Desactiva bloqueio de anúncios nesta página ou tenta janela anónima.</p>
     </div>
 
-    <main id="main" tabindex="-1" aria-label="Ferramenta de atualização MT-Series">
+    <main id="main" tabindex="-1" aria-label="Atualizador MT-Series">
       <div class="steps" aria-label="Passos">
-        <div class="step"><span class="num" aria-hidden="true">1</span> Segure<strong>FS1</strong></div>
+        <div class="step"><span class="num" aria-hidden="true">1</span> Segure <strong>FS1</strong></div>
         <div class="step"><span class="num" aria-hidden="true">2</span> Ligue o dispositivo ao computador</div>
         <div class="step"><span class="num" aria-hidden="true">3</span> Solte o botão quando leds estiverem na cor branca</div>
         <div class="step"><span class="num" aria-hidden="true">4</span> Clica <strong>Ligar</strong> e escolhe a porta</div>
-        <div class="step"><span class="num" aria-hidden="true">5</span> Escolhe a origem do firmware </div>
-        <div class="step"><span class="num" aria-hidden="true">6</span> Click em<strong>Gravar firmware</strong></div>
+        <div class="step"><span class="num" aria-hidden="true">5</span> Escolhe a origem do firmware</div>
+        <div class="step"><span class="num" aria-hidden="true">6</span> Clica em <strong>Gravar firmware</strong></div>
       </div>
 
-      <section class="card" aria-labelledby="h-con">
-        <h2 id="h-con">Dispositivo</h2>
+      <section class="card card--connect" aria-labelledby="h-con">
+        <div class="card-head">
+          <h2 id="h-con">Ligação</h2>
+          <span class="status-pill" id="statusState" aria-live="polite">Desligado</span>
+        </div>
         <div class="row">
           <button type="button" class="btn btn-primary" id="connect" disabled>Ligar dispositivo</button>
           <button type="button" class="btn btn-ghost" id="disconnect" disabled>Desligar</button>
         </div>
-        <p class="hint" style="margin-top: 0.6rem">Estado: <strong id="statusState">—</strong></p>
       </section>
 
       <section class="card" aria-labelledby="h-files">
         <h2 id="h-files">Firmware</h2>
-        <p class="hint" id="firmwareIntro" style="margin: 0 0 0.85rem; color: var(--text-muted)">
-          Mesma ligação USB e o mesmo processo de gravação: só mudas a origem dos ficheiros.
-        </p>
-        <fieldset class="firmware-fieldset" aria-describedby="firmwareIntro">
+        <fieldset class="firmware-fieldset">
           <legend class="visually-hidden">Origem do firmware</legend>
-          <div class="firmware-source" role="radiogroup" aria-label="Origem do firmware">
+          <div class="firmware-source firmware-source--stack" role="radiogroup" aria-label="Origem do firmware">
             <label class="firmware-source__opt">
               <input type="radio" name="fwSource" id="fwSourceBundled" value="bundled" checked />
               <span class="firmware-source__box">
-                <span class="firmware-source__title">Atualização pré-selecionada</span>
-                <span class="firmware-source__sub" id="bundledSourceSub">A carregar a versão…</span>
+                <span class="firmware-source__title">Versão do site</span>
+                <span class="firmware-source__sub" id="bundledSourceSub">A carregar…</span>
               </span>
             </label>
             <label class="firmware-source__opt">
               <input type="radio" name="fwSource" id="fwSourceManual" value="manual" />
               <span class="firmware-source__box">
                 <span class="firmware-source__title">Ficheiros no computador</span>
-                <span class="firmware-source__sub">Escolhe o <code>.bin</code> da pasta de builds (modo clássico)</span>
+                <span class="firmware-source__sub">Escolhes os ficheiros manualmente</span>
               </span>
             </label>
             <label class="firmware-source__opt firmware-source__opt--danger">
               <input type="radio" name="fwSource" id="fwSourceFactory" value="factory" disabled />
               <span class="firmware-source__box">
-                <span class="firmware-source__title">Reposição de fábrica (avançado)</span>
-                <span class="firmware-source__sub">Apaga toda a flash e regrava bootloader + tabela + firmware</span>
+                <span class="firmware-source__title">Reposição de fábrica</span>
+                <span class="firmware-source__sub">Apaga tudo — só para recuperação</span>
               </span>
             </label>
           </div>
         </fieldset>
 
-        <div id="bundledPanel" class="firmware-bundled-panel" role="region" aria-label="Estado da atualização pré-selecionada">
+        <div id="bundledPanel" class="firmware-bundled-panel" role="region" aria-label="Versão do site">
           <p id="bundledStatus" class="firmware-bundled-status" role="status">A carregar…</p>
           <div class="row" style="margin-top: 0.5rem">
-            <button type="button" class="btn btn-ghost" id="reloadBundled">Recarregar do site</button>
+            <button type="button" class="btn btn-ghost btn-sm" id="reloadBundled">Recarregar versão</button>
           </div>
         </div>
 
         <div id="manualPanel" class="firmware-manual-panel" role="region" hidden aria-label="Ficheiros locais">
-          <label class="field" for="fileFw">Firmware <code>.bin</code> (obrigatório)</label>
+          <label class="field" for="fileFw">Firmware (obrigatório)</label>
           <input type="file" id="fileFw" accept=".bin,application/octet-stream" />
-          <label class="field" for="filePart">Tabela de partições <code>.bin</code> (opcional)</label>
+          <label class="field" for="filePart">Tabela de partições (opcional)</label>
           <input type="file" id="filePart" accept=".bin,application/octet-stream" />
         </div>
 
         <div id="factoryPanel" class="firmware-factory-panel" role="region" hidden aria-label="Reposição de fábrica">
           <div class="warn warn--danger" role="alert">
-            <strong>Atenção:</strong> esta opção <strong>apaga TODA a flash</strong> do dispositivo antes de gravar.
-            Perdes <strong>presets, calibrações, NVS e LittleFS</strong>. Usa só se queres devolver o aparelho a um estado de fábrica
-            ou recuperar de um boot partido.
+            <strong>Atenção:</strong> apaga presets, calibrações e dados guardados. Usa só se o controlador não arrancar.
           </div>
-          <p id="factoryStatus" class="firmware-bundled-status" role="status">A verificar bootloader…</p>
-          <ul class="firmware-factory-list">
-            <li>Bootloader → <code>0x0</code></li>
-            <li>Tabela de partições → <code>0x8000</code></li>
-            <li>Firmware (factory) → <code>0x10000</code></li>
-          </ul>
+          <p id="factoryStatus" class="firmware-bundled-status" role="status">A verificar…</p>
         </div>
 
-        <div class="row" style="margin-top: 0.9rem">
-          <button type="button" class="btn btn-ghost" id="downloadNotes" disabled>Notas da versão</button>
-          <button type="button" class="btn btn-success" id="flash" disabled>Gravar firmware</button>
+        <div class="action-bar">
+          <button type="button" class="btn btn-ghost btn-sm" id="downloadNotes" disabled>Notas da versão</button>
+          <button type="button" class="btn btn-success btn-flash" id="flash" disabled>Gravar firmware</button>
         </div>
         <div class="progress-wrap">
           <progress id="progress" value="0" max="100" aria-label="Progresso da gravação"></progress>
@@ -142,22 +128,17 @@
         </div>
       </section>
 
-      <section class="card" aria-labelledby="h-log">
-        <h2 id="h-log">Registo</h2>
-        <div id="log" class="log" role="log" aria-live="polite" aria-atomic="false"></div>
-        <p class="log-info">
-          Com <strong>ficheiros no computador</strong>, o .bin não sai da tua máquina. Com <strong>atualização pré-selecionada</strong>,
-          o browser <strong>descarrega</strong> os .bin a partir desta página (a versão mostrada vem do <code>manifest.json</code>) e
-          grava no chip por USB.
-        </p>
-        <div class="row" style="margin-top: 0.6rem">
-          <button type="button" class="btn btn-ghost" id="clearLog">Limpar registo</button>
+      <section class="card card--log" aria-labelledby="h-log">
+        <div class="card-head">
+          <h2 id="h-log">Registo</h2>
+          <button type="button" class="btn btn-ghost btn-sm" id="clearLog">Limpar</button>
         </div>
+        <div id="log" class="log" role="log" aria-live="polite" aria-atomic="false"></div>
       </section>
     </main>
 
-    <footer>
-      <p>Guerrilha Pedais — MT-Series · atualização de firmware por USB.</p>
+    <footer class="footer--compact">
+      <p>Guerrilha Pedais · MT-Series</p>
     </footer>
   </div>
 
@@ -171,7 +152,7 @@
       </div>
       <h2 id="flashDoneTitle" class="done-dialog__title">Gravação concluída</h2>
       <p id="flashDoneDesc" class="done-dialog__text">
-        Clique em<strong> ok</strong> para que o controlador possa terminar a atualização com segurança.
+        Clica em <strong>OK</strong> para o controlador concluir a atualização.
       </p>
       <button type="button" class="btn btn-primary done-dialog__ok" id="flashDoneOk">OK</button>
     </div>

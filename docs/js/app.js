@@ -665,6 +665,13 @@ async function pickSerialPort() {
   return await navigator.serial.requestPort({ filters: ESP32_S3_SERIAL_FILTERS });
 }
 
+function setConnectionStatus(connected) {
+  const statusState = el("statusState");
+  if (!statusState) return;
+  statusState.textContent = connected ? "Ligado" : "Desligado";
+  statusState.classList.toggle("status-pill--on", connected);
+}
+
 async function cleanupPort(options = {}) {
   const skipUi = options.skipUi === true;
   flashInProgress = false;
@@ -681,8 +688,7 @@ async function cleanupPort(options = {}) {
     }
   } catch (_) { /* nada: já fechada ou nunca aberta */ }
   port = null;
-  const statusState = el("statusState");
-  if (statusState) statusState.textContent = "—";
+  setConnectionStatus(false);
   setProgress(0, "");
   if (!skipUi) {
     updateUiConnected(false);
@@ -740,7 +746,7 @@ function setupEventHandlers() {
       } else {
         logLine("«Gravar firmware» sincroniza e grava (porta já é ROM ou outra linha — sem comando CDC ao ligar).");
       }
-      if (el("statusState")) el("statusState").textContent = "Ligado";
+      setConnectionStatus(true);
       updateUiConnected(true);
     } catch (e) {
       if (isUserCancelledPortPick(e)) {
@@ -1041,7 +1047,7 @@ function setupEventHandlers() {
       logLine(
         "Pronto — gravação concluída. Reinicia o MT-Series desligando e voltando a ligar o USB do controlador se não arrancar sozinho; com **USB JTAG/serial** (0x1001) o reset automático **nem sempre** é visível."
       );
-      if (el("statusState")) el("statusState").textContent = "Ligado";
+      setConnectionStatus(true);
     } catch (e) {
       const msg = (e && e.message) || String(e);
       logLine("ERRO: " + msg);

@@ -14,6 +14,11 @@
   --error: #e81123;
   --radius: 12px;
   --shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+  --body-gradient:
+    radial-gradient(ellipse 90% 60% at 20% 0%, rgba(0, 120, 212, 0.22), transparent 55%),
+    radial-gradient(ellipse 70% 50% at 100% 20%, rgba(0, 90, 180, 0.12), transparent 50%),
+    radial-gradient(ellipse 50% 40% at 100% 100%, rgba(0, 168, 232, 0.1), transparent 55%),
+    linear-gradient(180deg, #0a0a0c 0%, #121215 40%, #121215 100%);
 }
 
 * {
@@ -32,11 +37,7 @@ body {
   background: var(--bg);
   color: var(--text);
   line-height: 1.5;
-  background-image:
-    radial-gradient(ellipse 90% 60% at 20% 0%, rgba(0, 120, 212, 0.22), transparent 55%),
-    radial-gradient(ellipse 70% 50% at 100% 20%, rgba(0, 90, 180, 0.12), transparent 50%),
-    radial-gradient(ellipse 50% 40% at 100% 100%, rgba(0, 168, 232, 0.1), transparent 55%),
-    linear-gradient(180deg, #0a0a0c 0%, #121215 40%, #121215 100%);
+  background-image: var(--body-gradient);
 }
 
 .skip-link {
@@ -353,6 +354,147 @@ h1 {
   color: var(--text-muted);
   margin: 0 0 1rem;
   font-weight: 600;
+}
+
+/* ----- Páginas do atualizador (mt / mt-s) ----- */
+
+.layout--updater {
+  max-width: 720px;
+  padding-top: 1rem;
+}
+
+.updater-page header.hero--compact {
+  padding: 0 0 1.25rem;
+  margin-bottom: 0;
+}
+
+.hero-inner--compact {
+  padding: 1rem 1.15rem;
+  gap: 1rem;
+  align-items: center;
+}
+
+.hero-logo--compact {
+  width: 3.25rem;
+  max-height: 3.25rem;
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+
+.hero-inner--compact .hero-copy {
+  text-align: left;
+}
+
+.hero-inner--compact h1 {
+  font-size: clamp(1.35rem, 4vw, 1.65rem);
+  margin-bottom: 0.25rem;
+}
+
+.hero-inner--compact .sub {
+  font-size: 0.85rem;
+}
+
+.card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.85rem;
+}
+
+.card-head h2 {
+  margin: 0;
+}
+
+.card--connect h2,
+.card--log h2 {
+  margin: 0;
+}
+
+.status-pill {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 0.28rem 0.65rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.status-pill--on {
+  color: #86efac;
+  background: rgba(16, 124, 16, 0.15);
+  border-color: rgba(16, 124, 16, 0.35);
+}
+
+.firmware-source--stack {
+  grid-template-columns: 1fr;
+}
+
+.action-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.65rem;
+  margin-top: 1rem;
+}
+
+.btn-sm {
+  padding: 0.45rem 0.85rem;
+  font-size: 0.82rem;
+}
+
+.btn-flash {
+  flex: 1;
+  min-width: 10rem;
+  max-width: 100%;
+}
+
+.card--log {
+  padding-bottom: 1rem;
+}
+
+.card--log .log {
+  margin-top: 0;
+}
+
+.footer--compact {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  margin-top: 0.5rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border);
+}
+
+.footer--compact p {
+  margin: 0;
+}
+
+.steps--compact {
+  grid-template-columns: repeat(2, 1fr);
+  margin-bottom: 1rem;
+  list-style: none;
+  padding: 0;
+}
+
+.steps--compact .step {
+  align-items: flex-start;
+  line-height: 1.45;
+}
+
+@media (max-width: 540px) {
+  .steps--compact {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-inner--compact {
+    flex-direction: row;
+  }
 }
 
 /* Steps */
@@ -817,21 +959,37 @@ a:hover {
 
 .line-nav {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
-  gap: 0.65rem 1rem;
-  margin: 0 0 0.85rem;
-  font-size: 0.85rem;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin: 0 0 1rem;
 }
 
 .line-nav__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.45rem 0.85rem;
+  font-size: 0.8rem;
+  font-weight: 500;
   color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border);
+  border-radius: 999px;
   text-decoration: none;
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
 }
 
 .line-nav__back:hover {
   color: var(--text);
-  text-decoration: underline;
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.16);
+  text-decoration: none;
+}
+
+.line-nav__back:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
 
 .line-nav__pill {
@@ -860,14 +1018,15 @@ a:hover {
 html.product-mts {
   --accent: #c9a227;
   --accent-hover: #b8921f;
-}
-
-html.product-mts body {
-  background-image:
+  --body-gradient:
     radial-gradient(ellipse 90% 60% at 20% 0%, rgba(201, 162, 39, 0.18), transparent 55%),
     radial-gradient(ellipse 70% 50% at 100% 20%, rgba(180, 130, 20, 0.1), transparent 50%),
     radial-gradient(ellipse 50% 40% at 100% 100%, rgba(232, 197, 71, 0.08), transparent 55%),
     linear-gradient(180deg, #0a0a0c 0%, #121215 40%, #121215 100%);
+}
+
+html.product-mts body {
+  background-image: var(--body-gradient);
 }
 
 .hero-glow--mts {
