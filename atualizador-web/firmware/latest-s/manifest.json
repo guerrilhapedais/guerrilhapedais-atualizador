@@ -1,6 +1,6 @@
 {
-  "version": "1.0.1.5",
-  "label": "GUERRILHA-MTS-Series — Firmware 1.0.1.5 + partition-table",
+  "version": "1.0.1.7",
+  "label": "GUERRILHA-MTS-Series — Firmware 1.0.1.7 + partition-table",
   "firmware": "GUERRILHA-MTS-Series.bin",
   "partition": "partition-table.bin",
   "bootloader": "bootloader.bin"
