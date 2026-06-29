@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#050814">
+  <title>Guerrilha Editor S — USB CDC</title>
+  <link rel="icon" href="data:,">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&display=swap" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="css/editor.css">
+</head>
+<body>
+
+<!-- ===== TOPBAR ===== -->
+<header class="topbar">
+  <div class="topbar-brand">
+    <span class="topbar-logo">⬡</span>
+    <span class="topbar-title">Guerrilha <span class="topbar-s">S</span> Editor</span>
+  </div>
+  <div class="topbar-conn">
+    <div class="conn-indicator" id="connIndicator">
+      <span class="conn-dot" id="connDot"></span>
+      <span class="conn-label" id="connLabel">Desconectado</span>
+    </div>
+    <button class="btn btn--icon" id="themeBtn" type="button" title="Alternar tema claro/escuro" aria-label="Tema">🌙</button>
+    <button class="btn btn--connect" id="connectBtn" type="button">Conectar USB</button>
+    <button class="btn btn--mock" id="mockBtn" type="button" title="Testar sem hardware">Modo Teste</button>
+  </div>
+</header>
+
+<!-- ===== NOTIFICATION ===== -->
+<div class="notification" id="notification"></div>
+
+<!-- ===== MAIN LAYOUT ===== -->
+<div class="app-layout">
+
+  <!-- SIDEBAR TABS -->
+  <nav class="sidebar" id="sidebar">
+    <button class="nav-btn active" data-tab="dashboard" type="button">
+      <span class="nav-icon">◈</span><span class="nav-label">Dashboard</span>
+    </button>
+    <button class="nav-btn" data-tab="banks" type="button">
+      <span class="nav-icon">⊞</span><span class="nav-label">Bancos / FS</span>
+    </button>
+    <button class="nav-btn" data-tab="usb" type="button">
+      <span class="nav-icon">⏚</span><span class="nav-label">USB</span>
+    </button>
+    <button class="nav-btn" data-tab="gb" type="button">
+      <span class="nav-icon">◉</span><span class="nav-label">Globais</span>
+    </button>
+    <button class="nav-btn" data-tab="stomp" type="button">
+      <span class="nav-icon">▣</span><span class="nav-label">Stomp</span>
+    </button>
+    <button class="nav-btn" data-tab="exp" type="button">
+      <span class="nav-icon">↕</span><span class="nav-label">EXP</span>
+    </button>
+    <button class="nav-btn" data-tab="bt" type="button">
+      <span class="nav-icon">⌘</span><span class="nav-label">Bluetooth</span>
+    </button>
+    <button class="nav-btn" data-tab="midi" type="button">
+      <span class="nav-icon">♪</span><span class="nav-label">MIDI TRS</span>
+    </button>
+    <button class="nav-btn" data-tab="wifi" type="button">
+      <span class="nav-icon">⛶</span><span class="nav-label">Wi-Fi</span>
+    </button>
+    <button class="nav-btn" data-tab="status" type="button">
+      <span class="nav-icon">⊚</span><span class="nav-label">Status</span>
+    </button>
+  </nav>
+
+  <!-- CONTENT -->
+  <main class="content" id="content">
+
+    <!-- ===== PANEL: DASHBOARD ===== -->
+    <section class="panel active" data-panel="dashboard">
+      <div class="panel-title">Dashboard</div>
+
+      <div class="card-grid card-grid--2">
+        <!-- Status ao vivo -->
+        <div class="card card--live">
+          <div class="card-head">
+            <span class="card-title">Estado actual</span>
+            <button class="btn btn--sm btn--ghost" id="dashRefreshBtn" type="button">↺ Atualizar</button>
+          </div>
+          <div class="live-display">
+            <div class="live-fs" id="dashActiveFs">—</div>
+            <div class="live-meta">
+              <div class="live-row"><span class="live-key">BANCO</span><span class="live-val" id="dashBank">—</span></div>
+              <div class="live-row"><span class="live-key">PROFILE</span><span class="live-val" id="dashPreset">—</span></div>
+              <div class="live-row"><span class="live-key">NOME</span><span class="live-val" id="dashPresetName">—</span></div>
+              <div class="live-row"><span class="live-key">FIRMWARE</span><span class="live-val" id="dashFw">—</span></div>
+            </div>
+          </div>
+          <div class="action-row">
+            <button class="btn btn--accent" id="tapTempoBtn" type="button">Tap Tempo</button>
+          </div>
+        </div>
+
+        <!-- Profile -->
+        <div class="card">
+          <div class="card-head"><span class="card-title">Profile activo</span></div>
+          <p class="card-desc">5 profiles independentes — cada um com bancos e USB próprios.</p>
+          <div class="field-grid">
+            <div class="field-row">
+              <span class="field-label">Profile</span>
+              <select class="select" id="dashPresetSelect">
+                <option value="0">Profile 1</option>
+                <option value="1">Profile 2</option>
+                <option value="2">Profile 3</option>
+                <option value="3">Profile 4</option>
+                <option value="4">Profile 5</option>
+              </select>
+            </div>
+            <div class="field-row">
+              <span class="field-label">Nome</span>
+              <input class="input" id="dashPresetNameInput" type="text" maxlength="24" placeholder="Nome do profile">
+            </div>
+          </div>
+          <div class="action-row">
+            <button class="btn btn--accent" id="dashPresetSaveBtn" type="button">Salvar nome</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- SPIFFS / NVS -->
+      <div class="card" id="storageCard">
+        <div class="card-head"><span class="card-title">Armazenamento</span></div>
+        <div class="storage-bars" id="storageBars">
+          <div class="storage-item">
+            <div class="storage-header">
+              <span class="storage-name">SPIFFS</span>
+              <span class="storage-metric" id="spiffsMetric">—</span>
+            </div>
+            <div class="storage-track"><div class="storage-fill storage-fill--spiffs" id="spiffsFill" style="width:0%"></div></div>
+            <div class="storage-sub" id="spiffsSub">—</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PANEL: BANKS / FS ===== -->
+    <section class="panel" data-panel="banks">
+      <div class="panel-title">Bancos &amp; Footswitches</div>
+
+      <!-- Banco selector -->
+      <div class="card bank-card">
+        <div class="card-head">
+          <span class="card-title">Banco</span>
+          <button class="btn btn--sm btn--ghost" id="syncBankBtn" type="button">↺ Ler do controlador</button>
+        </div>
+        <div class="bank-tabs" id="bankTabs">
+          <button class="bank-tab active" data-bank="0" type="button">A</button>
+          <button class="bank-tab" data-bank="1" type="button">B</button>
+          <button class="bank-tab" data-bank="2" type="button">C</button>
+          <button class="bank-tab" data-bank="3" type="button">D</button>
+          <button class="bank-tab" data-bank="4" type="button">E</button>
+          <button class="bank-tab" data-bank="5" type="button">F</button>
+          <button class="bank-tab" data-bank="6" type="button">G</button>
+          <button class="bank-tab" data-bank="7" type="button">H</button>
+          <button class="bank-tab" data-bank="8" type="button">I</button>
+        </div>
+      </div>
+
+      <!-- FS grid -->
+      <div class="fs-grid" id="fsGrid">
+        <!-- FS cards gerados dinamicamente pelo JS -->
+      </div>
+
+      <!-- Footer: copiar/colar + salvar -->
+      <div class="card copy-paste-card" id="copyPasteCard">
+        <div class="copy-paste-bar">
+          <strong class="copy-paste-title">Copiar / Colar</strong>
+          <div class="copy-paste-actions">
+            <div class="copy-paste-row">
+              <span class="copy-paste-label">Chave activa</span>
+              <button class="btn btn--sm" id="copyFsBtn" type="button">Copiar</button>
+              <button class="btn btn--sm" id="pasteFsBtn" type="button">Colar</button>
+            </div>
+            <div class="copy-paste-row">
+              <span class="copy-paste-label">Banco completo</span>
+              <button class="btn btn--sm" id="copyBankBtn" type="button">Copiar</button>
+              <select class="select select--sm" id="pasteBankTarget">
+                <option value="0">Banco A</option><option value="1">Banco B</option>
+                <option value="2">Banco C</option><option value="3">Banco D</option>
+                <option value="4">Banco E</option><option value="5">Banco F</option>
+                <option value="6">Banco G</option><option value="7">Banco H</option>
+                <option value="8">Banco I</option>
+              </select>
+              <button class="btn btn--sm" id="pasteBankBtn" type="button">Colar banco</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card save-footer-card">
+        <div class="action-row action-row--banks">
+          <button class="btn btn--accent btn--lg" id="saveBanksBtn" type="button">💾 Salvar configuração</button>
+          <button class="btn btn--sm btn--ghost" id="backupBtn" type="button">↓ Backup JSON</button>
+          <button class="btn btn--sm btn--ghost" id="restoreBtn" type="button">↑ Restaurar</button>
+          <input id="restoreFileInput" type="file" accept="application/json" style="display:none">
+          <span class="config-source" id="configSource">—</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PANEL: USB CONFIG ===== -->
+    <section class="panel" data-panel="usb">
+      <div class="panel-title">Configuração USB</div>
+
+      <div class="card">
+        <div class="card-head"><span class="card-title">Modo USB</span></div>
+        <p class="card-desc">Modo e profile do equipamento conectado. Afecta routing e presets disponíveis.</p>
+        <div class="field-grid">
+          <div class="field-row field-row--full">
+            <span class="field-label">Modo USB</span>
+            <select class="select" id="usbModeSelect">
+              <option value="0">TONEX</option>
+              <option value="1">MIDI USB HOST</option>
+              <option value="2">MIDI USB PC</option>
+              <option value="3">HUB MIDI (vários pedais USB)</option>
+              <option value="4">MIDI SERIAL (DIN / UART)</option>
+            </select>
+          </div>
+          <div class="field-row field-row--full">
+            <span class="field-label">Profile USB</span>
+            <select class="select" id="usbPresetSelect">
+              <option value="0">Tonex</option>
+            </select>
+          </div>
+        </div>
+        <div class="action-row">
+          <button class="btn btn--accent" id="usbSaveBtn" type="button">Salvar USB</button>
+          <button class="btn btn--ghost btn--sm" id="usbRefreshBtn" type="button">↺ Ler</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><span class="card-title">Modelo de hardware</span></div>
+        <div class="field-grid">
+          <div class="field-row">
+            <span class="field-label">Footswitches</span>
+            <select class="select" id="fsCountSelect">
+              <option value="4">MT-4 (4 FS)</option>
+              <option value="6">MT-6 (6 FS)</option>
+              <option value="8">MT-8 (8 FS)</option>
+            </select>
+          </div>
+        </div>
+        <div class="action-row">
+          <button class="btn btn--accent" id="fsCountSaveBtn" type="button">Salvar modelo</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PANEL: GLOBAIS ===== -->
+    <section class="panel" data-panel="gb">
+      <div class="panel-title">Configurações Globais</div>
+
+      <div class="card">
+        <div class="card-head"><span class="card-title">LED e Reset</span></div>
+        <p class="card-desc">Comportamento global dos LEDs e reset de estado ao mudar de footswitch.</p>
+        <div class="field-grid">
+          <div class="field-row">
+            <span class="field-label">LED HOLD</span>
+            <select class="select" id="ledHoldModeSelect">
+              <option value="1">Piscar</option>
+              <option value="0">Fixo</option>
+            </select>
+          </div>
+          <div class="field-row">
+            <span class="field-label">LED CLICK</span>
+            <select class="select" id="ledClickModeSelect">
+              <option value="1">Intensidade (várias chaves)</option>
+              <option value="0">Normal (uma chave)</option>
+            </select>
+          </div>
+          <div class="field-row">
+            <span class="field-label">Reset ao trocar FS</span>
+            <select class="select" id="resetOnFootSelect">
+              <option value="0">Desabilitado</option>
+              <option value="1">Habilitado</option>
+            </select>
+          </div>
+          <div class="field-row">
+            <span class="field-label">Reset HOLD ao trocar</span>
+            <select class="select" id="resetOnHoldSelect">
+              <option value="0">Desabilitado</option>
+              <option value="1">Habilitado</option>
+            </select>
+          </div>
+          <div class="field-row field-row--full">
+            <span class="field-label">Fonte LED Custom</span>
+            <select class="select" id="ledCustomSourceSelect">
+              <option value="0">USB</option>
+              <option value="1">Bluetooth</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><span class="card-title">LED do banco — modelo global</span></div>
+        <p class="card-desc">Aplica estas cores a <strong>todos</strong> os footswitches do banco actual.</p>
+        <div class="led-pickers">
+          <label class="led-picker-item"><span>ON</span><input type="color" id="bankLedOnPicker" value="#ff8800"></label>
+          <label class="led-picker-item"><span>OFF</span><input type="color" id="bankLedOffPicker" value="#000000"></label>
+          <label class="led-picker-item"><span>HOLD ON</span><input type="color" id="bankLedHoldOnPicker" value="#ff8800"></label>
+          <label class="led-picker-item"><span>HOLD OFF</span><input type="color" id="bankLedHoldOffPicker" value="#000000"></label>
+        </div>
+        <div class="action-row">
+          <button class="btn btn--accent" id="applyBankLedBtn" type="button">Aplicar a todo o banco</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><span class="card-title">PC Global</span></div>
+        <div class="toggle-card" id="midiPcSharedToggle">
+          <label class="toggle-label">
+            <input type="checkbox" id="pcSharedChk">
+            <span class="toggle-slider"></span>
+            <span>Contador PC partilhado</span>
+          </label>
+        </div>
+        <div class="param-grid">
+          <label class="param-cell"><span>Início</span><input class="input" type="number" id="pcStartInput" min="0" max="127" value="0"></label>
+          <label class="param-cell"><span>Fim</span><input class="input" type="number" id="pcEndInput" min="0" max="127" value="127"></label>
+          <label class="param-cell"><span>Inc.</span><input class="input" type="number" id="pcIncInput" min="1" max="127" value="1"></label>
+          <label class="param-cell"><span>Último</span><input class="input" type="number" id="pcValueInput" min="0" max="255" value="255"></label>
+        </div>
+        <div class="toggle-card">
+          <label class="toggle-label">
+            <input type="checkbox" id="pcLoopChk">
+            <span class="toggle-slider"></span>
+            <span>Loop no intervalo PC</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><span class="card-title">CC Global</span></div>
+        <div class="toggle-card">
+          <label class="toggle-label">
+            <input type="checkbox" id="ccSharedChk">
+            <span class="toggle-slider"></span>
+            <span>Contador CC partilhado</span>
+          </label>
+        </div>
+        <div class="param-grid">
+          <label class="param-cell"><span>Início</span><input class="input" type="number" id="ccStartInput" min="0" max="127" value="0"></label>
+          <label class="param-cell"><span>Fim</span><input class="input" type="number" id="ccEndInput" min="0" max="127" value="127"></label>
+          <label class="param-cell"><span>Inc.</span><input class="input" type="number" id="ccIncInput" min="1" max="127" value="1"></label>
+          <label class="param-cell"><span>Último</span><input class="input" type="number" id="ccValueInput" min="0" max="255" value="255"></label>
+        </div>
+        <div class="toggle-card">
+          <label class="toggle-label">
+            <input type="checkbox" id="ccLoopChk">
+            <span class="toggle-slider"></span>
+            <span>Loop no intervalo CC</span>
+          </label>
+        </div>
+        <div class="action-row">
+          <button class="btn btn--accent" id="gbSaveBtn" type="button">Salvar globais</button>
+          <button class="btn btn--ghost btn--sm" id="gbRefreshBtn" type="button">↺ Ler</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PANEL: STOMP ===== -->
+    <section class="panel" data-panel="stomp">
+      <div class="panel-title">Stomp</div>
+
+      <div class="card">
+        <div class="card-head"><span class="card-title">Modo Stomp</span></div>
+        <div class="toggle-card">
+          <label class="toggle-label">
+            <input type="checkbox" id="stompEnabledChk">
+            <span class="toggle-slider"></span>
+            <span>Ativar modo Stomp (duas chaves alterna Preset ↔ Stomp)</span>
+          </label>
+        </div>
+        <div class="toggle-card">
+          <label class="toggle-label">
+            <input type="checkbox" id="stompSceneEnabledChk">
+            <span class="toggle-slider"></span>
+            <span>Scenes automáticas no clique Preset</span>
+          </label>
+        </div>
+        <div class="field-grid">
+          <div class="field-row">
+            <span class="field-label">Saída das Scenes</span>
+            <select class="select" id="stompSceneOutputSelect">
+              <option value="0">Auto (USB+BT+Serial)</option>
+              <option value="1">USB</option>
+              <option value="2">Bluetooth</option>
+              <option value="3">MIDI Serial (DIN)</option>
+            </select>
+          </div>
+          <div class="field-row">
+            <span class="field-label">Gatilho das Scenes</span>
+            <select class="select" id="stompSceneTriggerSelect">
+              <option value="0">Só ON</option>
+              <option value="1">Só OFF</option>
+              <option value="2">ON + OFF</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <span class="card-title">Efeitos Globais (FX)</span>
+          <button class="btn btn--xs btn--ghost" id="stompAddFxBtn" type="button">+ Adicionar FX</button>
+        </div>
+        <p class="card-desc">Até 12 efeitos CC globais usados nas scenes automáticas.</p>
+        <div id="stompFxList" class="stomp-fx-list"></div>
+      </div>
+
+      <div class="card">
+        <div class="action-row">
+          <button class="btn btn--accent" id="stompSaveBtn" type="button">Salvar Stomp</button>
+          <button class="btn btn--ghost btn--sm" id="stompRefreshBtn" type="button">↺ Ler</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== TEMPLATE: FX ROW ===== -->
+    <template id="stompFxTpl">
+      <div class="stomp-fx-row">
+        <div class="stomp-fx-head">
+          <span class="stomp-fx-num"></span>
+          <input class="input input--sm stomp-fx-name" type="text" maxlength="15" placeholder="Nome do FX">
+          <button class="btn btn--icon btn--danger stomp-fx-remove" type="button" title="Remover">✕</button>
+        </div>
+        <div class="stomp-fx-fields">
+          <label class="param-cell"><span>Canal</span><input class="input input--xs stomp-fx-ch" type="number" min="1" max="16" value="1"></label>
+          <label class="param-cell"><span>CC#</span><input class="input input--xs stomp-fx-cc" type="number" min="0" max="127" value="0"></label>
+          <label class="param-cell"><span>Val ON</span><input class="input input--xs stomp-fx-von" type="number" min="0" max="127" value="127"></label>
+          <label class="param-cell"><span>Val OFF</span><input class="input input--xs stomp-fx-voff" type="number" min="0" max="127" value="0"></label>
+          <label class="param-cell"><span>FS ref.</span>
+            <select class="select select--xs stomp-fx-fs">
+              <option value="0">—</option>
+              <option value="1">FS1</option><option value="2">FS2</option>
+              <option value="3">FS3</option><option value="4">FS4</option>
+              <option value="5">FS5</option><option value="6">FS6</option>
+              <option value="7">FS7</option><option value="8">FS8</option>
+            </select>
+          </label>
+          <label class="param-cell param-cell--color">
+            <span>Cor</span>
+            <input type="color" class="stomp-fx-color" value="#ff0000">
+          </label>
+          <label class="param-cell" style="flex:1;min-width:80px">
+            <span>Ícone</span>
+            <input class="input input--xs stomp-fx-icon" type="text" maxlength="23" placeholder="🎸">
+          </label>
+        </div>
+      </div>
+    </template>
+
+    <!-- ===== PANEL: EXP ===== -->
+    <section class="panel" data-panel="exp">
+      <div class="panel-title">Pedal EXP</div>
+
+      <div class="card">
+        <div class="card-head"><span class="card-title">Configuração Global</span></div>
+        <div class="field-grid">
+          <div class="field-row">
+            <span class="field-label">Modo</span>
+            <select class="select" id="expModeSelect">
+              <option value="0">Desligado</option>
+              <option value="1">Expressão</option>
+            </select>
+          </div>
+          <div class="field-row">
+            <span class="field-label">Taxa (Hz)</span>
+            <input class="input" type="number" id="expHzInput" min="1" max="100" value="20">
+          </div>
+          <div class="field-row">
+            <span class="field-label">Delta mín.</span>
+            <input class="input" type="number" id="expDeltaInput" min="0" max="127" value="2">
+          </div>
+          <div class="field-row">
+            <span class="field-label">Suavização</span>
+            <input class="input" type="number" id="expSmoothInput" min="0" max="16" value="4">
+          </div>
+          <div class="field-row field-row--full">
+            <span class="field-label">Invertido</span>
+            <select class="select" id="expInvertSelect">
+              <option value="0">Não</option>
+              <option value="1">Sim</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><span class="card-title">Calibração</span></div>
+        <p class="card-desc">Valores raw ADC 10-bit (0–1023) para a posição mínima e máxima do pedal.</p>
+        <div class="field-grid">
+          <div class="field-row">
+            <span class="field-label">MIN raw</span>
+            <input class="input" type="number" id="expCalMinInput" min="0" max="1023" value="0">
+          </div>
+          <div class="field-row">
+            <span class="field-label">MAX raw</span>
+            <input class="input" type="number" id="expCalMaxInput" min="0" max="1023" value="1023">
+          </div>
+        </div>
+        <div class="storage-item" style="margin-top:10px">
+          <div class="storage-header">
+            <div class="storage-name">Leitura (raw 10-bit)</div>
+            <div class="storage-metric" id="expRawMetric">—</div>
+          </div>
+          <div class="storage-track"><div class="storage-fill storage-fill--exp" id="expRawFill" style="width:0%"></div></div>
+          <p class="storage-sub" id="expRawSub">—</p>
+        </div>
+        <div class="action-row">
+          <button class="btn btn--sm" id="expMonitorBtn" type="button">▶ Monitorar</button>
+          <button class="btn btn--ghost btn--sm" id="expCapMinBtn" type="button" disabled>Capturar MIN</button>
+          <button class="btn btn--ghost btn--sm" id="expCapMaxBtn" type="button" disabled>Capturar MAX</button>
+          <button class="btn btn--accent" id="expSaveBtn" type="button">Salvar EXP</button>
+          <button class="btn btn--ghost btn--sm" id="expRefreshBtn" type="button">↺ Ler</button>
+        </div>
+      </div>
+
+      <!-- Comandos EXP por banco -->
+      <div class="card">
+        <div class="card-head">
+          <span class="card-title">Comandos EXP — Banco <span id="expBankLabel">A</span></span>
+          <label class="toggle-label" style="margin-left:auto">
+            <input type="checkbox" id="expBankEnabledChk">
+            <span class="toggle-text">Ativo</span>
+          </label>
+        </div>
+        <p class="card-desc">Mensagens enviadas pelo pedal de expressão neste banco. Tipo CC: canal, número CC, intervalo de saída e inversão.</p>
+
+        <div class="exp-cmd-list" id="expCmdList"></div>
+
+        <div class="action-row" style="margin-top:10px">
+          <button class="btn btn--ghost btn--sm" id="expCmdAddBtn" type="button">+ Adicionar CC</button>
+          <button class="btn btn--ghost btn--sm" id="expCmdAddSysexBtn" type="button">+ SysEx</button>
+          <span style="flex:1"></span>
+          <button class="btn btn--ghost btn--sm" id="expBankRefreshBtn" type="button">↺ Ler</button>
+          <button class="btn btn--accent" id="expBankSaveBtn" type="button">Salvar Comandos</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Template: linha de comando EXP -->
+    <template id="expCmdTpl">
+      <div class="exp-cmd-row" data-exp-type="0">
+        <div class="exp-cmd-head">
+          <span class="exp-cmd-num">#1</span>
+          <select class="select select--xs exp-cmd-type">
+            <option value="0">CC</option>
+            <option value="1">SysEx</option>
+          </select>
+          <button class="btn btn--icon btn--danger exp-cmd-del" title="Remover">✕</button>
+        </div>
+        <!-- Campos CC -->
+        <div class="exp-cmd-fields exp-cmd-fields--cc">
+          <div class="param-cell">
+            <span class="param-label">Saída</span>
+            <select class="select select--xs exp-cmd-output">
+              <option value="6">Auto (USB+BT+MIDI)</option>
+              <option value="0">USB</option>
+              <option value="1">BT</option>
+              <option value="2">USB+BT</option>
+              <option value="3">MIDI</option>
+              <option value="4">USB+MIDI</option>
+              <option value="5">BT+MIDI</option>
+            </select>
+          </div>
+          <div class="param-cell">
+            <span class="param-label">Canal</span>
+            <input class="input input--xs exp-cmd-channel" type="number" min="1" max="16" value="1">
+          </div>
+          <div class="param-cell">
+            <span class="param-label">CC#</span>
+            <input class="input input--xs exp-cmd-cc" type="number" min="0" max="127" value="7">
+          </div>
+          <div class="param-cell">
+            <span class="param-label">Mín</span>
+            <input class="input input--xs exp-cmd-outmin" type="number" min="0" max="127" value="0">
+          </div>
+          <div class="param-cell">
+            <span class="param-label">Máx</span>
+            <input class="input input--xs exp-cmd-outmax" type="number" min="0" max="127" value="127">
+          </div>
+          <div class="param-cell">
+            <span class="param-label">Inv.</span>
+            <input type="checkbox" class="exp-cmd-invert">
+          </div>
+        </div>
+        <!-- Campos SysEx -->
+        <div class="exp-cmd-fields exp-cmd-fields--sysex" style="display:none">
+          <div class="param-cell">
+            <span class="param-label">Saída</span>
+            <select class="select select--xs exp-cmd-output-sx">
+              <option value="6">Auto (USB+BT+MIDI)</option>
+              <option value="0">USB</option>
+              <option value="1">BT</option>
+              <option value="2">USB+BT</option>
+              <option value="3">MIDI</option>
+              <option value="4">USB+MIDI</option>
+              <option value="5">BT+MIDI</option>
+            </select>
+          </div>
+          <div class="param-cell param-cell--wide">
+            <span class="param-label">SysEx (hex)</span>
+            <input class="input exp-cmd-sysex" type="text" placeholder="F0 41 00 … F7" style="font-family:monospace">
+          </div>
+          <div class="param-cell">
+            <span class="param-label">Byte valor</span>
+            <input class="input input--xs exp-cmd-sysex-idx" type="number" min="0" max="63" value="0">
+          </div>
+        </div>
+      </div>
+    </template>
+
+    <!-- ===== PANEL: BLUETOOTH ===== -->
+    <section class="panel" data-panel="bt">
+      <div class="panel-title">Bluetooth</div>
+
+      <div class="card">
+        <div class="card-head"><span class="card-title">Configuração BT</span></div>
+        <div class="field-grid">
+          <div class="field-row field-row--full">
+            <span class="field-label">Modo</span>
+            <select class="select" id="btModeSelect">
+              <option value="0">Desabilitado</option>
+              <option value="1">Central (conecta ao ToneX)</option>
+              <option value="2">Peripheral (controla app)</option>
+            </select>
+          </div>
+          <div class="field-row">
+            <span class="field-label">Profile</span>
+            <select class="select" id="btPresetSelect">
+              <option value="0">Desabilitado</option>
+              <option value="1">BlackBox</option>
+              <option value="2">LCD Tonex</option>
+              <option value="3">Custom MIDI</option>
+              <option value="4">Nano Cortex</option>
+            </select>
+          </div>
+          <div class="field-row">
+            <span class="field-label">MIDI CC Stomp</span>
+            <select class="select" id="btMidiCcSelect">
+              <option value="0">Desabilitado</option>
+              <option value="1">Habilitado</option>
+            </select>
+          </div>
+        </div>
+        <div class="toggle-card">
+          <label class="toggle-label">
+            <input type="checkbox" id="btCustomEnChk">
+            <span class="toggle-slider"></span>
+            <span>Dispositivo custom (nome personalizado)</span>
+          </label>
+        </div>
+        <div class="field-grid" id="btCustomNameRow">
+          <div class="field-row field-row--full">
+            <span class="field-label">Nome custom</span>
+            <input class="input" type="text" id="btCustomNameInput" maxlength="24" placeholder="GuerrilhaBox">
+          </div>
+        </div>
+        <div class="action-row">
+          <button class="btn btn--accent" id="btSaveBtn" type="button">Salvar Bluetooth</button>
+          <button class="btn btn--ghost btn--sm" id="btRefreshBtn" type="button">↺ Ler</button>
+        </div>
+        <p class="card-desc" style="margin-top:8px">⚠️ Alterações no Bluetooth só têm efeito após reiniciar o controlador.</p>
+      </div>
+    </section>
+
+    <!-- ===== PANEL: MIDI TRS ===== -->
+    <section class="panel" data-panel="midi">
+      <div class="panel-title">MIDI TRS</div>
+
+      <div class="card">
+        <div class="card-head"><span class="card-title">Configuração DIN/UART/TRS</span></div>
+        <div class="field-grid">
+          <div class="field-row">
+            <span class="field-label">MIDI Serial</span>
+            <select class="select" id="midiSerialEnSelect">
+              <option value="0">Desabilitado</option>
+              <option value="1">Habilitado</option>
+            </select>
+          </div>
+          <div class="field-row">
+            <span class="field-label">Canal</span>
+            <select class="select" id="midiSerialChSelect">
+              <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+              <option value="4">4</option><option value="5">5</option><option value="6">6</option>
+              <option value="7">7</option><option value="8">8</option><option value="9">9</option>
+              <option value="10">10</option><option value="11">11</option><option value="12">12</option>
+              <option value="13">13</option><option value="14">14</option><option value="15">15</option>
+              <option value="16">16</option>
+            </select>
+          </div>
+          <div class="field-row field-row--full">
+            <span class="field-label">Profile</span>
+            <select class="select" id="midiSerialPreSelect">
+              <option value="0">Desativado</option>
+              <option value="1">Padrão</option>
+              <option value="2">Custom</option>
+            </select>
+          </div>
+        </div>
+        <div class="action-row">
+          <button class="btn btn--accent" id="midiSerialSaveBtn" type="button">Salvar MIDI Serial</button>
+          <button class="btn btn--ghost btn--sm" id="midiSerialRefreshBtn" type="button">↺ Ler</button>
+        </div>
+        <p class="card-desc" style="margin-top:8px">⚠️ Alterações no MIDI Serial só têm efeito após reiniciar o controlador.</p>
+      </div>
+    </section>
+
+    <!-- ===== PANEL: WI-FI ===== -->
+    <section class="panel" data-panel="wifi">
+      <div class="panel-title">Wi-Fi AP</div>
+
+      <div class="card">
+        <div class="card-head"><span class="card-title">Ponto de Acesso</span></div>
+        <p class="card-desc">Configure o SSID e senha da rede Wi-Fi criada pelo controlador. Deixe a senha em branco para rede aberta.</p>
+        <div class="field-grid">
+          <div class="field-row field-row--full">
+            <span class="field-label">SSID</span>
+            <input class="input" type="text" id="wifiSsidInput" maxlength="40" placeholder="GuerrilhaBox">
+          </div>
+          <div class="field-row field-row--full">
+            <span class="field-label">Senha</span>
+            <input class="input" type="text" id="wifiPwInput" maxlength="40" placeholder="(vazio = rede aberta)">
+          </div>
+        </div>
+        <div class="action-row">
+          <button class="btn btn--accent" id="wifiSaveBtn" type="button">Salvar Wi-Fi</button>
+          <button class="btn btn--ghost btn--sm" id="wifiRefreshBtn" type="button">↺ Ler</button>
+        </div>
+        <p class="card-desc" style="margin-top:8px">⚠️ Alterações no Wi-Fi só têm efeito após reiniciar o controlador.</p>
+      </div>
+    </section>
+
+    <!-- ===== PANEL: STATUS ===== -->
+    <section class="panel" data-panel="status">
+      <div class="panel-title">Status do Sistema</div>
+
+      <div class="card">
+        <div class="card-head">
+          <span class="card-title">Informação do firmware</span>
+          <button class="btn btn--sm btn--ghost" id="statusRefreshBtn" type="button">↺ Atualizar</button>
+        </div>
+        <div class="kv-grid" id="statusGrid">
+          <div class="kv-row"><span class="kv-key">Firmware</span><span class="kv-val" id="stFirmware">—</span></div>
+          <div class="kv-row"><span class="kv-key">Modo USB</span><span class="kv-val" id="stUsbMode">—</span></div>
+          <div class="kv-row"><span class="kv-key">Config. MIDI</span><span class="kv-val" id="stMidiInit">—</span></div>
+          <div class="kv-row"><span class="kv-key">Banco actual</span><span class="kv-val" id="stBank">—</span></div>
+          <div class="kv-row"><span class="kv-key">Profile activo</span><span class="kv-val" id="stPreset">—</span></div>
+          <div class="kv-row"><span class="kv-key">Qtd. FS</span><span class="kv-val" id="stFsCount">—</span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><span class="card-title">SPIFFS</span></div>
+        <div class="kv-grid" id="spiffsGrid">
+          <div class="kv-row"><span class="kv-key">Total</span><span class="kv-val" id="stSpiffsTotal">—</span></div>
+          <div class="kv-row"><span class="kv-key">Usado</span><span class="kv-val" id="stSpiffsUsed">—</span></div>
+          <div class="kv-row"><span class="kv-key">Livre</span><span class="kv-val" id="stSpiffsFree">—</span></div>
+          <div class="kv-row"><span class="kv-key">Uso</span><span class="kv-val" id="stSpiffsPct">—</span></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- ===== FS CARD TEMPLATE (hidden) ===== -->
+<template id="fsTpl">
+  <div class="fs-card" data-fs="">
+    <div class="fs-card-header">
+      <div class="fs-header-left">
+        <span class="fs-number"></span>
+        <input class="input fs-name" type="text" maxlength="16" placeholder="Nome FS">
+      </div>
+      <div class="fs-led-row">
+        <label class="led-picker-item led-picker-item--sm"><span>ON</span><input type="color" data-led="on" value="#0000ff"></label>
+        <label class="led-picker-item led-picker-item--sm"><span>OFF</span><input type="color" data-led="off" value="#000000"></label>
+        <label class="led-picker-item led-picker-item--sm"><span>HON</span><input type="color" data-led="hold_on" value="#3c00ff"></label>
+        <label class="led-picker-item led-picker-item--sm"><span>HOFF</span><input type="color" data-led="hold_off" value="#000000"></label>
+      </div>
+      <div class="fs-status-dot" title="Status"></div>
+    </div>
+    <!-- ===== CORPO DO FS CARD — ESTRUTURA PLANA ===== -->
+    <div class="fs-card-body">
+
+      <!-- Modo da chave (pills) — Normal | Momentâneo | Tap | Ricochet | STG -->
+      <div class="fs-mode-bar">
+        <span class="fs-mode-label">Modo</span>
+        <div class="fs-mode-pills">
+          <button class="mode-pill active" data-mode="normal"    type="button">Normal</button>
+          <button class="mode-pill"        data-mode="momentary" type="button">Momentâneo</button>
+          <button class="mode-pill"        data-mode="tap"       type="button">Tap</button>
+          <button class="mode-pill"        data-mode="ricochet"  type="button">Ricochet</button>
+          <button class="mode-pill"        data-mode="stg"       type="button">STG</button>
+        </div>
+      </div>
+
+      <!-- Config Ricochet (oculto por padrão) -->
+      <div class="fs-mode-config fs-ricochet-cfg" style="display:none">
+        <div class="field-grid field-grid--compact">
+          <div class="field-row">
+            <span class="field-label">Canal</span>
+            <input class="input input--sm input--num fs-ric-ch" type="number" min="1" max="16" value="1">
+          </div>
+          <div class="field-row">
+            <span class="field-label">CC nº</span>
+            <input class="input input--sm input--num fs-ric-cc" type="number" min="0" max="127" value="0">
+          </div>
+          <div class="field-row">
+            <span class="field-label">Início</span>
+            <input class="input input--sm input--num fs-ric-start" type="number" min="0" max="127" value="0">
+          </div>
+          <div class="field-row">
+            <span class="field-label">Fim</span>
+            <input class="input input--sm input--num fs-ric-end" type="number" min="0" max="127" value="127">
+          </div>
+          <div class="field-row">
+            <span class="field-label">Subida (ms)</span>
+            <input class="input input--sm input--num fs-ric-rise" type="number" min="0" max="60000" value="500">
+          </div>
+          <div class="field-row">
+            <span class="field-label">Retorno (ms)</span>
+            <input class="input input--sm input--num fs-ric-fall" type="number" min="0" max="60000" value="500">
+          </div>
+          <div class="field-row">
+            <span class="field-label">Curva</span>
+            <select class="select select--sm fs-ric-curve">
+              <option value="0">Linear</option>
+              <option value="1">Log</option>
+            </select>
+          </div>
+          <div class="field-row">
+            <span class="field-label">Modo</span>
+            <select class="select select--sm fs-ric-mode">
+              <option value="0">Soltar volta</option>
+              <option value="1">Ping-pong</option>
+            </select>
+          </div>
+          <div class="field-row">
+            <span class="field-label">Saída</span>
+            <select class="select select--sm fs-ric-out">
+              <option value="0">USB</option><option value="1">BT</option>
+              <option value="2">USB+BT</option><option value="3">MIDI</option>
+              <option value="4">USB+MIDI</option><option value="5">BT+MIDI</option>
+              <option value="6">Todos</option>
+            </select>
+          </div>
+          <div class="field-row field-row--full">
+            <label class="toggle-label toggle-label--sm">
+              <input type="checkbox" class="fs-ric-invert">
+              <span class="toggle-slider"></span>
+              <span>Inverter</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- STG: Stages -->
+      <div class="fs-mode-config fs-stg-cfg" style="display:none">
+        <div class="stg-header">
+          <span class="stg-header-label">Qtd. Estágios</span>
+          <select class="select select--sm stg-stage-count">
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </div>
+        <div class="stg-stages"></div>
+      </div>
+
+      <!-- ── COMANDOS MIDI (Normal / Momentâneo / Tap) ── -->
+      <div class="fs-section fs-cmd-section">
+        <div class="fs-section-head">
+          <span class="fs-section-title fs-cmd-section-title">Comandos MIDI</span>
+          <button class="btn btn--xs btn--ghost fs-add-cmd" type="button">+ Adicionar</button>
+        </div>
+        <div class="fs-mode-bar fs-layer-bar" style="margin-top:10px">
+          <span class="fs-mode-label">Camada</span>
+          <div class="fs-mode-pills fs-layer-pills">
+            <button class="mode-pill active" data-layer="preset" type="button">Preset</button>
+            <button class="mode-pill" data-layer="stomp" type="button">Stomp</button>
+          </div>
+        </div>
+        <div class="fs-cmd-list" data-cmdlist="main"></div>
+      </div>
+
+    </div><!-- /fs-card-body -->
+  </div>
+</template>
+
+<!-- ===== MIDI COMMAND ROW TEMPLATE ===== -->
+<template id="cmdRowTpl">
+  <div class="cmd-row" data-type="cc">
+    <!-- Tipo -->
+    <div class="cmd-field cmd-f-type">
+      <span class="cmd-label">Tipo</span>
+      <select class="select select--xs cmd-type">
+        <option value="cc">CC</option>
+        <option value="cc_up">CC Up</option>
+        <option value="cc_down">CC Down</option>
+        <option value="pc">PC</option>
+        <option value="pc_up">PC Up</option>
+        <option value="pc_down">PC Down</option>
+        <option value="sysex">SysEx</option>
+        <option value="bank_up_int">Banco+</option>
+        <option value="bank_down_int">Banco−</option>
+        <option value="fs_sync">FS Sync</option>
+        <option value="midi_clock">MIDI Clock</option>
+        <option value="midi_clock_tap">Clock Tap</option>
+        <option value="ampero_tap">Ampero Tap</option>
+      </select>
+    </div>
+    <!-- Canal -->
+    <div class="cmd-field cmd-f-ch">
+      <span class="cmd-label">Canal</span>
+      <input class="input input--xs input--num cmd-ch" type="number" min="1" max="16" value="1">
+    </div>
+    <!-- Gatilho (visível só em modo Normal) -->
+    <div class="cmd-field cmd-f-trig">
+      <span class="cmd-label">Gatilho</span>
+      <select class="select select--xs cmd-trig">
+        <option value="0">Click</option>
+        <option value="1">Hold</option>
+      </select>
+    </div>
+    <!-- Estado (label muda por modo) -->
+    <div class="cmd-field cmd-f-state">
+      <span class="cmd-label cmd-state-lbl">Estado</span>
+      <select class="select select--xs cmd-state">
+        <option value="0" class="cmd-state-on-opt">On</option>
+        <option value="1" class="cmd-state-off-opt">Off</option>
+      </select>
+    </div>
+    <!-- Saída -->
+    <div class="cmd-field cmd-f-out">
+      <span class="cmd-label">Saída</span>
+      <select class="select select--xs cmd-out">
+        <option value="0">USB</option>
+        <option value="1">BT</option>
+        <option value="2">USB+BT</option>
+        <option value="3">MIDI</option>
+        <option value="4">USB+MIDI</option>
+        <option value="5">BT+MIDI</option>
+        <option value="6">Todos</option>
+      </select>
+    </div>
+    <!-- CC# (para CC, CC Up, CC Down) -->
+    <div class="cmd-field cmd-f-ccnum">
+      <span class="cmd-label">CC#</span>
+      <input class="input input--xs input--num cmd-ccnum" type="number" min="0" max="127" value="64">
+    </div>
+    <!-- Valor CC (só para CC) -->
+    <div class="cmd-field cmd-f-ccval">
+      <span class="cmd-label">Valor CC</span>
+      <input class="input input--xs input--num cmd-ccval" type="number" min="0" max="127" value="127">
+    </div>
+    <!-- Preset PC (só para PC) -->
+    <div class="cmd-field cmd-f-pc" style="display:none">
+      <span class="cmd-label">Preset</span>
+      <input class="input input--xs input--num cmd-pc" type="number" min="0" max="127" value="0">
+    </div>
+    <!-- Up/Down: Início / Fim / Passo / Loop (CC Up/Down, PC Up/Down) -->
+    <div class="cmd-field cmd-f-udstart" style="display:none">
+      <span class="cmd-label">Início</span>
+      <input class="input input--xs input--num cmd-udstart" type="number" min="0" max="127" value="0">
+    </div>
+    <div class="cmd-field cmd-f-udend" style="display:none">
+      <span class="cmd-label">Fim</span>
+      <input class="input input--xs input--num cmd-udend" type="number" min="0" max="127" value="127">
+    </div>
+    <div class="cmd-field cmd-f-udstep" style="display:none">
+      <span class="cmd-label">Passo</span>
+      <input class="input input--xs input--num cmd-udstep" type="number" min="1" max="127" value="1">
+    </div>
+    <div class="cmd-field cmd-f-udloop" style="display:none">
+      <span class="cmd-label">Loop</span>
+      <input type="checkbox" class="cmd-udloop">
+    </div>
+    <!-- SysEx hex data -->
+    <div class="cmd-field cmd-f-sysex" style="display:none">
+      <span class="cmd-label">SysEx (Hex)</span>
+      <input class="input input--xs cmd-sysex" type="text" placeholder="F0 43 10 ... F7" style="width:170px;font-family:monospace;font-size:11px">
+    </div>
+    <!-- MIDI Clock BPM -->
+    <div class="cmd-field cmd-f-bpm" style="display:none">
+      <span class="cmd-label">BPM</span>
+      <input class="input input--xs input--num cmd-bpm" type="number" min="40" max="240" value="120">
+    </div>
+    <!-- FS Sync fields -->
+    <div class="cmd-field cmd-f-synctgt" style="display:none">
+      <span class="cmd-label">FS Alvo</span>
+      <select class="select select--xs cmd-synctgt">
+        <option value="1">FS1</option><option value="2">FS2</option>
+        <option value="3">FS3</option><option value="4">FS4</option>
+        <option value="5">FS5</option><option value="6">FS6</option>
+        <option value="7">FS7</option><option value="8">FS8</option>
+      </select>
+    </div>
+    <div class="cmd-field cmd-f-syncmode" style="display:none">
+      <span class="cmd-label">Modo</span>
+      <select class="select select--xs cmd-syncmode">
+        <option value="0">Click</option>
+        <option value="1">Hold</option>
+        <option value="2">Click+Hold</option>
+      </select>
+    </div>
+    <div class="cmd-field cmd-f-syncstate" style="display:none">
+      <span class="cmd-label">Estado p/</span>
+      <select class="select select--xs cmd-syncstate">
+        <option value="0">On</option>
+        <option value="1">Off</option>
+      </select>
+    </div>
+    <!-- Remove -->
+    <button class="btn btn--icon btn--danger cmd-remove" type="button" title="Remover">✕</button>
+  </div>
+</template>
+
+<!-- ===== STG STAGE CARD TEMPLATE ===== -->
+<template id="stgStageTpl">
+  <div class="stg-stage-card" data-stage="">
+    <div class="stg-stage-head">
+      <span class="stg-stage-title"></span>
+      <div class="stg-led-field">
+        <span class="cmd-label">LED (%)</span>
+        <input class="input input--xs input--num stg-led-pct" type="number" min="0" max="100" value="100">
+        <span class="stg-led-preview"></span>
+      </div>
+    </div>
+    <div class="stg-cmds"></div>
+    <button class="btn btn--xs btn--ghost stg-add-cmd" type="button">➕ Adicionar CC</button>
+  </div>
+</template>
+
+<!-- ===== STG CMD ROW TEMPLATE ===== -->
+<template id="stgCmdTpl">
+  <div class="stg-cmd-row">
+    <div class="cmd-field">
+      <span class="cmd-label">Saída</span>
+      <select class="select select--xs stg-cmd-out">
+        <option value="0">USB</option><option value="1">BT</option>
+        <option value="2" selected>USB+BT</option><option value="3">MIDI</option>
+        <option value="4">USB+MIDI</option><option value="5">BT+MIDI</option>
+        <option value="6">Todos</option>
+      </select>
+    </div>
+    <div class="cmd-field">
+      <span class="cmd-label">Canal</span>
+      <input class="input input--xs input--num stg-cmd-ch" type="number" min="1" max="16" value="1">
+    </div>
+    <div class="cmd-field">
+      <span class="cmd-label">CC#</span>
+      <input class="input input--xs input--num stg-cmd-cc" type="number" min="0" max="127" value="0">
+    </div>
+    <div class="cmd-field">
+      <span class="cmd-label">Valor</span>
+      <input class="input input--xs input--num stg-cmd-val" type="number" min="0" max="127" value="0">
+    </div>
+    <button class="btn btn--icon btn--danger stg-cmd-remove" type="button" title="Remover">✕</button>
+  </div>
+</template>
+
+<!-- ===== CUSTOM COLOR PICKER POPUP ===== -->
+<div id="cpkPopup" class="cpk-popup" style="display:none" role="dialog" aria-modal="true">
+  <div class="cpk-sv-wrap">
+    <canvas class="cpk-canvas" id="cpkCanvas" width="200" height="140"></canvas>
+    <div class="cpk-sv-cursor" id="cpkCursor"></div>
+  </div>
+  <div class="cpk-controls">
+    <div class="cpk-hue-wrap">
+      <input type="range" class="cpk-hue" id="cpkHue" min="0" max="359" value="0">
+    </div>
+    <div class="cpk-foot">
+      <span class="cpk-preview" id="cpkPreview"></span>
+      <input class="cpk-hex-input" id="cpkHex" type="text" maxlength="7" placeholder="#000000" spellcheck="false">
+    </div>
+    <div class="cpk-presets" id="cpkPresets"></div>
+  </div>
+</div>
+
+<script src="js/mock.js"></script>
+<script src="js/editor.js"></script>
+</body>
+</html>
