@@ -1581,56 +1581,70 @@ async function saveDeviceConfig(fields) {
 /* ============================================================
    MIDI CONFIG — carregar banco
    ============================================================ */
+async function loadBankChunked(bankNum) {
+  const first = (bankNum === null || Number.isNaN(bankNum))
+    ? await send('midi_config', { fs: 1 })
+    : await send('midi_config', { bank: bankNum, fs: 1 });
+  if (!first.ok) {
+    const bkLabel = (bankNum === null || Number.isNaN(bankNum)) ? '(atual)' : (BANK_LETTERS[bankNum] || String(bankNum));
+    notify('Erro ao ler banco ' + bkLabel + ': ' + (first.error || '?'), 'error');
+    return false;
+  }
+  const data = first.data || {};
+  const resolvedBank = (data.bank !== undefined) ? parseInt(data.bank, 10) : (bankNum ?? State.currentBank);
+  const fsCount = (data.fsCount && [4, 6, 8].includes(data.fsCount)) ? data.fsCount : State.fsCount;
+
+  if (resolvedBank !== null && !Number.isNaN(resolvedBank) && resolvedBank !== State.currentBank) {
+    State.currentBank = resolvedBank;
+    updateBankHighlight(resolvedBank);
+  }
+  if (fsCount !== State.fsCount) {
+    State.fsCount = fsCount;
+    updateFsCountSelect(fsCount);
+    rebuildFsGrid();
+  }
+
+  const bk = {};
+  for (let fi = 1; fi <= fsCount; fi++) {
+    let rr;
+    if (fi === 1) rr = first;
+    else rr = await send('midi_config', { bank: resolvedBank, fs: fi });
+    if (rr && rr.ok && rr.data && rr.data['fs' + fi]) {
+      bk['fs' + fi] = rr.data['fs' + fi];
+    }
+    if (fi === 1 && rr?.data?.exp) bk.exp = rr.data.exp;
+  }
+  const bankKey = String(resolvedBank ?? State.currentBank);
+  State.config.banks[bankKey] = bk;
+  applyBankToUI(resolvedBank ?? State.currentBank, bk);
+  applyExpBankToUI(resolvedBank ?? State.currentBank, bk.exp ?? null);
+  setText('configSource', `Lido do controlador · banco ${BANK_LETTERS[resolvedBank ?? State.currentBank]}`);
+  return true;
+}
+
+/** True se alguma chave visível está em modo STG (MT4/MT6/MT8). */
+function bankUiHasStgMode() {
+  for (let fi = 1; fi <= State.fsCount; fi++) {
+    const card = document.querySelector(`.fs-card[data-fs="${fi}"]`);
+    if (card?.dataset?.mode === 'stg') return true;
+  }
+  return false;
+}
+
 async function loadBank(bank) {
   try {
     const bankNum = (bank === undefined || bank === null) ? null : parseInt(bank, 10);
+    /* Só STG: GET do banco inteiro estoura heap (4/6/8 chaves). Outros modos: fluxo normal. */
+    if (bankUiHasStgMode()) {
+      return await loadBankChunked(bankNum);
+    }
     const r = (bankNum === null || Number.isNaN(bankNum))
       ? await send('midi_config', {})
       : await send('midi_config', { bank: bankNum });
     if (!r.ok) {
       if ((r.error || '') === 'out_of_memory') {
-        const loadChunk = async () => {
-          const first = (bankNum === null || Number.isNaN(bankNum))
-            ? await send('midi_config', { fs: 1 })
-            : await send('midi_config', { bank: bankNum, fs: 1 });
-          if (!first.ok) {
-            const bkLabel = (bankNum === null || Number.isNaN(bankNum)) ? '(atual)' : (BANK_LETTERS[bankNum] || String(bankNum));
-            notify('Erro ao ler banco ' + bkLabel + ': ' + (first.error || '?'), 'error');
-            return false;
-          }
-          const data = first.data || {};
-          const resolvedBank = (data.bank !== undefined) ? parseInt(data.bank, 10) : (bankNum ?? State.currentBank);
-          const fsCount = (data.fsCount && [4, 6, 8].includes(data.fsCount)) ? data.fsCount : State.fsCount;
-
-          if (resolvedBank !== null && !Number.isNaN(resolvedBank) && resolvedBank !== State.currentBank) {
-            State.currentBank = resolvedBank;
-            updateBankHighlight(resolvedBank);
-          }
-          if (fsCount !== State.fsCount) {
-            State.fsCount = fsCount;
-            updateFsCountSelect(fsCount);
-            rebuildFsGrid();
-          }
-
-          const bk = {};
-          for (let fi = 1; fi <= fsCount; fi++) {
-            let rr;
-            if (fi === 1) rr = first;
-            else rr = await send('midi_config', { bank: resolvedBank, fs: fi });
-            if (rr && rr.ok && rr.data && rr.data['fs' + fi]) {
-              bk['fs' + fi] = rr.data['fs' + fi];
-            }
-            if (fi === 1 && rr?.data?.exp) bk.exp = rr.data.exp;
-          }
-          const bankKey = String(resolvedBank ?? State.currentBank);
-          State.config.banks[bankKey] = bk;
-          applyBankToUI(resolvedBank ?? State.currentBank, bk);
-          applyExpBankToUI(resolvedBank ?? State.currentBank, bk.exp ?? null);
-          setText('configSource', `Lido do controlador · banco ${BANK_LETTERS[resolvedBank ?? State.currentBank]}`);
-          return true;
-        };
         try {
-          return await loadChunk();
+          return await loadBankChunked(bankNum);
         } catch (e) {
           notify('Erro ao carregar banco (chunks): ' + e.message, 'error');
           return false;
@@ -1720,6 +1734,7 @@ async function saveBanks() {
   const presetEl = $('dashPresetSelect');
   const activePreset = presetEl ? parseInt(presetEl.value, 10) : 0;
   let savedCount = 0;
+  const deferFlashUntilLastFs = bankUiHasStgMode();
 
   try {
     for (let fi = 1; fi <= State.fsCount; fi++) {
@@ -1738,10 +1753,12 @@ async function saveBanks() {
 
       const fsKey = 'fs' + fi;
       const banks  = { [String(State.currentBank)]: { [fsKey]: fsData } };
+      const isLastFs = (fi === State.fsCount);
+      const skipFlash = deferFlashUntilLastFs && !isLastFs;
       // Enviar activePreset apenas no primeiro FS para definir o preset correto
       const params = (fi === 1)
-        ? { __method: 'POST', banks, activePreset }
-        : { __method: 'POST', banks };
+        ? { __method: 'POST', banks, activePreset, ...(skipFlash ? { __skipSave: true } : {}) }
+        : { __method: 'POST', banks, ...(skipFlash ? { __skipSave: true } : {}) };
 
       const fsJson = JSON.stringify({ cmd: 'midi_config', id: 0, ...params });
       console.log(`[saveBanks] FS${fi} payload: ${fsJson.length} bytes | stgEnabled=${fsData.stgEnabled} | stgStageCount=${fsData.stgStageCount} | ricochetEnabled=${fsData.ricochetEnabled} | ricochetRiseTimeMs=${fsData.ricochetRiseTimeMs} | extraClick=${JSON.stringify(fsData.extraClick)}`);
@@ -1756,6 +1773,7 @@ async function saveBanks() {
         return;
       }
       savedCount++;
+      if (skipFlash) await new Promise(r => setTimeout(r, 80));
     }
 
     console.log(`[saveBanks] ${savedCount} FS salvos com sucesso`);
@@ -2133,7 +2151,7 @@ function collectStgFromCard(card) {
   if (!cfg) return null;
   const stageCount = Math.min(5, Math.max(2, parseInt(cfg.querySelector('.stg-stage-count')?.value ?? '2', 10)));
   const stgStages = [];
-  for (let si = 0; si < 5; si++) {
+  for (let si = 0; si < stageCount; si++) {
     const sc = cfg.querySelector(`.stg-stage-card[data-stage="${si}"]`);
     const ledPercent = Math.min(100, Math.max(0, parseInt(sc?.querySelector('.stg-led-pct')?.value ?? '100', 10)));
     const cmds = [];
@@ -2414,6 +2432,23 @@ function collectFsFromCard(card) {
   // STG data
   const stgData = (mode === 'stg') ? (collectStgFromCard(card) ?? {}) : {};
 
+  // STG: payload mínimo (~300 B) — evita OOM no ESP32 ao salvar FS6+ (MT-6)
+  if (mode === 'stg') {
+    return {
+      fsName: gEl('.fs-name')?.value || '',
+      stgEnabled: 1,
+      stgStageCount: stgData.stgStageCount ?? 2,
+      stgStages: stgData.stgStages ?? [],
+      holdEnabled: 0,
+      holdToggle: 0,
+      ricochetEnabled: 0,
+      extraClick: [],
+      extraHold: [],
+      extraStompClick: [],
+      ledColors: lc
+    };
+  }
+
   return {
     fsName: gEl('.fs-name')?.value || '',
     // Preservar ação principal original (usuários usam só extras)
@@ -2457,7 +2492,7 @@ function collectFsFromCard(card) {
     ccUpDownTrigger: savedMain.ccUpDownTrigger ?? 0,
     ccUpDownOutput:  savedMain.ccUpDownOutput  ?? 2,
     ricochetEnabled:    b(mode === 'ricochet'),
-    stgEnabled:         b(mode === 'stg'),
+    stgEnabled:         0,
     ricochetChannel:    gn('.fs-ric-ch'),
     ricochetCc:         gn('.fs-ric-cc'),
     ricochetStartValue: gn('.fs-ric-start'),
@@ -2468,10 +2503,6 @@ function collectFsFromCard(card) {
     ricochetMode:   gn('.fs-ric-mode'),
     ricochetOutput: gn('.fs-ric-out'),
     ricochetInvert: b(gc('.fs-ric-invert')),
-    // STG
-    stgStageCount: stgData.stgStageCount ?? 2,
-    stgStages:     stgData.stgStages     ?? [],
-    // Extras (preset layer)
     extraClick: parseJsonArray(card.dataset.extraClickCache),
     extraHold:  parseJsonArray(card.dataset.extraHoldCache),
     // Extras (stomp layer)
