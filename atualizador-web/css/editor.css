@@ -947,12 +947,64 @@ body {
   align-items: center;
   gap: 4px;
   flex-wrap: wrap;
-  background: rgba(255,255,255,0.025);
+  --cmd-type-color: var(--border-2);
+  --cmd-mode-color: rgba(59,130,246,0.0);
+  --cmd-trig-color: rgba(59,130,246,0.0);
+  --cmd-bg: rgba(255,255,255,0.025);
+  background: var(--cmd-bg);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 5px 7px;
+  box-shadow:
+    inset 3px 0 0 var(--cmd-type-color),
+    inset 0 2px 0 var(--cmd-mode-color),
+    inset -3px 0 0 var(--cmd-trig-color);
 }
 .cmd-row:hover { border-color: var(--border-2); }
+
+.cmd-row.cmd-row--m-normal    { --cmd-mode-color: rgba(59,130,246,0.55); }
+.cmd-row.cmd-row--m-momentary { --cmd-mode-color: rgba(245,158,11,0.60); }
+.cmd-row.cmd-row--m-tap       { --cmd-mode-color: rgba(139,92,246,0.60); }
+
+.cmd-row.cmd-row--trig-click { --cmd-trig-color: rgba(59,130,246,0.0); }
+.cmd-row.cmd-row--trig-hold  { --cmd-trig-color: rgba(139,92,246,0.75); }
+
+.cmd-row.cmd-row--on {
+  --cmd-bg: rgba(16,185,129,0.10);
+  border-color: rgba(16,185,129,0.45);
+}
+.cmd-row.cmd-row--off {
+  --cmd-bg: rgba(239,68,68,0.10);
+  border-color: rgba(239,68,68,0.45);
+}
+.cmd-row.cmd-row--on:hover  { border-color: rgba(16,185,129,0.70); }
+.cmd-row.cmd-row--off:hover { border-color: rgba(239,68,68,0.70); }
+
+.cmd-row[data-type="cc"] { --cmd-type-color: var(--s-color); }
+.cmd-row[data-type="cc_up"],
+.cmd-row[data-type="cc_down"] { --cmd-type-color: var(--accent); }
+.cmd-row[data-type="pc"],
+.cmd-row[data-type="pc_up"],
+.cmd-row[data-type="pc_down"] { --cmd-type-color: var(--orange); }
+.cmd-row[data-type="sysex"] { --cmd-type-color: var(--purple); }
+.cmd-row[data-type="bank_up_int"] { --cmd-type-color: var(--green); }
+.cmd-row[data-type="bank_down_int"] { --cmd-type-color: var(--red); }
+.cmd-row[data-type="fs_sync"] { --cmd-type-color: var(--accent-2); }
+.cmd-row[data-type="midi_clock"] { --cmd-type-color: var(--orange); }
+.cmd-row[data-type="midi_clock_tap"] { --cmd-type-color: var(--orange); }
+.cmd-row[data-type="ampero_tap"] { --cmd-type-color: var(--purple); }
+
+.cmd-row.cmd-row--t-cc { --cmd-type-color: var(--s-color); }
+.cmd-row.cmd-row--t-ccud { --cmd-type-color: var(--accent); }
+.cmd-row.cmd-row--t-pc,
+.cmd-row.cmd-row--t-pcud { --cmd-type-color: var(--orange); }
+.cmd-row.cmd-row--t-sysex { --cmd-type-color: var(--purple); }
+.cmd-row.cmd-row--t-bank-up { --cmd-type-color: var(--green); }
+.cmd-row.cmd-row--t-bank-down { --cmd-type-color: var(--red); }
+.cmd-row.cmd-row--t-fs-sync { --cmd-type-color: var(--accent-2); }
+.cmd-row.cmd-row--t-clock,
+.cmd-row.cmd-row--t-clock-tap { --cmd-type-color: var(--orange); }
+.cmd-row.cmd-row--t-ampero { --cmd-type-color: var(--purple); }
 
 /* XS inputs e selects para caber numa linha */
 .input--xs, .select--xs {

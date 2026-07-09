@@ -115,8 +115,7 @@ class SerialTransport {
     await this._writer.write(this._encoder.encode(line));
 
     return new Promise((resolve, reject) => {
-      // midi_config POST pode demorar até ~15s salvando 9 bancos no SPIFFS
-      const timeoutMs = cmd === 'midi_config' ? 20000 : 8000;
+      const timeoutMs = cmd === 'midi_config' ? 60000 : 8000;
       const timer = setTimeout(() => {
         this._pending.delete(id);
         reject(new Error(`Timeout (${timeoutMs/1000}s): cmd="${cmd}" id=${id}`));
@@ -365,7 +364,16 @@ async function onConnected() {
    ============================================================ */
 async function send(cmd, params = {}) {
   if (!State.transport || !State.connected) throw new Error('Não conectado');
-  return State.transport.send(cmd, params);
+  try {
+    return await State.transport.send(cmd, params);
+  } catch (e) {
+    const msg = String(e?.message || '');
+    if (cmd === 'midi_config' && msg.startsWith('Timeout')) {
+      await new Promise(r => setTimeout(r, 1200));
+      return State.transport.send(cmd, params);
+    }
+    throw e;
+  }
 }
 
 /* ============================================================
@@ -455,6 +463,11 @@ function applyUsbConfigToUI(d) {
   setVal('resetOnFootSelect', String(d.resetOnFootChange || 0));
   setVal('resetOnHoldSelect', String(d.resetOnHoldChange || 0));
   setVal('ledCustomSourceSelect', String(d.ledCustomSource || 0));
+  setVal('customStartLayerSelect', String(d.customStartLayer ?? 0));
+  setVal('customBankLimitSelect', String(d.customBankLimit ?? 9));
+  setVal('customBankHoldNavEnabledSelect', String(d.customBankHoldNavEnabled ?? 0));
+  setVal('customBankUpHoldFsSelect', String(d.customBankUpHoldFs ?? 1));
+  setVal('customBankDownHoldFsSelect', String(d.customBankDownHoldFs ?? 2));
   // PC Global
   setChk('pcSharedChk', !!d.midiPcUpDownShared);
   setNum('pcStartInput', d.midiPcGlobalStart ?? 0);
@@ -480,6 +493,35 @@ function applyUsbConfigToUI(d) {
   // Stomp e EXP vêm no mesmo payload usb_config
   applyStompToUI(d);
   applyExpToUI(d);
+  syncCustomBankHoldNavUi();
+  updateCustomBankHoldReservedUiForAllCards();
+}
+
+function syncCustomBankHoldNavUi() {
+  const enabledSel = $('customBankHoldNavEnabledSelect');
+  const upSel = $('customBankUpHoldFsSelect');
+  const downSel = $('customBankDownHoldFsSelect');
+  if (!enabledSel || !upSel || !downSel) return;
+  const fsCount = (State.fsCount === 4 || State.fsCount === 6 || State.fsCount === 8) ? State.fsCount : 8;
+  const enabled = parseInt(enabledSel.value || '0', 10) === 1;
+
+  [upSel, downSel].forEach((sel) => {
+    Array.from(sel.options || []).forEach((opt) => {
+      const v = parseInt(opt.value || '0', 10);
+      opt.disabled = (!isNaN(v) && (v < 1 || v > fsCount));
+    });
+    sel.disabled = !enabled;
+  });
+
+  let up = parseInt(upSel.value || '1', 10);
+  let down = parseInt(downSel.value || '2', 10);
+  if (isNaN(up) || up < 1 || up > fsCount) up = 1;
+  if (isNaN(down) || down < 1 || down > fsCount) down = Math.min(2, fsCount);
+  if (fsCount >= 2 && up === down) {
+    down = (up < fsCount) ? (up + 1) : 1;
+  }
+  upSel.value = String(up);
+  downSel.value = String(down);
 }
 
 async function saveUsbConfig() {
@@ -494,6 +536,11 @@ async function saveUsbConfig() {
     resetOnFootChange: parseInt($('resetOnFootSelect').value, 10),
     resetOnHoldChange: parseInt($('resetOnHoldSelect').value, 10),
     ledCustomSource: parseInt($('ledCustomSourceSelect').value, 10),
+    customStartLayer: parseInt($('customStartLayerSelect').value, 10),
+    customBankLimit: parseInt($('customBankLimitSelect').value, 10),
+    customBankHoldNavEnabled: parseInt($('customBankHoldNavEnabledSelect').value, 10),
+    customBankUpHoldFs: parseInt($('customBankUpHoldFsSelect').value, 10),
+    customBankDownHoldFs: parseInt($('customBankDownHoldFsSelect').value, 10),
     midiPcUpDownShared: $('pcSharedChk').checked ? 1 : 0,
     midiPcGlobalStart: parseInt($('pcStartInput').value, 10),
     midiPcGlobalEnd: parseInt($('pcEndInput').value, 10),
@@ -1859,6 +1906,69 @@ function getFsModeFromConfig(fs) {
   return fs?.holdToggle ? 'tap' : 'momentary';
 }
 
+function getEffectiveModeForLayer(card) {
+  const mode = card?.dataset?.mode || 'normal';
+  const layer = card?.dataset?.cmdLayer || 'preset';
+  if (layer === 'stomp') return 'normal';
+  return mode;
+}
+
+function getCustomBankHoldEnabledFromUi() {
+  const sel = $('customBankHoldNavEnabledSelect');
+  return parseInt(sel?.value || '0', 10) === 1;
+}
+
+function getCustomBankHoldFsCount() {
+  const n = State.fsCount;
+  if (n === 4 || n === 6 || n === 8) return n;
+  return 8;
+}
+
+function updateCustomBankHoldReservedUiForCard(card) {
+  if (!card) return;
+  const enabled = getCustomBankHoldEnabledFromUi();
+  const fsCount = getCustomBankHoldFsCount();
+  const fs1 = parseInt(card.dataset.fs || '0', 10) || 0;
+  const layer = card.dataset.cmdLayer || 'preset';
+  const upFs1 = parseInt($('customBankUpHoldFsSelect')?.value || '1', 10) || 1;
+  const downFs1 = parseInt($('customBankDownHoldFsSelect')?.value || '2', 10) || 2;
+  const isReserved = enabled && layer === 'preset'
+    && fs1 >= 1 && fs1 <= fsCount
+    && ((fs1 === upFs1) || (fs1 === downFs1));
+
+  const section = card.querySelector('.fs-cmd-section');
+  const list = card.querySelector('[data-cmdlist="main"]');
+  if (!section || !list) return;
+
+  let note = section.querySelector('.fs-reserved-note');
+  if (isReserved) {
+    const label = (fs1 === upFs1) ? 'HOLD = Banco+ (interno)' : 'HOLD = Banco− (interno)';
+    if (!note) {
+      note = document.createElement('div');
+      note.className = 'fs-reserved-note';
+      list.parentNode?.insertBefore(note, list);
+    }
+    note.textContent = label;
+  } else {
+    if (note) note.remove();
+  }
+
+  // Gatilho (Click/Hold): no FS reservado, impedir escolher Hold (fica consumido pelo banco interno)
+  const trigEls = card.querySelectorAll('.cmd-trig');
+  trigEls.forEach((el) => {
+    el.disabled = isReserved;
+    if (isReserved) el.title = 'HOLD reservado para banco interno';
+    else el.removeAttribute('title');
+  });
+}
+
+function updateCustomBankHoldReservedUiForAllCards() {
+  for (let fi = 1; fi <= getCustomBankHoldFsCount(); fi++) {
+    const card = document.querySelector(`.fs-card[data-fs="${fi}"]`);
+    if (card) updateCustomBankHoldReservedUiForCard(card);
+  }
+}
+
 function rebuildFsGrid() {
   const grid = $('fsGrid');
   if (!grid) return;
@@ -1877,7 +1987,7 @@ function rebuildFsGrid() {
 
     // Add button
     card.querySelector('.fs-add-cmd').addEventListener('click', () => {
-      const mode = card.dataset.mode || 'normal';
+      const mode = getEffectiveModeForLayer(card);
       appendCmdRow(card.querySelector('[data-cmdlist="main"]'), {}, mode);
     });
 
@@ -1886,6 +1996,7 @@ function rebuildFsGrid() {
     const addedCard = grid.lastElementChild;
     if (addedCard) {
       addedCard.querySelectorAll('input[type=color]').forEach(inp => CPK.attachToInput(inp));
+      updateCustomBankHoldReservedUiForCard(addedCard);
     }
   }
 }
@@ -1960,11 +2071,17 @@ function appendCmdRow(list, data, mode) {
   updateCmdTypeOptions(row, mode);
   // Atualizar visibilidade dos campos
   updateCmdRowFields(row, typeStr, mode);
+  updateCmdRowVisual(row, mode);
 
   // Eventos
   row.querySelector('.cmd-type').addEventListener('change', e => {
     const m = row.closest('.fs-card')?.dataset?.mode || 'normal';
     updateCmdRowFields(row, e.target.value, m);
+    updateCmdRowVisual(row, m);
+  });
+  row.querySelector('.cmd-state')?.addEventListener('change', () => {
+    const m = row.closest('.fs-card')?.dataset?.mode || 'normal';
+    updateCmdRowVisual(row, m);
   });
   row.querySelector('.cmd-remove').addEventListener('click', () => row.remove());
 
@@ -2052,12 +2169,59 @@ function updateCmdRowFields(row, typeStr, mode) {
   }
 
   row.dataset.type = typeStr;
+  updateCmdRowVisual(row, mode);
 }
 
 /* Atualiza as rows existentes quando o modo muda */
 function updateCmdRowMode(row, mode) {
   updateCmdTypeOptions(row, mode);
   updateCmdRowFields(row, row.querySelector('.cmd-type')?.value || 'cc', mode);
+  updateCmdRowVisual(row, mode);
+}
+
+function updateCmdRowVisual(row, mode) {
+  if (!row) return;
+  row.classList.remove(
+    'cmd-row--on', 'cmd-row--off',
+    'cmd-row--m-normal', 'cmd-row--m-momentary', 'cmd-row--m-tap',
+    'cmd-row--trig-click', 'cmd-row--trig-hold',
+    'cmd-row--t-cc', 'cmd-row--t-ccud', 'cmd-row--t-pc', 'cmd-row--t-pcud',
+    'cmd-row--t-sysex', 'cmd-row--t-bank-up', 'cmd-row--t-bank-down',
+    'cmd-row--t-fs-sync', 'cmd-row--t-clock', 'cmd-row--t-clock-tap', 'cmd-row--t-ampero'
+  );
+
+  if (mode === 'momentary') row.classList.add('cmd-row--m-momentary');
+  else if (mode === 'tap')  row.classList.add('cmd-row--m-tap');
+  else                      row.classList.add('cmd-row--m-normal');
+
+  const typeStr = row.dataset.type || row.querySelector('.cmd-type')?.value || 'cc';
+  if (typeStr === 'cc') row.classList.add('cmd-row--t-cc');
+  else if (typeStr === 'cc_up' || typeStr === 'cc_down') row.classList.add('cmd-row--t-ccud');
+  else if (typeStr === 'pc') row.classList.add('cmd-row--t-pc');
+  else if (typeStr === 'pc_up' || typeStr === 'pc_down') row.classList.add('cmd-row--t-pcud');
+  else if (typeStr === 'sysex') row.classList.add('cmd-row--t-sysex');
+  else if (typeStr === 'bank_up_int') row.classList.add('cmd-row--t-bank-up');
+  else if (typeStr === 'bank_down_int') row.classList.add('cmd-row--t-bank-down');
+  else if (typeStr === 'fs_sync') row.classList.add('cmd-row--t-fs-sync');
+  else if (typeStr === 'midi_clock') row.classList.add('cmd-row--t-clock');
+  else if (typeStr === 'midi_clock_tap') row.classList.add('cmd-row--t-clock-tap');
+  else if (typeStr === 'ampero_tap') row.classList.add('cmd-row--t-ampero');
+
+  const trigField = row.querySelector('.cmd-f-trig');
+  const trigSel = row.querySelector('.cmd-trig');
+  if (trigField && trigField.style.display !== 'none' && trigSel) {
+    const v = parseInt(trigSel.value || '0', 10);
+    if (v === 1) row.classList.add('cmd-row--trig-hold');
+    else row.classList.add('cmd-row--trig-click');
+  }
+
+  const stateField = row.querySelector('.cmd-f-state');
+  const stateSel = row.querySelector('.cmd-state');
+  if (stateField && stateField.style.display !== 'none' && stateSel) {
+    const v = parseInt(stateSel.value || '0', 10);
+    if (v === 0) row.classList.add('cmd-row--on');
+    else if (v === 1) row.classList.add('cmd-row--off');
+  }
 }
 
 /* ============================================================
@@ -2266,6 +2430,7 @@ function applyFsToCard(card, fs) {
   if (mode === 'stg') buildStgSection(card, fs);
 
   initFsLayerControls(card);
+  updateCustomBankHoldReservedUiForCard(card);
 }
 
 function initFsLayerControls(card) {
@@ -2296,11 +2461,11 @@ function captureCmdListToCaches(card) {
   const list = card.querySelector('[data-cmdlist="main"]');
   if (!list) return;
   const mode = card.dataset.mode || 'normal';
-  if (mode === 'ricochet' || mode === 'stg') return;
+  const layer = card.dataset.cmdLayer || 'preset';
+  if (layer !== 'stomp' && (mode === 'ricochet' || mode === 'stg')) return;
   const allCmds = collectCmdList(list);
   const clickCmds = allCmds.filter(c => c.trigger === 0);
   const holdCmds  = allCmds.filter(c => c.trigger === 1);
-  const layer = card.dataset.cmdLayer || 'preset';
   if (layer === 'stomp') {
     card.dataset.extraStompClickCache = JSON.stringify(clickCmds.map(toExtraCmd));
   } else {
@@ -2316,7 +2481,7 @@ function setFsCmdLayer(card, layer) {
   captureCmdListToCaches(card);
   card.dataset.cmdLayer = layer;
   initFsLayerControls(card);
-  const mode = card.dataset.mode || 'normal';
+  const mode = getEffectiveModeForLayer(card);
 
   // Atualizar título da seção de comandos conforme a layer
   const cmdTitle = card.querySelector('.fs-cmd-section-title');
@@ -2327,6 +2492,19 @@ function setFsCmdLayer(card, layer) {
       const modeLabels = { normal: 'Comandos MIDI', momentary: 'Comandos MIDI — Momentâneo', tap: 'Comandos MIDI — Tap' };
       cmdTitle.textContent = modeLabels[mode] ?? 'Comandos MIDI';
     }
+  }
+
+  const ricEl = card.querySelector('.fs-ricochet-cfg');
+  const stgEl = card.querySelector('.fs-stg-cfg');
+  const cmdSection = card.querySelector('.fs-cmd-section');
+  if (layer === 'stomp') {
+    if (ricEl) ricEl.style.display = 'none';
+    if (stgEl) stgEl.style.display = 'none';
+    if (cmdSection) cmdSection.style.display = 'block';
+  } else {
+    if (cmdSection) cmdSection.style.display = (mode === 'ricochet' || mode === 'stg') ? 'none' : 'block';
+    if (ricEl) ricEl.style.display = (mode === 'ricochet') ? 'block' : 'none';
+    if (stgEl) stgEl.style.display = (mode === 'stg') ? 'block' : 'none';
   }
 
   const mainList = card.querySelector('[data-cmdlist="main"]');
@@ -2350,6 +2528,7 @@ function setFsCmdLayer(card, layer) {
       });
     }
   }
+  updateCustomBankHoldReservedUiForCard(card);
 }
 
 /* Monta lista unificada de comandos.
@@ -2426,7 +2605,7 @@ function collectFsFromCard(card) {
 
   // Flags de modo → firmware
   // Quando STG está ativo, holdEnabled/holdToggle devem ser false (como no app original)
-  const holdEnabled = (mode === 'stg') ? false : (mode === 'momentary' || mode === 'tap' || holdCmds.length > 0);
+  const holdEnabled = (mode === 'stg') ? false : (mode === 'momentary' || mode === 'tap');
   const holdToggle  = (mode === 'stg') ? false : (mode === 'tap');
 
   // STG data
@@ -2860,14 +3039,22 @@ function initTheme() {
   applyTheme(saved);
   const btn = $('themeBtn');
   if (btn) btn.addEventListener('click', () => {
-    const next = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light';
+    const cur = document.documentElement.getAttribute('data-theme') || document.documentElement.dataset.theme || 'dark';
+    const next = cur === 'light' ? 'dark' : 'light';
     applyTheme(next);
     localStorage.setItem('gs_theme', next);
   });
 }
 
 function applyTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
   document.documentElement.dataset.theme = theme;
+  if (document.body) {
+    document.body.setAttribute('data-theme', theme);
+    document.body.dataset.theme = theme;
+  }
+  document.documentElement.classList.toggle('theme-light', theme === 'light');
+  document.documentElement.classList.toggle('theme-dark', theme !== 'light');
   const btn = $('themeBtn');
   if (btn) btn.textContent = theme === 'light' ? '🌙' : '☀️';
   btn && (btn.title = theme === 'light' ? 'Mudar para tema escuro' : 'Mudar para tema claro');
@@ -3332,6 +3519,18 @@ function init() {
     notify('Configurações globais lidas', 'success');
   });
   $('applyBankLedBtn').addEventListener('click', applyBankLedGlobal);
+  $('customBankHoldNavEnabledSelect')?.addEventListener('change', () => {
+    syncCustomBankHoldNavUi();
+    updateCustomBankHoldReservedUiForAllCards();
+  });
+  $('customBankUpHoldFsSelect')?.addEventListener('change', () => {
+    syncCustomBankHoldNavUi();
+    updateCustomBankHoldReservedUiForAllCards();
+  });
+  $('customBankDownHoldFsSelect')?.addEventListener('change', () => {
+    syncCustomBankHoldNavUi();
+    updateCustomBankHoldReservedUiForAllCards();
+  });
 
   // ---- Stomp ----
   $('stompSaveBtn')?.addEventListener('click', async () => {
