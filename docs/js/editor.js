@@ -2048,7 +2048,7 @@ function appendCmdRow(list, data, mode) {
   row.querySelector('.cmd-type').value  = typeStr;
   row.querySelector('.cmd-ch').value    = data.channel ?? 1;
   row.querySelector('.cmd-trig').value  = String(data.trigger ?? 0);
-  row.querySelector('.cmd-state').value = String(data.onOff ?? 0);
+  row.querySelector('.cmd-state').value = String(typeStr === 'fs_sync' ? 0 : (data.onOff ?? 0));
   row.querySelector('.cmd-out').value   = String(data.output ?? 2);
   row.querySelector('.cmd-ccnum').value = data.cc ?? 64;
   row.querySelector('.cmd-ccval').value = data.value ?? 127;
@@ -2151,6 +2151,7 @@ function updateCmdRowFields(row, typeStr, mode) {
   const stLbl = row.querySelector('.cmd-state-lbl');
   const stOn  = row.querySelector('.cmd-state-on-opt');
   const stOff = row.querySelector('.cmd-state-off-opt');
+  const stSel = row.querySelector('.cmd-state');
   if (mode === 'momentary') {
     if (stLbl) stLbl.textContent = 'Momento';
     if (stOn)  stOn.textContent  = 'Aperta';
@@ -2159,6 +2160,15 @@ function updateCmdRowFields(row, typeStr, mode) {
     if (stLbl) stLbl.textContent = 'Estado';
     if (stOn)  stOn.textContent  = 'On';
     if (stOff) stOff.textContent = 'Off';
+  }
+
+  if (stSel) {
+    if (isFsSync) {
+      stSel.value = '0';
+      stSel.disabled = true;
+    } else {
+      stSel.disabled = !!hideState;
+    }
   }
 
   // Ampero Tap força saída = MIDI Serial
@@ -2704,7 +2714,7 @@ function collectCmdList(list) {
       type:    typeToNum(typeStr),
       channel: parseInt(row.querySelector('.cmd-ch')?.value ?? '1', 10) || 1,
       trigger: parseInt(row.querySelector('.cmd-trig')?.value ?? '0', 10),
-      onOff:   parseInt(row.querySelector('.cmd-state')?.value ?? '0', 10),
+      onOff:   isFsSync ? 0 : parseInt(row.querySelector('.cmd-state')?.value ?? '0', 10),
       output:  isAmpero ? 3 : parseInt(row.querySelector('.cmd-out')?.value ?? '2', 10),
       cc:      isFsSync ? parseInt(row.querySelector('.cmd-synctgt')?.value ?? '1', 10)
                         : parseInt(row.querySelector('.cmd-ccnum')?.value ?? '0', 10),
@@ -2728,7 +2738,7 @@ function parseSysExHex(str) {
 }
 
 function toExtraCmd(c) {
-  return { type: c.type, channel: c.channel, cc: c.cc, value: c.value, pc: c.pc, onOff: c.onOff, state: c.state ?? 0, output: c.output, trigger: c.trigger ?? 0, pcRangeStart: c.pcRangeStart ?? 0, pcRangeEnd: c.pcRangeEnd ?? 127, pcIncrement: c.pcIncrement ?? 1, pcLoop: c.pcLoop ? 1 : 0, sysex: c.sysex ?? [], sysex_len: c.sysex_len ?? 0 };
+  return { type: c.type, channel: c.channel, cc: c.cc, value: c.value, pc: c.pc, onOff: c.type === 9 ? 0 : c.onOff, state: c.state ?? 0, output: c.output, trigger: c.trigger ?? 0, pcRangeStart: c.pcRangeStart ?? 0, pcRangeEnd: c.pcRangeEnd ?? 127, pcIncrement: c.pcIncrement ?? 1, pcLoop: c.pcLoop ? 1 : 0, sysex: c.sysex ?? [], sysex_len: c.sysex_len ?? 0 };
 }
 
 function collectAllBanksFromUI() {
