@@ -195,6 +195,13 @@ window.mockDispatch = function(cmd, params) {
         'midiCcUpDownShared','midiCcGlobalStart','midiCcGlobalEnd','midiCcGlobalInc','midiCcGlobalLoop','midiCcSharedValue'];
       fields.forEach(f => { if (params[f] !== undefined) MOCK_STATE[f] = params[f]; });
       if (Array.isArray(params.presetNames)) MOCK_STATE.presetNames = params.presetNames;
+      if (typeof params.usbMode === 'number') MOCK_STATE.usbMode = params.usbMode;
+      else if (typeof params.usbmode === 'number') MOCK_STATE.usbMode = params.usbmode;
+      if (typeof params.usbPreset === 'number') MOCK_STATE.usbPreset = params.usbPreset;
+      else if (typeof params.usbpreset === 'number') MOCK_STATE.usbPreset = params.usbpreset;
+      if (typeof params.fsCount === 'number' && [4,6,8].includes(params.fsCount|0)) {
+        MOCK_STATE.fsCount = params.fsCount|0;
+      }
     }
     return {
       ok: true, cmd: 'usb_config', id,

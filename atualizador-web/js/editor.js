@@ -531,6 +531,7 @@ async function saveUsbConfig() {
     __method: 'POST',
     usbMode,
     usbPreset,
+    fsCount: parseInt($('fsCountSelect').value, 10),
     ledHoldMode: parseInt($('ledHoldModeSelect').value, 10),
     ledClickMode: parseInt($('ledClickModeSelect').value, 10),
     resetOnFootChange: parseInt($('resetOnFootSelect').value, 10),
@@ -570,10 +571,24 @@ async function saveUsbConfig() {
 
 async function saveFsCount() {
   const fsCount = parseInt($('fsCountSelect').value, 10);
-  State.fsCount = fsCount;
-  rebuildFsGrid();
-  await loadBank(State.currentBank);
-  notify(`Modelo ${fsCount === 4 ? 'MT-4' : fsCount === 6 ? 'MT-6' : 'MT-8'} aplicado`, 'info');
+  const payload = {
+    __method: 'POST',
+    fsCount
+  };
+  try {
+    const r = await send('usb_config', payload);
+    if (!r.ok) {
+      notify('Erro ao salvar modelo: ' + (r.error || '?'), 'error');
+      return;
+    }
+    State.fsCount = fsCount;
+    rebuildFsGrid();
+    if (r.data) applyUsbConfigToUI(r.data);
+    await loadBank(State.currentBank);
+    notify(`Modelo ${fsCount === 4 ? 'MT-4' : fsCount === 6 ? 'MT-6' : 'MT-8'} salvo e aplicado`, 'success');
+  } catch (e) {
+    notify('Erro: ' + e.message, 'error');
+  }
 }
 
 /* ============================================================
