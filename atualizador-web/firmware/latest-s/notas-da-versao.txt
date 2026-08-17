@@ -1,10 +1,5 @@
 Notas da Versão — Guerrilha MT-S
 
-Esta atualização traz correções de erros e ajustes de estabilidade para o Editor Web do controlador Guerrilha MT-S.
-
-Correção de falhas na comunicação entre o editor e o controlador.
-Ajustes no carregamento, edição e salvamento de bancos, presets e configurações.
-Melhorias na estabilidade da conexão USB.
-Correções na interface do editor para evitar comportamentos inesperados durante a edição.
-Ajustes internos para tornar a sincronização de dados mais confiável.
-Melhorias gerais de desempenho e compatibilidade do Editor Web.
+Atualização do APP web - ao abrir app web pela primeira, tem de limpar os caches do navegador CTRL + F5.
+Melhorias no consumo de memoria e BT.
+Correções de bug.

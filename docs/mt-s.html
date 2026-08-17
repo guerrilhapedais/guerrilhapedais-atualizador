@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#090a0c" />
   <meta name="description" content="Atualizador de firmware MT-S Series Guerrilha Pedais por USB no browser." />
   <title>Guerrilha Pedais — MT-S Series · Atualizador</title>
   <link rel="icon" href="assets/logo_final.png" type="image/png" />
@@ -11,28 +12,24 @@
 <body class="updater-page">
   <a class="skip-link" href="#main">Saltar para o conteúdo</a>
   <div class="layout layout--updater">
-    <nav class="line-nav" aria-label="Navegação">
+    <header class="updater-top" role="banner">
       <a href="index.html" class="line-nav__back">← Escolher linha</a>
-      <span class="line-nav__pill line-nav__pill--mts">MT-S Series</span>
-    </nav>
-
-    <header class="hero hero--compact hero--mts" role="banner">
-      <div class="hero-glow hero-glow--mts" aria-hidden="true"></div>
-      <div class="hero-inner hero-inner--compact hero-inner--mts">
+      <div class="updater-top__brand">
         <img
-          class="hero-logo hero-logo--compact"
+          class="updater-top__logo"
           src="assets/logo_final.png"
-          width="72"
-          height="72"
+          width="56"
+          height="56"
           alt=""
           decoding="async"
           onerror="this.style.display='none'"
         />
-        <div class="hero-copy">
+        <div class="updater-top__copy">
+          <p class="updater-top__eyebrow">Atualizador USB</p>
           <h1>MT-S Series</h1>
-          <p class="sub">Atualização de firmware por USB — usa Chrome ou Edge.</p>
         </div>
       </div>
+      <span class="line-nav__pill line-nav__pill--mts">MT-S Series</span>
     </header>
 
     <div id="noSerial" class="warn" style="display: none" role="alert" aria-live="polite">
@@ -48,89 +45,110 @@
     </div>
 
     <main id="main" tabindex="-1" aria-label="Atualizador MT-S Series">
-      <div class="steps" aria-label="Passos">
-        <div class="step"><span class="num" aria-hidden="true">1</span> Segure <strong>FS1</strong></div>
-        <div class="step"><span class="num" aria-hidden="true">2</span> Ligue o dispositivo ao computador</div>
-        <div class="step"><span class="num" aria-hidden="true">3</span> Solte o botão quando leds estiverem na cor branca</div>
-        <div class="step"><span class="num" aria-hidden="true">4</span> Clica <strong>Ligar</strong> e escolhe a porta</div>
-        <div class="step"><span class="num" aria-hidden="true">5</span> Escolhe a origem do firmware</div>
-        <div class="step"><span class="num" aria-hidden="true">6</span> Clica em <strong>Gravar firmware</strong></div>
+      <section class="procedure" aria-label="Passos">
+        <h2 class="procedure__title">Procedimento</h2>
+        <ol class="procedure__list">
+          <li class="procedure__step"><span class="num" aria-hidden="true">1</span><span class="procedure__text">Segure <strong>FS1</strong></span></li>
+          <li class="procedure__step"><span class="num" aria-hidden="true">2</span><span class="procedure__text">Ligue o USB ao computador</span></li>
+          <li class="procedure__step"><span class="num" aria-hidden="true">3</span><span class="procedure__text">Solte quando os LEDs ficarem brancos</span></li>
+          <li class="procedure__step"><span class="num" aria-hidden="true">4</span><span class="procedure__text">Clica <strong>Ligar</strong> e escolhe a porta</span></li>
+          <li class="procedure__step"><span class="num" aria-hidden="true">5</span><span class="procedure__text">Escolhe a origem do firmware</span></li>
+          <li class="procedure__step"><span class="num" aria-hidden="true">6</span><span class="procedure__text">Clica em <strong>Gravar</strong></span></li>
+        </ol>
+      </section>
+
+      <div class="updater-workspace">
+        <section class="panel panel--dock" aria-labelledby="h-con">
+          <div class="panel__chrome">
+            <span class="panel__index">01</span>
+            <h2 id="h-con">Ligação</h2>
+          </div>
+          <div class="dock-body">
+            <div class="dock-readout">
+              <div class="dock-port" aria-hidden="true">
+                <span class="dock-port__slot"></span>
+              </div>
+              <span class="status-pill" id="statusState" aria-live="polite">Desligado</span>
+              <p class="dock-hint">Entra em modo de atualização e liga o cabo USB.</p>
+            </div>
+            <div class="row dock-actions">
+              <button type="button" class="btn btn-primary" id="connect" disabled>Ligar dispositivo</button>
+              <button type="button" class="btn btn-ghost" id="disconnect" disabled>Desligar</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel panel--flash" aria-labelledby="h-files">
+          <div class="panel__chrome">
+            <span class="panel__index">02</span>
+            <h2 id="h-files">Firmware</h2>
+          </div>
+          <div class="panel__body">
+            <fieldset class="firmware-fieldset">
+              <legend class="visually-hidden">Origem do firmware</legend>
+              <div class="firmware-source firmware-source--tiles" role="radiogroup" aria-label="Origem do firmware">
+                <label class="firmware-source__opt">
+                  <input type="radio" name="fwSource" id="fwSourceBundled" value="bundled" checked />
+                  <span class="firmware-source__box">
+                    <span class="firmware-source__title">Versão do site</span>
+                    <span class="firmware-source__sub" id="bundledSourceSub">A carregar…</span>
+                  </span>
+                </label>
+                <label class="firmware-source__opt">
+                  <input type="radio" name="fwSource" id="fwSourceManual" value="manual" />
+                  <span class="firmware-source__box">
+                    <span class="firmware-source__title">Ficheiros no computador</span>
+                    <span class="firmware-source__sub">Escolhes os ficheiros manualmente</span>
+                  </span>
+                </label>
+                <label class="firmware-source__opt firmware-source__opt--danger">
+                  <input type="radio" name="fwSource" id="fwSourceFactory" value="factory" disabled />
+                  <span class="firmware-source__box">
+                    <span class="firmware-source__title">Reposição de fábrica</span>
+                    <span class="firmware-source__sub">Apaga tudo — só para recuperação</span>
+                  </span>
+                </label>
+              </div>
+            </fieldset>
+
+            <div id="bundledPanel" class="firmware-bundled-panel" role="region" aria-label="Versão do site">
+              <p id="bundledStatus" class="firmware-bundled-status" role="status">A carregar…</p>
+              <div class="row" style="margin-top: 0.5rem">
+                <button type="button" class="btn btn-ghost btn-sm" id="reloadBundled">Recarregar versão</button>
+              </div>
+            </div>
+
+            <div id="manualPanel" class="firmware-manual-panel" role="region" hidden aria-label="Ficheiros locais">
+              <label class="field" for="fileFw">Firmware (obrigatório)</label>
+              <input type="file" id="fileFw" accept=".bin,application/octet-stream" />
+              <label class="field" for="filePart">Tabela de partições (opcional)</label>
+              <input type="file" id="filePart" accept=".bin,application/octet-stream" />
+            </div>
+
+            <div id="factoryPanel" class="firmware-factory-panel" role="region" hidden aria-label="Reposição de fábrica">
+              <div class="warn warn--danger" role="alert">
+                <strong>Atenção:</strong> apaga presets, calibrações e dados guardados. Usa só se o controlador não arrancar.
+              </div>
+              <p id="factoryStatus" class="firmware-bundled-status" role="status">A verificar…</p>
+            </div>
+
+            <div class="flash-bar">
+              <button type="button" class="btn btn-ghost btn-sm" id="downloadNotes" disabled>Notas da versão</button>
+              <button type="button" class="btn btn-success btn-flash" id="flash" disabled>Gravar firmware</button>
+            </div>
+            <div class="progress-wrap">
+              <progress id="progress" value="0" max="100" aria-label="Progresso da gravação"></progress>
+              <p class="progress-label" id="progressLabel"></p>
+            </div>
+          </div>
+        </section>
       </div>
 
-      <section class="card card--connect" aria-labelledby="h-con">
-        <div class="card-head">
-          <h2 id="h-con">Ligação</h2>
-          <span class="status-pill" id="statusState" aria-live="polite">Desligado</span>
-        </div>
-        <div class="row">
-          <button type="button" class="btn btn-primary" id="connect" disabled>Ligar dispositivo</button>
-          <button type="button" class="btn btn-ghost" id="disconnect" disabled>Desligar</button>
-        </div>
-      </section>
-
-      <section class="card" aria-labelledby="h-files">
-        <h2 id="h-files">Firmware</h2>
-        <fieldset class="firmware-fieldset">
-          <legend class="visually-hidden">Origem do firmware</legend>
-          <div class="firmware-source firmware-source--stack" role="radiogroup" aria-label="Origem do firmware">
-            <label class="firmware-source__opt">
-              <input type="radio" name="fwSource" id="fwSourceBundled" value="bundled" checked />
-              <span class="firmware-source__box">
-                <span class="firmware-source__title">Versão do site</span>
-                <span class="firmware-source__sub" id="bundledSourceSub">A carregar…</span>
-              </span>
-            </label>
-            <label class="firmware-source__opt">
-              <input type="radio" name="fwSource" id="fwSourceManual" value="manual" />
-              <span class="firmware-source__box">
-                <span class="firmware-source__title">Ficheiros no computador</span>
-                <span class="firmware-source__sub">Escolhes os ficheiros manualmente</span>
-              </span>
-            </label>
-            <label class="firmware-source__opt firmware-source__opt--danger">
-              <input type="radio" name="fwSource" id="fwSourceFactory" value="factory" disabled />
-              <span class="firmware-source__box">
-                <span class="firmware-source__title">Reposição de fábrica</span>
-                <span class="firmware-source__sub">Apaga tudo — só para recuperação</span>
-              </span>
-            </label>
-          </div>
-        </fieldset>
-
-        <div id="bundledPanel" class="firmware-bundled-panel" role="region" aria-label="Versão do site">
-          <p id="bundledStatus" class="firmware-bundled-status" role="status">A carregar…</p>
-          <div class="row" style="margin-top: 0.5rem">
-            <button type="button" class="btn btn-ghost btn-sm" id="reloadBundled">Recarregar versão</button>
-          </div>
-        </div>
-
-        <div id="manualPanel" class="firmware-manual-panel" role="region" hidden aria-label="Ficheiros locais">
-          <label class="field" for="fileFw">Firmware (obrigatório)</label>
-          <input type="file" id="fileFw" accept=".bin,application/octet-stream" />
-          <label class="field" for="filePart">Tabela de partições (opcional)</label>
-          <input type="file" id="filePart" accept=".bin,application/octet-stream" />
-        </div>
-
-        <div id="factoryPanel" class="firmware-factory-panel" role="region" hidden aria-label="Reposição de fábrica">
-          <div class="warn warn--danger" role="alert">
-            <strong>Atenção:</strong> apaga presets, calibrações e dados guardados. Usa só se o controlador não arrancar.
-          </div>
-          <p id="factoryStatus" class="firmware-bundled-status" role="status">A verificar…</p>
-        </div>
-
-        <div class="action-bar">
-          <button type="button" class="btn btn-ghost btn-sm" id="downloadNotes" disabled>Notas da versão</button>
-          <button type="button" class="btn btn-success btn-flash" id="flash" disabled>Gravar firmware</button>
-        </div>
-        <div class="progress-wrap">
-          <progress id="progress" value="0" max="100" aria-label="Progresso da gravação"></progress>
-          <p class="progress-label" id="progressLabel"></p>
-        </div>
-      </section>
-
-      <section class="card card--log" aria-labelledby="h-log">
-        <div class="card-head">
-          <h2 id="h-log">Registo</h2>
+      <section class="panel panel--console" aria-labelledby="h-log">
+        <div class="panel__chrome">
+          <span class="panel__index">03</span>
+          <h2 id="h-log">Consola</h2>
+          <span class="console-tag">USB · SERIAL</span>
           <button type="button" class="btn btn-ghost btn-sm" id="clearLog">Limpar</button>
         </div>
         <div id="log" class="log" role="log" aria-live="polite" aria-atomic="false"></div>

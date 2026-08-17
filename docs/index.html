@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#090a0c" />
   <meta name="description" content="Atualizador de firmware Guerrilha Pedais por USB — escolhe a tua linha MT ou MT-S." />
   <title>Guerrilha Pedais — Atualizador de firmware</title>
   <link rel="icon" href="assets/logo_final.png" type="image/png" />
@@ -17,8 +18,8 @@
         <img
           class="home-hero__logo"
           src="assets/logo_final.png"
-          width="96"
-          height="96"
+          width="108"
+          height="108"
           alt="Guerrilha Pedais"
           decoding="async"
           fetchpriority="high"
@@ -32,14 +33,26 @@
 
     <main id="main" class="product-picker" tabindex="-1" aria-label="Escolher linha do controlador">
       <a href="mt.html" class="product-card product-card--mt" aria-label="MT-Series — abrir atualizador">
+        <span class="product-card__kicker">Linha clássica</span>
         <h2 class="product-card__title">MT</h2>
+        <p class="product-card__desc">Firmware da série MT, gravado localmente por USB.</p>
+        <span class="product-card__cta">Abrir atualizador →</span>
       </a>
 
       <a href="mt-s.html" class="product-card product-card--mts" aria-label="MT-S Series — abrir atualizador">
+        <span class="product-card__kicker">Linha S</span>
         <h2 class="product-card__title">MT-S</h2>
-        </a>
-       <a href="editor.html" class="product-card product-card--mts" aria-label="MT-S ditor — abrir editor">
-        <h2 class="product-card__title">Editor MT-S Beta</h2> 
+        <p class="product-card__desc">Firmware da série MT-S, gravado localmente por USB.</p>
+        <span class="product-card__cta">Abrir atualizador →</span>
+      </a>
+
+      <a href="editor.html" class="product-card product-card--editor" aria-label="Editor MT-S — abrir editor">
+        <div class="product-card__copy">
+          <span class="product-card__kicker">Ferramenta</span>
+          <h2 class="product-card__title">Editor MT-S <span class="product-card__badge">Beta</span></h2>
+          <p class="product-card__desc">Configura o controlador MT-S no browser.</p>
+        </div>
+        <span class="product-card__cta">Abrir editor →</span>
       </a>
     </main>
 
