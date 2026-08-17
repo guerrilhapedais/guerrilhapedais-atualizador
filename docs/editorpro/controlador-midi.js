@@ -13318,6 +13318,40 @@ function usbRouteNormalizeUsbConfigBody(e) {
     return t.usbmode !== void 0 && t.usbMode === void 0 && (t.usbMode = t.usbmode), t.usbpreset !== void 0 && t.usbPreset === void 0 && (t.usbPreset = t.usbpreset), t
 }
 
+function mergeSistemaFields(usb, cfg) {
+    if (!cfg || typeof cfg != `object`) return usb || {};
+    let pick = (...vals) => {
+        for (let v of vals) {
+            if (v === void 0 || v === null || v === ``) continue;
+            return v
+        }
+    };
+    let midiEnable = pick(cfg.midiEnable, cfg.S_MIDI_EN, cfg.midiSerialEn, cfg.midiSerialEnable),
+        midiChannel = pick(cfg.midiChannel, cfg.S_MIDI_CH, cfg.midiSerialCh, cfg.midiSerialChannel),
+        midiPreset = pick(cfg.midiPreset, cfg.MIDI_PRESET, cfg.midiSerialPre, cfg.midiSerialPreset),
+        btMode = pick(cfg.btMode, cfg.BT_MODE),
+        btPreset = pick(cfg.btPreset, cfg.BT_PRESET),
+        btMidiCc = pick(cfg.btMidiCc, cfg.BT_MIDI_CC),
+        btCustomEnable = pick(cfg.btCustomEnable, cfg.BT_CUST_EN, cfg.btCustomEn),
+        btCustomName = pick(cfg.btCustomName, cfg.BT_CUST_NAME),
+        wifiSsid = pick(cfg.wifiSsid, cfg.WIFI_SSID),
+        wifiPw = pick(cfg.wifiPw, cfg.WIFI_PW),
+        out = {
+            ...usb || {}
+        };
+    if (Number.isFinite(Number(midiEnable))) out.midiEnable = out.S_MIDI_EN = Number(midiEnable);
+    if (Number.isFinite(Number(midiChannel))) out.midiChannel = out.S_MIDI_CH = Number(midiChannel);
+    if (Number.isFinite(Number(midiPreset))) out.midiPreset = out.MIDI_PRESET = Number(midiPreset);
+    if (Number.isFinite(Number(btMode))) out.btMode = out.BT_MODE = Number(btMode);
+    if (Number.isFinite(Number(btPreset))) out.btPreset = out.BT_PRESET = Number(btPreset);
+    if (Number.isFinite(Number(btMidiCc))) out.btMidiCc = out.BT_MIDI_CC = Number(btMidiCc);
+    if (Number.isFinite(Number(btCustomEnable))) out.btCustomEnable = out.BT_CUST_EN = Number(btCustomEnable);
+    if (typeof btCustomName == `string`) out.btCustomName = out.BT_CUST_NAME = btCustomName;
+    if (typeof wifiSsid == `string`) out.wifiSsid = out.WIFI_SSID = wifiSsid;
+    if (typeof wifiPw == `string`) out.wifiPw = out.WIFI_PW = wifiPw;
+    return out
+}
+
 async function usbRouteJson(e, t = {}, n = 15e3) {
     let r = new URL(e, typeof window < `u` ? window.location.origin : `http://localhost`),
         i = r.pathname,
@@ -13329,11 +13363,18 @@ async function usbRouteJson(e, t = {}, n = 15e3) {
         throw Error(`JSON invalido para transporte USB`)
     }
     if (i === `/api/usb-config`) {
-        let e = a === `POST` ? await usbTransportRequest(`usb_config`, {
+        if (a === `POST`) return usbRouteNormalizeResponse(await usbTransportRequest(`usb_config`, {
             __method: `POST`,
             ...usbRouteNormalizeUsbConfigBody(o)
-        }, n) : await usbTransportRequest(`usb_config`, {}, n);
-        return usbRouteNormalizeResponse(e, `usb_config`)
+        }, n), `usb_config`);
+        let usb = usbRouteNormalizeResponse(await usbTransportRequest(`usb_config`, {}, n), `usb_config`) || {};
+        try {
+            usb = mergeSistemaFields(usb, usbRouteNormalizeResponse(await usbTransportRequest(`GETCONFIG`, {}, Math.min(n, 8e3)), `GETCONFIG`))
+        } catch {}
+        try {
+            usb = mergeSistemaFields(usb, usbRouteNormalizeResponse(await usbTransportRequest(`device_config`, {}, Math.min(n, 8e3)), `device_config`))
+        } catch {}
+        return usb
     }
     if (i === `/api/system-status`) return usbRouteNormalizeResponse(await usbTransportRequest(`system_status`, {}, n), `system_status`);
     if (i === `/api/active-key`) return usbRouteNormalizeResponse(await usbTransportRequest(`active_key`, {}, n), `active_key`);
@@ -13782,8 +13823,11 @@ async function BrUsbParts(parts, n = 2e4) {
             try {
                 gboxSoftApQuiet(isBt ? 45e3 : 25e3);
                 if (attempt > 0) {
-                    await waitForNetworkSettled(2500 + attempt * 500);
-                    await waitForEspAlive(3e4);
+                    if (transportUsesUsb()) await new Promise(r => setTimeout(r, 250));
+                    else {
+                        await waitForNetworkSettled(2500 + attempt * 500);
+                        await waitForEspAlive(3e4)
+                    }
                     try {
                         rt.info?.(`A retentar Sistema (${attempt + 1}/6)…`)
                     } catch {}
@@ -14447,6 +14491,7 @@ function Xr() {
     (0, N.useEffect)(() => {
         let e = !1;
         return (async () => {
+            if (transportUsesUsb() && !transportState.connected) return;
             let lastErr = null;
             for (let attempt = 0; attempt < 5 && !e; attempt++) {
                 try {
@@ -14496,10 +14541,11 @@ function Xr() {
         })(), () => {
             e = !0
         }
-    }, []);
+    }, [transportState.connected]);
     (0, N.useEffect)(() => {
         let e = !1;
         return (async () => {
+            if (transportUsesUsb()) return;
             /* WS no SoftAP é frágil e compete com save — no máximo 2 tentativas curtas. */
             for (let t = 0; t < 2 && !e; t++) {
                 if (gboxSoftApIsQuiet()) {
@@ -14511,18 +14557,18 @@ function Xr() {
                     if (e) return;
                     l(e => ({
                         ...e || {},
-                        btMode: Number.isFinite(Number(n?.BT_MODE)) ? Number(n.BT_MODE) : 0,
-                        btPreset: Number.isFinite(Number(n?.BT_PRESET)) ? Number(n.BT_PRESET) : 0,
-                        btMidiCc: Number.isFinite(Number(n?.BT_MIDI_CC)) ? Number(n.BT_MIDI_CC) : 0,
-                        btCustomEnable: Number.isFinite(Number(n?.BT_CUST_EN)) ? Number(n.BT_CUST_EN) : 0,
-                        btCustomName: typeof n?.BT_CUST_NAME == `string` ? n.BT_CUST_NAME : ``,
-                        btStatus: Number.isFinite(Number(n?.BT_STATUS)) ? Number(n.BT_STATUS) : 0,
-                        btConnectedName: typeof n?.BT_CONN_NAME == `string` ? n.BT_CONN_NAME : ``,
-                        midiEnable: Number.isFinite(Number(n?.S_MIDI_EN)) ? Number(n.S_MIDI_EN) : 0,
-                        midiChannel: Number.isFinite(Number(n?.S_MIDI_CH)) ? Number(n.S_MIDI_CH) : 1,
-                        midiPreset: Number.isFinite(Number(n?.MIDI_PRESET)) ? Number(n.MIDI_PRESET) : 0,
-                        wifiSsid: typeof n?.WIFI_SSID == `string` ? n.WIFI_SSID : ``,
-                        wifiPw: typeof n?.WIFI_PW == `string` ? n.WIFI_PW : ``
+                        btMode: Number.isFinite(Number(n?.BT_MODE)) ? Number(n.BT_MODE) : e?.btMode,
+                        btPreset: Number.isFinite(Number(n?.BT_PRESET)) ? Number(n.BT_PRESET) : e?.btPreset,
+                        btMidiCc: Number.isFinite(Number(n?.BT_MIDI_CC)) ? Number(n.BT_MIDI_CC) : e?.btMidiCc,
+                        btCustomEnable: Number.isFinite(Number(n?.BT_CUST_EN)) ? Number(n.BT_CUST_EN) : e?.btCustomEnable,
+                        btCustomName: typeof n?.BT_CUST_NAME == `string` ? n.BT_CUST_NAME : String(e?.btCustomName || ``),
+                        btStatus: Number.isFinite(Number(n?.BT_STATUS)) ? Number(n.BT_STATUS) : e?.btStatus,
+                        btConnectedName: typeof n?.BT_CONN_NAME == `string` ? n.BT_CONN_NAME : e?.btConnectedName,
+                        midiEnable: Number.isFinite(Number(n?.S_MIDI_EN)) ? Number(n.S_MIDI_EN) : e?.midiEnable,
+                        midiChannel: Number.isFinite(Number(n?.S_MIDI_CH)) ? Number(n.S_MIDI_CH) : e?.midiChannel,
+                        midiPreset: Number.isFinite(Number(n?.MIDI_PRESET)) ? Number(n.MIDI_PRESET) : e?.midiPreset,
+                        wifiSsid: typeof n?.WIFI_SSID == `string` ? n.WIFI_SSID : e?.wifiSsid,
+                        wifiPw: typeof n?.WIFI_PW == `string` ? n.WIFI_PW : e?.wifiPw
                     })), F(`D`, `ws.getconfig.bootstrap.ok`, {
                         attempt: t + 1
                     });
@@ -17364,7 +17410,7 @@ function systemSettingsPanel({
         [liteUsb, setLiteUsb] = (0, N.useState)(!0),
         [liteLeds, setLiteLeds] = (0, N.useState)(!0),
         s = (() => {
-            let mode = Math.max(0, Math.min(si.length - 1, Number(e?.usbmode || 0)));
+            let mode = Math.max(0, Math.min(si.length - 1, Number(e?.usbmode ?? e?.usbMode ?? 0)));
             /* GP5 legado em Host → tratar como TONEX/MODELLER */
             if (Number(e?.usbpreset ?? 0) === 3) mode = 0;
             return mode;
