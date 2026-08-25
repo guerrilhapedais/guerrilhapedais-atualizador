@@ -12904,6 +12904,11 @@ var hr = [`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`],
         colorB: 38,
         assignedFs: 0
     }),
+    midi8 = (e, t) => {
+        if (e === void 0 || e === null || e === ``) return t;
+        let n = Number(e);
+        return Number.isFinite(n) ? Math.max(0, Math.min(255, n | 0)) : t
+    },
     normalizeCustomFx = (e, t) => {
         let n = buildCustomFxDefault(t),
             r = e && typeof e == `object` ? e : {};
@@ -12916,13 +12921,43 @@ var hr = [`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`],
             cc: Math.max(0, Math.min(127, Number(r.cc) || 0)),
             valueOn: Math.max(0, Math.min(127, Number(r.valueOn) || 0)),
             valueOff: Math.max(0, Math.min(127, Number(r.valueOff) || 0)),
-            colorR: Math.max(0, Math.min(255, Number(r.colorR) || 0)),
-            colorG: Math.max(0, Math.min(255, Number(r.colorG) || 0)),
-            colorB: Math.max(0, Math.min(255, Number(r.colorB) || 0)),
+            colorR: midi8(r.colorR, n.colorR),
+            colorG: midi8(r.colorG, n.colorG),
+            colorB: midi8(r.colorB, n.colorB),
             assignedFs: Math.max(0, Math.min(8, Number(r.assignedFs) || 0))
         }
     },
     customFxHex = e => Mr(Number(e?.colorR) || 0, Number(e?.colorG) || 0, Number(e?.colorB) || 0);
+
+function applyFxColorsToStompLeds(fsMap, usb) {
+    if (!fsMap || typeof fsMap != `object`) return fsMap;
+    let list = Array.isArray(usb?.customFx) ? usb.customFx : [];
+    if (!list.length) return fsMap;
+    let next = fsMap,
+        changed = !1;
+    for (let i = 0; i < list.length; i++) {
+        let fx = normalizeCustomFx(list[i], i + 1),
+            fs = Number(fx.assignedFs) || 0;
+        if (fs < 1 || fs > 8) continue;
+        let hex = customFxHex(fx),
+            cur = next[fs] || kr(fs);
+        if ((cur.stompLed || yr).on === hex) continue;
+        if (!changed) {
+            next = {
+                ...fsMap
+            }, changed = !0
+        }
+        next[fs] = {
+            ...cur,
+            stompLed: {
+                ...(cur.stompLed || yr),
+                on: hex,
+                holdOn: hex
+            }
+        }
+    }
+    return next
+}
 
 function Ar(e, t) {
     let n = Math.max(0, Math.min(100, t)) / 100,
@@ -13895,6 +13930,76 @@ async function wsGetConfigJson(e = 8e3) {
         }
     })
 }
+async function wsSetWifiJson(e, t = 8e3) {
+    if (transportUsesUsb()) {
+        await usbTransportRequest(`SETWIFI`, {
+            WIFI_SSID: String(e?.WIFI_SSID || ``),
+            WIFI_PW: String(e?.WIFI_PW || ``)
+        }, t);
+        return !0
+    }
+    return new Promise((n, r) => {
+        let i = !1,
+            a = !1,
+            o = null,
+            s = null,
+            c = u => {
+                s && clearTimeout(s), o && (u ? o.close() : setTimeout(() => {
+                    try {
+                        o && o.close()
+                    } catch {}
+                }, 0), o = null)
+            };
+        let l = wsEndpointUrl();
+        if (!l) {
+            r(Error(`WS unavailable in local preview`));
+            return
+        }
+        try {
+            o = new WebSocket(l)
+        } catch (e) {
+            r(e);
+            return
+        }
+        s = setTimeout(() => {
+            i || (i = !0, c(!0), r(Error(`WS SETWIFI timeout`)))
+        }, t), o.onopen = () => {
+            try {
+                o.send(JSON.stringify({
+                    CMD: `SETWIFI`,
+                    WIFI_SSID: String(e?.WIFI_SSID || ``),
+                    WIFI_PW: String(e?.WIFI_PW || ``)
+                })), a = !0, setTimeout(() => {
+                    i || (i = !0, c(!1), n(!0))
+                }, 1200)
+            } catch (e) {
+                i || (i = !0, c(!0), r(e))
+            }
+        }, o.onerror = () => {
+            i || (a ? (i = !0, c(!1), n(!0)) : (i = !0, c(!0), r(Error(`WS SETWIFI error`))))
+        }, o.onclose = () => {
+            i || (a ? (i = !0, c(!1), n(!0)) : (i = !0, c(!0), r(Error(`WS SETWIFI closed`))))
+        }
+    })
+}
+
+function wifiApCredentialsFromCfg(e) {
+    return {
+        ssid: String(e?.wifiSsid ?? e?.WIFI_SSID ?? ``).trim().slice(0, 32),
+        pw: String(e?.wifiPw ?? e?.WIFI_PW ?? ``).slice(0, 63)
+    }
+}
+
+async function saveWifiApFromUi(e) {
+    let { ssid, pw } = wifiApCredentialsFromCfg(e);
+    if (!ssid) throw Error(`Define um SSID (nome da rede).`);
+    if (pw.length < 8) throw Error(`A senha Wi-Fi precisa de pelo menos 8 caracteres.`);
+    await wsSetWifiJson({
+        WIFI_SSID: ssid,
+        WIFI_PW: pw
+    }, 8e3)
+}
+
 async function wsSetConfigJson(e, t = 8e3) {
     if (transportUsesUsb()) {
         await usbTransportRequest(`SETCONFIG`, e || {}, t);
@@ -14215,20 +14320,29 @@ function Yr(e, t, n) {
         }, `Click`, s))
     });
     let u = e?.stompLed,
-        d;
+        d = n.stompLed || yr;
     if (Array.isArray(u) && u.length >= 6) {
         d = {
-            on: Mr(u[0] || 0, u[1] || 0, u[2] || 0),
-            off: Mr(u[3] || 0, u[4] || 0, u[5] || 0),
-            holdOn: Mr(u[0] || 0, u[1] || 0, u[2] || 0),
-            holdOff: Mr(u[3] || 0, u[4] || 0, u[5] || 0)
+            on: Mr(Number(u[0]) || 0, Number(u[1]) || 0, Number(u[2]) || 0),
+            off: Mr(Number(u[3]) || 0, Number(u[4]) || 0, Number(u[5]) || 0),
+            holdOn: Mr(Number(u[0]) || 0, Number(u[1]) || 0, Number(u[2]) || 0),
+            holdOff: Mr(Number(u[3]) || 0, Number(u[4]) || 0, Number(u[5]) || 0)
         }
-    } else {
-        u = u || {}, d = {
-            on: Mr(u.r_on || 0, u.g_on || 0, u.b_on || 0),
-            off: Mr(u.r_off || 0, u.g_off || 0, u.b_off || 0),
-            holdOn: Mr(u.r_on || 0, u.g_on || 0, u.b_on || 0),
-            holdOff: Mr(u.r_off || 0, u.g_off || 0, u.b_off || 0)
+    } else if (u && typeof u == `object` && (u.on || u.off || `r_on` in u || `g_on` in u || `b_on` in u)) {
+        if (u.on || u.off) {
+            d = {
+                on: u.on || d.on,
+                off: u.off || d.off,
+                holdOn: u.holdOn || u.on || d.holdOn,
+                holdOff: u.holdOff || u.off || d.holdOff
+            }
+        } else {
+            d = {
+                on: Mr(Number(u.r_on) || 0, Number(u.g_on) || 0, Number(u.b_on) || 0),
+                off: Mr(Number(u.r_off) || 0, Number(u.g_off) || 0, Number(u.b_off) || 0),
+                holdOn: Mr(Number(u.r_on) || 0, Number(u.g_on) || 0, Number(u.b_on) || 0),
+                holdOff: Mr(Number(u.r_off) || 0, Number(u.g_off) || 0, Number(u.b_off) || 0)
+            }
         }
     }
     let f = s === `STG` ? {
@@ -14276,7 +14390,7 @@ function Yr(e, t, n) {
         /* Nunca herdar comandos do FS/banco anterior — lista vazia = vazio. */
         stompCommands: l,
         presetCommands: c,
-        stompLed: Array.isArray(u) || u && typeof u == `object` ? d : n.stompLed,
+        stompLed: d,
         presetLed: (() => {
             let lc = e?.ledColors;
             if (!lc || typeof lc != `object`) return n.presetLed;
@@ -14332,6 +14446,9 @@ function Xr() {
         commands: C[ee],
         led: C[S]
     }, T = Math.max(0, Math.min(4, i - 1));
+    (0, N.useEffect)(() => {
+        x(prev => applyFxColorsToStompLeds(prev, c))
+    }, [c?.customFx, c?.customFxCount]);
     let modelFs = d,
         dualFs = Number(c?.expMode || 0) === 2,
         effectiveFs = modelFs + (dualFs ? 2 : 0);
@@ -14423,7 +14540,26 @@ function Xr() {
                 ...t || {},
                 customFxCount: Math.max(0, Math.min(12, Number(t?.customFxCount) || fxCount)),
                 customFx: n
-            }))
+            }));
+            let fs = Number(n[e].assignedFs) || 0;
+            if (fs >= 1 && fs <= 8 && t && (t.colorR != null || t.colorG != null || t.colorB != null || t.assignedFs != null)) {
+                let hex = customFxHex(n[e]);
+                x(prev => {
+                    let cur = prev[fs] || kr(fs),
+                        led = {
+                            ...(cur.stompLed || yr),
+                            on: hex,
+                            holdOn: hex
+                        };
+                    return {
+                        ...prev,
+                        [fs]: {
+                            ...cur,
+                            stompLed: led
+                        }
+                    }
+                })
+            }
         };
     let handleModelChange = async nextModel => {
         let nextFsCount = gr[nextModel]?.fs;
@@ -14567,8 +14703,8 @@ function Xr() {
                         midiEnable: Number.isFinite(Number(n?.S_MIDI_EN)) ? Number(n.S_MIDI_EN) : e?.midiEnable,
                         midiChannel: Number.isFinite(Number(n?.S_MIDI_CH)) ? Number(n.S_MIDI_CH) : e?.midiChannel,
                         midiPreset: Number.isFinite(Number(n?.MIDI_PRESET)) ? Number(n.MIDI_PRESET) : e?.midiPreset,
-                        wifiSsid: typeof n?.WIFI_SSID == `string` ? n.WIFI_SSID : e?.wifiSsid,
-                        wifiPw: typeof n?.WIFI_PW == `string` ? n.WIFI_PW : e?.wifiPw
+                        wifiSsid: typeof n?.WIFI_SSID == `string` ? n.WIFI_SSID : typeof n?.wifiSsid == `string` ? n.wifiSsid : e?.wifiSsid,
+                        wifiPw: typeof n?.WIFI_PW == `string` ? n.WIFI_PW : typeof n?.wifiPw == `string` ? n.wifiPw : e?.wifiPw
                     })), F(`D`, `ws.getconfig.bootstrap.ok`, {
                         attempt: t + 1
                     });
@@ -14654,7 +14790,7 @@ function Xr() {
                         /* Sempre partir de kr(fs) — não reutilizar estado do banco anterior. */
                         t[fs] = a && typeof a == `object` ? Yr(a, fs, kr(fs)) : kr(fs)
                     }
-                    return t
+                    return applyFxColorsToStompLeds(t, c)
                 })
             } catch (err) {
                 F(`A`, `bank.load.error`, {
@@ -17184,6 +17320,9 @@ function isDefaultStgStages(e) {
 }
 
 function isDefaultStompLed(e) {
+    if (Array.isArray(e) && e.length >= 6) {
+        return Number(e[0]) === backupDefaultStompLed.r_on && Number(e[1]) === backupDefaultStompLed.g_on && Number(e[2]) === backupDefaultStompLed.b_on && Number(e[3]) === backupDefaultStompLed.r_off && Number(e[4]) === backupDefaultStompLed.g_off && Number(e[5]) === backupDefaultStompLed.b_off
+    }
     return !!e && Number(e?.r_on ?? 255) === backupDefaultStompLed.r_on && Number(e?.g_on ?? 136) === backupDefaultStompLed.g_on && Number(e?.b_on ?? 0) === backupDefaultStompLed.b_on && Number(e?.r_off ?? 16) === backupDefaultStompLed.r_off && Number(e?.g_off ?? 16) === backupDefaultStompLed.g_off && Number(e?.b_off ?? 16) === backupDefaultStompLed.b_off
 }
 
@@ -17195,7 +17334,7 @@ function compactFsForBackup(e) {
         if (backupFsDefaultValues[n] !== void 0 && r === backupFsDefaultValues[n]) return;
         if ((n === `extraClick` || n === `extraHold` || n === `extraStompClick`) && (!Array.isArray(r) || r.length === 0)) return;
         if (n === `stgStages` && isDefaultStgStages(r)) return;
-        if (n === `stompLed` && isDefaultStompLed(r)) return;
+        if (n === `stompLed` && (isDefaultStompLed(r) || isZeroStompLed(r))) return;
         if (Array.isArray(r) && r.length === 0) return;
         if (r === !1 || r === `` || r === null || r === void 0) return;
         if (isPlainBackupObject(r) && Object.keys(r).length === 0) return;
@@ -17215,6 +17354,8 @@ function compactFsForSave(e) {
     t.holdToggle = e?.holdToggle ? 1 : 0;
     t.ricochetEnabled = e?.ricochetEnabled ? 1 : 0;
     t.stgEnabled = e?.stgEnabled ? 1 : 0;
+    if (Array.isArray(e?.stompLed) && e.stompLed.length >= 6 && !isZeroStompLed(e.stompLed)) t.stompLed = e.stompLed;
+    else if (e?.stompLed && typeof e.stompLed == `object` && !isZeroStompLed(e.stompLed)) t.stompLed = e.stompLed;
     if (e?.ledColors && typeof e.ledColors == `object`) t.ledColors = e.ledColors;
     if (Number(t.ricochetEnabled) === 1) {
         t.ricochetChannel = Math.max(1, Math.min(16, Number(e?.ricochetChannel ?? 1)));
@@ -17300,6 +17441,9 @@ function ledColorsFromFsPayload(e) {
 
 /** Backup reduzido: stompLed a zeros não deve ir para o ESP. */
 function isZeroStompLed(e) {
+    if (Array.isArray(e) && e.length >= 6) {
+        return Number(e[0]) === 0 && Number(e[1]) === 0 && Number(e[2]) === 0 && Number(e[3]) === 0 && Number(e[4]) === 0 && Number(e[5]) === 0
+    }
     return !!e && Number(e?.r_on ?? 0) === 0 && Number(e?.g_on ?? 0) === 0 && Number(e?.b_on ?? 0) === 0 && Number(e?.r_off ?? 0) === 0 && Number(e?.g_off ?? 0) === 0 && Number(e?.b_off ?? 0) === 0
 }
 
@@ -17434,8 +17578,8 @@ function systemSettingsPanel({
         v = Math.max(0, Math.min(1, Number(e?.midiEnable || 0))),
         y = Math.max(1, Math.min(16, Number(e?.midiChannel || 1))),
         b = Math.max(0, Math.min(2, Number(e?.midiPreset || 0))),
-        x = typeof e?.wifiSsid == `string` && e.wifiSsid ? e.wifiSsid : `—`,
-        S = typeof e?.wifiPw == `string` && e.wifiPw ? e.wifiPw : `—`,
+        x = typeof e?.wifiSsid == `string` ? e.wifiSsid : typeof e?.WIFI_SSID == `string` ? e.WIFI_SSID : ``,
+        S = typeof e?.wifiPw == `string` ? e.wifiPw : typeof e?.WIFI_PW == `string` ? e.WIFI_PW : ``,
         C = typeof e?.usbModeDescription == `string` && e.usbModeDescription ? e.usbModeDescription : si[s],
         w = e?.midiConfigInitialized ? `Inicializado` : `Não inicializado`,
         T = typeof e?.firmwareVersion == `string` && e.firmwareVersion ? e.firmwareVersion : typeof e?.appVersion == `string` && e.appVersion ? e.appVersion : `—`,
@@ -17597,10 +17741,40 @@ function systemSettingsPanel({
             subtitle: `Access Point do controlador`,
             children: [(0, P.jsx)(popupTextFieldBridge, {
                 label: `SSID`,
-                value: x
+                value: x,
+                onChange: e => {
+                    let n = String(e || ``).trim().slice(0, 32);
+                    t({
+                        wifiSsid: n,
+                        WIFI_SSID: n
+                    })
+                }
             }), (0, P.jsx)(popupTextFieldBridge, {
                 label: `Senha`,
-                value: S
+                value: S,
+                onChange: e => {
+                    let n = String(e || ``).slice(0, 63);
+                    t({
+                        wifiPw: n,
+                        WIFI_PW: n
+                    })
+                }
+            }), (0, P.jsx)(`p`, {
+                className: `font-mono text-[10px] uppercase tracking-widest text-muted-foreground`,
+                children: `Senha WPA: 8 a 63 caracteres. Gravar reinicia o hotspot — volta a ligar-te ao novo SSID.`
+            }), (0, P.jsx)(`button`, {
+                type: `button`,
+                onClick: () => {
+                    (async () => {
+                        try {
+                            rt.info?.(`A gravar Wi-Fi… o controlador vai reiniciar.`), await saveWifiApFromUi(e), rt.success(`Wi-Fi gravado. A reiniciar… liga-te à rede ${wifiApCredentialsFromCfg(e).ssid || `G_APP`}.`)
+                        } catch (err) {
+                            rt.error(String(err?.message || err))
+                        }
+                    })()
+                },
+                className: `mt-1 flex w-full items-center justify-center rounded-xl border border-accent/40 bg-accent/10 px-3 py-2.5 font-display text-[11px] font-black uppercase tracking-[0.2em] text-accent transition hover:bg-accent/20`,
+                children: `Guardar Wi-Fi (reinicia)`
             })]
         }), (0, P.jsxs)(I, {
             title: `Backup`,
