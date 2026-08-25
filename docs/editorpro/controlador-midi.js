@@ -14068,6 +14068,46 @@ function Gr(e) {
     return Ur[e] || `CC`
 }
 
+/** Aceita cola livre (vírgulas, {}, [], 0x, espaços) → hex espaçado + compacto. Máx. 64 bytes. */
+function normalizeFsSysex(raw, opts) {
+    let warn = opts && opts.warn !== !1,
+        s = String(raw || ``).trim();
+    if (!s) return {
+        spaced: ``,
+        compact: ``,
+        byteLen: 0,
+        truncated: !1
+    };
+    s = s.replace(/[{}\[\];]/g, ``).replace(/0x/gi, ``);
+    let bytes = [];
+    if (/[\s,]+/.test(s)) {
+        bytes = s.split(/[\s,]+/).filter(t => t.trim() !== ``).map(t => parseInt(t, 16)).filter(b => !isNaN(b) && b >= 0 && b <= 255)
+    } else {
+        let hex = s.replace(/[^0-9A-Fa-f]/g, ``);
+        if (hex.length % 2) hex = hex.slice(0, -1);
+        for (let i = 0; i < hex.length; i += 2) {
+            let b = parseInt(hex.slice(i, i + 2), 16);
+            if (!isNaN(b)) bytes.push(b)
+        }
+    }
+    let truncated = !1;
+    if (bytes.length > 64) {
+        truncated = !0;
+        if (warn) try {
+            rt.warning(`SysEx truncado para 64 bytes (original: ${bytes.length})`)
+        } catch (_) {}
+        bytes = bytes.slice(0, 64)
+    }
+    let spaced = bytes.map(b => b.toString(16).padStart(2, `0`).toUpperCase()).join(` `),
+        compact = bytes.map(b => b.toString(16).padStart(2, `0`).toUpperCase()).join(``);
+    return {
+        spaced,
+        compact,
+        byteLen: bytes.length,
+        truncated
+    }
+}
+
 function Kr(e) {
     /* Formato compacto = menos bytes no SoftAP: [type,ch,cc,val,pc,onOff,output,(state|sysexHex)] */
     let type = Wr(e.type),
@@ -14100,16 +14140,21 @@ function Kr(e) {
     let arr = [type, ch, cc, val, pc, onOff, out];
     if (type === 9) arr.push(state | 0);
     else if (type === 2) {
-        let hex = String(e.sysex || e.value || ``).trim().replace(/\s+/g, ``).toUpperCase();
+        let hex = normalizeFsSysex(e.sysex || ``, {
+            warn: !0
+        }).compact;
         if (hex) arr.push(hex)
     }
     return arr
 }
 
 function qr(e, t, n) {
-    /* Aceita objeto legado ou array compacto [type,ch,cc,val,pc,onOff,output,(state)] */
+    /* Aceita objeto legado ou array compacto [type,ch,cc,val,pc,onOff,output,(state|sysexHex)] */
     let raw = e;
+    let compactSysex = void 0;
     if (Array.isArray(e)) {
+        let typeNum = Number(e[0]);
+        compactSysex = typeNum === 2 && typeof e[7] == `string` ? e[7] : void 0;
         raw = {
             type: e[0],
             channel: e[1],
@@ -14118,7 +14163,8 @@ function qr(e, t, n) {
             pc: e[4],
             onOff: e[5],
             output: e[6],
-            state: e[7]
+            state: typeNum === 9 ? e[7] : void 0,
+            sysex: compactSysex !== void 0 ? compactSysex : void 0
         }
     }
     let r = Gr(raw?.type === void 0 ? 0 : Number(raw.type)),
@@ -14155,6 +14201,13 @@ function qr(e, t, n) {
         state: c
     };
     if (r === `FS Sync`) out.targetState = targetStateFlag === 1 ? `Off` : `On`;
+    if (r === `SysEx`) {
+        let sx = raw?.sysex;
+        if (Array.isArray(sx)) sx = sx.map(b => Number(b).toString(16).padStart(2, `0`)).join(``);
+        out.sysex = normalizeFsSysex(sx || ``, {
+            warn: !1
+        }).spaced
+    }
     return out
 }
 
@@ -20122,6 +20175,9 @@ function ji({
                 options: r,
                 onChange: e => i({
                     type: e,
+                    ...(e === `SysEx` ? {
+                        sysex: t.sysex || ``
+                    } : {}),
                     ...(e === `FS Sync` ? {
                         targetState: t.targetState === `Off` ? `Off` : `On`,
                         cc: Math.max(1, Math.min(8, Number(t.cc) || 1)),
@@ -20188,8 +20244,15 @@ function ji({
                 className: `col-span-2 sm:col-span-3`,
                 children: (0, P.jsx)(V, {
                     label: `SysEx (Hex)`,
-                    value: `F0 ${t.value.toString(16).padStart(2,`0`)} F7`,
-                    onChange: () => {}
+                    value: t.sysex || ``,
+                    onChange: e => {
+                        let n = normalizeFsSysex(e, {
+                            warn: !0
+                        });
+                        i({
+                            sysex: n.spaced
+                        })
+                    }
                 })
             }), l && !t.type.includes(`Up`) && !t.type.includes(`Down`) && !t.type.startsWith(`Banco`) && (0, P.jsx)(Mi, {
                 label: n === `Momentâneo` ? `Momento` : t.type === `FS Sync` ? `Fase` : `Estado`,
