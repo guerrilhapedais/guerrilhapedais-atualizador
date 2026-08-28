@@ -1,0 +1,5 @@
+Notas da Versão — Guerrilha MT-S
+
+Atualização do APP web - ao abrir app web pela primeira, tem de limpar os caches do navegador CTRL + F5.
+Melhorias no consumo de memoria e BT.
+Correções de bug.
