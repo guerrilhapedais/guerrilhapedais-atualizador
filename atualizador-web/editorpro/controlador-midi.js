@@ -12466,6 +12466,108 @@ function Wn() {
 function Gn() {
     Rn([])
 }
+var MIDI_DICT_SLOTS_KEY = `midi-dict-slots-v1`,
+    MIDI_DICT_SLOTS_EVT = `midi-dict-slots-updated`;
+
+function midiDictSlotKey(bus, deviceIndex, channel) {
+    let b = String(bus || `usb`).toLowerCase();
+    if (b !== `usb` && b !== `bt` && b !== `serial`) b = `usb`;
+    let d = Math.max(0, Math.min(3, Number(deviceIndex) || 0)),
+        ch = Math.max(1, Math.min(16, Number(channel) || 1));
+    return `${b}:${d}:${ch}`
+}
+
+function loadMidiDictSlots() {
+    if (typeof window > `u`) return {
+        slots: {},
+        fallbackPedalId: null
+    };
+    try {
+        let raw = window.localStorage.getItem(MIDI_DICT_SLOTS_KEY);
+        if (!raw) {
+            let leg = window.localStorage.getItem(`midiDictPedalId`);
+            return {
+                slots: {},
+                fallbackPedalId: String(leg || ``).trim().toLowerCase() || null
+            }
+        }
+        let p = JSON.parse(raw);
+        return {
+            slots: p && typeof p.slots == `object` ? p.slots : {},
+            fallbackPedalId: p?.fallbackPedalId ? String(p.fallbackPedalId).trim().toLowerCase() : null
+        }
+    } catch {
+        return {
+            slots: {},
+            fallbackPedalId: null
+        }
+    }
+}
+
+function saveMidiDictSlots(cfg) {
+    if (typeof window > `u`) return;
+    let data = {
+        slots: cfg?.slots && typeof cfg.slots == `object` ? cfg.slots : {},
+        fallbackPedalId: cfg?.fallbackPedalId ? String(cfg.fallbackPedalId).trim().toLowerCase() : null
+    };
+    window.localStorage.setItem(MIDI_DICT_SLOTS_KEY, JSON.stringify(data));
+    window.dispatchEvent(new CustomEvent(MIDI_DICT_SLOTS_EVT))
+}
+
+function setMidiDictSlot(bus, deviceIndex, channel, pedalId) {
+    let cfg = loadMidiDictSlots(),
+        key = midiDictSlotKey(bus, deviceIndex, channel);
+    if (pedalId) cfg.slots[key] = String(pedalId).trim().toLowerCase();
+    else delete cfg.slots[key];
+    saveMidiDictSlots(cfg)
+}
+
+function getUsbDeviceCount(usbmode) {
+    return Number(usbmode) === 3 ? 4 : 1
+}
+
+function outputToMidiDictBuses(output) {
+    let o = String(output || `USB+MIDI`).trim();
+    if (o === `USB`) return [`usb`];
+    if (o === `BT`) return [`bt`];
+    if (o === `MIDI`) return [`serial`];
+    if (o === `USB+BT`) return [`usb`, `bt`];
+    if (o === `USB+MIDI`) return [`usb`, `serial`];
+    if (o === `BT+MIDI`) return [`bt`, `serial`];
+    if (o === `USB+BT+MIDI`) return [`usb`, `bt`, `serial`];
+    return [`usb`]
+}
+
+function resolvePedalIdForCommand(output, channel, hubDevice, fallbackPedalId) {
+    let cfg = loadMidiDictSlots(),
+        fb = fallbackPedalId || cfg.fallbackPedalId || null;
+    try {
+        if (!fb) {
+            let leg = window.localStorage.getItem(`midiDictPedalId`);
+            if (leg) fb = String(leg).trim().toLowerCase()
+        }
+    } catch {}
+    let ch = Math.max(1, Math.min(16, Number(channel) || 1)),
+        buses = outputToMidiDictBuses(output);
+    for (let bus of buses) {
+        let devIdx = bus === `usb` ? Math.max(0, Math.min(3, Number(hubDevice) || 0)) : 0,
+            key = midiDictSlotKey(bus, devIdx, ch),
+            id = cfg.slots[key];
+        if (id) return id
+    }
+    return fb || null
+}
+
+function subscribeMidiDictSlots(cb) {
+    if (typeof window > `u`) return () => {};
+    let h = () => cb();
+    window.addEventListener(MIDI_DICT_SLOTS_EVT, h);
+    window.addEventListener(In, h);
+    return () => {
+        window.removeEventListener(MIDI_DICT_SLOTS_EVT, h);
+        window.removeEventListener(In, h)
+    }
+}
 var Kn = (...e) => e.filter((e, t, n) => !!e && e.trim() !== `` && n.indexOf(e) === t).join(` `).trim(),
     qn = e => e.replace(/([a-z0-9])([A-Z])/g, `$1-$2`).toLowerCase(),
     Jn = e => e.replace(/^([A-Z])|[\s-_]+(\w)/g, (e, t, n) => n ? n.toUpperCase() : t.toLowerCase()),
@@ -12761,7 +12863,9 @@ var Kn = (...e) => e.filter((e, t, n) => !!e && e.trim() !== `` && n.indexOf(e) 
     }),
     pr = (0, N.createContext)({
         pedalId: null,
-        setPedalId: () => {}
+        setPedalId: () => {},
+        resolvePedalId: () => null,
+        usbmode: 0
     }),
     mr = () => typeof crypto < `u` && typeof crypto.randomUUID == `function` ? crypto.randomUUID() : `xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx`.replace(/[xy]/g, e => {
         let t = Math.random() * 16 | 0;
@@ -14463,7 +14567,7 @@ function Xr() {
     let [e, t] = (0, N.useState)(`MT-6S`), [n, r] = (0, N.useState)(0), [i, a] = (0, N.useState)(1), [o, s] = (0, N.useState)(`preset`), [c, l] = (0, N.useState)({}), [expBankState, setExpBankState] = (0, N.useState)(() => expCreateEmptyBank()), [globalSubTab, setGlobalSubTab] = (0, N.useState)(`gb`), u = (0, N.useRef)(!1), modelSaveBusyRef = (0, N.useRef)(!1), modelRebootUntilRef = (0, N.useRef)(0), d = gr[e].fs, [f, p] = (0, N.useState)(1), [m, h] = (0, N.useState)(`Preset`), [g, _] = (0, N.useState)(!0), [v, y] = (0, N.useState)(null), [R, I] = (0, N.useState)(null), [B, L] = (0, N.useState)(``),     [backupBusy, setBackupBusy] = (0, N.useState)(!1), [backupProgress, setBackupProgress] = (0, N.useState)({
         pct: 0,
         label: ``
-    }), [transportState, setTransportState] = (0, N.useState)(() => getTransportSnapshot());
+    }), [fsSwitchPrompt, setFsSwitchPrompt] = (0, N.useState)(null), fsSavedSnapshotRef = (0, N.useRef)({}), fsFullSnapshotRef = (0, N.useRef)({}), [transportState, setTransportState] = (0, N.useState)(() => getTransportSnapshot());
     let reportBackupProgress = (pct, label) => {
         try {
             setBackupProgress({
@@ -14474,13 +14578,20 @@ function Xr() {
     };
     (0, N.useEffect)(() => {
         try {
-            let e = window.localStorage.getItem(`midiDictPedalId`),
-                t = String(e || ``).trim().toLowerCase();
-            t && (y(t), e !== t && window.localStorage.setItem(`midiDictPedalId`, t))
+            let cfg = loadMidiDictSlots(),
+                fb = cfg.fallbackPedalId;
+            if (!fb) {
+                let leg = window.localStorage.getItem(`midiDictPedalId`);
+                fb = String(leg || ``).trim().toLowerCase() || null
+            }
+            fb && y(fb)
         } catch {}
     }, []), (0, N.useEffect)(() => {
         try {
-            let e = String(v || ``).trim().toLowerCase();
+            let e = String(v || ``).trim().toLowerCase(),
+                cfg = loadMidiDictSlots();
+            cfg.fallbackPedalId = e || null;
+            saveMidiDictSlots(cfg);
             e ? window.localStorage.setItem(`midiDictPedalId`, e) : window.localStorage.removeItem(`midiDictPedalId`)
         } catch {}
     }, [v]), (0, N.useEffect)(() => {
@@ -14504,7 +14615,54 @@ function Xr() {
     }, [c?.customFx, c?.customFxCount]);
     let modelFs = d,
         dualFs = Number(c?.expMode || 0) === 2,
-        effectiveFs = modelFs + (dualFs ? 2 : 0);
+        effectiveFs = modelFs + (dualFs ? 2 : 0),
+        activeUsbmode = (() => {
+            let mode = Math.max(0, Math.min(si.length - 1, Number(c?.usbmode || 0)));
+            if (Number(c?.usbpreset ?? 0) === 3) mode = 0;
+            return mode
+        })(),
+        snapshotFsCompact = cfg => {
+            try {
+                return JSON.stringify(compactFsForSave(Jr(cfg || kr(1))))
+            } catch {
+                return ``
+            }
+        },
+        markFsSavedSnapshot = (fsNum, cfg) => {
+            if (!fsNum) return;
+            fsSavedSnapshotRef.current[fsNum] = snapshotFsCompact(cfg);
+            try {
+                fsFullSnapshotRef.current[fsNum] = JSON.parse(JSON.stringify(cfg))
+            } catch {}
+        },
+        isFsDirty = fsNum => {
+            let cur = b[fsNum] || kr(fsNum);
+            return fsSavedSnapshotRef.current[fsNum] !== snapshotFsCompact(cur)
+        },
+        discardCurrentFsEdits = () => {
+            let full = fsFullSnapshotRef.current[f];
+            full && x(e => ({
+                ...e,
+                [f]: JSON.parse(JSON.stringify(full))
+            }))
+        },
+        requestSelectFs = targetFs => {
+            if (targetFs === f) {
+                openFsRename(targetFs);
+                return
+            }
+            if (!isFsDirty(f)) {
+                p(targetFs);
+                return
+            }
+            setFsSwitchPrompt({
+                targetFs
+            })
+        };
+    (0, N.useEffect)(() => {
+        fsSavedSnapshotRef.current = {};
+        fsFullSnapshotRef.current = {}
+    }, [n, T]);
     let presetNames = Array.isArray(c?.presetNames) ? c.presetNames.slice(0, 5).map(e => typeof e == `string` ? e : ``) : Array.from({
             length: 5
         }, () => ``),
@@ -14844,7 +15002,14 @@ function Xr() {
                         t[fs] = a && typeof a == `object` ? Yr(a, fs, kr(fs)) : kr(fs)
                     }
                     return applyFxColorsToStompLeds(t, c)
-                })
+                });
+                if (r) {
+                    let maxFs = Math.max(8, Number(c?.expMode || 0) === 2 ? (Number(c?.fsCount) || d) + 2 : 8);
+                    for (let fs = 1; fs <= maxFs; fs++) {
+                        let a = r?.[`fs${fs}`];
+                        if (a && typeof a == `object`) markFsSavedSnapshot(fs, Yr(a, fs, kr(fs)))
+                    }
+                }
             } catch (err) {
                 F(`A`, `bank.load.error`, {
                     bank: n,
@@ -15025,6 +15190,7 @@ function Xr() {
                 primary?.banks && (snap.data.config = {
                     banks: primary.banks
                 }), includeLeds && primary?.ledColors && (snap.data.ledColors = primary.ledColors);
+                snap.data.midiDictSlots = loadMidiDictSlots();
                 try {
                     await Br(`/api/usb-config`, {
                         activePreset: T
@@ -15249,6 +15415,7 @@ function Xr() {
                         method: `GET`
                     }, 15e3)
                 }
+                t?.midiDictSlots && saveMidiDictSlots(t.midiDictSlots);
                 rt.success(`Backup restaurado. Recarregando a interface...`);
                 setTimeout(() => {
                     try {
@@ -15317,6 +15484,7 @@ function Xr() {
                             if (!gotFs || gotClick !== clickN || gotHold !== holdN) {
                                 throw Error(`Confirmação falhou (ESP click=${gotClick}/${clickN} hold=${gotHold}/${holdN})`)
                             }
+                            markFsSavedSnapshot(e, Yr(gotFs, e, t));
                             F(`C`, `save.fs.verify.ok`, {
                                 bank: n,
                                 fs: e,
@@ -15365,6 +15533,7 @@ function Xr() {
                         rt.error(`Comandos gravados, mas as cores LED falharam: ${String(ledErr?.message || ledErr)}`)
                     }
                     gboxSoftApQuiet(8e3);
+                    markFsSavedSnapshot(e, b[e] || t);
                     rt.success(verifySoft && !transportUsesUsb() ? `Salvo: ${hr[n]} · FS${e} · Preset ${T+1} (BT activo — SoftAP lento)` : `Salvo: ${hr[n]} · FS${e} · Preset ${T+1}`), F(`C`, `save.fs.ok`, {
                         bank: n,
                         fs: e,
@@ -15483,7 +15652,9 @@ function Xr() {
             children: (0, P.jsx)(pr.Provider, {
                 value: {
                     pedalId: v,
-                    setPedalId: y
+                    setPedalId: y,
+                    resolvePedalId: (output, channel, hubDevice) => resolvePedalIdForCommand(output, channel, hubDevice, v),
+                    usbmode: activeUsbmode
                 },
                 children: (0, P.jsxs)(`div`, {
                 className: `mx-auto max-w-[1400px] space-y-6 pb-24`,
@@ -15700,7 +15871,7 @@ function Xr() {
                                     active: f === e,
                                     name: b[e]?.label,
                                     isExt: e > modelFs,
-                                    onClick: () => f === e ? openFsRename(e) : p(e),
+                                    onClick: () => f === e ? openFsRename(e) : requestSelectFs(e),
                                     onRename: () => openFsRename(e)
                                 }, e))
                             })]
@@ -15864,6 +16035,57 @@ function Xr() {
                     onBackupFull: () => downloadBackupSnapshot(`full`),
                     onRestoreBackup: restoreBackupFile,
                     backupBusy
+                }), fsSwitchPrompt && (0, P.jsx)(`div`, {
+                    className: `fixed inset-0 z-[120] flex items-center justify-center bg-black/80 p-4`,
+                    onClick: () => setFsSwitchPrompt(null),
+                    children: (0, P.jsxs)(`div`, {
+                        className: `relative w-full overflow-hidden border border-border bg-canvas`,
+                        onClick: e => e.stopPropagation(),
+                        style: {
+                            width: `calc(100vw - 2rem)`,
+                            maxWidth: `24rem`,
+                            borderRadius: `20px`,
+                            background: `radial-gradient(120% 100% at 50% 0%, rgba(220, 38, 38, 0.12), transparent 60%), linear-gradient(180deg, var(--tile-top) 0%, var(--tile-bot) 100%)`,
+                            boxShadow: `0 40px 80px -20px rgba(0, 0, 0, 0.7)`
+                        },
+                        children: [(0, P.jsxs)(`div`, {
+                            className: `border-b border-border bg-panel/60 px-4 py-3`,
+                            children: [(0, P.jsx)(`div`, {
+                                className: `font-display text-[11px] uppercase tracking-[0.24em] text-accent`,
+                                children: `Alterações não salvas`
+                            }), (0, P.jsxs)(`div`, {
+                                className: `mt-1 font-mono text-[10px] text-muted-foreground`,
+                                children: [`FS`, f, ` tem mudanças. Salvar antes de ir a FS`, fsSwitchPrompt.targetFs, `?`]
+                            })]
+                        }), (0, P.jsxs)(`div`, {
+                            className: `flex flex-col gap-2 px-4 py-4 sm:flex-row sm:justify-end`,
+                            children: [(0, P.jsx)(`button`, {
+                                type: `button`,
+                                onClick: () => setFsSwitchPrompt(null),
+                                className: `rounded-md border border-border px-4 py-2 font-display text-[10px] uppercase tracking-[0.16em] text-muted-foreground hover:text-foreground`,
+                                children: `Cancelar`
+                            }), (0, P.jsx)(`button`, {
+                                type: `button`,
+                                onClick: () => {
+                                    discardCurrentFsEdits();
+                                    p(fsSwitchPrompt.targetFs);
+                                    setFsSwitchPrompt(null)
+                                },
+                                className: `rounded-md border border-border px-4 py-2 font-display text-[10px] uppercase tracking-[0.16em] text-muted-foreground hover:text-foreground`,
+                                children: `Descartar`
+                            }), (0, P.jsx)(`button`, {
+                                type: `button`,
+                                onClick: async () => {
+                                    let target = fsSwitchPrompt.targetFs;
+                                    setFsSwitchPrompt(null);
+                                    await te();
+                                    p(target)
+                                },
+                                className: `rounded-md border border-accent/60 bg-accent/20 px-4 py-2 font-display text-[10px] uppercase tracking-[0.16em] text-accent hover:bg-accent/30`,
+                                children: `Salvar`
+                            })]
+                        })]
+                    })
                 }), R && (0, P.jsx)(`div`, {
                     className: `fixed inset-0 z-[120] flex items-center justify-center bg-black/80 p-4`,
                     onClick: closeRename,
@@ -17569,6 +17791,7 @@ function extractBackupPayload(e) {
         a = isPlainBackupObject(t.ledColors) ? t.ledColors : null,
         o = typeof t.currentBank == `number` ? t.currentBank : null,
         s = typeof t.fsCount == `number` ? t.fsCount : null,
+        midiDictSlots = t?.midiDictSlots && typeof t.midiDictSlots == `object` ? t.midiDictSlots : null,
         c = typeof t.activePreset == `number` ? t.activePreset : typeof i?.activePreset == `number` ? i.activePreset : 0,
         l = typeof e?.mode == `string` ? e.mode : typeof t?.mode == `string` ? t.mode : r ? `full` : `lite`;
     if (!n?.banks && r) {
@@ -17588,8 +17811,309 @@ function extractBackupPayload(e) {
         usb: i,
         ledColors: a,
         currentBank: o,
-        fsCount: s
+        fsCount: s,
+        midiDictSlots
     }
+}
+
+function parseMidiDictSlotKey(key) {
+    let parts = String(key || ``).split(`:`);
+    if (parts.length !== 3) return null;
+    let bus = parts[0],
+        dev = Math.max(0, Math.min(3, Number(parts[1]) || 0)),
+        ch = Math.max(1, Math.min(16, Number(parts[2]) || 1));
+    if (bus !== `usb` && bus !== `bt` && bus !== `serial`) return null;
+    return {
+        bus,
+        deviceIndex: dev,
+        channel: ch
+    }
+}
+
+function midiDictSlotRouteLabel(bus, deviceIndex, hubMode) {
+    if (bus === `bt`) return `Bluetooth`;
+    if (bus === `serial`) return `MIDI Serial`;
+    if (hubMode) return `USB HUB · Dev ${Math.max(0, Number(deviceIndex) || 0) + 1}`;
+    return `USB`
+}
+
+function midiDictSlotsPanel({
+    usbmode: usbmodeProp,
+    midiEnable: midiEnableProp
+}) {
+    let {
+        pedalId: fallbackId,
+        setPedalId: setFallbackPedal
+    } = (0, N.useContext)(pr), [slotsCfg, setSlotsCfg] = (0, N.useState)(() => loadMidiDictSlots()), [addRoute, setAddRoute] = (0, N.useState)(`usb:0`), [addChannel, setAddChannel] = (0, N.useState)(1), [addPedalId, setAddPedalId] = (0, N.useState)(``), [importOpen, setImportOpen] = (0, N.useState)(!1), [importText, setImportText] = (0, N.useState)(``), [importMsg, setImportMsg] = (0, N.useState)(null), [dictTick, setDictTick] = (0, N.useState)(0);
+    (0, N.useEffect)(() => subscribeMidiDictSlots(() => {
+        setSlotsCfg(loadMidiDictSlots());
+        setDictTick(e => e + 1)
+    }), []);
+    let usbmode = Number(usbmodeProp) || 0,
+        hubMode = usbmode === 3,
+        serialOn = Number(midiEnableProp || 0) >= 1,
+        pedalOptions = (0, N.useMemo)(() => {
+            let opts = [];
+            for (let p of zn) opts.push({
+                id: p.id,
+                label: `${p.brand ? `${p.brand} · ` : ``}${p.name}`
+            });
+            return opts
+        }, [dictTick]),
+        fallbackOptions = (0, N.useMemo)(() => [{
+            id: ``,
+            label: `— Nenhuma —`
+        }, ...pedalOptions], [pedalOptions]),
+        routeOptions = (0, N.useMemo)(() => {
+            let opts = hubMode ? [{
+                value: `usb:0`,
+                label: `USB HUB · Dev 1`
+            }, {
+                value: `usb:1`,
+                label: `USB HUB · Dev 2`
+            }, {
+                value: `usb:2`,
+                label: `USB HUB · Dev 3`
+            }, {
+                value: `usb:3`,
+                label: `USB HUB · Dev 4`
+            }] : [{
+                value: `usb:0`,
+                label: `USB`
+            }];
+            opts.push({
+                value: `bt:0`,
+                label: `Bluetooth`
+            });
+            if (serialOn) opts.push({
+                value: `serial:0`,
+                label: `MIDI Serial`
+            });
+            return opts
+        }, [hubMode, serialOn]),
+        importModel = `[
+  {
+    "id": "brand-modelo-x",
+    "brand": "Marca",
+    "name": "Modelo X",
+    "cc": [
+      [1, "Wah"],
+      [7, "Volume"]
+    ]
+  }
+]`,
+        mappedEntries = (0, N.useMemo)(() => {
+            let rows = [];
+            for (let [key, pedalId] of Object.entries(slotsCfg.slots || {})) {
+                if (!pedalId) continue;
+                let parsed = parseMidiDictSlotKey(key);
+                if (!parsed) continue;
+                let pedal = Vn(pedalId);
+                rows.push({
+                    key,
+                    ...parsed,
+                    pedalId,
+                    pedalLabel: pedal ? `${pedal.brand ? `${pedal.brand} · ` : ``}${pedal.name}` : pedalId
+                })
+            }
+            rows.sort((a, b) => a.bus.localeCompare(b.bus) || a.deviceIndex - b.deviceIndex || a.channel - b.channel);
+            return rows
+        }, [slotsCfg, dictTick]),
+        refreshSlots = () => setSlotsCfg(loadMidiDictSlots()),
+        addMapping = () => {
+            if (!addPedalId) {
+                try {
+                    rt.error(`Escolha um modelo do dicionário`)
+                } catch {}
+                return
+            }
+            let parts = String(addRoute || `usb:0`).split(`:`),
+                bus = parts[0] || `usb`,
+                dev = Math.max(0, Math.min(3, Number(parts[1]) || 0));
+            setMidiDictSlot(bus, dev, addChannel, addPedalId);
+            refreshSlots()
+        },
+        removeMapping = key => {
+            let parsed = parseMidiDictSlotKey(key);
+            if (!parsed) return;
+            setMidiDictSlot(parsed.bus, parsed.deviceIndex, parsed.channel, null);
+            refreshSlots()
+        },
+        patchFallback = id => {
+            let cfg = loadMidiDictSlots();
+            cfg.fallbackPedalId = id || null;
+            saveMidiDictSlots(cfg);
+            setFallbackPedal(id || null);
+            refreshSlots()
+        },
+        runImport = () => {
+            let res = Un(importText);
+            res.ok ? (setImportMsg({
+                ok: !0,
+                text: `+${res.added} importados · ${res.total} extras`
+            }), setImportText(``), setDictTick(e => e + 1)) : setImportMsg({
+                ok: !1,
+                text: res.error
+            })
+        };
+    (0, N.useEffect)(() => {
+        if (!routeOptions.some(e => e.value === addRoute)) setAddRoute(routeOptions[0]?.value || `usb:0`)
+    }, [routeOptions, addRoute]);
+    return (0, P.jsxs)(I, {
+        title: `Dicionário MIDI por dispositivo e canal`,
+        subtitle: `Adicione só os mapas que precisa`,
+        children: [(0, P.jsx)(`p`, {
+            className: `font-mono text-[10px] leading-relaxed text-muted-foreground`,
+            children: hubMode ? `Escolha saída (porta HUB), canal e modelo. Porta HUB no comando só afecta nomes CC; a rotação MIDI é do firmware.` : `Escolha saída, canal MIDI e o modelo do dicionário — só entram as linhas que adicionar.`
+        }), (0, P.jsxs)(`div`, {
+            className: `rounded-xl border border-border bg-canvas/50 p-3 space-y-2`,
+            children: [(0, P.jsx)(`div`, {
+                className: `font-display text-[9px] uppercase tracking-[0.2em] text-muted-foreground`,
+                children: `Adicionar mapa`
+            }), (0, P.jsxs)(`div`, {
+                className: `grid gap-2 sm:grid-cols-[minmax(0,1.2fr)_72px_minmax(0,1.6fr)_auto]`,
+                children: [(0, P.jsxs)(`label`, {
+                    className: `flex flex-col gap-1`,
+                    children: [(0, P.jsx)(`span`, {
+                        className: `font-display text-[9px] uppercase tracking-[0.2em] text-muted-foreground`,
+                        children: `Saída`
+                    }), (0, P.jsx)(`select`, {
+                        value: addRoute,
+                        onChange: e => setAddRoute(e.target.value),
+                        className: `w-full rounded-lg border border-border bg-canvas px-2 py-1.5 font-mono text-[11px] text-foreground focus:border-accent/60 focus:outline-none`,
+                        children: routeOptions.map(opt => (0, P.jsx)(`option`, {
+                            value: opt.value,
+                            children: opt.label
+                        }, opt.value))
+                    })]
+                }), (0, P.jsxs)(`label`, {
+                    className: `flex flex-col gap-1`,
+                    children: [(0, P.jsx)(`span`, {
+                        className: `font-display text-[9px] uppercase tracking-[0.2em] text-muted-foreground`,
+                        children: `Canal`
+                    }), (0, P.jsx)(`select`, {
+                        value: String(addChannel),
+                        onChange: e => setAddChannel(Math.max(1, Math.min(16, Number(e.target.value) || 1))),
+                        className: `w-full rounded-lg border border-border bg-canvas px-2 py-1.5 font-mono text-[11px] text-foreground focus:border-accent/60 focus:outline-none`,
+                        children: Array.from({
+                            length: 16
+                        }, (e, t) => t + 1).map(ch => (0, P.jsx)(`option`, {
+                            value: String(ch),
+                            children: ch
+                        }, ch))
+                    })]
+                }), (0, P.jsxs)(`label`, {
+                    className: `flex flex-col gap-1`,
+                    children: [(0, P.jsx)(`span`, {
+                        className: `font-display text-[9px] uppercase tracking-[0.2em] text-muted-foreground`,
+                        children: `Modelo`
+                    }), (0, P.jsx)(`select`, {
+                        value: addPedalId,
+                        onChange: e => setAddPedalId(e.target.value),
+                        className: `w-full rounded-lg border border-border bg-canvas px-2 py-1.5 font-mono text-[11px] text-foreground focus:border-accent/60 focus:outline-none`,
+                        children: [(0, P.jsx)(`option`, {
+                            value: ``,
+                            children: `— Escolher pedaleira —`
+                        }), pedalOptions.map(opt => (0, P.jsx)(`option`, {
+                            value: opt.id,
+                            children: opt.label
+                        }, opt.id))]
+                    })]
+                }), (0, P.jsx)(`button`, {
+                    type: `button`,
+                    onClick: addMapping,
+                    disabled: !addPedalId,
+                    className: `self-end rounded-lg border border-accent/40 bg-accent/10 px-3 py-1.5 font-display text-[10px] font-bold uppercase tracking-[0.14em] text-accent hover:bg-accent/20 disabled:opacity-40`,
+                    children: `Adicionar`
+                })]
+            })]
+        }), (0, P.jsxs)(`div`, {
+            className: `rounded-xl border border-border bg-canvas/50 p-3`,
+            children: [(0, P.jsxs)(`div`, {
+                className: `mb-2 flex items-center justify-between gap-2`,
+                children: [(0, P.jsx)(`div`, {
+                    className: `font-display text-[9px] uppercase tracking-[0.2em] text-muted-foreground`,
+                    children: `Mapas activos`
+                }), (0, P.jsxs)(`span`, {
+                    className: `font-mono text-[10px] text-muted-foreground`,
+                    children: [mappedEntries.length, ` entrada`, mappedEntries.length === 1 ? `` : `s`]
+                })]
+            }), mappedEntries.length === 0 ? (0, P.jsx)(`div`, {
+                className: `py-4 text-center font-mono text-[10px] text-muted-foreground`,
+                children: `Nenhum mapa. Adicione saída + canal + modelo acima.`
+            }) : (0, P.jsx)(`div`, {
+                className: `max-h-56 space-y-1.5 overflow-y-auto pr-1`,
+                children: mappedEntries.map(row => (0, P.jsxs)(`div`, {
+                    className: `flex items-center gap-2 rounded-lg border border-border bg-canvas px-2.5 py-2`,
+                    children: [(0, P.jsxs)(`div`, {
+                        className: `min-w-0 flex-1`,
+                        children: [(0, P.jsxs)(`div`, {
+                            className: `font-mono text-[11px] font-bold text-foreground`,
+                            children: [midiDictSlotRouteLabel(row.bus, row.deviceIndex, hubMode), ` · CH `, row.channel]
+                        }), (0, P.jsx)(`div`, {
+                            className: `truncate font-mono text-[10px] text-muted-foreground`,
+                            children: row.pedalLabel
+                        })]
+                    }), (0, P.jsx)(`button`, {
+                        type: `button`,
+                        onClick: () => removeMapping(row.key),
+                        className: `shrink-0 rounded-md border border-border px-2 py-1 font-mono text-[10px] text-muted-foreground hover:border-destructive/40 hover:text-destructive`,
+                        children: `Remover`
+                    })]
+                }, row.key))
+            })]
+        }), (0, P.jsxs)(`div`, {
+            className: `rounded-xl border border-border bg-canvas px-3 py-2`,
+            children: [(0, P.jsx)(`span`, {
+                className: `font-display text-[9px] uppercase tracking-[0.25em] text-muted-foreground`,
+                children: `Fallback global (sem mapa)`
+            }), (0, P.jsx)(`select`, {
+                value: fallbackId || slotsCfg.fallbackPedalId || ``,
+                onChange: e => patchFallback(e.target.value || null),
+                className: `mt-1 w-full bg-transparent font-mono text-sm font-bold text-foreground focus:outline-none`,
+                children: fallbackOptions.map(opt => (0, P.jsx)(`option`, {
+                    value: opt.id,
+                    children: opt.label
+                }, `fb-${opt.id || `none`}`))
+            })]
+        }), (0, P.jsxs)(`div`, {
+            className: `flex flex-wrap items-center justify-between gap-2`,
+            children: [(0, P.jsxs)(`span`, {
+                className: `font-mono text-[10px] text-muted-foreground`,
+                children: [zn.length, ` pedaleiras · `, Wn().length, ` extras`]
+            }), (0, P.jsx)(`button`, {
+                type: `button`,
+                onClick: () => setImportOpen(e => !e),
+                className: `rounded-lg border border-accent/40 bg-accent/10 px-2 py-1 font-mono text-[10px] text-accent hover:bg-accent/20`,
+                children: importOpen ? `Fechar import` : `Importar JSON`
+            })]
+        }), importOpen && (0, P.jsxs)(`div`, {
+            className: `space-y-2 rounded-xl border border-border bg-canvas/60 p-3`,
+            children: [(0, P.jsx)(`textarea`, {
+                value: importText,
+                onChange: e => setImportText(e.target.value),
+                placeholder: importModel,
+                className: `h-32 w-full resize-y rounded-lg border border-border bg-canvas p-2 font-mono text-[11px] text-foreground focus:outline-none focus:ring-1 focus:ring-accent`
+            }), (0, P.jsxs)(`div`, {
+                className: `flex flex-wrap gap-2`,
+                children: [(0, P.jsx)(`button`, {
+                    type: `button`,
+                    onClick: () => setImportText(importModel),
+                    className: `rounded-lg border border-border px-2 py-1 font-mono text-[10px] text-muted-foreground hover:bg-white/5`,
+                    children: `Ver modelo`
+                }), (0, P.jsx)(`button`, {
+                    type: `button`,
+                    onClick: runImport,
+                    disabled: !importText.trim(),
+                    className: `rounded-lg border border-accent/40 bg-accent/10 px-3 py-1 font-mono text-[10px] text-accent hover:bg-accent/20 disabled:opacity-40`,
+                    children: `Importar`
+                })]
+            }), importMsg && (0, P.jsx)(`div`, {
+                className: `font-mono text-[10px] ${importMsg.ok?`text-accent`:`text-destructive`}`,
+                children: importMsg.text
+            })]
+        })]
+    })
 }
 
 function systemSettingsPanel({
@@ -17829,6 +18353,12 @@ function systemSettingsPanel({
                 className: `mt-1 flex w-full items-center justify-center rounded-xl border border-accent/40 bg-accent/10 px-3 py-2.5 font-display text-[11px] font-black uppercase tracking-[0.2em] text-accent transition hover:bg-accent/20`,
                 children: `Guardar Wi-Fi (reinicia)`
             })]
+        }), (0, P.jsx)(`div`, {
+            className: `lg:col-span-2`,
+            children: (0, P.jsx)(midiDictSlotsPanel, {
+                usbmode: s,
+                midiEnable: v
+            })
         }), (0, P.jsxs)(I, {
             title: `Backup`,
             subtitle: `Formato v3 · completo ou seletivo`,
@@ -18604,11 +19134,15 @@ function popupTextFieldControl({
 function popupCcFieldControl({
     label: e = `CC#`,
     value: t,
-    onChange: n
+    onChange: n,
+    output: outputProp,
+    channel: channelProp,
+    hubDevice: hubDeviceProp
 }) {
     let {
-        pedalId: r
-    } = (0, N.useContext)(pr), i = Vn(r), [a, o] = (0, N.useState)(!1), [s, c] = (0, N.useState)(``), [l, u] = (0, N.useState)(String(t));
+        pedalId: r,
+        resolvePedalId: resolvePedal
+    } = (0, N.useContext)(pr), resolvedId = outputProp != null || channelProp != null || hubDeviceProp != null ? resolvePedal?.(outputProp, channelProp, hubDeviceProp) ?? r : r, i = Vn(resolvedId), [a, o] = (0, N.useState)(!1), [s, c] = (0, N.useState)(``), [l, u] = (0, N.useState)(String(t));
     if (!i) return (0, P.jsx)(popupNumberFieldControl, {
         label: e,
         value: t,
@@ -19804,6 +20338,9 @@ function Oi({
     onPatch: n,
     onRemove: r
 }) {
+    let {
+        usbmode: usbmodeCtx
+    } = (0, N.useContext)(pr), hubMode = Number(usbmodeCtx) === 3, hubLabels = [`Dev 1`, `Dev 2`, `Dev 3`, `Dev 4`], hubIdx = Math.max(0, Math.min(3, Number(t.hubDevice) || 0));
     return (0, P.jsxs)(`div`, {
         className: `rounded-lg border border-border bg-canvas p-3`,
         children: [(0, P.jsxs)(`div`, {
@@ -19841,11 +20378,21 @@ function Oi({
                 onChange: e => n({
                     channel: e
                 })
+            }), hubMode && (0, P.jsx)(Mi, {
+                label: `Porta HUB`,
+                value: hubLabels[hubIdx] || hubLabels[0],
+                options: hubLabels,
+                onChange: e => n({
+                    hubDevice: hubLabels.indexOf(e)
+                })
             }), (0, P.jsx)(B, {
                 value: t.cc,
                 onChange: e => n({
                     cc: e
-                })
+                }),
+                output: t.output,
+                channel: t.channel,
+                hubDevice: t.hubDevice
             }), (0, P.jsx)(z, {
                 label: `Valor`,
                 value: t.value,
@@ -19931,7 +20478,9 @@ function ki({
                     value: e.cc,
                     onChange: e => t({
                         cc: e
-                    })
+                    }),
+                    output: e.output,
+                    channel: e.channel
                 }), (0, P.jsx)(Mi, {
                     label: `Curva`,
                     value: e.curve,
@@ -20128,7 +20677,9 @@ function ji({
     onPatch: i,
     onRemove: a
 }) {
-    let o = t.type === `FS Sync` || t.type.startsWith(`Banco`),
+    let {
+        usbmode: usbmodeCtx
+    } = (0, N.useContext)(pr), hubMode = Number(usbmodeCtx) === 3, hubLabels = [`Dev 1`, `Dev 2`, `Dev 3`, `Dev 4`], hubIdx = Math.max(0, Math.min(3, Number(t.hubDevice) || 0)), o = t.type === `FS Sync` || t.type.startsWith(`Banco`),
         s = t.type === `FS Sync` || t.type.startsWith(`Banco`) || t.type === `Tap Tempo Ampero (Serial)`,
         c = t.type === `FS Sync` || t.type.startsWith(`Banco`) || t.type === `SysEx` || t.type.startsWith(`PC`) || t.type.includes(`Up`) || t.type.includes(`Down`),
         l = n === `Normal` || n === `Momentâneo`,
@@ -20231,7 +20782,10 @@ function ji({
                 value: t.cc,
                 onChange: e => i({
                     cc: e
-                })
+                }),
+                output: t.output,
+                channel: t.channel,
+                hubDevice: t.hubDevice
             })), !c && (0, P.jsx)(z, {
                 label: `Valor`,
                 value: t.value,
@@ -20267,6 +20821,13 @@ function ji({
                 options: [`Click`, `Hold`],
                 onChange: e => i({
                     trigger: e
+                })
+            }), !s && hubMode && (0, P.jsx)(Mi, {
+                label: `Porta HUB`,
+                value: hubLabels[hubIdx] || hubLabels[0],
+                options: hubLabels,
+                onChange: e => i({
+                    hubDevice: hubLabels.indexOf(e)
                 })
             }), !s && (0, P.jsx)(Mi, {
                 label: `Saída`,
@@ -20317,12 +20878,18 @@ function z({
 function B({
     label: e = `CC#`,
     value: t,
-    onChange: n
+    onChange: n,
+    output: cmdOut,
+    channel: cmdCh,
+    hubDevice: cmdHub
 }) {
     return (0, P.jsx)(popupCcFieldControl, {
         label: e,
         value: t,
-        onChange: n
+        onChange: n,
+        output: cmdOut,
+        channel: cmdCh,
+        hubDevice: cmdHub
     });
     let {
         pedalId: r
