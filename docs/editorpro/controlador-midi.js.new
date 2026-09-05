@@ -18326,6 +18326,10 @@ function systemSettingsPanel({
                             let fallback = (ci[s] || [])[0]?.value;
                             if (fallback !== void 0) patch.usbpreset = fallback
                         }
+                    } else {
+                        if (MAGIC_USB_CUSTOM_PRESETS.includes(Number(l))) {
+                            patch.usbpreset = (ci[s] || [])[0]?.value ?? 0
+                        }
                     }
                     t(patch)
                 }
