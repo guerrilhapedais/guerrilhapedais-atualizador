@@ -16596,6 +16596,7 @@ function ei() {
             pedalId: e
         })
     }, [e]);
+    const PICKER_VISIBLE = 8;
     let f = e => !e.trim() || /^(sem marca|outros?|other|unknown|n\/?a)$/i.test(e),
         p = (0, N.useMemo)(() => {
             let e = n.trim().toLowerCase(),
@@ -16610,6 +16611,21 @@ function ei() {
                 return n === f(t[0]) ? e[0].localeCompare(t[0]) : n ? 1 : -1
             })
         }, [n, i]),
+        needle = n.trim(),
+        filteredTotal = (0, N.useMemo)(() => p.reduce((acc, [, items]) => acc + items.length, 0), [p]),
+        displayGroups = (0, N.useMemo)(() => {
+            if (needle) return p;
+            let remaining = PICKER_VISIBLE,
+                out = [];
+            for (let [brand, items] of p) {
+                if (remaining <= 0) break;
+                let slice = items.slice(0, remaining);
+                slice.length && out.push([brand, slice]);
+                remaining -= slice.length
+            }
+            return out
+        }, [p, needle]),
+        hiddenCount = !needle ? Math.max(0, filteredTotal - PICKER_VISIBLE) : 0,
         m = (0, N.useMemo)(() => Wn().length, [i]),
         h = () => {
             let e = Un(c);
@@ -16659,7 +16675,7 @@ function ei() {
                 },
                 className: `flex w-full items-center justify-between px-3 py-2 text-left font-mono text-xs ${e===null?`bg-accent/20 text-accent`:`text-muted-foreground hover:bg-white/5`}`,
                 children: `— Nenhuma (CC# numérico) —`
-            }), p.map(([n, i]) => (0, P.jsxs)(`div`, {
+            }), displayGroups.map(([n, i]) => (0, P.jsxs)(`div`, {
                 children: [(0, P.jsx)(`div`, {
                     className: `sticky top-0 bg-panel px-3 py-1 font-display text-[10px] font-bold uppercase tracking-[0.2em] text-foreground/90`,
                     children: n ? v(n) : `SEM MARCA`
@@ -16681,7 +16697,13 @@ function ei() {
                 className: `px-3 py-6 text-center font-mono text-[10px] text-muted-foreground`,
                 children: `Nenhuma pedaleira encontrada`
             })]
-        }), (0, P.jsx)(`div`, {
+        }), hiddenCount > 0 ? (0, P.jsxs)(`div`, {
+            className: `mt-1 px-1 font-mono text-[9px] text-muted-foreground`,
+            children: [`Mostrando `, PICKER_VISIBLE, ` de `, filteredTotal, ` — use a busca para encontrar outras.`]
+        }) : needle && filteredTotal > PICKER_VISIBLE ? (0, P.jsxs)(`div`, {
+            className: `mt-1 px-1 font-mono text-[9px] text-muted-foreground`,
+            children: [filteredTotal, ` resultados — role a lista ou refine a busca.`]
+        }) : null, (0, P.jsx)(`div`, {
             className: `mt-2 rounded-xl border border-dashed border-border bg-canvas/40 px-3 py-2 font-mono text-[10px] text-muted-foreground`,
             children: _ ? `${v(_.brand)} · ${v(_.name)} · ${_.cc.length} CC disponíveis` : `Selecione uma pedaleira para carregar a lista de CC# no campo Adicionar Comando.`
         }), (0, P.jsxs)(`div`, {
