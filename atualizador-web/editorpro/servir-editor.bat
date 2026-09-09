@@ -15,5 +15,5 @@ echo.
 echo  (Nao abra o .html em file://)
 echo.
 start "" "http://127.0.0.1:8765/controlador-midi.html"
-py -3 -m http.server 8765 2>nul || python -m http.server 8765
+py -3 serve_editor.py 8765 2>nul || python serve_editor.py 8765
 pause
