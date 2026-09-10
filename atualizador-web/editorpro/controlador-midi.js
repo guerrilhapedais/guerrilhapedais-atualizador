@@ -13818,17 +13818,7 @@ function buildGbUsbParts(e, t = {}) {
             customBankDownHoldFs: e?.customBankDownHoldFs
         }),
         r = scrubUsbPart({
-            midiPcUpDownShared: e?.midiPcUpDownShared,
-            midiPcGlobalStart: e?.midiPcGlobalStart,
-            midiPcGlobalEnd: e?.midiPcGlobalEnd,
-            midiPcGlobalInc: e?.midiPcGlobalInc,
-            midiPcGlobalLoop: e?.midiPcGlobalLoop,
             midiPcSharedValue: e?.midiPcSharedValue,
-            midiCcUpDownShared: e?.midiCcUpDownShared,
-            midiCcGlobalStart: e?.midiCcGlobalStart,
-            midiCcGlobalEnd: e?.midiCcGlobalEnd,
-            midiCcGlobalInc: e?.midiCcGlobalInc,
-            midiCcGlobalLoop: e?.midiCcGlobalLoop,
             midiCcSharedValue: e?.midiCcSharedValue
         }),
         i = scrubUsbPart({
@@ -14361,10 +14351,10 @@ function Jr(e) {
         f.pcUpDownMode = a.type === `PC Down` ? 2 : 1;
         f.pcUpDownTrigger = +((a.trigger ?? `Click`) === `Hold`);
         f.pcUpDownOutput = Hr(a.output);
-        f.pcRangeStart = 0;
-        f.pcRangeEnd = 127;
-        f.pcIncrement = 1;
-        f.pcLoop = !0;
+        f.pcRangeStart = Math.max(0, Math.min(127, Number(a.pcRangeStart ?? 0)));
+        f.pcRangeEnd = Math.max(0, Math.min(127, Number(a.pcRangeEnd ?? 127)));
+        f.pcIncrement = Math.max(1, Math.min(127, Number(a.pcIncrement ?? 1) || 1));
+        f.pcLoop = a.pcLoop !== void 0 ? !!a.pcLoop : !0;
         f.channel = Math.max(1, Math.min(16, Number(a.channel) || 1))
     } else f.pcUpDownMode = 0;
     if (o) {
@@ -14372,10 +14362,10 @@ function Jr(e) {
         f.ccUpDownCc = o.cc || 0;
         f.ccUpDownTrigger = +((o.trigger ?? `Click`) === `Hold`);
         f.ccUpDownOutput = Hr(o.output);
-        f.ccRangeStart = 0;
-        f.ccRangeEnd = 127;
-        f.ccIncrement = 1;
-        f.ccLoop = !0;
+        f.ccRangeStart = Math.max(0, Math.min(127, Number(o.ccRangeStart ?? 0)));
+        f.ccRangeEnd = Math.max(0, Math.min(127, Number(o.ccRangeEnd ?? 127)));
+        f.ccIncrement = Math.max(1, Math.min(127, Number(o.ccIncrement ?? 1) || 1));
+        f.ccLoop = o.ccLoop !== void 0 ? !!o.ccLoop : !0;
         !a && (f.channel = Math.max(1, Math.min(16, Number(o.channel) || 1)))
     } else f.ccUpDownMode = 0;
     if (toggleClickCommands.length > 0) {
@@ -14454,6 +14444,10 @@ function Yr(e, t, n) {
         channel: 1,
         cc: 0,
         value: 0,
+        pcRangeStart: Number(e?.pcRangeStart ?? 0),
+        pcRangeEnd: Number(e?.pcRangeEnd ?? 127),
+        pcIncrement: Number(e?.pcIncrement ?? 1),
+        pcLoop: !!e?.pcLoop,
         output: Vr(e?.pcUpDownOutput === void 0 ? 2 : Number(e.pcUpDownOutput)),
         trigger: Number(e?.pcUpDownTrigger || 0) === 1 ? `Hold` : `Click`,
         state: `On`
@@ -14463,6 +14457,10 @@ function Yr(e, t, n) {
         channel: Number(e?.channel || 1),
         cc: Number(e?.ccUpDownCc || 0),
         value: 0,
+        ccRangeStart: Number(e?.ccRangeStart ?? 0),
+        ccRangeEnd: Number(e?.ccRangeEnd ?? 127),
+        ccIncrement: Number(e?.ccIncrement ?? 1),
+        ccLoop: !!e?.ccLoop,
         output: Vr(e?.ccUpDownOutput === void 0 ? 2 : Number(e.ccUpDownOutput)),
         trigger: Number(e?.ccUpDownTrigger || 0) === 1 ? `Hold` : `Click`,
         state: `On`
@@ -16452,124 +16450,37 @@ function $r({
             })]
         }), (0, P.jsxs)(I, {
             title: `PC / CC globais`,
-            subtitle: `Up/Down partilhado entre FS e bancos · 255 = próximo passo no limite`,
+            subtitle: `Up/Down partilhado entre FS e bancos · faixa/inc/loop no comando`,
             children: [(0, P.jsxs)(`div`, {
-                className: `rounded-xl border border-border bg-canvas p-3 space-y-2`,
-                children: [(0, P.jsx)(toggleFieldControl, {
-                    label: `PC partilhado`,
-                    checked: !!Number(e?.midiPcUpDownShared || 0),
-                    onCheckedChange: v => t({
-                        midiPcUpDownShared: v ? 1 : 0
-                    })
-                }), (0, P.jsxs)(`div`, {
-                    className: `grid grid-cols-1 gap-2 sm:grid-cols-3`,
-                    children: [(0, P.jsx)(R, {
-                        label: `Início`,
-                        value: Math.max(0, Math.min(127, Number(e?.midiPcGlobalStart ?? 0))),
-                        min: 0,
-                        max: 127,
-                        onChange: v => t({
-                            midiPcGlobalStart: Math.max(0, Math.min(127, Number(v) || 0))
+                className: `grid grid-cols-1 gap-2 sm:grid-cols-2`,
+                children: [(0, P.jsx)(R, {
+                    label: `PC atual`,
+                    value: (() => {
+                        let n = Number(e?.midiPcSharedValue);
+                        return Number.isFinite(n) && n >= 0 && n <= 255 ? n : 255
+                    })(),
+                    min: 0,
+                    max: 255,
+                    onChange: v => {
+                        let n = Number(v);
+                        t({
+                            midiPcSharedValue: Number.isFinite(n) && n >= 0 && n <= 255 ? n : 255
                         })
-                    }), (0, P.jsx)(R, {
-                        label: `Fim`,
-                        value: Math.max(0, Math.min(127, Number(e?.midiPcGlobalEnd ?? 127))),
-                        min: 0,
-                        max: 127,
-                        onChange: v => t({
-                            midiPcGlobalEnd: Math.max(0, Math.min(127, Number(v) || 0))
+                    }
+                }), (0, P.jsx)(R, {
+                    label: `CC atual`,
+                    value: (() => {
+                        let n = Number(e?.midiCcSharedValue);
+                        return Number.isFinite(n) && n >= 0 && n <= 255 ? n : 255
+                    })(),
+                    min: 0,
+                    max: 255,
+                    onChange: v => {
+                        let n = Number(v);
+                        t({
+                            midiCcSharedValue: Number.isFinite(n) && n >= 0 && n <= 255 ? n : 255
                         })
-                    }), (0, P.jsx)(R, {
-                        label: `Inc`,
-                        value: Math.max(1, Math.min(127, Number(e?.midiPcGlobalInc ?? 1) || 1)),
-                        min: 1,
-                        max: 127,
-                        onChange: v => t({
-                            midiPcGlobalInc: Math.max(1, Math.min(127, Number(v) || 1))
-                        })
-                    }), (0, P.jsx)(R, {
-                        label: `Último`,
-                        value: (() => {
-                            let n = Number(e?.midiPcSharedValue);
-                            return Number.isFinite(n) && n >= 0 && n <= 255 ? n : 255
-                        })(),
-                        min: 0,
-                        max: 255,
-                        onChange: v => {
-                            let n = Number(v);
-                            t({
-                                midiPcSharedValue: Number.isFinite(n) && n >= 0 && n <= 255 ? n : 255
-                            })
-                        }
-                    }), (0, P.jsx)(`div`, {
-                        className: `sm:col-span-2`,
-                        children: (0, P.jsx)(toggleFieldControl, {
-                            label: `Loop PC`,
-                            checked: !!Number(e?.midiPcGlobalLoop || 0),
-                            onCheckedChange: v => t({
-                                midiPcGlobalLoop: v ? 1 : 0
-                            })
-                        })
-                    })]
-                })]
-            }), (0, P.jsxs)(`div`, {
-                className: `rounded-xl border border-border bg-canvas p-3 space-y-2`,
-                children: [(0, P.jsx)(toggleFieldControl, {
-                    label: `CC partilhado`,
-                    checked: !!Number(e?.midiCcUpDownShared || 0),
-                    onCheckedChange: v => t({
-                        midiCcUpDownShared: v ? 1 : 0
-                    })
-                }), (0, P.jsxs)(`div`, {
-                    className: `grid grid-cols-1 gap-2 sm:grid-cols-3`,
-                    children: [(0, P.jsx)(R, {
-                        label: `Início`,
-                        value: Math.max(0, Math.min(127, Number(e?.midiCcGlobalStart ?? 0))),
-                        min: 0,
-                        max: 127,
-                        onChange: v => t({
-                            midiCcGlobalStart: Math.max(0, Math.min(127, Number(v) || 0))
-                        })
-                    }), (0, P.jsx)(R, {
-                        label: `Fim`,
-                        value: Math.max(0, Math.min(127, Number(e?.midiCcGlobalEnd ?? 127))),
-                        min: 0,
-                        max: 127,
-                        onChange: v => t({
-                            midiCcGlobalEnd: Math.max(0, Math.min(127, Number(v) || 0))
-                        })
-                    }), (0, P.jsx)(R, {
-                        label: `Inc`,
-                        value: Math.max(1, Math.min(127, Number(e?.midiCcGlobalInc ?? 1) || 1)),
-                        min: 1,
-                        max: 127,
-                        onChange: v => t({
-                            midiCcGlobalInc: Math.max(1, Math.min(127, Number(v) || 1))
-                        })
-                    }), (0, P.jsx)(R, {
-                        label: `Último`,
-                        value: (() => {
-                            let n = Number(e?.midiCcSharedValue);
-                            return Number.isFinite(n) && n >= 0 && n <= 255 ? n : 255
-                        })(),
-                        min: 0,
-                        max: 255,
-                        onChange: v => {
-                            let n = Number(v);
-                            t({
-                                midiCcSharedValue: Number.isFinite(n) && n >= 0 && n <= 255 ? n : 255
-                            })
-                        }
-                    }), (0, P.jsx)(`div`, {
-                        className: `sm:col-span-2`,
-                        children: (0, P.jsx)(toggleFieldControl, {
-                            label: `Loop CC`,
-                            checked: !!Number(e?.midiCcGlobalLoop || 0),
-                            onCheckedChange: v => t({
-                                midiCcGlobalLoop: v ? 1 : 0
-                            })
-                        })
-                    })]
+                    }
                 })]
             })]
         }), (0, P.jsx)(`div`, {
@@ -17454,9 +17365,6 @@ var si = [`TONEX / MODELLER`, `MIDI USB HOST`, `MIDI USB PC`, `HUB MIDI`, `MIDI 
         }, {
             value: 17,
             label: `TONEX PEDAL B`
-        }, {
-            value: 3,
-            label: `GP5`
         }],
         1: [
         /* { value: 1, label: `MIDI USB CUSTOM` }, — usar controllerPath=Custom */
@@ -17469,6 +17377,9 @@ var si = [`TONEX / MODELLER`, `MIDI USB HOST`, `MIDI USB PC`, `HUB MIDI`, `MIDI 
         }, {
             value: 2,
             label: `BOSS GT-1`
+        }, {
+            value: 3,
+            label: `GP5`
         }, {
             value: 19,
             label: `BOSS GT-1B`
@@ -17651,6 +17562,29 @@ function compactFsForSave(e) {
     t.holdToggle = e?.holdToggle ? 1 : 0;
     t.ricochetEnabled = e?.ricochetEnabled ? 1 : 0;
     t.stgEnabled = e?.stgEnabled ? 1 : 0;
+    {
+        let pcMode = Math.max(0, Math.min(2, Number(e?.pcUpDownMode ?? 0) || 0));
+        let ccMode = Math.max(0, Math.min(2, Number(e?.ccUpDownMode ?? 0) || 0));
+        t.pcUpDownMode = pcMode;
+        t.ccUpDownMode = ccMode;
+        if (pcMode > 0) {
+            t.pcRangeStart = Math.max(0, Math.min(127, Number(e?.pcRangeStart ?? 0)));
+            t.pcRangeEnd = Math.max(0, Math.min(127, Number(e?.pcRangeEnd ?? 127)));
+            t.pcIncrement = Math.max(1, Math.min(127, Number(e?.pcIncrement ?? 1) || 1));
+            t.pcLoop = e?.pcLoop ? 1 : 0;
+            t.pcUpDownTrigger = Math.max(0, Math.min(1, Number(e?.pcUpDownTrigger ?? 0) || 0));
+            t.pcUpDownOutput = Number(e?.pcUpDownOutput ?? 2);
+        }
+        if (ccMode > 0) {
+            t.ccUpDownCc = Math.max(0, Math.min(127, Number(e?.ccUpDownCc ?? 0)));
+            t.ccRangeStart = Math.max(0, Math.min(127, Number(e?.ccRangeStart ?? 0)));
+            t.ccRangeEnd = Math.max(0, Math.min(127, Number(e?.ccRangeEnd ?? 127)));
+            t.ccIncrement = Math.max(1, Math.min(127, Number(e?.ccIncrement ?? 1) || 1));
+            t.ccLoop = e?.ccLoop ? 1 : 0;
+            t.ccUpDownTrigger = Math.max(0, Math.min(1, Number(e?.ccUpDownTrigger ?? 0) || 0));
+            t.ccUpDownOutput = Number(e?.ccUpDownOutput ?? 2);
+        }
+    }
     if (Array.isArray(e?.stompLed) && e.stompLed.length >= 6 && !isZeroStompLed(e.stompLed)) t.stompLed = e.stompLed;
     else if (e?.stompLed && typeof e.stompLed == `object` && !isZeroStompLed(e.stompLed)) t.stompLed = e.stompLed;
     if (e?.ledColors && typeof e.ledColors == `object`) t.ledColors = e.ledColors;
@@ -18360,13 +18294,11 @@ function systemSettingsPanel({
                         patch = {
                             usbpreset: nextPreset
                         };
-                    /* GP5 usa o stack Tonex/modeller (usbMode 0), não Host genérico. */
-                    if (Number(nextPreset) === 3) patch.usbmode = 0;
                     t(patch)
                 }
             }), pathCustom && (0, P.jsx)(`p`, {
                 className: `font-mono text-[10px] uppercase tracking-widest text-muted-foreground`,
-                children: s === 2 ? `Custom Device: PC = MIDI genérico; Kemper = protocolo Player (afinador).` : `Custom: comandos saem pelo output (USB/BT/MIDI). GP5: use Modo USB “TONEX / MODELLER”. Boss/Ampero: Host.`
+                children: s === 2 ? `Custom Device: PC = MIDI genérico; Kemper = protocolo Player (afinador).` : `Custom: comandos saem pelo output (USB/BT/MIDI). Boss/Ampero/GP5: Host.`
             })]
         }), s === 2 && Number(l) === 28 && (0, P.jsx)(kemperTunerCard, {
             usbCfg: e
@@ -20849,6 +20781,18 @@ function ji({
                 options: r,
                 onChange: e => i({
                     type: e,
+                    ...((e === `PC Up` || e === `PC Down`) ? {
+                        pcRangeStart: Number.isFinite(Number(t.pcRangeStart)) ? Number(t.pcRangeStart) : 0,
+                        pcRangeEnd: Number.isFinite(Number(t.pcRangeEnd)) ? Number(t.pcRangeEnd) : 127,
+                        pcIncrement: Math.max(1, Math.min(127, Number(t.pcIncrement) || 1)),
+                        pcLoop: t.pcLoop !== void 0 ? !!t.pcLoop : !0
+                    } : {}),
+                    ...((e === `CC Up` || e === `CC Down`) ? {
+                        ccRangeStart: Number.isFinite(Number(t.ccRangeStart)) ? Number(t.ccRangeStart) : 0,
+                        ccRangeEnd: Number.isFinite(Number(t.ccRangeEnd)) ? Number(t.ccRangeEnd) : 127,
+                        ccIncrement: Math.max(1, Math.min(127, Number(t.ccIncrement) || 1)),
+                        ccLoop: t.ccLoop !== void 0 ? !!t.ccLoop : !0
+                    } : {}),
                     ...(e === `SysEx` ? {
                         sysex: t.sysex || ``
                     } : {}),
@@ -20893,7 +20837,7 @@ function ji({
                 onChange: e => i({
                     targetState: e
                 })
-            }), t.type !== `SysEx` && !t.type.startsWith(`Banco`) && t.type !== `FS Sync` && (t.type.startsWith(`PC`) ? (0, P.jsx)(z, {
+            }), t.type !== `SysEx` && !t.type.startsWith(`Banco`) && t.type !== `FS Sync` && (t.type === `PC` ? (0, P.jsx)(z, {
                 label: `PC#`,
                 value: t.cc,
                 min: 0,
@@ -20901,7 +20845,7 @@ function ji({
                 onChange: e => i({
                     cc: e
                 })
-            }) : (0, P.jsx)(B, {
+            }) : t.type === `CC` || t.type === `CC Up` || t.type === `CC Down` ? (0, P.jsx)(B, {
                 value: t.cc,
                 onChange: e => i({
                     cc: e
@@ -20909,7 +20853,77 @@ function ji({
                 output: t.output,
                 channel: t.channel,
                 hubDevice: t.hubDevice
-            })), !c && (0, P.jsx)(z, {
+            }) : null), (t.type === `PC Up` || t.type === `PC Down`) && (0, P.jsxs)(P.Fragment, {
+                children: [(0, P.jsx)(z, {
+                    label: `Início`,
+                    value: Math.max(0, Math.min(127, Number(t.pcRangeStart ?? 0))),
+                    min: 0,
+                    max: 127,
+                    onChange: e => i({
+                        pcRangeStart: Math.max(0, Math.min(127, Number(e) || 0))
+                    })
+                }), (0, P.jsx)(z, {
+                    label: `Fim`,
+                    value: Math.max(0, Math.min(127, Number(t.pcRangeEnd ?? 127))),
+                    min: 0,
+                    max: 127,
+                    onChange: e => i({
+                        pcRangeEnd: Math.max(0, Math.min(127, Number(e) || 0))
+                    })
+                }), (0, P.jsx)(z, {
+                    label: `Inc`,
+                    value: Math.max(1, Math.min(127, Number(t.pcIncrement ?? 1) || 1)),
+                    min: 1,
+                    max: 127,
+                    onChange: e => i({
+                        pcIncrement: Math.max(1, Math.min(127, Number(e) || 1))
+                    })
+                }), (0, P.jsx)(`div`, {
+                    className: `sm:col-span-2`,
+                    children: (0, P.jsx)(toggleFieldControl, {
+                        label: `Loop`,
+                        checked: !!t.pcLoop,
+                        onCheckedChange: e => i({
+                            pcLoop: !!e
+                        })
+                    })
+                })]
+            }), (t.type === `CC Up` || t.type === `CC Down`) && (0, P.jsxs)(P.Fragment, {
+                children: [(0, P.jsx)(z, {
+                    label: `Início`,
+                    value: Math.max(0, Math.min(127, Number(t.ccRangeStart ?? 0))),
+                    min: 0,
+                    max: 127,
+                    onChange: e => i({
+                        ccRangeStart: Math.max(0, Math.min(127, Number(e) || 0))
+                    })
+                }), (0, P.jsx)(z, {
+                    label: `Fim`,
+                    value: Math.max(0, Math.min(127, Number(t.ccRangeEnd ?? 127))),
+                    min: 0,
+                    max: 127,
+                    onChange: e => i({
+                        ccRangeEnd: Math.max(0, Math.min(127, Number(e) || 0))
+                    })
+                }), (0, P.jsx)(z, {
+                    label: `Inc`,
+                    value: Math.max(1, Math.min(127, Number(t.ccIncrement ?? 1) || 1)),
+                    min: 1,
+                    max: 127,
+                    onChange: e => i({
+                        ccIncrement: Math.max(1, Math.min(127, Number(e) || 1))
+                    })
+                }), (0, P.jsx)(`div`, {
+                    className: `sm:col-span-2`,
+                    children: (0, P.jsx)(toggleFieldControl, {
+                        label: `Loop`,
+                        checked: !!t.ccLoop,
+                        onCheckedChange: e => i({
+                            ccLoop: !!e
+                        })
+                    })
+                })]
+            }), !c && (0, P.jsx)(z, {
                 label: `Valor`,
                 value: t.value,
                 min: 0,
