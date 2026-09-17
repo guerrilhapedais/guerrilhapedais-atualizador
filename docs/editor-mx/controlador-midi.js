@@ -12319,7 +12319,7 @@ var Dn = class {
         }
     },
     On = JSON.parse(`[{"id":"856forZELLERSASN","brand":"","name":"856forZELLERSASN","cc":[[0,"N1 Pitch 1 control (fine)"],[1,"N1 Pitch 2 control (fine)"],[2,"N1 Pitch 3 control (fine)"],[3,"N1 Envelope control"],[4,"N1 Length control"],[5,"N1 Pitch 1 control"],[6,"N1 Pitch 2 control"],[7,"N1 Pitch 3 control"],[8,"N1 Gain control"],[9,"N1 Position control"],[10,"N1 Stride control"],[11,"N1 Offset control"],[12,"N1 Fade control"],[13,"N1 Free control"],[14,"N1 Number of repeats control"],[15,"N1 Stride reset"],[16,"N1 skip control"],[17,"N1 swing control"],[18,"N2 Pitch 1 control (fine)"],[19,"N2 Pitch 2 control (fine)"],[20,"N2 Pitch 3 control (fine)"],[21,"N2 Envelope control"],[22,"N2 Length control"],[23,"N2 Pitch 1 control"],[24,"N2 Pitch 2 control"],[25,"N2 Pitch 3 control"],[26,"N2 Gain control"],[27,"N2 Position control"],[28,"N2 Stride control"],[29,"N2 Offset control"],[30,"N2 Fade control"],[31,"N2 Free control"],[32,"N2 Number of repeats control"],[33,"N2 Stride reset"],[34,"N2 skip control"],[35,"N2 swing control"],[36,"N3 Pitch 1 control (fine)"],[37,"N3 Pitch 2 control (fine)"],[38,"N3 Pitch 3 control (fine)"],[39,"N3 Envelope control"],[40,"N3 Length control"],[41,"N3 Pitch 1 control"],[42,"N3 Pitch 2 control"],[43,"N3 Pitch 3 control"],[44,"N3 Gain control"],[45,"N3 Position control"],[46,"N3 Stride control"],[47,"N3 Offset control"],[48,"N3 Fade control"],[49,"N3 Free control"],[50,"N3 Number of repeats control"],[51,"N3 Stride reset"],[52,"N3 skip control"],[53,"N3 swing control"],[54,"Coarse tempo control"],[55,"Fine tempo control"],[56,"Tempo scaling"],[57,"Tempo nudge"],[58,"Preset store"],[59,"Preset recall"],[60,"Record enable/disable"],[61,"Play start"],[62,"Record mode"],[63,"Feedback state"],[64,"N1 stride control"],[65,"N2 stride control"],[66,"N3 stride control"]]},{"id":"acs1","brand":"","name":"acs1","cc":[[3,"Bass"],[14,"Mid"],[15,"Treb"],[20,"Vol"],[21,"Gain"],[22,"Room"],[27,"Cab Switch"],[28,"L + R Switch"],[29,"Amp Switch"],[30,"Bypass Switch"],[31,"Boost Switch"]]},{"id":"atlas","brand":"","name":"atlas","cc":[["100","Remote Expression Pedal"],["102","Engaged/Bypass"],["103","Preset Recall (OFF)"],["104","Preset Recall (ON)"],["105","Engaged/Bypass Toggle"]]},{"id":"bbcthedifferenceengine","brand":"","name":"bbcthedifferenceengine","cc":[[0,"Preset Select"],["1","Enable"],["56","Freeze"],["10","Delay Mode"],["11","Repeat"],["12","Tone"],["13","Colour"],["14","Mix"],["7","Tape Speed MSB"],["39","Tape Speed LSB"],["49","Head Enable"],["50","Head 1 Distance"],["51","Head 2 Distance"],["52","Head 3 Distance"],["53","Head 1 Level"],["54","Head 2 Level"],["55","Head 3 Level"],["22","Wow Rate"],["23","Wow Depth"],["24","Flutter Rate"],["25","Flutter Depth"],["15","Time Link"],["3","Time L MSB"],["35","Time L LSB"],["4","Time R MSB"],["36","Time R LSB"],["16","Multihead Enable"],["5","Multihead Time Left MSB"],["37","Multihead Time Left LSB"],["6","Multihead Time Right MSB"],["38","Multihead Time Right LSB"],["18","Multihead Level Left"],["19","Multihead Level Right"],["29","Dynamics Threshold"],["30","Dynamics Ratio"],["31","Dynamics Boost"],["8","Dynamics Attack Time MSB"],["7","Dynamics Release Time MSB\\\\t"],["39","Dynamics Release Time LSB"],["42","Routing Mode"],["43","Phase Left"],["44","Phase Right"],["45","Dry Left Level"],["46","Dry Right Level"],["47","Delay Left Level"],["48","Delay Right Level"],["20","Modulation Rate"],["21","Modulation Depth"],["26","Compressor Enable"],["27","Compressor Threshold"],["28","Compressor Boost"],["32","Compressor Gate Enable"]]},{"id":"biasdistortionpro","brand":"","name":"biasdistortionpro","cc":[[20,"Low"],[21,"Mid"],[22,"High"],[10,"Master (Level)"],[11,"Gain"],[12,"Blend"],[13,"Tone"],[50,"Boost Knob"],[51,"Boost Type"],[80,"A Footswitch"],[81,"B Footswitch"],[82,"C Footswitch"],[83,"Boost Footswitch"],[93,"Boost Long Press"],[100,"Expression Pedal"]]},{"id":"biashead","brand":"","name":"biashead","cc":[[7,"Gain"],[8,"Bass"],[9,"Middle"],[12,"Treble"],[10,"Presence"],[11,"Master"],[13,"Output"],[6,"Custom Knob"],[6,"Tube Stages"],[3,"Distortion"],[4,"Topology"],[5,"Power Amp"],[14,"Cab/Mic 1 Level"],[15,"Cab/Mic 2 Level"],[16,"Cab/Master Level"],[20,"Reverb On/Off"],[21,"Reverb/Level"],[22,"Reverb/Damping"],[23,"Reverb/Dwell"],[24,"Reverb/Time"],[25,"Reverb/Low Cut"],[26,"Reverb/High Cut"],[27,"Reverb/Mode"],[28,"Noise Gate On/Off"],[29,"Noise Gate Threshold"],[30,"Noise Gate Decay"]]},{"id":"bigsky","brand":"","name":"bigsky","cc":[[30,"Bloom - Feedback"],[32,"Bloom - Length"],[31,"Bloom - Low End"],[23,"Boost"],[34,"Chorale - Reso"],[33,"Chorale - Vowel"],[37,"Cloud - Diffusion"],[38,"Cloud - Low End"],[17,"Decay"],[60,"Exp On/Off"],[70,"Freeze/Infinite"],[39,"Hall - Low End"],[42,"Hall - Mid"],[40,"Hall - Size"],[56,"Magneto - Diffusion"],[57,"Magneto - Heads"],[55,"Magneto - Low End"],[54,"Magneto - Spacing"],[71,"MIDI Clock Off/On"],[15,"Mix"],[14,"Mod"],[45,"Nonlinear - Diffusion"],[47,"Nonlinear - Late Decay"],[48,"Nonlinear - Late Level"],[44,"Nonlinear - Low End"],[43,"Nonlinear - Mod Speed"],[46,"Nonlinear - Shape"],[9,"Param 1"],[16,"Param 2"],[22,"Persist On/Off"],[69,"Plate - Low End"],[68,"Plate - Size"],[18,"Pre-Delay"],[49,"Reflections - Loc X"],[50,"Reflections - Loc Y"],[52,"Reflections - Low End"],[51,"Reflections - Shape"],[58,"Room - Diffusion"],[61,"Room - Low End"],[59,"Room - Size"],[27,"Shimmer - Amount"],[24,"Shimmer - Low End"],[28,"Shimmer - Mode"],[25,"Shimmer - Shift 1"],[26,"Shimmer - Shift 2"],[62,"Spring - # Springs"],[63,"Spring - Dwell"],[64,"Spring - Low End"],[65,"Swell - Low End"],[67,"Swell - Mode"],[66,"Swell - Rise"],[3,"Tone"],[19,"Type Encoder"],[20,"Value Encoder"],[80,"A footswitch Press Down"],[80,"A footswitch Press Up"],[82,"B footswitch Press Down"],[82,"B footswitch Press Up"],[81,"C footswitch Press Down"],[81,"C footswitch Press Up"],[102,"Bypass"],[102,"Engage"],[100,"Expression Pedal"],[60,"Expression On/Off"],[0,"MIDI Patch Bank"],[125,"Phase Reset"],[93,"Remote TAP"],[97,"Press/Hold Switch"]]},{"id":"bitmap2","brand":"","name":"bitmap2","cc":[["4","Expression pedal"],["12","Mix"],["13","Crush"],["14","Freq"],["15","modulation depth"],["16","modulation rate"],["20","Envelope mod amount"],["21","filter cutoff"],["22","filter resonance"],["23","drive"],["80","aux footswitch"],["81","ON footswitch"],["88","Bypass (receive only)\\\\t"],["89","tap (receive only)"],["102","Modulation waveform"],["103","Modulation destination (Receive only)"],["104","envelope destination"],["105","LFO hold"],["108","Modulation note division"],["110","receive midi clock (global)"]]},{"id":"bloom","brand":"","name":"bloom","cc":[[1,"Comp On"],[1,"Comp Off"],[2,"EQ On"],[2,"EQ Off"],[3,"Boost On"],[3,"Boost Off"],[4,"midiBoost On"],[4,"midiBoost Off"],[5,"midiBoost expression"]]},{"id":"brokenarrow","brand":"","name":"brokenarrow","cc":[[1,"Drive On"],[1,"Drive Off"],[2,"Boost On"],[2,"Boost Off"],[3,"Clipping Diodes"],[4,"Gain cycle"],[5,"Boost EQ"]]},{"id":"c4synth","brand":"","name":"c4synth","cc":[[93,"External Tap Tempo"],[100,"External Expression Control"],[102,"Engage device"],[102,"Bypass device"],[103,"Preset Recall Off"],[104,"Preset Recall On"],[105,"Engage/Bypass Toggle"]]},{"id":"chromaconsole","brand":"","name":"chromaconsole","cc":[[64,"tilt"],[66,"rate"],[68,"time"],[70,"mix"],[65,"amount (character)"],[67,"amount (movement)"],[69,"amount (diffusion)"],[71,"amount (texture)"],[72,"sensitivity"],[74,"drift (movement)"],[76,"drift (diffusion)"],[78,"output level"],[73,"effect vol (character)"],[75,"effect vol (movement)"],[77,"effect vol (diffusion)"],[79,"effect vol (texture)"],[16,"character module - drive"],[16,"character module - sweeten"],[16,"character module - fuzz"],[16,"character module - howl"],[16,"character module - swell"],[16,"character module - off"],[17,"movement module - doubler"],[17,"movement module - vibrato"],[17,"movement module - phaser"],[17,"movement module - termolo"],[17,"movement module - pitch"],[17,"movement module - off"],[18,"diffusion module - cascade"],[18,"diffusion module - reels"],[18,"diffusion module - space"],[18,"diffusion module - collage"],[18,"diffusion module - reverse"],[18,"diffusion module - off"],[19,"texture module - filter"],[19,"texture module - squash"],[19,"texture module - cassette"],[19,"texture module - broken"],[19,"texture module - interference"],[19,"texture module - off"],[91,"standard bypass"],[92,"total bypass"],[92,"dual bypass"],[92,"total engage"],[80,"gesture play/rec"],[81,"gesture stop/erase"],[82,"capture stop/clear"],[82,"capture play"],[82,"capture record"],[83,"capture routing post-fx"],[83,"capture routing pre-fx"],[93,"tap tempo"],[84,"filter mode low pass"],[84,"filter mode tilt"],[84,"filter mode high pass"],[94,"calibration level low"],[94,"calibration level medium"],[94,"calibration level high"],[94,"calibration level very high"],[95,"calibration menu exit"],[95,"calibration menu enter"]]},{"id":"cloudburst","brand":"","name":"cloudburst","cc":[[0,"Bank Select"],[11,"Esemble"],["12","Decay"],["13","Pre-Delay"],["14","Tone"],["15","Mod"],["16","Mix"],["27","Footswitch"],["60","MIDI Expression Off/On"],["97","Freeze"],["98","Infinite"],["100","Expression Pedal"],["102","Bypass"],["102","Engage"]]},{"id":"compadre","brand":"","name":"compadre","cc":[[0,"Bank Select"],["11","Compression Type"],["12","Compression Level"],["13","Compression Off"],["13","Compression On"],["14","Compression"],["15","Dry"],["17","Boost EQ"],["18","Boost Type"],["19","Boost Amount"],["20","Boost Off"],["20","Boost On"]]},{"id":"d1","brand":"","name":"d1","cc":[[14,"Time"],[15,"Repeats"],[20,"Mix"],[21,"Mod"],[22,"Tone"],[23,"Age"],[24,"Prog"],[25,"Attack"],[26,"Tweak Switch: MOD"],[26,"Tweak Switch: TONE"],[26,"Tweak Switch: AGE"],[27,"A|B|C Switch: A"],[27,"A|B|C Switch: B"],[27,"A|B|C Switch: C"],[28,"Division Switch: QUARTER"],[28,"Division Switch: EIGHTH"],[28,"Division Switch: DOTTED EIGHTH"],[29,"Bypass Switch: BYPASS"],[29,"Bypass Switch: ENGAGED"],[30,"Tap Tempo: BYPASS"],[30,"Tap Tempo: ENGAGED"]]},{"id":"d1_old","brand":"","name":"d1_old","cc":[[0,"Time"],[1,"Repeats"],[2,"Mix"],[3,"Mod"],[4,"Tone"],[5,"Age"],[6,"Prog"],[7,"Attack"],[8,"Tweak Switch: MOD"],[8,"Tweak Switch: TONE"],[8,"Tweak Switch: AGE"],[9,"A|B|C Switch: A"],[9,"A|B|C Switch: B"],[9,"A|B|C Switch: C"],[10,"Division Switch: QUARTER"],[10,"Division Switch: EIGHTH"],[10,"Division Switch: DOTTED EIGHTH"],[11,"Bypass Switch: BYPASS"],[11,"Bypass Switch: ENGAGED"],[12,"Tap Tempo: BYPASS"],[12,"Tap Tempo: ENGAGED"]]},{"id":"discovery","brand":"","name":"discovery","cc":[["14","Mix"],["9","Regen"],["3","Time"],["17","Modulation Speed"],["18","Modulation Depth"],["21","Modulation shape"],["15","Hi Cut Filter"],["16","Low Cut Filter"],["20","Divisions"],["63","MIDI Sync"],["102","Bypass (Pedal OFF)"],["102","Bypass (Pedal ON)"],["81","TAP Tempo"],["100","Expression"],["52","Up Arrow"],["53","Down Arrow"],["54","Preset Down"],["55","Preset Up"],["56","Display"],["57","Preset Select Button"]]},{"id":"dl4mk2","brand":"","name":"dl4mk2","cc":[["1","Delay Model Select"],["2","Reverb Model Select"],["3","Emulates Expression pedal"],["4","Preset Engage"],["4","Preset Bypass"],["9","Classic Looper Mode On/Off"],["11","Delay Time"],["12","Time Subdivisions"],["13","Delay Repeats (Feedback)"],["14","Delay Tweak"],["15","Delay Tweez"],["16","Delay/Looper Mix Knob"],["17","Reverb Decay"],["18","Reverb Predelay/Diffusion"],["19","Reverb-Delay Routing"],["20","Reverb Mix (DSP Dry Path) / Reverb Level (Analog Dry Level)"],["64","Tap Tempo"],["60","Record/Overdub"],["61","Play/Stop"],["62","Play Once"],["63","Undo/Redo the most recent overdub recording"],["65","Forward/Reverse"],["66","Full Speed/Half Speed"]]},{"id":"dreamsequence","brand":"","name":"dreamsequence","cc":[[20,"Middle Octave Level"],[21,"Octave Up Level"],[22,"Octave Down Level"],[23,"Effect Bypass"],[20,"Effect Engage"]]},{"id":"duophony","brand":"","name":"duophony","cc":[["14","Loop X"],["15","Loop Y"],["16","Modes"],["17","Routing"],["18","Phase X"],["19","Expression"],["20","Tap-Tempo"],["21","Subdivision"],["20","Bypass / Engage"],["23","Mix"],["24","Mix (Left)"],["25","Mix (Right) "],["26","Dry Level"],["27","Dry Level (Left)"],["28","Dry Level (Right)"],["29","LFO Speed"],["30","LFO Depth"],["31","LFO"],["32","Gain X "],["30","Gain Y"],["34","Mute L"],["35","Mute R"],["36","Mute LR"],["37","Wet Mute L "],["38","Wet Mute R"]]},{"id":"echolution2deluxe","brand":"","name":"echolution2deluxe","cc":[[4,"Exp pedal input"],[12,"Repeats knob"],[13,"Time knob"],[14,"Mix knob"],[15,"LFO Speed knob"],[16,"Modulation Depth knob"],[17,"Time Button"],[18,"SFX Button"],[19,"Taps Button"],[20,"Filter Button"],[21,"Bypass Button"],[22,"Ducking Button"],[23,"Exp Button"],[24,"LFO Mod Button"],[25,"Tap Tempo Footswitch"],[27,"Engage Footswitch"],[28,"Preset Save"],[29,"Jump Footswitch / Preset 1/2"],[30,"Freeze Footswitch / Preset 3/4"],[31,"Loop Open Close"],[74,"Adjust Filter Cutoff Frequency"],[76,"Second Tap Volume"],[77,"Set Jump Interval for First Tap"],[78,"Set Jump Interval for Second Tap"],[79,"Enable MIDI Clock In"],[80,"Enable MIDI Clock Out"],[81,"Copy MIDI Clock"]]},{"id":"echosystem","brand":"","name":"echosystem","cc":[[60,"Bypass"],[60,"Engage"],[10,"Simulate Exp Pedal"],[118,"Routing Mode: Trails"],[118,"Routing Mode: Parallel"],[118,"Routing Mode: Serial"],[118,"Routing Mode: L/R"],[35,"Left Footswitch (Tap): Quick Tap"],[35,"Left Footswitch (Tap): Hold"],[35,"Left Footswitch (Tap): Release"],[36,"Mid Footswitch (Scroll): Quick Tap"],[36,"Mid Footswitch (Scroll): Hold"],[36,"Mid Footswitch (Scroll): Release"],[37,"Right Footswitch (Bypass): Quick Tap"],[37,"Right Footswitch (Bypass): Hold"],[37,"Right Footswitch (Bypass): Release"],[38,"Shift Button: Quick Tap"],[38,"Shift Button: Hold"],[38,"Shift Button: Release"],[40,"Engine Order Swap"],[41,"Solo Engine: Engine A"],[42,"Solo Engine: Engine B"],[51,"MIDI Clock Listener: Engine A"],[52,"MIDI Clock Listener: Engine B"],[39,"Save Preset"],[100,"Modes: Engine A"],[109,"Modes: Engine B"],[101,"Delay Time / Ratio: Engine A"],[110,"Delay Time / Ratio: Engine B"],[102,"Mix: Engine A"],[111,"Mix: Engine B"],[103,"Volume: Engine A"],[112,"Volume: Engine B"],[104,"Feedback: Engine A"],[113,"Feedback: Engine B"],[105,"Tone: Engine A"],[114,"Tone: Engine B"],[106,"Thing 1: Engine A"],[115,"Thing 1: Engine B"],[107,"Thing 2: Engine A"],[116,"Thing 2: Engine B"],[108,"Delay Source: Engine A"],[117,"Delay Source: Engine B"]]},{"id":"enieqma","brand":"","name":"enieqma","cc":[["0","EQ bypass/engage"],["1","EQ-L bypass/engage"],["2","EQ-R bypass/engage"],["3","Booster"],["4","Stereo Expander"],["5","Delay"],["6","Depth"],["7","Preset up/down"],["8","EQ mode"],["9","EQ channel mode"],["10","Boost channel mode"],["11","Input level"],["12","Volume (L)"],["13","Volume (R)"],["14","Boost level (L)"],["15","Boost level (R)"],["16","Prototype (L)"],["17","Prototype (R)"],["18","paraEQ type (band 1 - ch. L)"],["19","paraEQ type (band 2 - ch. L)"],["20","paraEQ type (band 3 - ch. L)"],["21","paraEQ type (band 4 - ch. L)"],["22","paraEQ type (band 5 - ch. L)"],["23","paraEQ Gain (band 1 ‐ ch.L)"],["24","ParaEQ Gain (band 2 ‐ ch.L)"],["25","ParaEQ Gain (band 3 ‐ ch.L)"],["26","ParaEQ Gain (band 4 ‐ ch.L)"],["27","ParaEQ Gain (band 5 ‐ ch.L)"],["28","ParaEQ Q (band 1 ‐ ch.L)"],["29","ParaEQ Q (band 2 ‐ ch.L)"],["30","ParaEQ Q (band 3 ‐ ch.L)"],["31","ParaEQ Q(band 4 ‐ ch.L)"],["32","ParaEQ Q (band 5 ‐ ch.L)"],["33","ParaEQ Freq (band 1 ‐ ch.L)"],["34","ParaEQ Freq (band 2 ‐ ch.L)"],["35","ParaEQ Freq (band 3 ‐ ch.L)"],["36","ParaEQ Freq(band 4 ‐ ch.L)"],["37","ParaEQ Freq(band 5 ‐ ch.L) "],["38","ParaEQ state (band 1 ‐ ch.L)"],["39","ParaEQ state (band 2 ‐ ch.L)"],["40","ParaEQ state (band 3 ‐ ch.L)"],["41","ParaEQ state (band 4 ‐ ch.L)"],["42","ParaEQ state (band 5 ‐ ch.L)"],["43","ParaEQ Type (band 1 ‐ ch.R) "],["44","ParaEQ Type (band 2 ‐ ch.R)"],["45","ParaEQ Type (band 3 ‐ ch.R)"],["46","ParaEQ Type (band 4 ‐ ch.R)"],["47","ParaEQ Type (band 5 ‐ ch.R)"],["48","ParaEQ Gain (band 1 ‐ ch.R)"],["49","ParaEQ Gain (band 2 ‐ ch.R)"],["50","ParaEQ Gain (band 3 ‐ ch.R)"],["51","ParaEQ Gain (band 4 ‐ ch.R)"],["52","ParaEQ Gain (band 5 ‐ ch.R) "],["53","ParaEQ Q (band 1 ‐ ch.R)"],["54","ParaEQ Q (band 2 ‐ ch.R)"],["55","ParaEQ Q (band 3 ‐ ch.R)"],["56","ParaEQ Q (band 4 ‐ ch.R) "],["57","ParaEQ Q (band 5 ‐ ch.R)"],["58","ParaEQ Freq (band 1 ‐ ch.R)"],["59","ParaEQ Freq (band 2 ‐ ch.R)"],["60","ParaEQ Freq (band 3 ‐ ch.R)"],["61","ParaEQ Freq(band 4 ‐ ch.R)"],["62","ParaEQ Freq (band 5 ‐ ch.R)"],["63","ParaEQ state (band 1 ‐ ch.R)"],["64","ParaEQ state (band 2 ‐ ch.R)"],["65","ParaEQ state (band 3 ‐ ch.R) "],["66","ParaEQ state (band 4 ‐ ch.R)"],["67","ParaEQ state (band 5 ‐ ch.R) "],["68","SimplEQ Type (ch.L)"],["69","SimplEQ Bass (ch.L)"],["70","SimplEQ Mids (ch.L)"],["71","SimplEQ Treble (ch.L) "],["72","SimplEQ Type (ch.R)"],["73","SimplEQ Bass (ch.R)"],["74","SimplEQ Mids (ch.R)"],["75","SimplEQ Treble (ch.R)"],["76","PultEQ Low Peak (ch.L)"],["77","PultEQ Low Freq (ch.L)"],["78","PultEQ Mid Dip (ch.L)"],["79","PultEQ Mid Freq (ch.L)"],["80","PultEQ High Peak (ch.L)"],["81","PultEQ High Freq (ch.L)"],["82","PultEQ Low Peak (ch.R)"],["83","PultEQ Low Freq (ch.R) "],["84","PultEQ Mid Dip (ch.R)"],["85","PultEQ Mid Freq (ch.R)"],["86","PultEQ High Peak (ch.R)"],["87","PultEQ High Freq (ch.R)"],["88","Limiter"],["89","Limiter Channel mode"],["90","Limiter Input gain (ch.L)"],["91","Limiter Threshold (ch.L)"],["92","Limiter Attack (ch.L)"],["93","Limiter Input gain (ch.R)"],["94","Limiter Threshold (ch.R)"],["95","Limiter Attack (ch.R)"]]},{"id":"eq2","brand":"","name":"eq2","cc":[[0,"Master Volume (Output)"],[1,"Input 1 Trim"],[2,"Input 2 Trim"],[3,"Channel 1, Band 1 - Level"],[4,"Channel 1, Band 2 - Level"],[5,"Channel 1, Band 3 - Level"],[6,"Channel 1, Band 4 - Level"],[7,"Channel 1, Band 5 - Level"],[8,"Channel 1, Band 6 - Level"],[9,"Channel 1, Band 7 - Level"],[10,"Channel 1, Band 8 - Level"],[11,"Channel 1, Band 9 - Level"],[12,"Channel 1, Band 10 - Level"],[13,"Channel 2, Band 1 - Level"],[14,"Channel 2, Band 2 - Level"],[15,"Channel 2, Band 3 - Level"],[16,"Channel 2, Band 4 - Level"],[17,"Channel 2, Band 5 - Level"],[18,"Channel 2, Band 6 - Level"],[19,"Channel 2, Band 7 - Level"],[20,"Channel 2, Band 8 - Level"],[21,"Channel 2, Band 9 - Level"],[22,"Channel 2, Band 10 - Level"],[23,"Channel 1, Band 1 - Frequency"],[24,"Channel 1, Band 2 - Frequency"],[25,"Channel 1, Band 3 - Frequency"],[26,"Channel 1, Band 4 - Frequency"],[27,"Channel 1, Band 5 - Frequency"],[28,"Channel 1, Band 6 - Frequency"],[29,"Channel 1, Band 7 - Frequency"],[30,"Channel 1, Band 8 - Frequency"],[31,"Channel 1, Band 9 - Frequency"],[32,"Channel 1, Band 10 - Frequency"],[33,"Channel 2, Band 1 - Frequency"],[34,"Channel 2, Band 2 - Frequency"],[35,"Channel 2, Band 3 - Frequency"],[36,"Channel 2, Band 4 - Frequency"],[37,"Channel 2, Band 5 - Frequency"],[38,"Channel 2, Band 6 - Frequency"],[39,"Channel 2, Band 7 - Frequency"],[40,"Channel 2, Band 8 - Frequency"],[41,"Channel 2, Band 9 - Frequency"],[42,"Channel 2, Band 10 - Frequency"],[43,"Channel 1, Band 1 - Q"],[44,"Channel 1, Band 2 - Q"],[45,"Channel 1, Band 3 - Q"],[46,"Channel 1, Band 4 - Q"],[47,"Channel 1, Band 5 - Q"],[48,"Channel 1, Band 6 - Q"],[49,"Channel 1, Band 7 - Q"],[50,"Channel 1, Band 8 - Q"],[51,"Channel 1, Band 9 - Q"],[52,"Channel 1, Band 10 - Q"],[53,"Channel 2, Band 1 - Q"],[54,"Channel 2, Band 2 - Q"],[55,"Channel 2, Band 3 - Q"],[56,"Channel 2, Band 4 - Q"],[57,"Channel 2, Band 5 - Q"],[58,"Channel 2, Band 6 - Q"],[59,"Channel 2, Band 7 - Q"],[60,"Channel 2, Band 8 - Q"],[61,"Channel 2, Band 9 - Q"],[62,"Channel 2, Band 10 - Q"],[63,"Unassigned"],[64,"Unassigned"],[65,"Unassigned"],[66,"Unassigned"],[67,"Unassigned"],[68,"Unassigned"],[69,"Channel 1 Gain"],[70,"Channel 2 Gain"],[71,"Channel 1 Input High Pass"],[72,"Channel 2 Input High Pass"],[73,"Routing Option"],[74,"Unassigned"],[75,"Unassigned"],[76,"Unassigned"],[77,"Unassigned"],[78,"Unassigned"],[79,"Unassigned"],[80,"Preset Decrement"],[81,"Unassigned"],[82,"Preset Increment"],[83,"Enable/Disable Tuner"],[84,"Unassigned"],[85,"Unassigned"],[86,"Unassigned"],[87,"Unassigned"],[88,"Unassigned"],[89,"Unassigned"],[90,"Unassigned"],[91,"Unassigned"],[92,"Unassigned"],[93,"Unassigned"],[94,"Remote Switch Function"],[95,"Unassigned"],[96,"Unassigned"],[97,"Unassigned"],[98,"Unassigned"],[99,"Unassigned"],[100,"Remote Expression"],[101,"Bypass/Engage"],[102,"Toggle Bypass/Engage"],[103,"Recall Preset Bypassed"],[104,"Recall Preset Engaged"],[105,"Unassigned"],[106,"Unassigned"],[107,"Unassigned"],[108,"Unassigned"],[109,"Unassigned"],[110,"Unassigned"],[111,"Unassigned"],[112,"Unassigned"],[113,"Unassigned"],[114,"Unassigned"],[115,"Unassigned"],[116,"Unassigned"],[117,"Unassigned"],[118,"Unassigned"],[119,"Unassigned"],[120,"Unassigned"],[121,"Unassigned"],[122,"Unassigned"],[123,"Unassigned"],[124,"Unassigned"],[125,"Unassigned"],[126,"Unassigned"],[127,"Unassigned"]]},{"id":"flatv","brand":"","name":"flatv","cc":[[38,"Diode - Schottky"],[38,"Diode - Germanium"],[38,"Diode - Silicon"],[38,"Diode - LED"],[39,"Set LFO - Sine"],[39,"Set LFO - Triangle"],[39,"Set LFO - Square"],[39,"Set LFO - Envelope"],[40,"Channel B - Side 1"],[10,"Channel B - Side 2"],[41,"Channel - Bypass Both"],[41,"Channel - A Active"],[41,"Channel - B Active"],[41,"Channel - A and B Active"],[42,"Routing - A to B"],[42,"Routing - B to A"],[43,"Visualisation Mode"],[44,"Battery Mode"],[45,"Is Blending"],[85,"Dump Presets"],[1,"Blend Override"]]},{"id":"goldenboy","brand":"","name":"goldenboy","cc":[[1,"Drive On"],[1,"Drive Off"],[2,"Boost On"],[2,"Boost Off"],[3,"Clipping Diodes"],[4,"Gain cycle"],[5,"Boost EQ"]]},{"id":"h9","brand":"","name":"h9","cc":[["User-defined","Increment preset"],["User-defined","Decrement preset"],["User-defined","Increment and load preset"],["User-defined","Tap tempo"],["User-defined","Performance switch (Middle)"],["User-defined","Toggle Tuner"],["User-defined","Bypass"],["User-defined","Activate"],["User-defined","Toggle between Active and Bypass"],["User-defined","Left Footswitch (Active)"],["User-defined","Expression pedal value"],["User-defined","Set parameter 1"],["User-defined","Set parameter 2"],["User-defined","Set parameter 3"],["User-defined","Set parameter 4"],["User-defined","Set parameter 5"],["User-defined","Set parameter 6"],["User-defined","Set parameter 7"],["User-defined","Set parameter 8"],["User-defined","Set parameter 9"],["User-defined","Set parameter 10"],["User-defined","Looper - Record"],["User-defined","Looper - Play"],["User-defined","Looper - Stop"],["User-defined","Looper - Empty"],["User-defined","Looper - Flip Direction"],["User-defined","Looper - Flip Octave"],["User-defined","Input Volume"],["User-defined","Output Volume"]]},{"id":"helixfloor","brand":"","name":"helixfloor","cc":[[1,"Emulate Exp 1 Pedal"],[2,"Emulate Exp 2 Pedal"],[3,"Emulate Exp 3 Pedal"],[49,"Emulates FS1"],[50,"Emulates FS2"],[51,"Emulates FS3"],[52,"Emulates FS4"],[53,"Emulates FS5"],[54,"Emulates FS7"],[55,"Emulates FS8"],[56,"Emulates FS9"],[57,"Emulates FS10"],[58,"Emulates FS11"],[59,"Emulates EXP Toe Switch"],[60,"1 Switch Looper Overdub"],[60,"1 Switch Looper Record"],[61,"1 Switch Looper Stop"],[61,"1 Switch Looper Play"],[62,"1 Switch Looper Play Once"],[63,"1 Switch Looper Undo/Redo"],[65,"1 Switch Looper Forward"],[65,"1 Switch Looper Reverse"],[66,"1 Switch Looper Full Speed"],[66,"1 Switch Looper Half Speed"],[67,"Looper Block On"],[67,"Looper Block Off"],[64,"Tap Tempo"],[68,"Tuner Screen On/Off"],[69,"Snapshot 1"],[69,"Snapshot 2"],[69,"Snapshot 3"],[69,"Snapshot 4"],[69,"Snapshot 5"],[69,"Snapshot 6"],[69,"Snapshot 7"],[69,"Snapshot 8"],[71,"Engage the MODE switch"],[72,"Increment Preset"],[72,"Decrement Preset"]]},{"id":"kismet","brand":"","name":"kismet","cc":[["102","Toggle/Cycle Footswitch"],["103","Engage"],["103","Bypass"],["104","Bypass flip/flop"],["105","Bass Setting"],["106","Mids Setting"],["107","Treble Setting"],["108","Gain Setting"],["109","Volume Setting"],["110","Expression"],["124","Omni mode OFF"],["125","Omni mode ON"]]},{"id":"looperboard","brand":"","name":"looperboard","cc":[[3,"Start/Stop All"],[3,"FX 1 Toggle"],[3,"FX 2 Toggle"],[3,"FX 3 Toggle"],[3,"FX 4 Toggle"],[3,"Tap Tempo"],[3,"Track 1 Stop"],[3,"Track 2 Stop"],[3,"Track 3 Stop"],[3,"Track 4 Stop"],[3,"Track 1 Rec/Play/Overd"],[3,"Track 2 Rec/Play/Overd"],[3,"Track 3 Rec/Play/Overd"],[3,"Track 4 Rec/Play/Overd"],[3,"All Tracks Half Length"],[3,"All Tracks Double Length"],[3,"All Tracks Half Speed"],[3,"All Tracks Double Speed"],[3,"Track 1 Reverse"],[3,"Track 2 Reverse"],[3,"Track 3 Reverse"],[3,"Track 4 Reverse"],[3,"All Tracks Reverse"],[3,"Track 1 Fade"],[3,"Track 2 Fade"],[3,"Track 3 Fade"],[3,"Track 4 Fade"],[3,"All Tracks Fade"],[3,"Track 1 Half-Step Up"],[3,"Track 2 Half-Step Up"],[3,"Track 3 Half-Step Up"],[3,"Track 4 Half-Step Up"],[3,"Track 1 Half-Step Down"],[3,"Track 2 Half-Step Down"],[3,"Track 3 Half-Step Down"],[3,"Track 4 Half-Step Down"],[3,"All Tracks Half-Step Up"],[3,"All Tracks Half-Step Down"],[3,"Track 1 Undo/Redo"],[3,"Track 2 Undo/Redo"],[3,"Track 3 Undo/Redo"],[3,"Track 4 Undo/Redo"],[3,"Track 1 Clear"],[3,"Track 2 Clear"],[3,"Track 3 Clear"],[3,"Track 4 Clear"],[3,"Track 1 Peel"],[3,"Track 2 Peel"],[3,"Track 3 Peel"],[3,"Track 4 Peel"],[3,"B. Track Rewind"],[3,"B. Track Stop"],[3,"B. Track Play/Pause"],[3,"B. Track Fast Forward"],[3,"B. Track Prev Track"],[3,"B. Track Next Track"],[3,"Load Previous Loop"],[3,"Load Next Loop"],[7,"Master Level"],[9,"Phones Level"],[14,"Track 1 Volume"],[15,"Track 2 Volume"],[20,"Track 2 Volume"],[21,"Track 4 Volume"],[22,"Track 1 Pan"],[23,"Track 2 Pan"],[24,"Track 3 Pan"],[25,"Track 4 Pan"],[26,"Backing Track Volume"],[27,"Backing Track Pan"],[28,"Click Track Volume"],[29,"Click Track Pan"],[85,"Output 1 Volume"],[86,"Output 2 Volume"],[87,"Output 3 Volume"],[88,"Output 4 Volume"],[89,"Input 1 Pan"],[90,"Input 2 Pan"],[91,"Input 3 Pan"],[92,"Input 4 Pan"],[93,"Expression Pedal"],[94,"Fade Rate"],[95,"Track 1 Feedback (Decay)"],[96,"Track 2 Feedback (Decay)"],[97,"Track 3 Feedback (Decay)"],[98,"Track 4 Feedback (Decay)"]]},{"id":"lvx","brand":"","name":"lvx","cc":[["1","Mix"],["2","Dry Trim"],["3","Wet Trim"],["4","Expression Pedal"],["5","Preamp Type"],["6","Preamp Location"],["7","Premp Parameter 1"],["8","Preamp Parameter 2"],["9","Preamp Parameter 3"],["10","Preamp Parameter 4"],["10","Preamp Parameter 5"],["12","Preamp Parameter 6"],["13","Delay Structure"],["14","Bypass"],["15","Time"],["16","Delay Type"],["17","Left Note Division"],["18","Right Note Division"],["19","Feedback"],["20","Cross Feedback"],["21","Delay Mod"],["20","Delay Parameter 1"],["23","Delay Parameter 2"],["24","Delay Parameter 3"],["25","Delay Parameter 4"],["26","Delay Parameter 5"],["27","Delay Parameter 6"],["28","Delay Parameter 7"],["29","Delay Parameter 8"],["30","Delay Parameter 9"],["31","Delay Parameter 10"],["32","Delay Parameter 11"],["33","Delay Parameter 12"],["34","Delay Parameter 13"],["35","Delay Parameter 14"],["36","Delay Parameter 15"],["37","Delay Parameter 16"],["38","Delay Parameter 17"],["39","Delay Parameter 18"],["40","Delay Parameter 19"],["41","Delay Parameter 20"],["42","Delay Parameter 21"],["43","Delay Parameter 22"],["44","Delay Parameter 23"],["45","Delay Parameter 24"],["46","Delay Parameter 25"],["47","Delay Parameter 26"],["48","Delay Parameter 27"],["49","Delay Parameter 28"],["50","Delay Parameter 29"],["51","Delay Parameter 30"],["52","Delay Parameter 31"],["53","Delay Parameter 32"],["54","Delay Parameter 33"],["50","Delay Parameter 34"],["56","Delay Parameter 35"],["57","Delay Parameter 36"],["58","Delay Parameter 37"],["59","Delay Parameter 38"],["60","Delay Parameter 39"],["61","Delay Parameter 40"],["62","Dynamic Type"],["63","Dynamic Location"],["64","Dynamic Parameter 1"],["65","Dynamic Parameter 2"],["66","Dynamic Parameter 3"],["67","Dynamic Parameter 4"],["68","Dynamic Parameter 5"],["69","Dynamic Parameter 6"],["70","Pitch Type"],["71","Pitch Location"],["72","Pitch Parameter 1"],["73","Pitch Parameter 2"],["74","Pitch Parameter 3"],["75","Pitch Parameter 4"],["76","Pitch Parameter 5"],["77","Pitch Parameter 6"],["78","Filter Type"],["79","Filter Location"],["80","Filter Parameter 1"],["81","Filter Parameter 2"],["82","Filter Parameter 3"],["83","Filter Parameter 4"],["84","Filter Parameter 5"],["85","Filter Parameter 6"],["86","Mod Type"],["87","Mod Location"],["80","Mod Parameter 1"],["89","Mod Parameter 2"],["90","Mod Parameter 3"],["91","Mod Parameter 4 "],["92","Mod Parameter 5"],["93","Mod Parameter 6"],["94","Looper Location"],["95","Looper Level"],["96","Looper Feedback"],["97","Looper FX1 Select"],["98","Looper FX2 Select"],["100","Looper Record/Overdub Press"],["101","Looper Play/Stop Press"],["102","Looper FX1 Press"],["103","Looper FX2 Press"]]},{"id":"m1","brand":"","name":"m1","cc":[["3","Rate"],["9","Depth"],["14","Lo-Fi"],["15","Shape - Sine"],["15","Shape - Triangle"],["15","Shape - Square"],["16","Division  - quarter note"],["16","Division - quarter triplet"],["16","Division - eight note"],["17","Program Type 1"],["17","Program Type 2"],["17","Program Type 3"],["18","Prog Chorus"],["18","Prog Phaser"],["18","Prog Tremolo"],["18","Prog Vibrato"],["18","Prog Rotary"],["18","Prog Filter"],["19","Tone"],["20","Symetry"],["21","X Modulation Control"],["22","Lo-Fi Env"],["23","Lo-Fi Drive"],["24","Lo-Fi Space"],["25","Lo-Fi Age"],["26","Lo-Fi Noise"],["27","Lo-Fi Warble"],["31","Bypass"],["31","Engage"],["85","Tap"],["86","Rotary Speed"],["87","Skip Engage/Rotary Break - Disengaged"],["87","Skip Engage/Rotary Break - Engaged"],["88","Output Volume"],["89","MIDI Clock Ignore - Disengaged"],["89","MIDI Clock Ignore - Engaged"],["90","Tweak Switch"],["102","Bank Switch"],["103","Tune Switch"],["104","Dry/Wet Mix"]]},{"id":"mc3","brand":"","name":"mc3","cc":[[0,"Bank Up"],[1,"Bank Down"],[2,"Set Toggle (All Presets)"],[2,"Set Toggle (Individual Presets)"],[3,"Clear Toggle (All Presets)"],[3,"Clear Toggle (Individual Presets)"],[4,"Page Toggle"],[5,"Set MIDI Clock BPM MSB"],[6,"Set MIDI Clock BPM LSB"],[7,"Looper Mode"],[8,"MIDI Clock Tap"],[9,"Jump to last bank"],[10,"Engage Preset A"],[11,"Engage Preset B"],[12,"Engage Preset C"],[13,"Engage Preset D"],[14,"Engage Preset E"],[15,"Engage Preset F"],[51,"Engage Expression 1"]]},{"id":"mc6mkii","brand":"","name":"mc6mkii","cc":[[0,"Bank Up"],[1,"Bank Down"],[2,"Set Toggle (All Presets)"],[2,"Set Toggle (Individual Presets)"],[3,"Clear Toggle (All Presets)"],[3,"Clear Toggle (Individual Presets)"],[4,"Page Toggle"],[5,"Set MIDI Clock BPM MSB"],[6,"Set MIDI Clock BPM LSB"],[7,"Looper Mode"],[8,"MIDI Clock Tap"],[9,"Jump to last bank"],[10,"Engage Preset A"],[11,"Engage Preset B"],[12,"Engage Preset C"],[13,"Engage Preset D"],[14,"Engage Preset E"],[15,"Engage Preset F"],[16,"Engage Preset G"],[17,"Engage Preset H"],[18,"Engage Preset I"],[19,"Engage Preset J"],[20,"Engage Preset K"],[21,"Engage Preset L"],[51,"Engage Expression 1"],[52,"Engage Expression 2"]]},{"id":"mc6pro","brand":"","name":"mc6pro","cc":[[0,"Bank Up"],[1,"Bank Down"],[2,"Set Toggle (All Presets)"],[2,"Set Toggle (Individual Presets)"],[3,"Clear Toggle (All Presets)"],[3,"Clear Toggle (Individual Presets)"],[4,"Page Toggle"],[5,"Set MIDI Clock BPM MSB"],[6,"Set MIDI Clock BPM LSB"],[7,"Looper Mode"],[8,"MIDI Clock Tap"],[9,"Jump to last bank"],[10,"Engage Preset A"],[11,"Engage Preset B"],[12,"Engage Preset C"],[13,"Engage Preset D"],[14,"Engage Preset E"],[15,"Engage Preset F"],[16,"Engage Preset G"],[17,"Engage Preset H"],[18,"Engage Preset I"],[19,"Engage Preset J"],[20,"Engage Preset K"],[21,"Engage Preset L"],[22,"Engage Preset M"],[23,"Engage Preset N"],[24,"Engage Preset O"],[25,"Engage Preset P"],[26,"Engage Preset Q"],[27,"Engage Preset R"],[28,"Engage Preset S"],[29,"Engage Preset T"],[30,"Engage Preset U"],[31,"Engage Preset V"],[32,"Engage Preset W"],[33,"Engage Preset X"],[51,"Engage Expression 1"],[52,"Engage Expression 2"],[53,"Engage Expression 3"],[54,"Engage Expression 4"]]},{"id":"mc8","brand":"","name":"mc8","cc":[[0,"Bank Up"],[1,"Bank Down"],[2,"Set Toggle (All Presets)"],[2,"Set Toggle (Individual Presets)"],[3,"Clear Toggle (All Presets)"],[3,"Clear Toggle (Individual Presets)"],[4,"Page Toggle"],[5,"Set MIDI Clock BPM MSB"],[6,"Set MIDI Clock BPM LSB"],[7,"Looper Mode"],[8,"MIDI Clock Tap"],[9,"Jump to last bank"],[10,"Engage Preset A"],[11,"Engage Preset B"],[12,"Engage Preset C"],[13,"Engage Preset D"],[14,"Engage Preset E"],[15,"Engage Preset F"],[16,"Engage Preset G"],[17,"Engage Preset H"],[18,"Engage Preset I"],[19,"Engage Preset J"],[20,"Engage Preset K"],[21,"Engage Preset L"],[22,"Engage Preset M"],[23,"Engage Preset N"],[24,"Engage Preset O"],[25,"Engage Preset P"],[26,"Engage Preset Q"],[27,"Engage Preset R"],[28,"Engage Preset S"],[29,"Engage Preset T"],[30,"Engage Preset U"],[31,"Engage Preset V"],[51,"Engage Expression 1"],[52,"Engage Expression 2"],[53,"Engage Expression 3"],[54,"Engage Expression 4"]]},{"id":"meraki","brand":"","name":"meraki","cc":[["27","Division L"],["27","Division L"],["27","Division L"],["28","Division R"],["28","Division R"],["28","Division R"],["26","Sync"],["31","Feedback Path"],["14","Time"],["15","Time R"],["22","Mod Depth"],["23","Mod Depth R"],["24","Mod Rate"],["23","Mod Rate R"],["102","Mod Shape L"],["103","Mod Shape R"],["104","Mod Phase"],["29","Bypass"],["85","Feedback Ramp"],["89","Clock Bypass"],["30","Tap Tempo"],["86","Expression Destination"],["87","Bypass Mode"]]},{"id":"mercuryx","brand":"","name":"mercuryx","cc":[[1,"mix"],[2,"dry trim"],[3,"wet mix"],[4,"expression pedal"],[5,"preamp off"],[5,"preamp volume pedal"],[5,"preamp tube"],[5,"preamp transistor"],[5,"preamp op-amp"],[6,"preamp location pre + dry"],[6,"preamp location pre"],[6,"preamp location fdbk"],[6,"preamp location pre tank"],[6,"preamp location post"],[7,"gain/volume pedal level"],[8,"balance"],[11,"preamp level"],[13,"delay structure standard"],[13,"delay structure reverse"],[14,"bypass"],[14,"enable"],[15,"time"],[16,"delay type digital"],[16,"delay type bbd"],[16,"delay type magnetic"],[17,"left note division"],[18,"right note division"],[19,"feedback"],[20,"cross feedback"],[21,"modulation"],[22,"damping"],[23,"dry blend"],[24,"half speed"],[28,"midi clock use global"],[24,"midi clock force listen"],[24,"midi clock force ignore"],[32,"reverb structure ultraplate"],[32,"reverb structure cathedra"],[32,"reverb structure spring"],[32,"reverb structure room"],[32,"reverb structure plate"],[32,"reverb structure hall"],[32,"reverb structure prism"],[32,"reverb structure gravity"],[33,"reverb parameter 1"],[34,"reverb parameter 2"],[35,"reverb parameter 3"],[36,"reverb parameter 4"],[37,"reverb parameter 5"],[38,"reverb parameter 6"],[39,"reverb parameter 7"],[40,"reverb parameter 8"],[41,"reverb parameter 9"],[42,"predelay blend"],[43,"gate attack"],[44,"gate hold"],[45,"gate decay"],[62,"dynamics type off"],[62,"dynamics type compressor"],[62,"dynamics type compressor link"],[62,"dynamics type swell"],[62,"dynamics type diffusion"],[62,"dynamics type limiter"],[62,"dynamics type limiter link"],[62,"dynamics type freeze"],[63,"dynamics location pre + dry"],[63,"dynamics location pre"],[63,"dynamics location feedback"],[63,"dynamics location pre tank"],[63,"dynamics location post"],[7,"gain/volume pedal level"],[64,"dynamics parameter 1"],[65,"dynamics parameter 2"],[66,"dynamics parameter 3"],[67,"dynamics parameter 4"],[68,"dynamics parameter 5"],[69,"dynamics parameter 6"],[70,"pitch type off"],[70,"pitch type poly chroma"],[70,"pitch type micro shift"],[70,"pitch type lo-fi"],[71,"pitch location pre + dry"],[71,"pitch location pre"],[71,"pitch location feedback"],[71,"pitch location pre tank"],[71,"pitch location post"],[72,"pitch parameter 1"],[73,"pitch parameter 2"],[74,"pitch parameter 3"],[75,"pitch parameter 4"],[76,"pitch parameter 5"],[77,"pitch parameter 6"],[78,"filter type off"],[78,"filter type ladder"],[78,"filter type state var"],[78,"filter type parameteric"],[79,"filter location pre + dry"],[79,"filter location pre"],[79,"filter location feedback"],[79,"filter location pre tank"],[79,"filter location post"],[80,"filter parameter 1"],[81,"filter parameter 2"],[82,"filter parameter 3"],[83,"filter parameter 4"],[84,"filter parameter 5"],[85,"filter parameter 6"],[86,"mod type off"],[86,"mod type chorus"],[86,"mod type vibrato"],[86,"mod type vowel mod"],[86,"mod type tremelo"],[86,"mod type hazy"],[87,"mod location pre + dry"],[87,"mod location pre"],[87,"mod location fdbk"],[87,"mod location pre tank"],[87,"mod location post"],[88,"mod parameter 1"],[89,"mod parameter 2"],[90,"mod parameter 3"],[91,"mod parameter 4"],[92,"mod parameter 5"],[93,"mod parameter 6"],[117,"toggle tuner mode"],[118,"trigger hold modifier press"],[118,"trigger hold modifier release"]]},{"id":"microcosm","brand":"","name":"microcosm","cc":[[5,"Subdiv"],[6,"Activity"],[7,"Shape"],[8,"Filter"],[9,"Mix"],[10,"Time"],[11,"Repeats"],[12,"Space"],[13,"Loop Level"],[14,"Mod Frequency"],[15,"Filter Resonance"],[16,"Effect Volume"],[17,"Looper Playback Speed"],[18,"Looper Playback (Stepped)"],[19,"Mod Depth"],[20,"Reverb Time"],[21,"Looper Fade Time"],[22,"Looper On / Off"],[23,"Looper Playback Dir."],[24,"Looper Routing"],[25,"Looper Only"],[26,"Looper Burst"],[27,"Looper Quantized"],[28,"Looper Record"],[29,"Looper Play"],[30,"Looper Overdub"],[31,"Looper Stop"],[34,"Looper Erase"],[35,"Looper Undo"],[45,"Copy Preset"],[46,"Save Preset"],[47,"Reverse Effect"],[48,"Hold Sampler"],[93,"TAP Tempo"],[102,"Bypass"]]},{"id":"ml10x","brand":"","name":"ml10x","cc":[[0,"Change Bank"],[4,"Simple Mode: Engage all loops in current preset"],[5,"Scroll Up"],[6,"Scroll Down"],[7,"Mute"],[8,"Unmute"],[10,"Simple Mode: Engage/Disengage Loop A Tip"],[11,"Simple Mode: Engage/Disengage Loop A Ring"],[12,"Simple Mode: Engage/Disengage Loop B Tip"],[13,"Simple Mode: Engage/Disengage Loop B Ring"],[14,"Simple Mode: Engage/Disengage Loop C Tip"],[15,"Simple Mode: Engage/Disengage Loop C Ring"],[16,"Simple Mode: Engage/Disengage Loop D Tip"],[17,"Simple Mode: Engage/Disengage Loop D Ring"],[18,"Simple Mode: Engage/Disengage Loop E Tip"],[19,"Simple Mode: Engage/Disengage Loop E Ring"],[20,"Simple Mode: Toggle Loop A Tip"],[21,"Simple Mode: Toggle Loop A Ring"],[22,"Simple Mode: Toggle Loop B Tip"],[23,"Simple Mode: Toggle Loop B Ring"],[24,"Simple Mode: Toggle Loop C Tip"],[25,"Simple Mode: Toggle Loop C Ring"],[26,"Simple Mode: Toggle Loop D Tip"],[27,"Simple Mode: Toggle Loop D Ring"],[28,"Simple Mode: Toggle Loop E Tip"],[29,"Simple Mode: Toggle Loop E Ring"]]},{"id":"ml5","brand":"","name":"ml5","cc":[[0,"Bypass All Loops"],[0,"Engage all Loops"],[1,"Bypass Loop A"],[1,"Engage Loop A"],[2,"Bypass Loop B"],[2,"Engage Loop B"],[3,"Bypass Loop C"],[3,"Engage Loop C"],[4,"Bypass Loop D"],[4,"Engage Loop D"],[5,"Bypass Loop E"],[5,"Engage Loop E"],[6,"Toggle Bypass - Loop A"],[7,"Toggle Bypass - Loop B"],[8,"Toggle Bypass - Loop C"],[9,"Toggle Bypass - Loop D"],[10,"Toggle Bypass - Loop E"]]},{"id":"ml5r","brand":"","name":"ml5r","cc":[[0,"Decrease Preset"],["1","Increase Preset"],["2","Bypass Loop A"],["3","Bypass Loop B"],["4","Bypass Loop C"],["5","Bypass Loop D"],["6","Bypass Loop E"],["2","Engage Loop A"],["3","Engage Loop B"],["4","Engage Loop C"],["5","Engage Loop D"],["6","Engage Loop E"],["2","Toggle Loop A"],["3","Toggle Loop B"],["4","Toggle Loop C"],["5","Toggle Loop D"],["6","Toggle Loop E"],["10","Set Loop Order"],["11","Set Loop Order but do not update connection until CC#12 is sent"],["12","Set Loop Bypass"],["20","Loop Bypass Persist"],["21","Master Mute"],["126","Show Loop Order"],["127","Save Preset with current settings"]]},{"id":"mobius","brand":"","name":"mobius","cc":[[57,"Autoswell - Rise Time"],[58,"Autoswell - Shape"],[29,"Chorus - Mix"],[28,"Chorus - Mode"],[30,"Chorus - Tone"],[18,"Depth"],[59,"Destroyer - Bit Depth"],[62,"Destroyer - Filter"],[64,"Destroyer - Mix"],[61,"Destroyer - Sample Rate"],[63,"Destroyer - Vinyl"],[60,"Exp On/Off"],[51,"Filter - Dry Level"],[52,"Filter - Frequency Middle"],[48,"Filter - Mode"],[50,"Filter - Resonance"],[69,"Filter - Stereo Spread"],[49,"Filter - Waveshape"],[26,"Flanger - Manual"],[24,"Flanger - Mode"],[25,"Flanger - Regen"],[67,"Formant - LFO"],[115,"Formant - Stereo Speed"],[65,"Formant - Vowel 1"],[66,"Formant - Vowel 2"],[15,"Level"],[70,"MIDI Clock Off/On"],[9,"Param 1"],[16,"Param 2"],[105,"Pattern Trem - Beat 1"],[106,"Pattern Trem - Beat 2"],[107,"Pattern Trem - Beat 3"],[108,"Pattern Trem - Beat 4"],[109,"Pattern Trem - Beat 5"],[110,"Pattern Trem - Beat 6"],[111,"Pattern Trem - Beat 7"],[112,"Pattern Trem - Beat 8"],[114,"Pattern Trem - Pan"],[113,"Pattern Trem - Waveshape"],[125,"Phase Reset"],[68,"Phaser - Headroom"],[44,"Phaser - Mode"],[45,"Phaser - Regen"],[47,"Phaser - Stereo speed"],[46,"Phaser - Waveshape"],[22,"Pre/Post"],[56,"Quadrature - LFO"],[55,"Quadrature - Mix"],[53,"Quadrature - Mode"],[54,"Quadrature - Shift 1"],[37,"Rotary - Acceleration"],[34,"Rotary - Horn Level"],[35,"Rotary - Preamp Drive"],[36,"Rotary - Slow Rotor Speed"],[39,"Rotary - Tap Select"],[17,"Speed"],[21,"Tap Division"],[39,"Tap Switch Tap/Speed"],[19,"Type Encoder"],[42,"Vibe - Headroom"],[41,"Vibe - Low End"],[43,"Vibe - Mode"],[40,"Vibe - Waveshape"],[31,"Vintage Trem - Mode"],[32,"Vintage Trem - Pan"],[80,"A footswitch Press Down"],[80,"A footswitch Press Up"],[82,"B footswitch Press Down"],[82,"B footswitch Press Up"],[102,"Bypass"],[102,"Engage"],[100,"Expression Pedal"],[0,"MIDI Patch Bank"],[93,"Remote TAP"],[81,"TAP footswitch Off"],[81,"TAP footswitch On"]]},{"id":"moodmkii","brand":"","name":"moodmkii","cc":[[102,"Bypass Micro-Looper - Off"],[102,"Bypass Micro-Looper - On"],[103,"Bypass Wet - Off"],[103,"Bypass Wet - On"],[55,"True Bypass Mode - Standard Buffered Bypass"],[55,"True Bypass Mode - True Bypass"],[104,"Hidden Menu - Off"],[104,"Hidden Menu - On"],[105,"Freeze Wet - Off"],[105,"Freeze Wet - On"],[106,"Overdub Micro-Looper - Off"],[106,"Overdub Micro-Looper - On"],[107,"Tap Tempo"],[93,"Tap Tempo - Legacy"],[21,"Wet Channel Mode - Reverb"],[21,"Wet Channel Mode - Delay"],[21,"Wet Channel Mode - Slip"],[22,"Routing - IN"],[22,"Routing - Micro-Looper + IN"],[22,"Routing - Micro-Looper"],[23,"Micro-Looper Channel Mode - Env"],[23,"Micro-Looper Channel Mode - Tape"],[23,"Micro-Looper Channel Mode - Stretch"],[14,"Knobs - Time"],[15,"Knobs - Mix"],[16,"Knobs - Length"],[17,"Knobs - Wet Modify"],[18,"Knobs - Clock"],[19,"Knobs - Micro-Looper Modify"],[20,"Knobs - Ramp Speed"],[24,"Hidden Options - Wet Channel Stereo Width"],[25,"Hidden Options - Ramping Waveform - Triangle"],[25,"Hidden Options - Ramping Waveform - Square"],[25,"Hidden Options - Ramping Waveform - Sine"],[25,"Hidden Options - Ramping Waveform - Random"],[25,"Hidden Options - Ramping Waveform - Smooth Random"],[26,"Hidden Options - Micro-Looper Channel Fade"],[27,"Hidden Options - Wet Channel Tone"],[28,"Hidden Options - Level Balance"],[29,"Hidden Options - Micro-Looper Channel Direct Micro-Loop"],[31,"Hidden Options - Sync - To Wet Channel"],[31,"Hidden Options - Sync - No Sync"],[31,"Hidden Options - Sync - To Micro-Looper Channel"],[32,"Hidden Options - Spread - Wet Channel Only"],[32,"Hidden Options - Spread - Both Channels"],[32,"Hidden Options - Spread - Micro-Looper Channel Only"],[33,"Hidden Options - Buffer Length - Half (like MKI)"],[33,"Hidden Options - Buffer Length - Full"],[51,"MIDI Clock Ignore - Ignore"],[51,"MIDI Clock Ignore - Follow"],[52,"Stop Ramping - Stop"],[52,"Stop Ramping - Resume"],[61,"Dip Switches - Time - Off"],[61,"Dip Switches - Time - On"],[62,"Dip Switches - Wet Channel Modify - Off"],[62,"Dip Switches - Wet Channel Modify - On"],[63,"Dip Switches - Clock - Off"],[63,"Dip Switches - Clock - On"],[64,"Dip Switches - Micro-Looper Channel Modify - Off"],[64,"Dip Switches - Micro-Looper Channel Modify - On"],[65,"Dip Switches - Length - Off"],[65,"Dip Switches - Length - On"],[66,"Dip Switches - Bounce - Off"],[66,"Dip Switches - Bounce - On"],[67,"Dip Switches - Sweep - Off"],[67,"Dip Switches - Sweep - On"],[68,"Dip Switches - Polarity - Off"],[68,"Dip Switches - Polarity - On"],[71,"Dip Switches - Classic - Off"],[71,"Dip Switches - Classic - On"],[72,"Dip Switches - Miso - Off"],[72,"Dip Switches - Miso - On"],[73,"Dip Switches - Spread - Off"],[73,"Dip Switches - Spread - On"],[74,"Dip Switches - Dry Kill - Off"],[74,"Dip Switches - Dry Kill - On"],[75,"Dip Switches - Trails - Off"],[75,"Dip Switches - Trails - On"],[76,"Dip Switches - Latch - Off"],[76,"Dip Switches - Latch - On"],[77,"Dip Switches - No Dub Micro-Looper - Off"],[77,"Dip Switches - No Dub Micro-Looper - On"],[78,"Dip Switches - Smooth - Off"],[78,"Dip Switches - Smooth - On"]]},{"id":"nemesis","brand":"","name":"nemesis","cc":[[1,"Factory Delay Engine"],[2,"Delay Time"],[3,"Maximum Delay Time"],[5,"Feedback"],[6,"Wet/Dry Mix"],[7,"Modulation Depth"],[8,"Modulation Rate"],[9,"Intensity (Assignable)"],[10,"Output Level"],[11,"Diffusion"],[12,"Distortion"],[13,"High Pass Filter"],[14,"Low Pass Filter"],[15,"Sample Rate Reduction"],[16,"Sweep Filter Frequency"],[17,"Sweep Filter Q"],[18,"Sweep Filter Depth"],[19,"Sweep Filter Mix"],[20,"Wow and Flutter Depth"],[21,"Wow and Flutter Rate"],[22,"Wow Modulation Noise"],[23,"Tremolo Depth (Stereo)"],[24,"Pitch Shift Control"],[25,"Tap 1 Level "],[26,"Tap 1 Pan"],[27,"Tap 2 Level"],[28,"Tap 2 Pan"],[29,"Tap 2 Delay Time"],[30,"Input Low Pass Filter"],[31,"Feedback Maximum"],[32,"LFO Lock to Delay Time"],[33,"Invert Left Wet Phase"],[34,"Invert Right Wet Phase"],[35,"I/O Routing Option"],[36,"Multi-Feedback Mode"],[37,"Merge Stereo Outputs"],[38,"Bypass"],[39,"Intensity Knob Remap"],[40,"Mod Knob Remap"],[41,"Rate Knob Remap"],[42,"Tempo Division"],[50,"Octave Shift Control "],[51,"Delay Send Control"],[80,"Preset Down"],[82,"Preset Up"],[93,"Remote Tap"],[97,"Infinite Hold"],[101,"Bypass"],[102,"Remote Bypass"],[103,"Recall Preset Bypassed"],[104,"Recall Preset Engaged"],[24,"Pitch Shift Table"]]},{"id":"newwave","brand":"","name":"newwave","cc":[["1","Bypass"],["1","Engage"],["2","LFO Wave Shape"],["3","Depth"],["4","Speed"],["5","Phase"],["6","Ratio"],["7","Delay"],["8","Set Speed in Hz"],["9","RAMP Up or Down"],["10","Tap Tempo"]]},{"id":"nightsky","brand":"","name":"nightsky","cc":[[0,"Bank Select"],[11,"Mix - Reverb Level"],[12,"Mix - Dry Level"],[13,"Mod - Speed"],[14,"Mod - Target"],[15,"Mod - Depth"],[16,"Mod - Shape"],[17,"Decay - Pre-Delay"],[18,"Decay - Length"],[19,"Decay - Texture"],[20,"Decay - Size/Pitch"],[21,"Decay - Quantize"],[22,"Tone - Low Cut"],[23,"Tone - High Cut"],[24,"Tone - Filter"],[25,"Tone - Lowpass Q"],[26,"Voice - Interval"],[27,"Voice - Scale Select"],[28,"Voice - Shimmer"],[29,"Voice - Shimmer Level"],[30,"Voice - Glimmer"],[31,"Voice - Glimmer Gain"],[33,"Voice - Drive"],[34,"Voice - Drive Level"],[35,"Freeze"],[36,"Morph"],[37,"Morph Speed"],[41,"Sequence Mode"],[42,"Sequencer Step 1 Off/On"],[43,"Sequencer Step 2 Off/On"],[44,"Sequencer Step 3 Off/On"],[45,"Sequencer Step 4 Off/On"],[46,"Sequencer Step 5 Off/On"],[47,"Sequencer Step 6 Off/On"],[48,"Sequencer Step 7 Off/On"],[49,"Sequencer Step 8 Off/On"],[50,"Sequencer Step 1 Size"],[51,"Sequencer Step 2 Size"],[52,"Sequencer Step 3 Size"],[53,"Sequencer Step 4 Size"],[54,"Sequencer Step 5 Size"],[55,"Sequencer Step 6 Size"],[56,"Sequencer Step 7 Size"],[57,"Sequencer Step 8 Size"],[58,"Sequencer Glide"],[60,"MIDI Expression Off/On"],[63,"MIDI Clock Off/On"],[80,"Footswitch Favorite"],[81,"Footswitch On"],[82,"Footswitch Freeze"],[83,"Persist"],[85,"Output Stereo/Sum"],[93,"Sequence Tap"],[100,"Expression Pedal"],[102,"Bypass/On"]]},{"id":"onward","brand":"","name":"onward","cc":[[102,"Freeze Bypass - Off"],[102,"Freeze Bypass - On"],[103,"Glitch Bypass - Off"],[103,"Glitch Bypass - On"],[104,"Alt Menu - Exit"],[104,"Glitch Bypass - Enter"],[105,"Glitch Hold - Off"],[105,"Glitch Hold - On"],[106,"Freeze Hold - Off"],[106,"Freeze Hold - On"],[108,"Retrigger Glitch"],[109,"Retrigger Freeze"],[14,"Knobs - Size"],[14,"Knobs - Size"],[15,"Knobs - Mix"],[16,"Knobs - Octave"],[17,"Knobs - Error"],[18,"Knobs - Sustain"],[19,"Knobs - Texture"],[20,"Knobs - Ramp Speed"],[21,"Error Toggle - Timing"],[21,"Error Toggle - Condition"],[21,"Error Toggle - Playback"],[22,"Fade Toggle - Long"],[22,"Fade Toggle - User"],[22,"Fade Toggle - Short"],[23,"Animate Toggle - Vibrato"],[23,"Animate Toggle - Off"],[23,"Animate Toggle - Chorus"],[61,"Dip Switches (L) - Size - Off"],[61,"Dip Switches (L) - Size - On"],[62,"Dip Switches (L) - Error - Off"],[62,"Dip Switches (L) - Error - On"],[63,"Dip Switches (L) - Sustain - Off"],[63,"Dip Switches (L) - Sustain - On"],[64,"Dip Switches (L) - Texture - Off"],[64,"Dip Switches (L) - Texture - On"],[65,"Dip Switches (L) - Octave - Off"],[65,"Dip Switches (L) - Octave - On"],[66,"Dip Switches (L) - Bounce - Off"],[66,"Dip Switches (L) - Bounce - On"],[67,"Dip Switches (L) - Sweep - Off"],[67,"Dip Switches (L) - Sweep - On"],[68,"Dip Switches (L) - Polarity - Off"],[68,"Dip Switches (L) - Polarity - On"],[71,"Dip Switches (R) - Miso - Off"],[71,"Dip Switches (R) - Miso - On"],[72,"Dip Switches (R) - Spread - Off"],[72,"Dip Switches (R) - Spread - On"],[73,"Dip Switches (R) - Latch - Off"],[73,"Dip Switches (R) - Latch - On"],[74,"Dip Switches (R) - Sidechain - Off"],[74,"Dip Switches (R) - Sidechain - On"],[75,"Dip Switches (R) - Duck - Off"],[75,"Dip Switches (R) - Duck - On"],[76,"Dip Switches (R) - Reverse - Off"],[76,"Dip Switches (R) - Reverse - On"],[77,"Dip Switches (R) - 1/2 Speed - Off"],[77,"Dip Switches (R) - 1/2 Speed - On"],[78,"Dip Switches (R) - Manual - Off"],[78,"Dip Switches (R) - Manual - On"],[100,"Expression over Midi"],[111,"Preset Save"],[51,"MIDI Clock Ignore - Ignore"],[51,"MIDI Clock Ignore - Follow"],[52,"Ramping - Stop"],[52,"Ramping - Resume"],[56,"Factory Reset"],[57,"Dry Kill - Off"],[57,"Dry Kill - On"],[58,"Trails - Off"],[58,"Trails - On"],[107,"Tap Tempo"],[93,"Tap Tempo - Legacy"],[24,"Knobs - Sensitivity (Hidden Option)"],[25,"Knobs - Balance (Hidden Option)"],[26,"Knobs - Duck Depth (Hidden Option)"],[27,"Knobs - Error Blend (Hidden Option)"],[28,"Knobs - User Fade (Hidden Option)"],[29,"Knobs - Filter (Hidden Option)"],[31,"Error Routing - Glitch (Hidden Option)"],[31,"Error Routing - Both (Hidden Option)"],[31,"Error Routing - Freeze (Hidden Option)"],[32,"Sustain Routing - Glitch (Hidden Option)"],[32,"Sustain Routing - Both (Hidden Option)"],[32,"Sustain Routing - Freeze (Hidden Option)"],[33,"Effects Routing - Glitch (Hidden Option)"],[33,"Effects Routing - Both (Hidden Option)"],[33,"Effects Routing - Freeze (Hidden Option)"],[53,"Midi Sync Subdivision - Whole"],[53,"Midi Sync Subdivision - Dotted Half"],[53,"Midi Sync Subdivision - Half"],[53,"Midi Sync Subdivision - Dotted Quarter"],[53,"Midi Sync Subdivision - Quarter"],[53,"Midi Sync Subdivision - Dotted 8th"],[53,"Midi Sync Subdivision - 8th"],[53,"Midi Sync Subdivision - 8th note triplet"],[53,"Midi Sync Subdivision - 16th"]]},{"id":"overture","brand":"","name":"overture","cc":[[4,"Expression Pedal"],[7,"Volume"],[11,"Expression Volume"],[12,"Drive"],[13,"Bass"],[17,"Treble"],[18,"Boost Level"],[102,"Pedal Active"],[102,"Pedal Bypassed"],[103,"Boost Off"],[103,"Boost On"],[104,"Drive Mode - Clean Boost"],[104,"Drive Mode - Classic"],[104,"Drive Mode - Boutique"],[104,"Drive Mode - Versatile"],[104,"Drive Mode - Smooth"],[104,"Drive Mode - Crunch"],[105,"Bank"]]},{"id":"particle2","brand":"","name":"particle2","cc":[[4,"Expression pedal"],[12,"Blend"],[13,"Chop"],[14,"Freeze Threshold"],[15,"Feedback"],[16,"Delay"],[17,"Delay Random"],[18,"Pitch"],[19,"Pitch Detune"],[20,"Pitch Random"],[21,"Density"],[22,"Direction"],[25,"LFO Rate"],[27,"Feedback Lowpass Filter"],[80,"Freeze"],[81,"Effect On"],[88,"Effect on (Receive Only)"],[89,"Tap (Receive Only)"],[102,"Mode: Pitch/Density"],[102,"Mode: Pitch/LFO"],[102,"Mode: Pitch/Detune"],[102,"Mode: Delay/Random"],[102,"Mode: Delay/Pitch"],[102,"Mode: Delay/Reverse"],[102,"Mode: Delay/LFO"],[102,"Mode: Delay/Density"],[103,"Chop/Freeze"],[104,"Delay/Pitch"],[105,"Param"],[106,"Delay Note Division"],[107,"Density Note Division"],[108,"Chop Note Division"],[109,"LFO Rate Note Division"],[111,"Trails Mode"],[118,"Freeze Mode"],[119,"Mode Switch Reassigns Knobs"]]},{"id":"polyphrase","brand":"","name":"polyphrase","cc":[[1,"Repeats"],[2,"Tone"],[3,"Depth"],[4,"Rate"],[5,"Slider L"],[6,"Slider R"],[7,"Mix"],[8,"Time"],[9,"Echo Style"],[10,"Sync"],[11,"Trig Mode"],[13,"Bypass"],[14,"Infinite"],[15,"Tap Tempo"]]},{"id":"quadcortex","brand":"","name":"quadcortex","cc":[[0,"Bank (MSB) - Preset Group 0 - 127"],[0,"Bank (MSB) - Preset Group 128 - 256"],[1,"Expression Pedal 1"],[2,"Expression Pedal 2"],[32,"Bank (LSB) - Setlist change (PC)"],[35,"Enable/Bypass Footswitch A"],[36,"Enable/Bypass Footswitch B"],[37,"Enable/Bypass Footswitch C"],[38,"Enable/Bypass Footswitch D"],[39,"Enable/Bypass Footswitch E"],[40,"Enable/Bypass Footswitch F"],[41,"Enable/Bypass Footswitch G"],[42,"Enable/Bypass Footswitch H"],[43,"Scene Select"],[44,"Tempo BPM"],[45,"Tuner On/Off"],[46,"Open/Close Gig View"],[47,"Change Mode - Preset"],[47,"Change Mode - Scene"],[47,"Change Mode - Stomp"],[48,"Open / Close Looper UI"],[49,"Duplicate / Stop Duplicate"],[50,"Enable / Disable One Shot"],[51,"Enable / Disable Half Speed"],[52,"Punch Feature"],[53,"Record / Stop"],[54,"Play / Stop"],[55,"Enable / Disable Reverse"],[56,"Undo / Redo"],[57,"Duplicate Mode Parameter - Free"],[57,"Duplicate Mode Parameter - Sync"],[58,"Quantize Parameter"],[59,"MIDI Clock Start"],[60,"Perform / Params mode"],[61,"Routing Mode parameter"]]},{"id":"r1","brand":"","name":"r1","cc":[[3,"Decay"],[14,"Swell"],[15,"Mix"],[20,"Rate"],[21,"Depth"],[22,"Pre Delay"],[23,"Prog"],[24,"Lo"],[25,"High"],[26,"X"],[27,"Tweak Switch"],[28,"A|B|C| Switch (Bank)"],[29,"Tune Switch"],[30,"Bypass Switch"],[31,"Sus/Latch"]]},{"id":"raster2","brand":"","name":"raster2","cc":[["4","Expression pedal"],["14","Blend"],["15","Blend L/R tilt"],["16","Shift"],["17","Shift L/R tilt"],["18","Delay time"],["19","Delay time L/R tilt"],["20","Feedback"],["21","Feedback L/R tilt"],["22","Modulation rate"],["23","Modulation phase L/R tilt"],["24","Modulation depth"],["25","Modulation depth L/R tilt"],["26","Tone"],["80","SHIFT/TAP footswitch"],["88","Bypass (Receive only)"],["89","Tap (Receive only)"],["81","ON footswitch"],["90","Shift on/off (Receive only)"],["102","Modulation waveform"],["103","Modulation destination"],["104","Shift mode"],["105","Delay structure"],["106","Feedback mode"],["107","Delay range"],["108","Delay note division"],["109","Modulation note division"],["110","Receive MIDI clock (global)"],["111","Trails mode"],["112","Left footswitch mode*"],["113","Right footswitch mode*"],["114","Shift link left/right channels"],["119","Feedback invert**"]]},{"id":"reversemodec","brand":"","name":"reversemodec","cc":[[102,"Bypass - Off"],[102,"Bypass - On"],[104,"Alt Menu - Off"],[104,"Alt Menu - Of"],[105,"Freeze - Off"],[105,"Freeze - On"],[106,"Half Speed - Off"],[106,"Half Speed - On"],[103,"Tap Tempo"],[93,"Tap Tempo - Legacy"],[21,"Mod Sync - Sync"],[21,"Mod Sync - Off"],[21,"Mod Sync - Free"],[22,"Mod Type - Vibrato"],[22,"Mod Type - Tremolo"],[22,"Mod Type - Freq Shift Up"],[23,"Sequencer Mode - Run"],[23,"Sequencer Mode - Off"],[23,"Sequencer Mode - Env"],[14,"Knobs - Time"],[15,"Knobs - Mix"],[16,"Knobs - Feedback"],[17,"Knobs - Offset - Region 1"],[17,"Knobs - Offset - Region 2"],[17,"Knobs - Offset - Region 3"],[17,"Knobs - Offset - Region 4"],[17,"Knobs - Offset - Region 5"],[17,"Knobs - Offset - Region 6"],[17,"Knobs - Offset - Region 7"],[18,"Knobs - Balance - Reverse Octave"],[18,"Knobs - Balance - Region 2"],[18,"Knobs - Balance - Reverse"],[18,"Knobs - Balance - Region 4"],[18,"Knobs - Balance - Forward"],[18,"Knobs - Balance - All"],[19,"Knobs - Filter"],[20,"Knobs - Ramp Speed"],[24,"Hidden Options - X16 Seqencer Subdivision"],[24,"Hidden Options - X8 Seqencer Subdivision"],[24,"Hidden Options - X4 Seqencer Subdivision"],[24,"Hidden Options - X2 Seqencer Subdivision"],[24,"Hidden Options - X1 Seqencer Subdivision"],[24,"Hidden Options - X1/2 Seqencer Subdivision"],[24,"Hidden Options - X1/4 Seqencer Subdivision"],[24,"Hidden Options - X1/8 Seqencer Subdivision"],[25,"Hidden Options - Ramping Waveform - Triangle"],[25,"Hidden Options - Ramping Waveform - Square"],[25,"Hidden Options - Ramping Waveform - Sine"],[25,"Hidden Options - Ramping Waveform - Sample & Hold"],[25,"Hidden Options - Ramping Waveform - Smooth Random"],[27,"Hidden Options - Modulation Depth"],[28,"Hidden Options - 0.25X Mod Speed"],[28,"Hidden Options - 0.33X Mod Speed"],[28,"Hidden Options - 0.5X Mod Speed"],[28,"Hidden Options - 0.75X Mod Speed"],[28,"Hidden Options - 1X Mod Speed"],[28,"Hidden Options - 1.5X Mod Speed"],[28,"Hidden Options - 2X Mod Speed"],[28,"Hidden Options - 3X Mod Speed"],[28,"Hidden Options - 4X Mod Speed"],[28,"Hidden Options - 8X Mod Speed"],[28,"Hidden Options - 16X Mod Speed"],[28,"Hidden Options - 32X Mod Speed"],[31,"Hidden Options - Octave Type - Oct Down"],[31,"Hidden Options - Octave Type - Both Oct"],[31,"Hidden Options - Octave Type - Oct Up"],[33,"Hidden Options - Sequence Spacing - Rest"],[33,"Hidden Options - Sequence Spacing - Skip"],[51,"MIDI Clock Ignore - Ignore"],[51,"MIDI Clock Ignore - Follow"],[52,"Stop Ramping - Stop"],[52,"Stop Ramping - Resume"],[56,"Factory Reset"],[57,"Dry Kill - Off"],[57,"Dry Kill - On"],[61,"Dip Switches (L) - Time - Off"],[61,"Dip Switches (L) - Time - On"],[62,"Dip Switches (L) - Offset - Off"],[62,"Dip Switches (L) - Offset - On"],[63,"Dip Switches (L) - Balence - Off"],[63,"Dip Switches (L) - Balence - On"],[64,"Dip Switches (L) - Filter - Off"],[64,"Dip Switches (L) - Filter - On"],[65,"Dip Switches (L) - Feedback - Off"],[65,"Dip Switches (L) - Feedback - On"],[66,"Dip Switches (L) - Bounce - Off"],[66,"Dip Switches (L) - Bounce - On"],[67,"Dip Switches (L) - Sweep - Off"],[67,"Dip Switches (L) - Sweep - On"],[68,"Dip Switches (L) - Polarity - F"],[68,"Dip Switches (L) - Polarity - R"],[71,"Dip Switches (R) - Swap - Off"],[71,"Dip Switches (R) - Swap - On"],[72,"Dip Switches (R) - Miso - Off"],[72,"Dip Switches (R) - Miso - On"],[73,"Dip Switches (R) - Spread - Off"],[73,"Dip Switches (R) - Spread - On"],[74,"Dip Switches (R) - Trails - Off"],[74,"Dip Switches (R) - Trails - On"],[75,"Dip Switches (R) - Latch - Off"],[75,"Dip Switches (R) - Latch - On"],[76,"Dip Switches (R) - Feed Type - Off"],[76,"Dip Switches (R) - Feed Type - On"],[77,"Dip Switches (R) - Fade Type - Off"],[77,"Dip Switches (R) - Fade Type - On"],[78,"Dip Switches (R) - Mod Type - Off"],[78,"Dip Switches (R) - Mod Type - On"],[111,"Preset Save"],[100,"Expression over Midi"]]},{"id":"solisventus","brand":"","name":"solisventus","cc":[["0","Load a Delay algorithm to X"],["1","Load a Reverb algorithm to X"],["2","Load a Delay algorithm to Y"],["3","Load a Reverb algorithm to Y"],["4","Set Time on X"],["5","Set Wet Level on X"],["6","Set Dry Level on X"],["7","Set Param1 value on X"],["8","Set Param2 value on X"],["9","Set Param3 value on X"],["10","Set Param4 value on X"],["11","Set Param5 value on X"],["12","Set Param6 value on X"],["13","Set Param7 value on X"],["14","Set Param8 value on X"],["15","Set Dynamics on X"],["16","Set Dynamics Mode on X"],["17","Set Dynamics Attack on X"],["18","Set Dynamics Release on X"],["19","Set Dynamics Threshold on X"],["20","Set Dynamics Intensity on X"],["21","Set Time on Y"],["22","Set Wet Level on Y"],["23","Set Dry Level on Y"],["24","Set Param1 value on Y"],["25","Set Param2 value on Y"],["26","Set Param3 value on Y"],["27","Set Param4 value on Y"],["28","Set Param5 value on Y"],["29","Set Param6 value on Y"],["30","Set Param7 value on Y"],["31","Set Param8 value on Y"],["32","Set Dynamics on Y"],["33","Set Dynamics Mode on Y"],["34","Set Dynamics Attack on Y"],["35","Set Dynamics Release on Y"],["36","Set Dynamics Threshold on Y"],["37","Set Dynamics Intensity on Y"],["38","Set Crossover"],["39","Set Crossover Mode"],["40","Set Crossover Frequency"],["41","Set Tempo Mode on X"],["42","Set Tempo Subdivision on X"],["43","Set Tempo Display on X"],["44","Set Tempo Change on X"],["45","Set Tempo Mode on Y"],["46","Set Tempo Subdivision on Y"],["47","Set Tempo Display on Y"],["48","Set Tempo Change on Y"],["49","Set XY Routing"],["50","Set Volume Trim"],["51","Set Bypass Trails"],["52","Set Spillover"],["53","Set Trails on X"],["54","Set Trails on Y"],["55","Set DSP X"],["56","Set DSP Y"],["57","Bypass / Engage"],["58","Tap Tempo"],["59","Expression 1"],["60","Expression 2"],["61","Swap XY"],["62","Load Patch"],["63","Patch Scroll"],["64","Display Update Inhibit"],["65","Auto-Ramp"],["66","Auto-Ramp X"],["67","Auto-Ramp Y"],["68","Looper Record"],["69","Looper Play"],["70","Looper Stop"],["71","Looper Erase"],["72","Looper 2X Speed"],["73","Looper Reverse"],["74","Looper AscendDub"],["75","Bank Scroll"]]},{"id":"speculartempus","brand":"","name":"speculartempus","cc":[[14,"Blend"],[15,"Decay/Time"],[16,"Param"],[17,"Intensity/Repeats"],[18,"Load Patch A"],[19,"Load Patch B"],[20,"Bank Down"],[21,"Bank Up"],[22,"Bypass Pedal"],[22,"Engage Pedal"],[23,"Kill Dry: Off"],[23,"Kill Dry: On"],[24,"Aux-Out: Off"],[24,"Aux-Out: On"],[25,"Tap Tempo"]]},{"id":"sunset","brand":"","name":"sunset","cc":[[10,"A - Bypass"],[10,"A - On"],[11,"Circuit Select A"],[12,"Level A"],[13,"Drive A"],[14,"Tone A"],[15,"B - Bypass"],[15,"B - On"],[16,"Circuit Select B"],[17,"Level B"],[18,"Drive B"],[19,"Tone B"],[20,"Config [A/B]"],[21,"Bright"],[22,"Noise Gate"],[33,"Bypass A and B"],[33,"On A and B"],[0,"MIDI Patch Bank"],[7,"Volume Pedal"],[60,"MIDI Expression Off"],[60,"MIDI Expression On"],[100,"Expression Pedal"]]},{"id":"synesthesia","brand":"","name":"synesthesia","cc":[[14,"DSP-X: Bypass"],[14,"DSP-X: Engage"],[15,"DSP-Y: Bypass"],[15,"DSP-Y: Engage"],[16,"Ramp-X: Release"],[16,"Ramp-X: Trigger"],[17,"Ramp-Y: Release"],[17,"Ramp-Y: Trigger"],[18,"X Tap-Divide"],[19,"Y Tap-Divide"],[20,"X Algorithm"],[21,"Y Algorithm"],[22,"Bypass"],[22,"Engage"],[23,"Tap Tempo"],[24,"Pre"],[24,"Post"],[25,"DSP Routing"],[26,"Load Patch A"],[26,"Load Patch B"],[27,"Toggle Rotor Speed"],[28,"Reset Sequence"],[29,"Bank Down"],[29,"Bank Up"],[30,"X-Speed"],[31,"X-Depth"],[32,"X-Tweak"],[33,"X-SP1"],[34,"X-SP2"],[35,"X-SP3"],[36,"Y-Speed"],[37,"Y-Depth"],[38,"Y-Tweak"],[39,"Y-SP1"],[40,"Y-SP2"],[41,"Y-SP3"],[42,"Expression"],[43,"Patch Down"],[43,"Patch Up"]]},{"id":"tensor","brand":"","name":"tensor","cc":[[4,"Expression pedal"],[20,"Speed"],[21,"Time"],[22,"Pitch"],[23,"Blend"],[24,"Random"],[25,"Loop Decay"],[28,"Hold Mode"],[29,"Loop direction"],[30,"Pitch Semitones"],[31,"Pitch glide rate"],[80,"Hold footswitch"],[81,"Effect on Footswitch"],[85,"Hold momentary/latch"],[86,"Effect momentary/latch"],[87,"Hold/Sample (Receive only)"],[88,"Bypass (Receive only)"],[90,"Drift (Receive only)"]]},{"id":"theoptimist","brand":"","name":"theoptimist","cc":[["1","OD 1 ON/OFF"],["2","OD 2 ON/OFF"],["3","EQ ON/OFF"]]},{"id":"timeline","brand":"","name":"timeline","cc":[[23,"Boost"],[45,"dBucket - Range"],[18,"Depth"],[56,"Digital - Repeat Dynamics"],[59,"dTape - Low End"],[58,"dTape - Tape Speed"],[36,"Dual - Config"],[33,"Dual - Mix 2"],[34,"Dual - Repeats 2"],[32,"Dual - Time 2"],[54,"Duck - Feedback"],[55,"Duck - Release"],[37,"Duck - Sensitivity"],[60,"Exp On/Off"],[15,"Filter"],[41,"Filter - Depth"],[28,"Filter - LFO"],[43,"Filter - Location"],[40,"Filter - Q"],[42,"Filter - Speed"],[95,"Full/Half Speed (toggle)"],[16,"Grit"],[47,"High Pass"],[25,"Ice - Blend"],[30,"Ice - Interval"],[46,"Ice - Slice"],[50,"Lo-Fi - Bit Depth"],[53,"Lo-Fi - Filter"],[51,"Lo-Fi - Mix"],[49,"Lo-Fi - Sample Rate"],[52,"Lo-Fi - Vinyl"],[98,"Looper Level"],[63,"MIDI Clock On/Off"],[14,"Mix"],[39,"Pattern - Pattern"],[22,"Persist On/Off"],[86,"Play"],[96,"Pre/Post (toggle)"],[87,"Record"],[90,"Redo"],[9,"Repeats"],[94,"Reverse (toggle)"],[38,"Smear"],[17,"Speed"],[85,"Stop"],[44,"Swell - Rise Time"],[21,"Tap Division"],[3,"Time"],[57,"Trem - Depth"],[29,"Trem - LFO"],[61,"Trem - Speed"],[19,"Type Encoder"],[89,"Undo (to initial loop)"],[80,"A footswitch Press Down"],[80,"A footswitch Press Up"],[82,"B footswitch Press Down"],[82,"B footswitch Press Up"],[102,"Bypass"],[102,"Engage"],[100,"Expression Pedal"],[0,"MIDI Patch Bank"],[125,"Phase Reset"],[93,"Remote TAP"],[81,"TAP footswitch Off"],[81,"TAP footswitch On"]]},{"id":"ultraviolet","brand":"","name":"ultraviolet","cc":[[0,"Bank Select"],["11","Mode"],["12","Bias"],["13","Speed"],["14","Intensity"],["15","Volume"],["27","Footswitch"],["60","MIDI Expression Off/On"],["93","Tap"],["100","Expression Pedal"],["102","Bypass/Engage"]]},{"id":"ventris","brand":"","name":"ventris","cc":[[1,"Reverb Engine A - Room"],[1,"Reverb Engine A - Hall"],[1,"Reverb Engine A - E-Dome"],[1,"Reverb Engine A - True Spring"],[1,"Reverb Engine A - Plate"],[1,"Reverb Engine A - Lo-Fi"],[1,"Reverb Engine A - Modverb"],[1,"Reverb Engine A - Shimmer"],[1,"Reverb Engine A - Echoverb"],[1,"Reverb Engine A - Swell"],[1,"Reverb Engine A - Offspring"],[1,"Reverb Engine A - Reverse"],[1,"Reverb Engine A - Outboard Spring"],[1,"Reverb Engine A - Metal Box"],[2,"Time A"],[3,"Mix A"],[4,"Pre-Delay A"],[5,"Treble A"],[6,"Output A"],[7,"Bass A"],[8,"Diffusion A"],[9,"Modulation Depth A"],[10,"Modulation Rate A"],[11,"Pre-Delay Feedback A"],[12,"Pre-Delay Mod Depth A"],[13,"Size A"],[14,"Input Low Cut A - Offspring"],[14,"Input Low Cut A - 20Hz"],[14,"Input Low Cut A - 100Hz"],[14,"Input Low Cut A - 125Hz"],[14,"Input Low Cut A - 150Hz"],[14,"Input Low Cut A - 200Hz"],[14,"Input Low Cut A - 250Hz"],[14,"Input Low Cut A - Default Setting"],[15,"Engine Param 1 A"],[16,"Engine Param 2 A"],[17,"Engine Param 3 A"],[18,"Engine Param 4 A"],[19,"Engine Param 5 A"],[20,"Engine Special Control A"],[25,"Reverb Engine B - Room"],[25,"Reverb Engine B - Hall"],[25,"Reverb Engine B - E-Dome"],[25,"Reverb Engine B - True Spring"],[25,"Reverb Engine B - Plate"],[25,"Reverb Engine B - Lo-Fi"],[25,"Reverb Engine B - Modverb"],[25,"Reverb Engine B - Shimmer"],[25,"Reverb Engine B - Echoverb"],[25,"Reverb Engine B - Swell"],[25,"Reverb Engine B - Offspring"],[25,"Reverb Engine B - Reverse"],[25,"Reverb Engine B - Outboard Spring"],[25,"Reverb Engine B - Metal Box"],[26,"Time B"],[27,"Mix B"],[28,"Pre-Delay B"],[29,"Treble B"],[30,"Output B"],[31,"Bass B"],[32,"Diffusion B"],[33,"Modulation Depth B"],[34,"Modulation Rate B"],[35,"Pre-Delay Feedback B"],[36,"Pre-Delay Mod Depth B"],[37,"Size B"],[38,"Input Low Cut B - Offspring"],[38,"Input Low Cut B - 20Hz"],[38,"Input Low Cut B - 100Hz"],[38,"Input Low Cut B - 125Hz"],[38,"Input Low Cut B - 150Hz"],[38,"Input Low Cut B - 200Hz"],[38,"Input Low Cut B - 250Hz"],[38,"Input Low Cut B - Default Setting"],[39,"Engine Param 1 B"],[40,"Engine Param 2 B"],[41,"Engine Param 3 B"],[42,"Engine Param 4 B"],[43,"Engine Param 5 B"],[44,"Engine Special Control B"],[50,"Dual/Single Mode"],[53,"I/O Routing Option - Auto-Detect"],[53,"I/O Routing Option - Mono In - Stereo Out"],[53,"I/O Routing Option - Stereo In - Stereo Out"],[53,"I/O Routing Option - Mono In - Mono Out - Dry Out 2"],[53,"I/O Routing Option - Stereo In - Wet Sum to Mono"],[53,"I/O Routing Option - Dual Mono - Independent Stereo"],[53,"I/O Routing Option - Mono In - Independent Stereo Out"],[53,"I/O Routing Option - Pre-Processing External Loop"],[54,"Reverb Send"],[55,"A/B Crossfade"],[80,"Preset Decrement"],[82,"Preset Increment"],[93,"Remote Tap Tempo"],[97,"Remote Hold Function"],[100,"Remote Expression"],[101,"Bypass"],[101,"Engage"],[102,"Toggle Bypass/Engage"],[103,"Recall Preset - Bypass"],[104,"Recall Preset - Engage"]]},{"id":"verbs","brand":"","name":"verbs","cc":[[14,"Onset"],[15,"Mix"],[16,"Low Cut"],[17,"Smoosh"],[18,"Crescendo - On"],[18,"Crescendo - Off"],[19,"Bypass"],[19,"Engage"]]},{"id":"volante","brand":"","name":"volante","cc":[[12,"Echo Level"],[34,"Head 1 Feedback Off/On"],[25,"Head 1 Level"],[29,"Head 1 Pan"],[21,"Head 1 Playback Off/On"],[35,"Head 2 Feedback Off/On"],[26,"Head 2 Level"],[30,"Head 2 Pan"],[22,"Head 2 Playback Off/On"],[36,"Head 3 Feedback Off/On"],[27,"Head 3 Level"],[31,"Head 3 Pan"],[23,"Head 3 Playback Off/On"],[37,"Head 4 Feedback Off/On"],[28,"Head 4 Level"],[32,"Head 4 Pan"],[24,"Head 4 Playback Off/On"],[45,"Infinite Hold (w/ oscillation)"],[46,"Infinite Hold (w/o oscillation)"],[16,"Low Cut"],[14,"Mechanics"],[42,"Pause (no ramp)"],[43,"Pause (ramp)"],[38,"Pause Ramp Speed"],[13,"Rec Level"],[20,"Repeats"],[44,"Reverse"],[47,"SOS Loop Level"],[41,"SOS Mode"],[48,"SOS Repeats Level"],[18,"Spacing"],[19,"Speed"],[39,"Spring (level)"],[40,"Spring Decay"],[17,"Time"],[11,"Type"],[15,"Wear"],[0,"Bank Select"],[102,"Bypass"],[102,"Engage"],[78,"Echo On/Off"],[100,"Exp Pedal"],[81,"Footswitch Favourite"],[80,"Footswitch On"],[82,"Footswitch Tap"],[84,"Killdry"],[63,"MIDI Clock On/Off"],[60,"MIDI Exp On/Off"],[85,"Output Sum"],[83,"Persist"],[93,"Remote Tap"],[79,"Reverb On/Off"]]},{"id":"colourtheory","brand":"Alexander Pedals","name":"Colour Theory ","cc":[[93,"Tap Tempo"],[100,"Expression Pedal"],[102,"Bypass"],[102,"Engage"],[50,"Step Lag"],[51,"Sequence Rate"],[53,"Mix"],[54,"Lower Right Alt"],[55,"Upper Left Alt"],[57,"Lower Left Alt"],[59,"Mode 1"],[59,"Mode 2"],[59,"Mode 3"],[59,"Mode 4"],[59,"Mode 5"],[59,"Mode 6"],[59,"Mode 7"],[59,"Mode 8"],[56,"Set Steps: 2"],[56,"Set Steps: 3"],[56,"Set Steps: 4"],[56,"Set Steps: 5"],[56,"Set Steps: 6"],[56,"Set Steps: 7"],[56,"Set Steps: 8"],[60,"Set Current Step"],[61,"Start Sequence"],[61,"Park Sequence"],[62,"Set Sequence Order: Step Up"],[62,"Set Sequence Order: Step Up and Down"],[62,"Set Sequence Order: Random"]]},{"id":"defenderneo","brand":"Alexander Pedals","name":"Defender Neo","cc":[[97,"Warp"],[100,"Expression Pedal"],[102,"Bypass"],[102,"Engage"],[50,"Mass Knob"],[51,"Level Knob"],[52,"Drive Knob"],[53,"Light Knob"],[54,"Tweak Knob"],[56,"Warp Speed Knob"],[57,"Mix Knob"],[59,"Mode: OD + PIT"],[59,"Mode: OD + SPC"],[59,"Mode: OD + FLT"],[59,"Mode: DST + PIT"],[59,"Mode: DST + SPC"],[59,"Mode: DST + SPC"],[59,"Mode: FZ + PIT"],[59,"Mode: FZ + SPC"],[59,"Mode: FX + FLT"]]},{"id":"f13neo","brand":"Alexander Pedals","name":"F.13 Neo","cc":[[93,"Tap Tempo"],[97,"Ramp"],[100,"Expression Pedal"],[102,"Bypass"],[102,"Engage"],[50,"Lower Right Main"],[51,"Upper Left Main"],[52,"Upper Right Main"],[53,"Lower Left Main"],[54,"Lower Right Alt"],[55,"Upper Left Alt"],[56,"Upper Right Alt"],[57,"Lower Left Alt"],[59,"Mode 1"],[59,"Mode 2"],[59,"Mode 3"],[59,"Mode 4"],[59,"Mode 5"],[59,"Mode 6"],[59,"Mode 7"],[59,"Mode 8"]]},{"id":"marshmallow","brand":"Alexander Pedals","name":"Marshmallow","cc":[[97,"Ramp"],[100,"Expression Pedal"],[102,"Bypass"],[102,"Engage"],[50,"Mod Knob"],[51,"Voice Knob"],[52,"Two Knob"],[53,"Mix Knob"],[54,"Ramp Rate Knob"],[55,"ALT Knob"],[56,"Clock Knob"],[57,"Level Knob"],[58,"Pitch Lock: Unlock"],[58,"Pitch Lock: Chromatic"],[58,"Pitch Lock: Major"],[58,"Pitch Lock: Minor"],[59,"Mode: Mod"],[59,"Mode: Cloud"],[59,"Mode: Ring"],[59,"Mode: Rand"],[59,"Mode: Arpy"],[59,"Mode: Dyna"]]},{"id":"oblivionvintagedelay","brand":"Alexander Pedals","name":"Oblivion Vintage Delay","cc":[[93,"Tap Tempo"],[100,"Expression Pedal"],[102,"Bypass"],[102,"Engage"],[122,"Direct Save Preset"],[117,"Set Mix Control"],[118,"Set Delay Time Control"],[119,"Set Repeat Control"],[120,"Set Modulation Rate"],[121,"Set Modulation Depth/Multi Pattern"],[123,"Set Boost Level"],[124,"LFO Wave: Sine"],[124,"LFO Wave: Square"],[124,"LFO Wave: Ramp A"],[124,"LFO Wave: Ramp B"],[124,"LFO Wave: Random"],[125,"Set Tone Control"],[126,"Subdivision: Quarter"],[126,"Subdivision: Dotted Eighth"],[126,"Subdivision: Triplet"],[127,"Delay Machine: Analog"],[127,"Delay Machine: Tape"],[127,"Delay Machine: Oil Can"],[127,"Delay Machine: Multi"]]},{"id":"quadrantaudiomirror","brand":"Alexander Pedals","name":"Quadrant Audio Mirror","cc":[[93,"Tap Tempo"],[97,"Ramp"],[100,"Expression Pedal"],[102,"Bypass"],[102,"Engage"],[50,"Lower Right Main"],[51,"Upper Left Main"],[52,"Upper Right Main"],[53,"Lower Left Main"],[54,"Lower Right Alt"],[55,"Upper Left Alt"],[56,"Upper Right Alt"],[57,"Lower Left Alt"],[59,"Mode 1"],[59,"Mode 2"],[59,"Mode 3"],[59,"Mode 4"],[59,"Mode 5"],[59,"Mode 6"],[59,"Mode 7"],[59,"Mode 8"]]},{"id":"radicaldelaydx","brand":"Alexander Pedals","name":"Radical Delay DX","cc":[[93,"Tap Tempo"],[97,"Ramp"],[100,"Expression Pedal"],[102,"Bypass"],[102,"Engage"],[50,"Tweak Knob"],[51,"Time Knob"],[52,"Repeats Knob"],[53,"Mix Knob"],[54,"Ramp Rate Knob"],[55,"ALT Knob"],[56,"Clock Knob"],[57,"Level Knob"],[59,"Mode: Mod"],[59,"Mode: Bend"],[59,"Mode: Dual"],[59,"Mode: Rev"],[59,"Mode: Arp"],[59,"Mode: Dyna"]]},{"id":"sky5000","brand":"Alexander Pedals","name":"SKY 5000","cc":[[93,"Tap Tempo"],[97,"Ramp"],[100,"Expression Pedal"],[102,"Bypass"],[102,"Engage"],[50,"Repeat Knob"],[51,"Reverb Knob"],[52,"Delay Knob"],[53,"Mix Knob"],[54,"Delay Level Knob"],[55,"Ramp Rate Knob"],[56,"Subdivision: 1/4"],[56,"Subdivision: Dot "],[56,"Subdivisioni: 1/8"],[57,"Level Knob"],[59,"Mode: RVB + DIG"],[59,"Mode: +1 + DIG"],[59,"Mode: -1 + DIG"],[59,"Mode: RVB + BBD"],[59,"Mode: +1 + BBD"],[59,"Mode: -1 + BBD"],[59,"Mode: RVB + OIL"],[59,"Mode: +1 + OIL"],[59,"Mode: -1 + OIL"]]},{"id":"spacerace","brand":"Alexander Pedals","name":"Space Race","cc":[[97,"Ramp"],[100,"Expression Pedal"],[102,"Bypass"],[102,"Engage"],[50,"Tweak Knob"],[51,"Reverb Knob"],[52,"Space Knob"],[53,"Mix Knob"],[56,"Clock Knob"],[57,"Level Knob"],[59,"Mode 1"],[59,"Mode 2"],[59,"Mode 3"],[59,"Mode 4"],[59,"Mode 5"],[59,"Mode 6"]]},{"id":"superneo-matic","brand":"Alexander Pedals","name":"Super Neo-Matic","cc":[[97,"Ramp"],[100,"Expression Pedal"],[102,"Bypass"],[102,"Engage"],[50,"Feedback Knob"],[51,"Rate Knob"],[52,"Depth Knob"],[53,"Mix Knob"],[55,"Delay Time Range Knob"],[56,"Ramp Rate Knob"],[57,"Level Knob"],[59,"Mode: Vintage Triangle"],[59,"Mode: Modern Triangle"],[59,"Mode: Vintage Random"],[59,"Mode: Modern Random"]]},{"id":"superradicaldelay","brand":"Alexander Pedals","name":"Super Radical Delay","cc":[[93,"Tap Tempo"],[100,"Expression Pedal"],[102,"Bypass"],[102,"Engage"],[122,"Direct Save Preset"],[117,"Set Mix Control"],[118,"Set Delay Time Control"],[119,"Set Repeat Control"],[120,"Set Modulation Rate"],[121,"Set Modulation Depth"],[123,"Set Boost Level"],[124,"LFO Wave: Sine"],[124,"LFO Wave: Square"],[124,"LFO Wave: Ramp A"],[124,"LFO Wave: Ramp B"],[124,"LFO Wave: Random"],[125,"Set Tone Control"],[126,"Subdivision: Quarter"],[126,"Subdivision: Dotted Eighth"],[126,"Subdivision: Triplet"],[127,"Delay Effect: Mod"],[127,"Delay Effect: Glitch"],[127,"Delay Effect: Bend"],[127,"Delay Effect: Flow"]]},{"id":"syntaxerror","brand":"Alexander Pedals","name":"Syntax Error","cc":[[93,"Tap Tempo"],[97,"Ramp"],[100,"Expression Pedal"],[102,"Bypass"],[102,"Engage"],[50,"Lower Right Main"],[51,"Upper Left Main"],[52,"Upper Right Main"],[53,"Lower Left Main"],[54,"Lower Right Alt"],[55,"Upper Left Alt"],[56,"Upper Right Alt"],[57,"Lower Left Alt"],[59,"Mode 1"],[59,"Mode 2"],[59,"Mode 3"],[59,"Mode 4"],[59,"Mode 5"],[59,"Mode 6"],[59,"Mode 7"],[59,"Mode 8"]]},{"id":"wavelength","brand":"Alexander Pedals","name":"Wavelength","cc":[[93,"Tap Tempo"],[97,"Ramp"],[100,"Expression Pedal"],[102,"Bypass"],[102,"Engage"],[50,"Tweak Knob"],[51,"Rate Knob"],[52,"Depth/Manual Knob"],[53,"Mix Knob"],[54,"Shape Knob"],[56,"Ramp Speed Knob"],[57,"Level Knob"],[59,"Mode 1"],[59,"Mode 2"],[59,"Mode 3"],[59,"Mode 4"],[59,"Mode 5"],[59,"Mode 6"]]},{"id":"matrixbrute","brand":"Arturia","name":"MatrixBrute","cc":[[64,"Sustain pedal"],[3,"Expression Pedal 1"],[4,"Expression Pedal 2"],[65,"VCO1: Fine"],[66,"VCO1: Coarse"],[67,"VCO1: Waveform Select"],[9,"VCO1: Sub"],[668,"VCO1: Ultrasaw"],[10,"VCO1: Sawtooth"],[12,"VCO1: Square"],[13,"VCO1: Triangle"],[69,"VCO1: Pulse Width"],[10,"VCO1: Metalizer"],[71,"VCO2: Fine"],[72,"VCO2: Coarse"],[73,"VCO2: Waveform Select"],[14,"VCO2: Sub"],[74,"VCO2: Ultrasaw"],[15,"VCO2: Sawtooth"],[16,"VCO2: Square"],[17,"VCO2: Triangle"],[75,"VCO2: Pulse Width"],[76,"VCO2: Metalizer"],[22,"VCO3 - LFO3: Coarse"],[77,"Audio Mod: VCO1>VCO2"],[78,"Audio Mod: VCO1<VCO3>VCO2"],[79,"Audio Mod: VCF1<VCO3>VCF2"],[80,"Audio Mod: VCO1<Noise>VCF1"],[18,"Mixer: VCO1"],[19,"Mixer: VCO2"],[20,"Mixer: VCO3"],[21,"Mixer: Noise"],[89,"Mixer: External"],[81,"Steiner: Drive"],[23,"Steiner: Cutoff"],[83,"Steiner: Resonance"],[82,"Steiner: Brute Factor"],[24,"Steiner: Env 1 Amount"],[7,"Steiner: Steiner Out"],[27,"Steiner: Master Cutoff"],[85,"Ladder: Drive"],[86,"Ladder: Brute Factor"],[25,"Ladder: Cutoff"],[26,"Ladder: Env 1 Amount"],[87,"Ladder: Resonance"],[8,"Ladder: Ladder Out"],[90,"LFO1: Phase"],[91,"LFO1: Rate"],[92,"LFO2: Delay"],[93,"LFO2: Rate"],[94,"ENV1: Velo/VCF"],[102,"ENV1: Attack"],[103,"ENV1: Decay"],[28,"ENV1: Sustain"],[104,"ENV1: Release"],[95,"ENV2: Velo/VCF"],[105,"ENV2: Attack"],[106,"ENV2: Decay"],[29,"ENV2: Sustain"],[107,"ENV2: Release"],[108,"ENV3: Delay"],[109,"ENV3: Attack"],[110,"ENV3: Decay"],[30,"ENV3: Sustain"],[111,"ENV3: Release"],[112,"Analog FX: Delay Time"],[113,"Analog FX: Regeneration"],[114,"Analog FX: Tone/Rate"],[115,"Analog FX: Width/Depth"],[31,"Analog FX: Dry/Wet"],[116,"Sequencer: Rate"],[117,"Sequencer: Swing"],[118,"Sequencer: Gate"],[1,"Mod Wheel"],[119,"Pitch Bend Range"],[5,"Glide"],[11,"Macro Knob 1"],[2,"Macro Knob 2"],[4,"Macro Knob 3"],[3,"Macro Knob 4"]]},{"id":"microfreak","brand":"Arturia","name":"MicroFreak","cc":[[5,"Glide"],[9,"Type"],[10,"Wave"],[12,"Timbre"],[13,"Shape"],[23,"Cutoff"],[83,"Resonance"],[102,"Cycling env rise"],[103,"Cycling env fall"],[28,"Cycling env hold"],[24,"Cycling env amount"],[91,"ARP/SEQ rate (free)"],[92,"ARP/SEQ rate (sync)"],[93,"LFO rate (free)"],[94,"LFO rate (sync)"],[105,"Envelope attack"],[106,"Envelope decay"],[29,"Envelope sustain"],[64,"Keyboard hold button (toggle)"],[2,"Keyboard spice"]]},{"id":"minifreak","brand":"Arturia","name":"MiniFreak","cc":[["1","Mod Wheel"],["64","Pedal Sustain"],["5","Pedal Glide"],["70","Osc 1 Tune"],["14","Osc 1 Wave"],["15","Osc 1 Timbre"],["16","Osc 1 Shape"],["17","Osc 1 Volume"],["73","Osc 2 Tune"],["18","Osc 2 Wave"],["19","Osc 2 Timbre"],["20","Osc 2 Shape"],["21","Osc 2 Volume"],["74","Analog Filter Cutoff"],["71","Analog Filter Resonance"],["24","Analog Filter VCF Envelope"],["94","Analog Filter Vel Env Mod"],["68","Cycling Env Rise Shape"],["76","Cycling Env Rise"],["77","Cycling Env Fall"],["78","Cycling Env Hold"],["69","Cycling Env Fall Shape"],["80","Envelope Attack"],["81","Envelope Decay"],["82","Envelope Sustain"],["83","Envelope Release"],["85","LFO 1 Rate"],["87","LFO 2 Rate"],["22","Effect 1 Time"],["23","Effect 1 Intensity"],["25","Effect 1 Amount"],["26","Effect 2 Time"],["27","Effect 2 Intensity"],["28","Effect 2 Amount"],["29","Effect 3 Time"],["30","Effect 3 Intensity"],["31","Effect 3 Amount"],["115","Sequencer Gate"],["116","Sequencer Spice"],["117","Macro 1"],["118","Macro 2"]]},{"id":"amplifire12","brand":"Atomic Amps","name":"Amplifire 12","cc":[[21,"Wah Pedal"],[22,"Volume Pedal"],[23,"Expression A"],[24,"Expression B"],[18,"Tap Tempo"],[80,"Bypass Amplifire"],[80,"Enable Amplifire"],[81,"Effect Loop Enable"],[81,"Effect Loop Disable"],[20,"Volume Enable"],[20,"Volume Disable"],[19,"Wah Enable "],[19,"Wah Disable"],[82,"Boost Enable"],[82,"Boost Disable"],[83,"Effect Enable"],[83,"Effect Disable"],[25,"Chorus Enable"],[25,"Chorus Disable"],[26,"Flanger Enable"],[26,"Flanger Disable"],[27,"Phaser Enable"],[27,"Phaser Disable"],[28,"Tremolo Enable "],[28,"Tremolo Disable"],[29,"Pitchshifter Enable"],[29,"Pitchshifter Disable"],[84,"Echo Enable"],[84,"Echo Disable"],[85,"Reverb Enable"],[85,"Reverb Disable"],[86,"Noise Gate Enable"],[86,"Noide Gate Disable"],[17,"Compressor Enable"],[17,"Compressor Disable"],[87,"Graphic EQ Enable"],[87,"Graphic EQ Disable"],[12,"Pre-EQ Enable"],[12,"Pre-EQ Disable"],[88,"Parametric 1 Enable"],[88,"Parametric 1 Disable"],[89,"Paramentric 2 Enable"],[89,"Parametric 2 Disable"],[90,"Parametric 3 Enable"],[90,"Parametric 3 Disable"],[16,"Amp Enable"],[16,"Amp Disable"],[13,"FS1 Press"],[14,"FS2 Press"],[15,"FS3 Press"],[11,"FS4 Press"],[10,"FS5 Press"],[9,"FS6 Press"],[8,"FS7 Press"],[7,"FS8 Press"],[6,"FS9 Press"],[5,"FS0 Press"],[4,"FS+ Press"],[3,"FS- Press"]]},{"id":"amplifire3","brand":"Atomic Amps","name":"Amplifire 3","cc":[[21,"Wah Pedal"],[22,"Volume Pedal"],[23,"Expression A"],[24,"Expression B"],[18,"Tap Tempo"],[80,"Bypass Amplifire"],[80,"Enable Amplifire"],[81,"Effect Loop Enable"],[81,"Effect Loop Disable"],[20,"Volume Enable"],[20,"Volume Disable"],[19,"Wah Enable "],[19,"Wah Disable"],[82,"Boost Enable"],[82,"Boost Disable"],[83,"Effect Enable"],[83,"Effect Disable"],[25,"Chorus Enable"],[25,"Chorus Disable"],[26,"Flanger Enable"],[26,"Flanger Disable"],[27,"Phaser Enable"],[27,"Phaser Disable"],[28,"Tremolo Enable "],[28,"Tremolo Disable"],[29,"Pitchshifter Enable"],[29,"Pitchshifter Disable"],[84,"Echo Enable"],[84,"Echo Disable"],[85,"Reverb Enable"],[85,"Reverb Disable"],[86,"Noise Gate Enable"],[86,"Noide Gate Disable"],[17,"Compressor Enable"],[17,"Compressor Disable"],[87,"Graphic EQ Enable"],[87,"Graphic EQ Disable"],[12,"Pre-EQ Enable"],[12,"Pre-EQ Disable"],[88,"Parametric 1 Enable"],[88,"Parametric 1 Disable"],[89,"Paramentric 2 Enable"],[89,"Parametric 2 Disable"],[90,"Parametric 3 Enable"],[90,"Parametric 3 Disable"],[16,"Amp Enable"],[16,"Amp Disable"],[13,"FS1 Press"],[14,"FS2 Press"],[15,"FS3 Press"]]},{"id":"amplifire6","brand":"Atomic Amps","name":"Amplifire 6","cc":[[21,"Wah Pedal"],[22,"Volume Pedal"],[23,"Expression A"],[24,"Expression B"],[18,"Tap Tempo"],[80,"Bypass Amplifire"],[80,"Enable Amplifire"],[81,"Effect Loop Enable"],[81,"Effect Loop Disable"],[20,"Volume Enable"],[20,"Volume Disable"],[19,"Wah Enable "],[19,"Wah Disable"],[82,"Boost Enable"],[82,"Boost Disable"],[83,"Effect Enable"],[83,"Effect Disable"],[25,"Chorus Enable"],[25,"Chorus Disable"],[26,"Flanger Enable"],[26,"Flanger Disable"],[27,"Phaser Enable"],[27,"Phaser Disable"],[28,"Tremolo Enable "],[28,"Tremolo Disable"],[29,"Pitchshifter Enable"],[29,"Pitchshifter Disable"],[84,"Echo Enable"],[84,"Echo Disable"],[85,"Reverb Enable"],[85,"Reverb Disable"],[86,"Noise Gate Enable"],[86,"Noide Gate Disable"],[17,"Compressor Enable"],[17,"Compressor Disable"],[87,"Graphic EQ Enable"],[87,"Graphic EQ Disable"],[12,"Pre-EQ Enable"],[12,"Pre-EQ Disable"],[88,"Parametric 1 Enable"],[88,"Parametric 1 Disable"],[89,"Paramentric 2 Enable"],[89,"Parametric 2 Disable"],[90,"Parametric 3 Enable"],[90,"Parametric 3 Disable"],[16,"Amp Enable"],[16,"Amp Disable"],[13,"FS1 Press"],[14,"FS2 Press"],[15,"FS3 Press"]]},{"id":"elevenrack","brand":"AVID","name":"Eleven Rack","cc":[[25,"Distortion: Bypass"],[25,"Distortion: Engage"],[50,"Mod: Bypass"],[50,"Mod: Engage"],[28,"Delay: Bypass"],[28,"Delay: Engage"],[36,"Reverb: Bypass"],[36,"Reverb: Engage"],[107,"FX Loop: Bypass"],[107,"FX Loop: Engage"],[63,"FX 1: Bypass"],[63,"FX 1: Engage"],[86,"FX 2: Bypass"],[86,"FX 2: Engage"],[43,"Wah: Bypass"],[43,"Wah: Engage"],[111,"Amp: Bypass"],[111,"Amp: Engage"],[92,"Amp Output"],[7,"Volume Pedal Position"],[4,"Wah Position"],[11,"Multi FX Control"],[64,"Tap Tempo"],[71,"Cab/Mic: Bypass"],[71,"Cab/Mic: Engage"]]},{"id":"seabeeharmochorus","brand":"Beetronics","name":"Seabee Harmochorus","cc":[["4","Expression Pedal"],["14","Ramp"],["15","Tone/Pattern"],["16","Rate 1"],["17","Depth 1 / Harmony 1"],["18","Feedback"],["19","Mix"],["20","Rate 2"],["21","Depth 2 / Harmony 2"],["22","Manual Ramp"],["23","Mode"],["24","Ramp Type"],["102","Bypass"],["102","Engage"],["103","Extra Tap (any_value)"],["104","Extra Tap - Press"],["104","Extra Tap - Release"],["105","Reset LFO (any value)"],["106","Double click action (any value)"],["107","Ramp Trigger (any value)"],["108","Ramp Trigger - Press"],["108","Ramp Trigger - Release"],["109","MIDI Clock Enable - On"],["109","MIDI Clock Enable - Off"]]},{"id":"deepmind12","brand":"Behringer","name":"Deepmind 12","cc":[[0,"Bank Select (MSB)"],[1,"Mod Wheel"],[2,"Breath controller"],[4,"Foot Controller"],[5,"Portamento Time"],[7,"Voume"],[8,"Balance"],[10,"Pan"],[11,"Expression"],[12,"Arp Rate"],[13,"Arp Gate Time"],[16,"LFO1 Rate"],[17,"LFO1 Delay Time"],[18,"LFO2 Rate"],[19,"LFO2 Delay Time"],[20,"OSC1 Pitch Modulation"],[21,"OSC1 PWM"],[23,"OSC2 Pitch Modulation"],[24,"OSC2 Tone Modulation"],[25,"OSC2 Pitch"],[26,"OSC2 Level"],[27,"Noise Level"],[28,"Unison Detune"],[29,"VCF Frequency"],[30,"VCF Resonance"],[31,"VCF Envelope Modulation "],[32,"Bank Select (LSB)"],[33,"VCF LFO Modulation"],[34,"VCF Keyboard Modulation"],[35,"HPF Frequency"],[36,"VCA Level"],[37,"VCA Envelope Attack"],[39,"VCA Envelope Decay"],[40,"VCA Envelope Sustain"],[41,"VCA Envelope Release"],[42,"VCF Envelope Attack"],[43,"VCF Envelope Decay"],[44,"VCF Envelope Sustain"],[45,"VCF Envelope Release"],[46,"MOD Envelope Attack"],[47,"MOD Envelope Decay"],[48,"MOD Envelope Sustain"],[49,"MOD Envelope Release"],[50,"VCA Envleope Attack Curve"],[51,"VCA Envelope Decay Curve"],[52,"VCA Envelope Sustain Curve"],[53,"VCA Envelope Release Curve"],[54,"VCF Envelope Attack Curve"],[55,"VCF Envelope Decay Curve"],[56,"VCA Envelope Sustain Curve"],[57,"VCF Envelope Release Curve"],[58,"MOD Envelope Attack Curve"],[59,"MOD Envelope Decay Curve"],[60,"MOD Envelope Sustain Curve"],[61,"MOD Envelope Release Curve"],[62,"Effects Slot 1 Parameter 1"],[63,"Effects Slot 1 Parameter 2"],[64,"Sustain Pedal"],[65,"Effects Slot 1 Parameter 3"],[66,"Effects Slot 1 Parameter 4"],[67,"Effects Slot 1 Parameter 5"],[68,"Effects Slot 1 Parameter 6"],[69,"Effects Slot 1 Parameter 7"],[70,"Effects Slot 1 Parameter 8"],[71,"Effects Slot 1 Parameter 9"],[72,"Effects Slot 1 Parameter 10"],[73,"Effects Slot 1 Parameter 11"],[74,"Effects Slot 1 Parameter 12"],[75,"Effects Slot 2 Parameter 1"],[76,"Effects Slot 2 Parameter 2"],[77,"Effects Slot 2 Parameter 3"],[78,"Effects Slot 2 Parameter 4"],[79,"Effects Slot 2 Parameter 5"],[80,"Effects Slot 2 Parameter 6"],[81,"Effects Slot 2 Parameter 7"],[82,"Effects Slot 2 Parameter 8"],[83,"Effects Slot 2 Parameter 9"],[84,"Effects Slot 2 Parameter 10"],[85,"Effects Slot 2 Parameter 11"],[86,"Effects Slot 2 Parameter 12"],[87,"Effects Slot 3 Parameter 1"],[88,"Effects Slot 3 Parameter 2"],[89,"Effects Slot 3 Parameter 3"],[90,"Effects Slot 3 Parameter 4"],[91,"Effects Slot 3 Parameter 5"],[92,"Effects Slot 3 Parameter 6"],[93,"Effects Slot 3 Parameter 7"],[94,"Effects Slot 3 Parameter 8"],[95,"Effects Slot 3 Parameter 9"],[102,"Effects Slot 3 Parameter 10"],[103,"Effects Slot 3 Parameter 11"],[104,"Effects Slot 3 Parameter 12"],[105,"Effects Slot 1 Type"],[106,"Effects Slot 2 Type"],[107,"Effects Slot 3 Type"],[108,"Effects Slot 4 Type"],[109,"Effects Slot 1 Gain"],[110,"Effects Slot 2 Gain"],[111,"Effects Slot 3 Gain"],[112,"Effects Slot 4 Gain"],[113,"Analog Thru"],[114,"Effects Mode"],[115,"3D Controller X-Axis"],[116,"3D Controller Y-Axis"],[117,"3D Controller Z-Axis"],[120,"All Sound Off"],[121,"Reset All Controllers"],[122,"Local Control On/Of"],[123,"All Notes Off"],[124,"Omni Mode Off"],[125,"Omni Mode On"],[126,"Poly Mode Off"],[127,"Poly Mode On"]]},{"id":"deepmind12d","brand":"Behringer","name":"Deepmind 12D","cc":[[0,"Bank Select (MSB)"],[1,"Mod Wheel"],[2,"Breath controller"],[4,"Foot Controller"],[5,"Portamento Time"],[7,"Voume"],[8,"Balance"],[10,"Pan"],[11,"Expression"],[12,"Arp Rate"],[13,"Arp Gate Time"],[16,"LFO1 Rate"],[17,"LFO1 Delay Time"],[18,"LFO2 Rate"],[19,"LFO2 Delay Time"],[20,"OSC1 Pitch Modulation"],[21,"OSC1 PWM"],[23,"OSC2 Pitch Modulation"],[24,"OSC2 Tone Modulation"],[25,"OSC2 Pitch"],[26,"OSC2 Level"],[27,"Noise Level"],[28,"Unison Detune"],[29,"VCF Frequency"],[30,"VCF Resonance"],[31,"VCF Envelope Modulation "],[32,"Bank Select (LSB)"],[33,"VCF LFO Modulation"],[34,"VCF Keyboard Modulation"],[35,"HPF Frequency"],[36,"VCA Level"],[37,"VCA Envelope Attack"],[39,"VCA Envelope Decay"],[40,"VCA Envelope Sustain"],[41,"VCA Envelope Release"],[42,"VCF Envelope Attack"],[43,"VCF Envelope Decay"],[44,"VCF Envelope Sustain"],[45,"VCF Envelope Release"],[46,"MOD Envelope Attack"],[47,"MOD Envelope Decay"],[48,"MOD Envelope Sustain"],[49,"MOD Envelope Release"],[50,"VCA Envleope Attack Curve"],[51,"VCA Envelope Decay Curve"],[52,"VCA Envelope Sustain Curve"],[53,"VCA Envelope Release Curve"],[54,"VCF Envelope Attack Curve"],[55,"VCF Envelope Decay Curve"],[56,"VCA Envelope Sustain Curve"],[57,"VCF Envelope Release Curve"],[58,"MOD Envelope Attack Curve"],[59,"MOD Envelope Decay Curve"],[60,"MOD Envelope Sustain Curve"],[61,"MOD Envelope Release Curve"],[62,"Effects Slot 1 Parameter 1"],[63,"Effects Slot 1 Parameter 2"],[64,"Sustain Pedal"],[65,"Effects Slot 1 Parameter 3"],[66,"Effects Slot 1 Parameter 4"],[67,"Effects Slot 1 Parameter 5"],[68,"Effects Slot 1 Parameter 6"],[69,"Effects Slot 1 Parameter 7"],[70,"Effects Slot 1 Parameter 8"],[71,"Effects Slot 1 Parameter 9"],[72,"Effects Slot 1 Parameter 10"],[73,"Effects Slot 1 Parameter 11"],[74,"Effects Slot 1 Parameter 12"],[75,"Effects Slot 2 Parameter 1"],[76,"Effects Slot 2 Parameter 2"],[77,"Effects Slot 2 Parameter 3"],[78,"Effects Slot 2 Parameter 4"],[79,"Effects Slot 2 Parameter 5"],[80,"Effects Slot 2 Parameter 6"],[81,"Effects Slot 2 Parameter 7"],[82,"Effects Slot 2 Parameter 8"],[83,"Effects Slot 2 Parameter 9"],[84,"Effects Slot 2 Parameter 10"],[85,"Effects Slot 2 Parameter 11"],[86,"Effects Slot 2 Parameter 12"],[87,"Effects Slot 3 Parameter 1"],[88,"Effects Slot 3 Parameter 2"],[89,"Effects Slot 3 Parameter 3"],[90,"Effects Slot 3 Parameter 4"],[91,"Effects Slot 3 Parameter 5"],[92,"Effects Slot 3 Parameter 6"],[93,"Effects Slot 3 Parameter 7"],[94,"Effects Slot 3 Parameter 8"],[95,"Effects Slot 3 Parameter 9"],[102,"Effects Slot 3 Parameter 10"],[103,"Effects Slot 3 Parameter 11"],[104,"Effects Slot 3 Parameter 12"],[105,"Effects Slot 1 Type"],[106,"Effects Slot 2 Type"],[107,"Effects Slot 3 Type"],[108,"Effects Slot 4 Type"],[109,"Effects Slot 1 Gain"],[110,"Effects Slot 2 Gain"],[111,"Effects Slot 3 Gain"],[112,"Effects Slot 4 Gain"],[113,"Analog Thru"],[114,"Effects Mode"],[115,"3D Controller X-Axis"],[116,"3D Controller Y-Axis"],[117,"3D Controller Z-Axis"],[120,"All Sound Off"],[121,"Reset All Controllers"],[122,"Local Control On/Of"],[123,"All Notes Off"],[124,"Omni Mode Off"],[125,"Omni Mode On"],[126,"Poly Mode Off"],[127,"Poly Mode On"]]},{"id":"deepmind6","brand":"Behringer","name":"Deepmind 6","cc":[[0,"Bank Select (MSB)"],[1,"Mod Wheel"],[2,"Breath controller"],[4,"Foot Controller"],[5,"Portamento Time"],[7,"Voume"],[8,"Balance"],[10,"Pan"],[11,"Expression"],[12,"Arp Rate"],[13,"Arp Gate Time"],[16,"LFO1 Rate"],[17,"LFO1 Delay Time"],[18,"LFO2 Rate"],[19,"LFO2 Delay Time"],[20,"OSC1 Pitch Modulation"],[21,"OSC1 PWM"],[23,"OSC2 Pitch Modulation"],[24,"OSC2 Tone Modulation"],[25,"OSC2 Pitch"],[26,"OSC2 Level"],[27,"Noise Level"],[28,"Unison Detune"],[29,"VCF Frequency"],[30,"VCF Resonance"],[31,"VCF Envelope Modulation "],[32,"Bank Select (LSB)"],[33,"VCF LFO Modulation"],[34,"VCF Keyboard Modulation"],[35,"HPF Frequency"],[36,"VCA Level"],[37,"VCA Envelope Attack"],[39,"VCA Envelope Decay"],[40,"VCA Envelope Sustain"],[41,"VCA Envelope Release"],[42,"VCF Envelope Attack"],[43,"VCF Envelope Decay"],[44,"VCF Envelope Sustain"],[45,"VCF Envelope Release"],[46,"MOD Envelope Attack"],[47,"MOD Envelope Decay"],[48,"MOD Envelope Sustain"],[49,"MOD Envelope Release"],[50,"VCA Envleope Attack Curve"],[51,"VCA Envelope Decay Curve"],[52,"VCA Envelope Sustain Curve"],[53,"VCA Envelope Release Curve"],[54,"VCF Envelope Attack Curve"],[55,"VCF Envelope Decay Curve"],[56,"VCA Envelope Sustain Curve"],[57,"VCF Envelope Release Curve"],[58,"MOD Envelope Attack Curve"],[59,"MOD Envelope Decay Curve"],[60,"MOD Envelope Sustain Curve"],[61,"MOD Envelope Release Curve"],[62,"Effects Slot 1 Parameter 1"],[63,"Effects Slot 1 Parameter 2"],[64,"Sustain Pedal"],[65,"Effects Slot 1 Parameter 3"],[66,"Effects Slot 1 Parameter 4"],[67,"Effects Slot 1 Parameter 5"],[68,"Effects Slot 1 Parameter 6"],[69,"Effects Slot 1 Parameter 7"],[70,"Effects Slot 1 Parameter 8"],[71,"Effects Slot 1 Parameter 9"],[72,"Effects Slot 1 Parameter 10"],[73,"Effects Slot 1 Parameter 11"],[74,"Effects Slot 1 Parameter 12"],[75,"Effects Slot 2 Parameter 1"],[76,"Effects Slot 2 Parameter 2"],[77,"Effects Slot 2 Parameter 3"],[78,"Effects Slot 2 Parameter 4"],[79,"Effects Slot 2 Parameter 5"],[80,"Effects Slot 2 Parameter 6"],[81,"Effects Slot 2 Parameter 7"],[82,"Effects Slot 2 Parameter 8"],[83,"Effects Slot 2 Parameter 9"],[84,"Effects Slot 2 Parameter 10"],[85,"Effects Slot 2 Parameter 11"],[86,"Effects Slot 2 Parameter 12"],[87,"Effects Slot 3 Parameter 1"],[88,"Effects Slot 3 Parameter 2"],[89,"Effects Slot 3 Parameter 3"],[90,"Effects Slot 3 Parameter 4"],[91,"Effects Slot 3 Parameter 5"],[92,"Effects Slot 3 Parameter 6"],[93,"Effects Slot 3 Parameter 7"],[94,"Effects Slot 3 Parameter 8"],[95,"Effects Slot 3 Parameter 9"],[102,"Effects Slot 3 Parameter 10"],[103,"Effects Slot 3 Parameter 11"],[104,"Effects Slot 3 Parameter 12"],[105,"Effects Slot 1 Type"],[106,"Effects Slot 2 Type"],[107,"Effects Slot 3 Type"],[108,"Effects Slot 4 Type"],[109,"Effects Slot 1 Gain"],[110,"Effects Slot 2 Gain"],[111,"Effects Slot 3 Gain"],[112,"Effects Slot 4 Gain"],[113,"Analog Thru"],[114,"Effects Mode"],[115,"3D Controller X-Axis"],[116,"3D Controller Y-Axis"],[117,"3D Controller Z-Axis"],[120,"All Sound Off"],[121,"Reset All Controllers"],[122,"Local Control On/Of"],[123,"All Notes Off"],[124,"Omni Mode Off"],[125,"Omni Mode On"],[126,"Poly Mode Off"],[127,"Poly Mode On"]]},{"id":"silverlinedeluxe","brand":"Blackstar Amplification","name":"Silverline Deluxe","cc":[[5,"Voice: Clean Warm"],[5,"Voice: Clean Bright"],[5,"Voice: Crunch"],[5,"Voice: Super Crunch"],[5,"Voice: OD1"],[5,"Voice: OD2"],[6,"Gain"],[7,"Volume"],[8,"Bass"],[9,"Middle"],[10,"Treble"],[11,"ISF"],[12,"Response: EL84"],[12,"Response: 6V6"],[12,"Response: EL34"],[12,"Response: KT66"],[12,"Response: 6L6"],[12,"Response: KT88"],[13,"Mod Effect: Phaser"],[13,"Mod Effect: Flanger"],[13,"Mod Effect: Chorus"],[13,"Mod Effect: Tremolo"],[14,"Modulation Adjust 1"],[15,"Modulation Adjust 2"],[16,"Modulation Level"],[17,"Modulation Rate"],[18,"Delay Effect: Linear"],[18,"Delay Effect: Analogue"],[18,"Delay Effect: Tape"],[18,"Delay Effect: Multi"],[19,"Delay Adjust 1"],[20,"Delay Adjust 2"],[21,"Delay Level"],[22,"Reverb Effect: Room"],[22,"Reverb Effect: Hall"],[22,"Reverb Effect: Spring"],[22,"Reverb Effect: Plate"],[23,"Reverb Adjust 1"],[24,"Reverb Adjust 2"],[25,"Reverb Level"],[64,"Modulation: On"],[64,"Modulation: Off"],[65,"Delay: On"],[65,"Delay: Off"],[66,"Reverb: On"],[66,"Reverb: Off"],[68,"Delay Tap"],[69,"Effects Loop Mode: On"],[69,"Effects Loop Mode: Off"],[70,"Super Wide Stereo: On"],[70,"Super Wide Stereo: Off"],[119,"Save Current Patch"]]},{"id":"silverlinedeluxehead","brand":"Blackstar Amplification","name":"Silverline Deluxe Head","cc":[[5,"Voice: Clean Warm"],[5,"Voice: Clean Bright"],[5,"Voice: Crunch"],[5,"Voice: Super Crunch"],[5,"Voice: OD1"],[5,"Voice: OD2"],[6,"Gain"],[7,"Volume"],[8,"Bass"],[9,"Middle"],[10,"Treble"],[11,"ISF"],[12,"Response: EL84"],[12,"Response: 6V6"],[12,"Response: EL34"],[12,"Response: KT66"],[12,"Response: 6L6"],[12,"Response: KT88"],[13,"Mod Effect: Phaser"],[13,"Mod Effect: Flanger"],[13,"Mod Effect: Chorus"],[13,"Mod Effect: Tremolo"],[14,"Modulation Adjust 1"],[15,"Modulation Adjust 2"],[16,"Modulation Level"],[17,"Modulation Rate"],[18,"Delay Effect: Linear"],[18,"Delay Effect: Analogue"],[18,"Delay Effect: Tape"],[18,"Delay Effect: Multi"],[19,"Delay Adjust 1"],[20,"Delay Adjust 2"],[21,"Delay Level"],[22,"Reverb Effect: Room"],[22,"Reverb Effect: Hall"],[22,"Reverb Effect: Spring"],[22,"Reverb Effect: Plate"],[23,"Reverb Adjust 1"],[24,"Reverb Adjust 2"],[25,"Reverb Level"],[64,"Modulation: On"],[64,"Modulation: Off"],[65,"Delay: On"],[65,"Delay: Off"],[66,"Reverb: On"],[66,"Reverb: Off"],[68,"Delay Tap"],[69,"Effects Loop Mode: On"],[69,"Effects Loop Mode: Off"],[70,"Super Wide Stereo: On"],[70,"Super Wide Stereo: Off"],[119,"Save Current Patch"]]},{"id":"silverlinestereodeluxe","brand":"Blackstar Amplification","name":"Silverline Stereo Deluxe","cc":[[5,"Voice: Clean Warm"],[5,"Voice: Clean Bright"],[5,"Voice: Crunch"],[5,"Voice: Super Crunch"],[5,"Voice: OD1"],[5,"Voice: OD2"],[6,"Gain"],[7,"Volume"],[8,"Bass"],[9,"Middle"],[10,"Treble"],[11,"ISF"],[12,"Response: EL84"],[12,"Response: 6V6"],[12,"Response: EL34"],[12,"Response: KT66"],[12,"Response: 6L6"],[12,"Response: KT88"],[13,"Mod Effect: Phaser"],[13,"Mod Effect: Flanger"],[13,"Mod Effect: Chorus"],[13,"Mod Effect: Tremolo"],[14,"Modulation Adjust 1"],[15,"Modulation Adjust 2"],[16,"Modulation Level"],[17,"Modulation Rate"],[18,"Delay Effect: Linear"],[18,"Delay Effect: Analogue"],[18,"Delay Effect: Tape"],[18,"Delay Effect: Multi"],[19,"Delay Adjust 1"],[20,"Delay Adjust 2"],[21,"Delay Level"],[22,"Reverb Effect: Room"],[22,"Reverb Effect: Hall"],[22,"Reverb Effect: Spring"],[22,"Reverb Effect: Plate"],[23,"Reverb Adjust 1"],[24,"Reverb Adjust 2"],[25,"Reverb Level"],[64,"Modulation: On"],[64,"Modulation: Off"],[65,"Delay: On"],[65,"Delay: Off"],[66,"Reverb: On"],[66,"Reverb: Off"],[68,"Delay Tap"],[69,"Effects Loop Mode: On"],[69,"Effects Loop Mode: Off"],[70,"Super Wide Stereo: On"],[70,"Super Wide Stereo: Off"],[119,"Save Current Patch"]]},{"id":"artvandelay","brand":"Bondi Effects","name":"Art Van Delay","cc":[[50,"Time"],[51,"Depth"],[52,"Rate"],[53,"Level"],[54,"Feedback"],[55,"Subdivision: 1/8"],[55,"Subdivision: 1/4"],[55,"Subdivision: 1/8d"],[55,"Subdivision: Triplet"],[102,"Bypass Pedal"],[102,"Engage Pedal"],[100,"Expression"],[93,"Tap Tempo"]]},{"id":"dd-500","brand":"BOSS","name":"DD-500","cc":[[82,"[A] Switch Press"],[82,"[A] Switch Release"],[83,"[B] Switch Press"],[83,"[B] Switch Release"],[84,"[TAP/CTL] Switch Press"],[84,"[TAP/CTL] Switch Release"],[16,"Expression Pedal"],[80,"CTL 1 Switch Press"],[80,"CTL 1 Switch Release"],[81,"CTL 2 Switch Press"],[81,"CTL 2 Switch Release"],[17,"[FEEDBACK] Knob"],[19,"[TONE] Knob"],[18,"[E. LEVEL] Knob"],[20,"[MOD DEPTH] Knob"],[21,"Delay On"],[21,"Delay Bypass"],[22,"Phrase Loop"],[23,"Record/Overdub"],[24,"Loop playback"],[25,"Stop"],[26,"Clear"],["28","Delay On Channel A"],["28","Bypass Channel A"],["29","Delay On Channel B"],["29","Bypass Channel B"]]},{"id":"dm-101","brand":"BOSS","name":"DM-101","cc":[["17","DELAY TIME"],["18","INTENSITY"],["19","VOLUME"],["20","MOD. RATE"],["21","MOD. DEPTH"],["20","VARIATION"],["27","EFFECT ON / OFF"],["82","TAP"]]},{"id":"katanaartist","brand":"BOSS","name":"Katana Artist","cc":[[16,"FX1 SW: Off"],[16,"FX1 SW: On"],[17,"FX2 SW: Off"],[17,"FX2 SW: On"],[18,"FX3 SW: Off"],[18,"FX3 SW: On"],[19,"Effect Loop SW: Off"],[19,"Effect Loop SW: On"],[80,"GA-FC Exp Pedal (FX): Off"],[80,"GA-FC Exp Pedal (FX): On"],[81,"GA-FC Exp Pedal (VOL): Off"],[81,"GA-FC Exp Pedal (VOL): On"],[82,"Expression Pedal"]]},{"id":"katanahead","brand":"BOSS","name":"Katana Head","cc":[[16,"FX1 SW: Off"],[16,"FX1 SW: On"],[17,"FX2 SW: Off"],[17,"FX2 SW: On"],[18,"FX3 SW: Off"],[18,"FX3 SW: On"],[19,"Effect Loop SW: Off"],[19,"Effect Loop SW: On"],[80,"GA-FC Exp Pedal (FX): Off"],[80,"GA-FC Exp Pedal (FX): On"],[81,"GA-FC Exp Pedal (VOL): Off"],[81,"GA-FC Exp Pedal (VOL): On"],[82,"Expression Pedal"]]},{"id":"md-500","brand":"BOSS","name":"MD-500","cc":[[17,"[RATE/VALUE] Knob"],[18,"[DEPTH] Knob"],[19,"[E. LEVEL] Knob"],[20,"[PARAM 1] Knob"],[21,"[PARAM 2] Knob"],[80,"CTL 1 Switch Press"],[80,"CTL 1 Switch Release"],[81,"CTL 2 Switch Press"],[81,"CTL 2 Switch Release"],[16,"Expression Pedal"],[27,"Effect On"],[27,"Effect Bypass"],[28,"Effect A On"],[28,"Effect A Bypass"],[29,"Effect B On"],[29,"Effect B Bypass"]]},{"id":"od-200","brand":"BOSS","name":"OD-200","cc":[["17","Drive"],["18","Level"],["19","Low"],["20","Middle"],["21","High"],["22","Booster pre level"],["23","Booster post level"],["28","ON/OFF switch"],["83","Booster ON/OFF"],["82","Memory/boost switch"],["80","CTL1"],["81","CTL2"],["16","Expression"],["27","Effect ON/OFF"]]},{"id":"re-202","brand":"BOSS","name":"RE-202","cc":[[16,"TAP TIME (MSB)"],[17,"REPEAT RATE"],[18,"INTENSITY"],[19,"ECHO VOL"],[20,"BASS"],[21,"TREBLE"],[22,"REVERB VOL"],[23,"SATURATION"],[24,"WOW & FLUTTER"],[27,"EFFECT ON/OFF"],[48,"TAP TIME (LSB)"],[82,"TAP TEMPO"],[83,"TWIST"],[84,"WARP"]]},{"id":"rv-500","brand":"BOSS","name":"RV-500","cc":[[17,"[TIME/VALUE] Knob (reverb)"],[22,"[TIME/VALUE] Knob (delay)"],[18,"[PRE-DELAY] Knob (reverb)"],[23,"[PRE-DELAY] Knob (delay)"],[19,"[E. LEVEL] Knob (reverb)"],[24,"[E. LEVEL] Knob (delay)"],[20,"[LOW] Knob (reverb)"],[25,"[LOW] Knob (delay)"],[21,"[HIGH] Knob (reverb)"],[26,"[HIGH] Knob (delay)"],[80,"CTL 1 Switch Press"],[80,"CTL 1 Switch Release"],[81,"CTL 2 Switch Press"],[81,"CTL 2 Switch Release"],[16,"Expression Pedal"],[27,"Effect On"],[27,"Effect Bypass"],[28,"Effect A On"],[28,"Effect A Bypass"],[29,"Effect B On"],[29,"Effect B Bypass"]]},{"id":"stratus","brand":"Chaos Audio","name":"Stratus","cc":[["7","Master Volume"],["14","Bypass Effect"],["15","Enable Effect"],["16","Toggle Effect"],["17","Looper"],["18","Mode Change"]]},{"id":"clean","brand":"Chase Bliss","name":"clean","cc":[["14","Dynamics"],["15","Sensitivity"],["16","Wet"],["17","Attack"],["18","EQ"],["19","Dry"],["20","Ramp Speed"],["102","Bypass"],["102","Engage"],["103","Swell (off)"],["103","Swell (on)"],["104","Alt menu (exit)"],["104","Alt menu (enter)"],["106","Dynamics Max (off)"],["106","Dynamics Max (on)"],["21","Release (fast)"],["21","Release (user)"],["21","Release (slow)"],["22","Mode (shifty)"],["22","Mode (manual)"],["22","Mode (modulated)"],["23","Physics (wobbly)"],["23","Physics (off)"],["23","Physics (twitchy)"],["100","Expression over MIDI"],["111","Preset Save"],["52","Ramp / Bounce (off)"],["52","Ramp / Bounce (on)"],["56","Factory Reset"],["61","Dynamics (off)"],["61","Dynamics (on)"],["62","Attack (off)"],["62","Attack (on)"],["63","EQ (off)"],["63","EQ (on)"],["64","Dry (off)"],["64","Dry (on)"],["65","Wet (off)"],["65","Wet (on)"],["66","Bounce (off)"],["66","Bounce (on)"],["67","Sweep (B)"],["67","Sweep (T)"],["68","Polarity (F)"],["68","Polarity (R)"],["71","MISO (off)"],["71","MISO (on)"],["72","Spread (off)"],["72","Spread (on)"],["73","Latch (off)"],["73","Latch (on)"],["74","Sidechain (off)"],["74","Sidechain (on)"],["75","Noise gate (off)"],["75","Noise gate (on)"],["76","Motion (off)"],["76","Motion (on)"],["77","Swell Aux (off)"],["77","Swell Aux (on)"],["78","Dusty (off)"],["78","Dusty (on)"],["24","Noise gate release"],["25","Noise gate sens"],["26","Swell in"],["27","User release"],["28","Balance filter"],["29","Swell out"],["31","Envelope Mode (Analog)"],["31","Envelope Mode (Hybrid)"],["31","Envelop Mode (Adaptive)"],["32","Shifty Mode (ASR)"],["32","Shifty Mode (Env)"],["33","Spread Routing (EQ)"],["33","Spread Routing (Both)"],["33","Spread Routing (vol/comp)"]]},{"id":"ayahuasca","brand":"Chase Bliss Audio","name":"Ayahuasca","cc":[[14,"Output"],[15,"Input"],[16,"Color"],[17,"Rate"],[18,"Depth"],[21,"Note Division: Whole"],[21,"Note Division: 1/2"],[21,"Note Division: 1/4t"],[21,"Note Division: 1/4"],[21,"Note Division: 1/8"],[21,"Note Division: 1/16"],[93,"Tap Switch"],[100,"Expression"],[102,"Bypass"],[102,"Engage"]]},{"id":"generationlossmki","brand":"Chase Bliss Audio","name":"Generation Loss MKI","cc":[["14","Wow"],["15","Wet"],["16","HP"],["17","Flutter"],["18","Gen"],["19","LP"],["21","AUX FUNC Select"],["22","DRY Select"],["23","HISS Select"],["100","Expression"],["101","AUX FUNC"],["102","Bypass Switch"],["103","Both Stomps"]]},{"id":"generationlossmkii","brand":"Chase Bliss Audio","name":"Generation Loss MKII","cc":[[100,"Expression"],[111,"Preset Save"],[24,"Aux Onset Time"],[26,"Bypass: DSP"],[26,"Bypass: True"],[27,"Hiss Level"],[28,"Mechanical Noise Level"],[29,"Crinkle Pop Level"],[32,"Input Gain: Line Level"],[32,"Input Gain: Instrument Level"],[32,"Input Gain: High Gain"],[52,"Ramp/Bounce: On"],[52,"Ramp/Bounce: Off"],[16,"Model: None"],[16,"Model: CPR-3300 Gen1"],[16,"Model: CPR-3300 Gen2"],[16,"Model: CPR-3300 Gen3"],[16,"Model: Portamax-RT"],[16,"Model: Portamax-HT"],[16,"Model: CAM-8"],[16,"Model: Dictatron-EX"],[16,"Model: Dictatron-IN"],[16,"Model: Fishy 60"],[16,"Model: MS-Walker"],[16,"Model: AMU-2"],[16,"Model: M-PEX"],[14,"Wow"],[15,"Volume"],[16,"Model/LP"],[17,"Flutter"],[18,"Saturate/Gen"],[19,"Failure/HP"],[20,"Ramp Speed"],[21,"Aux: 1"],[21,"Aux: 2"],[21,"Aux: 3"],[22,"Dry: 1"],[22,"Dry: 2"],[22,"Dry: 3"],[23,"Noise: 1"],[23,"Noise: 2"],[23,"Noise: 3"],[102,"Bypass Pedal"],[102,"Engage Pedal"],[103,"Aux: On"],[103,"Aux: Off"],[104,"ALT: Enter"],[104,"ALT: Exit"],[105,"Left Switch: On"],[105,"Left Switch: Off"],[106,"Right Switch: On"],[106,"Right Switch: Off"],[107,"Center Switch: On"],[107,"Center Switch: Off"],[61,"DIP - Wow: On"],[61,"DIP - Wow: Off"],[62,"DIP - Flutter: On"],[62,"DIP - Flutter: Off"],[63,"DIP - Sat/Gen: On"],[63,"DIP - Sat/Gen: Off"],[64,"DIP - Failure/HP: On"],[64,"DIP - Failure/HP: Off"],[65,"DIP - Model/LP: On"],[65,"DIP - Model/LP: Off"],[66,"DIP - Bounce: On"],[66,"DIP - Bounce: Off"],[67,"DIP - Random: On"],[67,"DIP - Random: Off"],[68,"DIP - Sweep: T"],[68,"DIP - Sweep: B"],[71,"DIP - Polarity: R"],[71,"DIP - Polarity: F"],[72,"DIP - Classic: On"],[72,"DIP - Classic: Off"],[73,"DIP - Miso: On"],[73,"DIP - Miso: Off"],[74,"DIP - Spread: On"],[74,"DIP - Spread: Off"],[75,"DIP - Dry Type: On"],[75,"DIP - Dry Type: Off"],[76,"DIP - Drop Byp: On"],[76,"DIP - Drop Byp: Off"],[77,"DIP - Snag Byp: On"],[77,"DIP - Snag Byp: Off"],[78,"DIP - Hum Byp: On"],[78,"DIP - Hum Byp: Off"]]},{"id":"habit","brand":"Chase Bliss Audio","name":"Habit","cc":[[14,"Volume"],[15,"Repeats"],[16,"Size"],[17,"Mod"],[18,"Spread"],[19,"Scan"],[20,"Ramp"],[21,"Mod Number: 1"],[21,"Mod Number: 2"],[21,"Mod Number: 3"],[22,"Mod Bank: 1"],[22,"Mod Bank: 2"],[22,"Mod Bank: 3"],[23,"Mode: 1"],[23,"Mode: 2"],[23,"Mode: 3"],[102,"Bypass Pedal"],[102,"Engage Pedal"],[93,"Tap Tempo"],[24,"Loop: On"],[24,"Loop: Off"],[25,"Scan: On"],[25,"Scan: Off"],[26,"Clear"],[100,"Expression"],[51,"MIDI Clock: Listen"],[51,"MIDI Clock: Ignore"]]},{"id":"microtubesinfinity","brand":"Darkglass Electronics","name":"Microtubes Infinity","cc":[[0,"Compression"],["1","Drive"],["2","Character"],["3","Blend"],["4","Level"],["5","Headphone volume"],["6","Slider 1"],["7","Slider 2"],["8","Slider 3"],["9","Slider 4"],["10","Slider 5"],["11","Slider 6"],["12","Compression ratio"],["13","Distortion mode"],["14","Active cabsim"]]},{"id":"evolver","brand":"Dave Smith Instruments","name":"Evolver","cc":[["1","Mod Wheel"],["2","Breath Controller"],["4","Foot Controller"],["7","Volume"],["11","Expression Controller"],["32","Bank Select"],["64","Damper Pedal"],["74","Brightness"],["121","Reset All Controllers"],["123","All Notes Off"],["20","Oscillator 1 Frequency"],["21","Oscillator 2 Frequency"],["22","Oscillator 3 Frequency"],["23","Oscillator 4 Frequency"],["24","Oscillator 1 Level"],["25","Oscillator 2 Level"],["26","Oscillator 3 Level"],["27","Oscillator 4 Level"],["28","Oscillator 1 Shape"],["29","Oscillator 2 Shape"],["30","Oscillator 3 Shape"],["31","Oscillator 4 Shape"],["40","FM 4 -> 3"],["41","FM 3 -> 4"],["42","RM 4 -> 3"],["43","RM 3 -> 4"],["62","Noise Level"],["52","Low Pass Filter Frequency"],["53","Filter Resonance"],["54","Filter Envelope Amount"],["55","Filter Attack"],["56","Filter Decay"],["57","Filter Sustain"],["58","Filter Release"],["59","Filter Audio Mod"],["60","Filter Split"],["61","Filter Key Amount"],["75","Amp Attack"],["76","Amp Decay"],["77","Amp Sustain"],["78","Amp Release"],["13","Highpass Filter Cutoff"],["85","Feedback Frequency"],["86","Feedback Level"],["12","Distortion"],["102","Delay 1 Time"],["103","Delay 2 Time"],["104","Delay 3 Time"],["105","Delay 1 Amount"],["106","Delay 2 Amount"],["107","Delay 3 Amount"],["108","Delay Feedback 1"],["109","Delay Feedback 2"]]},{"id":"basswhammy","brand":"DigiTech","name":"Bass Whammy","cc":[[11,"Expression Pedal"]]},{"id":"whammy","brand":"DigiTech","name":"Whammy","cc":[[11,"Expression Pedal"]]},{"id":"nam","brand":"Dimehead","name":"NAM","cc":[["14","Volume"],["15","Room"],["16","Gain"],["17","Bass"],["114","Bass Frequency"],["115","Bass Q"],["18","Mids"],["115","Mids Frequency"],["18","Mids"],["116","Mids Frequency"],["117","Mids Q"],["19","Treble"],["118","Treble Frequency"],["119","Treble Q"],["20","Gate"],["12","Bank Down"],["13","Bank Up"],["21","FX Loop OFF"],["21","FX Loop ON"],["22","FX Loop Toggle"],["21","Disable Boost/FX"],["25","Enable Boost/FX"],["30","Toggle Boost/FX"],["26","Boost/FX Gain"],["27","Boost/FX Bass"],["28","Boost/FX Mids"],["29","Boost/FX Treble"],["35","Disable Reverb"],["35","Enable Reverb"],["37","Toggle Reverb"],["36","Reverb Mix"],["40","Disable Delay"],["40","Enable Delay"],["48","Toggle Delay"],["49","TAP Tempo"],["41","Delay Mix"],["42","Delay Time"],["43","Delay Feedback"],["44","Delay LFO Speed"],["45","Delay LFO Depth"],["46","Delay Highpass"],["47","Delay Lowpass"],["50","Disable Tremolo"],["50","Enable Tremolo"],["53","Toggle Tremolo"],["51","Tremolo Depth"],["52","Tremolo Speed"],["120","IR Highpass"],["121","IR Lowpasw"]]},{"id":"theatmosphere","brand":"Dr. Scientist","name":"The Atmosphere","cc":[[3,"Bypass Type: Trails"],[3,"Bypass Type: True"],[7,"Volume Control"],[8,"Mix Control"],[9,"Remote Tap"],[15,"LFO Depth"],[20,"LFO Shape"],[21,"Infinite Reverb: Off"],[21,"Infinite Reverb: On"],[22,"Save Settings to Preset"],[23,"LFO Rate x1 (in BPM)"],[24,"LFO Rate x2 (in BPM)"],[25,"LFO Rate x3 (in BPM)"],[29,"Left Stomp Press Action"],[30,"Left Stomp Hold Action"],[31,"Bypass Screen Selection"],[80,"Bypass Footswitch: On"],[80,"Bypass Footswitch: Off"],[81,"Left Stomp Press"],[82,"Left Stomp Hold: Infinite"],[82,"Left Stomp Hold: On"],[83,"LFO State: On"],[83,"LFO State: Off"],[94,"Resolution Control"],[102,"Decay Control"],[103,"CTRL 1"],[104,"CTRL 1"],[105,"Patch Up"],[106,"Patch Down"],[107,"Map Decay to Expression: Off"],[107,"Map Decay to Expression: On"],[108,"Map CTRL 1 to Expression: Off"],[108,"Map CTRL 1 to Expression: On"],[109,"Map CTRL 2 to Expression:Off"],[109,"Map CTRL 2 to Expression:On"],[110,"Map Resolution to Expression: Off"],[110,"Map Resolution to Expression: On"],[111,"Map Mix to Expression: Off"],[111,"Map Mix to Expression: On"],[112,"Map Volume to Expression: Off"],[112,"Map Volume to Expression: On"],[113,"Map Decay to LFO: Off"],[113,"Map Decay to LFO: On"],[114,"Map CTRL 1 to LFO: Off"],[114,"Map CTRL 1 to LFO: On"],[115,"Map CTRL 2 to LFO: Off"],[115,"Map CTRL 2 to LFO: On"],[116,"Map Resolution to LFO: Off"],[116,"Map Resolution to LFO: On"],[117,"Map Mix to LFO: Off"],[117,"Map Mix to LFO: On"],[118,"Map Volume to LFO: Off"],[118,"Map Volume to LFO: On"],[119,"Toggle Default/Preset: Default"],[119,"Toggle Default/Preset: Preset"]]},{"id":"medusa","brand":"Dreadbox","name":"Medusa","cc":[[7,"OSC1 Tuning"],[8,"OSC1 U tuning"],[9,"OSC1 Wave"],[10,"OSC1 Octave"],[11,"OSC2 Tuning"],[12,"OSC2 U Tuning"],[13,"OSC2 Wave"],[14,"OSC2 Octave"],[15,"OSC3 Tuning"],[16,"OSC3 U Tuning"],[17,"OSC3 Wave"],[18,"OSC3 Octave"],[19,"OSC4 Tuning"],[20,"OSC4 U Tuning"],[21,"OSC4 Wave"],[22,"OSC4 Octave"],[23,"OSC5 Tuning"],[24,"OSC5 U Tuning"],[25,"OSC5 Wave"],[26,"OSC5 Octave"],[27,"OSC6 Tuning"],[28,"OSC6 U Tuning"],[29,"OSC6 Wave"],[30,"OSC6 Octave"],[31,"OSC3 Osc12"],[32,"OSC3 Filter"],[33,"OSC PW"],[34,"OSC Noise"],[35,"OSC Wavetable"],[36,"OSC Sync 2"],[37,"OSC Sync 3"],[38,"Play Mode"],[39,"Play Mode Glide"],[40,"Filter Cutoff"],[41,"Filter Resonance"],[42,"Filter Type"],[43,"Filter Track"],[44,"Mixer OSC1 Analog"],[45,"Mixer OSC2 Analog"],[46,"Mixer OSC3 Analog"],[47,"Mixer Noise"],[48,"Mixer OSC1 Digital"],[49,"Mixer OSC2 Digital"],[50,"Mixer OSC3 Digital"],[51,"ENV1 Delay"],[52,"ENV1 Attack"],[53,"ENV1 Decay"],[54,"ENV1 Sustain"],[55,"ENV1 Release"],[56,"ENV1 Amount"],[57,"ENV1 Target"],[58,"ENV1 Loop"],[59,"ENV2 Delay"],[60,"ENV2 Attack"],[61,"ENV2 Decay"],[62,"ENV2 Sustain"],[63,"ENV2 Release"],[64,"ENV2 Amount"],[65,"ENV2 Target"],[66,"ENV2 Loop"],[67,"ENV3 Delay"],[68,"ENV3 Attack"],[69,"ENV3 Decay"],[70,"ENV3 Sustain"],[71,"ENV3 Release"],[72,"ENV3 Amount"],[73,"ENV3 Target"],[74,"ENV3 Loop"],[75,"ENV4 Delay"],[76,"ENV4 Attack"],[77,"ENV4 Decay"],[78,"ENV4 Sustain"],[79,"ENV4 Release"],[80,"ENV4 Amount"],[82,"ENV4 Loop"],[83,"ENV5 Delay"],[84,"ENV5 Attack"],[85,"ENV5 Decay"],[86,"ENV5 Sustain"],[87,"ENV5 Release"],[88,"ENV5 Amount"],[90,"ENV5 Loop"],[91,"LFO1 Rate"],[92,"LFO1 Wave"],[93,"LFO1 Amount"],[94,"LFO1 Target"],[95,"LFO1 Sync"],[96,"LFO2 Rate"],[97,"LFO2 Wave"],[98,"LFO2 Amount"],[99,"LFO2 Target"],[100,"LFO2 Sync"],[101,"LFO3 Rate"],[102,"LFO3 Wave"],[103,"LFO3 Amount"],[104,"LFO3 Target"],[105,"LFO3 Sync"],[106,"LFO4 Rate"],[107,"LFO4 Wave"],[108,"LFO4 Amount"],[109,"LFO4 Target"],[110,"LFO4 Sync"],[111,"LFO5 Rate"],[112,"LFO5 Wave"],[113,"LFO5 Amount"],[114,"LFO5 Target"],[115,"LFO5 Sync"],[116,"Target X Select"],[117,"Target Y Select"],[118,"Target Z Select"],[119,"Target Y Value"]]},{"id":"typhon","brand":"Dreadbox","name":"Typhon","cc":[[1,"Mod Wheel"],[2,"CC2"],[8,"OSC2 Offset"],[4,"Cutoff"],[3,"Resonance"],[6,"Waveshape"],[5,"Glide"],[7,"VCO Level"],[23,"Filter EG Attack"],[24,"Filter EG Decay"],[25,"Filter EG Sustain"],[26,"Filter EG Release"],[27,"Filter Time"],[28,"EG Level"],[29,"VCA EG Attack"],[30,"VCA EG Decay"],[31,"VCA EG Sustain"],[33,"VCA EG Release"],[34,"VCA EG Time"]]},{"id":"45000","brand":"Electro-Harmonix","name":"45000","cc":[[9,"Clix Level"],[20,"Dry Out Slider"],[21,"Track 1 Play/Feedback Slider"],[22,"Track 2 Play/Feedback Slider"],[23,"Track 3 Play/Feedback Slider"],[24,"Track 4 Play/Feedback Slider"],[25,"Mix Track Play/Feedback Slider"],[26,"Tempo Slider"],[27,"Dry Out Pan"],[28,"Track 1 Pan"],[29,"Track 2 Pan"],[30,"Track 3 Pan"],[31,"Track 4 Pan"],[102,"Push REC Button"],[103,"Push NEW Button"],[104,"Push PLAY Button"],[105,"Push TRACK SELECT Button"],[106,"Push EXT SYNC Button"],[107,"Push MIXDOWN Button"],[108,"Push STEREO Button"],[109,"Push REVERSE Button"],[110,"Push OCTAVE Button"],[111,"Push PUNCH-IN Button"],[112,"Push QUANTIZE Button"],[113,"Loop Down"],[114,"Loop Up"],[115,"Loop Select"],[124,"OMNI: Off"],[125,"MONI: On"]]},{"id":"8-stepprogram","brand":"Electro-Harmonix","name":"8-Step Program","cc":[[4,"Expression Pedal"],[16,"Step 1 Slider"],[17,"Step 2 Slider"],[18,"Step 3 Slider"],[19,"Step 4 Slider"],[20,"Step 5 Slider"],[21,"Step 6 Slider"],[22,"Step 7 Slider"],[23,"Step 8 Slider"],[24,"Rate Slider"],[25,"Glide"],[26,"Direction: Forward"],[26,"Direction: Reverse"],[26,"Direction: Bounce"],[26,"Direction: Random"],[27,"Sequencer Length: 1"],[27,"Sequencer Length: 2"],[27,"Sequencer Length: 3"],[27,"Sequencer Length: 4"],[27,"Sequencer Length: 5"],[27,"Sequencer Length: 6"],[27,"Sequencer Length: 7"],[27,"Sequencer Length: 8"],[28,"Depth"],[29,"Tap Divide: 1/4"],[29,"Tap Divide: 1/8d"],[29,"Tap Divide: 1/4 T"],[29,"Tap Divide: 1/8"],[29,"Tap Divide: 1/8 T"],[29,"Tap Divide: 1/16"],[29,"Tap Divide: 1/32"],[30,"Expression: Off"],[30,"Expression: Rrate"],[30,"Expression: Depth"],[30,"Expression: Glide"],[30,"Expression: Seq. Length"],[30,"Expression: Ext. Clock"],[31,"Play Mode: Loop"],[31,"Play Mode: 1-Shot"],[31,"Play Mode: Step-Thru"],[33,"Encoder Mode: Glide"],[33,"Encoder Mode: Direction"],[33,"Encoder Mode: Seq. Length"],[33,"Encoder Mode: Depth"],[33,"Encoder Mode: Preset"],[34,"Play FSW: Start"],[34,"Play FSW: Stop"],[35,"Reset FSW Press"],[36,"TAP FSW Press"],[37,"TAP Divide Button Press"],[39,"Exp. Mode Button Press"],[40,"Encoder Mode Button Press"],[41,"Sequencer Step: 1"],[41,"Sequencer Step: 2"],[41,"Sequencer Step: 3"],[41,"Sequencer Step: 4"],[41,"Sequencer Step: 5"],[41,"Sequencer Step: 6"],[41,"Sequencer Step: 7"],[41,"Sequencer Step: 8"],[117,"Save Preset"],[118,"Load Preset"],[118,"Unload Preset"]]},{"id":"95000","brand":"Electro-Harmonix","name":"95000","cc":[[3,"Value Knob Press"],[3,"Value Knob Down"],[3,"Value Knob Up"],[3,"Track FSW Press"],[3,"Undo FSW Press"],[3,"Record FSW Press"],[3,"Play/Stop FSW Press"],[3,"Loop Down FSW Press"],[3,"Loop Up FSW Press"],[3,"New Loop Button Press"],[3,"Reverse Button Press"],[3,"Oct Button Press"],[3,"Tap Button Press"],[3,"Track 1 Button Press"],[3,"Track 2 Button Press"],[3,"Track 3 Button Press"],[3,"Track 4 Button Press"],[3,"Track 5 Button Press"],[3,"Track 6 Button Press"],[3,"Mixdown Button Press"],[3,"Punch Button Press"],[3,"Quantize Button Press"],[3,"Page Button Press"],[3,"Mute/Unmute Track 1"],[3,"Mute/Unmute Track 2"],[3,"Mute/Unmute Track 3"],[3,"Mute/Unmute Track 4"],[3,"Mute/Unmute Track 5"],[3,"Mute/Unmute Track 6"],[3,"Mute/Unmute Mixdown"],[3,"Ext. Clock Button Press"],[7,"Master Level"],[9,"CLIX Level"],[14,"Dry Output L Volume"],[15,"Dry Output R Volume"],[20,"Track 1 Volume"],[21,"Track 2 Volume"],[22,"Track 3 Volume"],[23,"Track 4 Volume"],[24,"Track 5 Volume"],[25,"Track 6 Volume"],[26,"Mixdown Volume"],[27,"Tempo"],[28,"Expression Pedal"],[29,"Dry Output L Pan"],[30,"Dry Output R Pan"],[85,"Track 1 Pan"],[86,"Track 2 Pan"],[87,"Track 3 Pan"],[88,"Track 4 Pan"],[89,"Track 5 Pan"],[90,"Track 6 Pan"],[102,"Track 1 Overdub"],[103,"Track 2 Overdub"],[104,"Track 3 Overdub"],[105,"Track 4 Overdub"],[106,"Track 5 Overdub"],[107,"Track 6 Overdub"],[108,"Mixdown Overdub"],[109,"Count-in Secondary Page"],[110,"Tempo Slider Resolution"],[111,"Clix Mode Secondary Page Mode"],[112,"Fade-out Secondary Page Mode"],[113,"Loop Down"],[114,"Loop Up"],[115,"Loop Direct Select"],[116,"Number of beats per bar"]]},{"id":"modrex","brand":"Electro-Harmonix","name":"ModRex","cc":[[4,"Expression"],[7,"Volume"],[18,"MOD Type"],[19,"FILTER Type"],[20,"MOD Shape"],[21,"TREM Shape"],[22,"PAN Shape"],[23,"FILTER Shape"],[24,"MOD R-INV On"],[24,"MOD R-INV Off"],[25,"FILTER R-INV On"],[25,"FILTER R-INV Off"],[26,"MOD Division"],[27,"TREM Division"],[28,"PAN Division"],[29,"FILTER Division"],[30,"MOD Feedback"],[31,"FILTER Resonance"],[92,"TREM Depth"],[93,"MOD Depth"],[94,"PAN Depth"],[95,"FILTER Depth"]]},{"id":"analogdrive","brand":"Elektron","name":"Analog Drive","cc":[[16,"Gain MSB"],[48,"Gain LSB"],[17,"Low MSB"],[49,"Low LSB"],[18,"Mid Freq MSB"],[50,"Mid Freq LSB"],[19,"Mid MSB"],[51,"Mid LSB"],[20,"High MSB"],[52,"High LSB"],[21,"Level MSB"],[53,"Level LSB"],[4,"Expression Gain MSB"],[36,"Expression Gain LSB"],[1,"Expression Mid MSB"],[33,"Expression MId LSB"],[3,"Circuit: Clean Boost"],[3,"Circuit: Mid Drive"],[3,"Circuit: Dirty Drive"],[3,"Circuit: Big Dist"],[3,"Circuit: Focused Dist"],[3,"Circuit: Harmonic Fuzz"],[3,"Circuit: High Gain"],[3,"Circuit: Thick Gain"],[80,"Engage Pedal"],[80,"Bypass Pedal"]]},{"id":"analogfourmkii","brand":"Elektron","name":"Analog Four MKII","cc":[[3,"Performance parameter A"],[4,"Performance parameter B"],[8,"Performance parameter C"],[9,"Performance parameter D"],[11,"Performance parameter E"],[64,"Performance parameter F"],[65,"Performance parameter G"],[66,"Performance parameter H"],[67,"Performance parameter I"],[68,"Performance parameter J"],[1,"Modwheel"],[2,"Breath controller"],[95,"Track level"],[16,"OSC1 Pitch"],[69,"OSC1 Level"],[70,"OSC1 Waveform"],[71,"OSC1 Sub oscillator"],[72,"OSC1 Pulsewidth"],[73,"OSC1 PWM speed"],[74,"OSC1 PWM depth"],[75,"Noise S&H"],[76,"Noise fade"],[77,"Noise level"],[17,"OSC2 Pitch"],[78,"OSC2 Level"],[79,"OSC2 Waveform"],[80,"OSC2 Sub oscillator"],[81,"OSC2 Pulsewidth"],[82,"OSC2 PWM speed"],[82,"OSC2 PWM depth"],[84,"Sync amount"],[85,"Bend amount"],[5,"Slide time"],[87,"Vibrato speed"],[88,"Vibrato depth"],[18,"Synth filter 1 frequency"],[89,"Synth filter 1 resonance"],[102,"Synth filter 1 envelope amount"],[19,"Synth filter 2 frequency"],[90,"Synth filter 2 resonance"],[103,"Synth filter 2 envelope amount"],[104,"Synth amp envA attack time"],[105,"Synth amp envA decay time"],[106,"Synth amp envA sustain level"],[107,"Synth amp envA release time"],[91,"Synth amp chorus send level"],[92,"Synth amp delay send level"],[93,"Synth amp reverb send level"],[10,"Synth amp pan"],[7,"Synth amp volume"],[108,"Synth envF attack time"],[109,"Synth envF decay time"],[110,"Synth envF sustain level"],[111,"Synth envF release time"],[20,"Synth envF depth A"],[21,"Synth envF depth B"],[112,"Synth env2 attack time"],[113,"Synth env2 decay time"],[114,"Synth env2 sustain level"],[115,"Synth env2 release time"],[22,"Synth env2 depth A"],[2,"Synth env2 depth B"],[116,"Synth LFO1 speed"],[117,"Synth LFO1 speed multiplier"],[24,"Synth LFO1 depth A"],[25,"Synth LFO1 depth B"],[118,"Synth LFO2 speed"],[119,"Synth LFO2 speed multiplier"],[26,"Synth LFO2 depth A"],[27,"Synth LFO2 depth B"]]},{"id":"analogheatmkii","brand":"Elektron","name":"Analog Heat MKII","cc":[[70,"Circuit: CB"],[70,"Circuit: SA"],[70,"Circuit: EN"],[70,"Circuit: MD"],[70,"Circuit: RC"],[70,"Circuit: CD"],[70,"Circuit: RF"],[70,"Circuit: HG"],[12,"Drive"],[11,"Wet Level"],[8,"Dry/Wet Mix"],[7,"Preset Volume"],[9,"EQ Low"],[10,"EQ High"],[80,"VCF Mode: LP2"],[80,"VCF Mode: LP1"],[80,"VCF Mode: BP"],[80,"VCF Mode: HP1"],[80,"VCF Mode: HP2"],[80,"VCF Mode: BS"],[80,"VCF Mode: PK"],[74,"VCF Frequency"],[79,"VCF Frequency Pan"],[71,"VCF Resonance"],[13,"VCF Dirt"],[14,"ENV to Filter"],[15,"LFO to Filter"],[16,"ENV Threshold"],[73,"ENV Attack"],[72,"ENV Release"],[17,"ENV Base"],[18,"ENV Width"],[19,"ENV Mode"],[75,"ENV Destination"],[20,"ENV Depth"],[76,"ENV Destination 2"],[21,"ENV Depth 2"],[83,"LFO Wave: Triangle"],[83,"LFO Wave: Sine"],[83,"LFO Wave: Square"],[83,"LFO Wave: Saw"],[83,"LFO Wave: Exp"],[83,"LFO Wave: Ramp"],[83,"LFO Wave: Rnd"],[22,"LFO Speed"],[23,"LFO Multiplier"],[24,"LFO Fade In/Out"],[25,"LFO Mode: Free"],[25,"LFO Mode: Trig"],[25,"LFO Mode: Hold"],[25,"LFO Mode: One"],[25,"LFO Mode: Half"],[26,"LFO Start Phase"],[77,"LFO Destination"],[28,"LFO Depth"],[78,"LFO Destination 2"],[28,"LFO Depth 2"],[85,"CV A Destination"],[86,"CV A Depth"],[87,"Expre. A Destination"],[88,"Expre. A Depth"],[89,"CV B Destination"],[90,"CV B Depth"],[91,"Expre. B Destination"],[92,"Expre. B Depth"]]},{"id":"analogrytmmkii","brand":"Elektron","name":"Analog Rytm MKII","cc":[[3,"Trig: Note"],[4,"Trig: Velocity"],[5,"Trig: Length"],[11,"Trig: Synth Trig"],[12,"Trig: Sample Trig"],[13,"Trig: ENV Trig"],[14,"Trig: LFO Trig"],[95,"Track Level"],[94,"Track Mute"],[93,"Track Solo"],[15,"Track Machine Type"],[92,"Active Scene"],[35,"Perf Param 1"],[36,"Perf Param 2"],[37,"Perf Param 3"],[39,"Perf Param 4"],[40,"Perf Param 5"],[41,"Perf Param 6"],[42,"Perf Param 7"],[43,"Perf Param 8"],[44,"Perf Param 9"],[45,"Perf Param 10"],[46,"Perf Param 11"],[47,"Perf Param 12"],[16,"Synth Param 1"],[17,"Synth Param 2"],[18,"Synth Param 3"],[19,"Synth Param 4"],[20,"Synth Param 5"],[21,"Synth Param 6"],[22,"Synth Param 7"],[23,"Synth Param 8"],[24,"Sample: Tune"],[25,"Sample: Fine Tune"],[26,"Sample: Bit Reduction"],[27,"Sample: Slot"],[28,"Sample: Start"],[29,"Sample: End"],[30,"Sample: Loop"],[31,"Sample: Level"],[70,"Filter: Attack Time"],[71,"Filter: Decay Time"],[72,"Filter: Sustain Level"],[73,"Filter: Release Time"],[74,"Filter: Frequency"],[75,"Filter: Resonance"],[76,"Filter: Mode"],[77,"Filter: Env Depth"],[78,"Amp: Attack Time"],[79,"Amp: Hold Time"],[80,"Amp: Decay Time"],[81,"Amp: Overdrive"],[82,"Amp: Delay Send"],[83,"Amp: Reverb Send"],[10,"Amp: Pan"],[7,"Amp: Volume"],[102,"LFO: Speed"],[103,"LFO: Multiplier"],[104,"LFO: Fade In/Out"],[105,"LFO: Destination"],[106,"LFO: Waveform"],[107,"LFO: Start Phase"],[108,"LFO: Trig Mode"],[109,"LFO: Depth"],[16,"Delay: Time"],[17,"Delay: Pingpong"],[18,"Delay: Stereo Width"],[19,"Delay: Feedback"],[20,"Delay: Highpass Filter"],[21,"Delay: Lowpass Filter"],[22,"Delay: Reverb Send"],[23,"Delay: Mix Volume"],[24,"Reverb: Predelay"],[25,"Reverb: Decay Time"],[26,"Reverb: Shelving Freq"],[27,"Reverb: Shelving Gain"],[28,"Reverb: Highpass Filter"],[29,"Reverb: Lowpass Filter"],[31,"Reverb: Mix Volume"],[70,"Distortion: Amount"],[71,"Distortion: Symmetry"],[72,"Distortion: Delay Overdrive"],[76,"Distortion: Delay Dist/Comp Pre/Post"],[77,"Distortion: Reverb Dist/Comp Pre/Post"],[78,"Comp: Threshold"],[79,"Comp: Attack Time"],[80,"Comp: Release Time"],[81,"Comp: Makeup Gain"],[82,"Comp: Ratio"],[83,"Comp: Sidechain EQ"],[84,"Comp: Dry/Wet Mix"],[85,"Comp: Output Volume"]]},{"id":"digitakt","brand":"Elektron","name":"Digitakt","cc":[[94,"Mute"],[95,"Track Level"],[3,"Trig: Note"],[4,"Trig: Velocity"],[5,"Trig: Length"],[13,"Trig: Filter Trig"],[14,"Trig: LFO Trig"],[16,"Source: Tune"],[17,"Source: Play Mode"],[18,"Source: Bit Reduction"],[19,"Source: Sample Slot"],[20,"Source: Start"],[21,"Source: Length"],[22,"Source: Loop Position"],[23,"Source: Sample Level"],[74,"Filter: Frequency"],[75,"Filter: Resonance"],[76,"Filter: Type"],[70,"Filter: Attack Time"],[71,"Filter: Decay Time"],[72,"Filter: Sustain Level"],[73,"Filter: Release Time"],[77,"Filter: Env. Depth"],[78,"Amp: Attack Time"],[79,"Amp: Hold Time"],[80,"Amp: Decay Time"],[81,"Amp: Overdrive"],[82,"Amp: Delay Send"],[83,"Amp: Reverb Send"],[10,"Amp: Pan"],[7,"Amp: Volume"],[102,"LFO: Speed"],[103,"LFO: Multiplier"],[104,"LFO: Fade In/Out"],[105,"LFO: Destination"],[106,"LFO: Waveform"],[107,"LFO: Start Phase"],[108,"LFO: Trig Mode"],[109,"LFO: Depth"],[85,"Delay: Time"],[86,"Delay: Pingpong"],[87,"Delay: Stereo Width"],[88,"Delay: Feedback"],[89,"Delay: Highpass Filter"],[90,"Delay: Lowpass Filter"],[91,"Delay: Reverb Send"],[92,"Delay: Mix Volume"],[24,"Reverb: Predelay"],[25,"Reverb: Decay Time"],[26,"Reverb: Shelving Freq"],[27,"Reverb: Shelving Gain"],[28,"Reverb: Highpass Filter"],[29,"Reverb: Lowpass Filter"],[30,"Reverb: Pre/Post Comp"],[31,"Reverb: Mix Volume"],[111,"Comp: Threshold"],[112,"Comp: Attack Time"],[113,"Comp: Release Time"],[114,"Comp: Makeup Gain"],[119,"Comp: Pattern Volume"],[115,"Comp: Ratio"],[116,"Comp: Sidechain Source"],[117,"Comp: Sidechain Filter"],[118,"Comp: Dry/Wet Mix"],[70,"LFO VAL1"],[71,"LFO VAL2"],[72,"LFO VAL3"],[73,"LFO VAL4"],[74,"LFO VAL5"],[75,"LFO VAL6"],[76,"LFO VAL7"],[77,"LFO VAL8"],[66,"Pattern Mute"]]},{"id":"digitone","brand":"Elektron","name":"Digitone","cc":[[94,"Mute"],[95,"Track Level"],[3,"Trig: Root"],[4,"Trig: Velocity"],[5,"Trig: Length"],[13,"Trig: Filter Trig"],[14,"Trig: LFO Trig"],[15,"Trig: Portamento Time"],[16,"Trig: Portamento On"],[90,"SYN1: Algorithm"],[91,"SYN1: Ratio C"],[92,"SYN1: Ratio A"],[16,"SYN1: Ratio B"],[17,"SYN1: Harmonics"],[18,"SYN1: Detune"],[19,"SYN1: Feedback"],[20,"SYN1: Mix"],[75,"SYN2: A ENV Attack"],[76,"SYN2: A ENV Decay"],[77,"SYN2: A ENV End"],[78,"SYN2: A ENV Level"],[79,"SYN2: B ENV Attack"],[80,"SYN2: B ENV Decay"],[81,"SYN2: B ENV End"],[82,"SYN2: B Level"],[83,"SYN2: A Delay"],[84,"SYN2: A Trig"],[85,"SYN2: A ENV Reset"],[86,"SYN2: B Delay"],[87,"SYN2: B Trig"],[88,"SYN2: B ENV Reset"],[89,"SYN2: Phase Reset"],[23,"Filter: Frequency"],[24,"Filter: Resonance"],[74,"Filter: Type"],[70,"Filter: Attack Time"],[71,"Filter: Decay Time"],[72,"Filter: Sustain Level"],[73,"Filter: Release Time"],[25,"Filter: Env. Depth"],[26,"Filter: Base"],[27,"Filter: Width"],[104,"Amp: Attack Time"],[105,"Amp: Decay Time"],[106,"Amp: Sustain Level"],[107,"Amp: Release Time"],[9,"Amp: Drive"],[10,"Amp: Pan"],[7,"Amp: Volume"],[12,"Amp: Chorus Send"],[13,"Amp: Delay Send"],[14,"Amp: Reverb Send"],[102,"Amp: Env Reset"],[28,"LFO: Speed LFO1"],[108,"LFO: Multiplier LFO1"],[109,"LFO: Fade In/Out LFO1"],[110,"LFO: Destination LFO1"],[111,"LFO: Waveform LFO1"],[112,"LFO: Start Phase LFO1"],[113,"LFO: Trig Mode LFO1"],[29,"LFO: Depth LFO1"],[30,"LFO: Speed LFO2"],[114,"LFO: Multiplier LFO2"],[115,"LFO: Fade In/Out LFO2"],[116,"LFO: Destination LFO2"],[117,"LFO: Waveform LFO2"],[118,"LFO: Start Phase LFO2"],[119,"LFO: Trig Mode LFO2"],[31,"LFO: Depth LFO2"],[70,"CC VAL1"],[71,"CC VAL2"],[72,"CC VAL3"],[73,"CC VAL4"],[74,"CC VAL5"],[75,"CC VAL6"],[76,"CC VAL7"],[77,"CC VAL8"],[3,"Chorus: Depth"],[9,"Chorus: Speed"],[70,"Chorus: Highpass"],[71,"Chorus: Width"],[12,"Chorus: Delay Send"],[13,"Chorus: Reverb Send"],[14,"Chorus: Mix Volume"],[15,"Delay: Time"],[16,"Delay: Pingpong"],[17,"Delay: Stereo Width"],[18,"Delay: Feedback"],[72,"Delay: Highpass Filter"],[73,"Delay: Lowpass Filter"],[19,"Delay: Reverb Send"],[20,"Delay: Mix Volume"],[21,"Reverb: Predelay"],[74,"Reverb: Decay Time"],[75,"Reverb: Shelving Freq"],[22,"Reverb: Shelving Gain"],[76,"Reverb: Highpass Filter"],[77,"Reverb: Lowpass Filter"],[23,"Reverb: Mix Volume"],[24,"Input L Volume"],[25,"Input R Volume"],[78,"Pan L"],[79,"Pan R"],[26,"Chorus Send"],[27,"Delay Send"],[28,"Reverb Send"],[29,"Master Overdrive"],[95,"Pattern Volume"],[64,"Sustain Pedal: Off"],[64,"Sustain Pedal: On"],[66,"Sostenuto"]]},{"id":"digitonekeys","brand":"Elektron","name":"Digitone Keys","cc":[[94,"Mute"],[95,"Track Level"],[3,"Trig: Root"],[4,"Trig: Velocity"],[5,"Trig: Length"],[13,"Trig: Filter Trig"],[14,"Trig: LFO Trig"],[15,"Trig: Portamento Time"],[16,"Trig: Portamento On"],[90,"SYN1: Algorithm"],[91,"SYN1: Ratio C"],[92,"SYN1: Ratio A"],[16,"SYN1: Ratio B"],[17,"SYN1: Harmonics"],[18,"SYN1: Detune"],[19,"SYN1: Feedback"],[20,"SYN1: Mix"],[75,"SYN2: A ENV Attack"],[76,"SYN2: A ENV Decay"],[77,"SYN2: A ENV End"],[78,"SYN2: A ENV Level"],[79,"SYN2: B ENV Attack"],[80,"SYN2: B ENV Decay"],[81,"SYN2: B ENV End"],[82,"SYN2: B Level"],[83,"SYN2: A Delay"],[84,"SYN2: A Trig"],[85,"SYN2: A ENV Reset"],[86,"SYN2: B Delay"],[87,"SYN2: B Trig"],[88,"SYN2: B ENV Reset"],[89,"SYN2: Phase Reset"],[23,"Filter: Frequency"],[24,"Filter: Resonance"],[74,"Filter: Type"],[70,"Filter: Attack Time"],[71,"Filter: Decay Time"],[72,"Filter: Sustain Level"],[73,"Filter: Release Time"],[25,"Filter: Env. Depth"],[26,"Filter: Base"],[27,"Filter: Width"],[104,"Amp: Attack Time"],[105,"Amp: Decay Time"],[106,"Amp: Sustain Level"],[107,"Amp: Release Time"],[9,"Amp: Drive"],[10,"Amp: Pan"],[7,"Amp: Volume"],[12,"Amp: Chorus Send"],[13,"Amp: Delay Send"],[14,"Amp: Reverb Send"],[102,"Amp: Env Reset"],[28,"LFO: Speed LFO1"],[108,"LFO: Multiplier LFO1"],[109,"LFO: Fade In/Out LFO1"],[110,"LFO: Destination LFO1"],[111,"LFO: Waveform LFO1"],[112,"LFO: Start Phase LFO1"],[113,"LFO: Trig Mode LFO1"],[29,"LFO: Depth LFO1"],[30,"LFO: Speed LFO2"],[114,"LFO: Multiplier LFO2"],[115,"LFO: Fade In/Out LFO2"],[116,"LFO: Destination LFO2"],[117,"LFO: Waveform LFO2"],[118,"LFO: Start Phase LFO2"],[119,"LFO: Trig Mode LFO2"],[31,"LFO: Depth LFO2"],[70,"CC VAL1"],[71,"CC VAL2"],[72,"CC VAL3"],[73,"CC VAL4"],[74,"CC VAL5"],[75,"CC VAL6"],[76,"CC VAL7"],[77,"CC VAL8"],[3,"Chorus: Depth"],[9,"Chorus: Speed"],[70,"Chorus: Highpass"],[71,"Chorus: Width"],[12,"Chorus: Delay Send"],[13,"Chorus: Reverb Send"],[14,"Chorus: Mix Volume"],[15,"Delay: Time"],[16,"Delay: Pingpong"],[17,"Delay: Stereo Width"],[18,"Delay: Feedback"],[72,"Delay: Highpass Filter"],[73,"Delay: Lowpass Filter"],[19,"Delay: Reverb Send"],[20,"Delay: Mix Volume"],[21,"Reverb: Predelay"],[74,"Reverb: Decay Time"],[75,"Reverb: Shelving Freq"],[22,"Reverb: Shelving Gain"],[76,"Reverb: Highpass Filter"],[77,"Reverb: Lowpass Filter"],[23,"Reverb: Mix Volume"],[24,"Input L Volume"],[25,"Input R Volume"],[78,"Pan L"],[79,"Pan R"],[26,"Chorus Send"],[27,"Delay Send"],[28,"Reverb Send"],[29,"Master Overdrive"],[95,"Pattern Volume"],[64,"Sustain Pedal: Off"],[64,"Sustain Pedal: On"],[66,"Sostenuto"]]},{"id":"modelcycles","brand":"Elektron","name":"Model:Cycles","cc":[[3,"Note"],[94,"Mute Track"],[95,"Track Level"],[10,"Track Pan"],[65,"Track Pitch"],[80,"Track Decay Time"],[16,"Track Color"],[17,"Track Shape"],[18,"Track Sweep"],[19,"Track Contour"],[12,"Track Delay Send"],[13,"Track Reverb Send"],[7,"Track Volume + Dist"],[15,"Track Swing"],[14,"Track Chance"],[102,"LFO Speed"],[103,"LFO Multiplier"],[104,"LFO Fade In/Out"],[105,"LFO Destination"],[106,"LFO Waveform"],[107,"LFO Start Phase"],[108,"LFO Reset"],[109,"LFO Depth"],[85,"Delay Time"],[86,"Delay Feedback"],[87,"Reverb Size"],[88,"Reverb Tone"],[66,"Punch"],[67,"Gate"]]},{"id":"modelsamples","brand":"Elektron","name":"Model:Samples","cc":[[3,"Track Note"],[94,"Track Mute"],[95,"Track Level"],[10,"Track Pan"],[16,"Track Pitch"],[80,"Track Decay Time"],[19,"Track Sample Start"],[20,"Track Sample Length"],[74,"Track Cutoff"],[71,"Track Resonance"],[12,"Track Delay Send"],[13,"Track Reverb Send"],[7,"Track Volume + Dist"],[15,"Track Swing"],[14,"Track Chance"],[102,"LFO Speed"],[103,"LFO Multiplier"],[104,"LFO Fade In/Out"],[105,"LFO Destination"],[106,"LFO Waveform"],[107,"LFO Start Phase"],[108,"LFO Reset"],[109,"LFO Depth"],[85,"Delay Time"],[86,"Delay Feedback"],[87,"Reverb Size"],[88,"Reverb Tone"],[17,"Playback: Loop"],[18,"Playback: Reverse"]]},{"id":"octatrackmkii","brand":"Elektron","name":"Octatrack MKII","cc":[[7,"Track Level"],[8,"Track Balance"],[16,"Playback Param 1"],[17,"Playback Param 2"],[18,"Playback Param 3"],[19,"Playback Param 4"],[20,"Playback Param 5"],[21,"Playback Param 6"],[22,"Amp Param 1"],[23,"Amp Param 2"],[24,"Amp Param 3"],[25,"Amp Param 4"],[26,"Amp Param 5"],[27,"Amp Param 6"],[28,"LFO Param 1"],[29,"LFO Param 2"],[30,"LFO Param 3"],[31,"LFO Param 4"],[32,"LFO Param 5"],[33,"LFO Param 6"],[34,"FX1 Param 1"],[35,"FX1 Param 2"],[36,"FX1 Param 3"],[37,"FX1 Param 4"],[38,"FX1 Param 5"],[39,"FX1 Param 6"],[40,"FX2 Param 1"],[41,"FX2 Param 2"],[42,"FX2 Param 3"],[43,"FX2 Param 4"],[44,"FX2 Param 5"],[45,"FX2 Param 6"],[46,"Track Level"],[47,"Cue Level"],[48,"Crossfader"],[49,"Track Mute"],[49,"Track Unmute"],[50,"Track Solo"],[50,"Track Unsolo"],[51,"Track Cue"],[51,"Track Uncue"],[52,"Track Arm"],[52,"Track Disarm"],[53,"Record Arm"],[53,"Record Disarm"],[54,"All Arm"],[54,"All Disarm"],[55,"Scene Select A"],[56,"Scene Select B"],[57,"Pickup SRC AB Level"],[58,"Pickup SRC CD Level"],[59,"Note On"],[60,"Note Off"],[61,"Send Request"],[112,"MIDI Track 1 Mute"],[112,"MIDI Track 1 Unmute"],[113,"MIDI Track 2 Mute"],[113,"MIDI Track 2 Unmute"],[114,"MIDI Track 3 Mute"],[114,"MIDI Track 3 Unmute"],[115,"MIDI Track 4 Mute"],[115,"MIDI Track 4 Unmute"],[116,"MIDI Track 5 Mute"],[116,"MIDI Track 5 Unmute"],[117,"MIDI Track 6 Mute"],[117,"MIDI Track 6 Unmute"],[118,"MIDI Track 7 Mute"],[118,"MIDI Track 7 Unmute"],[119,"MIDI Track 8 Mute"],[119,"MIDI Track 8 Unmute"],[120,"MIDI Track 1 Solo"],[120,"MIDI Track 1 Unsolo"],[121,"MIDI Track 2 Solo"],[121,"MIDI Track 2 Unsolo"],[122,"MIDI Track 3 Solo"],[122,"MIDI Track 3 Unsolo"],[123,"MIDI Track 4 Solo"],[123,"MIDI Track 4 Unsolo"],[124,"MIDI Track 5 Solo"],[124,"MIDI Track 5 Unsolo"],[125,"MIDI Track 6 Solo"],[125,"MIDI Track 6 Unsolo"],[126,"MIDI Track 7 Solo"],[126,"MIDI Track 7 Unsolo"],[127,"MIDI Track 8 Solo"],[127,"MIDI Track 8 Unsolo"],[16,"Playback Param 1 (Note)"],[17,"Playback Param 2 (Velocity)"],[18,"Playback Param 3 (Length)"],[19,"Playback Param 4 (Note 2)"],[20,"Playback Param 5 (Note 3)"],[21,"Playback Param 6 (Note 4)"],[22,"Amp Param 1 (Transpose)"],[23,"Amp Param 2 (Legato)"],[24,"Amp Param 3 (Mode)"],[25,"Amp Param 4 (Speed) "],[26,"Amp Param 5 (Octave Range)"],[27,"Amp Param 6 (Arp Note Length)"],[28,"MIDI LFO Param 1 (Speed 1)"],[29,"MIDI LFO Param 2 (Speed 2)"],[30,"MIDI LFO Param 3 (Speed 3)"],[31,"MIDI LFO Param 4 (Depth 1)"],[32,"MIDI LFO Param 5 (Depth 2)"],[33,"MIDI LFO Param 6 (Depth 3)"],[34,"Pitch Bend"],[35,"Aftertouch"],[36,"CC 1 Param"],[37,"CC 2 Param"],[38,"CC 3 Param"],[39,"CC 4 Param"],[40,"CC 5 Param"],[41,"CC 6 Param"],[42,"CC 7 Param"],[43,"CC 8 Param"],[44,"CC 9 Param"],[45,"CC 10 Param"]]},{"id":"tremolo2","brand":"Empress Effects","name":"Tremolo2","cc":[[20,"Depth Knob"],[21,"Rate/Ratio Knob"],[23,"Output Knob"],[22,"Rhythm 1"],[22,"Rhythm 2"],[22,"Rhythm 3"],[22,"Rhythm 4"],[22,"Rhythm 5"],[22,"Rhythm 6"],[22,"Rhythm 7"],[22,"Rhythm 8"],[24,"Tap Tempo Mode"],[24,"Knob Mode"],[24,"Preset Mode"],[25,"Waveform: Triangle"],[25,"Waveform: Tube"],[25,"Waveform: Square"],[26,"Rhythm Downbeat: 1"],[26,"Rhythm Downbeat: 1"],[26,"Rhythm Downbeat: 1"],[26,"Rhythm Downbeat: 1"],[27,"Waveform Phase"],[35,"Tap Switch: Press"],[35,"Tap Switch: Release"],[36,"Engage"],[36,"Bypass"],[40,"Direct Control"],[50,"Exit Direct Control"],[51,"MIDI Clock: Listen"],[51,"MIDI Clock: Ignore"]]},{"id":"zoia","brand":"Empress Effects","name":"ZOIA","cc":[[60,"Bypass"],[60,"Engage"]]},{"id":"invaderiie642ii","brand":"ENGL","name":"Invader II E642II","cc":[[7,"Mute Amp"],[7,"Unmute Amp"],[14,"Master A/B: Off"],[14,"Master A/B: On"],[22,"High Gain: Off"],[22,"High Gain: On"],[24,"Noise Gate: Off"],[24,"Noise Gate: On"],[29,"Sound: Off"],[29,"Sound: On"],[30,"FX Loop I/II: Off"],[30,"FX Loop I/II: On"]]},{"id":"savage120markiie610ii","brand":"ENGL","name":"Savage 120 Mark II E610II","cc":[[7,"Mute Amp"],[7,"Unmute Amp"],[14,"Master A/B: Off"],[14,"Master A/B: On"],[15,"Rough/Smooth: Off"],[15,"Rough/Smooth: On"],[20,"Input Lo/Hi: Off"],[20,"Input Lo/Hi: On"],[21,"Preshape: Off"],[21,"Preshape: On"],[22,"Gain Lo/Hi: Off"],[22,"Gain Lo/Hi: On"],[23,"Bright: Off"],[23,"Bright: On"],[24,"Noise Gate: Off"],[24,"Noise Gate: On"],[25,"Presence A/B: Off"],[25,"Presence A/B: On"],[26,"Depth Boost: Off"],[26,"Depth Boost: On"],[27,"Contour - Clean/Crunch I: Off"],[27,"Contour - Clean/Crunch I: On"],[28,"Mid Lean/Bold: Off"],[28,"Mid Lean/Bold: On"],[29,"Contour - Crunch II/Lead: Off"],[29,"Contour - Crunch II/Lead: On"],[30,"FX Loop I/II: Off"],[30,"FX Loop I/II: On"]]},{"id":"savage60markiie630ii","brand":"ENGL","name":"Savage 60 Mark II E630II","cc":[[7,"Mute Amp"],[7,"Unmute Amp"],[14,"Master A/B: Off"],[14,"Master A/B: On"],[15,"Rough/Smooth: Off"],[15,"Rough/Smooth: On"],[20,"Input Lo/Hi: Off"],[20,"Input Lo/Hi: On"],[21,"Preshape: Off"],[21,"Preshape: On"],[22,"Gain Lo/Hi: Off"],[22,"Gain Lo/Hi: On"],[23,"Bright: Off"],[23,"Bright: On"],[24,"Noise Gate: Off"],[24,"Noise Gate: On"],[25,"Presence A/B: Off"],[25,"Presence A/B: On"],[26,"Depth Boost: Off"],[26,"Depth Boost: On"],[27,"Contour - Clean/Crunch I: Off"],[27,"Contour - Clean/Crunch I: On"],[28,"Mid Lean/Bold: Off"],[28,"Mid Lean/Bold: On"],[29,"Contour - Crunch II/Lead: Off"],[29,"Contour - Crunch II/Lead: On"],[30,"FX Loop I/II: Off"],[30,"FX Loop I/II: On"]]},{"id":"stevemorsesignaturee656","brand":"ENGL","name":"Steve Morse Signature E656","cc":[[7,"Amp Mute"]]},{"id":"stevemorsesignaturee657","brand":"ENGL","name":"Steve Morse Signature E657","cc":[[7,"Amp Unmute"]]},{"id":"stevemorsesignaturee658","brand":"ENGL","name":"Steve Morse Signature E658","cc":[[14,"Master A"]]},{"id":"stevemorsesignaturee659","brand":"ENGL","name":"Steve Morse Signature E659","cc":[[14,"Master B"]]},{"id":"stevemorsesignaturee660","brand":"ENGL","name":"Steve Morse Signature E660","cc":[[22,"Hi Gain: Off"]]},{"id":"stevemorsesignaturee661","brand":"ENGL","name":"Steve Morse Signature E661","cc":[[22,"Hi Gain: On"]]},{"id":"stevemorsesignaturee662","brand":"ENGL","name":"Steve Morse Signature E662","cc":[[23,"Lo Mid: Off"]]},{"id":"stevemorsesignaturee663","brand":"ENGL","name":"Steve Morse Signature E663","cc":[[23,"Lo Mid: Off"]]},{"id":"stevemorsesignaturee664","brand":"ENGL","name":"Steve Morse Signature E664","cc":[[24,"Noise Gate: Off"]]},{"id":"stevemorsesignaturee665","brand":"ENGL","name":"Steve Morse Signature E665","cc":[[24,"Noise Gate: On"]]},{"id":"stevemorsesignaturee666","brand":"ENGL","name":"Steve Morse Signature E666","cc":[[27,"Hi Mid: Off"]]},{"id":"stevemorsesignaturee667","brand":"ENGL","name":"Steve Morse Signature E667","cc":[[27,"Hi Mid: On"]]},{"id":"stevemorsesignaturee668","brand":"ENGL","name":"Steve Morse Signature E668","cc":[[29,"Tone: Off"]]},{"id":"stevemorsesignaturee669","brand":"ENGL","name":"Steve Morse Signature E669","cc":[[29,"Tone: On"]]},{"id":"stevemorsesignaturee670","brand":"ENGL","name":"Steve Morse Signature E670","cc":[[30,"FX Loop I"]]},{"id":"stevemorsesignaturee671","brand":"ENGL","name":"Steve Morse Signature E671","cc":[[30,"FX Loop II"]]},{"id":"blackhole","brand":"Eventide Audio","name":"Blackhole","cc":[[4,"Expression Pedal"],[9,"Tap Tempo"],[14,"Engage Pedal"],[14,"Bypass Pedal"],[15,"Freeze"],[15,"Unfreeze"],[20,"Mix"],[21,"Gravity"],[22,"Feedback"],[23,"Size"],[24,"Lo"],[25,"Hi"],[27,"Delay"],[28,"Q"],[29,"Depth"],[30,"Rate"],[31,"Out Level"]]},{"id":"knifedrop","brand":"Eventide Audio","name":"Knifedrop","cc":[["4","Expression Pedal"],["52","Pedal Active / Bypass"],["53","Octaves On / Off"],["54","Filter Position"],["55","Octaves Type"],["20","Synth knob"],["21","Drive knob"],["22","Level knob"],["26","Attack knob"],["27","Resonance knob"],["28","Cutoff knob"]]},{"id":"rose","brand":"Eventide Audio","name":"Rose","cc":[[14,"Phase/Reverse: On"],[14,"Phase/Reverse: Off"],[15,"Multiplier: On"],[15,"Multiplier: Off"],[16,"Multiplier Factor"],[17,"LFO Shape"],[18,"LFO Hold: On"],[18,"LFO Hold: Off"],[19,"LFO Reset: On"],[19,"LFO Reset: Off"],[20,"Coarse Delay"],[21,"Fine Delay"],[22,"Mix"],[23,"Filter"],[24,"Feedback"],[25,"Rate"],[26,"Depth"],[27,"Alt-A"],[27,"Alt-B"],[28,"Engage Pedal"],[28,"Bypass Pedal"],[29,"Infinite Repeat: On"],[29,"Infinite Repeat: Off"],[30,"Bypass Type: Buffer"],[30,"Bypass Type: Buffer + Kill Dry"],[30,"Bypass Type: Relay"],[30,"Bypass Type: Relay + Kill Dry"],[30,"Bypass Type: Input-Kill"],[30,"Bypass Type: Input-Kill + Kill Dry"],[31,"Expression Jack: Aux"],[31,"Expression Jack: Expression"],[31,"Expression Jack: Mod"],[31,"Expression Jack: MIDI"],[80,"Tap Mode: Tap Tempo"],[80,"Tap Mode: Tap LFO"],[81,"Tap (Tempo/LFO)"],[82,"Tap Divisions: 1/4"],[82,"Tap Divisions: 1/8"],[82,"Tap Divisions: 1/8d"],[82,"Tap Divisions: Triplet"],[85,"Direct LFO Modulation"]]},{"id":"tricerachorus","brand":"Eventide Audio","name":"Tricerachorus","cc":[["4","Expression Pedal"],["14","Engage Pedal"],["14","Bypass Pedal"],["15","Swirl On"],["15","Swirl Off"],["20","Mix"],["21","Rate"],["22","Detune"],["23","Left Vol"],["24","Centre Vol"],["25","Right Vol"],["26","Mix Env"],["27","Rate Env"],["28","Pitch"],["29","Delay"],["30","Filter"],["31","Out Level"],["9","Tap Rate"]]},{"id":"ultratap","brand":"Eventide Audio","name":"Ultratap","cc":[["4","Expression Pedal"],["9","Tap Tempo"],["14","Engage Pedal"],["14","Bypass Pedal"],["20","Mix"],["21","Amount Of Taps"],["22","Length"],["23","Feedback"],["24","Spread"],["25","Taper"],["26","Tone"],["27","Slurm"],["28","Predelay "],["29","Chop"],["30","Spread/Rise/Release"],["31","Output Level"]]},{"id":"5150iii100shead","brand":"EVH","name":"5150III 100S HEAD","cc":[[85,"Bypass Effects Loop"],[85,"Engage Effects Loop"]]},{"id":"5150iii100whead","brand":"EVH","name":"5150III 100W HEAD","cc":[[85,"Bypass Effects Loop"],[85,"Engage Effects Loop"]]},{"id":"5150iii50s6l6head","brand":"EVH","name":"5150III 50S 6L6 HEAD","cc":[[85,"Bypass Effects Loop"],[85,"Engage Effects Loop"]]},{"id":"5150iii50w6l61x12combo","brand":"EVH","name":"5150III 50W 6L6 1X12 COMBO","cc":[[85,"Reverb: On"],[85,"Reverb: Off"]]},{"id":"5150iii50w6l62x12combo","brand":"EVH","name":"5150III 50W 6L6 2X12 COMBO","cc":[[85,"Reverb: On"],[85,"Reverb: Off"]]},{"id":"5150iii50w6l6head","brand":"EVH","name":"5150III 50W 6L6 HEAD","cc":[[85,"Bypass Effects Loop"],[85,"Engage Effects Loop"]]},{"id":"5150iii50wel341x12combo","brand":"EVH","name":"5150III 50W EL34 1X12 COMBO","cc":[[85,"Reverb: On"],[85,"Reverb: Off"]]},{"id":"5150iii50wel342x12combo","brand":"EVH","name":"5150III 50W EL34 2X12 COMBO","cc":[[85,"Reverb: On"],[85,"Reverb: Off"]]},{"id":"5150iii50wel34head","brand":"EVH","name":"5150III 50W EL34 HEAD","cc":[[85,"Bypass Effects Loop"],[85,"Engage Effects Loop"]]},{"id":"5150iii50whead","brand":"EVH","name":"5150III 50W HEAD","cc":[[85,"Bypass Effects Loop"],[85,"Engage Effects Loop"]]},{"id":"5150iiis100wel34head","brand":"EVH","name":"5150IIIS 100W EL34 HEAD","cc":[[85,"Bypass Effects Loop"],[85,"Engage Effects Loop"]]},{"id":"tonemasterpro","brand":"Fender","name":"tonemasterpro","cc":[[0,"Bank Change"],["1","Expression Pedal 1"],["2","Expression Pedal 2"],["3","MIDI Expression Pedal 3"],["4","MIDI Expression Pedal 4"],["7","Master Volume"],["64","Tap Tempo"],["65","Toe Switch"],["66","Amp Control 1 (Tip)"],["67","Amp Control 1 (Ring)"],["103","Looper REC/DUB"],["104","Looper PLAY/STOP"],["105","Looper 1-SHOT"],["106","Looper UNDO"],["107","Looper 1/2 SPEED"],["108","Looper REVERSE"],["109","Looper VOLUME UP"],["110","Looper VOLUME DOWN"]]},{"id":"ax8","brand":"Fractal Audio Systems","name":"AX8","cc":[[34,"Select Scene 1"],[34,"Select Scene 2"],[34,"Select Scene 3"],[34,"Select Scene 4"],[34,"Select Scene 5"],[34,"Select Scene 6"],[34,"Select Scene 7"],[34,"Select Scene 8"],[10,"In 1 (Instr) Volume"],[11,"Out 1 (Main) Vol"],[12,"Out 2 (FX Send) Vol"],[14,"Tap Tempo"],[15,"Tuner"],[20,"External Control 5"],[21,"External Control 6"],[22,"External Control 7"],[23,"External Control 8"],[24,"External Control 9"],[25,"External Control 10"],[26,"External Control 11"],[27,"External Control 12"],[28,"Looper Record"],[29,"Looper Play"],[30,"Looper Once"],[31,"Looper Dub"],[32,"Looper Reverse"],[33,"Looper Bypass"],[120,"Looper Half Speed"],[121,"Looper Undo"],[122,"Metronome"],[123,"Scene Increment"],[124,"Scene Decrement"],[35,"Out 1 Vol Incr"],[36,"Out 1 Vol Decr"],[41,"Chorus Bypass"],[43,"Compressor Bypass"],[47,"Delay 1 Bypass"],[48,"Delay 2 Bypass"],[49,"Drive 1 Bypass"],[50,"Drive 2 Bypass"],[51,"Enhancer Bypass"],[52,"Filter 1 Bypass"],[53,"Filter 2 Bypass"],[56,"Flanger Bypass"],[58,"Formant Bypass"],[60,"Gate/Expander Bypass"],[62,"Graphic EQ 1 Bypass"],[63,"Graphic EQ 2 Bypass"],[69,"Multi-Delay Bypass"],[71,"Parametric EQ 1 Bypass"],[72,"Parametric EQ 2 Bypass"],[75,"Phaser Bypass"],[77,"Pitch Bypass"],[83,"Reverb Bypass"],[85,"Ring Modulator Bypass"],[86,"Rotary Bypass"],[88,"Synth"],[90,"Trem/Pan Bypass"],[93,"Volume/Pan 1 Bypass"],[94,"Volume/Pan 2 Bypass"],[97,"Wahwah Bypass"],[104,"Chorus X/Y"],[106,"Delay 1 X/Y"],[107,"Delay 2 X/Y"],[108,"Drive 1 X/Y"],[109,"Drive 2 X/Y"],[110,"Flanger X/Y"],[112,"Phaser X/Y"],[114,"Pitch X/Y"],[125,"Rotary X/Y"],[116,"Reverb X/Y"],[118,"Wahwah X/Y"]]},{"id":"axe-fxii","brand":"Fractal Audio Systems","name":"Axe-Fx II","cc":[[10,"Input Volume"],[11,"Out 1 Volume"],[12,"Out 2 Volume"],[13,"Bypass Pedal"],[14,"Tempo"],[15,"Tuner"],[16,"External Control 1"],[17,"External Control 2"],[18,"External Control 3"],[19,"External Control 4"],[20,"External Control 5"],[21,"External Control 6"],[22,"External Control 7"],[23,"External Control 8"],[24,"External Control 9"],[25,"External Control 10"],[26,"External Control 11"],[27,"External Control 12"],[28,"Looper Record"],[29,"Looper Play"],[30,"Looper Once"],[31,"Looper Dub"],[32,"Looper Reverse"],[33,"Looper Bypass"],[120,"Looper Half Speed"],[121,"Looper Undo"],[122,"Metronome"],[123,"Scene Increment"],[124,"Scene Decrement"],[35,"Volume Increment"],[36,"Volume Decrement"],[37,"Amp 1 Bypass"],[38,"Amp 2 Bypass"],[39,"Cab 1 Bypass"],[40,"Cab 2 Bpass"],[41,"Chorus 1 Bypass"],[42,"Chorus 2 Bypass"],[43,"Compressor 1 Bypass"],[44,"Compressor 2 Bypass"],[45,"Crossover 1 Bypass"],[46,"Crossover 2 Bypass"],[47,"Delay 1 Bypass"],[48,"Delay 2 Bypass"],[49,"Drive 1 Bypass"],[50,"Drive 2 Bypass"],[51,"Enhancer Bypass"],[52,"Filter 1 Bypass"],[53,"Filter 2 Bypass"],[54,"Filter 3 Bypass"],[55,"Filter 4 Bypass"],[56,"Flanger 1 Bypass"],[57,"Flanger 2 Bypass"],[58,"Formant 1 Bypass"],[59,"FX Loop Bypass"],[60,"Gate/Expander 1 Bypass"],[61,"Gate/Expander 2 Bypass"],[62,"Graphic EQ 1 Bypass"],[63,"Graphic EQ 2 Bypass"],[64,"Graphic EQ 3 Bypass"],[65,"Graphic EQ 4 Bypass"],[66,"Megatap Delay Bypass"],[67,"Multiband Comp 1 Bypass"],[68,"Multiband Comp 2 Bypass"],[69,"Multi-Delay 1 Bypass"],[70,"Multi-Delay 2 Bypass"],[71,"Parametric EQ 1 Bypass"],[72,"Parametric EQ 2 Bypass"],[73,"Parametric EQ 3 Bypass"],[74,"Parametric EQ 4 Bypass"],[75,"Phaser 1 Bypass"],[76,"Phaser 2 Bypass"],[77,"Pitch Shifter 1 Bypass"],[78,"Pitch Shifter 2 Bypass"],[79,"Quad Chorus 1 Bypass"],[80,"Quad Chorus 2 Bypass"],[81,"Resonator 1 Bypass"],[82,"Resonator 2 Bypass"],[83,"Reverb 1 Bypass"],[84,"Reverb 2 Bypass"],[85,"Ring Modulator Bypass"],[86,"Rotary 1 Bypass"],[87,"Rotary 2 Bypass"],[88,"Synth 1 Bypass"],[89,"Synth 2 Bypass"],[99,"Tone Matching"],[90,"Tremolo 1 Bypass"],[91,"Tremolo 2 Bypass"],[92,"Vocoder Bypass"],[93,"Volume/Pan 1 Bypass"],[94,"Volume/Pan 2 Bypass"],[95,"Volume/Pan 3 Bypass"],[96,"Volume/Pan 4 Bypass"],[97,"Wahwah 1 Bypass"],[98,"Wahwah 2 Bypass"],[100,"Amp 1 X/Y"],[101,"Amp 2 X/Y"],[102,"Cab 1 X/Y"],[103,"Cab 2 X/Y"],[104,"Chorus 1 X/Y"],[105,"Chorus 2 X/Y"],[106,"Delay 1 X/Y"],[107,"Delay 2 X/Y"],[108,"Drive 1 X/Y"],[109,"Drive 2 X/Y"],[110,"Flanger 1 X/Y"],[111,"Flanger 2 X/Y"],[112,"Phaser 1 X/Y"],[113,"Phaser 2 X/Y"],[114,"Pitch 1 X/Y"],[115,"Pitch 2 X/Y"],[116,"Reverb 1 X/Y"],[117,"Reverb 2 X/Y"],[118,"Wahwah 1 X/Y"],[119,"Wahwah 2 X/Y"]]},{"id":"axe-fxiixl","brand":"Fractal Audio Systems","name":"Axe-Fx II XL","cc":[[10,"Input Volume"],[11,"Out 1 Volume"],[12,"Out 2 Volume"],[13,"Bypass Pedal"],[14,"Tempo"],[15,"Tuner"],[16,"External Control 1"],[17,"External Control 2"],[18,"External Control 3"],[19,"External Control 4"],[20,"External Control 5"],[21,"External Control 6"],[22,"External Control 7"],[23,"External Control 8"],[24,"External Control 9"],[25,"External Control 10"],[26,"External Control 11"],[27,"External Control 12"],[28,"Looper Record"],[29,"Looper Play"],[30,"Looper Once"],[31,"Looper Dub"],[32,"Looper Reverse"],[33,"Looper Bypass"],[120,"Looper Half Speed"],[121,"Looper Undo"],[122,"Metronome"],[123,"Scene Increment"],[124,"Scene Decrement"],[35,"Volume Increment"],[36,"Volume Decrement"],[37,"Amp 1 Bypass"],[38,"Amp 2 Bypass"],[39,"Cab 1 Bypass"],[40,"Cab 2 Bpass"],[41,"Chorus 1 Bypass"],[42,"Chorus 2 Bypass"],[43,"Compressor 1 Bypass"],[44,"Compressor 2 Bypass"],[45,"Crossover 1 Bypass"],[46,"Crossover 2 Bypass"],[47,"Delay 1 Bypass"],[48,"Delay 2 Bypass"],[49,"Drive 1 Bypass"],[50,"Drive 2 Bypass"],[51,"Enhancer Bypass"],[52,"Filter 1 Bypass"],[53,"Filter 2 Bypass"],[54,"Filter 3 Bypass"],[55,"Filter 4 Bypass"],[56,"Flanger 1 Bypass"],[57,"Flanger 2 Bypass"],[58,"Formant 1 Bypass"],[59,"FX Loop Bypass"],[60,"Gate/Expander 1 Bypass"],[61,"Gate/Expander 2 Bypass"],[62,"Graphic EQ 1 Bypass"],[63,"Graphic EQ 2 Bypass"],[64,"Graphic EQ 3 Bypass"],[65,"Graphic EQ 4 Bypass"],[66,"Megatap Delay Bypass"],[67,"Multiband Comp 1 Bypass"],[68,"Multiband Comp 2 Bypass"],[69,"Multi-Delay 1 Bypass"],[70,"Multi-Delay 2 Bypass"],[71,"Parametric EQ 1 Bypass"],[72,"Parametric EQ 2 Bypass"],[73,"Parametric EQ 3 Bypass"],[74,"Parametric EQ 4 Bypass"],[75,"Phaser 1 Bypass"],[76,"Phaser 2 Bypass"],[77,"Pitch Shifter 1 Bypass"],[78,"Pitch Shifter 2 Bypass"],[79,"Quad Chorus 1 Bypass"],[80,"Quad Chorus 2 Bypass"],[81,"Resonator 1 Bypass"],[82,"Resonator 2 Bypass"],[83,"Reverb 1 Bypass"],[84,"Reverb 2 Bypass"],[85,"Ring Modulator Bypass"],[86,"Rotary 1 Bypass"],[87,"Rotary 2 Bypass"],[88,"Synth 1 Bypass"],[89,"Synth 2 Bypass"],[99,"Tone Matching"],[90,"Tremolo 1 Bypass"],[91,"Tremolo 2 Bypass"],[92,"Vocoder Bypass"],[93,"Volume/Pan 1 Bypass"],[94,"Volume/Pan 2 Bypass"],[95,"Volume/Pan 3 Bypass"],[96,"Volume/Pan 4 Bypass"],[97,"Wahwah 1 Bypass"],[98,"Wahwah 2 Bypass"],[100,"Amp 1 X/Y"],[101,"Amp 2 X/Y"],[102,"Cab 1 X/Y"],[103,"Cab 2 X/Y"],[104,"Chorus 1 X/Y"],[105,"Chorus 2 X/Y"],[106,"Delay 1 X/Y"],[107,"Delay 2 X/Y"],[108,"Drive 1 X/Y"],[109,"Drive 2 X/Y"],[110,"Flanger 1 X/Y"],[111,"Flanger 2 X/Y"],[112,"Phaser 1 X/Y"],[113,"Phaser 2 X/Y"],[114,"Pitch 1 X/Y"],[115,"Pitch 2 X/Y"],[116,"Reverb 1 X/Y"],[117,"Reverb 2 X/Y"],[118,"Wahwah 1 X/Y"],[119,"Wahwah 2 X/Y"]]},{"id":"axe-fxiixlplus","brand":"Fractal Audio Systems","name":"Axe-Fx II XL+","cc":[[10,"Input Volume"],[11,"Out 1 Volume"],[12,"Out 2 Volume"],[13,"Bypass Pedal"],[14,"Tempo"],[15,"Tuner"],[16,"External Control 1"],[17,"External Control 2"],[18,"External Control 3"],[19,"External Control 4"],[20,"External Control 5"],[21,"External Control 6"],[22,"External Control 7"],[23,"External Control 8"],[24,"External Control 9"],[25,"External Control 10"],[26,"External Control 11"],[27,"External Control 12"],[28,"Looper Record"],[29,"Looper Play"],[30,"Looper Once"],[31,"Looper Dub"],[32,"Looper Reverse"],[33,"Looper Bypass"],[120,"Looper Half Speed"],[121,"Looper Undo"],[122,"Metronome"],[123,"Scene Increment"],[124,"Scene Decrement"],[35,"Volume Increment"],[36,"Volume Decrement"],[37,"Amp 1 Bypass"],[38,"Amp 2 Bypass"],[39,"Cab 1 Bypass"],[40,"Cab 2 Bpass"],[41,"Chorus 1 Bypass"],[42,"Chorus 2 Bypass"],[43,"Compressor 1 Bypass"],[44,"Compressor 2 Bypass"],[45,"Crossover 1 Bypass"],[46,"Crossover 2 Bypass"],[47,"Delay 1 Bypass"],[48,"Delay 2 Bypass"],[49,"Drive 1 Bypass"],[50,"Drive 2 Bypass"],[51,"Enhancer Bypass"],[52,"Filter 1 Bypass"],[53,"Filter 2 Bypass"],[54,"Filter 3 Bypass"],[55,"Filter 4 Bypass"],[56,"Flanger 1 Bypass"],[57,"Flanger 2 Bypass"],[58,"Formant 1 Bypass"],[59,"FX Loop Bypass"],[60,"Gate/Expander 1 Bypass"],[61,"Gate/Expander 2 Bypass"],[62,"Graphic EQ 1 Bypass"],[63,"Graphic EQ 2 Bypass"],[64,"Graphic EQ 3 Bypass"],[65,"Graphic EQ 4 Bypass"],[66,"Megatap Delay Bypass"],[67,"Multiband Comp 1 Bypass"],[68,"Multiband Comp 2 Bypass"],[69,"Multi-Delay 1 Bypass"],[70,"Multi-Delay 2 Bypass"],[71,"Parametric EQ 1 Bypass"],[72,"Parametric EQ 2 Bypass"],[73,"Parametric EQ 3 Bypass"],[74,"Parametric EQ 4 Bypass"],[75,"Phaser 1 Bypass"],[76,"Phaser 2 Bypass"],[77,"Pitch Shifter 1 Bypass"],[78,"Pitch Shifter 2 Bypass"],[79,"Quad Chorus 1 Bypass"],[80,"Quad Chorus 2 Bypass"],[81,"Resonator 1 Bypass"],[82,"Resonator 2 Bypass"],[83,"Reverb 1 Bypass"],[84,"Reverb 2 Bypass"],[85,"Ring Modulator Bypass"],[86,"Rotary 1 Bypass"],[87,"Rotary 2 Bypass"],[88,"Synth 1 Bypass"],[89,"Synth 2 Bypass"],[99,"Tone Matching"],[90,"Tremolo 1 Bypass"],[91,"Tremolo 2 Bypass"],[92,"Vocoder Bypass"],[93,"Volume/Pan 1 Bypass"],[94,"Volume/Pan 2 Bypass"],[95,"Volume/Pan 3 Bypass"],[96,"Volume/Pan 4 Bypass"],[97,"Wahwah 1 Bypass"],[98,"Wahwah 2 Bypass"],[100,"Amp 1 X/Y"],[101,"Amp 2 X/Y"],[102,"Cab 1 X/Y"],[103,"Cab 2 X/Y"],[104,"Chorus 1 X/Y"],[105,"Chorus 2 X/Y"],[106,"Delay 1 X/Y"],[107,"Delay 2 X/Y"],[108,"Drive 1 X/Y"],[109,"Drive 2 X/Y"],[110,"Flanger 1 X/Y"],[111,"Flanger 2 X/Y"],[112,"Phaser 1 X/Y"],[113,"Phaser 2 X/Y"],[114,"Pitch 1 X/Y"],[115,"Pitch 2 X/Y"],[116,"Reverb 1 X/Y"],[117,"Reverb 2 X/Y"],[118,"Wahwah 1 X/Y"],[119,"Wahwah 2 X/Y"]]},{"id":"fx8","brand":"Fractal Audio Systems","name":"FX8","cc":[[10,"In 1 Pre Volume"],[11,"Out 1 Pre Volume"],[9,"In 2 Pre Volume"],[12,"Out 2 Pre Volume"],[13,"Bypass Pedal"],[14,"Tempo"],[15,"Tuner"],[16,"External Control 1"],[17,"External Control 2"],[18,"External Control 3"],[19,"External Control 4"],[20,"External Control 5"],[21,"External Control 6"],[22,"External Control 7"],[23,"External Control 8"],[24,"External Control 9"],[25,"External Control 10"],[26,"External Control 11"],[27,"External Control 12"],[28,"Looper Record"],[29,"Looper Play"],[30,"Looper Once"],[31,"Looper Dub"],[32,"Looper Reverse"],[33,"Looper Bypass"],[120,"Looper Half Speed"],[121,"Looper Undo"],[122,"Metronome"],[34,"Scene Select"],[123,"Scene Increment"],[124,"Scene Decrement"],[35,"Out Post Vol Incr"],[36,"Out Post Vol Decr"],[41,"Chorus 1 Bypass"],[42,"Chorus 2 Bypass"],[43,"Compressor 1 Bypass"],[44,"Compressor 2 Bypass"],[45,"Crossover 1 Bypass"],[46,"Crossover 2 Bypass"],[47,"Delay 1 Bypass"],[48,"Delay 2 Bypass"],[49,"Drive 1 Bypass"],[50,"Drive 2 Bypass"],[51,"Enhancer Bypass"],[52,"Filter 1 Bypass"],[53,"Filter 2 Bypass"],[56,"Flanger 1 Bypass"],[57,"Flanger 2 Bypass"],[58,"Formant 1 Bypass"],[60,"Gate/Expander 1 Bypass"],[62,"Graphic EQ 1 Bypass"],[63,"Graphic EQ 2 Bypass"],[66,"Megatap Delay Bypass"],[69,"Multi-Delay Bypass"],[71,"Parametric EQ 1 Bypass"],[72,"Parametric EQ 2 Bypass"],[75,"Phaser 1 Bypass"],[76,"Phaser 2 Bypass"],[77,"Pitch Bypass"],[125,"Relay 1"],[126,"Relay 1"],[83,"Reverb 1 Bypass"],[84,"Reverb 2 Bypass"],[85,"Ring Modulator Bypass"],[86,"Rotary Bypass"],[88,"Synth Bypass"],[90,"Trem/Pan Bypass"],[91,"Tremolo 2 Bypass"],[93,"Volume/Pan Bypass"],[97,"Wahwah 1 Bypass"],[98,"Wahwah 2 Bypass"],[104,"Chorus 1 X/Y"],[105,"Chorus 2 X/Y"],[106,"Delay 1 X/Y"],[107,"Delay 2 X/Y"],[108,"Drive 1 X/Y"],[109,"Drive 2 X/Y"],[110,"Flanger 1 X/Y"],[111,"Flanger 2 X/Y"],[112,"Phaser 1 X/Y"],[113,"Phaser 2 X/Y"],[114,"Pitch X/Y"],[125,"Rotary X/Y"],[116,"Reverb 1 X/Y"],[117,"Reverb 2 X/Y"],[118,"Wahwah 1 X/Y"],[119,"Wahwah 2 X/Y"]]},{"id":"as-1rambispace","brand":"Free the Tone","name":"AS-1R Ambi Space","cc":[[92,"Pre-Delay"],[93,"Decay"],[94,"Tone"],[95,"Mix"],[96,"Mode 1"],[96,"Mode 2"],[96,"Mode 3"],[96,"Mode 4"],[96,"Mode 5"],[96,"Mode 6"],[65,"Bypass Pedal"],[65,"Engage Pedal"]]},{"id":"flighttimeft-2y","brand":"Free the Tone","name":"Flight Time FT-2Y","cc":[[81,"Delay Level"],[82,"Feedback (0-99)"],[83,"Feedback (1.1-9.9)"],[84,"Output Level"],[21,"LPF: Off"],[21,"LPF: 22kHz"],[21,"LPF: 20kHz"],[21,"LPF: 18kHz"],[21,"LPF: 16kHz"],[21,"LPF: 14kHz"],[21,"LPF: 13kHz"],[21,"LPF: 12kHz"],[21,"LPF: 11kHz"],[21,"LPF: 10kHz"],[21,"LPF: 9kHz"],[21,"LPF: 8kHz"],[21,"LPF: 7kHz"],[21,"LPF: 6kHz"],[21,"LPF: 5kHz"],[21,"LPF: 4kHz"],[21,"LPF: 3kHz"],[21,"LPF: 2kHz"],[21,"LPF: 1kHz"],[22,"HPF: Off"],[22,"HPF: 20Hz"],[22,"HPF: 40Hz"],[22,"HPF: 50Hz"],[22,"HPF: 60Hz"],[22,"HPF: 80Hz"],[22,"HPF: 100Hz"],[22,"HPF: 120Hz"],[22,"HPF: 140Hz"],[22,"HPF: 160Hz"],[22,"HPF: 180Hz"],[22,"HPF: 200Hz"],[22,"HPF: 250Hz"],[22,"HPF: 300Hz"],[22,"HPF: 400Hz"],[22,"HPF: 500Hz"],[22,"HPF: 600Hz"],[22,"HPF: 700Hz"],[22,"HPF: 800Hz"],[22,"HPF: 900Hz"],[22,"HPF: 1kHz"],[31,"Rate-Up"],[34,"Rate Down"],[33,"Depth"],[41,"Subdivision: 1/1"],[41,"Subdivision: 1/2"],[41,"Subdivision: 1/4d"],[41,"Subdivision: Triplet/4"],[41,"Subdivision: 1/4"],[41,"Subdivision: 1/8d"],[41,"Subdivision: Triplet/2"],[41,"Subdivision: 1/8"],[41,"Subdivision: Triplet/1"],[41,"Subdivision: 1/16"],[42,"Offset (+)"],[43,"Offset (-)"],[51,"Trail: Off"],[51,"Trail: On"],[52,"Rec & Repeat Mode: On"],[52,"Rec & Repeat Mode: Off"],[53,"BPM Analyzer: Off"],[53,"BPM Analyzer: On"],[54,"Delay Phase: Off"],[54,"Delay Phase: On"],[61,"Effect On"],[61,"Effect Off"],[62,"Tap"],[63,"Hold: On"],[63,"Hold: Off"],[71,"Play"],[72,"Rec"],[73,"Stop"]]},{"id":"pa-1qa","brand":"Free the Tone","name":"PA-1QA","cc":[[107,"Output Level"],[66,"Bypass Pedal"],[66,"Engage Pedal"],[97,"31Hz"],[98,"62Hz"],[99,"125Hz"],[100,"250Hz"],[101,"500Hz"],[102,"1kHz"],[103,"2kHz"],[104,"4kHz"],[105,"8kHz"],[106,"16kHz"]]},{"id":"pa-1qb","brand":"Free the Tone","name":"PA-1QB","cc":[[107,"Output Level"],[66,"Bypass Pedal"],[66,"Engage Pedal"],[97,"40Hz"],[98,"80Hz"],[99,"125Hz"],[100,"250Hz"],[101,"500Hz"],[102,"800Hz"],[103,"1200Hz"],[104,"2400Hz"],[105,"4500Hz"],[106,"8kHz"]]},{"id":"pa-1qg","brand":"Free the Tone","name":"PA-1QG","cc":[[107,"Output Level"],[66,"Bypass Pedal"],[66,"Engage Pedal"],[97,"50Hz"],[98,"100Hz"],[99,"200Hz"],[100,"400Hz"],[101,"800Hz"],[102,"1500Hz"],[103,"2500Hz"],[104,"3500Hz"],[105,"7kHz"],[106,"10kHz"]]},{"id":"ta-1htriavatar","brand":"Free the Tone","name":"TA-1H Tri Avatar","cc":[[85,"Rate"],[86,"Hi-cut"],[87,"Depth Right"],[88,"Depth Center"],[89,"Depth Left"],[90,"Dry Mix"],[91,"Level"],[64,"Bypass Pedal"],[64,"Engage Pedal"]]},{"id":"midi2xloop-er","brand":"G-LAB","name":"MIDI 2 X LOOP-er","cc":[[80,"Loop 1: Off"],[80,"Loop 1: On"],[81,"Loop 2: Off"],[81,"Loop 2: On"],[82,"Loop 3: Off"],[82,"Loop 3: On"],[83,"Loop 4: Off"],[83,"Loop 4: On"],[7,"Global Mute: On"],[7,"Global Mute: Off"]]},{"id":"midi4xloop-er","brand":"G-LAB","name":"MIDI 4 X LOOP-er","cc":[[80,"Loop 1: Off"],[80,"Loop 1: On"],[81,"Loop 2: Off"],[81,"Loop 2: On"],[82,"Loop 3: Off"],[82,"Loop 3: On"],[83,"Loop 4: Off"],[83,"Loop 4: On"],[7,"Global Mute: On"],[7,"Global Mute: Off"]]},{"id":"bigsby","brand":"Gamechanger Audio","name":"Bigsby","cc":[[14,"Rate MSB"],[46,"Rate LSB"],[15,"Detune MSB"],[47,"Detune LSB"],[20,"Blend MSB"],[52,"Blend LSB"],[21,"Pitch down range"],[22,"Pitch up range"],[23,"Tone MSB"],[55,"Tone LSB"],[24,"EXP out range MSB"],[56,"EXP out range LSB"],[25,"EXP out offset MSB"],[57,"EXP out offset LSB"],[108,"EXP out direction"],[27,"Pedal position (full range)"],[28,"Pedal position MSB"],[60,"Pedal position LSB"],[29,"Pedal downward MSB"],[61,"Pedal downward LSB"],[30,"Pedal upward MSB"],[62,"Pedal upward LSB"],[31,"Flutter trigger & amount"],[102,"Auto Mode phase offset"],[103,"EXP out Auto Mode"],[104,"EXP out override enable"],[105,"EXP out override value"],[26,"EXP out override value MSB"],[58,"EXP out override value LSB"],[106,"Latch"],[107,"Latch direction"]]},{"id":"gigboard","brand":"Headrush","name":"Gigboard","cc":[[49,"Footswitch 1"],[50,"Footswitch 2"],[51,"Footswitch 3"],[52,"Footswitch 4"],[64,"Tap Tempo"],[65,"Looper 1/2 Speed"],[66,"Looper 2x Speed"],[67,"Looper 1/2 Loop"],[68,"Looper 2x Loop"],[69,"Looper Start/Stop"],[70,"Looper Record"],[71,"Looper Insert"],[72,"Looper Peel"],[73,"Looper Mute/Unmute"],[74,"Looper Reverse/Forward"],[75,"Block 1 On/Off"],[76,"Block 2 On/Off"],[77,"Block 3 On/Off"],[78,"Block 4 On/Off"],[79,"Block 5 On/Off"],[80,"Block 6 On/Off"],[81,"Block 7 On/Off"],[82,"Block 8 On/Off"],[83,"Block 9 On/Off"],[84,"Block 10 On/Off"],[85,"Block 11 On/Off"]]},{"id":"pedalbaord","brand":"Headrush","name":"Pedalbaord","cc":[[49,"Footswitch 1"],[50,"Footswitch 2"],[51,"Footswitch 3"],[52,"Footswitch 4"],[53,"Footswitch 5"],[54,"Footswitch 6"],[55,"Footswitch 7"],[56,"Footswitch 8"],[57,"Footswitch 9"],[58,"Footswitch 10"],[59,"Footswitch 11"],[60,"Footswitch 12"],[64,"Tap Tempo"],[65,"Looper 1/2 Speed"],[66,"Looper 2x Speed"],[67,"Looper 1/2 Loop"],[68,"Looper 2x Loop"],[69,"Looper Start/Stop"],[70,"Looper Record"],[71,"Looper Insert"],[72,"Looper Peel"],[73,"Looper Mute/Unmute"],[74,"Looper Reverse/Forward"],[75,"Block 1 On/Off"],[76,"Block 2 On/Off"],[77,"Block 3 On/Off"],[78,"Block 4 On/Off"],[79,"Block 5 On/Off"],[80,"Block 6 On/Off"],[81,"Block 7 On/Off"],[82,"Block 8 On/Off"],[83,"Block 9 On/Off"],[84,"Block 10 On/Off"],[85,"Block 11 On/Off"]]},{"id":"ampero","brand":"Hotone","name":"Ampero","cc":[[7,"Patch Volume"],[11,"EXP 1"],[13,"EXP 1 On"],[13,"EXP 1 Off"],[16,"Quick Access Knob 1 MSB"],[17,"Quick Access Knob 1 LSB"],[18,"Quick Access Knob 2 MSB"],[19,"Quick Access Knob 2 LSB"],[20,"Quick Access Knob 3 MSB"],[21,"Quick Access Knob 3 LSB"],[22,"Bank Back"],[23,"Bank Forward"],[24,"Patch Back"],[25,"Patch Forward"],[26,"Bank Back (Wait Mode)"],[27,"Bank Forward (Wait Mode)"],[48,"FX1 Module On"],[48,"FX1 Module Off"],[49,"FX2 Module On"],[49,"FX2 Module Off"],[50,"Amp Module On"],[50,"Amp Module Off"],[51,"NR Module On"],[51,"NR Module Off"],[52,"CAB Module On"],[52,"CAB Module Off"],[53,"EQ Module On"],[53,"EQ Module Off"],[54,"FX3 Module On"],[54,"FX3 Module Off"],[55,"DLY Module On"],[55,"DLY Module Off"],[56,"RVB Module On"],[56,"RVB Module Off"],[57,"Tuner On"],[57,"Tuner Off"],[58,"Drum Machine Menu On"],[58,"Drum Machine Menu Off"],[59,"Drum Machine Play"],[59,"Drum Machine Stop"],[60,"Drum Machine Rhythm Type"],[61,"Drum Machine Volume"],[62,"Looper: On"],[62,"Looper: Off"],[63,"Looper: Record"],[64,"Looper: Play"],[64,"Looper: Stop"],[65,"Looper: Half-Speed"],[65,"Looper: Full Speed"],[66,"Looper: Reverse"],[66,"Looper: Forward"],[68,"Delete Loop"],[69,"Looper Recording Volume"],[70,"Looper Playback Volume"],[71,"Looper Placement: Rear"],[71,"Looper Placement: Front"],[72,"CTRL Footswitch"],[75,"Tap Tempo"],[76,"Device Lock"],[76,"Device Unlock"]]},{"id":"ampero2stomp","brand":"Hotone","name":"Ampero 2 Stomp","cc":[["7","Patch Volume"],["11","Expression Pedal (EXP 1/2)"],["13","EXP 1/2 Switch"],[0,"Bank MSB"],["16","Quick Acccess Para 1"],["17","QA Para1 parameter adjustment"],["18","Quick Acccess Para 2"],["19","QA Para2 parameter adjustment"],["20","Quick Acccess Para 3"],["21","QA Para3 parameter adjustment"],["22","Bank -"],["23","Bank +"],["24","Pre-Select Menu"],["25","Choose a scene in current patch"],["26","Patch -"],["27","Patch +"],["28","Unit Mode"],["29","Main Display Mode"],["36","Drum Machine Menu On/Off"],["37","Drum Machine Play/Stop:"],["38","Drum machine rythm type"],["39","Drum Machine Volume"],["48","Slot A1 On/Off"],["49","Slot A2 On/Off"],["50","Slot A3 On/Off"],["51","Slot A4 On/Off"],["52","Slot A5 On/Off"],["53","Slot A6 On/Off"],["54","Slot B1 On/Off"],["55","Slot B2 On/Off"],["56","Slot B3 On/Off"],["57","Slot B4 On/Off"],["58","Slot B5 On/Off"],["59","Slot B6 On/Off"],["60","Tuner On/Off"],["62","Looper Menu On/Off"],["63","Looper Rec/Overdub"],["64","Looper Play/Stop"],["65","Looper Speed"],["66","Looper Playback"],["67","Looper Undo/Redo"],["68","Looper Clear"],["69","Looper Rec Level"],["70","Looper Loop Level"],["71","Looper Pre/Post"],["72","Looper A/B Chain"],["74","Tempo MSB"],["75","Tempo LSB"],["76","Tap Tempo"],["77","Screen Lock/Unlock"],["78","Unit Engage/Bypass"],["79","FS 1 Effect Slot On/Off"],["80","FS 2 Effect Slot On/Off"],["81","FS 3 Effect Slot On/Off"]]},{"id":"grandmeisterdeluxe40","brand":"Hughes & Kettner","name":"GrandMeister Deluxe 40","cc":[[1,"Modulation Intensity"],[4,"Delay Time"],[7,"Volume (soft)"],[9,"Mute: On"],[9,"Mute: Off"],[12,"Mod-FX Type"],[20,"Gain (soft)"],[21,"Bass"],[22,"Mid"],[23,"Treble"],[24,"Resonance"],[25,"Presence"],[26,"Modulation Speed"],[27,"Delay Feedback"],[28,"Delay Volume"],[29,"Reverb Volume"],[30,"Power Soak Switching: 1"],[30,"Power Soak Switching: 2"],[30,"Power Soak Switching: 3"],[30,"Power Soak Switching: 4"],[30,"Power Soak Switching: 5"],[31,"Channel Switching: 1"],[31,"Channel Switching: 2"],[31,"Channel Switching: 3"],[31,"Channel Switching: 4"],[52,"Mod-FX: On"],[52,"Mod-FX: Off"],[53,"Delay: On"],[53,"Delay: Off"],[54,"Reverb: On"],[54,"Reverb: Off"],[55,"FX-Loop: On"],[55,"FX-Loop: Off"],[56,"Gain (hard)"],[57,"Volume (hard)"],[63,"Noise Gate: On"],[63,"Noise Gate: Off"],[64,"Boost: On"],[64,"Boost: Off"]]},{"id":"triampmk3","brand":"Hughes & Kettner","name":"TriAmp Mk3","cc":[[9,"Mute: On"],[9,"Mute: Off"],[55,"FX Loop: On"],[55,"FX Loop: Off"],[54,"FX Serial: Serial"],[54,"FX Serial: Parallel"],[64,"Stomp Boost: On"],[64,"Stomp  Boost: Off"],[63,"Noise Gate: On"],[63,"Noise Gate: Off"],[31,"Channels: Amp 1A"],[31,"Channels: Amp 1B"],[31,"Channels: Amp 2A"],[31,"Channels: Amp 2B"],[31,"Channels: Amp 3A"],[31,"Channels: Amp 3B"],[58,"Tube1/2: On"],[58,"Tube 1/2: Off"],[59,"Tube 3/4: On"],[59,"Tube 3/4: Off"],[60,"Tube 5/6: On"],[60,"Tube 5/6: Off"],[88,"Panel Brightness"]]},{"id":"tonex","brand":"IK Multimedia","name":"ToneX","cc":[["12","PRESET ON/OFF"],["11","Expression Pedal"],[0,"MIDI Patch Bank"],["86","PRESET DOWN"],["87","PRESET UP"],["88","BPM"],["89","BANK DOWN"],["90","BANK UP"],["9","TUNER"],["10","TAP TEMPO"],["102","GAIN"],["23","BASS"],["25","MID"],["28","TREBLE"],["19","COMP/ THRESHOLD"],["15","GATE/ THRESHOLD"],["106","PRESENCE"],["107","DEPTH"],["103","MODEL/ MODEL.VOL"],["104","MODEL/ MODEL.MIX"],["14","GATE/ POWER"],["16","GATE/ RELEASE"],["17","GATE/ DEPTH"],["17","GATE/ POSITION"],["18","COMP/ POWER"],["20","COMP/ GAIN"],["21","COMP/ ATTACK"],["22","COMP/ POSITION"],["24","EQ/ BASS HZ"],["26","EQ/ MID Q"],["27","EQ/ MID HZ"],["29","EQ/ TREBLE HZ"],["30","EQ/ POSITION"],["75","REVERB"],["85","REV TYPE"],["76","TIME"],["77","PREDELAY"],["78","COLOR"],["108","VIR/ RESO"],["109","VIR/ MIC 1"],["110","VIR/ MIC 1 X"],["111","VIR/ MIC 1 Z"],["112","VIR/ MIC 2"],["113","VIR/ MIC 2 X"],["114","VIR/ MIC 2 Z"],["115","VIR/ BLEND"],["32","MOD/ POWER"],["33","MOD/ TYPE"],["34","MOD/ POSITION"],["0=OFF, 127=ON","MOD/ CHORUS/ SYNC"],["35","MOD/ CHORUS/ RATE"],["36","MOD/ CHORUS/ DEPTH"],["37","MOD/ CHORUS/ LEVEL"],["38","MOD/ TREMOLO/ SYNC"],["39","MOD/ TREMOLO/ RATE"],["40","MOD/ TREMOLO/ SHAPE"],["41","MOD/ TREMOLO/ SPREAD"],["42","MOD/ TREMOLO/ LEVEL"],["43","MOD/ PHASER/ SYNC"],["44","MOD/ PHASER/ RATE"],["45","MOD/ PHASER/ DEPTH"],["46","MOD/ PHASER/ LEVEL"],["47","MOD/ FLANGER/ SYNC"],["53","MOD/ ROTARY/ SPEED"],["54","MOD/ ROTARY/ RADIUS"],["55","MOD/ ROTARY/ SPREAD"],["56","MOD/ ROTARY/ LEVEL"],["2","DELAY/ POWER"],["3","DELAY/ TYPE"],["1","DELAY/ POSITION"],["4","DELAY/ DIGITAL/ SYNC"],["5","DELAY/ DIGITAL/ TIME"],["6","DELAY/ DIGITAL/ FEEDBACK"],["0=NORMAL, 1=PING.PONG","DELAY/ DIGITAL/ MODE"],["8","DELAY/ DIGITAL/ MIX"],["91","DELAY/ TAPE/ SYNC"],["91","DELAY/ TAPE/ TIME"],["93","DELAY/ TAPE / FEEDBACK"],["94","DELAY/ TAPE / MODE"],["95","DELAY/ TAPE / MIX"],["75","REVERB/ POWER"],["85","REVERB/ TYPE"],["84","REVERB/ POSITION"],["59","REVERB/ SPRING 1/ TIME"],["60","REVERB/ SPRING 1/ PRE.DELAY"],["61","REVERB/ SPRING 1/ COLOR"],["62","REVERB/ SPRING 1/ MIX"],["63","REVERB/ SPRING 2/ TIME"],["64","REVERB/ SPRING 2/ PRE.DELAY"],["65","REVERB/ SPRING 2/ COLOR"],["66","REVERB/ SPRING 2/ MIX"],["67","REVERB/ SPRING 3/ TIME"],["68","REVERB/ SPRING 3/ PRE.DELAY"],["69","REVERB/ SPRING 3/ COLOR"],["70","REVERB/ SPRING 3/ MIX"],["80","REVERB/ SPRING 4/ TIME"],["81","REVERB/ SPRING 4/ PRE.DELAY"],["82","REVERB/ SPRING 4/ COLOR"],["83","REVERB/ SPRING 4/ MIX"],["71","REVERB/ ROOM/ TIME"],["72","REVERB/ ROOM/ PRE.DELAY"],["73","REVERB/ ROOM/ COLOR"],["74","REVERB/ ROOM/ MIX"],["76","REVERB/ PLATE/ TIME"],["77","REVERB/ PLATE / PRE.DELAY"],["78","REVERB/ PLATE / COLOR"],["79","REVERB/ PLATE / MIX"]]},{"id":"unosynth","brand":"IK Multimedia","name":"UNO Synth","cc":[[1,"Modulation wheel"],[5,"Glide time"],[7,"VCA level"],[9,"Swing"],[64,"Sustain (hold)"],[65,"Glide on/off"],[77,"Vibrato on/off"],[78,"Wah on/off"],[79,"Tremolo on/off"],[89,"Dive on/off"],[90,"Dive range"],[91,"Scoop on/off"],[92,"Scoop range"],[93,"Mod wheel to LFO rate"],[94,"Mod wheel to vibrato"],[95,"Mod wheel to wah"],[96,"Mod wheel to tremelo"],[97,"Mod wheel to filter cutoff"],[101,"Pitch bend range"],[102,"Velocity to VCA amount"],[103,"Velocity to filter cutoff"],[104,"Velocity to filter env amount"],[105,"Velocity to LFO rate"],[106,"Filter cutoff keytrack"],[80,"Delay mix"],[81,"Delay time"],[12,"OSC 1 level"],[13,"OSC 2 level"],[14,"Noise level"],[15,"OSC 1 wave"],[16,"OSC 2 wave"],[17,"OSC 1 tune"],[18,"OSC 2 tune"],[24,"Amp attack"],[25,"Amp decay"],[26,"Amp sustain"],[27,"Amp release"],[19,"Filter mode"],[20,"Filter cutoff"],[21,"Filter resonance"],[22,"Filter drive"],[23,"Filter env amount"],[44,"Filter attack"],[45,"Filter decay"],[46,"Filter sustain"],[47,"Filter release"],[48,"Filter env to OSC 1 PWM"],[49,"Filter env to OSC 2 PWM"],[50,"Filter env to OSC 1 wave"],[51,"Filter env to OSC 2 wave"],[66,"LFO wave"],[67,"LFO rate"],[68,"LFO to pitch"],[69,"LFO to filter cutoff"],[70,"LFO to tremelo"],[71,"LFO to wah"],[72,"LFO to vibr"],[73,"LFO to OSC 1 PWM"],[74,"LFO to OSC 2 PWM"],[75,"LFO to OSC 1 waveform"],[76,"LFO to OSC 2 waveform"],[82,"Arpeggiator on/off"],[83,"Arpeggiator direction"],[84,"Arpeggiator range"],[85,"Arpeggiator and seq gate time"],[86,"Seq direction"],[87,"Seq range"]]},{"id":"elguapo","brand":"Jackson Audio","name":"El Guapo","cc":[[1,"Distortion: On"],[1,"Distortion: Off"],[2,"Drive: On"],[2,"Drive: Off"],[3,"Dist. Clipping: Marshall Guvnor Styles"],[3,"Dist. Clipping: ProCo Rat Style"],[3,"Dist. Clipping: Suhr Riot Style #1"],[3,"Dist. Clipping: Suhr Riot Style #2"],[4,"Gain: 25%"],[4,"Gain: 50%"],[4,"Gain: 75%"],[4,"Gain: 100%"],[5,"Drive Clipping: Vintage Marshall Style"],[5,"Drive Clipping: Tube Screamer Style"],[5,"Drive Clipping: Timmy Style"],[5,"Drive Clipping: King of Tone Style"]]},{"id":"lamb","brand":"Jet Pedals","name":"Lamb","cc":[["19","Volume "],["20","Gain "],["21","Tone"],["22","Mid boost "],["23","Bypass"],["24","Preset engage/disengage "],["25","Preset increment "],["26","Preset decrement "],["27","Circuit select "],["28","Snapshot "],["29","Lead boost "]]},{"id":"revelationreverb20","brand":"Jet Pedals","name":"Revelation Reverb 2.0","cc":[[20,"Mix Knob"],[21,"Decay Knob"],[22,"Cntrl 1 Knob"],[23,"Bypass Pedal"],[23,"Engage Pedal"],[24,"Preset Switch: On"],[24,"Preset Switch: Off"],[25,"Preset Increment"],[26,"Preset Decrement"],[27,"Algorithm: Sky Blue"],[27,"Algorithm: Ice"],[27,"Algorithm: Yellow Sub"],[28,"CC Snapshot Capture"],[29,"Infinite Decay: On"],[29,"Infinite Decay: Off"]]},{"id":"moho","brand":"Kernom","name":"moho","cc":[["20","Electricity"],["21","Mood"],["22","Volume"],["23","Post-Tone"],["24","Pre-Tone"],["25","Fuzz"],["26","Expression"],["27","FS preset"],["28","FS on/off"]]},{"id":"ridge","brand":"Kernom","name":"Ridge","cc":[[20,"Mid"],[21,"Mood"],[22,"Volume"],[23,"Post-Tone"],[24,"Pre-Tone"],[25,"Drive"],[26,"Expression"],[27,"FS Preset"],[28,"FS On/Off"]]},{"id":"kaosspad2","brand":"Korg","name":"Kaoss Pad 2","cc":[[12,"Touch Pad X-Axis"],[13,"Touch Pad Y-Axis"],[92,"Touch Pad On/Off"],[94,"FX Depth"],[95,"Mute"]]},{"id":"kaosspad3","brand":"Korg","name":"Kaoss Pad 3","cc":[[12,"Touch Pad X-Axis"],[13,"Touch Pad Y-Axis"],[92,"Touch Pad On/Off"],[93,"Level Slider"],[94,"FX Depth Knob"],[95,"Hold Button"],[36,"Sample Bank A Button"],[37,"Sample Bank B Button"],[38,"Sample Bank C Button"],[39,"Sample Bank D Button"]]},{"id":"microkorg","brand":"Korg","name":"microKORG","cc":[[5,"Portamento"],[77,"OSC 1 Wave: Saw"],[77,"OSC 1 Wave: Square"],[77,"OSC 1 Wave: Triangle"],[77,"OSC 1 Wave: Sine"],[77,"OSC 1 Wave: Vox Wave"],[77,"OSC 1 Wave: DWGS"],[77,"OSC 1 Wave: Noise"],[77,"OSC 1 Wave: Audio In"],[14,"OSC 1 Control 1"],[15,"OSC 1 Control 2"],[78,"OSC 2 Wave: Saw"],[78,"OSC 2 Wave: Square"],[78,"OSC 2 Wave: Triangle"],[82,"OSC 2 Mod: Off"],[82,"OSC 2 Mod: Ring"],[82,"OSC 2 Mod: Sync"],[82,"OSC 2 Mod: Ring Sync"],[18,"OSC 2 Semitone"],[19,"OSC 2 Tune"],[18,"Vocoder HPF level"],[19,"Vocoder threshold"],[20,"OSC 1 level"],[21,"OSC 2 level"],[21,"Vocoder inst level"],[22,"Noise level"],[83,"Filter Type: -24LPF"],[83,"Filter Type: -12LPF"],[83,"Filter Type: -12BPF"],[83,"Filter Type: -12HPF"],[83,"Vocoder formant shift: 0"],[83,"Vocoder formant shift: +1"],[83,"Vocoder formant shift: +2"],[83,"Vocoder formant shift: -1"],[83,"Vocoder formant shift: -2"],[74,"Filter cutoff"],[74,"Vocoder filter cutoff"],[71,"Filter resonance"],[79,"Filter EG intensity"],[79,"Vocoder mod intensity"],[23,"Filter EG attack"],[24,"Filter EG decay"],[25,"Filter EG sustain"],[26,"Filter EG release"],[7,"Amp level"],[10,"Panpot"],[10,"Vocoder direct level"],[92,"Distortion: Off"],[92,"Distortion: On"],[73,"Amp EG attack"],[75,"Amp EG decay"],[70,"Amp EG sustain"],[72,"Amp EG release"],[87,"LFO 1 Wave: Saw"],[87,"LFO 1 Wave: Square"],[87,"LFO 1 Wave: Triangle"],[87,"LFO 1 Wave: S/H"],[27,"LFO 1 frequency"],[88,"LFO 2 Wave: Saw"],[88,"LFO 2 Wave: Square"],[88,"LFO 2 Wave: Triangle"],[88,"LFO 2 Wave: S/H"],[76,"LFO 2 frequency"],[28,"Patch 1 intensity"],[29,"Patch 2 intensity"],[30,"Patch 3 intensity"],[31,"Patch 4 intensity"],[12,"Mod FX LFO speed"],[93,"Mod FX depth"],[13,"Delay time"],[94,"Delay depth"],[95,"Timbre select"],[90,"MIDI Sync: On"],[90,"MIDI Sync: Off"]]},{"id":"microkorgxlplus","brand":"Korg","name":"microKORG XL+","cc":[[1,"Modulation Depth"],[7,"Volume"],[10,"Pan"],[11,"Expression"],[64,"Sustain Pedal"],[65,"Portamento"],[123,"All Notes Off"],[120,"All Sound Off"],[121,"Reset All Controllers"],[3,"Unison Mode: Off"],[3,"Unison Mode: 2Voice"],[3,"Unison Mode: 3Voice"],[3,"Unison Mode: 4Voice"],[5,"Pitch Portamento"],[8,"OSC1 Wave: Saw"],[8,"OSC1 Wave: Pulse"],[8,"OSC1 Wave: Triangle"],[8,"OSC1 Wave: Sine"],[8,"OSC1 Wave: Formant"],[8,"OSC1 Wave: Noise"],[8,"OSC1 Wave: PCM/DWGS"],[8,"OSC1 Wave: Audio In"],[9,"OSC1 Mod: Waveform"],[9,"OSC1 Mod: Cross"],[9,"OSC1 Mod: Unison"],[9,"OSC1 Mod: VPM"],[15,"OSC1: C1"],[17,"OSC1: C2"],[18,"OSC2 Wave: Saw"],[18,"OSC2 Wave: Pulse"],[18,"OSC2 Wave: Triangle"],[18,"OSC2 Wave: Sine"],[19,"OSC2 Mod: Off"],[19,"OSC2 Mod: Ring"],[19,"OSC2 Mod: Sync"],[19,"OSC2 Mod: Ring Sync"],[20,"OSC2: Semitone"],[21,"OSC2: Tune"],[23,"Mixer: OSC1 Level"],[24,"Mixer: OSC2 Level"],[25,"Mixer: Noise Level"],[74,"Filter1: Cutoff"],[71,"Filter1: Reso"],[27,"Filter1: Type Bal"],[26,"Filter1: Routing 1 Single"],[26,"Filter1: Routing 1 Serial"],[26,"Filter1: Routing 1 Parallel"],[26,"Filter1: Routing 1 Indiv"],[79,"Filter1: EG1 INT"],[28,"Filter1: Key Trk"],[30,"Filter2: Cutoff"],[68,"Filter2: Reso"],[29,"Filter2: Type"],[69,"Filter2: EG1 INT"],[82,"Filter2: Key Trk"],[7,"Amp: Level"],[10,"Amp: Pan"],[83,"Drive: WS Depth"],[85,"EG1: Attack"],[86,"EG1: Decay"],[87,"EG1: Sustain"],[88,"EG1: Release"],[73,"EG2: Attack"],[75,"EG2: Decay"],[70,"EG2: Sustain"],[72,"EG2: Release"],[89,"LFO1 Wave: Saw"],[89,"LFO1 Wave: Square"],[89,"LFO1 Wave: Triangle"],[89,"LFO1 Wave: S/H"],[89,"LFO1 Wave: Random"],[90,"LFO1: Freq"],[102,"LFO2 Wave: Saw"],[102,"LFO2 Wave: Square"],[102,"LFO2 Wave: Sine"],[102,"LFO2 Wave: S/H"],[102,"LFO2 Wave: Random"],[76,"LFO2: Freq"],[103,"Patch 1 Intensity"],[104,"Patch 2 Intensity"],[105,"Patch 3 Intensity"],[106,"Patch 4 Intensity"],[107,"Patch 5 Intensity"],[108,"Patch 6 Intensity"],[110,"EQ: Lo Gain"],[109,"EQ: Hi Gain"],[115,"MST FX1: Dry/Wet"],[12,"MST FX1: CTRL1"],[112,"MST FX1: CTRL2"],[116,"MST FX2: Dry/Wet"],[13,"MST FX2: CTRL1"],[113,"MST FX2: CTRL2"]]},{"id":"minilogue","brand":"Korg","name":"minilogue","cc":[[0,"Bank select MSB"],[32,"Bank Select LSB"],[16,"Amp EG attack"],[17,"Amp EG decay"],[18,"Amp EG sustain"],[19,"Amp EG release"],[20,"EG attack"],[21,"EG decay"],[22,"EG sustain"],[23,"EG release"],[24,"LFO rate"],[26,"LFO depth"],[27,"Voice depth"],[29,"Delay hi-pass"],[30,"Delay time"],[31,"Delay feedback"],[34,"VCO 1 pitch"],[35,"VCO 2 pitch"],[36,"VCO 1 shape"],[37,"VCO 2 shape"],[33,"Noise level"],[39,"VCO 1 level"],[40,"VCO 2 level"],[41,"Cross mod depth"],[42,"Pitch EG intensity"],[43,"Filter cutoff"],[44,"Filter resonance"],[45,"Filter EG intensity"],[48,"VCO 1 octave"],[49,"VCO 2 octave"],[50,"VCO 1 wave"],[51,"VCO 2 wave"],[56,"LFO target"],[57,"LFO EG mod"],[58,"LFO wave"],[80,"Sync"],[81,"Ring"],[82,"Velocity key track"],[83,"Keyboard track"],[84,"Filter type"],[88,"Delay output routing"]]},{"id":"miniloguexd","brand":"Korg","name":"minilogue xd","cc":[[0,"Bank Select MSB"],[32,"Bank Select LSB"],[5,"Portamento"],[6,"Data Entry"],[7,"Volume"],[11,"Expression"],[27,"Voice Mode Depth"],[50,"VCO1 Wave"],[48,"VCO1 Octave"],[34,"VCO1 Pitch"],[36,"VCO1 Shape"],[51,"VCO2 Wave"],[49,"VCO1 Octave"],[35,"VCO1 Pitch"],[37,"VCO1 Shape"],[53,"Type"],[103,"Sub-type"],[54,"Shape"],[104,"Shift Shape"],[39,"VCO1"],[40,"VCO2"],[33,"Multi"],[43,"Cutoff"],[44,"Resonance"],[84,"Drive"],[83,"Keytrack"],[16,"Attach"],[17,"Decay"],[18,"Sustin"],[19,"Release"],[20,"Attach"],[21,"Decay"],[22,"Intensity"],[23,"Target"],[57,"Wave"],[58,"Mode"],[24,"Rate"],[26,"Intensity"],[56,"Target"],[88,"Modulation Type"],[96,"Modulation Sub-type"],[28,"Modulation Time"],[29,"Modulation Depth"],[89,"Delay Type"],[105,"Delay Time"],[112,"Delay Depth"],[107,"Delay Dry/Wet"],[90,"Reverb Type"],[114,"Reverb Time"],[115,"Reverb Depth"],[110,"Reverb Dry/Wet"],[80,"Sync On/Off"],[81,"Ring On/Off"],[41,"Cross-mod Depth"],[92,"Modulation On/Off"],[94,"Delay On/Off"],[95,"Reverb On/Off"],[64,"Damper"],[120,"All sound off"],[121,"Reset all Controllers"]]},{"id":"monologue","brand":"Korg","name":"monologue","cc":[[16,"Envelope attack"],[17,"Envelope decay"],[25,"Envelope intensity"],[24,"LFO rate"],[26,"LFO depth"],[28,"Drive"],[35,"VCO 2 pitch"],[36,"VCO 1 shape"],[37,"VCO 2 shape"],[39,"VCO 1 level"],[40,"VCO 2 level"],[43,"Filter cutoff"],[44,"Resonance"],[49,"VCO 2 octave"],[50,"VCO 1 wave"],[51,"VCO 2 wave"],[56,"LFO target"],[58,"LFO wave"],[59,"LFO mode"],[60,"Sync/ring"],[61,"Envelope generator type"],[62,"Envelope generator target"]]},{"id":"ms2000","brand":"Korg","name":"MS2000","cc":[[5,"Portamento"],[77,"OSC 1 Wave: SAw"],[77,"OSC 1 Wave: Pulse"],[77,"OSC 1 Wave: Triangle"],[77,"OSC 1 Wave: Sine"],[77,"OSC 1 Wave: Vox Wave"],[77,"OSC 1 Wave: DWGS"],[77,"OSC 1 Wave: Noise"],[77,"OSC 1 Wave: Audio In"],[14,"OSC 1 control 1"],[15,"OSC 1 control 2"],[78,"OSC 2 Wave: Saw"],[78,"OSC 2 Wave: Square"],[78,"OSC 2 Wave: Triangle"],[82,"OSC 2 Mod: Off"],[82,"OSC 2 Mod: Ring"],[82,"OSC 2 Mod: Sync"],[82,"OSC 2 Mod: Ring Sync"],[18,"OSC 2 semitone"],[19,"OSC 2 tune"],[20,"OSC 1 level"],[21,"OSC 2 level"],[22,"Noise level"],[83,"Filter type"],[74,"Filter cutoff"],[71,"Filter resonance"],[79,"Filter EG 1 intensity"],[85,"Filter KBD track"],[7,"Amp level"],[10,"Amp panpot"],[86,"Amp: EG2"],[86,"Amp: Gate"],[92,"Amp distortion"],[23,"EG 1 attack"],[24,"EG 1 decay"],[25,"EG 1 sustain"],[26,"EG 1 release"],[73,"EG 2 attack"],[75,"EG 2 decay"],[70,"EG 2 sustain"],[72,"EG 2 release"],[87,"LFO 1 Wave: Saw"],[87,"LFO 1 Wave: Square"],[87,"LFO 1 Wave: Triangle"],[87,"LFO 1 Wave: S/H"],[27,"LFO 1 frequency"],[88,"LFO 2 Wave: Saw"],[88,"LFO 2 Wave: Square+"],[88,"LFO 2 Wave: Triangle"],[88,"LFO 2 Wave: S/H"],[76,"LFO 2 frequency"],[28,"Patch 1 intensity"],[29,"Patch 2 intensity"],[30,"Patch 3 intensity"],[31,"Patch 4 intensity"],[89,"Sequencer: On"],[89,"Sequencer: Off"],[12,"Mod FX LFO speed"],[93,"Mod FX depth"],[13,"Delay time"],[94,"Delay depth"],[18,"Audio in 2 HPF level"],[19,"Audio in 2 threshold"],[83,"Formant shift"],[79,"Filter modulation intensity"]]},{"id":"volcabass","brand":"Korg","name":"volca bass","cc":[[5,"Slide time"],[11,"Expression"],[40,"Octave"],[41,"LFO rate"],[42,"LFO intensity"],[43,"VCO pitch 1"],[44,"VCO pitch 2"],[45,"VCO pitch 3"],[46,"EG attack"],[47,"EG decay/release"],[48,"Cutoff EG intensity"],[49,"Gate time"]]},{"id":"volcabeats","brand":"Korg","name":"volca beats","cc":[[40,"Kick level"],[41,"Snare level"],[42,"Lo tom level"],[43,"Hi tom level"],[44,"Closed hat level"],[45,"Open hat level"],[46,"Clap level"],[47,"Claves level"],[48,"Agogo level"],[49,"Crash level"],[50,"Clap PCM speed"],[51,"Claves PCM speed"],[52,"Agogo PCM speed"],[53,"Crash PCM speed"],[54,"Stutter time"],[55,"Stutter depth"],[56,"Tom decay"],[57,"Closed hat decay"],[58,"Open hat decay"],[59,"Hat grain"]]},{"id":"volcadrum","brand":"Korg","name":"volca drum","cc":[[10,"Pan"],[14,"Select 1"],[15,"Select 2"],[16,"Select 1-2"],[17,"Level 1"],[18,"Level 2"],[19,"Level 1-2"],[20,"EG attack 1"],[21,"EG attack 2"],[22,"EG attack 1-2"],[23,"EG release 1"],[24,"EG release 2"],[25,"EG release 1-2"],[26,"Pitch 1"],[27,"Pitch 2"],[28,"Pitch 1-2"],[29,"Mod amount 1"],[30,"Mod amount 2"],[31,"Mod amount 1-2"],[46,"Mod rate 1"],[47,"Mod rate 2"],[48,"Mod rate 1-2"],[49,"Bit reduction"],[50,"Fold"],[51,"Drive"],[52,"Dry gain"],[103,"Send"],[116,"Waveguide model"],[117,"Decay"],[118,"Body"],[119,"Tune"]]},{"id":"volcafm","brand":"Korg","name":"volca fm","cc":[[40,"Transpose"],[41,"Velocity"],[42,"Modulator attack"],[43,"Modulator decay"],[44,"Carrier attack"],[45,"Carrier decay"],[46,"LFO rate"],[47,"LFO pitch depth"],[48,"Algorithm"],[48,"Arpeggiator type"],[50,"Arpeggiator div"]]},{"id":"volcakeys","brand":"Korg","name":"volca keys","cc":[[5,"Portamento"],[11,"Expression"],[40,"Voice"],[41,"Octave"],[42,"Detune"],[43,"EG intensity"],[49,"Attack"],[50,"Decay/release"],[51,"Sustain"],[44,"Cutoff"],[45,"EG intensity"],[46,"Rate"],[47,"Pitch intensity"],[48,"Cutoff intensity"],[52,"Delay time"],[53,"Delay feedback"]]},{"id":"volcakick","brand":"Korg","name":"volca kick","cc":[[40,"Pulse color"],[41,"Pulse level"],[42,"Amp attack"],[43,"Amp decay"],[44,"Drive"],[45,"Tone"],[46,"Resonator pitch"],[47,"Resonator bend"],[48,"Resonator time"],[49,"Accent"]]},{"id":"volcanubass","brand":"Korg","name":"volca nubass","cc":[[40,"VTO pitch"],[41,"VTO saturation"],[42,"VTO level"],[43,"VCF cutoff"],[44,"VCF peak"],[45,"VCF attack"],[46,"VCF decay"],[47,"VCF EG intensity"],[48,"Accent"],[49,"LFO rate"],[50,"LFO intensity"]]},{"id":"volcasample","brand":"Korg","name":"volca sample","cc":[[7,"Level"],[10,"Pan"],[40,"Sample start point"],[41,"Sample length"],[42,"Hi cutoff"],[43,"Speed"],[44,"Pitch EG intensity"],[45,"Pitch EG attack"],[46,"Pitch EG decay"],[47,"Amp EG attack"],[48,"Amp EG decay"]]},{"id":"wavestate","brand":"Korg","name":"wavestate","cc":[[9,"Scale Select"],[24,"Performance Mod Knob 1"],[25,"Performance Mod Knob 2"],[26,"Performance Mod Knob 3"],[27,"Performance Mod Knob 4"],[28,"Performance Mod Knob 5"],[29,"Performance Mod Knob 6"],[30,"Performance Mod Knob 7"],[31,"Performance Mod Knob 8"],[80,"Layer A Mod Knob 1"],[81,"Layer A Mod Knob 2"],[82,"Layer A Mod Knob 3"],[83,"Layer A Mod Knob 4"],[84,"Layer A Mod Knob 5"],[85,"Layer A Mod Knob 6"],[86,"Layer A Mod Knob 7"],[87,"Layer A Mod Knob 8"],[88,"Layer B Mod Knob 1"],[89,"Layer B Mod Knob 2"],[90,"Layer B Mod Knob 3"],[91,"Layer B Mod Knob 4"],[92,"Layer B Mod Knob 5"],[93,"Layer B Mod Knob 6"],[94,"Layer B Mod Knob 7"],[95,"Layer B Mod Knob 8"],[102,"Layer C Mod Knob 1"],[103,"Layer C Mod Knob 2"],[104,"Layer C Mod Knob 3"],[105,"Layer C Mod Knob 4"],[106,"Layer C Mod Knob 5"],[107,"Layer C Mod Knob 6"],[108,"Layer C Mod Knob 7"],[109,"Layer C Mod Knob 8"],[110,"Layer D Mod Knob 1"],[111,"Layer D Mod Knob 2"],[112,"Layer D Mod Knob 3"],[113,"Layer D Mod Knob 4"],[114,"Layer D Mod Knob 5"],[115,"Layer D Mod Knob 6"],[116,"Layer D Mod Knob 7"],[117,"Layer D Mod Knob 8"],[1,"Modulation"],[7,"Volume"],[10,"Pan"],[11,"Expression"],[16,"Vector JSX"],[17,"Vector Y"],[64,"Damper"],[66,"Sostenuto"],[67,"Soft"],[120,"All Sounds Off"],[121,"Reset All Controllers"]]},{"id":"artemis100","brand":"KSR Amplification","name":"Artemis 100","cc":[[20,"Amp Channel 1"],[20,"Amp Channel 2"],[20,"Amp Channel 3"],[20,"Amp Channel 4"],[21,"Select Channel 1"],[22,"Select Channel 2"],[23,"Select Channel 3"],[24,"Select Channel 4"],[20,"Toggle Channel"],[30,"Current Ch Mode: 1"],[30,"Current Ch Mode: 2"],[30,"Current Ch Mode: 3"],[30,"Current Ch Mode: 4"],[30,"Current Ch Mode Toggle"],[40,"Ch 1 Mode: 1"],[40,"Ch 1 Mode: 2"],[40,"Ch 1 Mode: 3"],[40,"Ch 1 Mode: 4"],[40,"Ch 1 Mode Toggle"],[50,"Ch 2 Mode: 1"],[50,"Ch 2 Mode: 2"],[50,"Ch 2 Mode: 3"],[50,"Ch 2 Mode: 4"],[50,"Ch 2 Mode Toggle"],[60,"Ch 3 Mode: 1"],[60,"Ch 3 Mode: 2"],[60,"Ch 3 Mode: 3"],[60,"Ch 3 Mode: 4"],[60,"Ch 3 Mode Toggle"],[70,"Ch 4 Mode: 1"],[70,"Ch 4 Mode: 2"],[70,"Ch 4 Mode: 3"],[70,"Ch 4 Mode: 4"],[70,"Ch 4 Mode Toggle"],[41,"Ch 1 Fat: 1"],[41,"Ch 1 Fat: 2"],[41,"Ch 1 Fat: 3"],[41,"Ch 1 Fat: 4"],[41,"Ch 1 Fat Toggle"],[51,"Ch 2 Fat: 1"],[51,"Ch 2 Fat: 2"],[51,"Ch 2 Fat: 3"],[51,"Ch 2 Fat: 4"],[51,"Ch 2 Fat Toggle"],[61,"Ch 3 Fat: 1"],[61,"Ch 3 Fat: 2"],[61,"Ch 3 Fat: 3"],[61,"Ch 3 Fat: 4"],[61,"Ch 3 Fat Toggle"],[71,"Ch 4 Fat: 1"],[71,"Ch 4 Fat: 2"],[71,"Ch 4 Fat: 3"],[71,"Ch 4 Fat: 4"],[71,"Ch 4 Fat Toggle"],[42,"Ch 1 Voice: 1"],[42,"Ch 1 Voice: 2"],[42,"Ch 1 Voice: 3"],[42,"Ch 1 Voice: 4"],[42,"Ch 1 Voice Toggle"],[52,"Ch 2 Voice: 1"],[52,"Ch 2 Voice: 2"],[52,"Ch 2 Voice: 3"],[52,"Ch 2 Voice: 4"],[52,"Ch 2 Voice Toggle"],[62,"Ch 3 Voice: 1"],[62,"Ch 3 Voice: 2"],[62,"Ch 3 Voice: 3"],[62,"Ch 3 Voice: 4"],[62,"Ch 3 Voice Toggle"],[72,"Ch 4 Voice: 1"],[72,"Ch 4 Voice: 2"],[72,"Ch 4 Voice: 3"],[72,"Ch 4 Voice: 4"],[72,"Ch 4 Voice Toggle"],[43,"Ch 1 Bright: 1"],[43,"Ch 1 Bright: 2"],[43,"Ch 1 Bright: 3"],[43,"Ch 1 Bright: 4"],[43,"Ch 1 Bright Toggle"],[53,"Ch 2 Bright: 1"],[53,"Ch 2 Bright: 2"],[53,"Ch 2 Bright: 3"],[53,"Ch 2 Bright: 4"],[53,"Ch 2 Bright Toggle"],[63,"Ch 3 Bright: 1"],[63,"Ch 3 Bright: 2"],[63,"Ch 3 Bright: 3"],[63,"Ch 3 Bright: 4"],[63,"Ch 3 Bright Toggle"],[73,"Ch 4 Bright: 1"],[73,"Ch 4 Bright: 2"],[73,"Ch 4 Bright: 3"],[73,"Ch 4 Bright: 4"],[73,"Ch 4 Bright Toggle"],[31,"Current Ch Fat: 1"],[31,"Current Ch Fat: 2"],[31,"Current Ch Fat: 3"],[31,"Current Ch Fat: 4"],[31,"Current Ch Fat Toggle"],[32,"Current Ch Voice: 1"],[32,"Current Ch Voice: 2"],[32,"Current Ch Voice: 3"],[32,"Current Ch Voice: 4"],[32,"Current Ch Voice Toggle"],[33,"Current Ch Bright: 1"],[33,"Current Ch Bright: 2"],[33,"Current Ch Bright: 3"],[33,"Current Ch Bright: 4"],[33,"Current Ch Bright Toggle"],[100,"Mute: On"],[100,"Mute: Off"],[101,"Loop: On"],[101,"Loop: Off"],[100,"Mute Toggle"],[101,"Loop Toggle"],[102,"Master Volume 1/2: 1"],[102,"Master Volume 1/2: 2"],[102,"Master Volume Toggle"],[103,"External Control: On"],[103,"External Control: Off"],[103,"External Control Toggle"]]},{"id":"colossush-100","brand":"KSR Amplification","name":"Colossus H-100","cc":[[20,"Amp Channel 1"],[20,"Amp Channel 2"],[20,"Amp Channel 3"],[20,"Amp Channel 4"],[21,"Select Channel 1"],[22,"Select Channel 2"],[23,"Select Channel 3"],[24,"Select Channel 4"],[20,"Toggle Channel"],[30,"Current Ch Mode: 1"],[30,"Current Ch Mode: 2"],[30,"Current Ch Mode: 3"],[30,"Current Ch Mode: 4"],[30,"Current Ch Mode Toggle"],[40,"Ch 1 Mode: 1"],[40,"Ch 1 Mode: 2"],[40,"Ch 1 Mode: 3"],[40,"Ch 1 Mode: 4"],[40,"Ch 1 Mode Toggle"],[50,"Ch 2 Mode: 1"],[50,"Ch 2 Mode: 2"],[50,"Ch 2 Mode: 3"],[50,"Ch 2 Mode: 4"],[50,"Ch 2 Mode Toggle"],[60,"Ch 3 Mode: 1"],[60,"Ch 3 Mode: 2"],[60,"Ch 3 Mode: 3"],[60,"Ch 3 Mode: 4"],[60,"Ch 3 Mode Toggle"],[70,"Ch 4 Mode: 1"],[70,"Ch 4 Mode: 2"],[70,"Ch 4 Mode: 3"],[70,"Ch 4 Mode: 4"],[70,"Ch 4 Mode Toggle"],[41,"Ch 1 Fat: 1"],[41,"Ch 1 Fat: 2"],[41,"Ch 1 Fat: 3"],[41,"Ch 1 Fat: 4"],[41,"Ch 1 Fat Toggle"],[51,"Ch 2 Fat: 1"],[51,"Ch 2 Fat: 2"],[51,"Ch 2 Fat: 3"],[51,"Ch 2 Fat: 4"],[51,"Ch 2 Fat Toggle"],[61,"Ch 3 Fat: 1"],[61,"Ch 3 Fat: 2"],[61,"Ch 3 Fat: 3"],[61,"Ch 3 Fat: 4"],[61,"Ch 3 Fat Toggle"],[71,"Ch 4 Fat: 1"],[71,"Ch 4 Fat: 2"],[71,"Ch 4 Fat: 3"],[71,"Ch 4 Fat: 4"],[71,"Ch 4 Fat Toggle"],[42,"Ch 1 Voice: 1"],[42,"Ch 1 Voice: 2"],[42,"Ch 1 Voice: 3"],[42,"Ch 1 Voice: 4"],[42,"Ch 1 Voice Toggle"],[52,"Ch 2 Voice: 1"],[52,"Ch 2 Voice: 2"],[52,"Ch 2 Voice: 3"],[52,"Ch 2 Voice: 4"],[52,"Ch 2 Voice Toggle"],[62,"Ch 3 Voice: 1"],[62,"Ch 3 Voice: 2"],[62,"Ch 3 Voice: 3"],[62,"Ch 3 Voice: 4"],[62,"Ch 3 Voice Toggle"],[72,"Ch 4 Voice: 1"],[72,"Ch 4 Voice: 2"],[72,"Ch 4 Voice: 3"],[72,"Ch 4 Voice: 4"],[72,"Ch 4 Voice Toggle"],[43,"Ch 1 Bright: 1"],[43,"Ch 1 Bright: 2"],[43,"Ch 1 Bright: 3"],[43,"Ch 1 Bright: 4"],[43,"Ch 1 Bright Toggle"],[53,"Ch 2 Bright: 1"],[53,"Ch 2 Bright: 2"],[53,"Ch 2 Bright: 3"],[53,"Ch 2 Bright: 4"],[53,"Ch 2 Bright Toggle"],[63,"Ch 3 Bright: 1"],[63,"Ch 3 Bright: 2"],[63,"Ch 3 Bright: 3"],[63,"Ch 3 Bright: 4"],[63,"Ch 3 Bright Toggle"],[73,"Ch 4 Bright: 1"],[73,"Ch 4 Bright: 2"],[73,"Ch 4 Bright: 3"],[73,"Ch 4 Bright: 4"],[73,"Ch 4 Bright Toggle"],[31,"Current Ch Fat: 1"],[31,"Current Ch Fat: 2"],[31,"Current Ch Fat: 3"],[31,"Current Ch Fat: 4"],[31,"Current Ch Fat Toggle"],[32,"Current Ch Voice: 1"],[32,"Current Ch Voice: 2"],[32,"Current Ch Voice: 3"],[32,"Current Ch Voice: 4"],[32,"Current Ch Voice Toggle"],[33,"Current Ch Bright: 1"],[33,"Current Ch Bright: 2"],[33,"Current Ch Bright: 3"],[33,"Current Ch Bright: 4"],[33,"Current Ch Bright Toggle"],[100,"Mute: On"],[100,"Mute: Off"],[101,"Loop: On"],[101,"Loop: Off"],[100,"Mute Toggle"],[101,"Loop Toggle"],[102,"Master Volume 1/2: 1"],[102,"Master Volume 1/2: 2"],[102,"Master Volume Toggle"],[103,"External Control: On"],[103,"External Control: Off"],[103,"External Control Toggle"]]},{"id":"gemini100","brand":"KSR Amplification","name":"Gemini 100","cc":[[20,"Amp Channel 1"],[20,"Amp Channel 2"],[20,"Amp Channel 3"],[20,"Amp Channel 4"],[21,"Select Channel 1"],[22,"Select Channel 2"],[23,"Select Channel 3"],[24,"Select Channel 4"],[20,"Toggle Channel"],[30,"Current Ch Mode: 1"],[30,"Current Ch Mode: 2"],[30,"Current Ch Mode: 3"],[30,"Current Ch Mode: 4"],[30,"Current Ch Mode Toggle"],[40,"Ch 1 Mode: 1"],[40,"Ch 1 Mode: 2"],[40,"Ch 1 Mode: 3"],[40,"Ch 1 Mode: 4"],[40,"Ch 1 Mode Toggle"],[50,"Ch 2 Mode: 1"],[50,"Ch 2 Mode: 2"],[50,"Ch 2 Mode: 3"],[50,"Ch 2 Mode: 4"],[50,"Ch 2 Mode Toggle"],[60,"Ch 3 Mode: 1"],[60,"Ch 3 Mode: 2"],[60,"Ch 3 Mode: 3"],[60,"Ch 3 Mode: 4"],[60,"Ch 3 Mode Toggle"],[70,"Ch 4 Mode: 1"],[70,"Ch 4 Mode: 2"],[70,"Ch 4 Mode: 3"],[70,"Ch 4 Mode: 4"],[70,"Ch 4 Mode Toggle"],[41,"Ch 1 Fat: 1"],[41,"Ch 1 Fat: 2"],[41,"Ch 1 Fat: 3"],[41,"Ch 1 Fat: 4"],[41,"Ch 1 Fat Toggle"],[51,"Ch 2 Fat: 1"],[51,"Ch 2 Fat: 2"],[51,"Ch 2 Fat: 3"],[51,"Ch 2 Fat: 4"],[51,"Ch 2 Fat Toggle"],[61,"Ch 3 Fat: 1"],[61,"Ch 3 Fat: 2"],[61,"Ch 3 Fat: 3"],[61,"Ch 3 Fat: 4"],[61,"Ch 3 Fat Toggle"],[71,"Ch 4 Fat: 1"],[71,"Ch 4 Fat: 2"],[71,"Ch 4 Fat: 3"],[71,"Ch 4 Fat: 4"],[71,"Ch 4 Fat Toggle"],[42,"Ch 1 Voice: 1"],[42,"Ch 1 Voice: 2"],[42,"Ch 1 Voice: 3"],[42,"Ch 1 Voice: 4"],[42,"Ch 1 Voice Toggle"],[52,"Ch 2 Voice: 1"],[52,"Ch 2 Voice: 2"],[52,"Ch 2 Voice: 3"],[52,"Ch 2 Voice: 4"],[52,"Ch 2 Voice Toggle"],[62,"Ch 3 Voice: 1"],[62,"Ch 3 Voice: 2"],[62,"Ch 3 Voice: 3"],[62,"Ch 3 Voice: 4"],[62,"Ch 3 Voice Toggle"],[72,"Ch 4 Voice: 1"],[72,"Ch 4 Voice: 2"],[72,"Ch 4 Voice: 3"],[72,"Ch 4 Voice: 4"],[72,"Ch 4 Voice Toggle"],[43,"Ch 1 Bright: 1"],[43,"Ch 1 Bright: 2"],[43,"Ch 1 Bright: 3"],[43,"Ch 1 Bright: 4"],[43,"Ch 1 Bright Toggle"],[53,"Ch 2 Bright: 1"],[53,"Ch 2 Bright: 2"],[53,"Ch 2 Bright: 3"],[53,"Ch 2 Bright: 4"],[53,"Ch 2 Bright Toggle"],[63,"Ch 3 Bright: 1"],[63,"Ch 3 Bright: 2"],[63,"Ch 3 Bright: 3"],[63,"Ch 3 Bright: 4"],[63,"Ch 3 Bright Toggle"],[73,"Ch 4 Bright: 1"],[73,"Ch 4 Bright: 2"],[73,"Ch 4 Bright: 3"],[73,"Ch 4 Bright: 4"],[73,"Ch 4 Bright Toggle"],[31,"Current Ch Fat: 1"],[31,"Current Ch Fat: 2"],[31,"Current Ch Fat: 3"],[31,"Current Ch Fat: 4"],[31,"Current Ch Fat Toggle"],[32,"Current Ch Voice: 1"],[32,"Current Ch Voice: 2"],[32,"Current Ch Voice: 3"],[32,"Current Ch Voice: 4"],[32,"Current Ch Voice Toggle"],[33,"Current Ch Bright: 1"],[33,"Current Ch Bright: 2"],[33,"Current Ch Bright: 3"],[33,"Current Ch Bright: 4"],[33,"Current Ch Bright Toggle"],[100,"Mute: On"],[100,"Mute: Off"],[101,"Loop: On"],[101,"Loop: Off"],[100,"Mute Toggle"],[101,"Loop Toggle"],[102,"Master Volume 1/2: 1"],[102,"Master Volume 1/2: 2"],[102,"Master Volume Toggle"],[103,"External Control: On"],[103,"External Control: Off"],[103,"External Control Toggle"]]},{"id":"dt25112","brand":"Line 6","name":"DT25 112","cc":[[19,"Select Ch A"],[19,"Select Ch B"],[77,"Ch A Voicing: I"],[77,"Ch A Voicing: II"],[77,"Ch A Voicing: III"],[77,"Ch A Voicing: IV"],[73,"Ch A Class: A"],[73,"Ch A Class: AB"],[75,"Ch A Tube: Pentode"],[75,"Ch A Tube: Triode"],[36,"Ch A Reverb: On"],[36,"Ch A Reverb: Off"],[114,"Ch B Voicing: I"],[114,"Ch B Voicing: II"],[114,"Ch B Voicing: III"],[114,"Ch B Voicing: IV"],[115,"Ch B Class: A"],[115,"Ch B Class: AB"],[116,"Ch B Tube: Pentode"],[116,"Ch B Tube: Triode"],[105,"Ch B Reverb: On"],[105,"Ch B Reverb: Off"],[82,"XLR Direct Out Mic: 57 Dyn"],[82,"XLR Direct out Mic: 57 Dyn off-axis"],[82,"XLR Direct out Mic: 409 Dyn"],[82,"XLR Direct out Mic: 421 Dyn"],[82,"XLR Direct out Mic: 4038 Ribbon"],[82,"XLR Direct out Mic: 121 Ribbon"],[82,"XLR Direct out Mic: 67 Cond"],[82,"XLR Direct out Mic: 87 Cond"],[82,"XLR Direct out Mic: None"],[85,"Low Volume Mode: Enable"],[85,"Low Volume Mode: Disable"],[11,"Ch A Amp: None"],[11,"Ch A Amp: Blackface Double Normal"],[11,"Ch A Amp: Blackface Double Vib"],[11,"Ch A Amp: Hiway 100"],[11,"Ch A Amp: Super O"],[11,"Ch A Amp: Gibtone 185"],[11,"Ch A Amp: Tweed B-Man Normal"],[11,"Ch A Amp: Tweed B-Man Bright"],[11,"Ch A Amp: Blackface Lux Normal"],[11,"Ch A Amp: Blackface Lux Vib"],[11,"Ch A Amp: Divide 9/15"],[11,"Ch A Amp: Phd Motorway"],[11,"Ch A Amp: Class A-15"],[11,"Ch A Amp: Class A-30"],[11,"Ch A Amp: Brit J-45 Normal"],[11,"Ch A Amp: Brit J-45 Bright"],[11,"Ch A Amp: Brit Plexi 100 Normal"],[11,"Ch A Amp: Brit Plexi 100 Bright"],[11,"Ch A Amp: Brit P-75 Normal"],[11,"Ch A Amp: Brit P-75 Bright"],[11,"Ch A Amp: Brit J-800"],[11,"Ch A Amp: Bomber Uber"],[11,"Ch A Amp: Treadplate"],[11,"Ch A Amp: Angel F-Ball"],[11,"Ch A Amp: Line 6 Elektrik"],[11,"Ch A Amp: Flip top"],[11,"Ch A Amp: Solo 100 Clean"],[11,"Ch A Amp: Solo 100 Crunch"],[11,"Ch A Amp: Solo 100 Overdrive"],[11,"Ch A Amp: Line 6 Doom"],[11,"Ch A Amp: Line 6 Epic"],[91,"Ch B Amp: None"],[91,"Ch B Amp: Blackface Double Normal"],[91,"Ch B Amp: Blackface Double Vib"],[91,"Ch B Amp: Hiway 100"],[91,"Ch B Amp: Super O"],[91,"Ch B Amp: Gibtone 185"],[91,"Ch B Amp: Tweed B-Man Normal"],[91,"Ch B Amp: Tweed B-Man Bright"],[91,"Ch B Amp: Blackface Lux Normal"],[91,"Ch B Amp: Blackface Lux Vib"],[91,"Ch B Amp: Divide 9/15"],[91,"Ch B Amp: Phd Motorway"],[91,"Ch B Amp: Class A-15"],[91,"Ch B Amp: Class A-30"],[91,"Ch B Amp: Brit J-45 Normal"],[91,"Ch B Amp: Brit J-45 Bright"],[91,"Ch B Amp: Brit Plexi 100 Normal"],[91,"Ch B Amp: Brit Plexi 100 Bright"],[91,"Ch B Amp: Brit P-75 Normal"],[91,"Ch B Amp: Brit P-75 Bright"],[91,"Ch B Amp: Brit J-800"],[91,"Ch B Amp: Bomber Uber"],[91,"Ch B Amp: Treadplate"],[91,"Ch B Amp: Angel F-Ball"],[91,"Ch B Amp: Line 6 Elektrik"],[91,"Ch B Amp: Flip top"],[91,"Ch B Amp: Solo 100 Clean"],[91,"Ch B Amp: Solo 100 Crunch"],[91,"Ch B Amp: Solo 100 Overdrive"],[91,"Ch B Amp: Line 6 Doom"],[91,"Ch B Amp: Line 6 Epic"],[71,"Ch A Cab: None"],[71,"Ch A Cab: 2x12 Blackface Double"],[71,"Ch A Cab: 4x12 Hiway"],[71,"Ch A Cab: 1x(6x9) Super O"],[71,"Ch A Cab: 1x12 Gibtone F-Coil"],[71,"Ch A Cab: 4x10 Tweed B-Man"],[71,"Ch A Cab: 1x12 Blackface Lux"],[71,"Ch A Cab: 1x12 Brit 12-H"],[71,"Ch A Cab: 2x12 PhD Ported"],[71,"Ch A Cab: 1x12 Blue Bell"],[71,"Ch A Cab: 2x12 Silver Bell"],[71,"Ch A Cab: 4x12 Greenback 25"],[71,"Ch A Cab: 4x12 Blackback 30"],[71,"Ch A Cab: 4x12 Brit T-75"],[71,"Ch A Cab: 4x12 Uber"],[71,"Ch A Cab: 4x12 Tread V-30"],[71,"Ch A Cab: 4x12 XXL V-30"],[71,"Ch A Cab: 1x15 Flip Top (Bass)"],[110,"Ch B Cab: None"],[110,"Ch B Cab: 2x12 Blackface Double"],[110,"Ch B Cab: 4x12 Hiway"],[110,"Ch B Cab: 1x(6x9) Super O"],[110,"Ch B Cab: 1x12 Gibtone F-Coil"],[110,"Ch B Cab: 4x10 Tweed B-Man"],[110,"Ch B Cab: 1x12 Blackface Lux"],[110,"Ch B Cab: 1x12 Brit 12-H"],[110,"Ch B Cab: 2x12 PhD Ported"],[110,"Ch B Cab: 1x12 Blue Bell"],[110,"Ch B Cab: 2x12 Silver Bell"],[110,"Ch B Cab: 4x12 Greenback 25"],[110,"Ch B Cab: 4x12 Blackback 30"],[110,"Ch B Cab: 4x12 Brit T-75"],[110,"Ch B Cab: 4x12 Uber"],[110,"Ch B Cab: 4x12 Tread V-30"],[110,"Ch B Cab: 4x12 XXL V-30"],[110,"Ch B Cab: 1x15 Flip Top (Bass)"],[12,"Ch A Amp + Defaults"],[89,"Ch B Amp + Defaults"],[13,"Ch A Drive Knob"],[92,"Ch B Drive Knob"],[14,"Ch A Bass Knob"],[93,"Ch B Bass Knob"],[15,"Ch A Mid Knob"],[94,"Ch B Mid Knob"],[16,"Ch A Treble Knob"],[95,"Ch B Treble Knob"],[17,"Ch A Volume Knob"],[103,"Ch B Volume Knob"],[21,"Ch A Presence Knob"],[102,"Ch B Presence Knob"],[77,"Ch A Topology Type: Tight NFL"],[114,"Ch B Topology Type: Tight NFL"],[77,"Ch A Topology Type: Loose NFL"],[114,"Ch B Topology Type: Loose NFL"],[77,"Ch A Topology Type: Zero NFL"],[114,"Ch B Topology Type: Zero NFL"],[77,"Ch A Topology Type: Resonant NFL"],[114,"Ch B Topology Type: Resonant NFL"],[74,"Ch A Boost Mode: Enable"],[117,"Ch B Boost Mode: Enable"],[74,"Ch A Boost Mode: Bypass"],[117,"Ch B Boost Mode: Bypass"],[78,"Ch A Phase Inv B+ Voltage: Low B+"],[86,"Ch B Phase Inv B+ Voltage: Low B+"],[78,"Ch A Phase Inv B+ Voltage: High B+"],[86,"Ch B Phase Inv B+ Voltage: High B+"],[79,"Ch A Feedback Cap: X (Tight)"],[87,"Ch B Feedback Cap: X (Tight)"],[79,"Ch A Feedback Cap: Y (Smooth)"],[87,"Ch B Feedback Cap: Y (Smooth)"],[36,"Ch A Reverb: Enable"],[105,"Ch B Reverb: Enable"],[36,"Ch A Reverb: Bypass"],[105,"Ch B Reverb: Bypass"],[37,"Ch A Reverb Type: None"],[107,"Ch B Reverb Type: None"],[37,"Ch A Reverb Type: Spring"],[107,"Ch B Reverb Type: Spring"],[37,"Ch A Reverb Type: 63 Spring"],[107,"Ch B Reverb Type: 63 Spring"],[37,"Ch A Reverb Type: Plate"],[107,"Ch B Reverb Type: Plate"],[37,"Ch A Reverb Type: Room"],[107,"Ch B Reverb Type: Room"],[37,"Ch A Reverb Type: Chamber"],[107,"Ch B Reverb Type: Chamber"],[37,"Ch A Reverb Type: Hall"],[107,"Ch B Reverb Type: Hall"],[37,"Ch A Reverb Type: Cave"],[107,"Ch B Reverb Type: Cave"],[37,"Ch A Reverb Type: Ducking"],[107,"Ch B Reverb Type: Ducking"],[37,"Ch A Reverb Type: Octo"],[107,"Ch B Reverb Type: Octo"],[37,"Ch A Reverb Type: Tile"],[107,"Ch B Reverb Type: Tile"],[37,"Ch A Reverb Type: Echo"],[107,"Ch B Reverb Type: Echo"],[37,"Ch A Reverb Type: Particle Verb"],[107,"Ch B Reverb Type: Particle Verb"],[52,"Ch A Reverb Decay"],[56,"Ch B Reverb Decay"],[53,"Ch A Reverb Pre Delay"],[57,"Ch B Reverb Pre Delay"],[54,"Ch A Reverb Tone"],[58,"Ch B Reverb Tone"],[55,"Ch A Reverb Mix"],[59,"Ch B Reverb Mix"]]},{"id":"dt25head","brand":"Line 6","name":"DT25 Head","cc":[[19,"Select Ch A"],[19,"Select Ch B"],[77,"Ch A Voicing: I"],[77,"Ch A Voicing: II"],[77,"Ch A Voicing: III"],[77,"Ch A Voicing: IV"],[73,"Ch A Class: A"],[73,"Ch A Class: AB"],[75,"Ch A Tube: Pentode"],[75,"Ch A Tube: Triode"],[36,"Ch A Reverb: On"],[36,"Ch A Reverb: Off"],[114,"Ch B Voicing: I"],[114,"Ch B Voicing: II"],[114,"Ch B Voicing: III"],[114,"Ch B Voicing: IV"],[115,"Ch B Class: A"],[115,"Ch B Class: AB"],[116,"Ch B Tube: Pentode"],[116,"Ch B Tube: Triode"],[105,"Ch B Reverb: On"],[105,"Ch B Reverb: Off"],[82,"XLR Direct Out Mic: 57 Dyn"],[82,"XLR Direct out Mic: 57 Dyn off-axis"],[82,"XLR Direct out Mic: 409 Dyn"],[82,"XLR Direct out Mic: 421 Dyn"],[82,"XLR Direct out Mic: 4038 Ribbon"],[82,"XLR Direct out Mic: 121 Ribbon"],[82,"XLR Direct out Mic: 67 Cond"],[82,"XLR Direct out Mic: 87 Cond"],[82,"XLR Direct out Mic: None"],[85,"Low Volume Mode: Enable"],[85,"Low Volume Mode: Disable"],[11,"Ch A Amp: None"],[11,"Ch A Amp: Blackface Double Normal"],[11,"Ch A Amp: Blackface Double Vib"],[11,"Ch A Amp: Hiway 100"],[11,"Ch A Amp: Super O"],[11,"Ch A Amp: Gibtone 185"],[11,"Ch A Amp: Tweed B-Man Normal"],[11,"Ch A Amp: Tweed B-Man Bright"],[11,"Ch A Amp: Blackface Lux Normal"],[11,"Ch A Amp: Blackface Lux Vib"],[11,"Ch A Amp: Divide 9/15"],[11,"Ch A Amp: Phd Motorway"],[11,"Ch A Amp: Class A-15"],[11,"Ch A Amp: Class A-30"],[11,"Ch A Amp: Brit J-45 Normal"],[11,"Ch A Amp: Brit J-45 Bright"],[11,"Ch A Amp: Brit Plexi 100 Normal"],[11,"Ch A Amp: Brit Plexi 100 Bright"],[11,"Ch A Amp: Brit P-75 Normal"],[11,"Ch A Amp: Brit P-75 Bright"],[11,"Ch A Amp: Brit J-800"],[11,"Ch A Amp: Bomber Uber"],[11,"Ch A Amp: Treadplate"],[11,"Ch A Amp: Angel F-Ball"],[11,"Ch A Amp: Line 6 Elektrik"],[11,"Ch A Amp: Flip top"],[11,"Ch A Amp: Solo 100 Clean"],[11,"Ch A Amp: Solo 100 Crunch"],[11,"Ch A Amp: Solo 100 Overdrive"],[11,"Ch A Amp: Line 6 Doom"],[11,"Ch A Amp: Line 6 Epic"],[91,"Ch B Amp: None"],[91,"Ch B Amp: Blackface Double Normal"],[91,"Ch B Amp: Blackface Double Vib"],[91,"Ch B Amp: Hiway 100"],[91,"Ch B Amp: Super O"],[91,"Ch B Amp: Gibtone 185"],[91,"Ch B Amp: Tweed B-Man Normal"],[91,"Ch B Amp: Tweed B-Man Bright"],[91,"Ch B Amp: Blackface Lux Normal"],[91,"Ch B Amp: Blackface Lux Vib"],[91,"Ch B Amp: Divide 9/15"],[91,"Ch B Amp: Phd Motorway"],[91,"Ch B Amp: Class A-15"],[91,"Ch B Amp: Class A-30"],[91,"Ch B Amp: Brit J-45 Normal"],[91,"Ch B Amp: Brit J-45 Bright"],[91,"Ch B Amp: Brit Plexi 100 Normal"],[91,"Ch B Amp: Brit Plexi 100 Bright"],[91,"Ch B Amp: Brit P-75 Normal"],[91,"Ch B Amp: Brit P-75 Bright"],[91,"Ch B Amp: Brit J-800"],[91,"Ch B Amp: Bomber Uber"],[91,"Ch B Amp: Treadplate"],[91,"Ch B Amp: Angel F-Ball"],[91,"Ch B Amp: Line 6 Elektrik"],[91,"Ch B Amp: Flip top"],[91,"Ch B Amp: Solo 100 Clean"],[91,"Ch B Amp: Solo 100 Crunch"],[91,"Ch B Amp: Solo 100 Overdrive"],[91,"Ch B Amp: Line 6 Doom"],[91,"Ch B Amp: Line 6 Epic"],[71,"Ch A Cab: None"],[71,"Ch A Cab: 2x12 Blackface Double"],[71,"Ch A Cab: 4x12 Hiway"],[71,"Ch A Cab: 1x(6x9) Super O"],[71,"Ch A Cab: 1x12 Gibtone F-Coil"],[71,"Ch A Cab: 4x10 Tweed B-Man"],[71,"Ch A Cab: 1x12 Blackface Lux"],[71,"Ch A Cab: 1x12 Brit 12-H"],[71,"Ch A Cab: 2x12 PhD Ported"],[71,"Ch A Cab: 1x12 Blue Bell"],[71,"Ch A Cab: 2x12 Silver Bell"],[71,"Ch A Cab: 4x12 Greenback 25"],[71,"Ch A Cab: 4x12 Blackback 30"],[71,"Ch A Cab: 4x12 Brit T-75"],[71,"Ch A Cab: 4x12 Uber"],[71,"Ch A Cab: 4x12 Tread V-30"],[71,"Ch A Cab: 4x12 XXL V-30"],[71,"Ch A Cab: 1x15 Flip Top (Bass)"],[110,"Ch B Cab: None"],[110,"Ch B Cab: 2x12 Blackface Double"],[110,"Ch B Cab: 4x12 Hiway"],[110,"Ch B Cab: 1x(6x9) Super O"],[110,"Ch B Cab: 1x12 Gibtone F-Coil"],[110,"Ch B Cab: 4x10 Tweed B-Man"],[110,"Ch B Cab: 1x12 Blackface Lux"],[110,"Ch B Cab: 1x12 Brit 12-H"],[110,"Ch B Cab: 2x12 PhD Ported"],[110,"Ch B Cab: 1x12 Blue Bell"],[110,"Ch B Cab: 2x12 Silver Bell"],[110,"Ch B Cab: 4x12 Greenback 25"],[110,"Ch B Cab: 4x12 Blackback 30"],[110,"Ch B Cab: 4x12 Brit T-75"],[110,"Ch B Cab: 4x12 Uber"],[110,"Ch B Cab: 4x12 Tread V-30"],[110,"Ch B Cab: 4x12 XXL V-30"],[110,"Ch B Cab: 1x15 Flip Top (Bass)"],[12,"Ch A Amp + Defaults"],[89,"Ch B Amp + Defaults"],[13,"Ch A Drive Knob"],[92,"Ch B Drive Knob"],[14,"Ch A Bass Knob"],[93,"Ch B Bass Knob"],[15,"Ch A Mid Knob"],[94,"Ch B Mid Knob"],[16,"Ch A Treble Knob"],[95,"Ch B Treble Knob"],[17,"Ch A Volume Knob"],[103,"Ch B Volume Knob"],[21,"Ch A Presence Knob"],[102,"Ch B Presence Knob"],[77,"Ch A Topology Type: Tight NFL"],[114,"Ch B Topology Type: Tight NFL"],[77,"Ch A Topology Type: Loose NFL"],[114,"Ch B Topology Type: Loose NFL"],[77,"Ch A Topology Type: Zero NFL"],[114,"Ch B Topology Type: Zero NFL"],[77,"Ch A Topology Type: Resonant NFL"],[114,"Ch B Topology Type: Resonant NFL"],[74,"Ch A Boost Mode: Enable"],[117,"Ch B Boost Mode: Enable"],[74,"Ch A Boost Mode: Bypass"],[117,"Ch B Boost Mode: Bypass"],[78,"Ch A Phase Inv B+ Voltage: Low B+"],[86,"Ch B Phase Inv B+ Voltage: Low B+"],[78,"Ch A Phase Inv B+ Voltage: High B+"],[86,"Ch B Phase Inv B+ Voltage: High B+"],[79,"Ch A Feedback Cap: X (Tight)"],[87,"Ch B Feedback Cap: X (Tight)"],[79,"Ch A Feedback Cap: Y (Smooth)"],[87,"Ch B Feedback Cap: Y (Smooth)"],[36,"Ch A Reverb: Enable"],[105,"Ch B Reverb: Enable"],[36,"Ch A Reverb: Bypass"],[105,"Ch B Reverb: Bypass"],[37,"Ch A Reverb Type: None"],[107,"Ch B Reverb Type: None"],[37,"Ch A Reverb Type: Spring"],[107,"Ch B Reverb Type: Spring"],[37,"Ch A Reverb Type: 63 Spring"],[107,"Ch B Reverb Type: 63 Spring"],[37,"Ch A Reverb Type: Plate"],[107,"Ch B Reverb Type: Plate"],[37,"Ch A Reverb Type: Room"],[107,"Ch B Reverb Type: Room"],[37,"Ch A Reverb Type: Chamber"],[107,"Ch B Reverb Type: Chamber"],[37,"Ch A Reverb Type: Hall"],[107,"Ch B Reverb Type: Hall"],[37,"Ch A Reverb Type: Cave"],[107,"Ch B Reverb Type: Cave"],[37,"Ch A Reverb Type: Ducking"],[107,"Ch B Reverb Type: Ducking"],[37,"Ch A Reverb Type: Octo"],[107,"Ch B Reverb Type: Octo"],[37,"Ch A Reverb Type: Tile"],[107,"Ch B Reverb Type: Tile"],[37,"Ch A Reverb Type: Echo"],[107,"Ch B Reverb Type: Echo"],[37,"Ch A Reverb Type: Particle Verb"],[107,"Ch B Reverb Type: Particle Verb"],[52,"Ch A Reverb Decay"],[56,"Ch B Reverb Decay"],[53,"Ch A Reverb Pre Delay"],[57,"Ch B Reverb Pre Delay"],[54,"Ch A Reverb Tone"],[58,"Ch B Reverb Tone"],[55,"Ch A Reverb Mix"],[59,"Ch B Reverb Mix"]]},{"id":"helix","brand":"Line 6","name":"Helix","cc":[[1,"Expression Pedal 1"],[2,"Expression Pedal 2"],[3,"Expression Pedal 3"],[49,"Stomp Switch 1"],[50,"Stomp Switch 2"],[51,"Stomp Switch 3"],[52,"Stomp Switch 4"],[53,"Stomp Switch 5"],[54,"Stomp Switch 7"],[55,"Stomp Switch 8"],[56,"Stomp Switch 9"],[57,"Stomp Switch 10"],[58,"Stomp Switch 11"],[59,"Expression Toe Switch"],[60,"Looper: Overdub"],[60,"Looper: Record"],[61,"Looper: Stop"],[61,"Looper: Play"],[62,"Looper: Play Once"],[63,"Looper: Undo"],[65,"Looper: Forward"],[65,"Looper: Reverse"],[66,"Looper: Full Speed"],[66,"Looper: Half Speed"],[67,"Looper On"],[67,"Looper Off"],[0,"Bank MSB"],[32,"Bank LSB - Setlist Select"],[64,"Tap Tempo"],[68,"Tuner toggle"],[69,"Snapshot 1"],[69,"Snapshot 2"],[69,"Snapshot 3"],[69,"Snapshot 4"],[69,"Snapshot 5"],[69,"Snapshot 6"],[69,"Snapshot 7"],[69,"Snapshot 8"]]},{"id":"helixlt","brand":"Line 6","name":"Helix LT","cc":[[1,"Expression Pedal 1"],[2,"Expression Pedal 2"],[49,"Stomp Switch 1"],[50,"Stomp Switch 2"],[51,"Stomp Switch 3"],[52,"Stomp Switch 4"],[53,"Stomp Switch 5"],[54,"Stomp Switch 7"],[55,"Stomp Switch 8"],[56,"Stomp Switch 9"],[57,"Stomp Switch 10"],[58,"Stomp Switch 11"],[59,"Expression Toe Switch"],[60,"Looper: Overdub"],[60,"Looper: Record"],[61,"Looper: Stop"],[61,"Looper: Play"],[62,"Looper: Play Once"],[63,"Looper: Undo"],[65,"Looper: Forward"],[65,"Looper: Reverse"],[66,"Looper: Full Speed"],[66,"Looper: Half Speed"],[67,"Looper On"],[67,"Looper Off"],[0,"Bank MSB"],[32,"Bank LSB - Setlist Select"],[64,"Tap Tempo"],[68,"Tuner toggle"],[69,"Snapshot 1"],[69,"Snapshot 2"],[69,"Snapshot 3"],[69,"Snapshot 4"],[69,"Snapshot 5"],[69,"Snapshot 6"],[69,"Snapshot 7"],[69,"Snapshot 8"]]},{"id":"helixrackandcontrol","brand":"Line 6","name":"Helix Rack and Control","cc":[[1,"Expression Pedal 1"],[2,"Expression Pedal 2"],[3,"Expression Pedal 3"],[49,"Stomp Switch 1"],[50,"Stomp Switch 2"],[51,"Stomp Switch 3"],[52,"Stomp Switch 4"],[53,"Stomp Switch 5"],[54,"Stomp Switch 7"],[55,"Stomp Switch 8"],[56,"Stomp Switch 9"],[57,"Stomp Switch 10"],[58,"Stomp Switch 11"],[59,"Expression Toe Switch"],[60,"Looper: Overdub"],[60,"Looper: Record"],[61,"Looper: Stop"],[61,"Looper: Play"],[62,"Looper: Play Once"],[63,"Looper: Undo"],[65,"Looper: Forward"],[65,"Looper: Reverse"],[66,"Looper: Full Speed"],[66,"Looper: Half Speed"],[67,"Looper On"],[67,"Looper Off"],[0,"Bank MSB"],[32,"Bank LSB - Setlist Select"],[64,"Tap Tempo"],[68,"Tuner toggle"],[69,"Snapshot 1"],[69,"Snapshot 2"],[69,"Snapshot 3"],[69,"Snapshot 4"],[69,"Snapshot 5"],[69,"Snapshot 6"],[69,"Snapshot 7"],[69,"Snapshot 8"]]},{"id":"hxeffects","brand":"Line 6","name":"HX Effects","cc":[[69,"Snapshot 1"],[69,"Snapshot 2"],[69,"Snapshot 3"],[69,"Snapshot 4"],[1,"Expression Pedal 1"],[2,"Expression Pedal 2"],[49,"Stomp Switch 1"],[50,"Stomp Switch 2"],[51,"Stomp Switch 3"],[52,"Stomp Switch 4"],[53,"Stomp Switch 5"],[54,"Stomp Switch 6"],[60,"Looper: Overdub"],[60,"Looper: Record"],[61,"Looper: Stop"],[61,"Looper: Play"],[62,"Looper: Play Once"],[63,"Looper: Undo"],[65,"Looper: Forward"],[65,"Looper: Reverse"],[66,"Looper: Full Speed"],[66,"Looper: Half Speed"],[67,"Looper On"],[67,"Looper Off"],[64,"Tap Tempo"],[68,"Tuner toggle"],[70,"All Bypass: On"],[70,"All Bypass: Bypass"]]},{"id":"m13v20sompboxmodeler","brand":"Line 6","name":"M13 v2.0 Sompbox Modeler","cc":[[50,"Looper: Overdub"],[50,"Looper: Record"],[28,"Looper: Stop"],[28,"Looper: Play"],[80,"Looper: Play Once"],[82,"Looper: Undo/Redo"],[85,"Looper: Reverse Toggle"],[36,"Looper: Half Speed Toggle"],[86,"Looper On"],[86,"Looper Off"],[1,"Expression Pedal 1"],[2,"Expression Pedal 2"],[64,"Tap Tempo"],[11,"FX Unit 1A: On"],[11,"FX Unit 1A: Bypass"],[12,"FX Unit 1B: On"],[12,"FX Unit 1B: Bypass"],[13,"FX Unit 1C: On"],[13,"FX Unit 1C: Bypass"],[14,"FX Unit 2A: On"],[14,"FX Unit 2A: Bypass"],[15,"FX Unit 2B: On"],[15,"FX Unit 2B: Bypass"],[16,"FX Unit 2C: On"],[16,"FX Unit 2C: Bypass"],[17,"FX Unit 3A: On"],[17,"FX Unit 3A: Bypass"],[18,"FX Unit 3B: On"],[18,"FX Unit 3B: Bypass"],[19,"FX Unit 3C: On"],[19,"FX Unit 3C: Bypass"],[20,"FX Unit 4A: On"],[20,"FX Unit 4A: Bypass"],[21,"FX Unit 4B: On"],[21,"FX Unit 4B: Bypass"],[22,"FX Unit 4C: On"],[22,"FX Unit 4C: Bypass"],[23,"Bypass All + FX Loop"],[23,"Engage All + FX Loop"],[24,"Bypass All excl. FX Loop"],[24,"Engage All excl. FX Loop"],[69,"Tuner On"],[69,"Tuner Off"]]},{"id":"m5stompboxmodeler","brand":"Line 6","name":"M5 Stompbox Modeler","cc":[["0-24","Program Change"],[64,"Tap Tempo"],[11,"FX On"],[11,"FX Off"],[1,"Expression Pedal"],[69,"Tuner On"],[69,"Tuner Off"]]},{"id":"m9v20stompboxmodeler","brand":"Line 6","name":"M9 v2.0 Stompbox Modeler","cc":[[50,"Looper: Overdub"],[50,"Looper: Record"],[28,"Looper: Stop"],[28,"Looper: Play"],[80,"Looper: Play Once"],[82,"Looper: Undo/Redo"],[85,"Looper: Reverse Toggle"],[36,"Looper: Half Speed Toggle"],[86,"Looper On"],[86,"Looper Off"],[1,"Expression Pedal 1"],[2,"Expression Pedal 2"],[64,"Tap Tempo"],[11,"FX Unit 1A: On"],[11,"FX Unit 1A: Bypass"],[12,"FX Unit 1B: On"],[12,"FX Unit 1B: Bypass"],[14,"FX Unit 2A: On"],[14,"FX Unit 2A: Bypass"],[15,"FX Unit 2B: On"],[15,"FX Unit 2B: Bypass"],[17,"FX Unit 3A: On"],[17,"FX Unit 3A: Bypass"],[18,"FX Unit 3B: On"],[18,"FX Unit 3B: Bypass"],[23,"Bypass All + FX Loop"],[23,"Engage All + FX Loop"],[24,"Bypass All excl. FX Loop"],[24,"Engage All excl. FX Loop"],[69,"Tuner On"],[69,"Tuner Off"]]},{"id":"pocketpod","brand":"Line 6","name":"Pocket POD","cc":[[1,"Tweak"],[4,"Wah Position"],[7,"Volume Pedal"],[12,"Amp: Tube Preamp "],[12,"Amp: Line 6 Clean"],[12,"Amp: Line 6 Crunch"],[12,"Amp: Line 6 Drive"],[12,"Amp: Line 6 Layer"],[12,"Amp: Small Tweed "],[12,"Amp: Tweed Blues"],[12,"Amp: Black Panel"],[12,"Amp: Modern Class A "],[12,"Amp: Brit Class A "],[12,"Amp: Brit Blues "],[12,"Amp: Brit Classic"],[12,"Amp: Brit Hi Gain"],[12,"Amp: Treadplate"],[12,"Amp: Modern Hi Gain"],[12,"Amp: Fuzz Box"],[12,"Amp: Jazz Clean "],[12,"Amp: Boutique #1"],[12,"Amp: Boutique #2 "],[12,"Amp: Brit Class A #2"],[12,"Amp: Brit Class A #3 "],[12,"Amp: Small Tweed #2 "],[12,"Amp: Black Panel #2 "],[12,"Amp: Boutique #3"],[12,"Amp: California Crunch #1 "],[12,"Amp: California Crunch #2 "],[12,"Amp: Treadplate #2 "],[12,"Amp: Modern Hi Gain #2"],[12,"Amp: Line 6 Twang"],[12,"Amp: Line 6 Crunch #2"],[12,"Amp: Line 6 Blues"],[12,"Amp: Line 6 INSANE"],[13,"Amp 1 Drive: On"],[13,"Amp 1 Drive: Off"],[14,"Amp 1 Bass"],[15,"Amp 1 Mid"],[16,"Amp 1 Treble"],[17,"Amp 1 Channel Volume"],[18,"Reverb Level"],[20,"Drive 2"],[21,"Amp 1 Presence"],[22,"Noise Gate On"],[22,"Noise Gate Off"],[23,"Gate Threshold"],[24,"Gate Decay"],[25,"Stomp Enable: On"],[25,"Stomp Enable: Off"],[26,"Comp Enable: On"],[26,"Comp Enable: Off"],[27,"Presence Boost: On"],[27,"Presence Boost: Off"],[28,"Delay Enable: On"],[28,"Delay Enable: Off"],[30,"Delay Param 1 MSB"],[32,"Delay Regeneration "],[34,"Delay Mix"],[36,"Reverb Enable: On"],[36,"Reverb Enable: Off"],[37,"Reverb Model"],[38,"Reverb Decay"],[39,"Reverb Tone"],[40,"Reverb Diffusion"],[41,"Reverb Density"],[42,"Compression Ratio"],[43,"Wah Enable"],[43,"Wah Disable"],[44,"Wah Bottom Frequency"],[45,"Wah Top Frequency"],[46,"Volume Pedal Minimum"],[47,"Volume Pre Amp Model"],[47,"Volume Post Amp Model"],[48,"Volume Swell Enable"],[49,"Vol Swell Ramp Time"],[50,"Mod Enable"],[50,"Mod Disable"],[51,"Chorus/Flange Speed"],[52,"Chorus/Flange Depth"],[53,"Chorus/Flange Regen"],[54,"Chorus Pre-Delay"],[55,"Rotary Speed"],[56,"Rotary Max Speed"],[57,"Rotary Min Speed"],[58,"Tremolo Speed"],[59,"Tremolo Depth"],[62,"Delay Time (Dbl precision)"],[64,"Tap Tempo"],[71,"Cabinet: 1x8 60 Fender Tweed Champ"],[71,"Cabinet: 1x12 52 Fender Tweed Deluxe"],[71,"Cabinet: 1x12 60 Vo"],[71,"Cabinet: 1x12 64 Fender Blackface "],[71,"Cabinet: 1x12 98 Line 6 Fle"],[71,"Cabinet: 2x12 65 Fender Blackfac"],[71,"Cabinet: 2x12 67 VO"],[71,"Cabinet: 2x12 95 Matchless Chi"],[71,"Cabinet: 2x12 98 Pod custo"],[71,"Cabinet: 4x10 59 Fender B"],[71,"Cabinet: 4x10 98 Pod custom 4x"],[71,"Cabinet: 4x12 96 Marshall wit"],[71,"Cabinet: 4x12 78 Marshall wi"],[71,"Cabinet: 4x12 97 Marshall Basketweave with Gree"],[71,"Cabinet: 4x12 98 Pod custo"],[71,"Cabinet: No Cabinet"],[72,"A.I.R. Ambience Level"],[73,"Bright Switch On"],[73,"Bright Switch Off"]]},{"id":"podgo","brand":"Line 6","name":"POD GO","cc":[[32,"Factory Setlist"],[32,"User Setlist"],[69,"Snapshot 1"],[69,"Snapshot 2"],[69,"Snapshot 3"],[69,"Snapshot 4"],[69,"Next Snapshot"],[69,"Previous Snapshot"],[1,"Expression Pedal 1"],[2,"Expression Pedal 2"],[49,"Footswitch 1 Toggle"],[50,"Footswitch 2 Toggle"],[51,"Footswitch 3 Toggle"],[52,"Footswitch 4 Toggle"],[53,"Footswitch 5 Toggle"],[54,"Footswitch 6 Toggle"],[55,"Footswitch 7 Toggle"],[56,"Footswitch 8 Toggle"],[60,"Looper: Overdub"],[60,"Looper: Record"],[61,"Looper: Stop"],[61,"Looper: Play"],[62,"Looper: Play Once"],[63,"Looper: Undo"],[65,"Looper: Reverse"],[65,"Looper: Forward"],[66,"Looper: Half Speed"],[66,"Looper: Full Speed"],[64,"Tap Tempo"],[68,"Tuner Toggle"]]},{"id":"podhdprox","brand":"Line 6","name":"POD HD PRO X","cc":[[1,"Expression Pedal 1"],[2,"Expression Pedal 2"],[51,"Footswitch 1 Toggle"],[52,"Footswitch 2 Toggle"],[53,"Footswitch 3 Toggle"],[54,"Footswitch 4 Toggle"],[55,"Footswitch 5 Toggle"],[56,"Footswitch 6 Toggle"],[57,"Footswitch 7 Toggle"],[58,"Footswitch 8 Toggle"],[59,"Expression Toe Switch Toggle"],[60,"Looper: Overdub"],[60,"Looper: Record"],[61,"Looper: Stop"],[61,"Looper: Play"],[62,"Looper: Play Once"],[63,"Looper: Undo"],[65,"Looper: Reverse"],[65,"Looper: Forward"],[67,"Looper: Pre"],[67,"Looper: Post"],[68,"Looper: Half Speed"],[68,"Looper: Full Speed"],[99,"Looper On"],[99,"Looper Off"],[64,"Tap Tempo"],[69,"Tuner On"],[69,"Tuner Off"]]},{"id":"podhd500x","brand":"Line 6","name":"POD HD500X","cc":[[1,"Expression Pedal 1"],[2,"Expression Pedal 2"],[51,"Footswitch 1 Toggle"],[52,"Footswitch 2 Toggle"],[53,"Footswitch 3 Toggle"],[54,"Footswitch 4 Toggle"],[55,"Footswitch 5 Toggle"],[56,"Footswitch 6 Toggle"],[57,"Footswitch 7 Toggle"],[58,"Footswitch 8 Toggle"],[59,"Expression Toe Switch Toggle"],[60,"Looper: Overdub"],[60,"Looper: Record"],[61,"Looper: Stop"],[61,"Looper: Play"],[62,"Looper: Play Once"],[63,"Looper: Undo"],[65,"Looper: Reverse"],[65,"Looper: Forward"],[67,"Looper: Pre"],[67,"Looper: Post"],[68,"Looper: Half Speed"],[68,"Looper: Full Speed"],[99,"Looper On"],[99,"Looper Off"],[64,"Tap Tempo"],[69,"Tuner On"],[69,"Tuner Off"]]},{"id":"powercab112plus","brand":"Line 6","name":"Powercab 112 Plus","cc":[[20,"Mode: Flat"],[20,"Mode: Speaker"],[20,"Mode: User IR"],[21,"Voicing: FRFR"],[21,"Voicing: LF Flat"],[21,"Voicing: LF Raw"],[22,"Speaker: Vintage"],[22,"Speaker: Green"],[22,"Speaker: Cream"],[22,"Speaker: Jarvis"],[22,"Speaker: Bayou"],[22,"Speaker: Essex"],[22,"Speaker: Natural"],[22,"Speaker: Dino"],[22,"Speaker: Lecto"],[22,"Speaker: Herald"],[22,"Speaker: Brown"],[22,"Speaker: Shade"],[22,"Speaker: Jetson"],[23,"Mic: 57 Dyn"],[23,"Mic: 409 Dyn"],[23,"Mic: 421 Dyn"],[23,"Mic: 30 Dyn"],[23,"Mic: 20 Dyn"],[23,"Mic: 121 Ribbon"],[23,"Mic: 160 Ribbon"],[23,"Mic: 4038 Ribbon"],[23,"Mic: 414 Cond"],[23,"Mic: 84 Cond"],[23,"Mic: 67 Cond"],[23,"Mic: 87 Cond"],[23,"Mic: 47 Cond"],[23,"Mic: 112 Dyn"],[23,"Mic: 12 Dyn"],[23,"Mic: 7 Dyn"],[24,"Mic Distance"],[25,"IR location"],[26,"Low Cut"],[27,"High Cut"],[28,"Level"],[29,"Color: Off"],[29,"Color: White"],[29,"Color: Red"],[29,"Color: Blue"],[29,"Color: Green"],[29,"Color: Yellow"],[29,"Color: Cyan"],[29,"Color: Magenta"],[29,"Color: Auto"],[1,"Input 1/L Gain"],[2,"Input 2/R Gain"],[3,"Input 2/R Mode: Normal"],[3,"Input 2/R Mode: Monitor"],[3,"Input 2/R Mode: USB"],[4,"Link Inputs: Off"],[4,"Link Inputs: On"],[5,"HF Trim"],[6,"USB Mode: Normal"],[6,"USB Mode: Processed"]]},{"id":"powercab212plus","brand":"Line 6","name":"Powercab 212 Plus","cc":[[20,"Mode: Flat"],[20,"Mode: Speaker"],[20,"Mode: User IR"],[20,"Mode: Dual Speaker"],[20,"Mode: Dual User IR"],[21,"Voicing: FRFR"],[21,"Voicing: LF Flat"],[21,"Voicing: LF Raw"],[22,"Speaker 1: Vintage"],[22,"Speaker 1: Green"],[22,"Speaker 1: Cream"],[22,"Speaker 1: Jarvis"],[22,"Speaker 1: Bayou"],[22,"Speaker 1: Essex"],[22,"Speaker 1: Natural"],[22,"Speaker 1: Dino"],[22,"Speaker 1: Lecto"],[22,"Speaker 1: Herald"],[22,"Speaker 1: Brown"],[22,"Speaker 1: Shade"],[22,"Speaker 1: Jetson"],[102,"Speaker 2: Vintage"],[102,"Speaker 2: Green"],[102,"Speaker 2: Cream"],[102,"Speaker 2: Jarvis"],[102,"Speaker 2: Bayou"],[102,"Speaker 2: Essex"],[102,"Speaker 2: Natural"],[102,"Speaker 2: Dino"],[102,"Speaker 2: Lecto"],[102,"Speaker 2: Herald"],[102,"Speaker 2: Brown"],[102,"Speaker 2: Shade"],[102,"Speaker 2: Jetson"],[23,"Mic 1: 57 Dyn"],[23,"Mic 1: 409 Dyn"],[23,"Mic 1: 421 Dyn"],[23,"Mic 1: 30 Dyn"],[23,"Mic 1: 20 Dyn"],[23,"Mic 1: 121 Ribbon"],[23,"Mic 1: 160 Ribbon"],[23,"Mic 1: 4038 Ribbon"],[23,"Mic 1: 414 Cond"],[23,"Mic 1: 84 Cond"],[23,"Mic 1: 67 Cond"],[23,"Mic 1: 87 Cond"],[23,"Mic 1: 47 Cond"],[23,"Mic 1: 112 Dyn"],[23,"Mic 1: 12 Dyn"],[23,"Mic 1: 7 Dyn"],[24,"Mic 1 Distance"],[24,"Mic 2: 57 Dyn"],[24,"Mic 2: 409 Dyn"],[24,"Mic 2: 421 Dyn"],[24,"Mic 2: 30 Dyn"],[24,"Mic 2: 20 Dyn"],[24,"Mic 2: 121 Ribbon"],[24,"Mic 2: 160 Ribbon"],[24,"Mic 2: 4038 Ribbon"],[24,"Mic 2: 414 Cond"],[24,"Mic 2: 84 Cond"],[24,"Mic 2: 67 Cond"],[24,"Mic 2: 87 Cond"],[24,"Mic 2: 47 Cond"],[24,"Mic 2: 112 Dyn"],[24,"Mic 2: 12 Dyn"],[24,"Mic 2: 7 Dyn"],[104,"Mic 2 Distance"],[25,"IR 1 Location"],[105,"IR 2 Location"],[26,"Low Cut 1"],[27,"High Cut 1"],[106,"Low Cut 2"],[107,"High Cut 2"],[28,"Level 1"],[108,"Level 2"],[29,"Color 1: Off"],[29,"Color 1: White"],[29,"Color 1: Red"],[29,"Color 1: Blue"],[29,"Color 1: Green"],[29,"Color 1: Yellow"],[29,"Color 1: Cyan"],[29,"Color 1: Magenta"],[29,"Color 1: Auto"],[109,"Color 2: Off"],[109,"Color 2: White"],[109,"Color 2: Red"],[109,"Color 2: Blue"],[109,"Color 2: Green"],[109,"Color 2: Yellow"],[109,"Color 2: Cyan"],[109,"Color 2: Magenta"],[109,"Color 2: Auto"],[1,"Input 1/L Gain"],[30,"Input 1/L Level: Line"],[30,"Input 1/L Level: Instrument"],[2,"Input 2/R Gain"],[31,"Input 2/R Level: Line"],[31,"Input 2/R Level: Instrument"],[3,"Input 2/R Mode: Normal"],[3,"Input 2/R Mode: Monitor"],[3,"Input 2/R Mode: USB"],[4,"Link Inputs: Off"],[4,"Link Inputs: On"],[5,"HF Trim"],[6,"USB Mode: Normal"],[6,"USB Mode: Processed"],[111,"Low Cut: Off"],[111,"Low Cut: On"],[110,"Stereo Width"],[110,"Stereo Width: Mono"],[110,"Stereo Width: 100%"],[110,"Stereo Width: 200%"]]},{"id":"0-coast","brand":"Make Noise Co. ","name":"0-COAST","cc":[[117,"Arpeggiator On"],[117,"Arpeggiator Off"],[119,"Arpeggiator: Traditional"],[119,"Arpeggiator: Latch"],[119,"Arpeggiator: Shift"],[118,"Legato On"],[118,"Legato Off"],[102,"MIDI A channel: 1"],[102,"MIDI A channel: 2"],[102,"MIDI A channel: 3"],[102,"MIDI A channel: 4"],[102,"MIDI A channel: 5"],[102,"MIDI A channel: 6"],[102,"MIDI A channel: 7"],[102,"MIDI A channel: 8"],[102,"MIDI A channel: 9"],[102,"MIDI A channel: 10"],[102,"MIDI A channel: 11"],[102,"MIDI A channel: 12"],[102,"MIDI A channel: 13"],[102,"MIDI A channel: 14"],[102,"MIDI A channel: 15"],[102,"MIDI A channel: 16"],[102,"MIDI A channel: Omni"],[103,"MIDI B channel: 1"],[103,"MIDI B channel: 2"],[103,"MIDI B channel: 3"],[103,"MIDI B channel: 4"],[103,"MIDI B channel: 5"],[103,"MIDI B channel: 6"],[103,"MIDI B channel: 7"],[103,"MIDI B channel: 8"],[103,"MIDI B channel: 9"],[103,"MIDI B channel: 10"],[103,"MIDI B channel: 11"],[103,"MIDI B channel: 12"],[103,"MIDI B channel: 13"],[103,"MIDI B channel: 14"],[103,"MIDI B channel: 15"],[103,"MIDI B channel: 16"],[103,"MIDI B channel: Omni"],[104,"MIDI chA CV: Note"],[104,"MIDI chA CV: Velocity"],[104,"MIDI chA CV: Modulation"],[104,"MIDI chA CV: LFO"],[105,"MIDI chB CV: Note"],[105,"MIDI chB CV: Velocity"],[105,"MIDI chB CV: Modulation"],[105,"MIDI chB CV: LFO"],[106,"MIDI chA Gate: Note On"],[106,"MIDI chA Gate: Velocity >50%"],[106,"MIDI chA Gate: Mod Wheel >50%"],[106,"MIDI chA Gate: LFO"],[107,"MIDI chB Gate: Note On"],[107,"MIDI chB Gate: Velocity >50%"],[107,"MIDI chB Gate: Mod Wheel >50%"],[107,"MIDI chB Gate: LFO"],[108,"Pitch bend scale A"],[109,"Pitch bend scale B"],[110,"Aftertouch scale A"],[111,"Aftertouch scale B"],[112,"Velocity scale A"],[113,"Velocity scale B"],[114,"MIDI Clock: On"],[114,"MIDI Clock: Off"],[116,"Tempo in divisor: 1/1"],[116,"Tempo in divisor: 1/2"],[116,"Tempo in divisor: 1/3"],[116,"Tempo in divisor: 1/4"],[116,"Tempo in divisor: 1/5"],[116,"Tempo in divisor: 1/6"],[116,"Tempo in divisor: 1/7"],[116,"Tempo in divisor: 1/8"]]},{"id":"geode","brand":"Meeblip","name":"Geode","cc":[[48,"Waveform A"],[49,"Waveform B"],[50,"Detune"],[51,"Cutoff"],[52,"Mix"],[53,"Rate"],[54,"Depth"],[55,"Amplitude attack"],[56,"Amplitude decay"],[57,"Portamento"],[58,"Filter Envelope Modulation Amount"],[59,"Pulse width"],[64,"Sustain: On"],[64,"Sustain: Off"],[65,"Oscillator B Octave Shift: On"],[65,"Oscillator B Octave Shift: Off"],[66,"Destination: On"],[66,"Destination: Off"],[67,"Randomize: On"],[67,"Randomize: Off"],[68,"Retrigger: On"],[68,"Retrigger: Off"]]},{"id":"triode","brand":"Meeblip","name":"Triode","cc":[[1,"LFO Depth"],[48,"Rate"],[49,"Depth"],[50,"Detune"],[51,"Glide"],[52,"Resonance"],[53,"Cutoff"],[54,"Filter Decay"],[55,"Amplitude Decay"],[56,"Accent"],[57,"Envelope Modulation"],[58,"Pulse Width"],[59,"Attack"],[60,"Amplitude Attack"],[64,"Sustain: On"],[64,"Sustain: Off"],[65,"Sub-oscillator: On"],[65,"Sub-oscillator: Off"],[66,"PWM Sweep: On"],[66,"PWM Sweep: Off"],[67,"Destination: On"],[67,"Destination: Off"],[68,"Wave: On"],[68,"Wave: Off"],[69,"Randomize: On"],[69,"Randomize: Off"],[70,"Note retrigger: On"],[70,"Note retrigger: Off"]]},{"id":"nina","brand":"Melbourne Instruments","name":"Nina","cc":[[0,"bank Select (MSB)"],["1","Mod Wheel"],["2","Mod Matrix MIDI Source"],["5","Glide Rate "],["7","Patch Volume"],["10","Pan "],["11","Expression Source "],["12","Effect Level "],["14","Osc 1 tune"],["15","Osc 2 tune "],["16","Osc 3 tune"],["17","Osc 1 width "],["18","Osc 2 width "],["19","Osc 3 width"],["20","Osc 1 Blend"],["21","Osc 2 Blend "],["22","Osc 3 Level "],["23","LFO 1 Rate "],["24","Osc 1 Level "],["25","Osc 2 Level "],["26","Noise Level "],["27","LFO 1 Level "],["28","Resonance "],["29","Cutoff "],["30","Drive "],["31"," Env Amount "],["32","Param. 0 Bank Select (MSB) 32 Bank Select (LSB) 00-31 selects Banks 1-32 "],["33","EG1 Attack "],["34","EG1 Decay "],["35","EG1 Sustain"],["36"," EG1 Release "],["37","EG2 Attack "],["38","(Reserved) Data Entry LSB for RPN/NRPN "],["39","EG2 Decay "],["40","EG2 Sustain "],["41"," EG2 Release "],["42","Spin "],["43","Morph "],["44","Morph "]]},{"id":"tanzbarlite","brand":"MFB","name":"Tanzbar Lite","cc":[[3,"Bass drum tune"],[2,"Bass drum tone"],[64,"Bass drum decay"],[11,"Snare drum tone"],[67,"Snare drum decay"],[13,"Snare drum noise"],[75,"Claps decay"],[18,"Claps filter"],[76,"Claps attack"],[77,"Claps trigger"],[19,"Toms tune"],[20,"Toms decay"],[79,"Conga tune"],[78,"Conga decay"],[82,"Conga pan"],[73,"Toms pan"],[84,"Cowbell tune"],[85,"Cowbell decay"],[86,"Claves tune"],[87,"Claves decay"],[89,"Cymbal tune"],[92,"Cymbal tone"],[88,"Cymbal decay"],[90,"Open hi hat decay"],[91,"Closed hi hat decay"]]},{"id":"002r","brand":"Modal Electronics","name":"002R","cc":[[1,"Mod Wheel"],[2,"OSC1 Wave"],[3,"OSC1 PW: Off"],[3,"OSC1 PW: On"],[4,"OSC1 Note"],[5,"KEYB Glide"],[7,"VCA Amount"],[8,"OSC2 Detune"],[9,"OSC2 PW: Off"],[9,"OSC2 PW: On"],[10,"OSC Sync: Off"],[10,"OSC Sync: On"],[11,"OSC SubWav: Off"],[11,"OSC SubWav: On"],[12,"OSC DeRez: Off"],[12,"OSC DeRez: On"],[13,"Mix Drive"],[14,"Mix OSC1"],[15,"Mix Sub1"],[16,"Mix OSC2"],[17,"Mix Sub2"],[18,"Mix Ext In"],[19,"VCF Resonance"],[20,"VCF Velocity"],[21,"VCF EG"],[22,"VCF EG Attack"],[23,"VCF EG Decay"],[24,"VCF EG Sustain"],[25,"VCF EG Release"],[26,"VCA EG Attack"],[27,"VCA EG Decay"],[28,"VCA EG Sustain"],[29,"VCA EG Release"],[30,"OSC2 Note"],[31,"VCF Note"],[33,"VELO Depth"],[34,"Note Depth"],[35,"Mod Wheel Depth"],[36,"LFO1 Rate"],[37,"LFO1 Depth"],[39,"LFO1 Osc1: Off"],[39,"LFO1 Osc1: On"],[40,"LFO1 Osc2: Off"],[40,"LFO1 Osc2: On"],[41,"LFO1 Wave 1: Off"],[41,"LFO1 Wave 1: On"],[42,"LFO1 Wave 2: Off"],[42,"LFO1 Wave 2: On"],[43,"LFO1 Slope: Off"],[43,"LFO1 Slope: On"],[44,"LFO1 Cutoff: Off"],[44,"LFO1 Cutoff: On"],[45,"LFO1 Drive: Off"],[45,"LFO1 Drive: On"],[46,"LFO1 VCA: Off"],[46,"LFO1 VCA: On"],[47,"LFO2 Rate"],[48,"LFO2 Depth"],[49,"LFO2 Note"],[50,"LFO2 Wave"],[51,"LFO2 Osc1: Off"],[51,"LFO2 Osc1: On"],[52,"LFO2 Osc2: Off"],[52,"LFO2 Osc2: On"],[53,"LFO2 Wave 1: Off"],[53,"LFO2 Wave 1: On"],[54,"LFO2 Wave 2: Off"],[54,"LFO2 Wave 2: On"],[55,"LFO2 Slope: Off"],[55,"LFO2 Slope: On"],[56,"LFO2 Resonance: Off"],[56,"LFO2 Resonance: On"],[57,"LFO2 Drive: Off"],[57,"LFO2 Drive: On"],[58,"LFO2 VCA: Off"],[58,"LFO2 VCA: On"],[59,"LFO2 Sngl: Off"],[59,"LFO2 Sngl: On"],[60,"VELO Osc1: Off"],[60,"VELO Osc1: On"],[61,"VELO Osc2: Off"],[61,"VELO Osc2: On"],[62,"VELO Wave 1: Off"],[62,"VELO Wave 1: On"],[63,"VELO Wave 2: Off"],[63,"VELO Wave 2: On"],[64,"Sustain Pedal: Off"],[64,"Sustain Pedal: On"],[65,"VELO Resonance: Off"],[65,"VELO Resonance: On"],[66,"VELO Drive: Off"],[66,"VELO Drive: On"],[67,"VELO VCA: Off"],[67,"VELO VCA: On"],[68,"Note OSC1: Off"],[68,"Note OSC1: On"],[69,"Note OSC2: Off"],[69,"Note OSC2: On"],[70,"Note Wave 1: Off"],[70,"Note Wave 1: On"],[71,"Joy X+ Depth"],[72,"Note Wave 2: Off"],[72,"Note Wave 2: On"],[73,"Note Slope: Off"],[73,"Note Slope: On"],[74,"VCF Cutoff"],[75,"Note Resonance: Off"],[75,"Note Resonance: On"],[76,"Note Drive: Off"],[76,"Note Drive: On"],[77,"Note VCA: Off"],[77,"Note VCA: On"],[78,"Mod Wheel OSC1: Off"],[78,"Mod Wheel OSC1: On"],[79,"Mod Wheel OSC2: Off"],[79,"Mod Wheel OSC2: On"],[80,"Mod Wheel Wave 1: Off"],[80,"Mod Wheel Wave 1: On"],[81,"Mod Wheel Wave 2: Off"],[81,"Mod Wheel Wave 2: On"],[82,"Mod Wheel Slope: Off"],[82,"Mod Wheel Slope: On"],[83,"Mod Wheel Cutoff: Off"],[83,"Mod Wheel Cutoff: On"],[84,"Mod Wheel Drive: Off"],[84,"Mod Wheel Drive: On"],[85,"Mod Wheel VCA: Off"],[85,"Mod Wheel VCA: On"],[86,"AFTT Osc1: Off"],[86,"AFTT Osc1: On"],[87,"AFTT Osc2:Off"],[87,"AFTT Osc2: On"],[88,"AFTT Wave 1: Off"],[88,"AFTT Wave 1: On"],[89,"AFTT Wave 2: Off"],[89,"AFTT Wave 2: On"],[90,"AFTT Slope: Off"],[90,"AFTT Slope: On"],[91,"AFTT Cutoff: Off"],[91,"AFTT Cutoff: On"],[92,"AFTT Drive: Off"],[92,"AFTT Drive: On"],[93,"AFTT VCA: Off"],[93,"AFTT VCA: On"],[94,"VCF Slope"],[95,"ARP Mode"],[96,"ARP Note Length"],[100,"KEYB Mode"],[101,"KEYB Size"],[102,"ANIM status"],[103,"OSC2 Wave"],[104,"LFO1 Wave"],[105,"VELO Slope: Off"],[105,"VELO Slope: On"],[106,"KEYB Transpose"],[107,"LFO2 Delay"],[108,"VCA EG Shape: Linear"],[108,"VCA EG Shape: Exponential"],[109,"VCF EG Shape: Linear"],[109,"VCF EG Shape: Exponential"],[110,"JOY Y+ Depth"],[111,"JOY X- Depth"],[112,"VCF LFO2"],[113,"KEYB Spread"],[114,"KEYB Octave"],[117,"JOY Y- Depth"]]},{"id":"008r","brand":"Modal Electronics","name":"008R","cc":[[1,"Mod Wheel"],[2,"VCO1 PW"],[3,"VCO1 Square: Off"],[3,"VCO1 Square: On"],[4,"VCO1: Note"],[5,"KEYB Glide"],[7,"VCA Amount"],[8,"VCO2 Fine"],[9,"VCO2 Square: Off"],[9,"VCO2 Square: On"],[10,"VCO Sync: Off"],[10,"VCO Sync: On"],[13,"VCA Drive: Off"],[13,"VCA Drive: On"],[14,"Mix VCO1"],[15,"Mix Sub1"],[16,"Mix VCO2"],[17,"Mix Sub2"],[18,"Mix Ext In L/R"],[19,"VCF Resonance"],[21,"VCF EG Amount"],[22,"VCF EG Attack"],[23,"VCF EG Decay"],[24,"VCF EG Sustain"],[25,"VCF EG Release"],[26,"VCA EG Attack"],[27,"VCA EG Decay"],[28,"VCA EG Sustain"],[29,"VCA EG Release"],[30,"VCO2 Note"],[31,"VCO1 Fine"],[36,"LFO1 Rate"],[37,"LFO1 Depth"],[47,"LFO2 Rate"],[48,"LFO2 Depth"],[50,"LFO2 Wave"],[51,"VCO2 Mod Depth"],[52,"VCF EG Delay"],[53,"LFO1 Delay"],[54,"LFO1 Release"],[55,"LFO2 Release"],[59,"LFO2 Sngl: Off"],[59,"LFO2 Sngl: On"],[64,"Sustain On"],[64,"Sustain Off"],[74,"VCF Cutoff"],[78,"VCO1 Saw: Off"],[78,"VCO1 Saw: On"],[79,"VCO1 Triange: Off"],[79,"VCO1 Triangle: On"],[80,"VCO2 Saw: Off"],[80,"VCO2 Saw: On"],[81,"VCO2 Triangle: Off"],[81,"VCO2 Triangle: On"],[82,"VCO2 Noise: Off"],[82,"VCO2 Noise: On"],[83,"VCO2>VCO1 Mod: Off"],[83,"VCO2>VCO1 Mod: On"],[84,"VCO2>VCF Mod: Off"],[84,"VCO2>VCF Mod: On"],[85,"VCF Constant: Off"],[85,"VCF Constant: On"],[86,"LFO1 Sngl: Off"],[86,"LFO1 Sngl: On"],[87,"LFO1 Reset: Off"],[87,"LFO1 Reset: On"],[88,"LFO2 Reset: Off"],[88,"LFO2 Reset: On"],[94,"VCF Mode"],[95,"ARP Mode"],[96,"ARP Note Length"],[100,"KEYB Mode"],[101,"KEYB Size"],[102,"ANIM Status"],[103,"VCO2 PW"],[104,"LFO1 Wave"],[106,"KEYB Transpose"],[107,"LFO2 Delay"],[113,"KEYB Spread"],[114,"KEYB Octave"]]},{"id":"1","brand":"Modal Electronics","name":"1","cc":[[1,"Mod Wheel"],[2,"OSC1 Wave"],[3,"OSC1 PW: Off"],[3,"OSC1 PW: On"],[4,"OSC1 Note"],[5,"KEYB Glide"],[7,"VCA Amount"],[8,"OSC2 Detune"],[9,"OSC2 PW: Off"],[9,"OSC2 PW: On"],[10,"OSC2 Sync: Off"],[10,"OSC2 Sync: On"],[11,"OSC SubWav: Off"],[11,"OSC SubWav: On"],[12,"OSC DeRez: Off"],[12,"OSC DeRez: On"],[13,"Mix Drive"],[14,"Mix OSC1"],[15,"Mix Sub 1"],[16,"Mix OSC2"],[17,"Mix Sub 2"],[18,"Mix Ext In"],[19,"VCF Resonance"],[20,"VCF Velocity"],[21,"VCF EG"],[22,"VCF EG Attack"],[23,"VCF EG Decay"],[24,"VCF EG Sustain"],[25,"VCF EG Release"],[26,"VCA EG Attack"],[27,"VCA EG Decay"],[28,"VCA EG Sustain"],[29,"VCA EG Release"],[30,"OSC2 Note"],[31,"VCF Note"],[33,"VELO Depth"],[34,"Note Depth"],[35,"Mod Wheel Depth"],[36,"LFO1 Rate"],[37,"LFO1 Depth"],[39,"LFO1 Osc1: Off"],[39,"LFO1 Osc1: On"],[40,"LFO1 Osc2: Off"],[40,"LFO1 Osc2: On"],[41,"LFO1 Wave 1: Off"],[41,"LFO1 Wave 1: On"],[42,"LFO1 Wave 2: Off"],[42,"LFO1 Wave 2: On"],[43,"LFO1 Slope: Off"],[43,"LFO1 Slope: On"],[44,"LFO1 Cutoff: Off"],[44,"LFO1 Cutoff: On"],[45,"LFO1 Drive: Off"],[45,"LFO1 Drive: On"],[46,"LFO1 VCA: Off"],[46,"LFO1 VCA: On"],[47,"LFO2 Rate"],[48,"LFO2 Depth"],[49,"LFO2 Note"],[50,"LFO2 Wave"],[51,"LFO2 Osc1: Off"],[51,"LFO2 Osc1: On"],[52,"LFO2 Osc2: Off"],[52,"LFO2 Osc2: On"],[53,"LFO2 Wave 1: Off"],[53,"LFO2 Wave 1: On"],[54,"LFO2 Wave 2: Off"],[54,"LFO2 Wave 2: On"],[55,"LFO2 Slope: Off"],[55,"LFO2 Slope: On"],[56,"LFO2 Resonance: Off"],[56,"LFO2 Resonance: On"],[57,"LFO2 Drive: Off"],[57,"LFO2 Drive: On"],[58,"LFO2 VCA: Off"],[58,"LFO2 VCA: On"],[59,"LFO2 Sngl: Off"],[59,"LFO2 Sngl: On"],[60,"VELO Osc1: Off"],[60,"VELO Osc1: On"],[61,"VELO Osc2: Off"],[61,"VELO Osc2: On"],[62,"VELO Wave 1: Off"],[62,"VELO Wave 1: On"],[63,"VELO Wave 2: Off"],[63,"VELO Wave 2: On"],[64,"Sustain On"],[64,"Sustain Off"],[65,"VELO Resonance: Off"],[65,"VELO Resonance: On"],[66,"VELO Drive: Off"],[66,"VELO Drive: On"],[67,"VELO VCA: Off"],[67,"VELO VCA: On"],[68,"NOTE Osc1: Off"],[68,"NOTE Osc1: On"],[69,"NOTE Osc2: Off"],[69,"NOTE Osc2: On"],[70,"NOTE Wave 1: Off"],[70,"NOTE Wave 1: On"],[71,"JOY X+ Depth"],[72,"Note Wave 2: Off"],[72,"Note Wave 2: On"],[73,"Note Slope: Off"],[73,"Note Slope: On"],[74,"VCF Cutoff"],[75,"NOTE Resonance: Off"],[75,"NOTE Resonance: On"],[76,"Note Drive: Off"],[76,"Note Drive: On"],[77,"NOTE VCA: Off"],[77,"NOTE VCA: On"],[78,"Mod Wheel Osc1: Off"],[78,"Mod Wheel Osc1: On"],[79,"Mod Wheel Osc2: Off"],[79,"Mod Wheel Osc2: On"],[80,"Mod Wheel Wave 1: Off"],[80,"Mod Wheel Wave 1: On"],[81,"Mod Wheel Wave 2: Off"],[81,"Mod Wheel Wave 2: On"],[82,"Mod Wheel Slope: Off"],[82,"Mod Wheel Slope: On"],[83,"Mod Wheel Cutoff: Off"],[83,"Mod Wheel Cutoff: On"],[84,"Mod Wheel Drive: Off"],[84,"Mod Wheel Drive: On"],[85,"Mod Wheel VCA: Off"],[85,"Mod Wheel VCA: On"],[86,"AFTT Osc1: Off"],[86,"AFTT Osc1: On"],[87,"AFTT Osc2:Off"],[87,"AFTT Osc2: On"],[88,"AFTT Wave 1: Off"],[88,"AFTT Wave 1: On"],[89,"AFTT Wave 2: Off"],[89,"AFTT Wave 2: On"],[90,"AFTT Slope: Off"],[90,"AFTT Slope: On"],[91,"AFTT Cutoff: Off"],[91,"AFTT Cutoff: On"],[92,"AFTT Drive: Off"],[92,"AFTT Drive: On"],[93,"AFTT VCA: Off"],[93,"AFTT VCA: On"],[94,"VCF Slope"],[95,"ARP Mode"],[96,"ARP Note Length"],[100,"KEYB Mode"],[101,"KEYB Size"],[102,"ANIM status"],[103,"OSC2 Wave"],[104,"LFO1 Wave"],[105,"VELO Slope: Off"],[105,"VELO Slope: On"],[106,"KEYB Transpose"],[107,"LFO2 Delay"],[108,"VCA EG Shape: Linear"],[108,"VCA EG Shape: Exponential"],[109,"VCF EG Shape: Linear"],[109,"VCF EG Shape: Exponential"],[110,"JOY Y+ Depth"],[111,"JOY X- Depth"],[112,"VCF LFO2"],[113,"KEYB Spread"],[114,"KEYB Octave"],[117,"JOY Y- Depth"]]},{"id":"2","brand":"Modal Electronics","name":"2","cc":[[1,"Mod Wheel"],[2,"OSC1 Wave"],[3,"OSC1 PW: Off"],[3,"OSC1 PW: On"],[4,"OSC1 Note"],[5,"KEYB Glide"],[7,"VCA Amount"],[8,"OSC2 Detune"],[9,"OSC2 PW: Off"],[9,"OSC2 PW: On"],[10,"OSC Sync: Off"],[10,"OSC Sync: On"],[11,"OSC SubWav: Off"],[11,"OSC SubWav: On"],[12,"OSC DeRez: Off"],[12,"OSC DeRez: On"],[13,"Mix Drive"],[14,"Mix OSC1"],[15,"Mix Sub1"],[16,"Mix OSC2"],[17,"Mix Sub2"],[18,"Mix Ext In"],[19,"VCF Resonance"],[20,"VCF Velocity"],[21,"VCF EG"],[22,"VCF EG Attack"],[23,"VCF EG Decay"],[24,"VCF EG Sustain"],[25,"VCF EG Release"],[26,"VCA EG Attack"],[27,"VCA EG Decay"],[28,"VCA EG Sustain"],[29,"VCA EG Release"],[30,"OSC2 Note"],[31,"VCF Note"],[33,"VELO Depth"],[34,"Note Depth"],[35,"Mod Wheel Depth"],[36,"LFO1 Rate"],[37,"LFO1 Depth"],[39,"LFO1 Osc1: Off"],[39,"LFO1 Osc1: On"],[40,"LFO1 Osc2: Off"],[40,"LFO1 Osc2: On"],[41,"LFO1 Wave 1: Off"],[41,"LFO1 Wave 1: On"],[42,"LFO1 Wave 2: Off"],[42,"LFO1 Wave 2: On"],[43,"LFO1 Slope: Off"],[43,"LFO1 Slope: On"],[44,"LFO1 Cutoff: Off"],[44,"LFO1 Cutoff: On"],[45,"LFO1 Drive: Off"],[45,"LFO1 Drive: On"],[46,"LFO1 VCA: Off"],[46,"LFO1 VCA: On"],[47,"LFO2 Rate"],[48,"LFO2 Depth"],[49,"LFO2 Note"],[50,"LFO2 Wave"],[51,"LFO2 Osc1: Off"],[51,"LFO2 Osc1: On"],[52,"LFO2 Osc2: Off"],[52,"LFO2 Osc2: On"],[53,"LFO2 Wave 1: Off"],[53,"LFO2 Wave 1: On"],[54,"LFO2 Wave 2: Off"],[54,"LFO2 Wave 2: On"],[55,"LFO2 Slope: Off"],[55,"LFO2 Slope: On"],[56,"LFO2 Resonance: Off"],[56,"LFO2 Resonance: On"],[57,"LFO2 Drive: Off"],[57,"LFO2 Drive: On"],[58,"LFO2 VCA: Off"],[58,"LFO2 VCA: On"],[59,"LFO2 Sngl: Off"],[59,"LFO2 Sngl: On"],[60,"VELO Osc1: Off"],[60,"VELO Osc1: On"],[61,"VELO Osc2: Off"],[61,"VELO Osc2: On"],[62,"VELO Wave 1: Off"],[62,"VELO Wave 1: On"],[63,"VELO Wave 2: Off"],[63,"VELO Wave 2: On"],[64,"Sustain Pedal: Off"],[64,"Sustain Pedal: On"],[65,"VELO Resonance: Off"],[65,"VELO Resonance: On"],[66,"VELO Drive: Off"],[66,"VELO Drive: On"],[67,"VELO VCA: Off"],[67,"VELO VCA: On"],[68,"Note OSC1: Off"],[68,"Note OSC1: On"],[69,"Note OSC2: Off"],[69,"Note OSC2: On"],[70,"Note Wave 1: Off"],[70,"Note Wave 1: On"],[71,"Joy X+ Depth"],[72,"Note Wave 2: Off"],[72,"Note Wave 2: On"],[73,"Note Slope: Off"],[73,"Note Slope: On"],[74,"VCF Cutoff"],[75,"Note Resonance: Off"],[75,"Note Resonance: On"],[76,"Note Drive: Off"],[76,"Note Drive: On"],[77,"Note VCA: Off"],[77,"Note VCA: On"],[78,"Mod Wheel OSC1: Off"],[78,"Mod Wheel OSC1: On"],[79,"Mod Wheel OSC2: Off"],[79,"Mod Wheel OSC2: On"],[80,"Mod Wheel Wave 1: Off"],[80,"Mod Wheel Wave 1: On"],[81,"Mod Wheel Wave 2: Off"],[81,"Mod Wheel Wave 2: On"],[82,"Mod Wheel Slope: Off"],[82,"Mod Wheel Slope: On"],[83,"Mod Wheel Cutoff: Off"],[83,"Mod Wheel Cutoff: On"],[84,"Mod Wheel Drive: Off"],[84,"Mod Wheel Drive: On"],[85,"Mod Wheel VCA: Off"],[85,"Mod Wheel VCA: On"],[86,"AFTT Osc1: Off"],[86,"AFTT Osc1: On"],[87,"AFTT Osc2:Off"],[87,"AFTT Osc2: On"],[88,"AFTT Wave 1: Off"],[88,"AFTT Wave 1: On"],[89,"AFTT Wave 2: Off"],[89,"AFTT Wave 2: On"],[90,"AFTT Slope: Off"],[90,"AFTT Slope: On"],[91,"AFTT Cutoff: Off"],[91,"AFTT Cutoff: On"],[92,"AFTT Drive: Off"],[92,"AFTT Drive: On"],[93,"AFTT VCA: Off"],[93,"AFTT VCA: On"],[94,"VCF Slope"],[95,"ARP Mode"],[96,"ARP Note Length"],[100,"KEYB Mode"],[101,"KEYB Size"],[102,"ANIM status"],[103,"OSC2 Wave"],[104,"LFO1 Wave"],[105,"VELO Slope: Off"],[105,"VELO Slope: On"],[106,"KEYB Transpose"],[107,"LFO2 Delay"],[108,"VCA EG Shape: Linear"],[108,"VCA EG Shape: Exponential"],[109,"VCF EG Shape: Linear"],[109,"VCF EG Shape: Exponential"],[110,"JOY Y+ Depth"],[111,"JOY X- Depth"],[112,"VCF LFO2"],[113,"KEYB Spread"],[114,"KEYB Octave"],[117,"JOY Y- Depth"]]},{"id":"8","brand":"Modal Electronics","name":"8","cc":[[1,"Mod Wheel"],[2,"VCO1 PW"],[3,"VCO1 Square: Off"],[3,"VCO1 Square: On"],[4,"VCO1: Note"],[5,"KEYB Glide"],[7,"VCA Amount"],[8,"VCO2 Fine"],[9,"VCO2 Square: Off"],[9,"VCO2 Square: On"],[10,"VCO Sync: Off"],[10,"VCO Sync: On"],[13,"VCA Drive: Off"],[13,"VCA Drive: On"],[14,"Mix VCO1"],[15,"Mix Sub1"],[16,"Mix VCO2"],[17,"Mix Sub2"],[18,"Mix Ext In L/R"],[19,"VCF Resonance"],[21,"VCF EG Amount"],[22,"VCF EG Attack"],[23,"VCF EG Decay"],[24,"VCF EG Sustain"],[25,"VCF EG Release"],[26,"VCA EG Attack"],[27,"VCA EG Decay"],[28,"VCA EG Sustain"],[29,"VCA EG Release"],[30,"VCO2 Note"],[31,"VCO1 Fine"],[36,"LFO1 Rate"],[37,"LFO1 Depth"],[47,"LFO2 Rate"],[48,"LFO2 Depth"],[50,"LFO2 Wave"],[51,"VCO2 Mod Depth"],[52,"VCF EG Delay"],[53,"LFO1 Delay"],[54,"LFO1 Release"],[55,"LFO2 Release"],[59,"LFO2 Sngl: Off"],[59,"LFO2 Sngl: On"],[64,"Sustain On"],[64,"Sustain Off"],[74,"VCF Cutoff"],[78,"VCO1 Saw: Off"],[78,"VCO1 Saw: On"],[79,"VCO1 Triange: Off"],[79,"VCO1 Triangle: On"],[80,"VCO2 Saw: Off"],[80,"VCO2 Saw: On"],[81,"VCO2 Triangle: Off"],[81,"VCO2 Triangle: On"],[82,"VCO2 Noise: Off"],[82,"VCO2 Noise: On"],[83,"VCO2>VCO1 Mod: Off"],[83,"VCO2>VCO1 Mod: On"],[84,"VCO2>VCF Mod: Off"],[84,"VCO2>VCF Mod: On"],[85,"VCF Constant: Off"],[85,"VCF Constant: On"],[86,"LFO1 Sngl: Off"],[86,"LFO1 Sngl: On"],[87,"LFO1 Reset: Off"],[87,"LFO1 Reset: On"],[88,"LFO2 Reset: Off"],[88,"LFO2 Reset: On"],[94,"VCF Mode"],[95,"ARP Mode"],[96,"ARP Note Length"],[100,"KEYB Mode"],[101,"KEYB Size"],[102,"ANIM Status"],[103,"VCO2 PW"],[104,"LFO1 Wave"],[106,"KEYB Transpose"],[107,"LFO2 Delay"],[113,"KEYB Spread"],[114,"KEYB Octave"]]},{"id":"argon8","brand":"Modal Electronics","name":"ARGON 8","cc":[[0,"Bank Change"],[1,"Mod Wheel"],[3,"WavMod 1"],[5,"Glide"],[7,"Main Volume"],[9,"Voice Mode"],[11,"Expression Pedal"],[12,"Distortion"],[13,"WavMod 2"],[14,"Osc1 Tune"],[15,"Osc1 Fine"],[16,"Osc1 Shape"],[17,"Osc2 Shape"],[18,"Osc Mix"],[19,"OscMod"],[20,"Spread"],[21,"OscMod Mode"],[22,"FEG Attack"],[23,"FEG Decay"],[24,"FEG Sustain"],[25,"FEG Release"],[26,"AEG Attack"],[27,"AEG Decay"],[28,"AEG Sustain"],[29,"AEG Release"],[30,"Osc2 Tune"],[31,"Osc2 Fine"],[32,"FEG Amount"],[33,"Morph"],[34,"Cutoff"],[35,"Resonance"],[36,"LFO1 Rate"],[37,"LFO1 Depth"],[39,"LFO1 Shape"],[40,"Octave"],[41,"Delay Mode"],[42,"Filter Type"],[43,"MEG Attack"],[44,"MEG Decay"],[45,"MEG Sustain"],[46,"MEG Release"],[47,"LFO2 Rate"],[48,"LFO2 Depth"],[49,"MEG Depth"],[50,"LFO2 Shape"],[51,"AEG Depth"],[52,"LFO1 MIDI Sync: Off"],[52,"LFO1 MIDI Sync: On"],[53,"Arp Gate"],[54,"LFO2 MIDI Sync: Off"],[54,"LFO2 MIDI Sync: On"],[55,"Delay MIDI Sync: Off"],[55,"Delay MIDI Sync: On"],[56,"LFO1 Mode"],[57,"LFO2 Mode"],[58,"Arp Status: Off"],[58,"Arp Status: On"],[59,"Arp Octave"],[60,"Arp Direction"],[61,"Arp Division"],[62,"Osc1 Bank"],[63,"Osc2 Bank"],[64,"Sustain Pedal: Off"],[64,"Sustain Pedal: On"],[67,"Seq Length"],[68,"Seq Mute"],[69,"Seq Clear"],[70,"Seq Hold"],[71,"Seq Loop"],[72,"Seq Record"],[73,"FX Amount"],[75,"Transpose"],[78,"Swing"],[79,"Seq Quantise"],[80,"AEG Type"],[81,"FEG Type"],[82,"MEG Type"],[83,"Audio In"],[84,"All EG Attack"],[85,"All EG Decay"],[86,"All EG Sustain"],[87,"All EG Release"],[88,"ModSlot 1 Depth"],[89,"ModSlot 2 Depth"],[90,"ModSlot 3 Depth"],[91,"ModSlot 4 Depth"],[92,"ModSlot 5 Depth"],[93,"ModSlot 6 Depth"],[94,"ModSlot 7 Depth"],[95,"ModSlot 8 Depth"],[96,"Chord Mode: Off"],[96,"Chord Mode: On"],[100,"Mod Slot 1 Source"],[101,"Mod Slot 2 Source"],[102,"Mod Slot 3 Source"],[103,"Mod Slot 4 Source"],[104,"Mod Slot 5 Source"],[105,"Mod Slot 6 Source"],[106,"Mod Slot 7 Source"],[107,"Mod Slot 8 Source"],[108,"Mod Slot 1 Dest"],[109,"Mod Slot 2 Dest"],[110,"Mod Slot 3 Dest"],[111,"Mod Slot 4 Dest"],[112,"Mod Slot 5 Dest"],[113,"Mod Slot 6 Dest"],[114,"Mod Slot 7 Dest"],[115,"Mod Slot 8 Dest"],[116,"Joystick X+"],[117,"Joystick X-"],[118,"Joystick Y-"],[119,"Patch Gain"],[120,"All Sound Off"],[121,"Randomise Patch"],[123,"All Notes Off"],[124,"Omni Off"],[125,"Omni On"]]},{"id":"argon8m","brand":"Modal Electronics","name":"ARGON 8M","cc":[[0,"Bank Change"],[1,"Mod Wheel"],[3,"WavMod 1"],[5,"Glide"],[7,"Main Volume"],[9,"Voice Mode"],[11,"Expression Pedal"],[12,"Distortion"],[13,"WavMod 2"],[14,"Osc1 Tune"],[15,"Osc1 Fine"],[16,"Osc1 Shape"],[17,"Osc2 Shape"],[18,"Osc Mix"],[19,"OscMod"],[20,"Spread"],[21,"OscMod Mode"],[22,"FEG Attack"],[23,"FEG Decay"],[24,"FEG Sustain"],[25,"FEG Release"],[26,"AEG Attack"],[27,"AEG Decay"],[28,"AEG Sustain"],[29,"AEG Release"],[30,"Osc2 Tune"],[31,"Osc2 Fine"],[32,"FEG Amount"],[33,"Morph"],[34,"Cutoff"],[35,"Resonance"],[36,"LFO1 Rate"],[37,"LFO1 Depth"],[39,"LFO1 Shape"],[40,"Octave"],[41,"Delay Mode"],[42,"Filter Type"],[43,"MEG Attack"],[44,"MEG Decay"],[45,"MEG Sustain"],[46,"MEG Release"],[47,"LFO2 Rate"],[48,"LFO2 Depth"],[49,"MEG Depth"],[50,"LFO2 Shape"],[51,"AEG Depth"],[52,"LFO1 MIDI Sync: Off"],[52,"LFO1 MIDI Sync: On"],[53,"Arp Gate"],[54,"LFO2 MIDI Sync: Off"],[54,"LFO2 MIDI Sync: On"],[55,"Delay MIDI Sync: Off"],[55,"Delay MIDI Sync: On"],[56,"LFO1 Mode"],[57,"LFO2 Mode"],[58,"Arp Status: Off"],[58,"Arp Status: On"],[59,"Arp Octave"],[60,"Arp Direction"],[61,"Arp Division"],[62,"Osc1 Bank"],[63,"Osc2 Bank"],[64,"Sustain Pedal: Off"],[64,"Sustain Pedal: On"],[67,"Seq Length"],[68,"Seq Mute"],[69,"Seq Clear"],[70,"Seq Hold"],[71,"Seq Loop"],[72,"Seq Record"],[73,"FX Amount"],[75,"Transpose"],[78,"Swing"],[79,"Seq Quantise"],[80,"AEG Type"],[81,"FEG Type"],[82,"MEG Type"],[83,"Audio In"],[84,"All EG Attack"],[85,"All EG Decay"],[86,"All EG Sustain"],[87,"All EG Release"],[88,"ModSlot 1 Depth"],[89,"ModSlot 2 Depth"],[90,"ModSlot 3 Depth"],[91,"ModSlot 4 Depth"],[92,"ModSlot 5 Depth"],[93,"ModSlot 6 Depth"],[94,"ModSlot 7 Depth"],[95,"ModSlot 8 Depth"],[96,"Chord Mode: Off"],[96,"Chord Mode: On"],[100,"Mod Slot 1 Source"],[101,"Mod Slot 2 Source"],[102,"Mod Slot 3 Source"],[103,"Mod Slot 4 Source"],[104,"Mod Slot 5 Source"],[105,"Mod Slot 6 Source"],[106,"Mod Slot 7 Source"],[107,"Mod Slot 8 Source"],[108,"Mod Slot 1 Dest"],[109,"Mod Slot 2 Dest"],[110,"Mod Slot 3 Dest"],[111,"Mod Slot 4 Dest"],[112,"Mod Slot 5 Dest"],[113,"Mod Slot 6 Dest"],[114,"Mod Slot 7 Dest"],[115,"Mod Slot 8 Dest"],[116,"Joystick X+"],[117,"Joystick X-"],[118,"Joystick Y-"],[119,"Patch Gain"],[120,"All Sound Off"],[121,"Randomise Patch"],[123,"All Notes Off"],[124,"Omni Off"],[125,"Omni On"]]},{"id":"argon8x","brand":"Modal Electronics","name":"ARGON 8X","cc":[[0,"Bank Change"],[1,"Mod Wheel"],[3,"WavMod 1"],[5,"Glide"],[7,"Main Volume"],[9,"Voice Mode"],[11,"Expression Pedal"],[12,"Distortion"],[13,"WavMod 2"],[14,"Osc1 Tune"],[15,"Osc1 Fine"],[16,"Osc1 Shape"],[17,"Osc2 Shape"],[18,"Osc Mix"],[19,"OscMod"],[20,"Spread"],[21,"OscMod Mode"],[22,"FEG Attack"],[23,"FEG Decay"],[24,"FEG Sustain"],[25,"FEG Release"],[26,"AEG Attack"],[27,"AEG Decay"],[28,"AEG Sustain"],[29,"AEG Release"],[30,"Osc2 Tune"],[31,"Osc2 Fine"],[32,"FEG Amount"],[33,"Morph"],[34,"Cutoff"],[35,"Resonance"],[36,"LFO1 Rate"],[37,"LFO1 Depth"],[39,"LFO1 Shape"],[40,"Octave"],[41,"Delay Mode"],[42,"Filter Type"],[43,"MEG Attack"],[44,"MEG Decay"],[45,"MEG Sustain"],[46,"MEG Release"],[47,"LFO2 Rate"],[48,"LFO2 Depth"],[49,"MEG Depth"],[50,"LFO2 Shape"],[51,"AEG Depth"],[52,"LFO1 MIDI Sync: Off"],[52,"LFO1 MIDI Sync: On"],[53,"Arp Gate"],[54,"LFO2 MIDI Sync: Off"],[54,"LFO2 MIDI Sync: On"],[55,"Delay MIDI Sync: Off"],[55,"Delay MIDI Sync: On"],[56,"LFO1 Mode"],[57,"LFO2 Mode"],[58,"Arp Status: Off"],[58,"Arp Status: On"],[59,"Arp Octave"],[60,"Arp Direction"],[61,"Arp Division"],[62,"Osc1 Bank"],[63,"Osc2 Bank"],[64,"Sustain Pedal: Off"],[64,"Sustain Pedal: On"],[67,"Seq Length"],[68,"Seq Mute"],[69,"Seq Clear"],[70,"Seq Hold"],[71,"Seq Loop"],[72,"Seq Record"],[73,"FX Amount"],[75,"Transpose"],[78,"Swing"],[79,"Seq Quantise"],[80,"AEG Type"],[81,"FEG Type"],[82,"MEG Type"],[83,"Audio In"],[84,"All EG Attack"],[85,"All EG Decay"],[86,"All EG Sustain"],[87,"All EG Release"],[88,"ModSlot 1 Depth"],[89,"ModSlot 2 Depth"],[90,"ModSlot 3 Depth"],[91,"ModSlot 4 Depth"],[92,"ModSlot 5 Depth"],[93,"ModSlot 6 Depth"],[94,"ModSlot 7 Depth"],[95,"ModSlot 8 Depth"],[96,"Chord Mode: Off"],[96,"Chord Mode: On"],[100,"Mod Slot 1 Source"],[101,"Mod Slot 2 Source"],[102,"Mod Slot 3 Source"],[103,"Mod Slot 4 Source"],[104,"Mod Slot 5 Source"],[105,"Mod Slot 6 Source"],[106,"Mod Slot 7 Source"],[107,"Mod Slot 8 Source"],[108,"Mod Slot 1 Dest"],[109,"Mod Slot 2 Dest"],[110,"Mod Slot 3 Dest"],[111,"Mod Slot 4 Dest"],[112,"Mod Slot 5 Dest"],[113,"Mod Slot 6 Dest"],[114,"Mod Slot 7 Dest"],[115,"Mod Slot 8 Dest"],[116,"Joystick X+"],[117,"Joystick X-"],[118,"Joystick Y-"],[119,"Patch Gain"],[120,"All Sound Off"],[121,"Randomise Patch"],[123,"All Notes Off"],[124,"Omni Off"],[125,"Omni On"]]},{"id":"craftsynth20","brand":"Modal Electronics","name":"CRAFTsynth 2.0","cc":[[1,"Mod Wheel"],[5,"Glide"],[7,"Headphone Volume"],[11,"Expression Pedal"],[12,"Distortion"],[13,"Delay"],[14,"Delay Time"],[15,"Delay Feedback"],[16,"Osc1 Wave"],[17,"Osc2 Wave"],[18,"Osc Mix"],[19,"Osc-Mod Amount"],[20,"Spread: Unison"],[20,"Spread: Major"],[20,"Spread: Minor"],[20,"Spread: Major 6th"],[20,"Spread: Sus 4th"],[20,"Spread: 5ths"],[20,"Spread: 5th + Oct"],[20,"Spread: Oct +1 +2"],[20,"Spread: Oct +1 -1"],[20,"Spread: Oct -1 -2"],[22,"FEG Attack"],[23,"FEG Decay"],[24,"FEG Sustain"],[25,"FEG Release"],[26,"AEG Attack"],[27,"AEG Decay"],[28,"AEG Sustain"],[29,"AEG Release"],[30,"Osc2 Coarse Detune"],[31,"Osc2 Fine Detune"],[32,"FEG Amount"],[33,"Morph"],[34,"Cutoff"],[35,"Resonance"],[36,"LFO1 Rate: 1/16"],[36,"LFO1 Rate: 1/8"],[36,"LFO1 Rate: 3/16"],[36,"LFO1 Rate: 1/4"],[36,"LFO1 Rate: 3/8"],[36,"LFO1 Rate: 1/2"],[36,"LFO1 Rate: 3/4"],[36,"LFO1 Rate: 1"],[36,"LFO1 Rate: 3/2"],[36,"LFO1 Rate: 2"],[36,"LFO1 Rate: 3"],[36,"LFO1 Rate: 4"],[36,"LFO1 Rate: 6"],[36,"LFO1 Rate: 8"],[36,"LFO1 Rate: 12"],[36,"LFO1 Rate: 16"],[37,"LFO1 Depth"],[39,"LFO1 Shape"],[40,"Octave"],[41,"Osc-Mod Mode"],[43,"MEG Attack"],[44,"MEG Decay"],[45,"MEG Sustain"],[46,"MEG Release"],[47,"LFO2 Rate"],[48,"LFO2 Depth"],[50,"LFO2 Shape"],[51,"AEG Amount"],[52,"LFO1 MIDI Sync: Off"],[52,"LFO1 MIDI Sync: On"],[54,"LFO2 MIDI Sync: Off"],[54,"LFO2 MIDI Sync: On"],[55,"Delay MIDI Sync: Off"],[55,"Delay MIDI Sync: On"],[56,"LFO1 Mode: Retrigger"],[56,"LFO1 Mode: Free"],[56,"LFO1 Mode: Single"],[57,"LFO2 Mode: Retrigger"],[57,"LFO2 Mode: Free"],[57,"LFO2 Mode: Single"],[58,"Arp Status: Off"],[58,"Arp Status: On"],[64,"Sustain Pedal: Off"],[64,"Sustain Pedal: On"],[73,"Scale"],[79,"Root Note"],[84,"All Envelope Attack"],[85,"All Envelope Decay"],[86,"All Envelope Sustain"],[87,"All Envelope Release"],[88,"Mod Slot 1 Depth"],[89,"Mod Slot 2 Depth"],[90,"Mod Slot 3 Depth"],[91,"Mod Slot 4 Depth"],[92,"Mod Slot 5 Depth"],[93,"Mod Slot 6 Depth"],[94,"Mod Slot 7 Depth"],[95,"Mod Slot 8 Depth"],[101,"Mod Slot 1 Dest"],[102,"Mod Slot 2 Dest"],[103,"Mod Slot 3 Dest"],[104,"Mod Slot 4 Dest"],[105,"Mod Slot 5 Dest"],[106,"Mod Slot 6 Dest"],[107,"Mod Slot 7 Dest"],[108,"Mod Slot 8 Dest"],[120,"All Sound Off"],[121,"Reset All Controllers"],[123,"All Notes Off"],[124,"Omni Off"],[125,"Omni On"]]},{"id":"skulptsynthesiser","brand":"Modal Electronics","name":"SKULPTsynthesiser","cc":[[0,"Seq Load"],[1,"Mod Wheel"],[5,"Glide"],[7,"Headphone Volume"],[9,"Voice Mode"],[11,"Expression Pedal"],[12,"Distortion"],[13,"Delay"],[14,"Delay Time"],[15,"Delay Feedback"],[16,"Osc1 Wave"],[17,"Osc2 Wave"],[18,"Osc Mix"],[19,"FM Amount"],[20,"Spread"],[21,"Chord Mode: Off"],[21,"Chord Mode: On"],[22,"FEG Attack"],[23,"FEG Decay"],[24,"FEG Sustain"],[25,"FEG Release"],[26,"AEG Attack"],[27,"AEG Decay"],[28,"AEG Sustain"],[29,"AEG Release"],[30,"Osc2 Coarse Detune"],[31,"Osc2 Fine Detune"],[32,"FEG Amount"],[33,"Morph"],[34,"Cutoff"],[35,"Resonance"],[36,"LFO1 Rate"],[37,"LFO1 Depth"],[39,"LFO1 Shape"],[40,"Octave"],[43,"MEG Attack"],[44,"MEG Decay"],[45,"MEG Sustain"],[46,"MEG Release"],[47,"LFO2 Rate"],[48,"LFO2 Depth"],[49,"MEG Amount"],[50,"LFO2 Shape"],[51,"AEG Amount"],[52,"LFO1 MIDI Sync: Off"],[52,"LFO1 MIDI Sync: On"],[53,"Ring Mod: Off"],[53,"Ring Mod: On"],[54,"LFO2 MIDI Sync: Off"],[54,"LFO2 MIDI Sync: On"],[55,"Delay MIDI Sync: Off"],[55,"Delay MIDI Sync: On"],[56,"LFO1 Mode: Retrigger"],[56,"LFO1 Mode: Free"],[56,"LFO1 Mode: Single"],[57,"LFO2 Mode: Retrigger"],[57,"LFO2 Mode: Free"],[57,"LFO2 Mode: Single"],[58,"Arp Status: Off"],[58,"Arp Status: On"],[59,"Arp Octave"],[60,"Arp Direction"],[61,"Arp Division"],[62,"Velo Depth"],[63,"Note Depth"],[64,"Sustain Pedal: Off"],[64,"Sustain Pedal: On"],[65,"Aftertouch Depth"],[66,"Ext Depth"],[67,"Sequence Length"],[70,"Sequence Hold: Off"],[70,"Sequence Hold: On"],[71,"Sequence Loop: Start Point"],[71,"Sequence Loop: End Point"],[75,"Transpose"],[78,"Swing"],[80,"Anim 1 CC"],[81,"Anim 2 CC"],[82,"Anim 3 CC"],[83,"Anim 4 CC"],[84,"All Envelope Attack"],[85,"All Envelope Decay"],[86,"All Envelope Sustain"],[87,"All Envelope Release"],[88,"Mod Slot 1 Depth"],[89,"Mod Slot 2 Depth"],[90,"Mod Slot 3 Depth"],[91,"Mod Slot 4 Depth"],[92,"Mod Slot 5 Depth"],[93,"Mod Slot 6 Depth"],[94,"Mod Slot 7 Depth"],[95,"Mod Slot 8 Depth"],[96,"ModW Depth"],[101,"Mod Slot 1 Source"],[102,"Mod Slot 2 Source"],[103,"Mod Slot 3 Source"],[104,"Mod Slot 4 Source"],[105,"Mod Slot 5 Source"],[106,"Mod Slot 6 Source"],[107,"Mod Slot 7 Source"],[108,"Mod Slot 8 Source"],[101,"Mod Slot 1 Dest"],[102,"Mod Slot 2 Dest"],[103,"Mod Slot 3 Dest"],[104,"Mod Slot 4 Dest"],[105,"Mod Slot 5 Dest"],[106,"Mod Slot 6 Dest"],[107,"Mod Slot 7 Dest"],[108,"Mod Slot 8 Dest"],[120,"All Sound Off"],[121,"Reset All Controllers"],[123,"All Notes Off"],[124,"Omni Off"],[125,"Omni On"]]},{"id":"nf-1","brand":"Modor","name":"NF-1","cc":[[1,"Mod Wheel"],[2,"Breath Controller"],[3,"Modulation CC3"],[4,"Expression Pedal"],[5,"Portamento"],[7,"Volume"],[10,"Pan"],[13,"Osc1 mod LFO1"],[14,"Osc2 mod LFO1"],[15,"Osc3 mod LFO1"],[16,"Osc1 mod ENV2"],[17,"Osc1 mod ENV3"],[18,"Osc1 mod ENV4"],[19,"Pitch ENV 1"],[20,"Pitch LFO-S&H"],[21,"Comb Filter Depth"],[22,"Comb Filter Delay"],[23,"LFO2 Speed"],[24,"Comb Filter Feedback"],[26,"Comb Filter Speed"],[27,"Comb Filter Mix"],[28,"Delay Time"],[29,"Delay Filter"],[30,"Delay Mix"],[31,"Filter ENV2"],[32,"Bank Select"],[37,"Filter LFO2"],[38,"Filter KEYB"],[39,"Formant ENV3"],[40,"Formant LFO2"],[41,"Vowel 1 Volume"],[42,"Vowel 2 Volume"],[43,"Vowel 3 Volume"],[44,"Wire 1 Amount"],[45,"Wire 2 Amount"],[46,"Wire 3 Amount"],[47,"Wire 4 Amount"],[48,"Wire 5 Amount"],[49,"Wire 6 Amount"],[50,"Wire 7 Amount"],[51,"Delay Feedback"],[52,"LFO3 Speed"],[53,"S&H Speed"],[55,"Osc1 Coarse Tuning"],[56,"Osc2 Coarse Tuning"],[57,"Osc3 Coarse Tuning"],[58,"Osc1 Fine Tuning"],[59,"Osc2 Fine Tuning"],[60,"Osc3 Fine Tuning"],[61,"Osc1 Volume"],[62,"Osc2 Volume"],[63,"Osc3 Volume"],[64,"Sustain pedal"],[65,"Osc1 Mod"],[66,"Osc2 Mod"],[67,"Osc3 Mod"],[68,"Filter Type"],[70,"Noise Level"],[71,"Filter Frequency"],[72,"Formant Morph"],[73,"Formant Mix"],[74,"Filter Resonance"],[75,"LFO1 Speed"],[76,"Drive"],[77,"Ring Volume"],[78,"ENV1 T1"],[79,"ENV2 T1"],[80,"ENV3 T1"],[81,"ENV4 T1"],[82,"ENV1 T2"],[83,"ENV2 T2"],[84,"ENV3 T2"],[85,"ENV4 T2"],[86,"ENV1 T3"],[87,"ENV2 T3"],[88,"ENV3 T3"],[89,"ENV4 T3"],[90,"ENV1 T4"],[91,"ENV2 T4"],[92,"ENV3 T4"],[93,"ENV4 T4"],[94,"ENV1 L1"],[95,"ENV2 L1"],[96,"ENV3 L1"],[97,"ENV4 L1"],[98,"ENV1 L2"],[99,"ENV2 L2"],[100,"ENV3 L2"],[101,"ENV4 L2"],[102,"ENV1 L3"],[103,"ENV2 L3"],[104,"ENV3 L3"],[105,"ENV4 L3"],[106,"Vowel 1 Formant 1"],[107,"Vowel 1 Formant 2"],[108,"Vowel 1 Formant 3"],[109,"Vowel 1 Formant 4"],[110,"Vowel 2 Formant 1"],[111,"Vowel 2 Formant 2"],[112,"Vowel 2 Formant 3"],[113,"Vowel 2 Formant 4"],[114,"Vowel 3 Formant 1"],[115,"Vowel 3 Formant 2"],[116,"Vowel 3 Formant 3"],[117,"Vowel 3 Formant 4"],[123,"All Notes Off"]]},{"id":"ge300","brand":"Mooer","name":"GE300","cc":[[0,"Select Bank 0"],[0,"Select Bank 1"],[10,"Synth On/Off"],[11,"Comp On/Off"],[12,"Wah On/Off"],[13,"FXA On/Off"],[14,"OD/DS On/Off"],[15,"Amp On/Off"],[16,"Cab On/Off"],[17,"NS On/Off"],[18,"Tone Cap On/Off"],[19,"EQ On/Off"],[20,"FXB On/Off"],[21,"FX Loop On/Off"],[22,"Delay On/Off"],[23,"Reverb On/Off"],[24,"Volume On/Off"],[25,"Looper: Enter/Exit"],[26,"Tuner: Enter/Exit"],[30,"Tap Tempo"],[50,"Looper: Record/Dub"],[51,"Looper: Play"],[52,"Looper: Once"],[53,"Stop"],[54,"Clear"],[55,"Undo/Redo"],[56,"Reverse"],[57,"Half Speed"],[58,"Exp1 On/Off"],[60,"Exp 1 Pedal"],[61,"Exp 2 Pedal"],[70,"CTRL 1"],[71,"CTRL 2"],[72,"CTRL 3"],[73,"CTRL 4"],[74,"CTRL A"],[75,"CTRL B"],[76,"CTRL C"],[77,"CTRL D"]]},{"id":"ge300lite","brand":"Mooer","name":"GE300 LITE","cc":[[0,"Select Bank 0"],[0,"Select Bank 1"],[10,"Comp On/Off"],[11,"Wah On/Off"],[12,"FXA On/Off"],[13,"OD/DS On/Off"],[14,"Amp On/Off"],[15,"Cab On/Off"],[16,"NS On/Off"],[17,"Tone Cap On/Off"],[18,"EQ On/Off"],[19,"FXB On/Off"],[20,"FX Loop On/Off"],[21,"Delay On/Off"],[22,"Reverb On/Off"],[23,"Looper: Enter/Exit"],[24,"Tuner: Enter/Exit"],[30,"Tap Tempo"],[50,"Looper: Record/Dub/Play"],[51,"Looper: Once"],[52,"Stop"],[52,"Play"],[53,"Clear"],[54,"Undo/Redo"],[55,"Reverse"],[56,"Half Speed"],[57,"Exp1 On/Off"],[58,"Exp 1 Pedal"],[59,"Exp 2 Pedal"],[60,"CTRL 1"],[61,"CTRL 2"],[62,"CTRL 3"],[63,"CTRL A"],[64,"CTRL B"],[65,"CTRL C"]]},{"id":"oceanmachine","brand":"Mooer","name":"Ocean Machine","cc":[[23,"Reverb On/Off"],[3,"Type: Room"],[3,"Type: Hall"],[3,"Type: Plate"],[3,"Type: Dist Verb"],[3,"Type: FL-Verb"],[3,"Type: Filter"],[3,"Type: Reverse"],[3,"Type: Spring"],[3,"Type: Mod"],[46,"Shimmer"],[47,"Decay"],[48,"Tone"],[49,"R.Mix"],[50,"R.P1"],[51,"R.P2"],[25,"Delay B On"],[25,"Delay B Off"],[9,"Delay Type (B): Digital"],[9,"Delay Type (B): Analog"],[9,"Delay Type (B): Tape"],[9,"Delay Type (B): Echo"],[9,"Delay Type (B): Liquid"],[9,"Delay Type (B): Rainbow"],[9,"Delay Type (B): Crystal"],[9,"Delay Type (B): Low-Bit"],[9,"Delay Type (B): Fuzzy"],[59,"Feedback B"],[60,"Time B"],[61,"D.Tone B"],[62,"D.Mix B"],[63,"B.P1"],[64,"B.P1"],[65,"Pingpong B On"],[65,"Pingpong B Off"],[20,"Tempo B"],[24,"Delay A On"],[24,"Delay A Off"],[12,"Delay Type (A): Digital"],[12,"Delay Type (A): Analog"],[12,"Delay Type (A): Tape"],[12,"Delay Type (A): Echo"],[12,"Delay Type (A): Liquid"],[12,"Delay Type (A): Rainbow"],[12,"Delay Type (A): Crystal"],[12,"Delay Type (A): Low-Bit"],[12,"Delay Type (A): Fuzzy"],[52,"Feedback A"],[53,"Time A"],[54,"D.Tone A"],[55,"D.Mix A"],[56,"A.P1"],[57,"A.P2"],[58,"Pingpong A On"],[58,"Pingpong A Off"],[21,"Tempo A"],[26,"Looper In"],[26,"Looper Out"],[27,"Looper: Rec/Dub"],[28,"Looper: Play"],[29,"Looper: Stop"],[30,"Looper: Clear All"],[31,"Looper: Half Speed"],[31,"Looper: Normal Speed"],[32,"Looper: Reverse"],[32,"Looper: Forward"],[45,"Loop Level"],[33,"Wireless: On"],[33,"Wireless: Off"],[34,"Expression Pedal"],[35,"Expression Min Value"],[70,"Trail On"],[70,"Trail Off"],[36,"EQ On"],[36,"EQ Off"],[37,"L.Freq"],[38,"Bass"],[39,"Mid"],[40,"Treble"],[41,"H.Freq"],[42,"Input Level"],[43,"Output Level"],[44,"Master Mix"],[66,"R.Tone"],[67,"B.Tone"],[68,"A.Tone"],[69,"Merge: On"],[69,"Merge: Off"]]},{"id":"grandmother","brand":"Moog","name":"Grandmother","cc":[[1,"Mod Wheel"],[3,"Mod Rate"],[5,"Glide Time"],[8,"Arp/Seq Rate"],[12,"Osc2 Freq"],[65,"Glide Off"],[65,"Glide On"],[69,"Arp/Seq Hold: Off"],[69,"Arp/Seq Hold: On"],[73,"Arp/Seq Play: Off"],[73,"Arp/Seq Play: On"],[74,"Osc1 Octave: 32"],[74,"Osc1 Octave: 16"],[74,"Osc1 Octave: 8"],[74,"Osc1 Octave: 4"],[75,"Osc2 Octave: 32"],[75,"Osc2 Octave: 16"],[75,"Osc2 Octave: 8"],[75,"Osc2 Octave: 4"],[77,"Osc2 Sync: Off"],[77,"Osc2 Sync: On"],[85,"Glide Type: LCR"],[85,"Glide Type: LCT"],[85,"Glide Type: Exp"],[89,"Keyboard Octave: -2"],[89,"Keyboard Octave: -1"],[89,"Keyboard Octave: 0"],[89,"Keyboard Octave: +1"],[89,"Keyboard Octave: +2"],[90,"Arp/Seq Clock Div: 4 Whole"],[90,"Arp/Seq Clock Div: 3 Whole"],[90,"Arp/Seq Clock Div: 2 Whole"],[90,"Arp/Seq Clock Div: WH d"],[90,"Arp/Seq Clock Div: WH"],[90,"Arp/Seq Clock Div: 1/2d"],[90,"Arp/Seq Clock Div: WH t"],[90,"Arp/Seq Clock Div: 1/2"],[90,"Arp/Seq Clock Div: 1/4d"],[90,"Arp/Seq Clock Div: 1/2t"],[90,"Arp/Seq Clock Div: 1/4"],[90,"Arp/Seq Clock Div: 1/8d"],[90,"Arp/Seq Clock Div: 1/4t"],[90,"Arp/Seq Clock Div: 1/8"],[90,"Arp/Seq Clock Div: 1/16d"],[90,"Arp/Seq Clock Div: 1/8t"],[90,"Arp/Seq Clock Div: 1/16"],[90,"Arp/Seq Clock Div: 1/32d"],[90,"Arp/Seq Clock Div: 1/16t"],[90,"Arp/Seq Clock Div: 1/32"],[90,"Arp/Seq Clock Div: 1/64d"],[90,"Arp/Seq Clock Div: 1/32t"],[90,"Arp/Seq Clock Div: 1/64"],[90,"Arp/Seq Clock Div: 1/64t"],[91,"Arp/Seq Mode: Arp"],[91,"Arp/Seq Mode: Seq"],[91,"Arp/Seq Mode: Rec"],[92,"Arp/Seq Pattern: Order"],[92,"Arp/Seq Pattern: Forward/Back"],[92,"Arp/Seq Pattern: Random"],[93,"Arp Range/Seq Number: 1"],[93,"Arp Range/Seq Number: 2"],[93,"Arp Range/Seq Number: 3"],[94,"Legato Glide: Off"],[94,"Legato Glide: On"],[103,"Gated Glide: Off"],[103,"Gated Glide: On"],[107,"Pitch Bend Up Amount"],[108,"Pitch Bend Down Amount"],[119,"KB Transpose (Semitones)"],[64,"Sustain Off"],[64,"Sustain On"],[122,"Local Control: Off"],[122,"Local Control: On"],[120,"All Sounds Off"],[123,"All Notes Off"]]},{"id":"mf-105mmidimurf","brand":"Moog","name":"MF-105M MIDI MuRF","cc":[[102,"Set MIDI channel to 1"],[102,"Set MIDI channel to 2"],[102,"Set MIDI channel to 3"],[102,"Set MIDI channel to 4"],[102,"Set MIDI channel to 5"],[102,"Set MIDI channel to 6"],[102,"Set MIDI channel to 7"],[102,"Set MIDI channel to 8"],[102,"Set MIDI channel to 9"],[102,"Set MIDI channel to 10"],[102,"Set MIDI channel to 11"],[102,"Set MIDI channel to 12"],[102,"Set MIDI channel to 13"],[102,"Set MIDI channel to 14"],[102,"Set MIDI channel to 15"],[102,"Set MIDI channel to 16"],[1,"Envelope"],[2,"Drive"],[3,"LFO Rate/Sweep"],[7,"Output Level"],[8,"Mix"],[9,"Rate"],[68,"Staccato Mode: On"],[68,"Staccato Mode: Off"],[70,"Envelope Scale"],[85,"LFO On"],[85,"LFO Off"],[86,"Freq: Bass"],[86,"Freq: Mids"],[87,"Bypass Pedal"],[87,"Engage Pedal"],[89,"Pattern Clock Sync: On"],[89,"Pattern Clock Sync: Off"],[90,"Pattern Reset"],[20,"Filter 1 Level"],[21,"Filter 2 Level"],[22,"Filter 3 Level"],[23,"Filter 4 Level"],[24,"Filter 5 Level"],[25,"Filter 6 Level"],[26,"Filter 7 Level"],[27,"Filter 8 Level"]]},{"id":"mf-108mclusterflux","brand":"Moog","name":"MF-108M Cluster Flux","cc":[[5,"Delay Time Portamento"],[7,"Output Level"],[12,"Delay Time"],[13,"Feedback"],[14,"Mix Control"],[15,"LFO Rate"],[16,"LFO Amount"],[70,"LFO Waveform: Sine"],[70,"LFO Waveform: Triangle"],[70,"LFO Waveform: Square"],[70,"LFO Waveform: Saw"],[70,"LFO Waveform: Ramp"],[70,"LFO Waveform: Random Stepped"],[70,"LFO Waveform: Smoothed Random"],[74,"Range: Flange"],[74,"Range: Chorus"],[91,"Bypass Pedal"],[91,"Engage Pedal"],[71,"LFO Clock Divisions: 4 Whole"],[71,"LFO Clock Divisions: 3 Whole"],[71,"LFO Clock Divisions: 2 Whole"],[71,"LFO Clock Divisions: WH + 1/2d"],[71,"LFO Clock Divisions: WHd"],[71,"LFO Clock Divisions: WH + 1/4"],[71,"LFO Clock Divisions: WH"],[71,"LFO Clock Divisions: 1/2d"],[71,"LFO Clock Divisions: WH T"],[71,"LFO Clock Divisions: 1/2"],[71,"LFO Clock Divisions: 1/4d"],[71,"LFO Clock Divisions: 1/2 T"],[71,"LFO Clock Divisions: 1/4"],[71,"LFO Clock Divisions: 1/8d"],[71,"LFO Clock Divisions: 1/4 T"],[71,"LFO Clock Divisions: 1/8"],[71,"LFO Clock Divisions: 1/16d"],[71,"LFO Clock Divisions: 1/8 T"],[71,"LFO Clock Divisions: 1/16"],[71,"LFO Clock Divisions: 1/16 T"],[71,"LFO Clock Divisions: 1/32"],[71,"LFO Clock Divisions: 1/32 T"],[72,"LFO Phase Reset"],[73,"LFO Note Reset: Enable"],[73,"LFO Note Reset: Disable"],[75,"Delay Time Range: Normal"],[75,"Delay Time Range: x2"],[75,"Delay Time Range: x4"],[75,"Delay Time Range: x8"],[76,"MIDI Sync: Enable"],[76,"MIDI Sync: Disable"],[77,"MIDI Note Mode: Enable"],[77,"MIDI Note Mode: Disable"],[78,"MIDI Note Spillover Mode: Enable"],[78,"MIDI Note Spillover Mode: Disable"],[79,"Mod Wheel to LFO Amount: Enable"],[79,"Mod Wheel to LFO Amount: Disable"],[80,"Pitch Bend Amount: Off"],[80,"Pitch Bend Amount: 2 Semi"],[80,"Pitch Bend Amount: 3 Semi"],[80,"Pitch Bend Amount: 4 Semi"],[80,"Pitch Bend Amount: 5 Semi"],[80,"Pitch Bend Amount: 7 Semi"],[80,"Pitch Bend Amount: 12 Semi"],[80,"Pitch Bend Amount: 24 Semi"],[92,"Tap Tempo Latching"],[93,"Tap Tempo Momentary"]]},{"id":"minimoogvoyager","brand":"Moog","name":"Minimoog Voyager","cc":[[68,"MW Source: Tri"],[68,"MW Source: Square"],[68,"MW Source: Osc3"],[68,"MW Source: S&H"],[68,"MW Source: ON/Mod2"],[68,"MW Source: Noise/PGM"],[69,"MW Destination: Pitch"],[69,"MW Destination: Osc2"],[69,"MW Destination: Osc3"],[69,"MW Destination: Filt"],[69,"MW Destination: Wave"],[69,"MW Destination: LFO Rate/PGM"],[70,"MW Shaping: Filt"],[70,"MW Shaping: Velocity"],[70,"MW Shaping: Aftertouch"],[70,"MW Shaping: ON/PGM"],[6,"MW Amount"],[71,"Pedal Source: Tri"],[71,"Pedal Source: Square"],[71,"Pedal Source: Osc3"],[71,"Pedal Source: S&H"],[71,"Pedal Source: ON/Mod2"],[71,"Pedal Source: Noise/PGM"],[72,"Pedal Destination: Tri"],[72,"Pedal Destination: Square"],[72,"Pedal Destination: Osc3"],[72,"Pedal Destination: S&H"],[72,"Pedal Destination: ON/Mod2"],[72,"Pedal Destination: Noise/PGM"],[73,"Pedal Shaping: Filt"],[73,"Pedal Shaping: Velocity"],[73,"Pedal Shaping: Aftertouch"],[73,"Pedal Shaping: ON/PGM"],[8,"Pedal Amount"],[1,"Modulation"],[65,"Glide: On"],[65,"Glide: Off"],[88,"Release: On"],[88,"Release: Off"],[2,"Mod 1 Input"],[4,"Mod 2 Input"],[3,"LFO Rate"],[67,"LFO Sync: Off"],[67,"LFO Sync: MIDI"],[67,"LFO Sync: KB"],[67,"LFO Sync: Env Gate"],[74,"Osc1 Octave"],[9,"Osc1 Wave"],[10,"Osc2 Freq"],[75,"Osc2 Octave"],[11,"Osc2 Wave"],[12,"Osc3 Freq"],[76,"Osc3 Octave"],[13,"Osc3 Wave"],[77,"Osc1-2 Sync: On"],[77,"Osc1-2 Sync: Off"],[78,"Osc3-1 FM: On"],[78,"Osc3-1 FM: Off"],[79,"Osc3 KB Control: On"],[79,"Osc3 KB Control: Off"],[80,"Osc3 Freq: On"],[80,"Osc3 Freq: Off"],[5,"Glide Rate"],[14,"External Level"],[81,"External Switch: On"],[81,"External Switch: Off"],[15,"Osc1 Level"],[82,"Osc1: On"],[82,"Osc1: Off"],[16,"Osc2 Level"],[83,"Osc2: On"],[83,"Osc2: Off"],[17,"Osc3 Level"],[84,"Osc3: On"],[84,"Osc3: Off"],[18,"Noise Level"],[85,"Noise: On"],[85,"Noise: Off"],[19,"Filter Cutoff"],[20,"Filter Spacing"],[21,"Filter Resonance"],[22,"Filter KB Amount"],[86,"Filter: LP/LP"],[86,"Filter: HP/LP"],[23,"FIlter ENV Attack"],[24,"Filter ENV Decay"],[25,"Filter ENV Sustain"],[26,"Filter ENV Release"],[27,"Amount to Filter"],[28,"Volume ENV Attack"],[29,"Volume ENV Decay"],[30,"Volume ENV Sustain"],[31,"Volume ENV Release"],[87,"ENV Gate Switch: On"],[87,"ENV Gate Switch: Off"],[7,"Master Volume"]]},{"id":"minimoogvoyagerxl","brand":"Moog","name":"Minimoog Voyager XL","cc":[[68,"MW Source: Tri"],[68,"MW Source: Square"],[68,"MW Source: Osc3"],[68,"MW Source: S&H"],[68,"MW Source: ON/Mod2"],[68,"MW Source: Noise/PGM"],[69,"MW Destination: Pitch"],[69,"MW Destination: Osc2"],[69,"MW Destination: Osc3"],[69,"MW Destination: Filt"],[69,"MW Destination: Wave"],[69,"MW Destination: LFO Rate/PGM"],[70,"MW Shaping: Filt"],[70,"MW Shaping: Velocity"],[70,"MW Shaping: Aftertouch"],[70,"MW Shaping: ON/PGM"],[6,"MW Amount"],[71,"Pedal Source: Tri"],[71,"Pedal Source: Square"],[71,"Pedal Source: Osc3"],[71,"Pedal Source: S&H"],[71,"Pedal Source: ON/Mod2"],[71,"Pedal Source: Noise/PGM"],[72,"Pedal Destination: Tri"],[72,"Pedal Destination: Square"],[72,"Pedal Destination: Osc3"],[72,"Pedal Destination: S&H"],[72,"Pedal Destination: ON/Mod2"],[72,"Pedal Destination: Noise/PGM"],[73,"Pedal Shaping: Filt"],[73,"Pedal Shaping: Velocity"],[73,"Pedal Shaping: Aftertouch"],[73,"Pedal Shaping: ON/PGM"],[8,"Pedal Amount"],[1,"Modulation"],[65,"Glide: On"],[65,"Glide: Off"],[88,"Release: On"],[88,"Release: Off"],[2,"Mod 1 Input"],[4,"Mod 2 Input"],[3,"LFO Rate"],[67,"LFO Sync: Off"],[67,"LFO Sync: MIDI"],[67,"LFO Sync: KB"],[67,"LFO Sync: Env Gate"],[92,"LFO2 Master Rate"],[93,"LFO2 Master Range"],[94,"LFO2 Division: 4 WH"],[94,"LFO2 Division: 3 WH"],[94,"LFO2 Division: 2 WH"],[94,"LFO2 Division: WH dotted"],[94,"LFO2 Division: WH"],[94,"LFO2 Division: 1/2d"],[94,"LFO2 Division: WH triplet"],[94,"LFO2 Division: 1/2"],[94,"LFO2 Division: 1/4d"],[94,"LFO2 Division: 1/2t"],[94,"LFO2 Division: 1/4"],[94,"LFO2 Division: 1/8d"],[94,"LFO2 Division: 1/4t"],[94,"LFO2 Division: 1/8"],[94,"LFO2 Division: 1/16d"],[94,"LFO2 Division: 1/8t"],[94,"LFO2 Division: 1/16"],[94,"LFO2 Division: 1/32d"],[94,"LFO2 Division: 1/32"],[94,"LFO2 Division: 1/64d"],[94,"LFO2 Division: 1/64"],[95,"LFO2 Master Wave: Tri"],[95,"LFO2 Master Wave: Square"],[95,"LFO2 Master Wave: Ramp"],[95,"LFO2 Master Wave: Saw"],[95,"LFO2 Master Wave: S&H"],[95,"LFO2 Master Wave: S&H Smooth"],[95,"LFO2 Master Wave: Sine"],[102,"LFO2 (+) Rate"],[103,"LFO2 (+) Range"],[104,"LFO2 (+) Division: 4 WH"],[104,"LFO2 (+) Division: 3 WH"],[104,"LFO2 (+) Division: 2 WH"],[104,"LFO2 (+) Division: WH dotted"],[104,"LFO2 (+) Division: WH"],[104,"LFO2 (+) Division: 1/2d"],[104,"LFO2 (+) Division: WH triplet"],[104,"LFO2 (+) Division: 1/2"],[104,"LFO2 (+) Division: 1/4d"],[104,"LFO2 (+) Division: 1/2t"],[104,"LFO2 (+) Division: 1/4"],[104,"LFO2 (+) Division: 1/8d"],[104,"LFO2 (+) Division: 1/4t"],[104,"LFO2 (+) Division: 1/8"],[104,"LFO2 (+) Division: 1/16d"],[104,"LFO2 (+) Division: 1/8t"],[104,"LFO2 (+) Division: 1/16"],[104,"LFO2 (+) Division: 1/32d"],[104,"LFO2 (+) Division: 1/32"],[104,"LFO2 (+) Division: 1/64d"],[104,"LFO2 (+) Division: 1/64"],[105,"LFO2 (+) Wave: Tri"],[105,"LFO2 (+) Wave: Square"],[105,"LFO2 (+) Wave: Ramp"],[105,"LFO2 (+) Wave: Saw"],[105,"LFO2 (+) Wave: S&H"],[105,"LFO2 (+) Wave: S&H Smooth"],[105,"LFO2 (+) Wave: Sine"],[106,"LFO2 (-) Rate"],[107,"LFO2 (-) Range"],[108,"LFO2 (-) Division: 4 WH"],[108,"LFO2 (-) Division: 3 WH"],[108,"LFO2 (-) Division: 2 WH"],[108,"LFO2 (-) Division: WH dotted"],[108,"LFO2 (-) Division: WH"],[108,"LFO2 (-) Division: 1/2d"],[108,"LFO2 (-) Division: WH triplet"],[108,"LFO2 (-) Division: 1/2"],[108,"LFO2 (-) Division: 1/4d"],[108,"LFO2 (-) Division: 1/2t"],[108,"LFO2 (-) Division: 1/4"],[108,"LFO2 (-) Division: 1/8d"],[108,"LFO2 (-) Division: 1/4t"],[108,"LFO2 (-) Division: 1/8"],[108,"LFO2 (-) Division: 1/16d"],[108,"LFO2 (-) Division: 1/8t"],[108,"LFO2 (-) Division: 1/16"],[108,"LFO2 (-) Division: 1/32d"],[108,"LFO2 (-) Division: 1/32"],[108,"LFO2 (-) Division: 1/64d"],[108,"LFO2 (-) Division: 1/64"],[109,"LFO2 (-) Wave: Tri"],[109,"LFO2 (-) Wave: Square"],[109,"LFO2 (-) Wave: Ramp"],[109,"LFO2 (-) Wave: Saw"],[109,"LFO2 (-) Wave: S&H"],[109,"LFO2 (-) Wave: S&H Smooth"],[109,"LFO2 (-) Wave: Sine"],[74,"Osc1 Octave"],[9,"Osc1 Wave"],[10,"Osc2 Freq"],[75,"Osc2 Octave"],[11,"Osc2 Wave"],[12,"Osc3 Freq"],[76,"Osc3 Octave"],[13,"Osc3 Wave"],[77,"Osc1-2 Sync: On"],[77,"Osc1-2 Sync: Off"],[78,"Osc3-1 FM: On"],[78,"Osc3-1 FM: Off"],[79,"Osc3 KB Control: On"],[79,"Osc3 KB Control: Off"],[80,"Osc3 Freq: On"],[80,"Osc3 Freq: Off"],[5,"Glide Rate"],[14,"External Level"],[81,"External Switch: On"],[81,"External Switch: Off"],[15,"Osc1 Level"],[82,"Osc1: On"],[82,"Osc1: Off"],[16,"Osc2 Level"],[83,"Osc2: On"],[83,"Osc2: Off"],[17,"Osc3 Level"],[84,"Osc3: On"],[84,"Osc3: Off"],[18,"Noise Level"],[85,"Noise: On"],[85,"Noise: Off"],[19,"Filter Cutoff"],[20,"Filter Spacing"],[21,"Filter Resonance"],[22,"Filter KB Amount"],[86,"Filter: LP/LP"],[86,"Filter: HP/LP"],[23,"FIlter ENV Attack"],[24,"Filter ENV Decay"],[25,"Filter ENV Sustain"],[26,"Filter ENV Release"],[27,"Amount to Filter"],[28,"Volume ENV Attack"],[29,"Volume ENV Decay"],[30,"Volume ENV Sustain"],[31,"Volume ENV Release"],[87,"ENV Gate Switch: On"],[87,"ENV Gate Switch: Off"],[7,"Master Volume"]]},{"id":"minitaur","brand":"Moog","name":"Minitaur","cc":[[3,"LFO Rate"],[13,"LFO VCO Amount"],[12,"LFO VCF Amount"],[87,"LFO MIDI Sync: Internal"],[87,"LFO MIDI Sync: External"],[86,"LFO Sync Clock Div: 4 Whole"],[86,"LFO Sync Clock Div: 3 Whole"],[86,"LFO Sync Clock Div: 2 Whole"],[86,"LFO Sync Clock Div: WH +1/2"],[86,"LFO Sync Clock Div: WH"],[86,"LFO Sync Clock Div: 1/2d"],[86,"LFO Sync Clock Div: WH t"],[86,"LFO Sync Clock Div: 1/2"],[86,"LFO Sync Clock Div: 1/4d"],[86,"LFO Sync Clock Div: 1/2t"],[86,"LFO Sync Clock Div: 1/4"],[86,"LFO Sync Clock Div: 1/8d"],[86,"LFO Sync Clock Div: 1/4t"],[86,"LFO Sync Clock Div: 1/8"],[86,"LFO Sync Clock Div: 1/16d"],[86,"LFO Sync Clock Div: 1/8t"],[86,"LFO Sync Clock Div: 1/16"],[86,"LFO Sync Clock Div: 1/16t"],[86,"LFO Sync Clock Div: 1/32"],[86,"LFO Sync Clock Div: 1/32t"],[86,"LFO Sync Clock Div: 1/64t"],[82,"LFO Key Trigger: Off"],[82,"LFO Key Trigger: On"],[70,"VCO1 Wave: Saw"],[70,"VCO1 Wave: Square"],[71,"VCO2 Wave: Saw"],[71,"VCO2 Wave: Square"],[17,"VCO2 Freq"],[18,"VCO2 Beat"],[81,"Osc Note Sync: Off"],[81,"Osc Note Sync: On"],[5,"Osc Glide Rate"],[65,"Osc Glide Switch: Off"],[65,"Osc Glide Switch: On"],[92,"Osc Glide Type: LCR"],[92,"Osc Glide Type: LCT"],[92,"Osc Glide Type: EXP"],[83,"Osc Legato Glide: Always"],[83,"Osc Legato Glide: Only Legato"],[15,"VCO1 Level"],[16,"VCO2 Level"],[27,"Ext. In Level"],[19,"Filter Cutoff"],[21,"Filter Resonance"],[22,"Filter EG Amount"],[20,"Filter KB Track"],[89,"Filter Velocity Sensitivity"],[23,"Env: VCF Attack"],[24,"Env: VCF Decay/ Release"],[25,"Env: VCF Sustain"],[28,"Env: VCA Attack"],[29,"Env: VCA Decay/Release"],[30,"Env: VCA Sustain"],[72,"Env: Release Switch: Off"],[72,"Env: Release Switch: On"],[73,"Env: Trigger Mode: Legato On"],[73,"Env: Trigger Mode: Legato Off"],[73,"Env: Trigger Mode: EG Reset"],[7,"VCA Output Level"],[90,"Volume Velocity Sensitivity"],[91,"Key Priority: Low"],[91,"Key Priority: High"],[91,"Key Priority: Last"],[1,"Mod Wheel"],[107,"Bend Up Amount"],[108,"Bend Down Amount"],[122,"Local Control Off"],[120,"All Sounds Off"],[123,"All Notes Off"]]},{"id":"mother-32","brand":"Moog","name":"Mother-32","cc":[[5,"Portamento Time"],[65,"Portamento Off"],[65,"Portamento On"],[64,"Sustain Off"],[64,"Sustain On"],[1,"Generate CV1"],[2,"Generate CV2"],[4,"Generate CV3"],[7,"Generate CV4"]]},{"id":"subphatty","brand":"Moog","name":"Sub Phatty","cc":[[28,"Amp EG Attack"],[29,"Amp EG Decay"],[30,"Amp EG Sustain"],[31,"Amp EG Release"],[23,"Filter EG Attack"],[24,"Filter EG Decay"],[25,"Filter EG Sustain"],[26,"Filter EG Release"],[15,"VCO1 Level"],[16,"VCO2 Level"],[8,"Noise Level"],[17,"VCO1 Sub Level"],[9,"VCO1 Wave"],[14,"VCO2 Wave"],[12,"VCO2 Frequency"],[13,"VCO2 Beat Frequency"],[77,"VCO2 Hard Sync: Off"],[77,"VCO2 Hard Sync: On"],[81,"VCO Gate Reset: Off"],[81,"VCO Gate Reset: On"],[19,"Filter Cutoff"],[21,"Filter Resonance"],[27,"Filter KB Tracking Amount"],[22,"Filter EG Amount"],[18,"Multidrive Amount"],[110,"Filter EG Velocity to Amplitude"],[92,"Amp EG Velocity to Amplitude"],[111,"Note Priority: Global"],[111,"Note Priority: Low Note"],[111,"Note Priority: High Note"],[111,"Note Priority: Last Note"],[88,"Release: Off"],[88,"Release: On"],[71,"Mod Source: Triangle LFO"],[71,"Mod Source: Square LFO"],[71,"Mod Source: Saw LFO"],[71,"Mod Source: Ramp LFO"],[71,"Mod Source: S&H"],[71,"Mod Source: Filter Envelope"],[102,"LFO MIDI Sync: Off"],[102,"LFO MIDI Sync: On"],[93,"LFO Gate Reset: Off"],[93,"LFO Gate Reset: On"],[2,"Filter Mod Amount"],[4,"Pitch Mod Amount"],[20,"Wave Mod Amount"],[107,"Pitch Bend Up Amount"],[108,"Pitch Bend Down Amount"],[65,"Glide: Off"],[65,"Glide: On"],[94,"Glide Legato: Off"],[94,"Glide Legato: On"],[5,"Glide Rate"],[85,"Glide Type: LCR"],[85,"Glide Type: LCT"],[85,"Glide Type: Exp"],[78,"LFO KB Tracking Amount"],[83,"Amp EG Reset: Off"],[83,"Amp EG Reset: On"],[82,"Filter EG Reset: Off"],[82,"Filter EG Reset: On"],[7,"Output Level"],[89,"Keyboard Octave: -2"],[89,"Keyboard Octave: -1"],[89,"Keyboard Octave: 0"],[89,"Keyboard Octave: +1"],[89,"Keyboard Octave: +2"],[116,"Ext Audio Input Level"],[104,"Amp EG Delay"],[106,"Amp EG Hold"],[103,"Filter EG Delay"],[105,"Filter EG Hold"],[70,"Pitch Mod Osc2 only: Off"],[70,"Pitch Mod Osc2 only: On"],[1,"Mod Wheel"],[72,"Wave Mod Dest: Osc1"],[72,"Wave Mod Dest: Osc2"],[72,"Wave Mod Dest: Osc1+2"],[74,"VCO1 Octave: 16"],[74,"VCO1 Octave: 8"],[74,"VCO1 Octave: 4"],[74,"VCO1 Octave: 2"],[75,"VCO2 Octave: 16"],[75,"VCO2 Octave: 8"],[75,"VCO2 Octave: 4"],[75,"VCO2 Octave: 2"],[109,"Filter Poles: 1"],[109,"Filter Poles: 2"],[109,"Filter Poles: 3"],[109,"Filter Poles: 4"],[76,"LFO Range: Low"],[76,"LFO Range: Mid"],[76,"LFO Range: High"],[68,"Legato: Off"],[68,"Legato: On"],[119,"Keyboard Transpose"],[73,"Gated Glide: Off"],[73,"Gated Glide: On"],[112,"Filter EG Repeat: Off"],[112,"Filter EG Repeat: On"],[86,"Filter EG Velocity to Time"],[79,"Filter EG KB Amount"],[90,"Filter EG Gate Source: On"],[90,"Filter EG Gate Source: Keys Only"],[90,"Filter EG Gate Source: Gate Only"],[90,"Filter EG Gate Source: Keys or Gate"],[113,"Amp EG Repeat: Off"],[113,"Amp EG Repeat: On"],[87,"Amp EG Velocity to Time"],[80,"Amp EG KB Amount"],[91,"Volume EG Gate Source: On"],[91,"Volume EG Gate Source: Keys Only"],[91,"Volume EG Gate Source: Gate Only"],[91,"Volume EG Gate Source: Keys or Gate"],[114,"Filter EG Trigger Mode: Off"],[114,"Filter EG Trigger Mode: On"],[115,"Amp EG Trigger Mode: Off"],[115,"Amp EG Trigger Mode: On"],[3,"LFO Rate: 4 WH"],[3,"LFO Rate: 3 WH"],[3,"LFO Rate: 2 WH"],[3,"LFO Rate: WH + 1/2"],[3,"LFO Rate: WH"],[3,"LFO Rate: 1/2d"],[3,"LFO Rate: WH t"],[3,"LFO Rate: 1/2"],[3,"LFO Rate: 1/4d"],[3,"LFO Rate: 1/2t"],[3,"LFO Rate: 1/4"],[3,"LFO Rate: 1/8d"],[3,"LFO Rate: 1/4t"],[3,"LFO Rate: 1/8"],[3,"LFO Rate: 1/16d"],[3,"LFO Rate: 1/8t"],[3,"LFO Rate: 1/16"],[3,"LFO Rate: 1/16t"],[3,"LFO Rate: 1/32"],[3,"LFO Rate: 1/32t"],[3,"LFO Rate: 1/64t"]]},{"id":"subharmonicon","brand":"Moog","name":"Subharmonicon","cc":[[4,"VCO1 Frequency"],[103,"VCO1 Sub 1 Frequency"],[104,"VCO1 Sub 2 Frequency"],[12,"VCO2 Frequency"],[105,"VCO2 Sub 1 Frequency"],[106,"VCO2 Sub 2 Frequency"],[23,"VCF (EG) Attack"],[24,"VCF (EG) Decay"],[28,"VCA (EG) Attack"],[29,"VCA (EG) Decay"],[113,"Rhythm Generator Logic: OR"],[113,"Rhythm Generator Logic: XOR"]]},{"id":"subsequent25","brand":"Moog","name":"Subsequent 25","cc":[[1,"Mod Wheel"],[2,"Filter Mod Amount"],[3,"LFO Rate: 4 Whole"],[3,"LFO Rate: 3 Whole"],[3,"LFO Rate: 2 Whole"],[3,"LFO Rate: WH + 1/2"],[3,"LFO Rate: WH"],[3,"LFO Rate: 1/2d"],[3,"LFO Rate: WH t"],[3,"LFO Rate: 1/2"],[3,"LFO Rate: 1/4d"],[3,"LFO Rate: 1/2t"],[3,"LFO Rate: 1/4"],[3,"LFO Rate: 1/8d"],[3,"LFO Rate: 1/4t"],[3,"LFO Rate: 1/8"],[3,"LFO Rate: 1/16d"],[3,"LFO Rate: 1/8t"],[3,"LFO Rate: 1/16"],[3,"LFO Rate: 1/16t"],[3,"LFO Rate: 1/32"],[3,"LFO Rate: 1/32t"],[3,"LFO Rate: 1/64t"],[4,"Pitch Mod Amount"],[5,"Glide Rate"],[7,"Master Volume"],[8,"Noise Level"],[9,"VCO1 Wave"],[12,"VCO2 Frequency"],[13,"VCO2 Beat"],[14,"VCO2 Wave"],[15,"VCO1 Level"],[16,"VCO2 Level"],[17,"VCO1 Sub Level"],[18,"Multidrive Amount"],[19,"Filter Cutoff"],[20,"Wave Mod Amount"],[21,"Filter Resonance"],[22,"Filter EG Amount"],[23,"Filter EG Attack"],[24,"Filter EG Decay"],[25,"Filter EG Sustain"],[26,"Filter EG Release"],[27,"Filter KB Amount"],[28,"Amp EG Attack"],[29,"Amp EG Decay"],[30,"Amp EG Sustain"],[31,"Amp EG Release"],[65,"Glide: Off"],[65,"Glide: On"],[68,"Legato Glide: Off"],[68,"Legato Glide: On"],[70,"Pitch Mod Osc 2 Only: Off"],[70,"Pitch Mod Osc 2 Only: On"],[71,"Mod Source: Triangle LFO"],[71,"Mod Source: Square LFO"],[71,"Mod Source: Saw LFO"],[71,"Mod Source: S&H"],[71,"Mod Source: Filter EG"],[72,"Wave Mod Dest: Osc1"],[72,"Wave Mod Dest: Osc2"],[72,"Wave Mod Dest: Osc1 + Osc2"],[73,"Gated Glide: Off"],[73,"Gated Glide: On"],[74,"VCO1 Octave: 16"],[74,"VCO1 Octave: 8"],[74,"VCO1 Octave: 4"],[74,"VCO1 Octave: 2"],[75,"VCO2 Octave: 16"],[75,"VCO2 Octave: 8"],[75,"VCO2 Octave: 4"],[75,"VCO2 Octave: 2"],[76,"LFO Range"],[77,"VCO2 Hard Sync: Off"],[77,"VCO2 Hard Sync: On"],[78,"LFO KB Amount"],[79,"Filter EG KB Amount"],[80,"Amp EG KB Amount"],[81,"VCO Gate Reset: Off"],[81,"VCO Gate Reset: On"],[82,"Filter EG Reset: Off"],[82,"Filter EG Reset: On"],[83,"Amp EG Reset: Off"],[83,"Amp EG Reset: On"],[85,"Glide Type: LCR"],[85,"Glide Type: LCT"],[85,"Glide Type: Exp"],[86,"Filter EG Velocity to Time"],[87,"Amp EG Velocity to Time"],[88,"Release Off"],[88,"Release On"],[89,"KB Octave: -2"],[89,"KB Octave: -1"],[89,"KB Octave: 0"],[89,"KB Octave: +1"],[89,"KB Octave: +2"],[90,"Filter EG Gate: Gate On"],[90,"Filter EG Gate: Keys Only"],[90,"Filter EG Gate: Ext Gate Only"],[90,"Filter EG Gate: Keys or Ext Gate"],[91,"Amp EG Gate: Gate On"],[91,"Amp EG Gate: Keys Only"],[91,"Amp EG Gate: Ext Gate Only"],[91,"Amp EG Gate: Keys or Ext Gate"],[92,"Amp EG Velocity to Amplitude"],[93,"LFO Gate Reset: Off"],[93,"LFO Gate Reset: On"],[94,"Duo Mode: Off"],[94,"Duo Model: On"],[95,"Duo Mode Priority: Low Note"],[95,"Duo Mode Priority: High Note"],[102,"LFO MIDI Sync: Off"],[102,"LFO MIDI Synco: On"],[103,"Filter EG Delay"],[104,"Amp EG Delay"],[105,"Filter EG Hold"],[106,"Amp EG Hold"],[107,"Pitch Bend Up Amount"],[108,"Pitch Bend Down Amount"],[109,"VCF Filter Poles: 1"],[109,"VCF Filter Poles: 2"],[109,"VCF Filter Poles: 3"],[109,"VCF Filter Poles: 4"],[110,"Filter EG Velocity to Amplitude"],[111,"Note Priority: Low Note"],[111,"Note Priority: High Note"],[111,"Note Priority: Last Note"],[111,"Note Priority: Global"],[112,"Filter EG Repeat: Off"],[112,"Filter EG Repeat: On"],[113,"Amp EG Repeat: Off"],[113,"Amp EG Repeat: On"],[114,"Filter EG Trigger Mode: Single Trig"],[114,"Filter EG Trigger Mode: Multi Trig"],[115,"Amp EG Trigger Mode: Single Trig"],[115,"Amp EG Trigger Mode: Multi Trig"],[116,"Ext Audio Input Level"],[117,"Filter EG Decay Speed: Normal"],[117,"Filter EG Decay Speed: Fast"],[118,"Amp EG Decay Speed: Normal"],[118,"Amp EG Decay Speed: Fast"],[119,"KB Transpose (Semitones)"]]},{"id":"subsequent37","brand":"Moog","name":"Subsequent 37","cc":[[1,"Mod Wheel"],[2,"Breath Controller"],[3,"LFO1 Rate: 4 Whole"],[3,"LFO1 Rate: 3 Whole"],[3,"LFO1 Rate: 2 Whole"],[3,"LFO1 Rate: WH + 1/2"],[3,"LFO1 Rate: WH"],[3,"LFO1 Rate: 1/2d"],[3,"LFO1 Rate: WHt"],[3,"LFO1 Rate: 1/2"],[3,"LFO1 Rate: 1/4d"],[3,"LFO1 Rate: 1/2t"],[3,"LFO1 Rate: 1/4"],[3,"LFO1 Rate: 1/8d"],[3,"LFO1 Rate: 1/4t"],[3,"LFO1 Rate: 1/8"],[3,"LFO1 Rate: 1/16d"],[3,"LFO1 Rate: 1/8t"],[3,"LFO1 Rate: 1/16"],[3,"LFO1 Rate: 1/16t"],[3,"LFO1 Rate: 1/32"],[3,"LFO1 Rate: 1/32t"],[3,"LFO1 Rate: 1/64t"],[4,"Mod 1 Pitch Amount"],[5,"Glide Time"],[7,"Master Volume"],[8,"LFO2 Rate: 4 Whole"],[8,"LFO2 Rate: 3 Whole"],[8,"LFO2 Rate: 2 Whole"],[8,"LFO2 Rate: WH + 1/2"],[8,"LFO2 Rate: WH"],[8,"LFO2 Rate: 1/2d"],[8,"LFO2 Rate: WHt"],[8,"LFO2 Rate: 1/2"],[8,"LFO2 Rate: 1/4d"],[8,"LFO2 Rate: 1/2t"],[8,"LFO2 Rate: 1/4"],[8,"LFO2 Rate: 1/8d"],[8,"LFO2 Rate: 1/4t"],[8,"LFO2 Rate: 1/8"],[8,"LFO2 Rate: 1/16d"],[8,"LFO2 Rate: 1/8t"],[8,"LFO2 Rate: 1/16"],[8,"LFO2 Rate: 1/16t"],[8,"LFO2 Rate: 1/32"],[8,"LFO2 Rate: 1/32t"],[8,"LFO2 Rate: 1/64t"],[9,"OSC1 Wave"],[11,"Mod 1 Filter Amount"],[12,"OSC2 Freq"],[13,"OSC2 Beat Freq"],[14,"OSC2 Wave"],[15,"Mod 2 Pitch Amount"],[16,"Mod 2 Filter Amount"],[17,"Mod 2 PGM Dest Amount"],[18,"Filter Multidrive"],[19,"Filter Cutoff"],[20,"Mod 1 PGM Dest Amount"],[21,"Filter Resonance"],[22,"Filter KB Amount"],[23,"Filter EG Attack Time"],[24,"Filter EG Decay Time"],[25,"Filter EG Sustain Time"],[26,"Filter EG Release Time"],[27,"Filter EG Amount"],[28,"Amp EG Attack Time"],[29,"Amp EG Decay Time"],[30,"Amp EG Sustain Time"],[31,"Amp EG Release Time"],[64,"Sustain Pedal: Off"],[64,"Sustain Pedal: On"],[65,"Glide: Off"],[65,"Glide: On"],[69,"Arp Latch: Off"],[69,"Arp Latch: On"],[70,"Mod 1 > Osc1 + Osc2"],[70,"Mod 1 > Osc1"],[70,"Mod 1 > Osc2"],[71,"Mod 1 Source: Triangle LFO"],[71,"Mod 1 Source: Square LFO"],[71,"Mod 1 Source: Saw LFO"],[71,"Mod 1 Source: Ramp LFO"],[71,"Mod 1 Source: S&H LFO"],[71,"Mod 1 Source: F.EG/PGM"],[72,"Mod 2 Source: Triangle LFO"],[72,"Mod 2 Source: Square LFO"],[72,"Mod 2 Source: Saw LFO"],[72,"Mod 2 Source: Ramp LFO"],[72,"Mod 2 Source: S&H LFO"],[72,"Mod 2 Source: F.EG/PGM"],[73,"Arp Off"],[73,"Arp On"],[74,"Osc1 Octave: 16"],[74,"Osc1 Octave: 8"],[74,"Osc1 Octave: 4"],[74,"Osc1 Octave: 2"],[75,"Osc2 Octave: 16"],[75,"Osc2 Octave: 8"],[75,"Osc2 Octave: 4"],[75,"Osc2 Octave: 2"],[76,"LFO1 Range: Low Range"],[76,"LFO1 Range: Med Range"],[76,"LFO1 Range: Hi Range"],[77,"Osc2 Hard Sync: Off"],[77,"Osc2 Hard Sync: On"],[78,"LFO2 Range: Low Range"],[78,"LFO2 Range: Med Range"],[78,"LFO2 Range: Hi Range"],[79,"Filter EG KB Amount"],[80,"Amp EG KB Amount"],[81,"OSC KB Reset: Off"],[81,"OSC KB Reset: On"],[82,"Filter EG Reset: Off"],[82,"Filter EG Reset: On"],[83,"Amp EG Reset: Off"],[83,"Amp EG Reset: On"],[85,"Glide Type: LCR"],[85,"Glide Type: LCT"],[85,"Glide Type: EXP"],[86,"Filter EG Vel Amount"],[87,"Amp EG Vel Amount"],[88,"Mod 2 > Osc1 + Osc2"],[88,"Mod 2 > Osc1"],[88,"Mod 2 > Osc2"],[89,"KB Octave"],[91,"Mod 1 Destination"],[92,"Mod 2 Destination"],[93,"LFO1 KB Reset: Off"],[93,"LFO1 KB Reset: On"],[94,"Glide Legato: Off"],[94,"Glide Legato: On"],[95,"LFO2 KB Reset: Off"],[95,"LFO2 KB Reset: On"],[102,"Glide Dest: Osc1 + Osc2"],[102,"Glide Dest: Osc1"],[102,"Glide Dest: Osc2"],[103,"Filter EG Delay"],[104,"Amp EG Delay"],[105,"Filter EG Hold"],[106,"Amp EG Hold"],[107,"Pitch Bend Up Amount"],[108,"Pitch Bend Down Amount"],[109,"Filter Slopes"],[110,"OSC Duo Mode: Off"],[110,"OSC Duo Mode: On"],[111,"KB CTRL: Neither"],[111,"KB CTRL: LO"],[111,"KB CTRL: HI"],[112,"Filter EG Multi Trig: Off"],[112,"Filter EG Multi Trig: On"],[113,"Amp EG Multi Trig: Off"],[113,"Amp EG Multi Trig: On"],[114,"Osc1 Level"],[115,"Osc1 Sub Level"],[116,"Osc2 Level"],[117,"Noise Level"],[118,"Feedback/Ext Level"],[119,"KB Transpose"],[122,"Local Control: Off"],[122,"Local Control: On"],[123,"All Notes Off"]]},{"id":"shruthi","brand":"Mutable Instruments","name":"Shruthi","cc":[[20,"Oscillator 1 shape"],[21,"Oscillator 1 parameter"],[22,"Oscillator 1 range"],[28,"Modulation operator"],[24,"Oscillator 2 shape"],[25,"Oscillator 2 parameter"],[26,"Oscillator 2 range"],[27,"Oscillator 2 detune"],[29,"Oscillator balance"],[30,"Sub oscillator volume"],[31,"Noise volume"],[23,"Sub oscillator/transient generator shape"],[15,"Filter cutoff"],[15,"Filter resonance"],[102,"Envelope to cutoff modulation amount"],[103,"LFO to cutoff modulation amount"],[104,"Envelope 1 attack"],[105,"Envelope 1 decay"],[106,"Envelope 1 sustain"],[107,"Envelope 1 release"],[108,"Envelope 2 attack"],[109,"Envelope 2 decay"],[110,"Envelope 2 sustain"],[111,"Envelope 2 release"],[112,"LFO 1 waveform"],[113,"LFO 1 rate"],[114,"LFO 1 rise time"],[115,"LFO 1 master/slave"],[116,"LFO 2 waveform"],[117,"LFO 2 rate"],[118,"LFO 2 rise time"],[119,"LFO 2 master/slave"],[75,"Sequencer mode"],[76,"Groove template"],[77,"Groove amount"],[78,"Arpeggiator direction"],[79,"Arpeggiator range"],[80,"Arpeggiator pattern"],[81,"Sequencer clock division"]]},{"id":"c1","brand":"Nord","name":"C1","cc":[[3,"Preset Focus"],[4,"Swell Pedal"],[9,"Organ Model Select"],[16,"Drawbar 1"],[17,"Drawbar 2"],[18,"Drawbar 3"],[19,"Drawbar 4"],[20,"Drawbar 5"],[21,"Drawbar 6"],[22,"Drawbar 7"],[23,"Drawbar 8"],[24,"Drawbar 9"],[18,"Bass Pluck"],[19,"Bass Release"],[27,"Perc Decay"],[28,"Perc Level"],[75,"Delay Upper"],[64,"Sustain Pedal"],[76,"Delay Amount"],[77,"Delay Tempo"],[78,"Delay Feedback"],[80,"Delay On/Off"],[81,"Speaker Type"],[82,"Rotary Speed"],[84,"Vibrato Mode"],[85,"Vibrato On/Off"],[87,"PercState On/Off"],[95,"Perc Harmonic"],[96,"Reverb Type"],[97,"Reverb On/Off"],[102,"Reverb Amount"],[109,"Unison Mode"],[110,"Bass Model"],[111,"Drive Amount"],[112,"Drive On/Off"],[113,"EQ Treble"],[114,"EQ Bass"],[115,"EQ On/Off"],[116,"EQ Mid"],[117,"BassLManual"]]},{"id":"c2","brand":"Nord","name":"C2","cc":[[9,"Organ Model Select"],[110,"Synth Bass On/Off"],[81,"Speaker Select"],[77,"Delay Tempo"],[78,"Delay Feedback"],[75,"Delay Swell Only"],[76,"Delay Amount"],[80,"Delay On/Off"],[113,"EQ Treble"],[116,"EQ Mid"],[114,"EQ Bass"],[115,"EQ On/Off"],[111,"Drive Amount"],[112,"Drive On/Off"],[102,"Reverb Amount"],[96,"Reverb Selection"],[97,"Reverb On/Off"],[84,"Vib/Chorus/Trem Mode"],[85,"Vibrato On/Off"],[3,"Drawbar/Perc Presets"],[117,"Ped Great Man"],[82,"Rotary Speaker: Slow"],[82,"Rotary Speaker: Stop"],[82,"Rotary Speaker: Fast"],[103,"Ped/GR Low Coupler"],[104,"SW 16/GR - SW/GR"],[16,"Drawbar 1"],[17,"Drawbar 2"],[18,"Drawbar 3"],[19,"Drawbar 4"],[20,"Drawbar 5"],[21,"Drawbar 6"],[22,"Drawbar 7"],[23,"Drawbar 8"],[24,"Drawbar 9"],[87,"Perc On/Off"],[28,"Perc Soft"],[27,"Perc Fast"],[95,"Perc Third"],[105,"Swell 16 & 4 Coupler"],[106,"Swell/Ped & Gr/Ped Coupler"],[64,"Sustain Pedal"],[4,"Swell Pedal"],[82,"Rotary Control"]]},{"id":"c2d","brand":"Nord","name":"C2D","cc":[[9,"Organ Model Select"],[110,"Synth Bass On/Off"],[81,"Speaker Select"],[77,"Delay Tempo"],[78,"Delay Feedback"],[75,"Delay Swell Only"],[76,"Delay Amount"],[80,"Delay On/Off"],[113,"EQ Treble"],[116,"EQ Mid"],[114,"EQ Bass"],[115,"EQ On/Off"],[111,"Drive Amount"],[112,"Drive On/Off"],[102,"Reverb Amount"],[96,"Reverb Selection"],[97,"Reverb On/Off"],[84,"Vib/Chorus/Trem Mode"],[85,"Vibrato On/Off"],[3,"Drawbar Presets"],[117,"Ped Great Man"],[82,"Rotary Speaker: Slow"],[82,"Rotary Speaker: Stop"],[82,"Rotary Speaker: Fast"],[103,"Ped/GR Low Coupler"],[104,"SW 16/GR - SW/GR"],[16,"Drawbar A1"],[17,"Drawbar A2"],[18,"Drawbar A3"],[19,"Drawbar A4"],[20,"Drawbar A5"],[21,"Drawbar A6"],[22,"Drawbar A7"],[23,"Drawbar A8"],[24,"Drawbar A9"],[36,"Drawbar B1"],[37,"Drawbar B2"],[38,"Drawbar B3"],[39,"Drawbar B4"],[40,"Drawbar B5"],[41,"Drawbar B6"],[42,"Drawbar B7"],[43,"Drawbar B8"],[44,"Drawbar B9"],[87,"Perc On/Off"],[28,"Perc Soft"],[27,"Perc Fast"],[95,"Perc Third"],[105,"Swell 16 & 4 Coupler"],[106,"Swell/Ped & Gr/Ped Coupler"],[64,"Sustain Pedal"],[4,"Swell Pedal"],[82,"Rotary Control"]]},{"id":"drum2","brand":"Nord","name":"Drum 2","cc":[[7,"Level"],[10,"Pan"],[14,"Noise Filter Frequency"],[15,"Noise Filter Type"],[16,"Noise Filter Envelope"],[17,"Noise Filter Resonance"],[18,"Noise Attack/Rate"],[19,"Noise Attack Mode"],[20,"Noise Decay Type (E,L,G)"],[21,"Noise Decay"],[22,"Noise Decay Lo"],[23,"Dist Amount"],[24,"Dist Type"],[25,"EQ Frequency"],[26,"EQ Gain"],[27,"Echo Feedback"],[28,"Echo Amount"],[30,"Tone Spectra"],[46,"Tone Wave"],[47,"Tone Timbre Decay"],[48,"Tone Punch"],[49,"Tone Decay Type (L,E)"],[50,"Tone Decay"],[51,"Tone Dec Lo"],[52,"Tone Timbre"],[53,"Tone Timbre Envelope"],[54,"Tone Bend Amount"],[55,"Tone Bend Time"],[56,"Click Level"],[57,"Click Type"],[58,"Mix Balance"],[59,"Mute Group"],[70,"Channel Focus"]]},{"id":"electro2","brand":"Nord","name":"Electro 2","cc":[[27,"Octave Shift Upper Man (Organ)"],[28,"Octave Shift Lower Man (Organ)"],[29,"Octave Shift (Piano)"],[16,"16 Upper Drawbar"],[17,"5 1/3 Upper Drawbar"],[18,"8 Upper Drawbar"],[19,"4 Upper Drawbar"],[20,"2 2/3 Upper Drawbar"],[21,"2 Upper Drawbar"],[22,"1 3/5 Upper Drawbar"],[23,"1 1/3 Upper Drawbar"],[24,"1 Upper Drawbar"],[70,"16 Lower Drawbar"],[71,"5 1/3 Lower Drawbar"],[72,"8 Lower Drawbar"],[73,"4 Lower Drawbar"],[74,"2 2/3 Lower Drawbar"],[75,"2 Lower Drawbar"],[76,"1 3/5 Lower Drawbar"],[77,"1 1/3 Lower Drawbar"],[78,"1 Lower Drawbar"],[87,"Percussion Upper On/Off"],[88,"Perc. Upper Fast/Slow, Normal/Soft"],[95,"Perc. Upper 2nd/3rd"],[85,"Vibrato Upper On/Off"],[86,"Vibrato Lower On/Off"],[84,"Vibrato Type"],[25,"Manual Split On/Off"],[26,"Manual Lower/Upper"],[13,"Instrument Select Organ/Piano"],[12,"Piano Type"],[44,"Piano Sub Type"],[102,"Piano Presence On/Off"],[30,"Piano Presence Freq"],[31,"Piano Presence Amount"],[103,"Modulations Type"],[104,"Modulations Rate"],[105,"Modulations Amount"],[106,"Modulations On/Off (Organ)"],[91,"Modulations On/Off (Piano)"],[107,"Effects Type"],[108,"Effects Rate"],[109,"Effects Amount"],[110,"Effects On/Off (Organ)"],[92,"Effects On/Off (Piano)"],[112,"Overdrive On/Off (Organ)"],[93,"Overdrive On/Off (Piano)"],[111,"Overdrive Amount"],[81,"Rotary Speaker On/Off (Organ)"],[94,"Rotary Speaker On/Off (Piano)"],[82,"Rotary Speaker Fast/Slow"],[83,"Rotary Speaker Run/Stop"],[7,"Output Level"],[115,"Treble & Bass EQ On/Off (Organ)"],[96,"Treble & Bass EQ On/Off (Piano)"],[113,"Treble"],[114,"Bass"]]},{"id":"electro3","brand":"Nord","name":"Electro 3","cc":[[16,"Upper Drawbar 1"],[17,"Upper Drawbar 2"],[18,"Upper Drawbar 3"],[19,"Upper Drawbar 4"],[20,"Upper Drawbar 5"],[21,"Upper Drawbar 6"],[22,"Upper Drawbar 7"],[23,"Upper Drawbar 8"],[24,"Upper Drawbar 9"],[70,"Lower Drawbar 1"],[71,"Lower Drawbar 2"],[72,"Lower Drawbar 3"],[73,"Lower Drawbar 4"],[74,"Lower Drawbar 5"],[75,"Lower Drawbar 6"],[76,"Lower Drawbar 7"],[77,"Lower Drawbar 8"],[78,"Lower Drawbar 9"],[9,"Organ Model Select"],[3,"Preset/Manual Select"],[88,"Perc Decay"],[89,"Perc Level"],[64,"Sustain Pedal"],[11,"Control Pedal"],[82,"Rotary Speed"],[79,"Rotary Stop Mode"],[84,"Vib Mode"],[85,"Vib On/Off Preset 2/Up"],[117,"Vib On/Off Preset 1/Low (B3 Model)"],[87,"Perc On/Off"],[95,"Perc Hard"],[33,"Samp Attack Sel"],[34,"Samp Release Sel"],[103,"Clav EQ Brill On/Off"],[104,"Clav EQ Treble On/Off"],[105,"Clav EQ Medium On/Off"],[106,"Clav EQ Soft On/Off"],[13,"Inst Sel (Organ/Piano)"],[12,"Piano Type"],[44,"Piano Model"],[83,"Piano Mono"],[27,"Octave Shift Organ Upper"],[28,"Octave Shift Organ Lower"],[29,"Octave Shift Piano"],[115,"EQ On/Off"],[113,"EQ Treble"],[116,"EQ Mid"],[117,"EQ Mid Frequency"],[114,"EQ Bass"],[7,"Gain"],[63,"Effect 1 Rate"],[60,"Effect 1 Sel"],[69,"Effect 1 On/Off"],[62,"Effect 2 Rate"],[61,"Effect 2 Sel"],[80,"Effect 2 On/Off"],[111,"Speaker/Comp Drive"],[81,"Speaker/Comp Sel"],[86,"Speaker/Comp On/Off"],[102,"Reverb Wet/Dry"],[96,"Reverb Sel"],[97,"Reverb On/Off"]]},{"id":"electro3hp","brand":"Nord","name":"Electro 3 HP","cc":[[16,"Upper Drawbar 1"],[17,"Upper Drawbar 2"],[18,"Upper Drawbar 3"],[19,"Upper Drawbar 4"],[20,"Upper Drawbar 5"],[21,"Upper Drawbar 6"],[22,"Upper Drawbar 7"],[23,"Upper Drawbar 8"],[24,"Upper Drawbar 9"],[70,"Lower Drawbar 1"],[71,"Lower Drawbar 2"],[72,"Lower Drawbar 3"],[73,"Lower Drawbar 4"],[74,"Lower Drawbar 5"],[75,"Lower Drawbar 6"],[76,"Lower Drawbar 7"],[77,"Lower Drawbar 8"],[78,"Lower Drawbar 9"],[9,"Organ Model Select"],[3,"Preset/Manual Select"],[88,"Perc Decay"],[89,"Perc Level"],[64,"Sustain Pedal"],[11,"Control Pedal"],[82,"Rotary Speed"],[79,"Rotary Stop Mode"],[84,"Vib Mode"],[85,"Vib On/Off Preset 2/Up"],[117,"Vib On/Off Preset 1/Low (B3 Model)"],[87,"Perc On/Off"],[95,"Perc Hard"],[33,"Samp Attack Sel"],[34,"Samp Release Sel"],[103,"Clav EQ Brill On/Off"],[104,"Clav EQ Treble On/Off"],[105,"Clav EQ Medium On/Off"],[106,"Clav EQ Soft On/Off"],[13,"Inst Sel (Organ/Piano)"],[12,"Piano Type"],[44,"Piano Model"],[83,"Piano Mono"],[99,"Piano Dynamics"],[98,"Piano Acoustics"],[27,"Octave Shift Organ Upper"],[28,"Octave Shift Organ Lower"],[29,"Octave Shift Piano"],[115,"EQ On/Off"],[113,"EQ Treble"],[116,"EQ Mid"],[117,"EQ Mid Frequency"],[114,"EQ Bass"],[7,"Gain"],[63,"Effect 1 Rate"],[60,"Effect 1 Sel"],[69,"Effect 1 On/Off"],[62,"Effect 2 Rate"],[61,"Effect 2 Sel"],[80,"Effect 2 On/Off"],[111,"Speaker/Comp Drive"],[81,"Speaker/Comp Sel"],[86,"Speaker/Comp On/Off"],[102,"Reverb Wet/Dry"],[96,"Reverb Sel"],[97,"Reverb On/Off"],[92,"Delay Rate"],[93,"Delay Ping Pong On/Off"],[94,"Delay On/Off"]]},{"id":"electro4hp","brand":"Nord","name":"Electro 4 HP","cc":[[16,"Upper Drawbar 1"],[17,"Upper Drawbar 2"],[18,"Upper Drawbar 3"],[19,"Upper Drawbar 4"],[20,"Upper Drawbar 5"],[21,"Upper Drawbar 6"],[22,"Upper Drawbar 7"],[23,"Upper Drawbar 8"],[24,"Upper Drawbar 9"],[70,"Lower Drawbar 1"],[71,"Lower Drawbar 2"],[72,"Lower Drawbar 3"],[73,"Lower Drawbar 4"],[74,"Lower Drawbar 5"],[75,"Lower Drawbar 6"],[76,"Lower Drawbar 7"],[77,"Lower Drawbar 8"],[78,"Lower Drawbar 9"],[9,"Organ Model Select"],[3,"Preset/Manual Select"],[88,"Perc Decay"],[89,"Perc Level"],[64,"Sustain Pedal"],[11,"Control Pedal"],[82,"Rotary Speed"],[79,"Rotary Stop Mode"],[84,"Vib Mode"],[85,"Vib On/Off Upper"],[107,"Vib On/Off Lower (B3 Model)"],[87,"Perc On/Off"],[95,"Perc Third"],[33,"Samp Attack Sel"],[34,"Samp Release Sel"],[103,"Clav EQ Brill On/Off"],[104,"Clav EQ Treble On/Off"],[105,"Clav EQ Medium On/Off"],[106,"Clav EQ Soft On/Off"],[13,"Inst Sel (Organ/Piano)"],[45,"Clav Select"],[12,"Piano Type"],[44,"Piano Model"],[83,"Piano Mono"],[99,"Piano Dynamics"],[98,"Acoustics"],[27,"Octave Shift Organ Upper"],[28,"Octave Shift Organ Lower"],[29,"Octave Shift Piano"],[115,"EQ On/Off"],[113,"EQ Treble"],[116,"EQ Mid"],[117,"EQ Mid Frequency"],[114,"EQ Bass"],[7,"Gain"],[63,"Effect 1 Rate"],[60,"Effect 1 Sel"],[69,"Effect 1 On/Off"],[62,"Effect 2 Rate"],[61,"Effect 2 Sel"],[80,"Effect 2 On/Off"],[111,"Speaker/Comp Drive"],[81,"Speaker/Comp Sel"],[86,"Speaker/Comp On/Off"],[102,"Reverb Wet/Dry"],[96,"Reverb Sel"],[97,"Reverb On/Off"],[92,"Delay Rate"],[93,"Delay Ping Pong On/Off"],[94,"Delay On/Off"]]},{"id":"electro4sw","brand":"Nord","name":"Electro 4 SW","cc":[[16,"Upper Drawbar 1"],[17,"Upper Drawbar 2"],[18,"Upper Drawbar 3"],[19,"Upper Drawbar 4"],[20,"Upper Drawbar 5"],[21,"Upper Drawbar 6"],[22,"Upper Drawbar 7"],[23,"Upper Drawbar 8"],[24,"Upper Drawbar 9"],[70,"Lower Drawbar 1"],[71,"Lower Drawbar 2"],[72,"Lower Drawbar 3"],[73,"Lower Drawbar 4"],[74,"Lower Drawbar 5"],[75,"Lower Drawbar 6"],[76,"Lower Drawbar 7"],[77,"Lower Drawbar 8"],[78,"Lower Drawbar 9"],[9,"Organ Model Select"],[3,"Preset/Manual Select"],[88,"Perc Decay"],[89,"Perc Level"],[64,"Sustain Pedal"],[11,"Control Pedal"],[82,"Rotary Speed"],[79,"Rotary Stop Mode"],[84,"Vib Mode"],[85,"Vib On/Off Upper"],[107,"Vib On/Off Lower (B3 Model)"],[87,"Perc On/Off"],[95,"Perc Third"],[33,"Samp Attack Sel"],[34,"Samp Release Sel"],[103,"Clav EQ Brill On/Off"],[104,"Clav EQ Treble On/Off"],[105,"Clav EQ Medium On/Off"],[106,"Clav EQ Soft On/Off"],[13,"Inst Sel (Organ/Piano)"],[45,"Clav Select"],[12,"Piano Type"],[44,"Piano Model"],[83,"Piano Mono"],[99,"Piano Dynamics"],[98,"Acoustics"],[27,"Octave Shift Organ Upper"],[28,"Octave Shift Organ Lower"],[29,"Octave Shift Piano"],[115,"EQ On/Off"],[113,"EQ Treble"],[116,"EQ Mid"],[117,"EQ Mid Frequency"],[114,"EQ Bass"],[7,"Gain"],[63,"Effect 1 Rate"],[60,"Effect 1 Sel"],[69,"Effect 1 On/Off"],[62,"Effect 2 Rate"],[61,"Effect 2 Sel"],[80,"Effect 2 On/Off"],[111,"Speaker/Comp Drive"],[81,"Speaker/Comp Sel"],[86,"Speaker/Comp On/Off"],[102,"Reverb Wet/Dry"],[96,"Reverb Sel"],[97,"Reverb On/Off"],[92,"Delay Rate"],[93,"Delay Ping Pong On/Off"],[94,"Delay On/Off"]]},{"id":"electro4d","brand":"Nord","name":"Electro 4D","cc":[[16,"Upper Drawbar 1"],[17,"Upper Drawbar 2"],[18,"Upper Drawbar 3"],[19,"Upper Drawbar 4"],[20,"Upper Drawbar 5"],[21,"Upper Drawbar 6"],[22,"Upper Drawbar 7"],[23,"Upper Drawbar 8"],[24,"Upper Drawbar 9"],[70,"Lower Drawbar 1"],[71,"Lower Drawbar 2"],[72,"Lower Drawbar 3"],[73,"Lower Drawbar 4"],[74,"Lower Drawbar 5"],[75,"Lower Drawbar 6"],[76,"Lower Drawbar 7"],[77,"Lower Drawbar 8"],[78,"Lower Drawbar 9"],[9,"Organ Model Select"],[3,"Preset/Manual Select"],[88,"Perc Decay"],[89,"Perc Level"],[64,"Sustain Pedal"],[11,"Control Pedal"],[82,"Rotary Speed"],[79,"Rotary Stop Mode"],[84,"Vib Mode"],[85,"Vib On/Off Upper"],[107,"Vib On/Off Lower (B3 Model)"],[87,"Perc On/Off"],[95,"Perc Third"],[33,"Samp Attack Sel"],[34,"Samp Release Sel"],[103,"Clav EQ Brill On/Off"],[104,"Clav EQ Treble On/Off"],[105,"Clav EQ Medium On/Off"],[106,"Clav EQ Soft On/Off"],[13,"Inst Sel (Organ/Piano)"],[45,"Clav Select"],[12,"Piano Type"],[44,"Piano Model"],[83,"Piano Mono"],[98,"Acoustics"],[27,"Octave Shift Organ Upper"],[28,"Octave Shift Organ Lower"],[29,"Octave Shift Piano"],[115,"EQ On/Off"],[113,"EQ Treble"],[116,"EQ Mid"],[117,"EQ Mid Frequency"],[114,"EQ Bass"],[7,"Gain"],[63,"Effect 1 Rate"],[60,"Effect 1 Sel"],[69,"Effect 1 On/Off"],[62,"Effect 2 Rate"],[61,"Effect 2 Sel"],[80,"Effect 2 On/Off"],[111,"Speaker/Comp Drive"],[81,"Speaker/Comp Sel"],[86,"Speaker/Comp On/Off"],[102,"Reverb Wet/Dry"],[96,"Reverb Sel"],[97,"Reverb On/Off"],[92,"Delay Rate"],[93,"Delay Ping Pong On/Off"],[94,"Delay On/Off"]]},{"id":"electro5d61","brand":"Nord","name":"Electro 5D 61 ","cc":[[64,"Sustain Pedal"],[11,"Control Pedal"],[39,"Part Lower Sound Engine Select"],[40,"Part upper Sound Engine Select"]]},{"id":"electro5d73","brand":"Nord","name":"Electro 5D 73","cc":[[64,"Sustain Pedal"],[11,"Control Pedal"],[39,"Part Lower Sound Engine Select"],[40,"Part upper Sound Engine Select"],[41,"Part Lower Enable"],[42,"Part Upper Enable"],[13,"Part Mix Level"],[58,"Ctrl Pedal Enable Part Lower"],[59,"Ctrl Pedal Enable Part Upper"],[50,"Keyboard Split Mode"],[51,"Keyboard Split Point"],[52,"Transpose Enable"],[53,"Transpose Value"],[54,"Octave Shift Part Lower"],[55,"Octave Shift Part Upper"],[56,"Sustain Pedal Enable Part Lower"],[57,"Sustain Pedal Enable Part Upper"],[48,"Program/Set List/Live Mode Toggle"],[49,"Set List Slot Select"],[12,"Piano Type"],[44,"Piano Model"],[45,"Piano Variation"],[46,"Piano Keyboard Touch"],[98,"Piano Acoustic"],[83,"Piano Mono Mode"],[3,"Organ Preset Select"],[9,"Organ Model Select"],[16,"Drawbar 1"],[17,"Drawbar 2"],[18,"Drawbar 3"],[19,"Drawbar 4"],[20,"Drawbar 5"],[21,"Drawbar 6"],[22,"Drawbar 7"],[23,"Drawbar 8"],[24,"Drawbar 9"],[25,"Organ Drawbar Live"],[87,"Organ Perc Enable"],[88,"Organ Perc Speed/Level"],[95,"Organ Perc Harmonic"],[84,"Organ Vibrato Type"],[85,"Organ Vibrato Enable"],[33,"Sample Synth Attack"],[34,"Sample Synth Release"],[35,"Sample Synth Sample"],[36,"Sample Synth Dynamics"],[37,"Sample Synth Filter Velocity"],[69,"Effect 1 Enable"],[60,"Effect 1 Type"],[63,"Effect 1 Rate"],[71,"Effect 1 Part Select"],[73,"Effect 1 Ctrl Pedal"],[80,"Effect 2 Enable"],[61,"Effect 2 Type"],[62,"Effect 2 Rate"],[72,"Effect 2 Part Select"],[74,"Effect 2 Deep Mode"],[81,"Speaker/Comp Type"],[86,"Speaker/Comp Enable"],[111,"Speaker/Comp Drive"],[112,"Speaker/Comp Part Select"],[79,"Rotary Stop Mode"],[82,"Rotary Speed"],[90,"Rotor Pedal"],[92,"Delay Tempo"],[93,"Delay Ping Pong On/Off"],[94,"Delay Enable"],[103,"Delay Dry/Wet"],[104,"Delay Feedback"],[105,"Delay Part Select"],[96,"Reverb Type"],[97,"Reverb Enable"],[102,"Reverb Dry/Wet"],[113,"EQ Treble"],[115,"EQ Enable"],[116,"EQ Mid"],[117,"EQ Mid Frequency"],[118,"EQ Bass"],[119,"EQ Part Select"],[7,"Gain Level"]]},{"id":"electro5hp73","brand":"Nord","name":"Electro 5HP 73","cc":[[64,"Sustain Pedal"],[11,"Control Pedal"],[39,"Part Lower Sound Engine Select"],[40,"Part upper Sound Engine Select"],[41,"Part Lower Enable"],[42,"Part Upper Enable"],[13,"Part Mix Level"],[58,"Ctrl Pedal Enable Part Lower"],[59,"Ctrl Pedal Enable Part Upper"],[50,"Keyboard Split Mode"],[51,"Keyboard Split Point"],[52,"Transpose Enable"],[53,"Transpose Value"],[54,"Octave Shift Part Lower"],[55,"Octave Shift Part Upper"],[56,"Sustain Pedal Enable Part Lower"],[57,"Sustain Pedal Enable Part Upper"],[48,"Program/Set List/Live Mode Toggle"],[49,"Set List Slot Select"],[12,"Piano Type"],[44,"Piano Model"],[45,"Piano Variation"],[46,"Piano Keyboard Touch"],[98,"Piano Acoustic"],[83,"Piano Mono Mode"],[3,"Organ Preset Select"],[9,"Organ Model Select"],[16,"Drawbar 1"],[17,"Drawbar 2"],[18,"Drawbar 3"],[19,"Drawbar 4"],[20,"Drawbar 5"],[21,"Drawbar 6"],[22,"Drawbar 7"],[23,"Drawbar 8"],[24,"Drawbar 9"],[25,"Organ Drawbar Live"],[87,"Organ Perc Enable"],[88,"Organ Perc Speed/Level"],[95,"Organ Perc Harmonic"],[84,"Organ Vibrato Type"],[85,"Organ Vibrato Enable"],[33,"Sample Synth Attack"],[34,"Sample Synth Release"],[35,"Sample Synth Sample"],[36,"Sample Synth Dynamics"],[37,"Sample Synth Filter Velocity"],[69,"Effect 1 Enable"],[60,"Effect 1 Type"],[63,"Effect 1 Rate"],[71,"Effect 1 Part Select"],[73,"Effect 1 Ctrl Pedal"],[80,"Effect 2 Enable"],[61,"Effect 2 Type"],[62,"Effect 2 Rate"],[72,"Effect 2 Part Select"],[74,"Effect 2 Deep Mode"],[81,"Speaker/Comp Type"],[86,"Speaker/Comp Enable"],[111,"Speaker/Comp Drive"],[112,"Speaker/Comp Part Select"],[79,"Rotary Stop Mode"],[82,"Rotary Speed"],[90,"Rotor Pedal"],[92,"Delay Tempo"],[93,"Delay Ping Pong On/Off"],[94,"Delay Enable"],[103,"Delay Dry/Wet"],[104,"Delay Feedback"],[105,"Delay Part Select"],[96,"Reverb Type"],[97,"Reverb Enable"],[102,"Reverb Dry/Wet"],[113,"EQ Treble"],[115,"EQ Enable"],[116,"EQ Mid"],[117,"EQ Mid Frequency"],[118,"EQ Bass"],[119,"EQ Part Select"],[7,"Gain Level"]]},{"id":"electro6","brand":"Nord","name":"Electro 6","cc":[[7,"Volume"],[10,"Pan"],[64,"Sustain"],[11,"Control Pedal"],[3,"Keyboard Split"],[9,"Organ Enable"],[12,"Organ Octave Shift"],[47,"Organ Sustain Pedal"],[48,"Organ Control Pedal"],[13,"Organ Level"],[14,"Organ Model Select"],[15,"Organ Preset Select"],[16,"Drawbar 1"],[17,"Drawbar 2"],[18,"Drawbar 3"],[19,"Drawbar 4"],[20,"Drawbar 5"],[21,"Drawbar 6"],[22,"Drawbar 7"],[23,"Drawbar 8"],[24,"Drawbar 9"],[25,"Organ Perc Enable"],[26,"Organ Vibrato Type"],[27,"Organ Vibrato Enable"],[28,"Organ Perc Harmonic"],[29,"Organ Perc Speed"],[30,"Organ Perc Level"],[8,"Organ Edit Lower Manual"],[33,"Piano Enable"],[34,"Piano Level"],[35,"Piano Octave Shift"],[49,"Piano Sustain Pedal"],[50,"Piano Control Pedal"],[36,"Piano Type"],[37,"Piano Model"],[38,"Piano Variation"],[40,"Piano EQ"],[42,"Sample Synth Enable"],[43,"Sample Synth Level"],[44,"Sample Synth Octave Shift"],[45,"Sample Synth Sustain Pedal"],[46,"Sample Synth Control Pedal"],[68,"Sample Synth Attack"],[69,"Sample Synth Decay/Release"],[72,"Sample Synth Dynamics"],[73,"Sample Synth Filter"],[82,"Effect 1 Enable"],[83,"Effect 1 Type"],[84,"Effect 1 Source"],[85,"Effect 1 Control Pedal"],[86,"Effect 1 Rate"],[87,"Effect 2 Type"],[88,"Effect 2 Source"],[89,"Effect 2 Deep Mode"],[90,"Effect 2 Rate"],[91,"Effect 2 Enable"],[92,"Delay Source"],[93,"Delay Amount"],[94,"Delay Rate"],[95,"Delay Feedback"],[97,"Delay Enable"],[98,"Delay Ping Pong On/Off"],[100,"Amp/Speaker Type"],[101,"Amp/Speaker Drive"],[118,"Amp/Speaker Enable"],[119,"Amp/Speaker Source"],[102,"EQ Bass"],[103,"EQ Mid"],[104,"EQ Treble"],[105,"EQ Enable"],[106,"EQ Source"],[107,"EQ Mid Frequency"],[108,"Rotary Speed"],[112,"Reverb Bright"],[113,"Reverb Amount"],[115,"Reverb Type"],[116,"Reverb Enable"]]},{"id":"grand","brand":"Nord","name":"Grand","cc":[[7,"Volume"],[10,"Pan"],[64,"Sustain"],[67,"Soft Pedal"],[66,"Sostenuto"],[11,"Ctrl Pedal"],[3,"Keyboard Split"],[33,"Piano Enable"],[34,"Piano Level"],[35,"Piano Octave Shift"],[49,"Piano Sustain Pedal"],[50,"Piano Volume Pedal"],[40,"Piano Timbre"],[52,"Piano Acoustics"],[51,"Piano Keyboard Touch"],[53,"Piano Pedal Noise"],[42,"Sample Synth Enable"],[43,"Sample Synth Level"],[44,"Sample Synth Octave Shift"],[45,"Sample Synth Sustain Pedal"],[46,"Sample Synth Volume Pedal"],[68,"Sample Synth Attack"],[69,"Sample Synth Decay/Release"],[72,"Sample Synth Amp"],[73,"Sample Synth Filter"],[82,"Effects 1 Enable"],[83,"Effects 1 Type"],[84,"Effects 1 Source"],[85,"Effects 1 Ctrl Ped"],[86,"Effects 1 Rate"],[87,"Effects 2 Type"],[88,"Effects 2 Source"],[89,"Effects 2 Deep"],[90,"Effects 2 Rate"],[91,"Effects 2 Enable"],[92,"Delay Source"],[93,"Delay Dry/Wet"],[94,"Delay Rate"],[95,"Delay Feedback"],[97,"Delay Enable"],[100,"Amp/Comp Type"],[117,"Amp/Comp Drive"],[118,"Amp/Comp Enable"],[119,"Amp/Comp Source"],[102,"EQ Bass"],[103,"EQ Mid"],[104,"EQ Treble"],[105,"EQ Enable"],[106,"EQ Source"],[107,"EQ Mid Frequency"],[116,"Reverb Enable"],[115,"Reverb Type"],[113,"Reverb Dry/Wet"],[112,"Reverb Bright"]]},{"id":"lead","brand":"Nord","name":"Lead","cc":[[7,"Gain"],[17,"Octave Shift"],[18,"Mod Wheel Destination"],[16,"Unison"],[15,"Poly/Legato/Mono"],[65,"Portmaneto Auto"],[5,"Portamento TIme"],[19,"LFO1 Rate"],[20,"LFO1 Waveform"],[21,"LFO1 Destination"],[22,"LFO1 Amount"],[23,"LFO2/Arp Rate"],[24,"LFO2 DEstination/Arp Mode"],[25,"LFO2 AMount/Arp Range"],[26,"Mod Env Attack"],[27,"Mod Env Decay"],[28,"Mod Env Destination"],[29,"Mod Env Amount"],[30,"Osc1 Waveform"],[31,"Osc2 Waveform"],[78,"Osc2 Semitones"],[33,"Osc2 Fine Tune"],[70,"Oscillator FM Depth"],[34,"Osc2 Keyboard Tracking"],[79,"Oscillator Pulse Width"],[35,"Oscillator Sync"],[8,"Oscillator Mix "],[73,"Amp Env Attack"],[36,"Amp Env Decay"],[37,"Amp Env Sustain"],[72,"Amp Env Release"],[38,"Filter Env Attack"],[39,"Filter Env Decay"],[40,"Filter Env Sustain"],[41,"Filter Env Release"],[44,"Filter Mode"],[74,"Filter Cutoff"],[42,"Filter Resonance"],[43,"Filter Env Amount"],[45,"Filter Velocity"],[46,"Filter Keyboard Tracking"],[1,"Mod Wheel"],[11,"Expression Pedal"],[64,"Sustain Pedal"]]},{"id":"lead2","brand":"Nord","name":"Lead 2","cc":[[7,"Gain"],[17,"Octave Shift"],[18,"Mod Wheel Destination"],[16,"Unison"],[15,"Poly/Legato/Mono"],[65,"Portmaneto Auto"],[5,"Portamento TIme"],[19,"LFO1 Rate"],[20,"LFO1 Waveform"],[21,"LFO1 Destination"],[22,"LFO1 Amount"],[23,"LFO2/Arp Rate"],[24,"LFO2 DEstination/Arp Mode"],[25,"LFO2 AMount/Arp Range"],[26,"Mod Env Attack"],[27,"Mod Env Decay"],[28,"Mod Env Destination"],[29,"Mod Env Amount"],[30,"Osc1 Waveform"],[31,"Osc2 Waveform"],[78,"Osc2 Semitones"],[33,"Osc2 Fine Tune"],[70,"Oscillator FM Depth"],[34,"Osc2 Keyboard Tracking"],[79,"Oscillator Pulse Width"],[35,"Oscillator Sync"],[8,"Oscillator Mix "],[73,"Amp Env Attack"],[36,"Amp Env Decay"],[37,"Amp Env Sustain"],[72,"Amp Env Release"],[38,"Filter Env Attack"],[39,"Filter Env Decay"],[40,"Filter Env Sustain"],[41,"Filter Env Release"],[44,"Filter Mode"],[74,"Filter Cutoff"],[42,"Filter Resonance"],[43,"Filter Env Amount"],[45,"Filter Velocity"],[46,"Filter Keyboard Tracking"],[1,"Mod Wheel"],[11,"Expression Pedal"],[64,"Sustain Pedal"],[80,"Filter Distortion"]]},{"id":"lead2x","brand":"Nord","name":"Lead 2X","cc":[[7,"Gain"],[17,"Octave Shift"],[18,"Mod Wheel Destination"],[16,"Unison"],[15,"Poly/Legato/Mono"],[65,"Portmaneto Auto"],[5,"Portamento TIme"],[19,"LFO1 Rate"],[20,"LFO1 Waveform"],[21,"LFO1 Destination"],[22,"LFO1 Amount"],[23,"LFO2/Arp Rate"],[24,"LFO2 DEstination/Arp Mode"],[25,"LFO2 AMount/Arp Range"],[26,"Mod Env Attack"],[27,"Mod Env Decay"],[28,"Mod Env Destination"],[29,"Mod Env Amount"],[30,"Osc1 Waveform"],[31,"Osc2 Waveform"],[78,"Osc2 Semitones"],[33,"Osc2 Fine Tune"],[70,"Oscillator FM Depth"],[34,"Osc2 Keyboard Tracking"],[79,"Oscillator Pulse Width"],[35,"Oscillator Sync"],[8,"Oscillator Mix "],[73,"Amp Env Attack"],[36,"Amp Env Decay"],[37,"Amp Env Sustain"],[72,"Amp Env Release"],[38,"Filter Env Attack"],[39,"Filter Env Decay"],[40,"Filter Env Sustain"],[41,"Filter Env Release"],[44,"Filter Mode"],[74,"Filter Cutoff"],[42,"Filter Resonance"],[43,"Filter Env Amount"],[45,"Filter Velocity"],[46,"Filter Keyboard Tracking"],[1,"Mod Wheel"],[11,"Expression Pedal"],[64,"Sustain Pedal"],[80,"Filter Distortion"]]},{"id":"lead3","brand":"Nord","name":"Lead 3","cc":[[1,"Mod Wheel"],[17,"Octave Shift"],[112,"Chord Memory On/Off"],[16,"Unison On/Off"],[53,"Unison Detune"],[15,"Mono On/Off"],[94,"Mono Hi/Lo Note Priority"],[111,"Legato On/Off"],[65,"Glide Mode (Normal/Auto)"],[5,"Glide Rate"],[54,"Vibrato Rate"],[55,"Vibrato Amount"],[56,"Vibrato Source"],[47,"Arp Run On/Off"],[50,"Arp Rate"],[52,"Arp Clock Sync On/Off"],[98,"Arp Clock Sync Divisor"],[19,"LFO1 Rate"],[20,"LFO1 Waveform"],[21,"LFO1 Destination"],[22,"LFO1 Amount"],[81,"LFO1 Clock Sync On/Off"],[82,"LFO1 Keyboard Sync/Single Cycle"],[83,"LFO1 Mono Mode On/Off"],[84,"LFO1 Amount Invert On/Off"],[99,"LFO1 Clock Sync Divisor"],[23,"LFO2 Rate"],[85,"LFO2 Waveform"],[24,"LFO2 Destination"],[25,"LFO2 Amount"],[86,"LFO2 Clock Sync On/Off"],[87,"LFO2 Keyboard Sync/Single Cycle"],[88,"LFO2 Mono Mode On/Off"],[89,"LFO2 Amount Invert On/Off"],[100,"LFO2 Clock Sync Divisor"],[26,"Mod Env Attack"],[101,"Mod Env Attack Type"],[27,"Mod Env Decay/Release"],[28,"Mod Env Destination"],[29,"Mod Env Amount"],[108,"Mod Env Amount Invert On/Off"],[109,"Mod Env Decay/Release On/Off"],[110,"Mod Env Repeat On/Off"],[30,"Osc1 Waveform"],[35,"Osc1 Sync On/Off"],[79,"Osc1 Shape"],[115,"Osc1 Sync Detune"],[117,"Osc1 Sync Noise Timbre"],[119,"Osc1 FM Amount"],[78,"Osc2 Coarse Tuning"],[33,"Osc2 Fine Tuning"],[31,"Osc2 Waveform"],[34,"Osc2 Keyboard Tracking On/Off"],[102,"Osc2 Shape"],[103,"Osc2 Sync On/Off"],[104,"Osc2 Partial On/Off"],[95,"Osc2 Dual Sine Carrier"],[96,"Osc2 Dual Sine Modulator"],[90,"Osc2 Noise Type"],[97,"Osc2 Noise Frequency"],[116,"Osc2 Sync Detune"],[118,"Osc2 Sync Noise Timbre"],[93,"Osc2 FM Amount"],[8,"Oscillator Mix"],[70,"Oscillator Modulation Amount"],[105,"Oscillator Modulation Type"],[106,"Oscillator Modulation Noise"],[73,"Amp Env Attack"],[107,"Amp Env Attack Type"],[36,"Amp Env Decay"],[37,"Amp Env Sustain"],[72,"Amp Env Release"],[71,"Amp Level"],[38,"Filter Env Attack"],[63,"Filter Env Attack Type"],[39,"Filter Env Decay"],[40,"Filter Env Sustain"],[41,"Filter Env Release"],[43,"Filter Env Amount"],[45,"Filter Env Velocity"],[62,"Filter Env Amount Invert On/Off"],[44,"Filter Type"],[58,"Filter 1 Slope"],[74,"Filter Frequency 1"],[42,"Filter Resonance"],[59,"Filter Frequency 2"],[46,"Filter Keyboard Tracking On/Off"],[60,"Filter Oscillator Bypass On/Off"],[61,"FIlter 2 Env Control"],[114,"Filter 1 Distortion"],[10,"Pan"],[11,"Expression Pedal"],[64,"Sustain Pedal"]]},{"id":"lead4","brand":"Nord","name":"Lead 4","cc":[[16,"Voice Mode Unison"],[118,"Pitch Bend Range"],[56,"Vib Select"],[5,"Glide Rate"],[15,"Mono Selector"],[58,"Hold"],[54,"Hold Enable"],[112,"Chord Enable"],[17,"Octave Shift"],[70,"Impulse Morph Buttons"],[19,"LFO1 Rate"],[20,"LFO1 Waveform"],[21,"LFO1 Destination"],[22,"LFO1 Amount"],[2,"LFO1 Master Clock"],[3,"LFO1 Clock Divisions"],[83,"LFO1 KBS"],[59,"LFO1 ImpSync"],[91,"LFO1/Arp On/Off"],[9,"Arp Tempo"],[86,"Arp Master Clock"],[87,"Arp Clock Division"],[89,"Arp Direction"],[90,"Arp Run On/Off"],[88,"Arp Range"],[92,"Arp KBS"],[93,"Arp ImpSync"],[23,"LFO2 Rate"],[85,"LFO2 Waveform"],[24,"LFO2 Destination"],[25,"LFO2 Amount"],[18,"LFO2 Master Clock"],[14,"LFO2 Clock Divisions"],[12,"LFO2 KBS"],[13,"LFO2 ImpSync"],[26,"Mod Env Attack"],[27,"Mod Env Decay"],[28,"Mod Env Destination"],[29,"Mod Env Amount"],[109,"Mod Env Rel Mode"],[6,"Mod Env ImpSync"],[30,"Osc1 Waveform"],[49,"Osc1 Wavetable Selection"],[31,"Osc2 Waveform"],[78,"Osc2 Semitones"],[33,"Osc2 Fine Tune"],[34,"Osc2 KBT"],[61,"Osc2 Noise Resonance"],[62,"Osc2 Noise Frequency"],[63,"Osc2 Noise KBT"],[69,"Osc Mod Amount"],[105,"Osc Mod Select"],[8,"Osc Mix"],[73,"Amp Env Attack"],[36,"Amp Env Decay"],[37,"Amp Env Sustain"],[72,"Amp Env Release"],[35,"Amp Velocity"],[38,"Filter Env Attack"],[39,"Filter Env Decay"],[40,"Filter Env Sustain"],[41,"Filter Env Release"],[46,"Filter Keyboard Tracking On/Off"],[44,"Filter Type"],[45,"Filter Velocity"],[74,"Filter Frequency"],[42,"Filter Resonance"],[47,"Filter Drive"],[43,"Filter Env Amount"],[71,"Output Level"],[53,"FX Selection"],[52,"FX On/Off"],[55,"FX Amount"],[77,"Delay Tempo"],[57,"Delay Clock Division"],[79,"Delay Feedback"],[76,"Delay/Reverb Amount"],[51,"Delay Master Clock"],[50,"Delay/Reverb Selection"],[94,"Reverb Bright"],[96,"Reverb Model"],[97,"Delay/Reverb On/Off"],[117,"Pattern Selection"],[119,"Slot Focus"],[115,"Slot Enable"],[10,"Pan"],[7,"Volume Pedal"],[11,"Control Pedal"],[1,"Mod Wheel"],[64,"Sustain Pedal"]]},{"id":"lead4r","brand":"Nord","name":"Lead 4R","cc":[[16,"Voice Mode Unison"],[118,"Pitch Bend Range"],[56,"Vib Select"],[5,"Glide Rate"],[15,"Mono Selector"],[58,"Hold"],[54,"Hold Enable"],[112,"Chord Enable"],[17,"Octave Shift"],[70,"Impulse Morph Buttons"],[19,"LFO1 Rate"],[20,"LFO1 Waveform"],[21,"LFO1 Destination"],[22,"LFO1 Amount"],[2,"LFO1 Master Clock"],[3,"LFO1 Clock Divisions"],[83,"LFO1 KBS"],[59,"LFO1 ImpSync"],[91,"LFO1/Arp On/Off"],[9,"Arp Tempo"],[86,"Arp Master Clock"],[87,"Arp Clock Division"],[89,"Arp Direction"],[90,"Arp Run On/Off"],[88,"Arp Range"],[92,"Arp KBS"],[93,"Arp ImpSync"],[23,"LFO2 Rate"],[85,"LFO2 Waveform"],[24,"LFO2 Destination"],[25,"LFO2 Amount"],[18,"LFO2 Master Clock"],[14,"LFO2 Clock Divisions"],[12,"LFO2 KBS"],[13,"LFO2 ImpSync"],[26,"Mod Env Attack"],[27,"Mod Env Decay"],[28,"Mod Env Destination"],[29,"Mod Env Amount"],[109,"Mod Env Rel Mode"],[6,"Mod Env ImpSync"],[30,"Osc1 Waveform"],[49,"Osc1 Wavetable Selection"],[31,"Osc2 Waveform"],[78,"Osc2 Semitones"],[33,"Osc2 Fine Tune"],[34,"Osc2 KBT"],[61,"Osc2 Noise Resonance"],[62,"Osc2 Noise Frequency"],[63,"Osc2 Noise KBT"],[69,"Osc Mod Amount"],[105,"Osc Mod Select"],[8,"Osc Mix"],[73,"Amp Env Attack"],[36,"Amp Env Decay"],[37,"Amp Env Sustain"],[72,"Amp Env Release"],[35,"Amp Velocity"],[38,"Filter Env Attack"],[39,"Filter Env Decay"],[40,"Filter Env Sustain"],[41,"Filter Env Release"],[46,"Filter Keyboard Tracking On/Off"],[44,"Filter Type"],[45,"Filter Velocity"],[74,"Filter Frequency"],[42,"Filter Resonance"],[47,"Filter Drive"],[43,"Filter Env Amount"],[71,"Output Level"],[53,"FX Selection"],[52,"FX On/Off"],[55,"FX Amount"],[77,"Delay Tempo"],[57,"Delay Clock Division"],[79,"Delay Feedback"],[76,"Delay/Reverb Amount"],[51,"Delay Master Clock"],[50,"Delay/Reverb Selection"],[94,"Reverb Bright"],[96,"Reverb Model"],[97,"Delay/Reverb On/Off"],[117,"Pattern Selection"],[119,"Slot Focus"],[115,"Slot Enable"],[10,"Pan"],[7,"Volume Pedal"],[11,"Control Pedal"],[1,"Mod Wheel"],[64,"Sustain Pedal"]]},{"id":"leada1","brand":"Nord","name":"Lead A1","cc":[[90,"Arp Run On/Off"],[9,"Arp Tempo/Clock Divisions"],[86,"Arp Master Clock"],[88,"Arp Range"],[89,"Arp Direction"],[5,"Glide Rate"],[15,"Mono Selector"],[16,"Voice Mode Unison"],[118,"Pitch Bend Range"],[56,"Vibrato Select"],[19,"LFO Rate/Clock Divisions"],[20,"LFO Waveform Selector"],[2,"LFO Master Clock Enable"],[34,"LFO Envelope Selector"],[26,"Mod Env Attack"],[27,"Mod Env Decay/Sustain"],[28,"Mod Env Release"],[38,"Mod Env Invert"],[29,"Mod Env Velocity"],[68,"Osc LFO Modulation Amount"],[69,"Osc Mod Env Amount"],[31,"Osc Control"],[30,"Osc Waveform Selector"],[33,"Osc Configuration"],[48,"Filter LFO Modulation Amount"],[43,"Filter Mod Env Amount"],[74,"Filter Frequency"],[44,"Filter Type"],[46,"Filter Keyboard Tracking On/Off"],[47,"Filter Drive"],[42,"Filter Resonance"],[73,"Amp Env Attack"],[36,"Amp Env Decay"],[72,"Amp Env Release"],[35,"Amp Env Velocity"],[55,"FX Amount"],[53,"FX Selection"],[52,"FX On/Off"],[78,"Delay Tempo/Clock Divisions"],[51,"Delay Master Clock"],[79,"Delay Feedback"],[100,"Delay Ping Pong"],[76,"Delay Amount"],[99,"Delay On/Off"],[71,"Output Level"],[10,"Pan"],[98,"Reverb Amount"],[96,"Reverb Selector"],[97,"Reverb On/Off"],[17,"Octave Shift"],[58,"Hold"],[54,"Hold Enable"],[119,"Slot Focus"],[115,"Slot Enable"],[7,"Volume Pedal"],[11,"Control Pedal"],[1,"Mod Wheel"],[64,"Sustain Pedal"]]},{"id":"leada1r","brand":"Nord","name":"Lead A1R","cc":[[90,"Arp Run On/Off"],[9,"Arp Tempo/Clock Divisions"],[86,"Arp Master Clock"],[88,"Arp Range"],[89,"Arp Direction"],[5,"Glide Rate"],[15,"Mono Selector"],[16,"Voice Mode Unison"],[118,"Pitch Bend Range"],[56,"Vibrato Select"],[19,"LFO Rate/Clock Divisions"],[20,"LFO Waveform Selector"],[2,"LFO Master Clock Enable"],[34,"LFO Envelope Selector"],[26,"Mod Env Attack"],[27,"Mod Env Decay/Sustain"],[28,"Mod Env Release"],[38,"Mod Env Invert"],[29,"Mod Env Velocity"],[68,"Osc LFO Modulation Amount"],[69,"Osc Mod Env Amount"],[31,"Osc Control"],[30,"Osc Waveform Selector"],[33,"Osc Configuration"],[48,"Filter LFO Modulation Amount"],[43,"Filter Mod Env Amount"],[74,"Filter Frequency"],[44,"Filter Type"],[46,"Filter Keyboard Tracking On/Off"],[47,"Filter Drive"],[42,"Filter Resonance"],[73,"Amp Env Attack"],[36,"Amp Env Decay"],[72,"Amp Env Release"],[35,"Amp Env Velocity"],[55,"FX Amount"],[53,"FX Selection"],[52,"FX On/Off"],[78,"Delay Tempo/Clock Divisions"],[51,"Delay Master Clock"],[79,"Delay Feedback"],[100,"Delay Ping Pong"],[76,"Delay Amount"],[99,"Delay On/Off"],[71,"Output Level"],[10,"Pan"],[98,"Reverb Amount"],[96,"Reverb Selector"],[97,"Reverb On/Off"],[17,"Octave Shift"],[58,"Hold"],[54,"Hold Enable"],[119,"Slot Focus"],[115,"Slot Enable"],[7,"Volume Pedal"],[11,"Control Pedal"],[1,"Mod Wheel"],[64,"Sustain Pedal"]]},{"id":"piano","brand":"Nord","name":"Piano","cc":[[12,"Piano Type"],[44,"Piano Model"],[45,"Clav Model"],[33,"Keyboard Touch"],[83,"Mono Output"],[79,"Acoustic Model String Resonance"],[78,"Acoustic Model Pedal Noise"],[115,"EQ On/Off"],[113,"EQ Treble"],[116,"EQ Mid"],[117,"EQ Mid Frequency"],[114,"EQ Bass"],[63,"Effect 1 Rate"],[60,"Effect 1 Type"],[69,"Effect 1 On/Off"],[62,"Effect 2 Rate"],[61,"Effect 2 Type"],[80,"Effect 2 On/Off"],[111,"Amp/Comp Amount"],[81,"Amp/Comp Sel"],[86,"Amp/Comp On/Off"],[102,"Reverb Wet/Dry"],[96,"Reverb Sel"],[97,"Reverb On/Off"],[64,"Sustain Pedal"],[67,"Soft Pedal"],[66,"Sostenuto Pedal"]]},{"id":"piano2ha88","brand":"Nord","name":"Piano 2 HA88","cc":[[14,"Keyboard Split"],[15,"Transpose"],[33,"Keyboard Touch"],[34,"Sustped Off"],[106,"Piano Level"],[12,"Piano Type"],[44,"Piano Model"],[46,"Piano On/Off"],[45,"Clav Model"],[79,"Acoustic Model String Resonance"],[78,"Acoustic Model Pedal Noise"],[105,"Piano Octave Shift"],[51,"Synth Level"],[52,"Sample Select"],[53,"Synth Attack"],[54,"Synth Release"],[55,"Synth On/Off"],[56,"Synth Octave Shift"],[63,"Effect 1 Rate"],[60,"Effect 1 Type"],[69,"Effect 1 On/Off"],[70,"Effect 1 Source"],[62,"Effect 2 Rate"],[61,"Effect 2 Type"],[80,"Effect 2 On/Off"],[71,"Effect 2 Source"],[75,"Delay Mix"],[76,"Delay Feedback"],[84,"Delay On/Off"],[85,"Delay Source"],[115,"EQ On/Off"],[113,"EQ Treble"],[116,"EQ Mid"],[117,"EQ Mid Frequency"],[112,"EQ Bass"],[118,"EQ Source"],[86,"Amp/Comp On/Off"],[111,"Amp/Comp Amount"],[81,"Amp/Comp Sel"],[87,"Amp/Comp Source"],[102,"Reverb Wet/Dry"],[96,"Reverb Sel"],[97,"Reverb On/Off"],[64,"Sustain Pedal"],[67,"Soft Pedal"],[66,"Sostenuto Pedal"],[11,"Volume Pedal"]]},{"id":"piano2hp","brand":"Nord","name":"Piano 2 HP","cc":[[14,"Keyboard Split"],[15,"Transpose"],[33,"Keyboard Touch"],[34,"Sustped Off"],[106,"Piano Level"],[12,"Piano Type"],[44,"Piano Model"],[46,"Piano On/Off"],[45,"Clav Model"],[79,"Acoustic Model String Resonance"],[78,"Acoustic Model Pedal Noise"],[105,"Piano Octave Shift"],[51,"Synth Level"],[52,"Sample Select"],[53,"Synth Attack"],[54,"Synth Release"],[55,"Synth On/Off"],[56,"Synth Octave Shift"],[63,"Effect 1 Rate"],[60,"Effect 1 Type"],[69,"Effect 1 On/Off"],[70,"Effect 1 Source"],[62,"Effect 2 Rate"],[61,"Effect 2 Type"],[80,"Effect 2 On/Off"],[71,"Effect 2 Source"],[75,"Delay Mix"],[76,"Delay Feedback"],[84,"Delay On/Off"],[85,"Delay Source"],[115,"EQ On/Off"],[113,"EQ Treble"],[116,"EQ Mid"],[117,"EQ Mid Frequency"],[112,"EQ Bass"],[118,"EQ Source"],[86,"Amp/Comp On/Off"],[111,"Amp/Comp Amount"],[81,"Amp/Comp Sel"],[87,"Amp/Comp Source"],[102,"Reverb Wet/Dry"],[96,"Reverb Sel"],[97,"Reverb On/Off"],[64,"Sustain Pedal"],[67,"Soft Pedal"],[66,"Sostenuto Pedal"],[11,"Volume Pedal"]]},{"id":"piano3","brand":"Nord","name":"Piano 3","cc":[[64,"Sustain"],[66,"Sostenuto"],[67,"Soft Pedal"],[11,"Volume/Ctrl Pedal"],[16,"Piano Enable"],[55,"Sample Synth Enable"],[15,"Transpose Enable"],[14,"KB Split Mode"],[16,"KB Split Point"],[17,"Transpose Value"],[48,"Live Mode"],[83,"Mono Mode"],[106,"Piano Level"],[12,"Piano Type"],[44,"Piano Model"],[45,"Piano Variation"],[47,"Piano Keyboard Touch"],[79,"Piano Acoustics"],[107,"Piano Pedals"],[105,"Piano Octave Shift"],[51,"Sample Synth Level"],[52,"Sample Select"],[53,"Sample Synth Attack"],[54,"Sample Synth Release"],[77,"Sample Synth Dynamics"],[56,"Sample Synth Octave Shift"],[108,"Sample Synth Pedals"],[69,"Effect 1 Enable"],[60,"Effect 1 Type"],[63,"Effect 1 Rate"],[70,"Effect 1 Source Select"],[72,"Effect 1 Ctrl Pedal"],[80,"Effect 2 Enable"],[61,"Effect 2 Type"],[62,"Effect 2 Rate"],[71,"Effect 2 Source Select"],[73,"Effect 2 Deep Mode"],[81,"Amp/Comp Type"],[86,"Amp/Comp Enable"],[111,"Amp/Comp Drive"],[87,"Amp/Comp Source Select"],[92,"Delay Tempo"],[84,"Delay Enable"],[75,"Delay Dry/Wet"],[76,"Delay Feedback"],[85,"Delay Source Select"],[96,"Reverb Type"],[97,"Reverb Enable"],[102,"Reverb Dry/Wet"],[98,"Reverb Bright"],[113,"EQ Treble"],[115,"EQ Enable"],[116,"EQ Mid"],[117,"EQ Mid Frequency"],[112,"EQ Bass"],[118,"EQ Source Select"]]},{"id":"piano4","brand":"Nord","name":"Piano 4","cc":[[7,"Volume"],[10,"Pan"],[64,"Sustain"],[67,"Soft Pedal"],[66,"Sostenuto"],[11,"Ctrl Pedal"],[3,"Keyboard Split"],[33,"Piano Enable"],[34,"Piano Level"],[35,"Piano Octave Shift"],[49,"Piano Sustain Pedal"],[50,"Piano Ctrl Pedal"],[40,"Piano EQ"],[52,"Piano Acoustics"],[51,"Piano Keyboard Touch"],[53,"Piano Pedal Noise"],[42,"Sample Synth Enable"],[43,"Sample Synth Level"],[44,"Sample Synth Octave Shift"],[45,"Sample Synth Sustain Pedal"],[46,"Sample Synth Ctrl Pedal"],[68,"Sample Synth Attack"],[69,"Sample Synth Decay/Release"],[72,"Sample Synth Amp"],[73,"Sample Synth Filter"],[82,"Effect 1 Enable"],[83,"Effect 1 Type"],[84,"Effect 1 Source"],[85,"Effect 1 Ctrl Pedal"],[86,"Effect 1 Rate"],[87,"Effect 2 Type"],[88,"Effect 2 Source"],[89,"Effect 2 Deep"],[90,"Effect 2 Rate"],[91,"Effect 2 Enable"],[92,"Delay Source"],[93,"Delay Dry/Wet"],[94,"Delay Rate"],[95,"Delay Feedback"],[97,"Delay Enable"],[100,"Amp/Comp Type"],[117,"Amp/Comp Drive"],[118,"Amp/Comp Enable"],[119,"Amp/Comp Source"],[102,"EQ Bass"],[103,"EQ Mid"],[104,"EQ Treble"],[105,"EQ Enable"],[106,"EQ Source"],[107,"EQ Mid Frequency"],[116,"Reverb Enable"],[115,"Reverb Type"],[113,"Reverb Dry/Wet"],[112,"Reverb Bright"]]},{"id":"rack3","brand":"Nord","name":"Rack 3","cc":[[1,"Mod Wheel"],[17,"Octave Shift"],[112,"Chord Memory On/Off"],[16,"Unison On/Off"],[53,"Unison Detune"],[15,"Mono On/Off"],[94,"Mono Hi/Lo Note Priority"],[111,"Legato On/Off"],[65,"Glide Mode (Normal/Auto)"],[5,"Glide Rate"],[54,"Vibrato Rate"],[55,"Vibrato Amount"],[56,"Vibrato Source"],[47,"Arp Run On/Off"],[50,"Arp Rate"],[52,"Arp Clock Sync On/Off"],[98,"Arp Clock Sync Divisor"],[19,"LFO1 Rate"],[20,"LFO1 Waveform"],[21,"LFO1 Destination"],[22,"LFO1 Amount"],[81,"LFO1 Clock Sync On/Off"],[82,"LFO1 Keyboard Sync/Single Cycle"],[83,"LFO1 Mono Mode On/Off"],[84,"LFO1 Amount Invert On/Off"],[99,"LFO1 Clock Sync Divisor"],[23,"LFO2 Rate"],[85,"LFO2 Waveform"],[24,"LFO2 Destination"],[25,"LFO2 Amount"],[86,"LFO2 Clock Sync On/Off"],[87,"LFO2 Keyboard Sync/Single Cycle"],[88,"LFO2 Mono Mode On/Off"],[89,"LFO2 Amount Invert On/Off"],[100,"LFO2 Clock Sync Divisor"],[26,"Mod Env Attack"],[101,"Mod Env Attack Type"],[27,"Mod Env Decay/Release"],[28,"Mod Env Destination"],[29,"Mod Env Amount"],[108,"Mod Env Amount Invert On/Off"],[109,"Mod Env Decay/Release On/Off"],[110,"Mod Env Repeat On/Off"],[30,"Osc1 Waveform"],[35,"Osc1 Sync On/Off"],[79,"Osc1 Shape"],[115,"Osc1 Sync Detune"],[117,"Osc1 Sync Noise Timbre"],[119,"Osc1 FM Amount"],[78,"Osc2 Coarse Tuning"],[33,"Osc2 Fine Tuning"],[31,"Osc2 Waveform"],[34,"Osc2 Keyboard Tracking On/Off"],[102,"Osc2 Shape"],[103,"Osc2 Sync On/Off"],[104,"Osc2 Partial On/Off"],[95,"Osc2 Dual Sine Carrier"],[96,"Osc2 Dual Sine Modulator"],[90,"Osc2 Noise Type"],[97,"Osc2 Noise Frequency"],[116,"Osc2 Sync Detune"],[118,"Osc2 Sync Noise Timbre"],[93,"Osc2 FM Amount"],[8,"Oscillator Mix"],[70,"Oscillator Modulation Amount"],[105,"Oscillator Modulation Type"],[106,"Oscillator Modulation Noise"],[73,"Amp Env Attack"],[107,"Amp Env Attack Type"],[36,"Amp Env Decay"],[37,"Amp Env Sustain"],[72,"Amp Env Release"],[71,"Amp Level"],[38,"Filter Env Attack"],[63,"Filter Env Attack Type"],[39,"Filter Env Decay"],[40,"Filter Env Sustain"],[41,"Filter Env Release"],[43,"Filter Env Amount"],[45,"Filter Env Velocity"],[62,"Filter Env Amount Invert On/Off"],[44,"Filter Type"],[58,"Filter 1 Slope"],[74,"Filter Frequency 1"],[42,"Filter Resonance"],[59,"Filter Frequency 2"],[46,"Filter Keyboard Tracking On/Off"],[60,"Filter Oscillator Bypass On/Off"],[61,"FIlter 2 Env Control"],[114,"Filter 1 Distortion"],[10,"Pan"],[11,"Expression Pedal"],[64,"Sustain Pedal"]]},{"id":"stage","brand":"Nord","name":"Stage","cc":[[3,"Organ Preset II"],[4,"Organ Swell"],[9,"Organ Drawbar 1"],[14,"Organ Drawbar 2"],[15,"Organ Drawbar 3"],[16,"Organ Drawbar 4"],[17,"Organ Drawbar 5"],[18,"Organ Drawbar 6"],[19,"Organ Drawbar 7"],[20,"Organ Drawbar 8"],[21,"Organ Drawbar 9"],[22,"Organ Percussion Enable"],[23,"Organ Type"],[24,"Organ Vibrato Type"],[25,"Organ Vibrato Enable"],[26,"Organ Percussion Harmonic"],[27,"Organ Percussion Speed"],[28,"Organ Percussion Level"],[29,"Organ PStick Enable"],[30,"Piano Clav Filter 1"],[31,"Piano Clav Filter 2"],[33,"Piano Dynamics"],[34,"Synth Glide Rate"],[35,"Synth Glide Auto"],[36,"Synth Voice Mode"],[37,"Synth Unison"],[38,"Synth Vibrato Mode"],[39,"Synth Mod Envelope Attack"],[40,"Synth Mod Envelope Decay"],[41,"Synth Mod Envelope Mode"],[42,"Synth Mod Envelope Velocity"],[43,"Synth Oscillator Mode"],[44,"Synth Oscillator Wave"],[45,"Synth Oscillator Timbre"],[46,"Synth Oscillator Timre Amount"],[47,"Synth Oscillator Timre Velocity"],[48,"Synth Filter Freq"],[49,"Synth Filter Resonance"],[50,"Synth Filter Amount"],[51,"Synth Filter Velocity"],[52,"Synth Filter KB Tracking"],[53,"Synth Filter Type"],[54,"Synth Amp Envelope Attack"],[55,"Synth Amp Envelope Decay"],[56,"Synth Amp Envelope Mode"],[57,"Synth Amp Envelope Velocity"],[58,"Synth EQ Gain Lo"],[59,"Synth EQ Gain Hi"],[60,"Effect 1 Type"],[61,"Effect 1 Source"],[62,"Effect 1 Amount"],[63,"Effect 1 Rate"],[69,"Effect 1 Enable"],[70,"Effect 2 Type"],[71,"Effect 2 Source"],[72,"Effect 2 Amount"],[73,"Effect 2 Rate"],[74,"Effect 2 Enable"],[75,"Delay Destination"],[76,"Delay Amount"],[77,"Delay Rate"],[78,"Delay Feedback"],[79,"Delay Ping Pong On/Off"],[80,"Delay Enable"],[81,"AmpSim Type"],[82,"AmpSim Destination"],[83,"AmpSim Drive"],[84,"AmpSim Bass EQ"],[85,"AmpSim Mid EQ"],[86,"AmpSim Treble EQ"],[87,"AmpSim Enable"],[88,"Rotor Destination"],[89,"Rotor Drive"],[90,"Rotor Speed"],[91,"Rotor Stop"],[92,"Rotor Enable"],[93,"Compressor Amount"],[94,"Compressor Enable"],[95,"Reverb Amount"],[96,"Reverb Size"],[97,"Reverb Enable"],[98,"Organ Enable Sustain Pedal"],[99,"Organ Octave Shift"],[100,"Organ Level"],[101,"Organ Enable"],[102,"Organ KB Zone Assignment"],[103,"Piano Enable PStick"],[104,"Piano Enable Sustain Pedal"],[105,"Piano Octave Shift"],[106,"Piano Level"],[107,"Piano Enable"],[108,"Piano KB Zone Assignment"],[109,"Synth Enable PStick"],[110,"Synth Enable Sustain Pedal"],[111,"Synth Octave Shift"],[112,"Synth Level"],[113,"Synth Enable"],[114,"Synth KB Zone Assignment"]]},{"id":"stage2","brand":"Nord","name":"Stage 2","cc":[[3,"Organ Preset II"],[4,"Organ Swell"],[9,"Organ Drawbar 1"],[14,"Organ Drawbar 2"],[15,"Organ Drawbar 3"],[16,"Organ Drawbar 4"],[17,"Organ Drawbar 5"],[18,"Organ Drawbar 6"],[19,"Organ Drawbar 7"],[20,"Organ Drawbar 8"],[21,"Organ Drawbar 9"],[22,"Organ Percussion Enable"],[23,"Organ Model"],[24,"Organ Vibrato Type"],[25,"Organ Vibrato Enable"],[26,"Organ Percussion Harmonic"],[27,"Organ Percussion Speed"],[28,"Organ Percussion Level"],[99,"Organ Octave Shift"],[100,"Organ Level"],[101,"Organ Enable"],[8,"Piano Type"],[29,"Piano Model"],[5,"Piano Slot Detune"],[30,"Clav EQ 1"],[31,"Clav EQ 2"],[65,"Clav Model/Type"],[33,"Piano Dynmaics"],[98,"Piano Acoustic"],[105,"Piano Octave Shift"],[106,"Piano Level"],[107,"Piano Enable"],[108,"Piano Pedal Noise"],[111,"Synth Octave Shift"],[112,"Synth Level"],[113,"Synth Enable"],[34,"Synth Glide Rate"],[109,"Synth Arp On/Off"],[12,"Synth Arp Master Clock"],[102,"Synth Arp Rate"],[103,"Synth Arp Pattern"],[104,"Synth Arp Range"],[36,"Synth Voice Mode"],[37,"Synth Unison"],[38,"Synth Vibrato Mode"],[39,"Synth Mod Envelope Attack"],[40,"Synth Mod Envelope Decay"],[41,"Synth Mod Envelope Mode"],[42,"Synth Mod Envelope Velocity"],[115,"Synth LFO Rate"],[116,"Synth LFO Waveform"],[13,"LFO Master Clock"],[43,"Synth Oscillator Mode"],[44,"Synth Waveform Select"],[45,"Synth Oscillator Shape"],[46,"Synth Oscillator Shape Mod"],[48,"Synth Filter Frequency"],[49,"Synth Filter Resonance"],[2,"Synth Filter Vel/Env Mod"],[51,"Synth Filter LFO Mod"],[52,"Synth Filter KB Tracking"],[53,"Synth Filter Type"],[54,"Synth Amp Envelope Attack"],[55,"Synth Amp Envelope Decay"],[56,"Synth Amp Envelope Mode"],[57,"Synth Amp Envelope Velocity"],[60,"Effect 1 Type"],[61,"Effect 1 Source"],[62,"Effect 1 Amount"],[63,"Effect 1 Rate"],[69,"Effect 1 Enable"],[117,"Effect 1 Master Clock"],[70,"Effect 2 Type"],[71,"Effect 2 Source"],[72,"Effect 2 Amount"],[73,"Effect 2 Rate"],[74,"Effect 2 Enable"],[118,"Effect 2 Master Clock"],[75,"Delay Destination"],[76,"Delay Amount"],[77,"Delay Rate"],[78,"Delay Feedback"],[79,"Delay Ping Pong On/Off"],[80,"Delay Enable"],[119,"Delay Master Clock"],[81,"AmpSim Type"],[90,"AmpSim Destination"],[83,"AmpSim Drive"],[84,"AmpSim Bass EQ"],[85,"AmpSim Mid Amount EQ"],[6,"AmpSim Mid Range"],[86,"AmpSim Treble EQ"],[87,"AmpSim Enable"],[88,"Rotor Destination"],[89,"Rotor Drive"],[82,"Rotor Speed"],[91,"Rotor Stop"],[92,"Rotor Enable"],[93,"Compressor Amount"],[94,"Compressor Enable"],[95,"Reverb Amount"],[96,"Reverb Size"],[97,"Reverb Enable"],[68,"Slot Focus"],[64,"Pedal Sustain"],[66,"Pedal Latch"],[67,"Pedal Soft"],[4,"Organ Swell Pedal"],[11,"Ctrl Pedal"],[82,"Rotor Speed Pedal"],[114,"KB Gate Pedal"],[7,"Master Level"]]},{"id":"stage2ex","brand":"Nord","name":"Stage 2 EX","cc":[[3,"Organ Preset II"],[4,"Organ Swell"],[9,"Organ Drawbar 1"],[14,"Organ Drawbar 2"],[15,"Organ Drawbar 3"],[16,"Organ Drawbar 4"],[17,"Organ Drawbar 5"],[18,"Organ Drawbar 6"],[19,"Organ Drawbar 7"],[20,"Organ Drawbar 8"],[21,"Organ Drawbar 9"],[22,"Organ Percussion Enable"],[23,"Organ Model"],[24,"Organ Vibrato Type"],[25,"Organ Vibrato Enable"],[26,"Organ Percussion Harmonic"],[27,"Organ Percussion Speed"],[28,"Organ Percussion Level"],[99,"Organ Octave Shift"],[100,"Organ Level"],[101,"Organ Enable"],[8,"Piano Type"],[29,"Piano Model"],[5,"Piano Slot Detune"],[30,"Clav EQ 1"],[31,"Clav EQ 2"],[65,"Clav Model/Type"],[33,"Piano Dynmaics"],[98,"Piano Acoustic"],[105,"Piano Octave Shift"],[106,"Piano Level"],[107,"Piano Enable"],[108,"Piano Pedal Noise"],[111,"Synth Octave Shift"],[112,"Synth Level"],[113,"Synth Enable"],[34,"Synth Glide Rate"],[109,"Synth Arp On/Off"],[12,"Synth Arp Master Clock"],[102,"Synth Arp Rate"],[103,"Synth Arp Pattern"],[104,"Synth Arp Range"],[36,"Synth Voice Mode"],[37,"Synth Unison"],[38,"Synth Vibrato Mode"],[39,"Synth Mod Envelope Attack"],[40,"Synth Mod Envelope Decay"],[41,"Synth Mod Envelope Mode"],[42,"Synth Mod Envelope Velocity"],[115,"Synth LFO Rate"],[116,"Synth LFO Waveform"],[13,"LFO Master Clock"],[43,"Synth Oscillator Mode"],[44,"Synth Waveform Select"],[45,"Synth Oscillator Shape"],[46,"Synth Oscillator Shape Mod"],[48,"Synth Filter Frequency"],[49,"Synth Filter Resonance"],[2,"Synth Filter Vel/Env Mod"],[51,"Synth Filter LFO Mod"],[52,"Synth Filter KB Tracking"],[53,"Synth Filter Type"],[54,"Synth Amp Envelope Attack"],[55,"Synth Amp Envelope Decay"],[56,"Synth Amp Envelope Mode"],[57,"Synth Amp Envelope Velocity"],[60,"Effect 1 Type"],[61,"Effect 1 Source"],[62,"Effect 1 Amount"],[63,"Effect 1 Rate"],[69,"Effect 1 Enable"],[117,"Effect 1 Master Clock"],[70,"Effect 2 Type"],[71,"Effect 2 Source"],[72,"Effect 2 Amount"],[73,"Effect 2 Rate"],[74,"Effect 2 Enable"],[118,"Effect 2 Master Clock"],[75,"Delay Destination"],[76,"Delay Amount"],[77,"Delay Rate"],[78,"Delay Feedback"],[79,"Delay Ping Pong On/Off"],[80,"Delay Enable"],[119,"Delay Master Clock"],[81,"AmpSim Type"],[90,"AmpSim Destination"],[83,"AmpSim Drive"],[84,"AmpSim Bass EQ"],[85,"AmpSim Mid Amount EQ"],[6,"AmpSim Mid Range"],[86,"AmpSim Treble EQ"],[87,"AmpSim Enable"],[88,"Rotor Destination"],[89,"Rotor Drive"],[82,"Rotor Speed"],[91,"Rotor Stop"],[92,"Rotor Enable"],[93,"Compressor Amount"],[94,"Compressor Enable"],[95,"Reverb Amount"],[96,"Reverb Size"],[97,"Reverb Enable"],[68,"Slot Focus"],[64,"Pedal Sustain"],[66,"Pedal Latch"],[67,"Pedal Soft"],[4,"Organ Swell Pedal"],[11,"Ctrl Pedal"],[82,"Rotor Speed Pedal"],[114,"KB Gate Pedal"],[7,"Master Level"]]},{"id":"stage3","brand":"Nord","name":"Stage 3","cc":[[64,"Sustain"],[66,"Sostenuto"],[67,"Soft Pedal"],[11,"Expression Pedal"],[2,"Live Mode"],[3,"Song Mode"],[5,"Song Part"],[6,"Panel Enable"],[8,"Panel Focus"],[9,"Organ Enable"],[12,"Organ Octave Shift"],[13,"Organ Level"],[14,"Organ Model"],[15,"Organ Preset"],[16,"Organ Drawbar 1"],[17,"Organ Drawbar 2"],[18,"Organ Drawbar 3"],[19,"Organ Drawbar 4"],[20,"Organ Drawbar 5"],[21,"Organ Drawbar 6"],[22,"Organ Drawbar 7"],[23,"Organ Drawbar 8"],[24,"Organ Drawbar 9"],[25,"Organ Percussion Enable"],[26,"Organ Vibrato Type"],[27,"Organ Vibrato Enable"],[28,"Organ Percussion Harmonic"],[29,"Organ Percussion Speed"],[30,"Organ Percussion Level"],[33,"Piano Enable"],[34,"Piano Level"],[35,"Piano Octave Shift"],[36,"Piano Type"],[37,"Piano Model"],[38,"Piano Variation"],[39,"Piano Layer Detune"],[40,"Piano EQ"],[42,"Synth Enable"],[43,"Synth Level"],[44,"Synth Octave Shift"],[45,"Synth Osc Config"],[46,"Synth Osc Bank"],[47,"Synth Osc Wave"],[48,"Synth Glide Rate"],[49,"Synth Voice Mode"],[50,"Synth Unison"],[51,"Synth Vibrato Mode"],[52,"Synth Mod Envelope Attack"],[53,"Synth Mod Envelope Decay"],[54,"Synth Mod Envelope Velocity"],[55,"Synth Osc Pitch"],[56,"Synth Osc Ctrl"],[57,"Sytnh Mod Envelope Release"],[58,"Synth Osc Modulation"],[59,"Synth Filter Frequency"],[60,"Synth Filter Resonance"],[61,"Synth Filter Drive"],[62,"Synth Filter LFO Amount"],[63,"Synth Filter KB Tracking"],[65,"Synth Filter Type"],[68,"Synth Amp Envelope Attack"],[69,"Synth Amp Envelope Decay"],[71,"Synth Amp Envelope Release"],[72,"Synth Amp Envelope Velocity"],[73,"Synth Filter Modulation"],[74,"Synth Arp Rate"],[75,"Synth Arp Pattern"],[76,"Synth Arp Range"],[77,"Synth Arp Run"],[78,"Synth Keyboard Hold"],[79,"Synth LFO Rate"],[80,"Synth LFO Waveform"],[82,"Effect 1 Enable"],[83,"Effect 1 Type"],[84,"Effect 1 Source"],[85,"Effect 1 Amount"],[86,"Effect 1 Rate"],[87,"Effect 2 Type"],[88,"Effect 2 Source"],[89,"Effect 2 Amount"],[90,"Effect 2 Rate"],[91,"Effect 2 Enable"],[92,"Delay Source"],[93,"Delay Amount"],[94,"Delay Rate"],[95,"Delay Feedback"],[96,"Delay Mode"],[97,"Delay Enable"],[98,"Delay Ping Pong On/Off"],[99,"Delay Filter Type"],[100,"Amp/EQ Type"],[101,"Amp/EQ Drive"],[102,"Amp/EQ Bass"],[103,"Amp/EQ Mid"],[104,"Amp/EQ Treble"],[105,"Amp/EQ Enable"],[106,"Amp/EQ Source"],[107,"Amp/EQ Mid Frequency"],[108,"Rotary Speed"],[109,"Rotary Source"],[110,"Rotary Drive"],[111,"Rotary Enable"],[112,"Reverb Bright"],[113,"Reverb Amount"],[115,"Reverb Type"],[116,"Reverb Enable"],[117,"Compressor Amount"],[118,"Compressor Enable"],[119,"Compressor Mode"]]},{"id":"stageex","brand":"Nord","name":"Stage EX","cc":[[3,"Organ Preset II"],[4,"Organ Swell"],[9,"Organ Drawbar 1"],[14,"Organ Drawbar 2"],[15,"Organ Drawbar 3"],[16,"Organ Drawbar 4"],[17,"Organ Drawbar 5"],[18,"Organ Drawbar 6"],[19,"Organ Drawbar 7"],[20,"Organ Drawbar 8"],[21,"Organ Drawbar 9"],[22,"Organ Percussion Enable"],[23,"Organ Type"],[24,"Organ Vibrato Type"],[25,"Organ Vibrato Enable"],[26,"Organ Percussion Harmonic"],[27,"Organ Percussion Speed"],[28,"Organ Percussion Level"],[29,"Organ PStick Enable"],[30,"Piano Clav Filter 1"],[31,"Piano Clav Filter 2"],[33,"Piano Dynamics"],[34,"Synth Glide Rate"],[35,"Synth Glide Auto"],[36,"Synth Voice Mode"],[37,"Synth Unison"],[38,"Synth Vibrato Mode"],[39,"Synth Mod Envelope Attack"],[40,"Synth Mod Envelope Decay"],[41,"Synth Mod Envelope Mode"],[42,"Synth Mod Envelope Velocity"],[43,"Synth Oscillator Mode"],[44,"Synth Oscillator Wave"],[45,"Synth Oscillator Timbre"],[46,"Synth Oscillator Timre Amount"],[47,"Synth Oscillator Timre Velocity"],[48,"Synth Filter Freq"],[49,"Synth Filter Resonance"],[50,"Synth Filter Amount"],[51,"Synth Filter Velocity"],[52,"Synth Filter KB Tracking"],[53,"Synth Filter Type"],[54,"Synth Amp Envelope Attack"],[55,"Synth Amp Envelope Decay"],[56,"Synth Amp Envelope Mode"],[57,"Synth Amp Envelope Velocity"],[58,"Synth EQ Gain Lo"],[59,"Synth EQ Gain Hi"],[60,"Effect 1 Type"],[61,"Effect 1 Source"],[62,"Effect 1 Amount"],[63,"Effect 1 Rate"],[69,"Effect 1 Enable"],[70,"Effect 2 Type"],[71,"Effect 2 Source"],[72,"Effect 2 Amount"],[73,"Effect 2 Rate"],[74,"Effect 2 Enable"],[75,"Delay Destination"],[76,"Delay Amount"],[77,"Delay Rate"],[78,"Delay Feedback"],[79,"Delay Ping Pong On/Off"],[80,"Delay Enable"],[81,"AmpSim Type"],[82,"AmpSim Destination"],[83,"AmpSim Drive"],[84,"AmpSim Bass EQ"],[85,"AmpSim Mid EQ"],[86,"AmpSim Treble EQ"],[87,"AmpSim Enable"],[88,"Rotor Destination"],[89,"Rotor Drive"],[90,"Rotor Speed"],[91,"Rotor Stop"],[92,"Rotor Enable"],[93,"Compressor Amount"],[94,"Compressor Enable"],[95,"Reverb Amount"],[96,"Reverb Size"],[97,"Reverb Enable"],[98,"Organ Enable Sustain Pedal"],[99,"Organ Octave Shift"],[100,"Organ Level"],[101,"Organ Enable"],[102,"Organ KB Zone Assignment"],[103,"Piano Enable PStick"],[104,"Piano Enable Sustain Pedal"],[105,"Piano Octave Shift"],[106,"Piano Level"],[107,"Piano Enable"],[108,"Piano KB Zone Assignment"],[109,"Synth Enable PStick"],[110,"Synth Enable Sustain Pedal"],[111,"Synth Octave Shift"],[112,"Synth Level"],[113,"Synth Enable"],[114,"Synth KB Zone Assignment"]]},{"id":"wave","brand":"Nord","name":"Wave","cc":[[16,"Octave Shift"],[17,"Mono Mode"],[5,"Glide"],[56,"Vibrate"],[20,"LFO1 Wave"],[21,"LFO1 Destination"],[83,"LFO1 Poly"],[19,"LFO1 Rate"],[22,"LFO1 Amount"],[85,"LFO2 Wave"],[24,"LFO2 Destination"],[87,"LFO2 Single"],[23,"LFO2 Rate"],[25,"LFO2 Amount"],[26,"Mod Env Attack"],[27,"Mod Env Decay"],[29,"Mod Env Amount"],[28,"Mod Env Destination"],[109,"Mod Env Rel Mode"],[30,"Osc1 Wave"],[47,"Osc1 Wave FM Selection"],[48,"Osc1 Misc Selection"],[49,"Osc1 Wavetable Selection"],[79,"Osc1 Shape"],[31,"Osc2 Waveform"],[93,"Osc2 Wave FM Selection"],[118,"Osc2 Misc Selection"],[50,"Osc2 Samp. Instr. Select"],[51,"Osc2 Skip Attack"],[52,"Osc2 Sample Decay"],[78,"Osc2 Semitones"],[33,"Osc2 Fine Tune"],[102,"Osc2 Shape"],[35,"Osc1 Sync"],[105,"Osc Mod Selector"],[70,"Osc Mod Amount"],[8,"Osc Mix"],[73,"Amp Env Attack"],[36,"Amp Env Decay"],[37,"Amp Env Sustain"],[72,"Amp Env Release"],[38,"Filter Env Attack"],[39,"Filter Env Decay"],[40,"Filter Env Sustain"],[41,"Filter Env Release"],[44,"Filter Mode"],[46,"Filter Keyboard Tracking"],[58,"Filter Slope"],[45,"Filter Velocity"],[74,"Filter Frequency"],[42,"Filter Resonance"],[43,"Filter Envelope Amount"],[71,"Output Level"],[113,"EQ Treble"],[114,"EQ Bass"],[53,"Chorus"],[92,"Tube Amp Enable"],[89,"Tube Amp Drive"],[77,"Delay Tempo"],[116,"Delay Feedback"],[117,"Delay Stereo"],[76,"Delay Amount"],[80,"Delay Enable"],[96,"Reverb Model"],[95,"Reverb Amount"],[97,"Reverb Enable"],[119,"Slot Focus"],[115,"Layer Mode"],[112,"Chord Enable"]]},{"id":"wave2","brand":"Nord","name":"Wave 2","cc":[[64,"Sustain Pedal"],[11,"Control Pedal"],[23,"Keyboard Hold"],[27,"Keyboard Hold Enable"],[26,"PStick Enable"],[24,"Octave Shift"],[3,"Program Level"],[51,"Vibrato"],[48,"Glide"],[49,"Voice Mode"],[74,"Arp/Gate Rate"],[76,"Arp/Gate Range/Env"],[72,"Arp/Gate Mode"],[75,"Arp/Gate Direction"],[69,"Arp/Gate Zig-Zag"],[77,"Arp/Gate Run"],[71,"Arp/Gate Keyboard Sync"],[68,"Arp/Gate Master Clock"],[78,"LFO Amount"],[79,"LFO Rate"],[110,"LFO Master Clock"],[80,"LFO Waveform"],[109,"LFO Destination"],[42,"Osc Mod Env Attack"],[43,"Osc Mod Env Decay/Release"],[45,"Osc Mod Env Amount"],[44,"Osc Mod Env Destination"],[46,"Osc Mod Env Velocity"],[47,"Osc Mod Env AR Mode"],[39,"Osc Unison"],[37,"Osc Semitones"],[36,"Osc Fine Tune"],[12,"Layer A Level"],[13,"Layer B Level"],[14,"Layer C Level"],[15,"Layer D Level"],[16,"Layer A Pan"],[17,"Layer B Pan"],[18,"Layer C Pan"],[19,"Layer D Pan"],[82,"Amp Env Attack"],[81,"Amp Env Attack Transient"],[83,"Amp Env Decay"],[84,"Amp Env Sustain"],[85,"Amp Env Release"],[86,"Amp Env Velocity"],[52,"Filter Env Attack"],[53,"Filter Env Decay"],[54,"Filter Env Sustain"],[55,"Filter Env Release"],[63,"Filter Keyboard Tracking"],[61,"Filter Drive"],[59,"Filter Frequency"],[60,"Filter Resonance"],[65,"Filter Type"],[62,"Filter Env Amount"],[56,"Filter Env Velocity"],[57,"Filter Env Invert"],[58,"Filter On/Off"],[91,"Effects On/Off"],[87,"Effects Type"],[89,"Effects Amount"],[90,"Effects Rate"],[88,"Effects Rate Master Clock"],[105,"EQ/Drive On/Off"],[101,"Drive Amount"],[102,"EQ Bass/Gain"],[104,"EQ Treble/Freq"],[106,"EQ Parametric On/Off"],[97,"Delay On/Off"],[92,"Delay Master Clock"],[93,"Delay Dry/Wet"],[94,"Delay Tempo Tap/Set"],[96,"Delay Analog On/Off"],[94,"Delay Rate"],[108,"Delay Feedback Effect Type"],[100,"Delay Feedback Effect Deep"],[95,"Delay Feedback"],[99,"Delay Feedback Filter Type"],[98,"Delay Ping Pong On/Off"],[116,"Reverb On/Off"],[115,"Reverb Type"],[118,"Reverb Chorale"],[117,"Reverb Bright/Dark"],[113,"Reverb Dry/Wet"]]},{"id":"bassstationii","brand":"Novation","name":"Bass Station II","cc":[[7,"Patch Volume"],[26,"Osc 1 Fine"],[70,"Osc 1 Range"],[27,"Osc 1 Coarse"],[71,"Osc 1 Mod Env Depth"],[28,"Osc 1 LFO 1 Depth"],[72,"Osc 1 Mod Env PW Mod Amount"],[73,"Osc 1 LFO 2 PW Mod Amount"],[74,"Osc 1 Manual PW Amount"],[29,"Osc 2 Fine"],[75,"Osc 2 Range"],[30,"Osc 2 Coarse"],[76,"Osc 2 Mod Env Depth"],[31,"Osc 2 LFO 1 Depth"],[77,"Osc 2 Env 2 PW Mod Amount"],[78,"Osc 2 LFO 2 PW Mod Amount"],[79,"Osc 2 Manual PW Amount"],[81,"Sub Osc Octave"],[80,"Sub Osc Wave"],[20,"Osc 1 Level"],[21,"Osc 2 Level"],[22,"Sob Osc Level"],[23,"Noise Level"],[24,"Ring Mod Level"],[25,"External Signal Level"],[83,"Filter: Type"],[106,"Filter: Slope"],[84,"Filter: Shape"],[16,"Filter: Freq"],[82,"Filter: Resonance"],[85,"Filter: Mod Env Depth"],[17,"Filter: LFO 2 Depth"],[114,"Filter: Overdrive"],[5,"Portamento Time"],[18,"LFO 1 Speed"],[86,"LFO 1 Delay"],[19,"LFO 2 Speed"],[87,"LFO 2 Delay"],[88,"LFO 1 Wave"],[89,"LFO 2 Wave"],[90,"ENV: Amp Attack"],[91,"ENV: Amp Decay"],[92,"ENV: Amp Sustain"],[93,"ENV: Amp Release"],[102,"ENV: Mod Attack"],[103,"ENV: Mod Decay"],[104,"ENV: Mod Sustain"],[105,"ENV: Mod Release"],[94,"Distortion"],[115,"Osc Filter Mod"],[108,"ARP: On"],[109,"ARP: Latch"],[119,"ARP: Rhythm"],[118,"ARP: Note Mode"],[111,"ARP: Octaves"],[0,"Modulation Wheel"],[64,"Sustain Pedal: On"],[64,"Sustain Pedal: Off"],[107,"Osc Bend Amount"],[110,"Osc 1-2 Sync"],[112,"Velocity: Amp Env"],[113,"Velocity: Mod Env"],[95,"VCA Limit"],[116,"Arp Swing"]]},{"id":"bassstationkeyboard","brand":"Novation","name":"Bass Station Keyboard","cc":[[105,"Filter Frequency"],[106,"Filter Resonance"],[107,"Filter Mod Depth"],[108,"Env 1: Attack"],[109,"Env 1: Decay"],[114,"Env 2: Attack"],[115,"Env 2: Decay"]]},{"id":"circuit","brand":"Novation","name":"Circuit","cc":[[3,"Polyphony Mode: Mono"],[3,"Polyphony Mode: Mono AG"],[3,"Polyphony Mode: Poly"],[5,"Portamento Rate"],[9,"Pre-Glide"],[13,"Keyboard Octave"],[19,"Osc1: Wave"],[20,"Osc1: Wave Interpolate"],[21,"Osc1: Pulse Width Index"],[22,"Osc1: Virtual Sync Depth"],[24,"Osc1: Density"],[25,"Osc1: Density Detune"],[26,"Osc1: Semitones"],[27,"Osc1: Cents"],[28,"Osc1: Pitchbend"],[29,"Osc2: Wave"],[30,"Osc2: Wave Interpolate"],[31,"Osc2: Pulse Width Index"],[33,"Osc2: Virtual Sync Depth"],[35,"Osc2: Density"],[36,"Osc2: Density Detune"],[37,"Osc2: Semitones"],[39,"Osc2: Cents"],[40,"Osc2: Pitchbend"],[51,"Osc1 Level"],[52,"Osc2 Level"],[54,"Ring Mod Level"],[56,"Noise Level"],[58,"Pre FX Level"],[59,"Post FX Level"],[60,"Routing: normal"],[60,"Routing: Osc1 Bypasses Filter"],[60,"Routing: Osc1+2 Bypass Filter"],[63,"Filter: Drive"],[65,"Drive Type: Diode"],[65,"Drive Type: Valve"],[65,"Drive Type: Clipper"],[65,"Drive Type: Cross-Over"],[65,"Drive Type: Rectify"],[65,"Drive Type: Bit Reducer"],[65,"Drive Type: Rate Reducer"],[68,"Filter Type: Low Pass 12dB"],[68,"Filter Type: Low Pass 24dB"],[68,"Filter Type: Band Pass 6/6dB"],[68,"Filter Type: Band Pass 12/12dB"],[68,"Filter Type: High Pass 12dB"],[68,"Filter Type: High Pass 24dB"],[74,"Filter: Frequency"],[69,"Filter: Tracking"],[71,"Filter: Resonance"],[78,"Filter: Q Normalize"],[79,"Filter: Env2 to Frequency"],[108,"Env1: Velocity"],[73,"Env1: Attack"],[75,"Env1: Decay"],[70,"Env1: Sustain"],[72,"Env1: Release"],[91,"Distortion Level"],[93,"Chorus Level"],[80,"Macro Knob 1 Pos"],[81,"Macro Knob 2 Pos"],[82,"Macro Knob 3 Pos"],[83,"Macro Knob 4 Pos"],[84,"Macro Knob 5 Pos"],[85,"Macro Knob 6 Pos"],[86,"Macro Knob 7 Pos"],[87,"Macro Knob 8 Pos"],[8,"Drum 1: Patch Select"],[12,"Drum 1: Level"],[14,"Drum 1: Pitch"],[15,"Drum 1: Decay"],[16,"Drum 1: Distortion"],[17,"Drum 1: EQ"],[77,"Drum 1: Pan"],[18,"Drum 2: Patch Select"],[23,"Drum 2: Level"],[34,"Drum 2: Pitch"],[40,"Drum 2: Decay"],[42,"Drum 2: Distortion"],[43,"Drum 2: EQ"],[78,"Drum 2: Pan"],[44,"Drum 3: Patch Select"],[45,"Drum 3: Level"],[46,"Drum 3: Pitch"],[47,"Drum 3: Decay"],[48,"Drum 3: Distortion"],[49,"Drum 3: EQ"],[79,"Drum 3: Pan"],[50,"Drum 4: Patch Select"],[53,"Drum 4: Level"],[55,"Drum 4: Pitch"],[57,"Drum 4: Decay"],[61,"Drum 4: Distortion"],[76,"Drum 4: EQ"],[80,"Drum 4: Pan"],[88,"Reverb: Synth 1 Send Level"],[89,"Reverb: Synth 2 Send Level"],[90,"Reverb: Drum 1 Send Level"],[106,"Reverb: Drum 2 Send Level"],[109,"Reverb: Drum 3 Send Level"],[110,"Reverb: Drum 4 Send Level"],[111,"Delay: Synth 1 Send Level"],[112,"Delay: Synth 2 Send Level"],[113,"Delay: Drum 1 Send Level"],[114,"Delay: Drum 2 Send Level"],[115,"Delay: Drum 3 Send Level"],[116,"Delay: Drum 4 Send Level"],[74,"Master Filter: Frequency"],[71,"Master Filter: Resonance"],[12,"Mixer: Synth 1 Level"],[14,"Mixer: Synth 2 Level"],[117,"Mixer: Synth 1 Pan"],[118,"Mixer: Synth 2 Pan"]]},{"id":"circuitmonostation","brand":"Novation","name":"Circuit Mono Station","cc":[[110,"OscSync: Off"],[110,"OscSync: On"],[117,"Osc1 Keyboard Octave"],[80,"Osc1 Wave: Sine"],[80,"Osc1 Wave: Triangle"],[80,"Osc1 Wave: Saw"],[80,"Osc1 Wave: Pulse"],[39,"Osc1 Pulse Width"],[70,"Osc1 Range: 16"],[70,"Osc1 Range: 8"],[70,"Osc1 Range: 4"],[70,"Osc1 Range: 2"],[5,"Osc1 Glide: 0%"],[5,"Osc1 Glide: 25%"],[5,"Osc1 Glide: 37.5%"],[5,"Osc1 Glide: 50%"],[5,"Osc1 Glide: 62.5%"],[5,"Osc1 Glide: 75%"],[5,"Osc1 Glide: 87.5%"],[5,"Osc1 Glide: 100%"],[5,"Osc1 Glide: 200%"],[5,"Osc1 Glide: 300%"],[5,"Osc1 Glide: 400%"],[5,"Osc1 Glide: 500%"],[5,"Osc1 Glide: 600%"],[5,"Osc1 Glide: 700%"],[5,"Osc1 Glide: 800%"],[5,"Osc1 Glide: 900%"],[76,"Osc2 Keyboard Octave"],[81,"Osc2 Wave: Sine"],[81,"Osc2 Wave: Triangle"],[81,"Osc2 Wave: Saw"],[81,"Osc2 Wave: Pulse"],[79,"Osc2 Pulse Width"],[75,"Osc2 Range: 16"],[75,"Osc2 Range: 8"],[75,"Osc2 Range: 4"],[75,"Osc2 Range: 2"],[37,"Osc2 Glide: 0%"],[37,"Osc2 Glide: 25%"],[37,"Osc2 Glide: 37.5%"],[37,"Osc2 Glide: 50%"],[37,"Osc2 Glide: 62.5%"],[37,"Osc2 Glide: 75%"],[37,"Osc2 Glide: 87.5%"],[37,"Osc2 Glide: 100%"],[37,"Osc2 Glide: 200%"],[37,"Osc2 Glide: 300%"],[37,"Osc2 Glide: 400%"],[37,"Osc2 Glide: 500%"],[37,"Osc2 Glide: 600%"],[37,"Osc2 Glide: 700%"],[37,"Osc2 Glide: 800%"],[37,"Osc2 Glide: 900%"],[7,"Master Level"],[114,"Filter Overdrive"],[71,"Filter Resonance"],[84,"Filter Shape: Low Pass"],[84,"Filter Shape: Band Pass"],[84,"Filter Shape: High Pass"],[40,"Filter Slope: Low Pass"],[40,"Filter Slope: Band Pass"],[40,"Filter Slope: High Pass"],[83,"Filter Bypass: Off"],[83,"Filter Bypass: Noise"],[83,"Filter Bypass: Osc2"],[83,"Filter Bypass: Noise and Osc2"],[69,"Filter Key Tracking: 0%"],[69,"Filter Key Tracking: 15%"],[69,"Filter Key Tracking: 30%"],[69,"Filter Key Tracking: 45%"],[69,"Filter Key Tracking: 60%"],[69,"Filter Key Tracking: 75%"],[69,"Filter Key Tracking: 90%"],[69,"Filter Key Tracking: 100%"],[90,"Envelope Attack"],[91,"Envelope Decay"],[92,"Envelope Sustain"],[93,"Envelope Release"],[88,"LFO Waveform: Triangle"],[88,"LFO Waveform: Descending Saw"],[88,"LFO Waveform: Square"],[88,"LFO Waveform: Sample and Hold"],[87,"LFO Sync Rate: 64 Beats"],[87,"LFO Sync Rate: 48 Beats"],[87,"LFO Sync Rate: 42 Beats"],[87,"LFO Sync Rate: 36 Beats"],[87,"LFO Sync Rate: 32 Beats"],[87,"LFO Sync Rate: 30 Beats"],[87,"LFO Sync Rate: 28 Beats"],[87,"LFO Sync Rate: 24 Beats"],[87,"LFO Sync Rate: 21 +2/3 Beats"],[87,"LFO Sync Rate: 20 Beats"],[87,"LFO Sync Rate: 18 +2/3 Beats"],[87,"LFO Sync Rate: 18 Beats"],[87,"LFO Sync Rate: 16 Beats"],[87,"LFO Sync Rate: 13 + 1/3 Beats"],[87,"LFO Sync Rate: 12 Beats"],[87,"LFO Sync Rate: 10 + 2/3 Beats"],[87,"LFO Sync Rate: 8 Beats"],[87,"LFO Sync Rate: 6 Beats"],[87,"LFO Sync Rate: 5 + 1/3 Beats"],[87,"LFO Sync Rate: 4 Beats"],[87,"LFO Sync Rate: 3 Beats"],[87,"LFO Sync Rate: 2 + 2/3 Beats"],[87,"LFO Sync Rate: 2nd"],[87,"LFO Sync Rate: 4th Dotted"],[87,"LFO Sync Rate: 1 + 1/3 Beats"],[87,"LFO Sync Rate: 4th"],[87,"LFO Sync Rate: 8th Dotted"],[87,"LFO Sync Rate: 4th Triplet"],[87,"LFO Sync Rate: 8th"],[87,"LFO Sync Rate: 16th Dotted"],[87,"LFO Sync Rate: 8th Triplet"],[87,"LFO Sync Rate: 16th"],[87,"LFO Sync Rate: 16th Triplet"],[87,"LFO Sync Rate: 32nd"],[87,"LFO Sync Rate: 32nd Triplet"],[86,"LFO Clock Sync: Off"],[86,"LFO Clock Sync: On"],[43,"LFO Key Sync: Off"],[43,"LFO Key Sync: On"],[94,"Distortion Level"],[95,"Distortion Type I"],[95,"Distortion Type II"],[95,"Distortion Type III"],[41,"Mod Matrix: EnvToOsc1PWM"],[33,"Mod Matrix: EnvToOsc2PWM"],[42,"Mod Matrix: EnvToAmp"],[103,"Mod Matrix: EnvToDist"],[104,"Mod Matrix: EnvToAuxCV"],[73,"Mod Matrix: LFOToOsc1PWM"],[34,"Mod Matrix: LFOToOsc2PWM"],[78,"Mod Matrix: LFOToAmp"],[108,"Mod Matrix: LFOToDist"],[109,"Mod Matrix: LFOToAuxCV"],[118,"Mod Matrix: ModSeqToOsc1PWM"],[38,"Mod Matrix: ModSeqToOsc2PWM"],[119,"Mod Matrix: ModSeqToAmp"],[111,"Mod Matrix: ModSeqRoDist"],[116,"Mod Matrix: ModSeqToAuxCV"],[115,"Mod Matrix: VelocityToOsc1Pitch"],[107,"Mod Matrix: VelocityToOsc1PWM"],[9,"Mod Matrix: VelocityToOsc2Pitch"],[36,"Mod Matrix: VelocityToOsc2PWM"],[112,"Mod Matrix: VelocityToAmp"],[113,"Mod Matrix: VelocityToFilterFreq"],[105,"Mod Matrix: VelocityToDist"],[89,"Mod Matrix: VelocityToAuxCV"],[102,"Mod Matrix: Selected Routing"]]},{"id":"mininova","brand":"Novation","name":"MiniNova","cc":[[1,"Modulation"],[2,"Breath Controller"],[3,"Polyphony Mode"],[5,"Portamento Rate"],[8,"Wet Level"],[9,"PreGlide"],[10,"Pan Position"],[11,"Expression Pedal"],[12,"Portamento Mode: Expo"],[12,"Portamento Mode: Linear"],[13,"Keyboard Octave Up"],[13,"Keyboard Octave Down"],[14,"Unison"],[15,"Unison Detune"],[16,"Osc Drift"],[17,"Osc Phase"],[18,"Osc Fixed Transpose"],[19,"Osc1: Wave"],[20,"Osc1: Wave Interpolate"],[21,"Osc1: Pulse Width Index"],[22,"Osc1: Virtual Sync Depth"],[23,"Osc1: Hardness"],[24,"Osc1: Density"],[25,"Osc1: Density Detune"],[26,"Osc1: Semitones"],[27,"Osc1: Cents"],[28,"Osc1: Pitch Bend"],[29,"Osc2: Wave"],[30,"Osc2: Wave Interpolate"],[31,"Osc2: Pulse Width Index"],[33,"Osc2: Virtual Sync Depth"],[34,"Osc2: Hardness"],[35,"Osc2: Density"],[36,"Osc2: Density Detune"],[37,"Osc2: Semitones"],[39,"Osc2: Cents"],[40,"Osc2: Pitchbend"],[41,"Osc3: Wave"],[42,"Osc3: Wave Interpolate"],[43,"Osc3: Pulse Width Index"],[44,"Osc3: Virtual Sync Depth"],[45,"Osc3: Hardness"],[46,"Osc3: Density"],[47,"Osc3: Density Detune"],[48,"Osc3: Semitones"],[49,"Osc3: Cents"],[50,"Osc3: Pitchbend"],[51,"Osc1 Level"],[52,"Osc2 Level"],[53,"Osc3 Level"],[54,"Rind Mod Level13"],[55,"Ring Mod Level23"],[56,"Noise Level"],[57,"Noise Color"],[58,"PreFX Level"],[59,"PostFX Level"],[60,"Filter: Routing"],[61,"Filter: Balance"],[63,"Filter: Drive"],[64,"Sustain Pedal: Off"],[64,"Sustain Pedal: On"],[65,"Filter: Drive Type"],[68,"Filter Type"],[69,"Filter: Track"],[70,"Filter: Sustain"],[71,"Filter: Resonance"],[72,"Env1: Release"],[73,"Env1: Attack"],[74,"Filter: Frequency"],[75,"Env1: Decay"],[76,"Osc: Vibrato Speed"],[77,"Osc: Vibrato Depth"],[78,"Filter: Q Normalize"],[79,"Filter: Env2ToFreq"],[80,"Filter2: Drive"],[81,"Filter2: Drive Type"],[82,"Filter2: Type"],[83,"Filter2: Freq"],[84,"Filter2: Track"],[85,"Filter2: Resonance"],[86,"Filter2: Q Normalize"],[87,"Filter2: Env2ToFreq"],[88,"FX Pan Rate"],[89,"FX Pan Sync"],[90,"FX Pan Mod Depth"],[91,"FX1 Level"],[92,"FX2 Level"],[93,"FX3 Level"],[94,"FX4 Level"],[95,"FX5 Level"],[106,"Env: Track Centre"],[108,"Env1: Velocity"],[109,"Env1: Sustain Rate"],[110,"Env1: Sustain Time"],[111,"Env1: AD Repeats"],[112,"Env1: Attack Track"],[113,"Env1: Decay Track"],[114,"Env1: Level Track"],[115,"Env1: Attack Slope"],[116,"Env1: Decay Slope"],[117,"Env1: Anim Trigger"],[120,"All Sounds Off"],[122,"Local Off/On"],[123,"All Notes Off"]]},{"id":"peak","brand":"Novation","name":"Peak","cc":[[5,"Glide Time"],[35,"Glide On"],[35,"Glide Off"],[3,"Osc1 Range"],[9,"Osc1 ModEnv2 > Pitch"],[12,"Osc1 Manual Shape"],[119,"Osc1 ModEnv1 > Shape"],[33,"Osc1 LFO1 > Shape"],[34,"Osc1 Vsync"],[37,"Osc2 Range"],[38,"Osc2 ModEnv2 > Pitch"],[39,"Osc2 Manual Shape"],[40,"Osc2 ModEnv1 > Shape"],[41,"Osc2 LFO1 > Shape"],[42,"Osc2 Vsync"],[65,"Osc3 Range"],[43,"Osc3 ModEnv2 > Pitch"],[71,"Osc3 Manual Shape"],[72,"Osc3 ModEnv1 > Shape"],[73,"Osc3 LFO1 > Shape"],[44,"Osc3 Vsync"],[80,"Filter Overdrive"],[36,"Filter Post Drive"],[75,"Filter Key Tracking"],[79,"Filter Resonance"],[76,"Filter Osc3 > Filter"],[77,"Filter AmpEnv > Filter"],[78,"Filter ModEnv1 > Filter"],[86,"Amp Env: Attack"],[87,"Amp Env: Decay"],[88,"Amp Env: Sustain"],[89,"Amp Env: Release"],[90,"Mod Env1: Attack"],[91,"Mod Env1: Decay"],[92,"Mod Env1: Sustain"],[93,"Mod Env1: Release"],[94,"Mod Env2: Attack"],[95,"Mod Env2: Decay"],[117,"Mod Env2: Sustain"],[103,"Mod Env2: Release"],[81,"LFO1 Sync Rate"],[82,"LFO1 Fade Time"],[83,"LFO2 Range"],[84,"LFO2 Sync Rate"],[85,"LFO2 Fade Time"],[104,"Distortion Level"],[108,"Delay Level"],[109,"Delay Time"],[110,"Delay Feedback"],[112,"Reverb Level"],[113,"Reverb Time"],[105,"Chorus Level"],[118,"Chorus Rate"],[107,"Chorus Feedback"],[116,"Arp Clock Gate"],[114,"Animate 1 Hold: On"],[114,"Animate 1 Hold: Off"],[115,"Animate 2 Hold: On"],[115,"Animate 2 Hold: Off"]]},{"id":"summit","brand":"Novation","name":"Summit","cc":[[5,"Glide Time"],[35,"Glide On"],[35,"Glide Off"],[3,"Osc1 Range"],[9,"Osc1 ModEnv2 > Pitch"],[12,"Osc1 Manual Shape"],[119,"Osc1 ModEnv1 > Shape"],[33,"Osc1 LFO1 > Shape"],[34,"Osc1 Vsync"],[37,"Osc2 Range"],[38,"Osc2 ModEnv2 > Pitch"],[39,"Osc2 Manual Shape"],[40,"Osc2 ModEnv1 > Shape"],[41,"Osc2 LFO1 > Shape"],[42,"Osc2 Vsync"],[65,"Osc3 Range"],[43,"Osc3 ModEnv2 > Pitch"],[71,"Osc3 Manual Shape"],[72,"Osc3 ModEnv1 > Shape"],[73,"Osc3 LFO1 > Shape"],[44,"Osc3 Vsync"],[80,"Filter Overdrive"],[36,"Filter Post Drive"],[75,"Filter Key Tracking"],[79,"Filter Resonance"],[76,"Filter Osc3 > Filter"],[77,"Filter AmpEnv > Filter"],[78,"Filter ModEnv1 > Filter"],[86,"Amp Env: Attack"],[87,"Amp Env: Decay"],[88,"Amp Env: Sustain"],[89,"Amp Env: Release"],[90,"Mod Env1: Attack"],[91,"Mod Env1: Decay"],[92,"Mod Env1: Sustain"],[93,"Mod Env1: Release"],[94,"Mod Env2: Attack"],[95,"Mod Env2: Decay"],[117,"Mod Env2: Sustain"],[103,"Mod Env2: Release"],[81,"LFO1 Sync Rate"],[82,"LFO1 Fade Time"],[83,"LFO2 Range"],[84,"LFO2 Sync Rate"],[85,"LFO2 Fade Time"],[104,"Distortion Level"],[108,"Delay Level"],[109,"Delay Time"],[110,"Delay Feedback"],[112,"Reverb Level"],[113,"Reverb Time"],[105,"Chorus Level"],[118,"Chorus Rate"],[107,"Chorus Feedback"],[116,"Arp Clock Gate"],[114,"Animate 1 Hold"],[115,"Animate 2 Hold"]]},{"id":"ultranova","brand":"Novation","name":"UltraNova","cc":[[1,"Modwheel"],[2,"Breath Controller"],[3,"Polyphony Mode"],[5,"Portamento Rate"],[8,"Dry/Wet Balance"],[9,"Pre-Glide"],[10,"Pan Position"],[11,"Expression Pedal"],[12,"Portamento: Expo"],[12,"Portamento: Linear"],[13,"Keyboard Octave"],[14,"Unison Count"],[15,"Unison Detune"],[16,"Osc123 Drift"],[17,"Osc123 Start Phase"],[18,"Osc123 Fixed Note"],[19,"Osc1: WAveform"],[20,"Osc1: Wavetable interpolate"],[21,"Osc1: Pulsewidth Index"],[22,"Osc1: Sync Depth"],[23,"Osc1: Hardness"],[24,"Osc1: Density"],[25,"Osc1: Density Detune"],[26,"Osc1: Semitones"],[27,"Osc1: Cents"],[28,"Osc1: Pitch Bend"],[29,"Osc2: Waveform"],[30,"Osc2: Wavetable Interpolate"],[31,"Osc2: Pulsewidth Index"],[33,"Osc2: Sync Depth"],[34,"Osc2: Hardness"],[35,"Osc2: Density"],[36,"Osc2: Density Detune"],[37,"Osc2: Semitone"],[39,"Osc2: Cents"],[40,"Osc2: Pitchbend"],[41,"Osc3: Waveform"],[42,"Osc3: Wavetable Interpolate"],[43,"Osc3: Pulsewidth Index"],[44,"Osc3: Sync Depth"],[45,"Osc3: Hardness"],[46,"Osc3: Density"],[47,"Osc3: Density Detune"],[48,"Osc3: Semitones"],[49,"Osc3: Cents"],[50,"Osc3: Pitchbend"],[51,"Osc1 Mix Level"],[52,"Osc2 Mix Level"],[53,"Osc3 Mix Level"],[54,"Osc13 Ringmod Mix Level"],[55,"Osc23 Ringmod Mix Level"],[56,"Noise Mix Level"],[57,"Noise Type"],[58,"Pre-FX Level"],[59,"Post-FX Level"],[60,"Filter Config"],[61,"Filter Balance"],[62,"Filter Packed Data"],[63,"Filter1 Drive"],[64,"Sustain Off"],[64,"Sustain On"],[65,"Filter 1 Drive Type"],[68,"Filter 1 Type"],[69,"Filter 1 Track"],[70,"AmpEnv Sustain Level"],[71,"Filter 1 Resonance"],[72,"AmpEnv Release"],[73,"AmpEnv Attack"],[74,"Filter 1 Frequency"],[775,"AmpEnv Decay"],[76,"Easy Vibrato Rate"],[77,"Easy Vibrato Depth"],[78,"Filter 1 Q Normalize"],[79,"FiltEnv > Filter1 Freq"],[80,"Filter 2 Drive"],[81,"Filter 2 Drive Type"],[82,"Filter 2 Type"],[83,"Filter 2 Frequency"],[84,"Filter 2 Track"],[85,"Filter 2 Resonance"],[86,"Filter 2 Q Normalise"],[87,"FiltEnv > Filter2 Freq"],[88,"Pan Mod Rate"],[89,"Pan Mod Rate Sync"],[90,"Pan Mod Depth"],[91,"FX Slot1 Level"],[92,"FX Slot2 Level"],[93,"FX Slot3 Level"],[94,"FX Slot4 Level"],[95,"FX Slot5 Level"],[102,"Pan L/R Phase Offset"],[103,"L/R Width Enhance"],[104,"Pan Spare"],[105,"Anv Packed MonoMulti Triggers"],[106,"Env Level Track Centre"],[107,"Drum Time"],[108,"AmpEnv: Velocity"],[109,"AmpEnv: Sustain Rate"],[110,"AmpEnv: Sustain Time"],[111,"AmpEnv: A/D Repeats"],[112,"AmpEnv: Attack Track"],[113,"AmpEnv: Decay Track"],[114,"AmpEnv: Level Track"],[115,"AmpEnv: Attack Slope"],[116,"AmpEnv: Decay Slope"],[117,"AmpEnv: Touch Trigger"],[120,"All Sounds Off"],[121,"Reset All Controllers"],[122,"Local Control"],[123,"All Notes Off"],[124,"Omni Mode Off"],[125,"Omni Mode On"],[126,"Mono Mode On"],[127,"Poly Mode On"]]},{"id":"darkstarstereosoundscapereverb","brand":"Old Blood Noise Endeavors","name":"Dark Star Stereo Soundscape Reverb","cc":[["7","Volume"],["14","Mix"],["15","Decay"],["16","Pitch 1"],["17","Pitch 2"],["18","Lag"],["19","Crush"],["20","Filter"],["21","Feedback"],["22","Spread"],["11","Expression"],["23","Bypass Switch"],["24","Aux Switch"],["25","Preset Saving Switch"],["80","Aux Setting"],["81","Trails Setting"],["82","Stereo Setting"],["102","MIDI Channel"]]},{"id":"v-uno","brand":"OPFXS","name":"v-uno","cc":[[0,"Parameter 0"],["1","Parameter 1"],["2","Parameter 2"],["3","Parameter 3"],["4","Parameter 4"],["5","Parameter 5"],["6","Parameter 6"],["7","Parameter 7"],["8","Parameter 8"],["9","Parameter 9"],["10","Parameter 10"],["11","Parameter 11"],["12","Parameter 12"],["13","Parameter 13"],["14","Parameter 14"],["15","Parameter 15"],["16","Parameter 16"],["17","Parameter 17"],["18","Parameter 18"],["19","Parameter 19"],["20","Parameter 20"],["21","Parameter 21"],["22","Parameter 22"],["23","Parameter 23"]]},{"id":"minerva","brand":"Oscillator Devices","name":"Minerva","cc":[["102","Playback Modes"],["102","Playback Modes"],["102","Playback Modes"],["102","Playback Modes"],["102","Playback Modes"],["102","Playback Modes"],["102","Playback Modes"],["102","Playback Modes"],["102","Playback Modes"],["102","Playback Modes"],["102","Playback Modes "],["102","Playback Modes"],["102","Playback Modes"],["102","Playback Modes"],["102","Playback Modes"],["102","Playback Modes"],["102","Playback Modes"],["103","Playback Volume"],["104","Playback Volume"],["105","Playback Volume"],["106","Fade Out"],["107","Fade Out"],["108","Fade Out"],["109","PC Increment"],["109","PC Increment"],["109","PC Increment"],["110","Sampling Rate"],["111","Sampling Rate"],["112","Sampling Rate"],["113","Sampling Rate"]]},{"id":"siren","brand":"Oscillator Devices","name":"Siren","cc":[["20","Volume Control Channel A"],["29","Volume Control Channel A"],["40","Volume Control Channel B"],["49","Volume Control Channel B"],["60","Volume Control Channel A+B"],["69","Volume Control Channel A+B"],["21","Tremolo Channel A"],["41","Tremolo Channel B"],["61","Tremolo Channel A+B"],["22","Tremolo Channel A"],["42","Tremolo Channel B"],["62","Tremolo Channel A+B"],["23","Tremolo Channel A"],["43","Tremolo Channel B"],["63","Tremolo Channel A+B"],["24","Tremolo Channel A"],["44","Tremolo Channel B"],["64","Tremolo Channel A+B"],["25","Tremolo Channel A"],["45","Tremolo Channel B"],["65","Tremolo Channel A+B"],["30","Trem Speed Channel A"],["30","Trem Speed Channel A"],["30","Trem Speed Channel A"],["30","Trem Speed Channel A"],["30","Trem Speed Channel A"],["30","Trem Speed Channel A"],["30","Trem Speed Channel A"],["30","Trem Speed Channel A"],["30","Trem Speed Channel A"],["30","Trem Speed Channel A"],["50","Trem Speed Channel B"],["50","Trem Speed Channel B"],["50","Trem Speed Channel B"],["50","Trem Speed Channel B"],["50","Trem Speed Channel B"],["50","Trem Speed Channel B"],["50","Trem Speed Channel B"],["50","Trem Speed Channel B"],["50","Trem Speed Channel B"],["50","Trem Speed Channel B"],["70","Trem Speed Channel A+B"],["70","Trem Speed Channel A+B"],["70","Trem Speed Channel A+B"],["70","Trem Speed Channel A+B"],["70","Trem Speed Channel A+B"],["70","Trem Speed Channel A+B"],["70","Trem Speed Channel A+B"],["70","Trem Speed Channel A+B"],["70","Trem Speed Channel A+B"],["70","Trem Speed Channel A+B"],["31","Stereo Trem Delay Channel A"],["51","Stereo Trem Delay Channel B"],["71","Stereo Trem Delay Channel A+B"],["32","Trem Depth Channel A"],["52","Trem Depth Channel B"],["72","Trem Depth Channel A+B"],["26","Swell Channel A"],["46","Swell Channel B"],["66","Swell Channel A+B"],["27","Fade Channel A"],["47","Fade Channel B"],["67","Fade Channel A+B"],["30","Fade/Swell Time Channel A"],["30","Fade/Swell Time Channel A"],["30","Fade/Swell Time Channel A"],["30","Fade/Swell Time Channel A"],["30","Fade/Swell Time Channel A"],["30","Fade/Swell Time Channel A"],["30","Fade/Swell Time Channel A"],["30","Fade/Swell Time Channel A"],["50","Fade/Swell Time Channel B"],["50","Fade/Swell Time Channel B"],["50","Fade/Swell Time Channel B"],["50","Fade/Swell Time Channel B"],["50","Fade/Swell Time Channel B"],["50","Fade/Swell Time Channel B"],["50","Fade/Swell Time Channel B"],["50","Fade/Swell Time Channel B"],["70","Fade/Swell Time Channel A+B"],["70","Fade/Swell Time Channel A+B"],["70","Fade/Swell Time Channel A+B"],["70","Fade/Swell Time Channel A+B"],["70","Fade/Swell Time Channel A+B"],["70","Fade/Swell Time Channel A+B"],["70","Fade/Swell Time Channel A+B"],["70","Fade/Swell Time Channel A+B"],["102","Mix/Split Modes"],["102","Mix/Split Modes"],["102","Mix/Split Modes"],["102","Mix/Split Modes"],["103","Phase Switch"],["103","Phase Switch"],["119","Set Midi Channel"],["119","Save Midi Channel"]]},{"id":"bam","brand":"OTO Machines","name":"BAM","cc":[[12,"Size"],[13,"Pre Delay"],[14,"Mix"],[15,"Reverb Time"],[16,"Damping"],[17,"Active"],[18,"Type"],[19,"In Gain"],[20,"Low-cut"],[21,"High-cut"],[22,"Chorus"],[23,"Freeze"]]},{"id":"bim","brand":"OTO Machines","name":"BIM","cc":[[12,"Delay"],[13,"Feedback"],[14,"Mix"],[15,"LFO Rate"],[16,"LFO Depth"],[17,"Active"],[18,"Division"],[19,"Range"],[20,"FX Type"],[21,"In Gain"],[22,"HPF"],[23,"LPF"],[24,"Feedback Filters"],[25,"Offset"],[26,"LFO Wave"],[27,"LFO Range"],[28,"Freeze"],[29,"Freeze Reverse"],[30,"LFO Division"],[31,"LFO Phase Reset"]]},{"id":"biscuit","brand":"OTO Machines","name":"Biscuit","cc":[[14,"Drive"],[15,"Naked"],[16,"Dressed"],[17,"Q"],[18,"Clock"],[19,"Freq"],[20,"Bit 1: Off"],[20,"Bit 1: On"],[20,"Bit 1: Inverse"],[21,"Bit 2: Off"],[21,"Bit 2: On"],[21,"Bit 2: Inverse"],[22,"Bit 3: Off"],[22,"Bit 3: On"],[22,"Bit 3: Inverse"],[23,"Bit 4: Off"],[23,"Bit 4: On"],[23,"Bit 4: Inverse"],[24,"Bit 5: Off"],[24,"Bit 5: On"],[24,"Bit 5: Inverse"],[25,"Bit 6: Off"],[25,"Bit 6: On"],[25,"Bit 6: Inverse"],[26,"Bit 7: Off"],[26,"Bit 7: On"],[26,"Bit 7: Inverse"],[27,"Bit 8: Off"],[27,"Bit 8: On"],[27,"Bit 8: Inverse"],[28,"Bypass Biscuit"],[28,"Engage Biscuit"],[29,"Filter: Low Pass"],[29,"Filter: Band Pass"],[29,"Filter: Hi Pass"],[30,"FX: Off"],[30,"FX: Wave Shaping"],[30,"FX: Delay"],[30,"FX: Pitch Shifter"],[30,"FX: Step Filter"],[31,"Wave: Hi Rect"],[31,"Wave: Alt. Rect"],[31,"Wave: Bat Fuzz"],[31,"Wave: Biscuit"],[31,"Wave: Swap"],[31,"Wave: Saw Osc."],[31,"Wave: Lo Saw Osc."],[31,"Wave: Lo Squar Osc."],[32,"Division: 1/4"],[32,"Division: 1/4d"],[32,"Division: 1/8"],[32,"Division: 1/8d"],[32,"Division: 1/16"],[32,"Division: 1/16d"],[33,"Delay Feedback"],[34,"Delay Free Clock: Off"],[34,"Delay Free Clock: On"],[35,"Pitch Shift: 2 Oct Down"],[35,"Pitch Shift: 1 Oct Down"],[35,"Pitch Shift: 1 5th Down"],[35,"Pitch Shift: Detune"],[35,"Pitch Shift: 1 Minor 3rd Up"],[35,"Pitch Shift: 1 Major 3rd Up"],[35,"Pitch Shift: 1 5th Up"],[35,"Pitch Shift: 1 Oct Up"],[36,"Step Filter Mode: FWD"],[36,"Step Filter Mode: ALT"],[36,"Step Filter Mode: RAND"],[37,"Step Filter Speed: x1"],[37,"Step Filter Speed: x2"],[37,"Step Filter Speed: x4"],[37,"Step Filter Speed: x8"],[37,"Step Filter Speed: x24"],[38,"Step Filter No.: 2"],[38,"Step Filter No.: 3"],[38,"Step Filter No.: 4"],[38,"Step Filter No.: 6"],[38,"Step Filter No.: 8"]]},{"id":"boum","brand":"OTO Machines","name":"BOUM","cc":[[12,"Compressor"],[13,"Drive"],[14,"Mix"],[15,"Hi cut"],[16,"Level"],[17,"Active"],[18,"In Gain"],[19,"Attack"],[20,"Release"],[21,"Lo Cut"],[22,"Disto"],[23,"Gate"],[24,"Sidechain Control"]]},{"id":"minimega","brand":"Peavey","name":"Mini MEGA","cc":[[1,"Crunch"],[2,"Compressor"],[3,"Punch"],[4,"Lo Narrow Q"],[5,"Hi Narow Q"],[6,"Bright"],[7,"Kosmos"],[8,"Mute: On"],[8,"Mute: Off"],[9,"Effects Loop: On"],[9,"Effects Loop: Off"]]},{"id":"infinity","brand":"Pigtronix","name":"Infinity","cc":[[3,"Varispeed"],[4,"Expression"],[7,"Global Volume"],[9,"Loop Aging"],[12,"Loop 1 Volume"],[13,"Loop 2 Volume"],[17,"Stop Mode: Short Press"],[17,"Stop Mode: Long Press"],[17,"Stop Mode: Release"],[17,"Stop Mode: Press"],[19,"Series Loops"],[20,"Input Split"],[21,"Click Kill"],[21,"No Click Kill"],[22,"Sync Multi: Short Press"],[22,"Sync Multi: Long Press"],[22,"Sync Multi: Release"],[22,"Sync Multi: Press"],[23,"Stop FSW: Short Press"],[23,"Stop FSW: Long Press"],[23,"Stop FSW: Release"],[23,"Stop FSW: Press"],[24,"Loop 1 FSW: Short Press"],[24,"Loop 1 FSW: Long Press"],[24,"Loop 1 FSW: Release"],[24,"Loop 1 FSW: Press"],[25,"Loop 2 FSW: Short Press"],[25,"Loop 2 FSW: Long Press"],[25,"Loop 2 FSW: Release"],[25,"Loop 2 FSW: Press"],[27,"Undo FSW: Short Press"],[27,"Undo FSW: Long Press"],[27,"Undo FSW: Release"],[27,"Undo FSW: Press"],[28,"Reverse FSW: Short Press"],[28,"Reverse FSW: Long Press"],[28,"Reverse FSW: Release"],[28,"Reverse FSW: Press"],[29,"Pitch Up: Short Press"],[29,"Pitch Up: Long Press"],[29,"Pitch Up: Release"],[29,"Pitch Up: Press"],[30,"Pitch Down: Short Press"],[30,"Pitch Down: Long Press"],[30,"Pitch Down: Release"],[30,"Pitch Down: Press"],[31,"Pitch Recall"],[75,"Stutter"],[76,"Erase"],[77,"Erase+Rec"],[78,"Reverse"],[79,"Undo"],[80,"Stop"],[82,"Set Multiplier"],[83,"Erase Other"],[85,"Preset Decrement"],[86,"Preset Increment"],[87,"One Shot"],[88,"MIDI Clock: Listen"],[88,"MIDI Clock: Ignore"],[89,"Erase All"]]},{"id":"biasrack","brand":"Positive Grid","name":"Bias Rack","cc":[[7,"Gain"],[8,"Bass"],[9,"Middle"],[12,"Treble"],[10,"Presence"],[11,"Master"],[13,"Output"],[6,"Custom Knob"],[2,"Tube Stages: 1 Tube"],[2,"Tube Stages: 2 Tubes"],[2,"Tube Stages: 3 Tubes"],[2,"Tube Stages: 4 Tubes"],[2,"Tube Stages: 5 Tubes"],[3,"Distortion"],[4,"Topology: Single Ended"],[4,"Topology: Split Load"],[4,"Topology: Push Pull"],[4,"Topology: Solid State"],[5,"Power Amp"]]},{"id":"context2","brand":"Red Panda","name":"Context 2","cc":[[4,"Expression Pedal"],[12,"Blend"],[13,"Reverb Predelay"],[14,"Reverb Decay"],[15,"Low Response"],[16,"High Response"],[17,"Modulation Amount"],[18,"Modulation Rate"],[20,"Delay Time"],[21,"Delay Feedback"],[22,"Reverb/Delay Balance"],[23,"Dynamics Threshold"],[24,"Dynamics Recovery Time: Ducking"],[24,"Dynamics Recovery Time: Off"],[24,"Dynamics Recovery Time: Expansion"],[80,"Preset Footswitch: Press"],[80,"Preset Footswitch: Release"],[81,"On Footswitch: Press"],[81,"On Footswitch: Release"],[86,"Reverb Hold (Left): On"],[86,"Reverb Hold (Left): Off"],[87,"Reverb Hold (Right): On"],[87,"Reverb Hold (Right): Off"],[88,"Bypass Pedal"],[88,"Engage Pedal"],[89,"Tap"],[102,"Algorithm: Room"],[102,"Algorithm: Hall"],[102,"Algorithm: Cathedral"],[102,"Algorithm: Gated"],[102,"Algorithm: Reverse"],[102,"Algorithm: Plate"],[102,"Alogrithm: Spring"],[102,"Algorithm: Grain"],[106,"Delay Division: Off"],[106,"Delay Division: 8 Measures"],[106,"Delay Division: 7 Measures"],[106,"Delay Division: 6 Measures"],[106,"Delay Division: 5 Measures"],[106,"Delay Division: 4 Measures"],[106,"Delay Division: 3 Measures"],[106,"Delay Division: 2 Measures"],[106,"Delay Division: 2 Measure Triplet"],[106,"Delay Division: Dotted Whole"],[106,"Delay Division: Whole"],[106,"Delay Division: Whole Triplet"],[106,"Delay Division: Dotted 1/2"],[106,"Delay Division: 1/2"],[106,"Delay Division: 1/2t"],[106,"Delay Division: 1/4d"],[106,"Delay Division: 1/4"],[106,"Delay Division: 1/4t"],[106,"Delay Division: 1/8d"],[106,"Delay Division: 1/8"],[106,"Delay Division: 1/8t"],[106,"Delay Division: 1/16d"],[106,"Delay Division: 1/16"],[106,"Delay Division: 1/16t"],[106,"Delay Division: 1/32d"],[106,"Delay Division: 1/32"],[106,"Delay Division: 1/32t"],[106,"Delay Division: 1/64d"],[106,"Delay Division: 1/64"],[106,"Delay Division: 1/64t"],[106,"Delay Division: 1/128d"],[106,"Delay Division: 1/128"],[107,"Pre-Delay Division: Off"],[107,"Pre-Delay Division: 8 Measures"],[107,"Pre-Delay Division: 7 Measures"],[107,"Pre-Delay Division: 6 Measures"],[107,"Pre-Delay Division: 5 Measures"],[107,"Pre-Delay Division: 4 Measures"],[107,"Pre-Delay Division: 3 Measures"],[107,"Pre-Delay Division: 2 Measures"],[107,"Pre-Delay Division: 2 Measure Triplet"],[107,"Pre-Delay Division: Dotted Whole"],[107,"Pre-Delay Division: Whole"],[107,"Pre-Delay Division: Whole Triplet"],[107,"Pre-Delay Division: Dotted 1/2"],[107,"Pre-Delay Division: 1/2"],[107,"Pre-Delay Division: 1/2t"],[107,"Pre-Delay Division: 1/4d"],[107,"Pre-Delay Division: 1/4"],[107,"Pre-Delay Division: 1/4t"],[107,"Pre-Delay Division: 1/8d"],[107,"Pre-Delay Division: 1/8"],[107,"Pre-Delay Division: 1/8t"],[107,"Pre-Delay Division: 1/16d"],[107,"Pre-Delay Division: 1/16"],[107,"Pre-Delay Division: 1/16t"],[107,"Pre-Delay Division: 1/32d"],[107,"Pre-Delay Division: 1/32"],[107,"Pre-Delay Division: 1/32t"],[107,"Pre-Delay Division: 1/64d"],[107,"Pre-Delay Division: 1/64"],[107,"Pre-Delay Division: 1/64t"],[107,"Pre-Delay Division: 1/128d"],[107,"Pre-Delay Division: 1/128"],[108,"Tremolo Division: Off"],[108,"Tremolo Division: 8 Measures"],[108,"Tremolo Division: 7 Measures"],[108,"Tremolo Division: 6 Measures"],[108,"Tremolo Division: 5 Measures"],[108,"Tremolo Division: 4 Measures"],[108,"Tremolo Division: 3 Measures"],[108,"Tremolo Division: 2 Measures"],[108,"Tremolo Division: 2 Measure Triplet"],[108,"Tremolo Division: Dotted Whole"],[108,"Tremolo Division: Whole"],[108,"Tremolo Division: Whole Triplet"],[108,"Tremolo Division: Dotted 1/2"],[108,"Tremolo Division: 1/2"],[108,"Tremolo Division: 1/2t"],[108,"Tremolo Division: 1/4d"],[108,"Tremolo Division: 1/4"],[108,"Tremolo Division: 1/4t"],[108,"Tremolo Division: 1/8d"],[108,"Tremolo Division: 1/8"],[108,"Tremolo Division: 1/8t"],[108,"Tremolo Division: 1/16d"],[108,"Tremolo Division: 1/16"],[108,"Tremolo Division: 1/16t"],[108,"Tremolo Division: 1/32d"],[108,"Tremolo Division: 1/32"],[108,"Tremolo Division: 1/32t"],[108,"Tremolo Division: 1/64d"],[108,"Tremolo Division: 1/64"],[108,"Tremolo Division: 1/64t"],[108,"Tremolo Division: 1/128d"],[108,"Tremolo Division: 1/128"],[110,"Receive MIDI Clock: Off"],[110,"Receive MIDI Clock: On"],[111,"Trails: Off"],[111,"Trails: On"],[111,"Trails: Global"]]},{"id":"mastermindpbc10","brand":"RJM","name":"Mastermind PBC/10","cc":[[48,"Loop 1 Off"],[48,"Loop 1 On"],[49,"Loop 2 Off"],[49,"Loop 2 On"],[50,"Loop 3 Off"],[50,"Loop 3 On"],[51,"Loop 4 Off"],[51,"Loop 4 On"],[52,"Loop 5 Off"],[52,"Loop 5 On"],[53,"Loop 6 Off"],[53,"Loop 6 On"],[54,"Loop 7 Off"],[54,"Loop 7 On"],[55,"Loop 8 Off"],[55,"Loop 8 On"],[56,"Loop 9 Off"],[56,"Loop 9 On"],[57,"Loop 10 Off"],[57,"Loop 10 On"],[58,"Loop 7: Series"],[58,"Loop 7: Parallel"],[59,"Loop 8: Series"],[59,"Loop 8: Parallel"],[60,"Loop 9: Series"],[60,"Loop 9: Parallel"],[61,"Loop 10: Series"],[61,"Loop 10: Parallel"],[62,"Buffer 1: Enable"],[62,"Buffer 1: Disable"],[63,"Buffer 2: Enable"],[63,"Buffer 2: Disable"],[64,"Buffer 3: Enable"],[64,"Buffer 3: Disable"],[65,"Function Switch 1: On"],[65,"Function Switch 1: Off"],[66,"Function Switch 2: On"],[66,"Function Switch 2: Off"],[67,"Function Switch 3: On"],[67,"Function Switch 3: Off"],[68,"Function Switch 4: On"],[68,"Function Switch 4: Off"],[69,"Output A/Left: On"],[69,"Output A/Left: Off"],[70,"Output B/Right: On"],[70,"Output B/Right: Off"],[71,"Output B Invert"],[71,"Output B Normal"],[72,"Mute"],[72,"Unmute"],[73,"Dry Send to Mixer: Mute"],[73,"Dry Send to Mixer: Unmuted"],[74,"Tuner On"],[74,"Tuner Off"],[75,"Select Page 1"],[75,"Select Page 2"],[75,"Select Page 3"],[75,"Select Page 4"],[75,"Select Page 5"],[75,"Select Page 6"],[75,"Select Page 7"],[75,"Select Page 8"],[75,"Select Page 9"],[75,"Select Page 10"],[75,"Select Page 11"],[75,"Select Page 12"],[75,"Select Page 13"],[75,"Select Page 14"],[75,"Select Page 15"],[75,"Select Page 16"]]},{"id":"miniampgizmo","brand":"RJM","name":"Mini Amp Gizmo","cc":[[88,"Switch 1: On"],[88,"Switch 1: Off"],[89,"Switch 2: On"],[89,"Switch 2: Off"],[90,"Switch 3: On"],[90,"Switch 3: Off"],[91,"Switch 4: On"],[91,"Switch 4: Off"],[92,"Switch 5: On"],[92,"Switch 5: Off"],[93,"Switch 6: On"],[93,"Switch 6: Off"],[94,"Switch 7: On"],[94,"Switch 7: Off"],[95,"Switch 8: On"],[95,"Switch 8: Off"]]},{"id":"bk-7m","brand":"Roland","name":"BK-7m","cc":[[1,"Modulation"],[5,"Portamento Time"],[7,"Volume"],[10,"Pan"],[11,"Expression"],[16,"Noise Level"],[17,"Play Stability"],[18,"Growl Sens"],[64,"Hold 1"],[65,"Portamento"],[66,"Sostenuto"],[67,"Soft"],[69,"Hold 2"],[71,"Resonance"],[72,"Release Time"],[73,"Attack Time"],[74,"Cutoff"],[75,"Decay Time"],[76,"Vibrato Rate"],[77,"Vibrato Depth"],[78,"Vibrato Delay"],[80,"Staccato"],[81,"Fall"],[84,"Portamento Control"],[91,"Effect 1 Depth"],[93,"Effect 3 Depth"]]},{"id":"d-05","brand":"Roland","name":"D-05","cc":[[0,"Bank Select MSB"],[32,"Bank Select LSB"],[1,"Mod Wheel"],[5,"Portamento Time"],[7,"Volume"],[6,"Data Entry MSB"],[38,"Data Entry LSB"],[64,"Sustain Pedal"]]},{"id":"fa-06-07-08","brand":"Roland","name":"FA-06/07/08","cc":[[0,"USER Studio Set Change"],["32","USER Studio Set Change"],[0,"Program Change"]]},{"id":"gaiash-01","brand":"Roland","name":"GAIA SH-01","cc":[[0,"Bank Select MSB"],[32,"Bank Select LSB"],[1,"Mod Wheel"],[5,"Portamento Time"],[7,"Volume"],[10,"Pan"],[11,"Expression"],[64,"Sustain Pedal"]]},{"id":"jd-xa","brand":"Roland","name":"JD-XA","cc":[[0,"Bank Select MSB"],[32,"Bank Select LSB"],[1,"Modulation"],[5,"Portamento time"],[65,"Portamento"],[6,"Data entry"],[7,"Volume"],[10,"Panpot"],[11,"Expression"],[64,"Hold 1"],[73,"Attack time"],[75,"Decay time"],[72,"Release time"],[74,"Cutoff"],[71,"Resonance"],[76,"Vibrato rate"],[77,"Vibrato depth"],[78,"Vibrato delay"],[91,"Reverb send level"]]},{"id":"jd-xi","brand":"Roland","name":"JD-Xi","cc":[[0,"Bank select MSB"],[32,"Bank Select LSB"],[1,"Modulation"],[5,"Portamento time"],[65,"Portamento"],[6,"Data entry"],[7,"Volume"],[10,"Panpot"],[11,"Expression"],[64,"Hold 1"],[73,"Attack time"],[75,"Decay time"],[72,"Release time"],[74,"Cutoff"],[71,"Resonance"],[76,"Vibrato rate"],[77,"Vibrato depth"],[78,"Vibrato delay"],[91,"Reverb send level"],[94,"Delay send level"]]},{"id":"jp-08","brand":"Roland","name":"JP-08","cc":[[1,"Modulation"],[5,"Portamento time"],[11,"Expression pedal"],[64,"Hold"],[65,"Portamento time"],[25,"Source mix"],[80,"Dual switch"],[81,"Current part"],[86,"Assign mode"],[87,"Bend range"],[13,"VCO modulation LFO modulation"],[14,"VCO modulation envelope modulation"],[15,"VCO modulation frequency modulation"],[16,"VCO modulation PWM"],[17,"VCO modulation PWM SEL"],[18,"VCO-1 cross modulation"],[19,"VCO-1 range"],[20,"VCO-1 wave"],[21,"VCO-2 sync"],[22,"VCO-2 range"],[23,"VCO-2 tune"],[24,"VCO-2 wave"],[3,"LFO rate"],[9,"LFO delay time"],[12,"LFO wave"],[35,"VCA level"],[46,"VCA LFO modulation"],[26,"HPF cutoff"],[27,"VCF slope"],[28,"VCF envelope modulation"],[29,"VCF envelope modulation SEL"],[30,"VCO LFO modulation"],[31,"VCF key follow"],[71,"VCF resonance"],[74,"VCF cutoff"],[47,"ENV-1 attack"],[52,"ENV-1 decay"],[53,"ENV-1 sustain"],[5,"ENV-1 release"],[55,"ENV-1 polarity"],[73,"ENV-2 attack"],[75,"ENV-2 decay"],[56,"ENV-2 sustain"],[72,"ENV-2 release"],[57,"ENV-2 key follow"],[82,"Delay time"],[83,"Delay feedback"],[91,"Delay level"]]},{"id":"ju-06","brand":"Roland","name":"JU-06","cc":[[1,"Modulation"],[3,"LFO rate"],[5,"Portamento time"],[9,"LFO delay time"],[11,"Expression pedal"],[12,"DCO range"],[13,"DCO LFO depth"],[14,"DCO PWM level"],[15,"DCO PWM source"],[16,"DCO PWM SW"],[17,"DCO SAW SW"],[18,"DCO sub level"],[19,"DCO noise level"],[73,"Envelope attack"],[75,"Envelope decay"],[72,"Envelope release"],[27,"Envelope sustain"],[20,"HPF cutoff"],[21,"VCF envelope polarity"],[22,"VCF envelope depth"],[23,"VCF LFO depth"],[24,"VCF key follow"],[25,"VCA envelope SW"],[26,"VCA level"],[64,"Hold"],[65,"Portamento time"],[71,"VCF resonance"],[74,"VCF cutoff"],[82,"Delay time"],[83,"Delay feedback"],[86,"Assign mode"],[87,"Bend range"],[91,"Delay level"],[93,"Chorus SW"]]},{"id":"jx-03","brand":"Roland","name":"JX-03","cc":[[1,"Modulation"],[3,"LFO rate"],[5,"Portamento time"],[9,"LFO delay time"],[11,"Expression pedal"],[12,"LFO wave form"],[13,"DCO 1 range"],[14,"DCO 1 wave form"],[15,"DCO 1 frequency modulation LFO SW"],[16,"DCO 1 frequency modulation envelope SW"],[17,"DCO 2 range"],[18,"DCO 2 wave form"],[19,"DCO 2 tune"],[20,"DCO 2 tfine tune"],[21,"DCO 2 cross mod sel"],[22,"DCO 2 frequency modulation LFO SW"],[23,"DCO 2 frequency modulation envelope SW"],[24,"DCO LFO depth"],[25,"DCO envelope depth"],[26,"DCO envelope polarity"],[27,"VCF source mix"],[28,"VCF LFO modulation depth"],[29,"VCF pitch follow"],[30,"VCF hi-pass filter cutoff"],[31,"VCF envelope modulation depth"],[35,"VCF envelope polarity SW"],[46,"VCA mode SW"],[47,"VCA level"],[73,"Envelope attack time"],[75,"Envelope decay time"],[53,"Envelope sustain level"],[72,"Envelope release time"],[64,"Hold"],[65,"Portamento time"],[71,"VCF resonance"],[74,"VCF cutoff"],[82,"Delay time"],[83,"Delay feedback"],[86,"Assign mode"],[87,"Bend range"],[91,"Delay level"],[93,"Chorus SW"]]},{"id":"se-02","brand":"Roland","name":"SE-02","cc":[[5,"Control glide"],[9,"Control glide type"],[13,"Control WHL"],[112,"Octave shift"],[113,"Transpose"],[114,"Transpose SW"],[115,"Patch volume"],[80,"Mod sens"],[81,"Dynamics"],[84,"Aftertouch sensitivity 1"],[85,"Aftertouch sensitivity 2"],[87,"Bend range"],[16,"Xmod 02FLT"],[17,"Xmod 03TO"],[18,"Xmod 03PW"],[22,"Oscillator 1 range"],[24,"Oscillator 1 waveform"],[27,"Oscillator 1 fine"],[29,"Oscillator 1 envelope"],[19,"Oscillator 2 range"],[20,"Oscillator 2 waveform"],[28,"Oscillator 2 fine"],[25,"Oscillator 3 range"],[26,"Oscillator 3 waveform"],[21,"Oscillator sync"],[30,"Oscillator keyboard"],[31,"Oscillator xmod to mod wheel"],[48,"Oscillator 1 mix"],[4,"Oscillator 2 mix"],[50,"Oscillator 3 mix"],[41,"Noise mix"],[51,"Mix feedback"],[47,"Filter 1 attack"],[53,"Filter 1 sustain"],[5,"Filter 1 decay"],[73,"Filter 2 attack"],[56,"Filter 2 sustain"],[75,"Filter 2 decay"],[74,"Filter cutoff"],[57,"Filter keytrack 13"],[58,"Filter keytrack 23"],[59,"Filter contour"],[60,"Filter MTRIG"],[61,"Filter normal/invert"],[62,"Filter REL"],[63,"Filter gate/LFO"],[71,"Filter emphasis"],[82,"Delay time"],[83,"Delay regen"],[91,"Delay amount"],[102,"LFO rate"],[103,"LFO oscillator"],[104,"LFO wave"],[105,"LFO filter"],[106,"LFO modwheel oscillator SW"],[107,"LFO modwheel FLT SW"],[108,"LFO mode SW"],[109,"LFO synch SW"]]},{"id":"sh-01a","brand":"Roland","name":"SH-01A","cc":[[1,"Modulation"],[5,"Portamento time"],[11,"Expression pedal"],[31,"Portament mode"],[64,"Hold"],[65,"Portamento"],[76,"Tune"],[77,"Transpose SW"],[78,"Noise mode"],[80,"Assign mode"],[3,"LFO rate"],[79,"LFO mode"],[12,"LFO wave form"],[13,"VCO modulation depth"],[14,"VCO range"],[15,"VCO pulse width"],[16,"VCO PWM source"],[17,"VCO mod sens"],[18,"VCO bend depth"],[19,"VCO PWM level"],[20,"VCO saw level"],[21,"VCO sub level"],[22,"VCO sub type"],[23,"VCO noise level"],[24,"VCF envelope depth"],[25,"VCF modulation depth"],[26,"VCF key follow"],[74,"VCF cutoff"],[71,"VCF resonance"],[27,"VCF bend depth"],[28,"VCA envelope SW"],[29,"VCA envelope mode"],[73,"Envelope attack"],[30,"Envelope sustain"],[75,"Envelope decay"],[72,"Envelope release"],[81,"Chord voice 2 SW"],[82,"Chord voice 3 SW"],[83,"Chord voice 4 SW"],[85,"Chord voice 2 key shift"],[86,"Chord voice 3 key shift"],[87,"Chord voice 4 key shift"]]},{"id":"system-1","brand":"Roland","name":"SYSTEM-1","cc":[[1,"Mod Wheel"],[3,"LPF Cutoff"],[5,"Portamento"],[9,"Resonance"],[11,"Pedal Control"],[12,"Amp Crusher"],[13,"Delay Time"],[16,"Mixer OSC1"],[17,"Mixer OSC2"],[18,"Mixer Sub Oscillator"],[19,"Mixer Noise"],[22,"Pitch Env"],[23,"Pitch Attack"],[24,"Pitch Decay"],[26,"LFO Pitch"],[27,"LFO Fade Time"],[28,"LFO Filter"],[29,"LFO Rate"],[30,"LFO Amp"],[35,"LFO Type"],[46,"OSC1 Type"],[47,"OSC1 Range"],[50,"OSC1 Color"],[52,"OSC1 Cross Mod"],[55,"OSC2 Color"],[56,"OSC2 Tune"],[60,"OSC1 Mod"],[61,"OSC1 Type"],[62,"OSC2 Range"],[63,"OSC2 Mod"],[64,"Sustain Pedal"],[69,"Amp Tone"],[79,"HPF Cutoff"],[81,"Filter Env"],[82,"Filter Key"],[83,"Filter Attack"],[84,"Filter Decay"],[85,"Filter Sustain"],[86,"Filter Release"],[89,"Amp Attack"],[90,"Amp Decay"],[91,"Reverb"],[94,"Delay"],[96,"Amp Sustain"],[97,"Amp Release"],[111,"OSC2 Ring"],[112,"OSC2 Sync"],[113,"Mixer OSC Type"],[114,"Mixer Noise Type"],[115,"Filter Type"],[116,"Legato"],[117,"LFO Key Trigger"],[118,"Tempo Sync"],[119,"Mono Mode On"]]},{"id":"system-8","brand":"Roland","name":"SYSTEM-8","cc":[[0,"Bank Select MSB"],[32,"Bank Select LSB"],[1,"Mod Wheel"],[3,"Cutoff"],[5,"Portamento"],[9,"Resonance"],[11,"Pedal Control"],[12,"Effects Depth"],[13,"Delay/Chorus Time"],[14,"LFO Variation"],[15,"LFO Trig Env"],[16,"Mixer OSC1"],[17,"Mixer OSC2"],[18,"Mixer OSC3/Sub Osc"],[19,"Mixer Noise"],[20,"OSC1 Coarse Tune"],[21,"OSC1 Fine Tune"],[22,"Pitch Env"],[23,"Pitch Attack"],[24,"Pitch Decay"],[25,"OSC3/Sub Osc Color"],[26,"LFO Pitch"],[27,"LFO Fade Time"],[28,"LFO Filter"],[29,"LFO Rate"],[30,"LFO Amp"],[35,"LFO Wave"],[41,"Bend Range"],[46,"OSC1 Wave"],[47,"OSC1 Octave"],[48,"OSC3/Sub Osc Tune"],[49,"Bend Gain"],[50,"OSC1 Color"],[51,"Filter Variation"],[52,"OSC1 Cross Mod"],[53,"Filter Velocity Sens"],[54,"Amp Velocity Sens"],[55,"OSC2 Color"],[56,"OSC2 Fine Tune"],[60,"OSC1 Mod"],[61,"OSC2 Wave"],[62,"OSC2 Octave"],[63,"OSC2 Mod"],[64,"Sustain Pedal"],[68,"Been Sens Pitch"],[69,"Amp Tone"],[70,"Effects Type"],[71,"Effects Tone"],[72,"Delay/Chorus Type"],[73,"Reverb Type"],[74,"Reverb Time"],[75,"Bend Sens Filter"],[79,"HPF Cutoff"],[80,"Mod Sens Pitch"],[81,"Filter Env"],[82,"Filter Key"],[83,"Filter Attack"],[84,"Filter Decay"],[85,"Filter Sustain"],[86,"Filter Release"],[89,"Amp Attack"],[90,"Amp Decay"],[91,"Reverb Level"],[94,"Delay/Chorus Level"],[96,"Amp Sustain"],[97,"Amp Release"],[103,"OSC1 Variation"],[104,"OSC2 Variation"],[107,"OSC3/Sub Osc Wave"],[108,"Filter Type"],[109,"Mod Sens Filter"],[110,"Amp Level"],[111,"OSC2 Ring"],[112,"OSC2 Sync"],[114,"Mixer Noise Type"],[116,"Legato"],[117,"LFO Key Trigger"],[118,"Tempo Sync"],[119,"Mono Mode On"]]},{"id":"tb-03","brand":"Roland","name":"TB-03","cc":[[12,"Envelope modulation"],[16,"Accent level"],[17,"Overdrive"],[18,"Delay time"],[19,"Delay feedback"],[71,"Resonance"],[74,"Filter cutoff frequency"],[75,"Decay"],[102,"Slide status"],[104,"Tuning"]]},{"id":"tr-08","brand":"Roland","name":"TR-08","cc":[[71,"Accent"],[20,"Bass drum tune"],[21,"Bass drum tone"],[22,"Bass drum compression"],[23,"Bass drum decay"],[24,"Bass drum level"],[25,"Snare drum tone"],[26,"Snare drum snappy"],[27,"Snare drum compression"],[28,"Snare drum decay"],[29,"Snare drum level"],[46,"Low tom tune"],[47,"Low tom decay"],[48,"Low tom level"],[49,"Mid tom tune"],[50,"Mid tom decay"],[51,"Mid tom level"],[52,"High tom tune"],[53,"High tom decay"],[54,"High tom level"],[55,"Rim shot tune"],[56,"Rim shot decay"],[57,"Rim shot level"],[58,"Hand clap tune"],[59,"Hand clap decay"],[60,"Hand clap level"],[61,"Closed hi hat tune"],[62,"Closed hi hat decay"],[63,"Closed hi hat level"],[80,"Open hi hat tune"],[81,"Open hi hat decay"],[82,"Open hi hat level"],[83,"Cymbal tone"],[84,"Cymbal decay"],[85,"Cymbal level"],[86,"Cow bell tune"],[87,"Cow bell decay"],[88,"Cow bell level"]]},{"id":"tr-09","brand":"Roland","name":"TR-09","cc":[[9,"Shuffle"],[71,"Total accent"],[20,"Bass drum tune"],[21,"Bass drum attack"],[22,"Bass drum compression"],[23,"Bass drum decay"],[24,"Bass drum level"],[25,"Snare drum tune"],[26,"Snare drum snappy"],[27,"Snare drum compression"],[28,"Snare drum tone"],[29,"Snare drum level"],[46,"Low tom tune"],[47,"Low tom decay"],[48,"Low tom level"],[49,"Mid tom tune"],[50,"Mid tom decay"],[51,"Mid tom level"],[52,"High tom tune"],[53,"High tom decay"],[54,"High tom level"],[55,"Rim shot tune"],[56,"Rim shot decay"],[57,"Rim shot level"],[58,"Hand clap tune"],[59,"Hand clap decay"],[60,"Hand clap level"],[61,"Closed hi hat tune"],[62,"Closed hi hat decay"],[63,"Closed hi hat level"],[80,"Open hi hat tune"],[81,"Open hi hat decay"],[82,"Open hi hat level"],[83,"Crash cymbal tune"],[84,"Crash cymbal decay"],[85,"Crash cymbal level"],[86,"Ride cymbal tune"],[87,"Ride cymbal decay"],[88,"Ride cymbal level"]]},{"id":"tr-8","brand":"Roland","name":"TR-8","cc":[[9,"Shuffle"],[12,"External In Level"],[13,"External In Side Chain"],[16,"Delay Level"],[17,"Delay Time"],[18,"Delay Feedback"],[20,"BD Tune"],[21,"BD Attack"],[22,"BD Comp"],[23,"BD Decay"],[24,"BD Level"],[25,"SD Tune"],[26,"SD Snappy"],[27,"SD Comp"],[28,"SD Decay"],[29,"SD Level"],[46,"LT Tune"],[47,"LT Decay"],[48,"LT Level"],[49,"MT Tune"],[50,"MT Decay"],[51,"MT Level"],[52,"HT Tune"],[53,"HT Decay"],[54,"HT Level"],[55,"RS Tune"],[56,"RS Decay"],[57,"RS Level"],[58,"HC Tune"],[59,"HC Decay"],[60,"HC Level"],[61,"CH Tune"],[62,"CH Decay"],[63,"CH Level"],[68,"Scatter Type"],[69,"Scatter Depth"],[70,"Scatter SW"],[71,"Accent"],[80,"OH Tune"],[81,"OH Decay"],[82,"OH Level"],[83,"CC Tune"],[84,"CC Decay"],[85,"CC Level"],[86,"RC Tune"],[87,"RC Decay"],[88,"RC Level"],[89,"Reverb Time"],[90,"Reverb Gate"],[91,"Reverb Level"]]},{"id":"vp-03","brand":"Roland","name":"VP-03","cc":[[1,"Modulation"],[4,"Pitch pedal"],[5,"Portament time"],[20,"Pitchbend range"],[64,"Hold"],[65,"Portament on/off"],[72,"Release"],[73,"Strings attack"],[74,"Strings tone"],[75,"Human voice attack"],[76,"Vibrato rate"],[77,"Vibrato depth"],[78,"Vibrato delay time"],[79,"Tune"],[12,"Pitch time"],[13,"Pitch set"],[14,"Pitch shift"],[15,"Pitch shft mode"],[16,"Balance direct mic"],[17,"Balance human voice"],[18,"Balance strings"],[9,"Vocodor formant"],[66,"Vocoder hold"],[70,"Vocoder level"],[71,"Vocoder tone"],[80,"Vocoder on/off"],[81,"Human voice male 8"],[82,"Vuman voice female 4"],[83,"Strings on/off"],[91,"Vocoder ensemble"],[92,"Human voice ensemble"]]},{"id":"ob-6","brand":"Sequential","name":"OB-6","cc":[[0,"Bank Select MSB"],[1,"Mod Wheel"],[3,"BPM"],[4,"Foot Controller"],[5,"Portamento Time"],[7,"MIDI Volume"],[8,"Sub Octave Level"],[9,"Distortion Amount"],[39,"Volume LSB"],[40,"Loudness Env Amt"],[41,"Loudness Env Vel Amt"],[43,"Loudness Env Attack"],[44,"Loudness Env Decay"],[45,"Loudness Env Sustain"],[46,"Loudness Env Release"],[47,"Filter Env Amt"],[50,"Filter Env Attack"],[51,"Filter Env Decay"],[52,"Filter Env Sustain"],[53,"Filter Env Release"],[58,"Arp On/Off"],[59,"Arp Mode"],[60,"Arp Octave"],[62,"Arp Clock Division"],[64,"Sustain Pedal"],[65,"Portamento On/Off"],[67,"VCO1 Frequency"],[69,"VCO1 Level"],[70,"VCO1 Shape"],[71,"VCO1 Pulse Width"],[74,"Brightness"],[75,"VCO2 Frequency"],[76,"VCO2 Detune"],[77,"VCO2 Level"],[78,"VCO2 Shape"],[79,"VCO2 Pulse Width"],[102,"Filter Frequency"],[103,"Filter Resonance"],[104,"Filter Key Amount"],[105,"Filter Velocity On/Off"],[106,"Filter Mode"],[107,"Band-pass On/Off"],[120,"All Sound Off"],[121,"Reset Controllers"],[122,"Local Control On/Off"],[123,"All Notes Off"],[124,"Omni Mode Off"],[125,"Omni Mode On"],[126,"Mono Mode On"],[127,"Poly Mode On"]]},{"id":"pro3","brand":"Sequential","name":"Pro 3","cc":[[0,"Bank Select MSB"],[1,"Mod Wheel"],[2,"Breath controller"],[3,"BPM"],[4,"Foot Controller"],[5,"Glide Mode"],[7,"MIDI Volume"],[8,"Audio In Level"],[9,"Audio In Gain"],[11,"Expression"],[12,"Voice Volume"],[13,"Paraphonic On/Off"],[14,"Slider 1 Position"],[16,"FX1 On/Off"],[17,"FX1 Type"],[18,"FX1 Mix"],[19,"FX1 Param 1"],[20,"FX1 Param 2"],[21,"FX1 Param 3"],[22,"FX1 Sync On/Off"],[23,"FX1 Sync Rate"],[24,"FX2 On/Off"],[25,"FX2 Select"],[26,"FX2 Mix"],[27,"FX2 Param 1"],[28,"FX2 Param 2"],[29,"FX2 Param 3"],[30,"FX2 Sync On/Off"],[31,"FX2 Sync Rate"],[32,"Bank Select LSB"],[33,"Filter Cutoff"],[34,"Filter Resonance"],[35,"Filter Keyboard Tracking Amount"],[36,"Filter Drive"],[37,"Filter Type"],[40,"VCA Envelope Amount"],[41,"VCA Envelope Velocity On/Off"],[42,"VCA Envelope Delay"],[43,"VCA Envelope Attack"],[44,"VCA Envelope Decay"],[45,"VCA Envelope Sustain"],[46,"VCA Envelope Release"],[47,"Filter Envelope Amount"],[48,"Filter Envelope Velocity On/Off"],[49,"Filter Envelope Delay"],[50,"Filter Envelope Attack"],[51,"Filter Envelope Decay"],[52,"Filter Envelope Sustain"],[53,"Filter Envelope Release"],[54,"OSC1 Glide Rate"],[55,"OSC2 Glide Rate"],[56,"OSC3 Glide Rate"],[57,"Swing"],[58,"Arp On/Off"],[59,"Arp Mode"],[60,"Arp Range"],[61,"Arp Relatch On/Off"],[62,"Clock Divide"],[63,"Arp Repeats"],[64,"Sustain Pedal"],[65,"Osc Glide On/Off"],[66,"OSC1 Octave"],[67,"OSC1 Fine Frequency"],[68,"OSC1 Level"],[69,"OSC1 Shape"],[70,"OSC1 Shape Mod"],[71,"OSC1 Sync On/Off"],[72,"OSC1 Slop"],[73,"Noise Level"],[74,"Brightness"],[75,"OSC2 Octave"],[76,"OSC2 Fine Frequency"],[77,"OSC2 Level"],[78,"OSC2 Shape"],[79,"OSC2 Shape Mod"],[80,"OSC2 Sync On/Off"],[81,"OSC2 Slop"],[82,"OSC3 Octave"],[83,"OSC3 Fine Frequency"],[84,"OSC3 Level"],[85,"OSC3 Shape"],[86,"OSC3 Shape Mod"],[87,"OSC3 LFO Mode On/Off"],[88,"OSC3 Slop"],[89,"Feedback Amount"],[90,"Feedback Tuning"],[91,"Distortion Amount"],[92,"Grunge On/Off"],[93,"Ext. In Env. Follower Attack"],[94,"Ext. In Env. Follower Release"],[95,"Ext. In Gain Threshold"],[102,"Ladder Res Comp"],[103,"State Variable Filter Mode"],[104,"State Variable Filter Normal/Bandpass"],[105,"LFO1 Freq"],[106,"LFO1 Amount"],[107,"LFO1 Shape"],[108,"LFO1 Sync On/Off"],[109,"LFO2 Freq"],[110,"LFO2 Amount"],[111,"LFO2 Shape"],[112,"LFO2 Sync On/Off"],[113,"LFO3 Freq"],[114,"LFO3 Amount"],[115,"LFO3 Shape"],[116,"LFO3 Sync On/Off"],[120,"All Sound Off"],[121,"Reset Controllers"],[122,"Local Control On/Off"],[123,"All Notes Off"],[124,"Omni Mode Off"],[125,"Omni Mode On"],[126,"Mono Mode On"],[127,"Poly Mode On"]]},{"id":"prophet12","brand":"Sequential","name":"Prophet 12","cc":[[1,"Mod Wheel"],[2,"Breath"],[3,"BPM"],[4,"Foot Controller"],[5,"Glide Mode"],[7,"Volume"],[8,"OSC1 Sub Octave"],[9,"Distortion Amount"],[10,"Pan Spread"],[11,"Expression"],[12,"Voice Volume"],[13,"A/B Mode"],[14,"Slider 1 Position"],[15,"Slider 2 Position"],[16,"Slider 1 Pressure"],[17,"Slider 2 Pressure"],[18,"Delay 1 Time"],[19,"Delay 1 Sync"],[20,"Delay 1 Amount"],[21,"Delay 1 Feedback"],[23,"Delay 2 Time"],[24,"Delay 2 Sync"],[25,"Delay 2 Amount"],[26,"Delay 2 Feedback"],[28,"Delay 3 Time"],[29,"Delay 3 Sync"],[30,"Delay 3 Amount"],[31,"Delay 3 Feedback"],[32,"Bank Select"],[33,"Delay 4 Time"],[34,"Delay 4 Sync"],[35,"Delay 4 Amount"],[36,"Delay 4 Feedback"],[40,"VCA Envelope Amt"],[41,"Velocity to VCA Env Amt"],[42,"VCA Env Delay"],[43,"VCA Env Attack"],[44,"VCA Env Decay"],[45,"VCA Env Sustain"],[46,"VCA Env Release"],[47,"LPF Envelope Amt"],[48,"Velocity to LPF Env Amt"],[49,"LPF Env Delay"],[50,"LPF Env Attack"],[51,"LPF Env Decay"],[52,"LPF Env Sustain"],[53,"LPF Env Release"],[54,"OSC1 Glide Amt"],[55,"OSC2 Glide Amt"],[56,"OSC3 Glide Amt"],[57,"OSC4 Glide Amt"],[58,"Arp On/Off"],[59,"Arp Mode"],[60,"Arp Range"],[61,"Arp Auto Latch On/Off"],[62,"Arp Clock Division"],[63,"Arp Repeats"],[64,"Sustain Pedal"],[65,"Glide On/Off"],[67,"OSC1 Pitch"],[68,"OSC1 Fine Tune"],[69,"OSC1 Level"],[70,"OSC1 Shape"],[71,"OSC1 Shape Mod"],[72,"OSC1 FM"],[73,"OSC1 AM"],[74,"Brightness"],[75,"OSC2 Pitch"],[76,"OSC2 Fine Tune"],[77,"OSC2 Level"],[78,"OSC2 Shape"],[79,"OSC2 Shape Mod"],[80,"OSC2 FM"],[81,"OSC2 AM"],[82,"OSC3 Pitch"],[83,"OSC3 Fine Tune"],[84,"OSC3 Level"],[85,"OSC3 Shape"],[86,"OSC3 Shape MOd"],[87,"OSC3 FM"],[88,"OSC3 AM"],[89,"OSC4 Pitch"],[90,"OSC4 Fine Tune"],[91,"OSC4 Level"],[92,"OSC4 Shape"],[93,"OSC4 Shape Mod"],[94,"OSC4 FM"],[95,"OSC4 AM"],[102,"LPF Frequency"],[103,"LPF Resonance"],[104,"LPF Key Amount"],[105,"LPF 2/4 Pole"],[106,"HPF Frequency"],[107,"HPF Resonance"],[108,"HPF Key Amount"],[109,"Girth"],[110,"Air"],[111,"Hack"],[112,"Decimate"],[113,"Drive"],[114,"Feedback Amount"],[115,"Feedback Tuning"],[116,"Unison On/Off"],[117,"Unison Detune"],[118,"Unison Mode"],[119,"Unison Key Assign"]]},{"id":"prophet6","brand":"Sequential","name":"Prophet 6","cc":[[0,"Bank Select MSB"],[1,"Mod Wheel"],[3,"BPM"],[4,"Foot Controller"],[5,"Glide Mode"],[7,"MIDI Volume"],[8,"Sub Oscillator Level"],[9,"Distortion Amount"],[39,"Volume LSB"],[40,"VCA Env Amt"],[41,"VCA Env Vel amt"],[43,"VCA Env Attack"],[44,"VCA Env Decay"],[45,"VCA Env Sustain"],[46,"VCA Env Release"],[47,"Lowpass Env Amt"],[50,"Filter Env Attack"],[51,"Filter Env Decay"],[52,"Filter Env Sustain"],[53,"Filter Env Release"],[54,"High-pass Env Amt"],[58,"Arp On/Off"],[59,"Arp Mode"],[60,"Arp Range"],[62,"Arp Time Signature"],[64,"Sustain Pedal"],[65,"Glide On/Off"],[67,"OSC1 Frequency"],[69,"OSC1 Level"],[70,"OSC1 Shape"],[71,"OSC1 Pulse Width"],[74,"Brightness"],[75,"OSC2 Frequency"],[76,"OSC2 Frequency Fine"],[77,"OSC2 Level"],[78,"OSC2 Shape"],[79,"OSC2 Pulse Width"],[102,"Low-pass Freq"],[103,"Low-pass Resonance"],[104,"Low-pass Key Amt"],[105,"Low-pass Vel On/Off"],[106,"High-pass Freq"],[107,"High-pass Resonance"],[108,"High-pass Key Amt"],[109,"High-pass Vel On/Off"],[120,"All Sound Off"],[121,"Reset Controllers"],[122,"Local Control On/Off"],[123,"All Notes Off"],[124,"Omni Mode Off"],[125,"Omni Mode On"],[126,"Mono Mode On"],[127,"Poly Mode On"]]},{"id":"prophetx","brand":"Sequential","name":"Prophet X","cc":[[1,"Mod Wheel"],[3,"BPM"],[5,"Glide Mode"],[7,"Master Volume"],[8,"Sub Oscillator"],[10,"Pan Spread"],[12,"Voice Volume"],[13,"A/B Mode"],[14,"Slider 1 Position"],[15,"Slider 2 Position"],[16,"FX1 On/Off"],[17,"FX1 Select"],[18,"FX1 Mix"],[19,"FX1 Param 1"],[20,"FX1 Param 2"],[21,"FX1 Param 3"],[22,"FX2 On/Off"],[23,"FX2 Select"],[24,"FX2 Mix"],[25,"FX2 Param 1"],[26,"FX2 Param 2"],[27,"FX2 Param 3"],[28,"16 Voice Mode"],[29,"Split Point"],[32,"Bank Select"],[40,"Amp Env Amount"],[41,"Velocity to Amp Env"],[42,"Amp Env Delay"],[43,"Amp Env Attack"],[44,"Amp Env Decay"],[45,"Amp Env Sustain"],[46,"Amp Env Release"],[47,"Filter Anv Amount"],[48,"Velocity to Filter Env"],[49,"Filter Env Delay"],[50,"Filter Env Attack"],[51,"Filter Env Decay"],[52,"Filter Env Sustain"],[53,"Filter Env Release"],[54,"Inst. 1 Glide Amount"],[55,"Inst. 2 Glide Amount"],[56,"OSC1 Glide Amount"],[57,"OSC2 Glide Amount"],[58,"Arpeggiator On/Off"],[59,"Arp Mode"],[60,"Arp Range"],[61,"Arp Relatch"],[62,"Clock Divide"],[63,"Arp Repeats"],[64,"Sustain Pedal"],[65,"Glide On/Off"],[66,"Inst 1 Frequency"],[67,"Inst 1 Fine Tune"],[68,"Inst 1 Level"],[69,"Inst 1 Pan"],[70,"Inst 1 Loop On/Off"],[71,"Inst 1 Reverse"],[72,"Inst 2 Frequency"],[73,"Inst 2 Fine Tune"],[75,"Inst 2 Level"],[76,"Inst 2 Pan"],[77,"Inst 2 Loop On/Off"],[78,"Inst 2 Reverse"],[79,"OSC2 > 1 Sync"],[80,"OSC1 Frequency"],[81,"OSC1 Fine Frequency"],[82,"OSC1 Level"],[83,"OSC1 Shape"],[84,"OSC1 Shape Mod"],[85,"OSC1 Pan"],[86,"OSC2 Frequency"],[87,"OSC2 Fine Frequency"],[88,"OSC2 Level"],[89,"OSC2 Shape"],[90,"OSC2 Shape Mod"],[91,"OSC2 Pan"],[92,"OSC2 Slop"],[93,"Hack"],[94,"Decimate"],[102,"Filter Frequency"],[103,"Resonance"],[104,"Filter Key Amount"],[105,"Filter Drive"],[106,"Lowpass Stereo Split"],[116,"Unison On/Off"],[117,"Unison Detune"],[118,"Unison Mode"]]},{"id":"rev2","brand":"Sequential","name":"Rev 2","cc":[[1,"Mod Wheel"],[3,"FX Type"],[5,"Glide Mode"],[7,"Master Volume"],[8,"Sub Oscillator"],[9,"Oscillator Slop"],[10,"Pan Mod Mode"],[12,"FX Param 1"],[13,"FX Param 2"],[14,"BPM"],[15,"Clock Divide"],[16,"FX On/Off"],[17,"FX Mix"],[18,"A/B Mode"],[19,"Sequencer Type"],[20,"OSC1 Frequency"],[21,"OSC1 Fine Tune"],[22,"OSC1 Shape"],[23,"OSC1 Glide Rate/Time"],[24,"OSC2 Frequency"],[25,"OSC2 Fine Tune"],[26,"OSC2 Shape"],[27,"OSC2 Glide Rate/Time"],[28,"OSC Mix"],[29,"Noise Level"],[30,"OSC1 Shape Mod"],[31,"OSC2 Shape Mod"],[33,"Arp On/Off"],[34,"Arp Mode"],[35,"Arp Range"],[36,"Arp Repeats"],[37,"Voice Volume"],[39,"Split Point"],[64,"Sustain Pedal"],[65,"Glide On/Off"],[75,"Amp Sustain"],[76,"Amp Release"],[77,"ENV3 Sustain"],[78,"ENV3 Release"],[85,"ENV3 Destination"],[86,"ENV3 Amount"],[87,"ENV3 Velocity"],[88,"ENV3 Delay"],[89,"ENV3 Attack"],[90,"ENV3 Decay"],[102,"Filter Frequency"],[103,"Resonance"],[104,"Filter Key Amount"],[105,"Filter Audio Mod"],[106,"Filter Env Amount"],[107,"Filter Env Velocity"],[108,"Filter Delay"],[109,"Filter Attack"],[110,"Filter Decay"],[111,"Filter Sustain"],[112,"Filter Release"],[113,"VCA Level"],[114,"Pan Spread"],[115,"Amp Env Amount"],[116,"Amp Env Velocity"],[117,"Amp Delay"],[118,"Amp Attack"],[119,"Amp Decay"]]},{"id":"andromeda","brand":"Seymour Duncan","name":"Andromeda","cc":[[0,"Bank Select"],[19,"Delay Type"],[9,"Feedback"],[3,"Delay Time"],[21,"Tap Value (Delay Ratio)"],[23,"Saturation"],[15,"Tone"],[18,"Modulation"],[14,"Mix"],[25,"Threshold"],[26,"Type: Hard"],[26,"Type: Soft"],[26,"Type: Off"],[27,"Destination: Mix"],[27,"Destination: Mod"],[27,"Destination: Saturation"],[102,"Bypass Pedal"],[102,"Engage Pedal"],[97,"Trails On"],[97,"Trails Off"],[93,"Remote Tap"],[30,"BPM MSB"],[62,"BPM LSB"],[31,"mS MSB"],[63,"mS LSB"]]},{"id":"looperplus","brand":"Sheeran","name":"Looper Plus","cc":[["7","Stop Pedal"],["8","Stop B Pedal (Sync/Song Mode)"],["11","Record + Play Pedal"],["12","Record + Play B Pedal (Sync/Song Mode)"],["17","Speed"],["29","Reverse"],["34","Fade"],["45","Undo/Redo"],["49","Clear"],["65","Load Next Loop Slot"],["66","Load Previous Loop Slot"],["67","Solo Track A"],["68","Solo Track B"],["69","Solo Current Track"],["70","Mute Track A"],["71","Mute Track B"],["72","Mute Current Track"],["73","Mode: Single"],["74","Mode : Multi"],["75","Mode: Sync"],["76","Mode: Song"],["77","Change Track Focus"],["78","Select Track A"],["79","Select Track B"]]},{"id":"looperX","brand":"Sheeran","name":"Looper X","cc":[["3","Start/Stop/All"],["3","FX 1 Toggle"],["3","FX 2 Toggle"],["3","FX 3 Toggle"],["3","FX 4 Toggle"],["6","Tap Tempo"],["3","All Tracks Half Length"],["3","16 All Tracks Double Length "],["3","All Tracks Half Speed"],["3","All Tracks Double Speed"],["3","Mute Track 1"],["3","Mute Track 2"],["3","Mute Track 3"],["3","Mute Track 4"],["3","Mute All Tracks"],["3","Clear All Tracks"],["3","Track 1 Reverse"],["3","Track 2 Reverse"],["3","Track 3 Reverse"],["3","Track 4 Reverse"],["3","All Tracks Reverse"],["3","Track 1 Fade"],["3","Track 2 Fade"],["3","Track 3 Fade"],["3","Track 4 Fade"],["3","All Tracks Fade"],["3","Track 1 Half-Step Up"],["3","Track 2 Half-Step Up"],["3","Track 3 Half-Step Up"],["3","Track 4 Half-Step Up"],["3","Track 1 Half-Step Down"],["3","Track 2 Half-Step Down"],["3","Track 3 Half-Step Down"],["3","Track 4 Half-Step Down"],["3","All Tracks Half-Step Up"],["3","All Tracks Half-Step Down"],["3","Track 1 Clear"],["3","Track 2 Clear"],["3","Track 3 Clear"],["3","Track 4 Clear"],["3","Track 1 Peel"],["3","Track 2 Peel"],["3","Track 3 Peel"],["3","Track 4 Peel"],["3","B. Track Rewind"],["3","B. Track Stop"],["3","B. Track Play/Pause"],["3","B. Track Fast Forward"],["3","B. Track Prev Track"],["3","B. Track Next Track"],["3","Load Previous Loop"],["3","Load Next Loop"],["3","Solo Track 1"],["3","Solo Track 2"],["3","Solo Track 3"],["3","Solo Track 4"],["3","Select Track 1 (Global FS1)"],["3","Select Track 2 (Global FS2)"],["3","Select Track 3 (Global FS3)"],["3","Select Track 4 (Global FS4)"],["3","Rec/Dub/Play (Global FS5)"],["3","Stop All (Global FS6)"],["3","Mode (Global FS7)"],["3","Function (Global FS8)"],["7","Main Level"],["9","Phones Level"],["14","Track 1 Volume"],["15","Track 2 Volume"],["20","Track 3 Volume"],["21","Track 4 Volume"],["22","Track 1 Pan"],["23","Track 2 Pan"],["24","Track 3 Pan"],["25","Track 4 Pan"],["26","Backing Track Volume"],["27","Backing Track Pan"],["28","Click Track Volume"],["29","Click Track Pan"],["85","Output 1 Volume"],["86","Output 2 Volume"],["87","Output 3 Volume"],["88","Output 4 Volume"],["89","Input 1 Pan"],["90","Input 2 Pan"],["91","Input 3 Pan"],["92","Input 4 Pan"],["93","Expression Pedal"],["94","Fade Rate"],["95","Track 1 Feedback (Decay)"],["96","Track 2 Feedback (Decay)"],["97","Track 3 Feedback (Decay)"],["98","Track 4 Feedback (Decay)"]]},{"id":"programmableeq","brand":"Source Audio","name":"Programmable EQ","cc":[[30,"Output"],[31,"Engage Pedal"],[31,"Bypass Pedal"],[32,"Output (limited to unity)"],[33,"Auto Scroll Speed"],[34,"Auto Scroll On"],[34,"Auto Scroll Off"],[35,"EQ Band 1 Level"],[36,"EQ Band 2 Level"],[37,"EQ Band 3 Level"],[38,"EQ Band 4 Level"],[39,"EQ Band 5 Level"],[40,"EQ Band 6 Level"],[41,"EQ Band 7 Level"],[42,"EQ Band 8 Level"]]},{"id":"spectrumintelligencefilter","brand":"Source Audio","name":"Spectrum Intelligence Filter","cc":[[93,"External Tap Tempo"],[100,"External Expression Control"],[102,"Engage Pedal"],[102,"Bypass Pedal"],[103,"Recall Preset (Off)"],[104,"Recall Preset (On)"],[105,"Engage/Bypass Toggle"]]},{"id":"ultrawave","brand":"Source Audio","name":"Ultrawave","cc":[[93,"External Tap Tempo"],[100,"External Expression Control"],[102,"Engage Pedal"],[102,"Bypass Pedal"],[103,"Preset Recall (Off)"],[104,"Preset Recall (On)"],[105,"Engage/Bypass Toggle"],[106,"Increment Preset"],[107,"Decrement Preset"],[93,"External Tap Tempo"],[100,"External Expression Control"],[102,"Engage"],[102,"Bypass"],[103,"Preset Recall (Off)"],[104,"Preset Recall (On)"],[105,"Engage/Bypass Toggle"],[106,"Increment Preset"],[107,"Decrement Preset"]]},{"id":"syncopy","brand":"Stone Deaf","name":"Syncopy","cc":[[20,"Delay Time"],[21,"Feedback"],[22,"Mix"],[23,"Modulation On"],[23,"Modulation Off"],[24,"Modulation Time"],[25,"Modulation Depth"],[26,"Modulation Shape 1"],[26,"Modulation Shape 2"],[26,"Modulation Shape 3"],[26,"Modulation Shape 4"],[26,"Modulation Shape 5"],[26,"Modulation Shape 6"],[26,"Modulation Shape 7"],[26,"Modulation Shape 8"],[26,"Modulation Shape 9"],[27,"Tap Division: Crotchet"],[27,"Tap Division: Dotted Quaver"],[27,"Tap Division: Quaver"],[27,"Tap Division: Triplet"],[27,"Tap Division: Semi-quaver"],[29,"Bypass Pedal"],[29,"Engage Pedal"],[30,"MIDI Beat Clock On"],[30,"MIDI Beat Clock Off"],[93,"Remote Tap"]]},{"id":"tremotron","brand":"Stone Deaf","name":"Tremotron","cc":[[20,"Rate"],[21,"Depth"],[22,"Shape"],[23,"Activate Secondary LFO"],[23,"Deactivate Secondary LFO"],[24,"Secondary Rate (relative)"],[25,"Secondary Depth"],[26,"Secondary Shape"],[27,"Tap Division: Crotchet"],[27,"Tap Division: Dotted Quaver"],[27,"Tap Division: Quarter"],[27,"Tap Division: Quaver"],[27,"Tap Division: Triplet"],[27,"Tap Division: Semi-quaver"],[27,"Tap Division: Hemi-demi-semi-quaver"],[29,"Bypass Pedal"],[29,"Engage Pedal"],[30,"MIDI Beat Clock On"],[30,"MIDI Beat Clock Off"]]},{"id":"bluesky","brand":"Strymon","name":"blueSky","cc":[[0,"Preset Bank 0"],[0,"Preset Bank 1"],[0,"Preset Bank 2"],[11,"Verb Type: Plate"],[11,"Verb Type: Room"],[11,"Verb Type: Spring"],[12,"Decay"],[13,"Low"],[14,"Pre-Delay"],[15,"Mod Type: Off"],[15,"Mod Type: Light"],[15,"Mod Type: Deep"],[16,"Mix"],[17,"High"],[18,"Shimmer"],[60,"MIDI Expression: On"],[60,"MIDI Expression: Off"],[63,"MIDI Clock: On"],[63,"MIDI Clock: Off"],[100,"Expression Pedal"],[102,"Bypass Pedal"],[102,"Engage Pedal"]]},{"id":"brig","brand":"Strymon","name":"brig","cc":[[0,"Bank Select"],["11","Voice"],["12","Time"],["13","Filter"],["14","Repeats"],["15","Mod"],["16","Mix"],["17","Tap Division"],["27","Footswitch"],["93","Tap"],["97","Infinite"],["100","Expression Pedal"],["102","Bypass/Engage"]]},{"id":"deco","brand":"Strymon","name":"Deco","cc":[[0,"Preset Bank 0"],[0,"Preset Bank 1"],[0,"Preset Bank 2"],[10,"Tape Saturation: On"],[10,"Tape Saturation: Off"],[11,"Mode: Classic"],[11,"Mode: Cassette"],[12,"Saturation"],[13,"Volume"],[14,"Tone"],[15,"Low Trim"],[16,"Doubletracker: On"],[16,"Doubletracker: Off"],[17,"Type: Sum"],[17,"Type: Invert"],[17,"Type: Bounce"],[18,"Lag Time"],[19,"Wobble"],[20,"Blend"],[21,"Doubletracker Boost/Cut"],[22,"Auto-Flange Time"],[23,"Wide Stereo Mode: On"],[23,"Wide Stereo Mode: Off"],[33,"A&B: On"],[33,"A&B: Bypass"],[60,"MIDI Expression: On"],[60,"MIDI Expression: Off"],[63,"MIDI Clock: On"],[63,"MIDI Clock: Off"],[93,"Remote Tap"],[97,"Auto-Flange: On"],[97,"Auto-Flange: Off"],[100,"Expression Pedal"]]},{"id":"dig","brand":"Strymon","name":"DIG","cc":[[0,"Preset Bank 0"],[0,"Preset Bank 1"],[0,"Preset Bank 2"],[11,"Mod: Off"],[11,"Mod: Light"],[11,"Mod: Deep"],[12,"Time"],[13,"Time 2"],[14,"Tone"],[15,"Type: 24/96"],[15,"Type: Adm"],[15,"Type: 12-bit"],[16,"Mix"],[17,"Mix 2"],[18,"Repeats"],[19,"Delay 1 Div: 1/8d"],[19,"Delay 1 Div: 1/4"],[19,"Delay 1 Div: 1/2"],[20,"Delay 2 Repeats: Delay"],[20,"Delay 2 Repeats: Track"],[21,"Sync"],[21,"Free"],[22,"Config: Series"],[22,"Config: PingPong"],[22,"Config: Parallel"],[23,"Dry Level"],[23,"Dry Level: Track Mix"],[60,"MIDI Expression: On"],[60,"MIDI Expression: Off"],[63,"MIDI Clock: On"],[63,"MIDI Clock: Off"],[93,"Remote Tap"],[97,"Circular Repeats: Hold"],[97,"Circular Repeats: Release"],[100,"Expression"],[102,"Bypass Pedal"],[102,"Engage Pedal"]]},{"id":"elcapistan","brand":"Strymon","name":"El Capistan","cc":[[0,"Preset Bank 0"],[0,"Preset Bank 1"],[0,"Preset Bank 2"],[11,"Tape Head: Fixed"],[11,"Tape Head: Multi"],[11,"Tape Head: Single"],[12,"Time"],[13,"Wow & Flutter"],[14,"Tape Age"],[15,"Mode: a"],[15,"Mode: b"],[15,"Mode: c"],[16,"Mix"],[17,"Spring"],[18,"Repeats"],[19,"Low End Contour"],[20,"Tape Bias"],[21,"Tape Crinkle"],[22,"Boost/Cut"],[27,"Footswitch A: Press"],[27,"Footswitch A: Release"],[28,"Footswitch B: Press"],[28,"Footswitch B: Release"],[60,"MIDI Expression: On"],[60,"MIDI Expression: Off"],[63,"MIDI Clock: On"],[63,"MIDI Clock: Off"],[93,"Remote Tap"],[97,"Infinite Repeats: Hold"],[97,"Infinite Repeats: Release"],[100,"Expression Pedal"],[102,"Bypass Pedal"],[102,"Engage Pedal"]]},{"id":"flint","brand":"Strymon","name":"Flint","cc":[[0,"Preset Bank 0"],[0,"Preset Bank 1"],[0,"Preset Bank 2"],[10,"Tremolo: On"],[10,"Tremolo: Off"],[11,"Tremolo Type: 61"],[11,"Tremolo Type: 63 Tube"],[11,"Tremolo Type: 65 Photo"],[12,"Intensity"],[13,"Speed"],[14,"Tap Subdivision"],[15,"Temolo Boost/Cut"],[16,"Reverb: On"],[16,"Reverb: Off"],[17,"Reverb Type: 60s"],[17,"Reverb Type: 70s"],[17,"Reverb Type: 80s"],[18,"Mix"],[19,"Color"],[20,"Decay"],[21,"Reverb Pre-Delay"],[22,"Reverb Boost/Cut"],[23,"Order: Rev>Trem"],[23,"Order: Trem>Rev"],[27,"Footswitch A: Press"],[27,"Footswitch A: Release"],[28,"Footswitch B: Press"],[28,"Footswitch B: Release"],[33,"A&B: Bypass"],[33,"A&B: On"],[60,"MIDI Expression: On"],[60,"MIDI Expression: Off"],[63,"MIDI Clock: On"],[63,"MIDI Clock: Off"],[93,"Remote Tap"],[100,"Expression"]]},{"id":"lex","brand":"Strymon","name":"Lex","cc":[[0,"Preset Bank 0"],[0,"Preset Bank 1"],[0,"Preset Bank 2"],[11,"Mic: Front"],[11,"Mic: Rear"],[12,"Speed"],[13,"Speed (Full Range)"],[14,"Mic Distance"],[15,"Horn Level"],[16,"Ramp: Slow"],[16,"Ramp: Medium"],[16,"Ramp: Fast"],[17,"Volume"],[18,"Dry"],[19,"Preamp Drive"],[20,"Bi-Amp Mode: Stereo"],[20,"Bi-Amp Mode: Bi-Amp"],[21,"Cab Filter: Guitar Amp"],[21,"Cab Filter: Full Range"],[22,"Slow"],[22,"Fast"],[60,"MIDI Expression: On"],[60,"MIDI Expression: Off"],[63,"MIDI Clock: On"],[63,"MIDI Clock: Off"],[93,"Remote Tap"],[97,"Brake: Release"],[97,"Brake: Hold"],[100,"Expression"],[102,"Bypass Pedal"],[102,"Engage Pedal"]]},{"id":"zelzah","brand":"Strymon","name":"Zelzah","cc":[[0,"Bank Select: 0"],[0,"Bank Select: 1"],[0,"Bank Select: 2"],[10,"Bypass"],[10,"On 4-Stage"],[11,"Sweep: Classic"],[11,"Sweep: Barber"],[11,"Sweep: Envelope"],[12,"Speed 4-Stage"],[13,"Depth 4-Stage"],[14,"Mix 4-Stage"],[15,"Polarity 4-Stage: Negative"],[15,"Polarity 4-Stage: Positive"],[16,"Stereo Spread 4-Stage"],[17,"Bypass 6-Stage"],[17,"On 6-Stage"],[18,"Resonance 6-Stage: Off"],[18,"Resonance 6-Stage: Mid"],[18,"Resonance 6-Stage: Strong"],[19,"Speed 6-Stage"],[20,"Depth 6-Stage"],[21,"Voice 6-Stage"],[22,"Stereo Spread 6-Stage"],[23,"Series"],[23,"Parallel"],[23,"Split"],[27,"Footswitch A: Press"],[27,"Footswitch A: Release"],[28,"Footswitch B: Press"],[28,"Footswitch B: Release"],[33,"Bypass Pedal"],[33,"On A and B"],[60,"MIDI Expression: On"],[60,"MIDI Expression: Off"],[93,"Remote Tap"],[100,"Expression Pedal"]]},{"id":"sledge","brand":"Studiologic","name":"Sledge","cc":[[1,"Mod Wheel"],[5,"Glide: Rate"],[7,"Master Volume"],[11,"Expression"],[15,"LFO 1: Shape"],[16,"LFO 1: Speed"],[17,"LFO 1: Destination"],[18,"LFO 1: Depth"],[19,"LFO 2: Shape"],[20,"LFO 2: Speed"],[21,"LFO 2: Destination"],[22,"LFO 2: Depth"],[23,"Mod Wheel: Shape"],[24,"Mod Wheel: Speed"],[25,"Mod Wheel: Destination"],[26,"Mod Wheel: Depth"],[27,"OSC 1: Octave"],[28,"OSC 1: Semitone"],[31,"OSC 1: Waveform"],[33,"OSC 1: wave/PW"],[34,"OSC 1: Wavetable"],[35,"OSC 2: Octave"],[36,"OSC 2: Semitone"],[37,"OSC 2: Detune"],[39,"OSC 2: waveform"],[40,"OSC 2: FM/PW"],[42,"OSC 3: Octave"],[43,"OSC 3: Semitone"],[44,"OSC 3: Detune"],[46,"OSC 3: Waveform"],[47,"OSC 3: FM/PW"],[49,"OSC 2: Sync to OSC 3"],[52,"OSC 1: Volume"],[53,"OSC 1: On/Off"],[56,"OSC 2: Volume"],[57,"OSC 2:On/Off"],[58,"OSC 3: Volume"],[59,"OSC 3: On/Off"],[60,"Noise: Volume"],[61,"Noise: On/Off"],[62,"Noise: Color"],[64,"Sustain"],[65,"Glide: On/Off"],[68,"Filter: Type/slope"],[69,"Filter: Cutoff"],[70,"Filter: Resonance"],[71,"Filter: Drive"],[72,"Filter: Keytrack"],[73,"Filter: Amount"],[79,"Effect 1: Type"],[80,"Effect 1: Rate"],[81,"Effect 1: Depth"],[86,"Effect 2: Time"],[87,"Effect 2: Level"],[88,"Effect 2: Type"],[91,"Amp: Velocity"],[93,"Effect 1: On/Off"],[95,"Filter: Attack"],[96,"Filter: Decay"],[97,"Filter: Sustain"],[98,"Mode: Trigger"],[99,"Mode: Mono"],[100,"Filter: Release"],[101,"Amp: Attack"],[102,"Amp: Decay"],[103,"Amp: Sustain"],[106,"Amp: Release"]]},{"id":"hedgehog","brand":"Suhr","name":"Hedgehog","cc":[[111,"Effects Loop Series"],[112,"Effects Loop Mix"],[113,"Overdrive"],[114,"Boost"],[115,"Mid"],[116,"Bright"],[117,"Deep - Low (Green)"],[118,"Deep - High (Yellow)"],[119,"Amp Mute"]]},{"id":"pt-100","brand":"Suhr","name":"PT-100","cc":[[105,"Mute"],[106,"CH2 / CH1"],[107,"CH3 / CH1"],[108,"CH1 / CH2 / CH3"],[109,"CH2 / CH3"],[110,"Boost On/Off"],[111,"CH1"],[112,"CH2"],[113,"CH3"],[114,"CH1 / Boost Off"],[115,"CH2 / Boost Off"],[116,"CH3 / Boost Off"],[117,"CH1 / Boost On"],[118,"CH2 / Boost On"],[119,"CH3 / Boost On"]]},{"id":"sundayguitar2","brand":"Sunday Sounds","name":"Sunday Guitar 2","cc":[[44,"Pedal 1: Compressor"],[44,"Pedal 1: Green Drive"],[44,"Pedal 1: Glory Drive"],[44,"Pedal 1: Mouse Rat"],[44,"Pedal 1: Octave"],[44,"Pedal 1: Tremolo"],[44,"Pedal 1: Chorus"],[44,"Pedal 1: Tape Delay"],[44,"Pedal 1: DD- Delay"],[44,"Pedal 1: Sky Verb"],[44,"Pedal 1: Boost"],[38,"Pedal 2: Compressor"],[38,"Pedal 2: Green Drive"],[38,"Pedal 2: Glory Drive"],[38,"Pedal 2: Mouse Rat"],[38,"Pedal 2: Octave"],[38,"Pedal 2: Tremolo"],[38,"Pedal 2: Chorus"],[38,"Pedal 2: Tape Delay"],[38,"Pedal 2: DD- Delay"],[38,"Pedal 2: Sky Verb"],[38,"Pedal 2: Boost"],[36,"Pedal 3: Compressor"],[36,"Pedal 3: Green Drive"],[36,"Pedal 3: Glory Drive"],[36,"Pedal 3: Mouse Rat"],[36,"Pedal 3: Octave"],[36,"Pedal 3: Tremolo"],[36,"Pedal 3: Chorus"],[36,"Pedal 3: Tape Delay"],[36,"Pedal 3: DD- Delay"],[36,"Pedal 3: Sky Verb"],[36,"Pedal 3: Boost"],[30,"Pedal 4: Compressor"],[30,"Pedal 4: Green Drive"],[30,"Pedal 4: Glory Drive"],[30,"Pedal 4: Mouse Rat"],[30,"Pedal 4: Octave"],[30,"Pedal 4: Tremolo"],[30,"Pedal 4: Chorus"],[30,"Pedal 4: Tape Delay"],[30,"Pedal 4: DD- Delay"],[30,"Pedal 4: Sky Verb"],[30,"Pedal 4: Boost"],[42,"Pedal 5: Compressor"],[42,"Pedal 5: Green Drive"],[42,"Pedal 5: Glory Drive"],[42,"Pedal 5: Mouse Rat"],[42,"Pedal 5: Octave"],[42,"Pedal 5: Tremolo"],[42,"Pedal 5: Chorus"],[42,"Pedal 5: Tape Delay"],[42,"Pedal 5: DD- Delay"],[42,"Pedal 5: Sky Verb"],[42,"Pedal 5: Boost"],[40,"Pedal 6: Compressor"],[40,"Pedal 6: Green Drive"],[40,"Pedal 6: Glory Drive"],[40,"Pedal 6: Mouse Rat"],[40,"Pedal 6: Octave"],[40,"Pedal 6: Tremolo"],[40,"Pedal 6: Chorus"],[40,"Pedal 6: Tape Delay"],[40,"Pedal 6: DD- Delay"],[40,"Pedal 6: Sky Verb"],[40,"Pedal 6: Boost"],[34,"Pedal 7: Compressor"],[34,"Pedal 7: Green Drive"],[34,"Pedal 7: Glory Drive"],[34,"Pedal 7: Mouse Rat"],[34,"Pedal 7: Octave"],[34,"Pedal 7: Tremolo"],[34,"Pedal 7: Chorus"],[34,"Pedal 7: Tape Delay"],[34,"Pedal 7: DD- Delay"],[34,"Pedal 7: Sky Verb"],[34,"Pedal 7: Boost"],[32,"Pedal 8: Compressor"],[32,"Pedal 8: Green Drive"],[32,"Pedal 8: Glory Drive"],[32,"Pedal 8: Mouse Rat"],[32,"Pedal 8: Octave"],[32,"Pedal 8: Tremolo"],[32,"Pedal 8: Chorus"],[32,"Pedal 8: Tape Delay"],[32,"Pedal 8: DD- Delay"],[32,"Pedal 8: Sky Verb"],[32,"Pedal 8: Boost"],[45,"Pedal 1: Engage"],[39,"Pedal 2: Engage"],[37,"Pedal 3: Engage"],[31,"Pedal 4: Engage"],[43,"Pedal 5: Engage"],[41,"Pedal 6: Engage"],[35,"Pedal 7: Engage"],[33,"Pedal 8: Engage"],[31,"Favourite 1"],[32,"Favourite 2"],[33,"Favourite 3"],[34,"Favourite 4"],[30,"Tuner"],[29,"Tap Tempo"],[117,"Vol/Wah Pedal"],[28,"Previous Patch"],[27,"Next Patch"],[36,"Tonic: On"],[36,"Tonic: Off"],[32,"Tonic: Motion Button"],[37,"Tonic: Shift Up Button"],[33,"Tonic: Speed Knob"],[20,"Tonic Key: A"],[21,"Tonic Key: Bb"],[22,"Tonic Key: B"],[23,"Tonic Key: C"],[24,"Tonic Key: Db"],[25,"Tonic Key: D"],[26,"Tonic Key: Eb"],[27,"Tonic Key: E"],[28,"Tonic Key: F"],[29,"Tonic Key: Gb"],[30,"Tonic Key: G"],[31,"Tonic Key: Ab"],[19,"Tonic Volume Knob"],[35,"Tonic XY Pad: X Axis"],[34,"Tonic XY Pad: Y Axis"]]},{"id":"sundaykeys2020","brand":"Sunday Sounds","name":"Sunday Keys 2020","cc":[[16,"Sec 1: Knob 1"],[17,"Sec 1: Knob 2"],[0,"Sec 1: Slider 1"],[1,"Sec 1: Slider 2"],[32,"Sec 1: Button 1"],[33,"Sec 1: Button 2"],[48,"Sec 1: Button 3"],[49,"Sec 1: Button 4"],[64,"Sec 1: Button 5"],[65,"Sec 1: Button 6"],[18,"Sec 2: Knob 1"],[19,"Sec 2: Knob 2"],[2,"Sec 2: Slider 1"],[3,"Sec 2: Slider 2"],[34,"Sec 2: Button 1"],[35,"Sec 2: Button 2"],[50,"Sec 2: Button 3"],[51,"Sec 2: Button 4"],[66,"Sec 2: Button 5"],[67,"Sec 2: Button 6"],[20,"Sec 3: Knob 1"],[21,"Sec 3: Knob 2"],[4,"Sec 3: Slider 1"],[5,"Sec 3: Slider 2"],[36,"Sec 3: Button 1"],[37,"Sec 3: Button 2"],[52,"Sec 3: Button 3"],[53,"Sec 3: Button 4"],[68,"Sec 3: Button 5"],[69,"Sec 3: Button 6"],[22,"Sec 4: Knob 1"],[23,"Sec 4: Knob 2"],[6,"Sec 4: Slider 1"],[7,"Sec 4: Slider 2"],[38,"Sec 4: Button 1"],[39,"Sec 4: Button 2"],[54,"Sec 4: Button 3"],[55,"Sec 4: Button 4"],[70,"Sec 4: Button 5"],[71,"Sec 4: Button 6"],[42,"Extra Section Slider"],[59,"Next Patch"],[58,"Previous Patch"],[46,"Panic"],[45,"Tap Tempo"],[40,"Sum to Mono"],[36,"Tonic: On"],[36,"Tonic: Off"],[32,"Tonic: Motion Button"],[37,"Tonic: Shift Up Button"],[33,"Tonic: Speed Knob"],[20,"Tonic Key: A"],[21,"Tonic Key: Bb"],[22,"Tonic Key: B"],[23,"Tonic Key: C"],[24,"Tonic Key: Db"],[25,"Tonic Key: D"],[26,"Tonic Key: Eb"],[27,"Tonic Key: E"],[28,"Tonic Key: F"],[29,"Tonic Key: Gb"],[30,"Tonic Key: G"],[31,"Tonic Key: Ab"],[19,"Tonic Volume Knob"],[35,"Tonic XY Pad: X Axis"],[34,"Tonic XY Pad: Y Axis"]]},{"id":"redmountaintremolov2","brand":"Swindler Effects","name":"Red Mountain Tremolo V2","cc":[[102,"Bypass Pedal"],[102,"Engage Pedal"],[93,"Tap Footswitch"],[50,"Speed"],[51,"Depth"],[52,"Level"],[59,"Division: 1/4"],[59,"Division: 1/8d"],[59,"Division: 1/8"],[59,"Division: Triplet"],[59,"Division: 1/16"],[61,"Phase Switch: Ping-Pong"],[61,"Phase Switch: Standard"],[61,"Phase Switch: Harmonic"],[60,"Waveform: Sine"],[60,"Waveform: Triangle"],[60,"Waveform: Square"],[60,"Waveform: Ramp Up"],[60,"Waveform: Ramp Down"],[60,"Waveform: Stutter"]]},{"id":"thegulfchorusv2","brand":"Swindler Effects","name":"The Gulf Chorus V2","cc":[[102,"Bypass Pedal"],[102,"Engage Pedal"],[93,"Tap Footswitch"],[50,"Speed"],[51,"Depth"],[52,"Blend"],[53,"Delay"],[59,"Division: 1/4"],[59,"Division: 1/8d"],[59,"Division: 1/8"],[59,"Division: Triplet"],[59,"Division: 1/16"],[60,"Waveform: Sine"],[60,"Waveform: Triangle"],[60,"Waveform: Square"]]},{"id":"gr1","brand":"TastyChips","name":"GR1","cc":[[1,"Modulation wheel"],[2,"Position"],[3,"Density"],[4,"Grain size"],[5,"Spray"],[6,"NRPN value MSB"],[7,"Tune"],[8,"Cutoff"],[9,"Resonance"],[10,"Panspray"],[11,"Scan"],[12,"Window sides"],[13,"Window Title: Sine"],[13,"Window Title: Random"],[13,"Window Title: Saw"],[13,"Window Title: Square"],[14,"Window Curve: Sine"],[14,"Window Curve: Random"],[14,"Window Curve: Saw"],[14,"Window Curve: Square"],[15,"LFO 1 waveform"],[16,"LFO 2 waveform"],[17,"LFO 1 frequency"],[18,"LFO 1 amount"],[19,"LFO 2 frequency"],[20,"LFO 2 amount"],[21,"CV 1 amount"],[22,"CV 2 amount"],[23,"Attack time"],[24,"Decay time"],[25,"Sustain amplitude"],[26,"Release time"],[27,"LFO 1 dest: Tune"],[27,"LFO 1 dest: Pos"],[27,"LFO 1 dest: Spray"],[27,"LFO 1 dest: Size"],[27,"LFO 1 dest: Dens"],[27,"LFO 1 dest: Cutoff"],[28,"LFO 2 dest: Tune"],[28,"LFO 2 dest: Pos"],[28,"LFO 2 dest: Spray"],[28,"LFO 2 dest: Size"],[28,"LFO 2 dest: Dens"],[28,"LFO 2 dest: Cutoff"],[29,"CV 1 dest: Tune"],[29,"CV 1 dest: Pos"],[29,"CV 1 dest: Spray"],[29,"CV 1 dest: Size"],[29,"CV 1 dest: Dens"],[29,"CV 1 dest: Cutoff"],[30,"CV 2 dest: Tune"],[30,"CV 2 dest: Pos"],[30,"CV 2 dest: Spray"],[30,"CV 2 dest: Size"],[30,"CV 2 dest: Dens"],[30,"CV 2 dest: Cutoff"],[31,"LFO 1 key sync"],[32,"LFO 2 key sync"],[33,"Scan key sync"],[36,"Patch volume"],[37,"Resample antialias on/off"],[39,"Master volume"],[60,"Pitch bend range"]]},{"id":"flashback2x4delay","brand":"TC Electronic","name":"Flashback 2 X4 Delay","cc":[[1,"Sudivision Knob (mod 2)"],[2,"Delay Time (mod 3)"],[3,"Feedback Knob (mod 4)"],[4,"Delay Level Knob (mod 1)"],[13,"Tap Tempo"],[5,"MASH Switch (active FX engine)"],[11,"Expression Pedal"],[12,"Bypass Pedal (active FX engine)"],[12,"Engage Pedal (active FX engine)"],[6,"Looper Record"],[7,"Looper Play/Pause"],[8,"Looper Play Once"],[9,"Looper Undo/Redo"],[10,"Looper Stop+Clear"]]},{"id":"halloffame2x4reverb","brand":"TC Electronic","name":"Hall of Fame 2 X4 Reverb","cc":[[1,"Decay (mod 3)"],[2,"Pre Delay (mod 4)"],[3,"Tone (mod 1)"],[4,"Level (mod 2)"],[5,"MASH Switch (active FX engine)"],[11,"Expression Pedal"],[12,"Bypass Pedal (active FX engine)"],[12,"Engage Pedal (active FX engine)"]]},{"id":"voicelive3extreme","brand":"TC Helicon","name":"Voicelive 3 Extreme","cc":[[1,"Harmony Vibrato Boost"],[16,"Guitar - Rhythmic"],[17,"Guitar - Delay"],[19,"Guitar - Compressor"],[21,"Guitar - uMod"],[23,"Guitar - Octaver"],[25,"Guitar - Amp"],[27,"Guitar - Wah"],[29,"Guitar - Boost"],[30,"Vocal Harmony (Key): C"],[30,"Vocal Harmony (Key): C#"],[30,"Vocal Harmony (Key): D"],[30,"Vocal Harmony (Key): D#"],[30,"Vocal Harmony (Key): E"],[30,"Vocal Harmony (Key): F"],[30,"Vocal Harmony (Key): F#"],[30,"Vocal Harmony (Key): G"],[30,"Vocal Harmony (Key): G#"],[30,"Vocal Harmony (Key): A"],[30,"Vocal Harmony (Key): A#"],[30,"Vocal Harmony (Key): B"],[31,"Vocal Harmony (Scale): MAJ1 "],[31,"Vocal Harmony (Scale): MAJ2"],[31,"Vocal Harmony (Scale): MAJ3"],[31,"Vocal Harmony (Scale): MIN1"],[31,"Vocal Harmony (Scale): MIN2"],[31,"Vocal Harmony (Scale): MIN3"],[31,"Vocal Harmony (Scale): CUST"],[46,"Guitar - Reverb"],[47,"Guitar - HIT"],[50,"Vocal - Vocoder/Synth"],[51,"Vocal - Rhythmic"],[56,"Vocal - HIT"],[104,"Vocal - Choir"],[110,"Vocal - Harmony"],[111,"Vocal - Double"],[112,"Vocal - Reverb"],[113,"Vocal - HardTune"],[115,"Step Number: 1"],[115,"Step Number: 2"],[115,"Step Number: 3"],[115,"Step Number: 4"],[115,"Step Number: 5"],[115,"Step Number: 6"],[115,"Step Number: 7"],[115,"Step Number: 8"],[116,"Vocal - uMod"],[117,"Vocal - Delay"],[118,"Vocal - Transducer"],[119,"Harmony Hold"],[123,"All Notes Off"]]},{"id":"voiceliverack","brand":"TC Helicon","name":"Voicelive Rack","cc":[[110,"Harmony: On"],[110,"Harmony: Off"],[111,"Double: On"],[111,"Double: Off"],[112,"Reverb: On"],[112,"Reverb: Off"],[113,"HardTune: On"],[113,"HardTune: Off"],[116,"uMod: On"],[116,"uMod: Off"],[117,"Delay: On"],[117,"Delay: Off"],[118,"Trans: On"],[118,"Trans: Off"],[104,"Rhythmic: On"],[104,"Rhythmic: Off"],[50,"uMod Style"],[90,"uMod Level"],[51,"Delay Style"],[62,"Delay Level"],[52,"Reverb Style"],[91,"Reverb Level"],[53,"Double Style"],[15,"Double Level"],[55,"Transducer Style"],[105,"Transducer Out Gain"],[56,"Harmony Style"],[12,"Harmony Level"],[30,"Harmony Key: C"],[30,"Harmony Key: C#"],[30,"Harmony Key: D"],[30,"Harmony Key: D#"],[30,"Harmony Key: E"],[30,"Harmony Key: F"],[30,"Harmony Key: F#"],[30,"Harmony Key: G"],[30,"Harmony Key: G#"],[30,"Harmony Key: A"],[30,"Harmony Key: A#"],[30,"Harmony Key: B"],[31,"Harmony Scale: Maj1"],[31,"Harmony Scale: Maj2"],[31,"Harmony Scale: Maj3"],[31,"Harmony Scale: Min1"],[31,"Harmony Scale: Min2"],[31,"Harmony Scale: Min3"],[31,"Harmony Scale: Custom"],[89,"Voicing - Voice 1"],[61,"Voicing - Voice 2"],[88,"Voicing - Voice 3"],[3,"Voicing - Voice 4"],[46,"Level - Voice 1"],[17,"Level - Voice 2"],[21,"Level - Voice 3"],[25,"Level - Voice 4"],[29,"Gender - Voice 1"],[19,"Gender - Voice 2"],[23,"Gender - Voice 3"],[27,"Gender - Voice 4"],[16,"Humanize Style"],[20,"Human Level"],[24,"Vibrato Style"],[1,"Vibrato Amount"],[35,"Doubling Level"],[72,"Choir Level"],[73,"Choir Style"],[47,"HardTune Key: C"],[47,"HardTune Key: C#"],[47,"HardTune Key: D"],[47,"HardTune Key: D#"],[47,"HardTune Key: E"],[47,"HardTune Key: F"],[47,"HardTune Key: F#"],[47,"HardTune Key: G"],[47,"HardTune Key: G#"],[47,"HardTune Key: A"],[47,"HardTune Key: A#"],[47,"HardTune Key: B"],[48,"Hardtune Scale: Major"],[48,"Hardtune Scale: Harmonic Minor"],[48,"Hardtune Scale: Natural Minor"],[48,"Hardtune Scale: Minor Asc."],[48,"Hardtune Scale: Chromatic"],[48,"Hardtune Scale: Custom"],[54,"HardTune Rate"],[57,"HardTune Amount"],[49,"HardTune Window"],[106,"Tone: On"],[106,"Tone: Off"],[107,"Pitch: Off"],[107,"Pitch"],[115,"Step"],[108,"Guitar FX: On"],[108,"Guitar FX: Off"],[109,"Guitar Level"],[9,"Guitar Rev Style"],[22,"Guitar Rev Level"],[26,"Guitar Mod Style"],[28,"Guitar Mod Level"],[13,"Lead Mute: On"],[13,"Lead Mute: Off"],[85,"Voices Level"],[86,"Delay/Reverb Level"],[10,"Dry Pan"],[7,"Output Level"],[114,"Bypass"],[114,"Engage"],[119,"Harmony Hold: On"],[119,"Harmony Hold: Off"],[64,"Sustain: On"],[64,"Sustain: Off"],[58,"Aux Level"],[123,"All Notes Off"]]},{"id":"voicelivetouch2","brand":"TC Helicon","name":"Voicelive Touch 2","cc":[[110,"Harmony: Off"],[110,"Harmony: On"],[111,"Double: Off"],[111,"Double: On"],[112,"Reverb: Off"],[112,"Reverb: On"],[116,"MicroMod: Off"],[116,"MicroMod: On"],[117,"Delay: Off"],[117,"Delay: On"],[1102,"Rhythm: Off"],[102,"Rhythm: On"],[103,"Transducer: Off"],[103,"Transducer: On"],[113,"Choir: Off"],[113,"Choir: On"],[108,"Hardtune: Off"],[108,"Hardtune: On"],[50,"Mod Style"],[90,"Mod Level"],[18,"Mod Speed"],[93,"Mod Depth"],[51,"Delay Style"],[62,"Delay Level"],[20,"Delay Feedback"],[28,"Delay Filter"],[52,"Reverb Style"],[91,"Reverb Level"],[63,"Reverb Decay"],[53,"Doubling Style"],[15,"Doubling Level"],[55,"Transducer Style"],[105,"Transducer Gain"],[41,"Transducer Low Cut"],[57,"Transducer High Cut"],[118,"Choir Style"],[22,"Choir Level"],[24,"Hardtune Style"],[60,"Hardtune Shift"],[115,"Rhythm Style"],[83,"Rhythm Division"],[80,"Rhythm Depth"],[104,"Rhythm Type"],[26,"Rhythm Stutter Division"],[56,"Harmony Style"],[112,"Harmony Level"],[30,"Harmony Key: C"],[30,"Harmony Key: C#"],[30,"Harmony Key: D"],[30,"Harmony Key: D#"],[30,"Harmony Key: E"],[30,"Harmony Key: F"],[30,"Harmony Key: F#"],[30,"Harmony Key: G"],[30,"Harmony Key: G#"],[30,"Harmony Key: A"],[30,"Harmony Key: A#"],[30,"Harmony Key: B"],[31,"Harmony Scale: Maj1"],[31,"Harmony Scale: Maj2"],[31,"Harmony Scale: Maj3"],[31,"Harmony Scale: Min1"],[31,"Harmony Scale: Min2"],[31,"Harmony Scale: Min3"],[46,"Voice 1 Level"],[17,"Voice 2 Level"],[21,"Voice 3 Level"],[25,"Voice 4 Level"],[59,"Harmony Master Gender"],[29,"Voice 1 Gender"],[19,"Voice 2 Gender"],[23,"Voice 3 Gender"],[27,"Voice 4 Gender"],[89,"Voice 1 Voicing"],[61,"Voice 2 Voicing"],[88,"Voice 3 Voicing"],[3,"Voice 4 Voicing"],[119,"Harmony Hold: Off"],[119,"Harmony Hold: On"],[10,"Harmony Master Pan"],[44,"Master Loop Control: Play Button Press"],[44,"Master Loop Control: Rec Button Press"],[44,"Master Loop Control: Stop"],[44,"Master Loop Control: Undo"],[44,"Master Loop Control: 2X"],[44,"Master Loop Control: Clear"],[44,"Master Loop Control: Erase"],[44,"Master Loop Control: Reverse"],[47,"Loop Play"],[48,"Loop Stop"],[49,"Loop Rec"],[54,"Loop Play Re-Trigger"],[57,"Overdub: Off"],[57,"Overdub: On"],[106,"Tone Style"],[109,"Guitar Gain"],[107,"Pitch Correct: Off"],[107,"Pitch Correct: On"],[13,"Lead Mute: Off"],[13,"Lead Mute: On"],[114,"Talk Mode: Off"],[114,"Talk Mode: On"],[7,"Analog Out Level"],[58,"Aux Level"],[85,"Harmony Level"],[86,"Delay/Reverb Level"],[14,"Talk Mode + Tuner: Off"],[14,"Talk Mode + Tuner: On"],[87,"Hit: Off"],[87,"Hit: On"]]},{"id":"worshipessentials2","brand":"That Worship Sound","name":"Worship Essentials 2","cc":[[17,"Piano Verb Knob"],[18,"Pad Verb Knob"],[19,"Shimmer Knob"],[20,"Delay 1 Knob"],[21,"Delay 2 Knob"],[22,"Compressor Knob"],[38,"Piano Verb On/Off"],[39,"Pad Verb On/Off"],[54,"Shimmer On/Off"],[70,"Delay 1 On/Off"],[71,"Delay 2 On/Off"],[55,"Compressor On/Off"],[16,"Layer 1 Knob"],[23,"Layer 6 Knob"],[0,"Layer 1 Slider"],[1,"Layer 2 Slider"],[2,"Layer 3 Slider"],[3,"Layer 4 Slider "],[4,"Layer 5 Slider"],[5,"Layer 6 Slider"],[32,"Layer 1: Button 1"],[48,"Layer 1: Button 2"],[64,"Layer 1: Button 3"],[33,"Layer 2: Button 1"],[49,"Layer 2: Button 2"],[65,"Layer 2: Button 3"],[64,"Layer 3: Button 1"],[50,"Layer 3: Button 2"],[66,"Layer 3: Button 3"],[65,"Layer 4: Button 1"],[51,"Layer 4: Button 2"],[67,"Layer 4: Button 3"],[36,"Layer 5: Button 1"],[52,"Layer 5: Button 2"],[68,"Layer 5: Button 3"],[37,"Layer 6: Button 1"],[53,"Layer 6: Button 2"],[69,"Layer 6: Button 3"],[6,"Drone Pad Volume"],[7,"Master Volume"],[45,"Tap Tempo"],[58,"Previous Patch"],[59,"Next Patch"],[1,"Mod Wheel"],[64,"Sustain Pedal"],[41,"Drone: On/Off"],[61,"Drone: Motion 1"],[62,"Drone: Motion 2"]]},{"id":"worshipguitaressentials2","brand":"That Worship Sound","name":"Worship Guitar Essentials 2","cc":[[22,"Previous Patch"],[23,"Next Patch"],[0,"Panic"],[1,"Sum to Mono"],[2,"Mute"],[7,"Cloud Verb: On/Off"],[6,"Cloud Verb: Shimmer On/Off"],[6,"Cloud Verb: Shimmer Knob"],[7,"Cloud Verb: Pre Delay Knob"],[8,"Cloud Verb: Reflectivity Knob"],[9,"Cloud Verb: Density Knob"],[10,"Cloud Verb: Mix Knob"],[11,"Cloud Verb: Low Cut Knob"],[12,"Cloud Verb: High Cut Knob"],[13,"Cloud Verb: Room Size Knob"],[14,"Cloud Verb: Mod Knob"],[8,"DualDelay: On/Off"],[15,"DualDelay: Feedback Knob"],[16,"DualDelay: High Cut Knob"],[17,"DualDelay: Mix Left Knob"],[18,"DualDelay: Mix Right Knob"],[19,"DualDelay: Low Cut Knob"],[20,"DualDelay: Time Left Knob"],[21,"DualDelay: Time Right Knob"],[9,"Klone: On/Off"],[22,"Klone: Gain Knob"],[23,"Klone: Treble Knob"],[24,"Klone: Output Knob"],[10,"Mouse Drive: On/Off"],[25,"Mouse Drive: Drive Knob"],[26,"Mouse Drive: Level Knob"],[27,"Mouse Drive: Tone Knob"],[11,"Big Moth: On/Off"],[28,"Big Moth: Fuzz Knob"],[29,"Big Moth: Level Knob"],[30,"Big Moth: Tone Knob"],[12,"Kiwi Compressor: On/Off"],[31,"Kiwi Compressor: Sustain Knob"],[32,"Kiwi Compressor: Level Knob"],[13,"Echo Delay: On/Off"],[33,"Echo Delay: Feedback Knob"],[34,"Echo Delay: Wet Knob"],[35,"Echo Delay: Color Knob"],[36,"Echo Delay: Time Knob"],[14,"El Capitan: On/Off"],[37,"El Capitan: Time Knob"],[38,"El Capitan: Hi Cut Knob"],[39,"El Capitan: Mix Knob"],[40,"El Capitan: Feedback Knob"],[24,"El Capitan: Freeze Button"],[41,"El Capitan: Flutter Knob"],[15,"Pulsar: On/Off"],[42,"Pulsar: Rate Knob"],[43,"Pulsar: Depth Knob"],[44,"Pulsar: Smoothing Knob"],[16,"Vibe: On/Off"],[45,"Vibe: Rate Knob"],[46,"Vibe: Depth Knob"],[47,"Vibe: Type Knob"],[17,"Julius: On/Off"],[48,"Julius: Rate Knob"],[49,"Julius: Depth Knob"],[50,"Julius: Feedback Knob"],[51,"Julius: Density Knob"],[18,"Ovtavia: On/Off"],[52,"Octavia: Oct Down Knob"],[53,"Octavia: Oct Up Knob"],[19,"Boost: On/Off"],[54,"Boost: Gain Knob"],[20,"Tuner"],[21,"Tap Tempo"],[11,"Wah/Vol Pedal"],[5,"Drone: On/Off"],[4,"Drone: Motion 1"],[3,"Drone: Motion 2"],[5,"Drone: Volume Knob"],[3,"Drone: Cutoff Knob"],[4,"Drone: Layer 2 Knob"],[2,"Drone: Intervals Knob"],[1,"Drone: Octave Knob"]]},{"id":"opus","brand":"Two Notes Audio Engineering","name":"opus","cc":[[0,"Preset Mode\\\\t"],["1","Noise Gate On/Off"],["2","Noise Gate Mode"],["3","Noise Gate Threshold"],["4","Preamp On/Off"],["5","Preamp Model"],["6","Preamp Gain"],["7","Preamp Treble"],["8","Preamp Mid"],["9","Preamp Bass"],["10","Power Amp On/Off"],["11","Power Amp Model"],["12","Power Amp Volume"],["13","Power Amp Contour (PP models only)"],["14","Power Amp Depth (PP models only)"],["15","Power Amp Type (PP models only)"],["16","Miking On/Off (DynIR Engine only)"],["17","Miking Virtual Cabinet (DynIR Engine only)"],["18","Mic A : Model (DynIR Engine only)"],["19","Mic B : Model (DynIR Engine only)"],["20","Mic A : Level\\\\t(Both Modes)"],["21","Mic A : Bypass\\\\t(Both Modes)"],["22","Mic A : Mute\\\\t(Both Modes)"],["23","Mic A : Phase (Both Modes)"],["24","Mic B : Level (Both Modes)"],["25","Mic B : Bypass (Both Modes)"],["26","Mic B : Mute (Both modes)"],["27","Mic B : Phase (Both modes)"],["28","Mic A : Axis (DynIR Engine only)"],["29","Mic A : Distance (DynIR Engine only)"],["30","Mic A : Position (DynIR Engine only)"],["31","Mic B : Axis (DynIR Engine only)"],["32","Mic B : Distance (DynIR Engine only)"],["33","Mic B : Position (DynIR Engine only)"],["34","IR File A"],["35","IR File B"],["36","IR Folder A"],["37","IR Folder B"],["38","EQ On/Off"],["39","EQ Mode\\\\t"],["40","Freq : Low Cut\\\\t"],["41","Gain: Low\\\\t"],["42","Freq: Low\\\\t"],["43","Gain: Low Mid\\\\t"],["44","Freq: Low Mid\\\\t"],["45","Gain: Mid\\\\t"],["46","Freq: Mid\\\\t"],["47","Gain: High Mid\\\\t"],["48","Freq: High Mid\\\\t"],["49","Gain: High\\\\t"],["50","Freq : High\\\\t"],["51","Freq : High Cut\\\\t"],["52","Enhancer On/Off"],["53","Enhancer Instrument"],["54","Enhancer Dry / Wet\\\\t"],["55","Enhancer Body"],["56","Enhancer Thickness"],["57","Enhancer Brilliance"],["58","Reverb On / Off\\\\t"],["59","Reverb Preset"],["60","Reverb Type"],["61","Reverb Dry / Wet\\\\t"],["62","Reverb Size"],["63","Reverb Echo"],["64","Reverb Color"],["65","Preset Level"],["66","Master Volume"],["67","Master Mute"],["68","Preset"]]},{"id":"torpedocabv4firmware","brand":"Two Notes Audio Engineering","name":"Torpedo C.A.B. (v4 firmware)","cc":[[0,"Power Amp On"],[0,"Power Amp Off"],[1,"Amp Model 0"],[1,"Amp Model 1"],[1,"Amp Model 2"],[1,"Amp Model 3"],[1,"Amp Model 4"],[1,"Amp Model 5"],[1,"Amp Model 6"],[1,"Amp Model 7"],[2,"Amp Volume"],[3,"Amp Presence"],[4,"Amp Depth"],[5,"Amp Type: Triode"],[5,"Amp Type: Pentode"],[6,"Mic On"],[6,"Mic Off"],[8,"Cab 0"],[8,"Cab 1"],[8,"Cab 2"],[8,"Cab 3"],[8,"Cab 4"],[8,"Cab 5"],[8,"Cab 6"],[8,"Cab 7"],[8,"Cab 8"],[8,"Cab 9"],[8,"Cab 10"],[8,"Cab 11"],[8,"Cab 12"],[8,"Cab 13"],[8,"Cab 14"],[8,"Cab 15"],[8,"Cab 16"],[8,"Cab 17"],[8,"Cab 18"],[8,"Cab 19"],[8,"Cab 20"],[8,"Cab 21"],[8,"Cab 22"],[8,"Cab 23"],[8,"Cab 24"],[8,"Cab 25"],[8,"Cab 26"],[8,"Cab 27"],[8,"Cab 28"],[8,"Cab 29"],[8,"Cab 30"],[8,"Cab 31"],[8,"Cab 32"],[9,"File A 0"],[9,"File A 1"],[9,"File A 2"],[9,"File A 3"],[9,"File A 4"],[9,"File A 5"],[9,"File A 6"],[9,"File A 7"],[9,"File A 8"],[10,"File B 0"],[10,"File B 1"],[10,"File B 2"],[10,"File B 3"],[10,"File B 4"],[10,"File B 5"],[10,"File B 6"],[10,"File B 7"],[10,"File B 8"],[11,"Folder A: User 0"],[11,"Folder A: User 1"],[11,"Folder A: User 2"],[11,"Folder A: User 3"],[12,"Folder B: User 0"],[12,"Folder B: User 1"],[12,"Folder B: User 2"],[12,"Folder B: User 3"],[13,"Mic A: Dynamic 57"],[13,"Mic A: Dynamic 421"],[13,"Mic A: Knightfall"],[13,"Mic A: Condenser 87"],[13,"Mic A: Ribbon 160"],[13,"Mic A: Ribbon 121"],[13,"Mic A: Bass 20"],[13,"Mic A: Bass 5"],[38,"Mic B: Dynamic 57"],[38,"Mic B: Dynamic 421"],[38,"Mic B: Knightfall"],[38,"Mic B: Condenser 87"],[38,"Mic B: Ribbon 160"],[38,"Mic B: Ribbon 121"],[38,"Mic B: Bass 20"],[38,"Mic B: Bass 5"],[14,"Distance A"],[39,"Distance B"],[15,"Center A"],[40,"Center B"],[16,"Position Mic A: Back"],[16,"Position Mic A: Front"],[41,"Position Mic B: Back"],[41,"Position Mic B: Front"],[35,"Level A"],[36,"Phase A: Normal"],[36,"Phase A: Invert"],[37,"Mute A"],[37,"Unmute A"],[42,"Level B"],[43,"Phase B: Normal"],[43,"Phase B: Invert"],[44,"Mute B"],[44,"Unmute B"],[17,"EQ On"],[17,"EQ Off"],[18,"EQ Mode: Guitar"],[18,"EQ Mode: Bass"],[18,"EQ Mode: Custom"],[19,"EQ Gain: Low"],[20,"EQ Gain: Low Mid"],[21,"EQ Gain: Mid"],[22,"EQ Gain: High Mid"],[23,"EQ Gain: High"],[45,"EQ Freq: Low Cut"],[46,"EQ Freq: Low"],[47,"EQ Freq: Low Mid"],[48,"EQ Freq: Mid"],[49,"EQ Freq: Mid High"],[50,"EQ Freq: High"],[24,"Preset Level"],[25,"Reverb On"],[25,"Reverb Off"],[26,"Reverb Room 0"],[26,"Reverb Room 1"],[26,"Reverb Room 2"],[26,"Reverb Room 3"],[26,"Reverb Room 4"],[26,"Reverb Room 5"],[26,"Reverb Room 6"],[26,"Reverb Room 7"],[27,"Reverb Dry/Wet"],[28,"Arcade - Instrument: Guitar"],[28,"Arcade - Instrument: Bass"],[29,"Power Amp: Off"],[29,"Power Amp"],[30,"Arcade - Distance"],[31,"Arcade - Tone"],[32,"Arcade - Contour"],[33,"Arcade - Preset Level"],[34,"Preset Mode: Simulation"],[34,"Preset Mode: Arcade"],[34,"Preset Mode: IR Loader"],[51,"Out Level"],[52,"Mute"],[52,"Unmute"],[53,"Bypass"],[53,"Engage"],[54,"CC Preset 1"],[54,"CC Preset 2"],[54,"CC Preset 3"],[54,"CC Preset 4"],[54,"CC Preset 5"],[54,"CC Preset 6"],[54,"CC Preset 7"],[54,"CC Preset 8"],[54,"CC Preset 9"],[54,"CC Preset 10"],[54,"CC Preset 11"],[54,"CC Preset 12"],[54,"CC Preset 13"],[54,"CC Preset 14"],[54,"CC Preset 15"],[54,"CC Preset 16"],[54,"CC Preset 17"],[54,"CC Preset 18"],[54,"CC Preset 19"],[54,"CC Preset 20"],[54,"CC Preset 21"],[54,"CC Preset 22"],[54,"CC Preset 23"],[54,"CC Preset 24"],[54,"CC Preset 25"],[54,"CC Preset 26"],[54,"CC Preset 27"],[54,"CC Preset 28"],[54,"CC Preset 29"],[54,"CC Preset 30"],[54,"CC Preset 31"],[54,"CC Preset 32"],[54,"CC Preset 33"],[54,"CC Preset 34"],[54,"CC Preset 35"],[54,"CC Preset 36"],[54,"CC Preset 37"],[54,"CC Preset 38"],[54,"CC Preset 39"],[54,"CC Preset 40"],[54,"CC Preset 41"],[54,"CC Preset 42"],[54,"CC Preset 43"],[54,"CC Preset 44"],[54,"CC Preset 45"],[54,"CC Preset 46"],[54,"CC Preset 47"],[54,"CC Preset 48"],[54,"CC Preset 49"],[54,"CC Preset 50"],[54,"CC Preset 51"],[54,"CC Preset 52"],[54,"CC Preset 53"],[54,"CC Preset 54"],[54,"CC Preset 55"],[54,"CC Preset 56"],[54,"CC Preset 57"],[54,"CC Preset 58"],[54,"CC Preset 59"],[54,"CC Preset 60"],[54,"CC Preset 61"],[54,"CC Preset 62"],[54,"CC Preset 63"],[54,"CC Preset 64"],[54,"CC Preset 65"],[54,"CC Preset 66"],[54,"CC Preset 67"],[54,"CC Preset 68"],[54,"CC Preset 69"],[54,"CC Preset 70"],[54,"CC Preset 71"],[54,"CC Preset 72"],[54,"CC Preset 73"],[54,"CC Preset 74"],[54,"CC Preset 75"],[54,"CC Preset 76"],[54,"CC Preset 77"],[54,"CC Preset 78"],[54,"CC Preset 79"],[54,"CC Preset 80"],[54,"CC Preset 81"],[54,"CC Preset 82"],[54,"CC Preset 83"],[54,"CC Preset 84"],[54,"CC Preset 85"],[54,"CC Preset 86"],[54,"CC Preset 87"],[54,"CC Preset 88"],[54,"CC Preset 89"],[54,"CC Preset 90"],[54,"CC Preset 91"],[54,"CC Preset 92"],[54,"CC Preset 93"],[54,"CC Preset 94"],[54,"CC Preset 95"],[54,"CC Preset 96"],[54,"CC Preset 97"],[54,"CC Preset 98"],[54,"CC Preset 99"],[54,"CC Preset 100"],[54,"CC Preset 101"],[54,"CC Preset 102"],[54,"CC Preset 103"],[54,"CC Preset 104"],[54,"CC Preset 105"],[54,"CC Preset 106"],[54,"CC Preset 107"],[54,"CC Preset 108"],[54,"CC Preset 109"],[54,"CC Preset 110"],[54,"CC Preset 111"],[54,"CC Preset 112"],[54,"CC Preset 113"],[54,"CC Preset 114"],[54,"CC Preset 115"],[54,"CC Preset 116"],[54,"CC Preset 117"],[54,"CC Preset 118"],[54,"CC Preset 119"],[54,"CC Preset 120"],[54,"CC Preset 121"],[54,"CC Preset 122"],[54,"CC Preset 123"],[54,"CC Preset 124"],[54,"CC Preset 125"],[54,"CC Preset 126"],[54,"CC Preset 127"],[54,"CC Preset 128"]]},{"id":"torpedocaptorx","brand":"Two Notes Audio Engineering","name":"Torpedo Captor X","cc":[[6,"Cab/Mic On"],[6,"Cab/Mic Off"],[8,"Select Cab 0"],[8,"Select Cab 1"],[8,"Select Cab 2"],[8,"Select Cab 3"],[8,"Select Cab 4"],[8,"Select Cab 5"],[8,"Select Cab 6"],[8,"Select Cab 7"],[8,"Select Cab 8"],[9,"File A 0"],[9,"File A 1"],[9,"File A 2"],[9,"File A 3"],[9,"File A 4"],[9,"File A 5"],[9,"File A 6"],[9,"File A 7"],[9,"File A 8"],[10,"File B 0"],[10,"File B 1"],[10,"File B 2"],[10,"File B 3"],[10,"File B 4"],[10,"File B 5"],[10,"File B 6"],[10,"File B 7"],[10,"File B 8"],[11,"Folder A: User 0"],[11,"Folder A: User 1"],[11,"Folder A: User 2"],[11,"Folder A: User 3"],[12,"Folder B: User 0"],[12,"Folder B: User 1"],[12,"Folder B: User 2"],[12,"Folder B: User 3"],[13,"Mic A 1"],[13,"Mic A 2"],[13,"Mic A 3"],[13,"Mic A 4"],[13,"Mic A 5"],[13,"Mic A 6"],[13,"Mic A 7"],[13,"Mic A 8"],[14,"Distance A"],[15,"Center A"],[16,"Position A: Back"],[16,"Position A: Front"],[35,"Level A"],[36,"Phase A: Normal"],[36,"Phase A: Invert"],[37,"Mute A: Unmuted"],[37,"Mute A: Muted"],[38,"Mic B 1"],[38,"Mic B 2"],[38,"Mic B 3"],[38,"Mic B 4"],[38,"Mic B 5"],[38,"Mic B 6"],[38,"Mic B 7"],[38,"Mic B 8"],[39,"Distance B"],[40,"Center B"],[41,"Position B: Back"],[41,"Position B: Front"],[42,"Level B"],[43,"Phase B: Normal"],[43,"Phase B: Inverted"],[44,"Mute B: Unmute"],[44,"Mute B: Mute"],[51,"Bypass A"],[51,"Engage A"],[52,"Bypass B"],[52,"Engage B"],[17,"EQ On"],[17,"EQ Off"],[18,"EQ Mode: Bass"],[18,"EQ Mode: Guitar"],[18,"EQ Mode: Custom"],[19,"EQ Gain: Low"],[20,"EQ Gain: Low Mid"],[21,"EQ Gain: Mid"],[22,"EQ Gain: High Mid"],[23,"EQ Gain: High"],[45,"EQ Freq: Low Cut"],[46,"EQ Freq: Low"],[47,"EQ Freq: Low Mid"],[48,"EQ Freq: Mid"],[49,"EQ Freq: High Mid"],[50,"EQ Freq: High"],[24,"EQ Preset Level"],[86,"EQ Preset Level R"],[25,"Reverb On"],[25,"Reverb Off"],[26,"Reverb Room 0"],[26,"Reverb Room 1"],[26,"Reverb Room 2"],[26,"Reverb Room 3"],[26,"Reverb Room 4"],[26,"Reverb Room 5"],[26,"Reverb Room 6"],[26,"Reverb Room 7"],[27,"Reverb Dry/Wet"],[72,"Reverb Dry/Wet R"],[53,"Reverb Size"],[54,"Reverb Echo"],[55,"Reverb Color"],[56,"Reverb Type: Room"],[56,"Reverb Type: Ambience"],[57,"Reverb Width"],[58,"Noise Gate On"],[58,"Noise Gate Off"],[59,"Noise Gate: Soft"],[59,"Noise Gate: Hard"],[60,"Noise Gate Threshold"],[61,"Enhancer On"],[61,"Enhancer Off"],[62,"Enhancer: Guitar"],[62,"Enhancer: Bass"],[63,"Enhancer Body"],[44,"Enhancer Thickness"],[65,"Enhancer Brilliance"],[66,"Enhancer Dry/wet"],[67,"Twin Tracker On"],[67,"Twin Tracker Off"],[68,"Twin Tracker Tightness"],[69,"Twin Tracker Balance"],[70,"Output Mode: Stereo"],[70,"Output Mode: Dual Mono"],[70,"Output Mode: Dual Mono, R Bypass"],[71,"Space Pot: Stereo"],[71,"Space Pot: Stereo Expander"],[71,"Space Pot: Dry/Wet Stereo"],[71,"Space Pot: Dual Mono Dry/Wet"],[71,"Space Pot: Dual Mono Dry/Wet L"],[71,"Space Pot: Dual Mono Dry/Wet R"],[71,"Space Pot: Dual Mono, R Bypass: Dry/Wet"],[73,"EQ R: On"],[73,"EQ R: Off"],[74,"EQ R Mode: Guitar"],[74,"EQ R Mode: Bass"],[74,"EQ R Mode: Custom"],[75,"EQ R Gain: Low"],[76,"EQ R Gain: Low Mid"],[77,"EQ R Gain: Mid"],[78,"EQ R Gain: High Mid"],[79,"EQ R Gain: High"],[80,"EQ R Freq: Low Cut"],[81,"EQ R Freq: Low"],[82,"EQ R Freq: Low Mid"],[83,"EQ R Freq: Mid"],[84,"EQ R Freq: High Mid"],[85,"EQ R Freq: High"],[34,"General Preset Mode: Simulation"],[34,"General Preset Mode: IR Loader"],[87,"Output Level"],[88,"Mute"],[88,"Unmute"],[89,"Bypass"],[89,"Engage"],[68,"Voicing"],[69,"Space"],[90,"Preset 1 "],[90,"Preset 2"],[90,"Preset 3"],[90,"Preset 4"],[90,"Preset 5"],[90,"Preset 6"],[90,"Preset 7"],[90,"Preset 8"],[90,"Preset 9"],[90,"Preset 10"],[90,"Preset 11"],[90,"Preset 12"],[90,"Preset 13"],[90,"Preset 14"],[90,"Preset 15"],[90,"Preset 16"],[90,"Preset 17"],[90,"Preset 18"],[90,"Preset 19"],[90,"Preset 20"],[90,"Preset 21"],[90,"Preset 22"],[90,"Preset 23"],[90,"Preset 24"],[90,"Preset 25"],[90,"Preset 26"],[90,"Preset 27"],[90,"Preset 28"],[90,"Preset 29"],[90,"Preset 30"],[90,"Preset 31"],[90,"Preset 32"],[90,"Preset 33"],[90,"Preset 34"],[90,"Preset 35"],[90,"Preset 36"],[90,"Preset 37"],[90,"Preset 38"],[90,"Preset 39"],[90,"Preset 40"],[90,"Preset 41"],[90,"Preset 42"],[90,"Preset 43"],[90,"Preset 44"],[90,"Preset 45"],[90,"Preset 46"],[90,"Preset 47"],[90,"Preset 48"],[90,"Preset 49"],[90,"Preset 50"],[90,"Preset 51"],[90,"Preset 52"],[90,"Preset 53"],[90,"Preset 54"],[90,"Preset 55"],[90,"Preset 56"],[90,"Preset 57"],[90,"Preset 58"],[90,"Preset 59"],[90,"Preset 60"],[90,"Preset 61"],[90,"Preset 62"],[90,"Preset 63"],[90,"Preset 64"],[90,"Preset 65"],[90,"Preset 66"],[90,"Preset 67"],[90,"Preset 68"],[90,"Preset 69"],[90,"Preset 70"],[90,"Preset 71"],[90,"Preset 72"],[90,"Preset 73"],[90,"Preset 74"],[90,"Preset 75"],[90,"Preset 76"],[90,"Preset 77"],[90,"Preset 78"],[90,"Preset 79"],[90,"Preset 80"],[90,"Preset 81"],[90,"Preset 82"],[90,"Preset 83"],[90,"Preset 84"],[90,"Preset 85"],[90,"Preset 86"],[90,"Preset 87"],[90,"Preset 88"],[90,"Preset 89"],[90,"Preset 90"],[90,"Preset 91"],[90,"Preset 92"],[90,"Preset 93"],[90,"Preset 94"],[90,"Preset 95"],[90,"Preset 96"],[90,"Preset 97"],[90,"Preset 98"],[90,"Preset 99"],[90,"Preset 100"],[90,"Preset 101"],[90,"Preset 102"],[90,"Preset 103"],[90,"Preset 104"],[90,"Preset 105"],[90,"Preset 106"],[90,"Preset 107"],[90,"Preset 108"],[90,"Preset 109"],[90,"Preset 110"],[90,"Preset 111"],[90,"Preset 112"],[90,"Preset 113"],[90,"Preset 114"],[90,"Preset 115"],[90,"Preset 116"],[90,"Preset 117"],[90,"Preset 118"],[90,"Preset 119"],[90,"Preset 120"],[90,"Preset 121"],[90,"Preset 122"],[90,"Preset 123"],[90,"Preset 124"],[90,"Preset 125"],[90,"Preset 126"],[90,"Preset 127"],[90,"Preset 128"]]},{"id":"torpedolivev3firmware","brand":"Two Notes Audio Engineering","name":"Torpedo Live v3 firmware","cc":[[0,"Power Amp On"],[0,"Power Amp Off"],[1,"Amp Model 0"],[1,"Amp Model 1"],[1,"Amp Model 2"],[1,"Amp Model 3"],[1,"Amp Model 4"],[1,"Amp Model 5"],[1,"Amp Model 6"],[1,"Amp Model 7"],[2,"Amp Volume"],[3,"Amp Presence"],[4,"Amp Depth"],[5,"Amp Type: Triode"],[5,"Amp Type: Pentode"],[6,"Mic On"],[6,"Mic Off"],[7,"Miking Mode: Cab/Mic"],[7,"Miking Mode: User 0"],[7,"Miking Mode: User 1"],[7,"Miking Mode: User 2"],[7,"Miking Mode: User 3"],[7,"Miking Mode: User 4"],[7,"Miking Mode: User 5"],[7,"Miking Mode: User 6"],[8,"Cab 0"],[8,"Cab 1"],[8,"Cab 2"],[8,"Cab 3"],[8,"Cab 4"],[8,"Cab 5"],[8,"Cab 6"],[8,"Cab 7"],[8,"Cab 8"],[8,"Cab 9"],[8,"Cab 10"],[8,"Cab 11"],[8,"Cab 12"],[8,"Cab 13"],[8,"Cab 14"],[8,"Cab 15"],[8,"Cab 16"],[8,"Cab 17"],[8,"Cab 18"],[8,"Cab 19"],[8,"Cab 20"],[8,"Cab 21"],[8,"Cab 22"],[8,"Cab 23"],[8,"Cab 24"],[8,"Cab 25"],[8,"Cab 26"],[8,"Cab 27"],[8,"Cab 28"],[8,"Cab 29"],[8,"Cab 30"],[8,"Cab 31"],[8,"Cab 32"],[9,"User 0 File 0"],[9,"User 0 File 1"],[9,"User 0 File 2"],[9,"User 0 File 3"],[9,"User 0 File 4"],[9,"User 0 File 5"],[9,"User 0 File 6"],[9,"User 0 File 7"],[9,"User 0 File 8"],[10,"User 1 File 0"],[10,"User 1 File 1"],[10,"User 1 File 2"],[10,"User 1 File 3"],[10,"User 1 File 4"],[10,"User 1 File 5"],[10,"User 1 File 6"],[10,"User 1 File 7"],[10,"User 1 File 8"],[11,"User 2 File 0"],[11,"User 2 File 1"],[11,"User 2 File 2"],[11,"User 2 File 3"],[11,"User 2 File 4"],[11,"User 2 File 5"],[11,"User 2 File 6"],[11,"User 2 File 7"],[11,"User 2 File 8"],[12,"User 3 File 0"],[12,"User 3 File 1"],[12,"User 3 File 2"],[12,"User 3 File 3"],[12,"User 3 File 4"],[12,"User 3 File 5"],[12,"User 3 File 6"],[12,"User 3 File 7"],[12,"User 3 File 8"],[13,"Mic: Dynamic 57"],[13,"Mic: Dynamic 421"],[13,"Mic: Knightfall"],[13,"Mic: Condenser 87"],[13,"Mic: Ribbon 160"],[13,"Mic: Ribbon 121"],[13,"Mic: Bass 20"],[13,"Mic: Bass 5"],[14,"Mic Distance"],[15,"Mic Center"],[16,"Mic Position: Back"],[16,"Mic Position: Front"],[17,"EQ On"],[17,"EQ Off"],[18,"EQ Mode: Guitar"],[18,"EQ Mode: Bass"],[19,"EQ Low"],[20,"EQ Low Mid"],[21,"EQ Mid"],[22,"EQ High Mid"],[23,"EQ High"],[24,"Preset Level"],[25,"Reverb On"],[25,"Reverb Off"],[26,"Reverb Room 0"],[26,"Reverb Room 1"],[26,"Reverb Room 2"],[26,"Reverb Room 3"],[26,"Reverb Room 4"],[26,"Reverb Room 5"],[26,"Reverb Room 6"],[26,"Reverb Room 7"],[27,"Reverb Dry/Wet"],[28,"Arcade - Instrument: Guitar"],[28,"Arcade - Instrument: Bass"],[29,"Power Amp: Off"],[29,"Power Amp"],[30,"Arcade - Distance"],[31,"Arcade - Tone"],[32,"Arcade - Contour"],[33,"Arcade - Preset Level"],[34,"Preset Mode: Simulation"],[34,"Preset Mode: Arcade"],[35,"Out Level"],[36,"Mute"],[36,"Unmute"]]},{"id":"torpedolivev4firmware","brand":"Two Notes Audio Engineering","name":"Torpedo Live v4 firmware","cc":[[0,"Power Amp On"],[0,"Power Amp Off"],[1,"Amp Model 0"],[1,"Amp Model 1"],[1,"Amp Model 2"],[1,"Amp Model 3"],[1,"Amp Model 4"],[1,"Amp Model 5"],[1,"Amp Model 6"],[1,"Amp Model 7"],[2,"Amp Volume"],[3,"Amp Presence"],[4,"Amp Depth"],[5,"Amp Type: Triode"],[5,"Amp Type: Pentode"],[6,"Mic On"],[6,"Mic Off"],[8,"Cab 0"],[8,"Cab 1"],[8,"Cab 2"],[8,"Cab 3"],[8,"Cab 4"],[8,"Cab 5"],[8,"Cab 6"],[8,"Cab 7"],[8,"Cab 8"],[8,"Cab 9"],[8,"Cab 10"],[8,"Cab 11"],[8,"Cab 12"],[8,"Cab 13"],[8,"Cab 14"],[8,"Cab 15"],[8,"Cab 16"],[8,"Cab 17"],[8,"Cab 18"],[8,"Cab 19"],[8,"Cab 20"],[8,"Cab 21"],[8,"Cab 22"],[8,"Cab 23"],[8,"Cab 24"],[8,"Cab 25"],[8,"Cab 26"],[8,"Cab 27"],[8,"Cab 28"],[8,"Cab 29"],[8,"Cab 30"],[8,"Cab 31"],[8,"Cab 32"],[9,"File A 0"],[9,"File A 1"],[9,"File A 2"],[9,"File A 3"],[9,"File A 4"],[9,"File A 5"],[9,"File A 6"],[9,"File A 7"],[9,"File A 8"],[10,"File B 0"],[10,"File B 1"],[10,"File B 2"],[10,"File B 3"],[10,"File B 4"],[10,"File B 5"],[10,"File B 6"],[10,"File B 7"],[10,"File B 8"],[11,"Folder A: User 0"],[11,"Folder A: User 1"],[11,"Folder A: User 2"],[11,"Folder A: User 3"],[12,"Folder B: User 0"],[12,"Folder B: User 1"],[12,"Folder B: User 2"],[12,"Folder B: User 3"],[13,"Mic A: Dynamic 57"],[13,"Mic A: Dynamic 421"],[13,"Mic A: Knightfall"],[13,"Mic A: Condenser 87"],[13,"Mic A: Ribbon 160"],[13,"Mic A: Ribbon 121"],[13,"Mic A: Bass 20"],[13,"Mic A: Bass 5"],[38,"Mic B: Dynamic 57"],[38,"Mic B: Dynamic 421"],[38,"Mic B: Knightfall"],[38,"Mic B: Condenser 87"],[38,"Mic B: Ribbon 160"],[38,"Mic B: Ribbon 121"],[38,"Mic B: Bass 20"],[38,"Mic B: Bass 5"],[14,"Distance A"],[39,"Distance B"],[15,"Center A"],[40,"Center B"],[16,"Position Mic A: Back"],[16,"Position Mic A: Front"],[41,"Position Mic B: Back"],[41,"Position Mic B: Front"],[35,"Level A"],[36,"Phase A: Normal"],[36,"Phase A: Invert"],[37,"Mute A"],[37,"Unmute A"],[42,"Level B"],[43,"Phase B: Normal"],[43,"Phase B: Invert"],[44,"Mute B"],[44,"Unmute B"],[17,"EQ On"],[17,"EQ Off"],[18,"EQ Mode: Guitar"],[18,"EQ Mode: Bass"],[18,"EQ Mode: Custom"],[19,"EQ Gain: Low"],[20,"EQ Gain: Low Mid"],[21,"EQ Gain: Mid"],[22,"EQ Gain: High Mid"],[23,"EQ Gain: High"],[45,"EQ Freq: Low Cut"],[46,"EQ Freq: Low"],[47,"EQ Freq: Low Mid"],[48,"EQ Freq: Mid"],[49,"EQ Freq: Mid High"],[50,"EQ Freq: High"],[24,"Preset Level"],[25,"Reverb On"],[25,"Reverb Off"],[26,"Reverb Room 0"],[26,"Reverb Room 1"],[26,"Reverb Room 2"],[26,"Reverb Room 3"],[26,"Reverb Room 4"],[26,"Reverb Room 5"],[26,"Reverb Room 6"],[26,"Reverb Room 7"],[27,"Reverb Dry/Wet"],[28,"Arcade - Instrument: Guitar"],[28,"Arcade - Instrument: Bass"],[29,"Power Amp: Off"],[29,"Power Amp"],[30,"Arcade - Distance"],[31,"Arcade - Tone"],[32,"Arcade - Contour"],[33,"Arcade - Preset Level"],[34,"Preset Mode: Simulation"],[34,"Preset Mode: Arcade"],[34,"Preset Mode: IR Loader"],[51,"Out Level"],[52,"Mute"],[52,"Unmute"],[53,"Bypass"],[53,"Engage"],[54,"CC Preset 1"],[54,"CC Preset 2"],[54,"CC Preset 3"],[54,"CC Preset 4"],[54,"CC Preset 5"],[54,"CC Preset 6"],[54,"CC Preset 7"],[54,"CC Preset 8"],[54,"CC Preset 9"],[54,"CC Preset 10"],[54,"CC Preset 11"],[54,"CC Preset 12"],[54,"CC Preset 13"],[54,"CC Preset 14"],[54,"CC Preset 15"],[54,"CC Preset 16"],[54,"CC Preset 17"],[54,"CC Preset 18"],[54,"CC Preset 19"],[54,"CC Preset 20"],[54,"CC Preset 21"],[54,"CC Preset 22"],[54,"CC Preset 23"],[54,"CC Preset 24"],[54,"CC Preset 25"],[54,"CC Preset 26"],[54,"CC Preset 27"],[54,"CC Preset 28"],[54,"CC Preset 29"],[54,"CC Preset 30"],[54,"CC Preset 31"],[54,"CC Preset 32"],[54,"CC Preset 33"],[54,"CC Preset 34"],[54,"CC Preset 35"],[54,"CC Preset 36"],[54,"CC Preset 37"],[54,"CC Preset 38"],[54,"CC Preset 39"],[54,"CC Preset 40"],[54,"CC Preset 41"],[54,"CC Preset 42"],[54,"CC Preset 43"],[54,"CC Preset 44"],[54,"CC Preset 45"],[54,"CC Preset 46"],[54,"CC Preset 47"],[54,"CC Preset 48"],[54,"CC Preset 49"],[54,"CC Preset 50"],[54,"CC Preset 51"],[54,"CC Preset 52"],[54,"CC Preset 53"],[54,"CC Preset 54"],[54,"CC Preset 55"],[54,"CC Preset 56"],[54,"CC Preset 57"],[54,"CC Preset 58"],[54,"CC Preset 59"],[54,"CC Preset 60"],[54,"CC Preset 61"],[54,"CC Preset 62"],[54,"CC Preset 63"],[54,"CC Preset 64"],[54,"CC Preset 65"],[54,"CC Preset 66"],[54,"CC Preset 67"],[54,"CC Preset 68"],[54,"CC Preset 69"],[54,"CC Preset 70"],[54,"CC Preset 71"],[54,"CC Preset 72"],[54,"CC Preset 73"],[54,"CC Preset 74"],[54,"CC Preset 75"],[54,"CC Preset 76"],[54,"CC Preset 77"],[54,"CC Preset 78"],[54,"CC Preset 79"],[54,"CC Preset 80"],[54,"CC Preset 81"],[54,"CC Preset 82"],[54,"CC Preset 83"],[54,"CC Preset 84"],[54,"CC Preset 85"],[54,"CC Preset 86"],[54,"CC Preset 87"],[54,"CC Preset 88"],[54,"CC Preset 89"],[54,"CC Preset 90"],[54,"CC Preset 91"],[54,"CC Preset 92"],[54,"CC Preset 93"],[54,"CC Preset 94"],[54,"CC Preset 95"],[54,"CC Preset 96"],[54,"CC Preset 97"],[54,"CC Preset 98"],[54,"CC Preset 99"],[54,"CC Preset 100"],[54,"CC Preset 101"],[54,"CC Preset 102"],[54,"CC Preset 103"],[54,"CC Preset 104"],[54,"CC Preset 105"],[54,"CC Preset 106"],[54,"CC Preset 107"],[54,"CC Preset 108"],[54,"CC Preset 109"],[54,"CC Preset 110"],[54,"CC Preset 111"],[54,"CC Preset 112"],[54,"CC Preset 113"],[54,"CC Preset 114"],[54,"CC Preset 115"],[54,"CC Preset 116"],[54,"CC Preset 117"],[54,"CC Preset 118"],[54,"CC Preset 119"],[54,"CC Preset 120"],[54,"CC Preset 121"],[54,"CC Preset 122"],[54,"CC Preset 123"],[54,"CC Preset 124"],[54,"CC Preset 125"],[54,"CC Preset 126"],[54,"CC Preset 127"],[54,"CC Preset 128"]]},{"id":"torpedostudio","brand":"Two Notes Audio Engineering","name":"Torpedo Studio","cc":[[0,"Simulation Bypass"],[0,"Simulation Engage"],[1,"Power Amp A: On"],[1,"Power Amp A: Off"],[2,"Power Amp Model A 0"],[2,"Power Amp Model A 1"],[2,"Power Amp Model A 2"],[2,"Power Amp Model A 3"],[2,"Power Amp Model A 4"],[2,"Power Amp Model A 5"],[2,"Power Amp Model A 6"],[2,"Power Amp Model A 7"],[65,"Power Amp Model B 0"],[65,"Power Amp Model B 1"],[65,"Power Amp Model B 2"],[65,"Power Amp Model B 3"],[65,"Power Amp Model B 4"],[65,"Power Amp Model B 5"],[65,"Power Amp Model B 6"],[65,"Power Amp Model B 7"],[64,"Power Amp B: Off"],[64,"Power Amp B: On"],[3,"Power Amp A Volume"],[4,"Power Amp A Presence"],[5,"Power Amp A Depth"],[6,"Power Amp A Character: Triode"],[6,"Power Amp A Character: Pentode"],[66,"Power Amp B Volume"],[67,"Power Amp B Presence"],[68,"Power Amp B Depth"],[69,"Power Amp B Character: Triode"],[69,"Power Amp B Character: Pentode"],[7,"Mic A Mode: Off"],[7,"Mic A Mode: Cab"],[7,"Mic A Mode: User"],[70,"Mic B Mode: Off"],[70,"Mic B Mode: Cab"],[70,"Mic B Mode: User"],[70,"Mic B Mode: Link"],[8,"Mic A Cab 0"],[8,"Mic A Cab 1"],[8,"Mic A Cab 2"],[8,"Mic A Cab 3"],[8,"Mic A Cab 4"],[8,"Mic A Cab 5"],[8,"Mic A Cab 6"],[8,"Mic A Cab 7"],[8,"Mic A Cab 8"],[8,"Mic A Cab 9"],[8,"Mic A Cab 10"],[8,"Mic A Cab 11"],[8,"Mic A Cab 12"],[8,"Mic A Cab 13"],[8,"Mic A Cab 14"],[8,"Mic A Cab 15"],[8,"Mic A Cab 16"],[8,"Mic A Cab 17"],[8,"Mic A Cab 18"],[8,"Mic A Cab 19"],[8,"Mic A Cab 20"],[8,"Mic A Cab 21"],[8,"Mic A Cab 22"],[8,"Mic A Cab 23"],[8,"Mic A Cab 24"],[8,"Mic A Cab 25"],[8,"Mic A Cab 26"],[8,"Mic A Cab 27"],[8,"Mic A Cab 28"],[8,"Mic A Cab 29"],[8,"Mic A Cab 30"],[8,"Mic A Cab 31"],[8,"Mic A Cab 32"],[8,"Mic A Cab 33"],[8,"Mic A Cab 34"],[8,"Mic A Cab 35"],[8,"Mic A Cab 36"],[8,"Mic A Cab 37"],[8,"Mic A Cab 38"],[8,"Mic A Cab 39"],[8,"Mic A Cab 40"],[8,"Mic A Cab 41"],[8,"Mic A Cab 42"],[8,"Mic A Cab 43"],[8,"Mic A Cab 44"],[8,"Mic A Cab 45"],[8,"Mic A Cab 46"],[8,"Mic A Cab 47"],[8,"Mic A Cab 48"],[8,"Mic A Cab 49"],[8,"Mic A Cab 50"],[71,"Mic B Cab 0"],[71,"Mic B Cab 1"],[71,"Mic B Cab 2"],[71,"Mic B Cab 3"],[71,"Mic B Cab 4"],[71,"Mic B Cab 5"],[71,"Mic B Cab 6"],[71,"Mic B Cab 7"],[71,"Mic B Cab 8"],[71,"Mic B Cab 9"],[71,"Mic B Cab 10"],[71,"Mic B Cab 11"],[71,"Mic B Cab 12"],[71,"Mic B Cab 13"],[71,"Mic B Cab 14"],[71,"Mic B Cab 15"],[71,"Mic B Cab 16"],[71,"Mic B Cab 17"],[71,"Mic B Cab 18"],[71,"Mic B Cab 19"],[71,"Mic B Cab 20"],[71,"Mic B Cab 21"],[71,"Mic B Cab 22"],[71,"Mic B Cab 23"],[71,"Mic B Cab 24"],[71,"Mic B Cab 25"],[71,"Mic B Cab 26"],[71,"Mic B Cab 27"],[71,"Mic B Cab 28"],[71,"Mic B Cab 29"],[71,"Mic B Cab 30"],[71,"Mic B Cab 31"],[71,"Mic B Cab 32"],[71,"Mic B Cab 33"],[71,"Mic B Cab 34"],[71,"Mic B Cab 35"],[71,"Mic B Cab 36"],[71,"Mic B Cab 37"],[71,"Mic B Cab 38"],[71,"Mic B Cab 39"],[71,"Mic B Cab 40"],[71,"Mic B Cab 41"],[71,"Mic B Cab 42"],[71,"Mic B Cab 43"],[71,"Mic B Cab 44"],[71,"Mic B Cab 45"],[71,"Mic B Cab 46"],[71,"Mic B Cab 47"],[71,"Mic B Cab 48"],[71,"Mic B Cab 49"],[71,"Mic B Cab 50"],[9,"Mic A User File 0"],[9,"Mic A User File 1"],[9,"Mic A User File 2"],[9,"Mic A User File 3"],[9,"Mic A User File 4"],[9,"Mic A User File 5"],[9,"Mic A User File 6"],[9,"Mic A User File 7"],[9,"Mic A User File 8"],[9,"Mic A User File 9"],[9,"Mic A User File 10"],[72,"Mic B User File 0"],[72,"Mic B User File 1"],[72,"Mic B User File 2"],[72,"Mic B User File 3"],[72,"Mic B User File 4"],[72,"Mic B User File 5"],[72,"Mic B User File 6"],[72,"Mic B User File 7"],[72,"Mic B User File 8"],[72,"Mic B User File 9"],[72,"Mic B User File 10"],[10,"Mic A: Dynamic 57"],[10,"Mic A: Dynamic 421"],[10,"Mic A: Knightfall"],[10,"Mic A: Condenser 87"],[10,"Mic A: Ribbon 160"],[10,"Mic A: Ribbon 121"],[10,"Mic A: Bass 20"],[10,"Mic A: Bass 5"],[73,"Mic B: Dynamic 57"],[73,"Mic B: Dynamic 421"],[73,"Mic B: Knightfall"],[73,"Mic B: Condenser 87"],[73,"Mic B: Ribbon 160"],[73,"Mic B: Ribbon 121"],[73,"Mic B: Bass 20"],[73,"Mic B: Bass 5"],[11,"Distance A"],[74,"Distance B"],[12,"Center A"],[75,"Center B"],[13,"Position Mic A: Back"],[13,"Position Mic A: Front"],[76,"Position Mic B: Back"],[76,"Position Mic B: Front"],[14,"Variphi A"],[77,"Variphi B"],[15,"Overload A"],[78,"Overload B"],[16,"Dry/Wet A"],[79,"Dry/Wet B"],[17,"PostFX Bypass"],[17,"PostFX Engage"],[18,"EQ A Low Gain"],[81,"EQ B Low Gain"],[19,"EQ A Low Freq"],[82,"EQ B Low Freq"],[20,"EQ A Mode: Off"],[20,"EQ A Mode: Guitar"],[20,"EQ A Mode: Bass"],[20,"EQ A Mode: Link"],[83,"EQ B Mode: Off"],[83,"EQ B Mode: Guitar "],[83,"EQ B Mode: Bass"],[83,"EQ B Mode: Link"],[21,"EQ A Band 1 Gain"],[22,"EQ A Band 2 Gain"],[23,"EQ A Band 3 Gain"],[24,"EQ A Band 4 Gain"],[25,"EQ A High Gain"],[84,"EQ B Band 1 Gain"],[85,"EQ B Band 2 Gain"],[86,"EQ B Band 3 Gain"],[87,"EQ B Band 4 Gain"],[88,"EQ B High Gain"],[26,"Exciter A: On"],[26,"Exciter A: Off"],[89,"Exciter B: On"],[89,"Exciter B: Off"],[89,"Exciter B: Link"],[27,"Exciter A High"],[28,"Exciter A Low"],[90,"Exciter B High"],[91,"Exciter B Low"],[29,"Compressor A: On"],[29,"Compressor A: Off"],[92,"Compressor B: On"],[92,"Compressor B: Off"],[92,"Compressor B: Link"],[30,"Compressor A Threshold"],[93,"Compressor B Threshold"],[31,"Compressor A Ratio"],[94,"Compressor B Ratio"],[32,"Compressor A Attack"],[95,"Compressor B Attack"],[33,"Compressor A Release"],[96,"Compressor B Release"],[34,"Compressor A Make Up Gain"],[97,"Compressor B Make Up Gain"],[35,"Input Boost A"],[98,"Input Boost B"],[36,"Output Volume A"],[99,"Output Volume B"],[37,"Output Pan A"],[100,"Output Pan B"],[38,"Mute A"],[38,"Unmute A"],[101,"Mute B"],[101,"Unmute B"],[39,"Input Boost A - Link"],[102,"Input Boost B - Link"],[40,"Output Volume A - Link"],[103,"Output Volume B - Link"],[41,"Output Pan A - Link"],[104,"Output Pan B - Link"],[42,"Mute A - Link"],[42,"Unmute A - Link"],[105,"Unmute B - Link"],[105,"Mute B - Link"],[43,"Reverb A: On"],[43,"Reverb A: Off"],[106,"Reverb B: On"],[106,"Reverb B: Off"],[44,"Reverb A: Room 0"],[44,"Reverb A: Room 1"],[44,"Reverb A: Room 2"],[44,"Reverb A: Room 3"],[44,"Reverb A: Room 4"],[44,"Reverb A: Room 5"],[44,"Reverb A: Room 6"],[44,"Reverb A: Room 7"],[44,"Reverb A: Room 8"],[107,"Reverb B: Room 0"],[107,"Reverb B: Room 1"],[107,"Reverb B: Room 2"],[107,"Reverb B: Room 3"],[107,"Reverb B: Room 4"],[107,"Reverb B: Room 5"],[107,"Reverb B: Room 6"],[107,"Reverb B: Room 7"],[107,"Reverb B: Room 8"],[45,"Reverb A Dry/Wet"],[108,"Reverb B Dry/Wet"],[46,"Reverb A Size"],[109,"Reverb B Size"],[47,"Reverb A Echo"],[110,"Reverb B Echo"],[48,"Reverb A Color"],[111,"Reverb B Color"],[49,"EQ Parametric A: Band 1 Freq"],[50,"EQ Parametric A: Band 2 Freq"],[51,"EQ Parametric A: Band 3 Freq"],[52,"EQ Parametric A: Band 4 Freq"],[53,"EQ Parametric A: High Freq"],[112,"EQ Parametric B: Band 1 Freq"],[113,"EQ Parametric B: Band 2 Freq"],[114,"EQ Parametric B: Band 3 Freq"],[115,"EQ Parametric B: Band 4 Freq"],[116,"EQ Parametric B: High Freq"],[54,"Aracde Instrument A: Guitar"],[54,"Arcade Instrument A: Bass"],[117,"Aracde Instrument B: Guitar"],[117,"Arcade Instrument B: Bass"],[44,"Arcade Room A 0"],[44,"Arcade Room A 1"],[44,"Arcade Room A 2"],[44,"Arcade Room A 3"],[44,"Arcade Room A 4"],[44,"Arcade Room A 5"],[44,"Arcade Room A 6"],[44,"Arcade Room A 7"],[107,"Arcade Room B 0"],[107,"Arcade Room B 1"],[107,"Arcade Room B 2"],[107,"Arcade Room B 3"],[107,"Arcade Room B 4"],[107,"Arcade Room B 5"],[107,"Arcade Room B 6"],[107,"Arcade Room B 7"],[55,"Arcade Power Amp A"],[118,"Arcade Power Amp B"],[56,"Arcade Distance A"],[119,"Arcade Distance B"],[57,"Arcade Tone A"],[120,"Arcade Tone B"],[58,"Arcade Contour A"],[121,"Arcade Contour B"],[59,"Arcade Harmonics A"],[122,"Arcade Harmonics B"],[60,"Arcade Destroy A: On"],[60,"Arcade Destroy A: Off"],[123,"Arcade Destroy B: On"],[123,"Arcade Destroy B: Off"],[61,"Arcade Compression A"],[124,"Arcade Compression B"],[34,"Arcade Makeup Gain A"],[97,"Arcade Makeup Gain B"],[62,"Arcade Preset Level A"],[125,"Arcade Preset Level B"],[63,"Arcade Mode A: Simulation"],[63,"Arcade Mode A: Arcade"],[126,"Arcade Mode B: Arcade"],[126,"Arcade Mode B: Arcade Link"]]},{"id":"blofeld","brand":"Waldorf","name":"Blofeld","cc":[[0,"Bank select MSB"],[32,"Bank select LSB"],[1,"Mod wheel"],[2,"Breath control"],[4,"Foot control"],[5,"Glide rate"],[7,"Channel volume"],[10,"Pan"],[12,"Arp Range: 1 Oct"],[12,"Arp Range: 2 Oct"],[12,"Arp Range: 3 Oct"],[12,"Arp Range: 4 Oct"],[12,"Arp Range: 5 Oct"],[12,"Arp Range: 6 Oct"],[12,"Arp Range: 7 Oct"],[12,"Arp Range: 8 Oct"],[12,"Arp Range: 9 Oct"],[12,"Arp Range: 10 Oct"],[13,"Arp Length: 1 Step"],[13,"Arp Length: 2 Steps"],[13,"Arp Length: 3 Steps"],[13,"Arp Length: 4 Steps"],[13,"Arp Length: 5 Steps"],[13,"Arp Length: 6 Steps"],[13,"Arp Length: 7 Steps"],[13,"Arp Length: 8 Steps"],[13,"Arp Length: 9 Steps"],[13,"Arp Length: 10 Steps"],[13,"Arp Length: 11 Steps"],[13,"Arp Length: 12 Steps"],[13,"Arp Length: 13 Steps"],[13,"Arp Length: 14 Steps"],[13,"Arp Length: 15 Steps"],[13,"Arp Length: 16 Steps"],[14,"Arp: Off"],[14,"Arp: On"],[14,"Arp: One Shot"],[14,"Arp: Hold"],[15,"LFO 1 Shape: Sine"],[15,"LFO 1 Shape: Triangle"],[15,"LFO 1 Shape: Square"],[15,"LFO 1 Shape: Sawtooth"],[15,"LFO 1 Shape: Random"],[15,"LFO 1 Shape: S&H"],[16,"LFO 1 Speed"],[17,"LFO 1 Sync: On"],[17,"LFO 1 Sync: Off"],[18,"LFO 1 delay"],[19,"LFO 2 Shape: Sine"],[19,"LFO 2 Shape: Triangle"],[19,"LFO 2 Shape: Square"],[19,"LFO 2 Shape: Sawtooth"],[19,"LFO 2 Shape: Random"],[19,"LFO 2 Shape: S&H"],[20,"LFO 2 speed"],[21,"LFO 2 Sync: On"],[21,"LFO 2 Sync: Off"],[22,"LFO 2 delay"],[23,"LFO 3 Shape: Sine"],[23,"LFO 3 Shape: Triangle"],[23,"LFO 3 Shape: Square"],[23,"LFO 3 Shape: Sawtooth"],[23,"LFO 3 Shape: Random"],[23,"LFO 3 Shape: S&H"],[24,"LFO 3 speed"],[25,"LFO 3 Sync: On"],[25,"LFO 3 Sync: Off"],[26,"LFO 3 delay"],[27,"OSC 1 octave"],[28,"OSC 1 semitone"],[29,"OSC 1 detune"],[30,"OSC 1 FM"],[31,"OSC 1 Shape: Pulse"],[31,"OSC 1 Shape: Saw"],[31,"OSC 1 Shape: Triangle"],[31,"OSC 1 Shape: Sine"],[31,"OSC 1 Shape: Alt 1"],[31,"OSC 1 Shape: Alt 2"],[33,"OSC 1 pulsewidth"],[34,"OSC 1 PWM"],[35,"OSC 2 octave"],[36,"OSC 2 semitone"],[37,"OSC 2 detune"],[38,"OSC 2 FM"],[39,"OSC 2 Shape: Pulse"],[39,"OSC 2 Shape: Saw"],[39,"OSC 2 Shape: Triangle"],[39,"OSC 2 Shape: Sine"],[39,"OSC 2 Shape: Alt 1"],[39,"OSC 2 Shape: Alt 2"],[40,"OSC 2 pulsewidth"],[41,"OSC 2 PWM"],[42,"OSC 3 octave"],[43,"OSC 3 semitone"],[44,"OSC 3 detune"],[45,"OSC 3 FM"],[46,"OSC 3 Shape: Pulse"],[46,"OSC 3 Shape: Saw"],[46,"OSC 3 Shape: Triangle"],[46,"OSC 3 Shape: Sine"],[46,"OSC 3 Shape: Alt 1"],[46,"OSC 3 Shape: Alt 2"],[47,"OSC 3 pulsewidth"],[48,"OSC 3 PWM"],[49,"Sync"],[50,"Pitchmod"],[51,"Glide mode"],[52,"OSC 1 level"],[53,"OSC 1 balance"],[54,"Ringmod level"],[55,"Ringmod balance"],[56,"OSC 2 level"],[57,"OSC 2 balance"],[58,"OSC 3 level"],[59,"OSC 3 balance"],[60,"Noise level"],[61,"Noise balance"],[62,"Noise color"],[64,"Sustain pedal"],[65,"Glide active"],[66,"Sostenuto"],[67,"Routing"],[68,"Filter 1 type"],[69,"Filter 1 cutoff"],[70,"Filter 1 resonance"],[71,"Filter 1 drive"],[72,"Filter 1 keytrack"],[73,"Filter 1 envelope amount"],[74,"Filter 1 envelope velocity"],[75,"Filter 1 cutoff modulation"],[76,"Filter 1 FM"],[77,"Filter 1 pan"],[78,"Filter 1 pan modulation"],[79,"Filter 2 type"],[80,"Filter 2 cutoff"],[81,"Filter 2 resonance"],[82,"Filter 2 drive"],[83,"Filter 2 keytrack"],[84,"Filter 2 envelope amount"],[85,"Filter 2 envelope velocity"],[86,"Filter 2 cutoff modulation"],[87,"Filter 2 FM"],[88,"Filter 2 pan"],[89,"Filter 2 pan modulation"],[90,"Amp volume"],[91,"Amp velocity"],[92,"Amp modulation"],[93,"FX 1 mix"],[94,"FX 2 mix"],[95,"Filter envelope attack"],[96,"Filter envelope decay"],[97,"Filter envelope sustain"],[98,"Filter envelope decay 2"],[99,"Filter envelope sustain 2"],[100,"Filter envelope release"],[101,"Amp envelope attack"],[102,"Amp envelope decay"],[103,"Amp envelope sustain"],[104,"Amp envelope decay 2"],[105,"Amp envelope sustain 2"],[106,"Amp envelope release"],[107,"Envelope 3 attack"],[108,"Envelope 3 decay"],[109,"Envelope 3 sustain"],[110,"Envelope 3 decay 2"],[111,"Envelope 3 sustain 2"],[112,"Envelope 3 release"],[113,"Envelope 4 attack"],[114,"Envelope 4 decay"],[115,"Envelope 4 sustain"],[116,"Envelope 4 decay 2"],[117,"Envelope 4 sustain 2"],[118,"Envelope 4 release"],[120,"All sound off"],[121,"Reset all controllers"],[122,"Local control on/off"],[123,"All notes off"]]},{"id":"metaverse","brand":"Wampler Pedals","name":"Metaverse","cc":[["1","Delay State"],["2","Delay Program"],["3","Delay Time (knob)"],["4","Delay Feedback (knob)"],["5","Tone (knob)"],["6","Mix (knob)"],["7","Level (knob)"],["8","Mod Depth (knob)"],["9","Mod Rate (knob)"],["10","Mod Feedback (knob)"],["11","TAPE Mode"],["12","ETH Mode"],["13","Subdivision"],["14","Delay Time (high ms)"],["15","Delay Time (low ms)"],["81","Tap Tempo"],["82","Preset Decrement"],["83","Preset Increment"],["84","Tempo Switch Mode"],["85","Trails Mode"],["85","Trails mode On"],["99","Midi clock disable"],["99","Midi clock enable"],["100","Expression Pedal"]]},{"id":"Pantheon","brand":"Wampler Pedals","name":"Pantheon","cc":[[0,"Channel 1 on/off State"],[1,"Channel 2 on/off State"],[2,"Ch1 off, Ch2 off"],[3,"Ch1 on, Ch2 off"],[4,"Ch1 off, Ch2 on"],[16,"Preset Increment"],[17,"Preset Decrement"],[32,"MIDI Channel Assign"]]},{"id":"terraform","brand":"Wampler Pedals","name":"Terraform","cc":[[81,"Tap Tempo"]]},{"id":"geigercounterpro","brand":"WMD","name":"Geiger Counter Pro","cc":[[7,"Level"],[20,"Gain"],[21,"Tone"],[22,"Mix"],[23,"Filter MSB"],[55,"Filter LSB"],[24,"Bit Depth MSB"],[56,"Bit Depth LSB"],[25,"Sample Rate MSB"],[57,"Sample Rate LSB"],[26,"Bank MSB"],[27,"Table MSB"],[59,"Table LSB"],[28,"Bypass Pedal"],[28,"Engage Pedal"],[28,"Tone Off"],[28,"Tone On"],[28,"Dry On"],[28,"Dry Off"],[28,"Sample Rate: Normal"],[28,"Sample Rate: Fine"],[28,"Bit Depth Post Table"],[28,"Bit Depth Pre Table"],[28,"Bit Depth Mode (Mask Disable)"],[28,"Bit Depth Mode (Mask Enable)"],[28,"Full Bit Depth (12 bit w/ no Gate)"],[28,"Morph Off"],[28,"Morph On"],[28,"Randomize"],[28,"Save to Active Preset"],[28,"CV 1 Route to: Nothing"],[28,"CV 1 Route to: Gain"],[28,"CV 1 Route to: Tone"],[28,"CV 1 Route to: Samples"],[28,"CV 1 Route to: Bits"],[28,"CV 1 Route to: Bank"],[28,"CV 1 Route to: Table"],[28,"CV 1 Route to: Blend"],[28,"CV 1 Route to: Filter"],[28,"CV 2 Route to: Nothing"],[28,"CV 2 Route to: Gain"],[28,"CV 2 Route to: Tone"],[28,"CV 2 Route to: Samples"],[28,"CV 2 Route to: Bits"],[28,"CV 2 Route to: Bank"],[28,"CV 2 Route to: Table"],[28,"CV 2 Route to: Blend"],[28,"CV 2 Route to: Filter"]]},{"id":"refacecp","brand":"Yamaha","name":"reface CP","cc":[[80,"Type: Rd I"],[80,"Type: Rd II"],[80,"Type: Wr"],[80,"Type: Clv"],[80,"Type: Toy"],[80,"Type: CP"],[81,"Drive"],[17,"Tremolo/wah: Off"],[17,"Tremolo/wah: Trem"],[17,"Tremolo/wah: Wah"],[18,"Tremolo/wah depth"],[19,"Tremolo/wah rate"],[85,"Chorus/phaser: Off"],[85,"Chorus/phaser: Chorus"],[85,"Chorus/phaser: Phaser"],[86,"Chorus/phaser depth"],[87,"Chorus/phaser speed"],[88,"Delay: Off"],[88,"Delay: Digital"],[88,"Delay: Analog"],[89,"Digital delay/analog delay depth"],[90,"Digital delay/analog delay time"],[91,"Reverb depth"]]},{"id":"refacecs","brand":"Yamaha","name":"reface CS","cc":[[20,"Portamento: poly"],[20,"Portamento: mono with port"],[78,"LFO Assign: Off"],[78,"LFO Assign: Amp"],[78,"LFO Assign: Filter"],[78,"LFO Assign: Pitch"],[78,"LFO Assign: Oscillator"],[77,"LFO depth"],[76,"LFO speed"],[80,"Osc Type: Multi-Saw"],[80,"Osc Type: Pulse"],[80,"Osc Type: Osc Sync"],[80,"Osc Type: Ring Mod"],[80,"Osc Type: Freq Mod"],[81,"Oscillator texture"],[82,"Oscillator mod"],[74,"Filter cutoff"],[71,"Filter resonance"],[83,"EG FEG-AEG balance"],[73,"EG attack time"],[75,"EG decay time"],[79,"EG sustain level"],[72,"EG release time"],[17,"Effect Type: Distortion"],[17,"Effect Type: Chorus/Flange"],[17,"Effect Type: Phaser"],[17,"Effect Type: Delay"],[17,"Effect Type: Off"],[18,"Effect depth"],[19,"Effect rate"]]},{"id":"refacedx","brand":"Yamaha","name":"reface DX","cc":[[80,"Algorithm 1"],[80,"Algorithm 2"],[80,"Algorithm 3"],[80,"Algorithm 4"],[80,"Algorithm 5"],[80,"Algorithm 6"],[80,"Algorithm 7"],[80,"Algorithm 8"],[80,"Algorithm 9"],[80,"Algorithm 10"],[80,"Algorithm 11"],[80,"Algorithm 12"],[85,"Op 1 output level"],[86,"Op 1 feedback level"],[87,"Op 1 feedback type: saw"],[87,"Op 1 feedback type: square"],[88,"Op 1 freq mode: freq/ratio"],[88,"Op 1 freq mode: fixed freq/Hz"],[89,"Op 1 frequency ratio/freq (coarse)"],[90,"Op 1 frequency ratio/freq (fine)"],[102,"Op 2 output level"],[103,"Op 2 feedback level"],[104,"Op 2 feedback type"],[105,"Op 2 frequency mode"],[106,"Op 2 frequency ratio/freq (coarse)"],[107,"Op 2 frequency ratio/freq (fine)"],[108,"Op 3 output level"],[109,"Op 3 feedback level"],[110,"Op 3 feedback type: saw"],[110,"Op 3 feedback type: square"],[111,"Op 3 freq mode: freq/ratio"],[111,"Op 3 freq mode: fixed freq/Hz"],[112,"Op 3 frequency ratio/freq (coarse)"],[113,"Op 3 frequency ratio/freq (fine)"],[114,"Op 4 output level"],[115,"Op 4 feedback level"],[116,"Op 4 feedback type: saw"],[116,"Op 4 feedback type: square"],[117,"Op 4 freq mode: freq/ratio"],[117,"Op 4 freq mode: fixed freq/Hz"],[118,"Op 4 frequency ratio/freq (coarse)"],[119,"Op 4 frequency ratio/freq (fine)"]]},{"id":"refaceyc","brand":"Yamaha","name":"reface YC","cc":[[19,"Rotary speed: Off"],[19,"Rotary speed: Stop"],[19,"Rotary speed: Slow"],[19,"Rotary speed: Fast"],[80,"Wave"],[102,"Footage 16"],[103,"Footage 5 1/3"],[104,"Footage 8"],[105,"Footage 4"],[106,"Footage 2 2/3"],[107,"Footage 2"],[108,"Footage 1 3/5"],[109,"Footage 1 1/3"],[110,"Footage 1"],[79,"Vibrato/Chorus: Vibrato"],[79,"Vibrato/Chorus: Chorus"],[77,"Vibrato/chorus depth"],[111,"Percussion On"],[111,"Percussion Off"],[112,"Percussion Type: A"],[112,"Percussion Type: B"],[113,"Percussion length: 0"],[113,"Percussion length: 1"],[113,"Percussion length: 2"],[113,"Percussion length: 3"],[113,"Percussion length: 4"],[18,"Effect dist"],[91,"Effect reverb"]]}]`),
-    kn = JSON.parse(`[{"id":"hotone-ampero-mini","brand":"Hotone","name":"Ampero Mini","cc":[[48,"Fx1"],[49,"Fx2"],[50,"AMP"],[51,"NR"],[52,"CAB"],[53,"EQ"],[54,"FX3"],[55,"DLY"],[56,"RVB"],[57,"TNR"],[59,"DRM"],[62,"LOP"],[72,"CTL"]]},{"id":"Valeton-gp200lt","brand":"Valeton","name":"Gp200Lt","cc":[[7,"Patch Vol"],[11,"EXP 1"],[13,"EXP1 A/B"],[16,"QA Para 1"],[17,"QA Knob 1 Adj"],[18,"QA Knob 2"],[19,"QA Knob 2 Adj"],[20,"QA Knob 3"],[21,"QA Knob 3 Adj"],[22,"BANK -"],[23,"BANK +"],[24,"Patch -"],[25,"Patch +"],[48,"PRE"],[49,"DST"],[50,"AMP"],[51,"NR"],[52,"CAB"],[53,"EQ"],[54,"MOD"],[55,"DLY"],[56,"RVB"],[57,"WAH"],[58,"TUNER"],[59,"LP On/Off"],[60,"LP Record"],[61,"LP Auto Rec"],[62,"LP Play/Stop"],[63,"LP Tempo"],[64,"LP Playback"],[65,"LP Delete"],[66,"Looper Rec"],[67,"Looper Play"],[68,"Looper Place"],[69,"CTRL 1"],[70,"CTRL 2"],[71,"CTRL 3"],[72,"CTRL 4"],[75,"Tap Tempo"],[92,"Drum Menu"],[93,"Drum Play/Stop"],[94,"Drum Type"],[95,"Drum Volume"]]},{"id":"SoniCake-master","brand":"SoniCake","name":"Pocket Master","cc":[[1,"Seleciona Patch 01-100"],[6,"Volume Master"],[7,"Volume Pre"],[22,"Bank -"],[23,"Bank +"],[24,"Preset -"],[25,"Preset +"],[43,"ON/OFF MOD NR"],[44,"ON/OFF MOD FX1"],[45,"ON/OFF MOD DRV"],[46,"ON/OFF MOD AMP"],[47,"ON/OFF MOD IR"],[48,"ON/OFF MOD EQ"],[49,"ON/OFF MOD FX2"],[50,"ON/OFF MOD DLY"],[51,"ON/OFF MOD RVB"],[58,"ON/OFF afinador"],[59,"ON/OFF looper"],[60,"Gravar no looper"],[62,"PLAY looper"],[64,"Apagar loop"],[65,"Volume REC looper"],[66,"Volume PLAY looper"],[67,"PosiAAo do looper"],[92,"ON/OFF menu de percussAo"],[93,"PLAY percussAo"],[94,"Ritmo da percussAo"],[95,"Volume da percussAo"]]},{"id":"kemper-kemper-player","brand":"Kemper","name":"Kemper Player","cc":[[1,"Wah Pedal"],[4,"Pitch Pedal"],[7,"Volume Pedal"],[10,"Panorama"],[11,"Morph Pedal"],[17,"Stomp A On/Off"],[18,"Stomp B On/Off"],[19,"Stomp C On/Off"],[20,"Stomp D On/Off"],[22,"Effect Slot X On/Off"],[24,"MOD Slot On/Off"],[26,"Delay On/Off (Corta Cauda)"],[27,"Delay On/Off (Mant\u00e9m Cauda)"],[28,"Reverb On/Off (Corta Cauda)"],[29,"Reverb On/Off (Mant\u00e9m Cauda)"],[30,"Tap Tempo"],[31,"Tuner Select"],[33,"Rotary Speaker Slow/Fast"],[34,"Delay Infinity"],[50,"Carrega Slot 1"],[51,"Carrega Slot 2"],[52,"Carrega Slot 3"],[53,"Carrega Slot 4"],[54,"Carrega Slot 5"],[68,"Delay Mix"],[69,"Delay Feedback"],[70,"Reverb Mix"],[71,"Reverb Time"],[72,"Gain"],[73,"Monitor Volume"],[75,"Emulate Effect 1"],[76,"Emulate Effect 2"],[77,"Emulate Effect 3"],[78,"Emulate Effect 4"],[80,"Morph Layer 1"],[81,"Looper Start"],[82,"Looper Stop"],[83,"Wah Wah On"],[84,"Wah Wah Off"],[85,"Pure Booster On"],[86,"Pure Booster Off"],[87,"Compressor On"],[88,"Compressor Off"],[89,"Noise Gate On"],[90,"Noise Gate Off"],[91,"Transpose On"],[92,"Transpose Off"],[93,"Vintage Chorus On"],[94,"Vintage Chorus Off"],[95,"Air Chorus On"],[96,"Air Chorus Off"],[97,"Double Tracker On"],[98,"Double Tracker Off"]]},{"id":"Synergy-syn2","brand":"Synergy","name":"Syn2","cc":[[56,"Channel 1A"],[57,"Channel 1B"],[58,"Channel 2A"],[59,"Channel 2B"],[60,"Bypass"],[64,"Mute"]]},{"id":"valeton-valeton-gp5","brand":"Valeton","name":"Valeton Gp5","cc":[[0,"Seleciona Patch 00-99"],[1,"Master Volume"],[7,"Volume do patch"],[11,"Par\u00e2metro EXP"],[13,"EXP ON/OFF"],[17,"Master Volume \u00b11 passo"],[19,"BPM \u00b11 passo"],[21,"Volume do patch \u00b11 passo"],[24,"Patch -"],[25,"Patch +"],[28,"Modo Patch/Stomp"],[48,"ON/OFF Noise Gate"],[49,"ON/OFF PRE"],[50,"ON/OFF Distortion"],[51,"ON/OFF SnapTone"],[52,"ON/OFF Amp"],[53,"ON/OFF Cab"],[54,"ON/OFF EQ"],[55,"ON/OFF Modulation"],[56,"ON/OFF Delay"],[57,"ON/OFF Reverb"],[58,"ON/OFF afinador"],[59,"ON/OFF Looper"],[60,"Looper Record"],[62,"Looper Play/Stop"],[65,"Apagar Loop"],[66,"Vol. grava\u00e7\u00e3o Looper"],[67,"Vol. reprodu\u00e7\u00e3o Looper"],[69,"CTRL 1"],[70,"CTRL 2"],[73,"Tempo MSB"],[74,"Tempo LSB"],[75,"Tap Tempo"],[92,"Menu Drum Machine"],[93,"Drum Machine Play/Stop"],[94,"Tipo de Drum Machine"],[95,"Volume da Drum Machine"],[96,"Drum Sync ON/OFF"]]},{"id":"custom-custom","brand":"Custom","name":"Custom","cc":[[0,"Preset Select"],[1,"Volume"],[2,"Level"],[3,"Gain"],[4,"Drive"],[5,"Tone"],[6,"Bass"],[7,"Middle"],[8,"Treble"],[9,"Presence"],[10,"Resonance"],[11,"Mix"],[12,"Blend"],[13,"Dry Level"],[14,"Wet Level"],[15,"Output Level"],[16,"Noise Gate Threshold"],[17,"Noise Gate Release"],[18,"Compressor Sustain"],[19,"Compressor Attack"],[20,"Compressor Release"],[21,"Compressor Level"],[22,"Boost Level"],[23,"Fuzz Amount"],[24,"Amp Gain"],[25,"Amp Volume"],[26,"Amp Master"],[27,"Amp Channel"],[28,"Cabinet Select"],[29,"IR Select"],[30,"EQ Low"],[31,"EQ Low Mid"],[32,"EQ High Mid"],[33,"EQ High"],[34,"EQ Frequency"],[35,"EQ Gain"],[36,"EQ Q"],[37,"Chorus Rate"],[38,"Chorus Depth"],[39,"Chorus Mix"],[40,"Chorus Tone"],[41,"Flanger Rate"],[42,"Flanger Depth"],[43,"Flanger Feedback"],[44,"Phaser Rate"],[45,"Phaser Depth"],[46,"Phaser Feedback"],[47,"Tremolo Rate"],[48,"Tremolo Depth"],[49,"Delay Time"],[50,"Delay Feedback"],[51,"Delay Mix"],[52,"Delay Level"],[53,"Delay Tone"],[54,"Delay Mod Depth"],[55,"Delay Mod Rate"],[56,"Delay Ducking"],[57,"Delay Spread"],[58,"Reverb Decay"],[59,"Reverb Mix"],[60,"Reverb Tone"],[61,"Reverb PreDelay"],[62,"Reverb Level"],[63,"Reverb Damping"],[64,"Hold / Freeze"],[65,"Effect 1 On/Off"],[66,"Effect 2 On/Off"],[67,"Effect 3 On/Off"],[68,"Effect 4 On/Off"],[69,"Effect 5 On/Off"],[70,"Effect 6 On/Off"],[71,"Effect 7 On/Off"],[72,"Effect 8 On/Off"],[73,"Tap Tempo"],[74,"BPM"],[75,"Delay Division"],[76,"Reverb Type"],[77,"Delay Type"],[78,"Modulation Type"],[79,"Drive Type"],[80,"Amp Type"],[81,"Cabinet Type"],[82,"Expression 1"],[83,"Expression 2"],[84,"Wah Position"],[85,"Volume Pedal"],[86,"Footswitch 1"],[87,"Footswitch 2"],[88,"Footswitch 3"],[89,"Footswitch 4"],[90,"Tuner"],[91,"Bypass"],[92,"Scene Select"],[93,"Snapshot Select"],[94,"Bank Select"],[95,"Preset Increment"],[96,"Preset Decrement"],[97,"Pitch Shift"],[98,"Harmony Interval"],[99,"Octave Level"],[100,"Detune Amount"],[101,"Rotary Speed"],[102,"Rotary Balance"],[103,"Univibe Rate"],[104,"Univibe Depth"],[105,"Filter Frequency"],[106,"Filter Resonance"],[107,"Auto Wah Sensitivity"],[108,"Looper Record"],[109,"Looper Play"],[110,"Looper Stop"],[111,"Looper Overdub"],[112,"Looper Undo"],[113,"Looper Clear"],[114,"Drum Start"],[115,"Drum Stop"],[116,"Drum Volume"],[117,"Drum Pattern"],[118,"Drum Tempo"],[119,"MIDI Clock Sync"],[120,"Bypass All"],[121,"Panic"],[122,"Mute"],[123,"All Notes Off"],[124,"Device Enable"],[125,"Device Disable"],[126,"Reserved"],[127,"Reserved"]]},{"id":"Universal_Audio-ruby63","brand":"Universal Audio","name":"Ruby63","cc":[[7,"Output"],[12,"FS Left"],[13,"FS Right"],[14,"Cab Up"],[15,"Cab Down"],[16,"Store"],[17,"Channel Select"],[18,"Cab Select"],[19,"Bypass"],[22,"Volume"],[30,"Room"],[31,"Bass"],[33,"Treble"],[36,"Cut"],[40,"Boost Enable"],[41,"Boost"],[60,"Vibrato Enable"],[61,"Vibrato Speed"],[62,"Vibrato Intensity"]]},{"id":"Universal_Audio-enigmatic82","brand":"Universal Audio","name":"Enigmatic82","cc":[[7,"Output"],[12,"FS Left"],[13,"FS Right"],[14,"Cab Up"],[15,"Cab Down"],[16,"Store"],[17,"Model Select"],[18,"Cab Select"],[19,"Bypass"],[20,"Channel"],[21,"Amp"],[22,"Volume"],[23,"Overdrive"],[24,"Overdrive Enable"],[25,"Ratio"],[26,"Master"],[27,"FET Trim"],[28,"OD Trim"],[30,"Room"],[31,"Bass"],[32,"Mid"],[33,"Treble"],[34,"Presence"],[35,"Deep/Mid"],[36,"Bright"],[37,"Tonestack"],[40,"Boost Enable"],[50,"RH Enable"],[51,"HRM Bass"],[52,"HRM Mid"],[53,"HRM Treble"]]},{"id":"Universal_Audio-lion68","brand":"Universal Audio","name":"Lion68","cc":[[7,"Output"],[12,"FS Left"],[13,"FS Right"],[14,"Cab Up"],[15,"Cab Down"],[16,"Store"],[17,"Model Select"],[18,"Cab Select"],[19,"Bypass"],[21,"Input"],[22,"Volume I"],[23,"Volume II"],[30,"Room"],[31,"Bass"],[32,"Mid"],[33,"Treble"],[34,"Presence"],[35,"Bright"],[36,"Ghost Notes"],[40,"Boost Enable"],[41,"Boost"],[70,"Gate Enable"],[71,"Gate Threshold"],[72,"Gate Safety"],[73,"Gate Attack"],[74,"Gate Release"],[75,"Gate Attenuation"]]},{"id":"Universal_Audio-dream65","brand":"Universal Audio","name":"Dream65","cc":[[7,"Output"],[12,"FS Left"],[13,"FS Right"],[14,"Cab Up"],[15,"Cab Down"],[16,"Store"],[17,"Mod Select"],[18,"Cab Select"],[19,"Bypass"],[22,"Volume"],[31,"Bass"],[33,"Treble"],[40,"Boost Enable"],[41,"Boost Gain"],[50,"Reverb Enable"],[51,"Reverb"],[60,"Vibrato Enable"],[61,"Vibrato Speed"],[62,"Vibrato Intensity"]]},{"id":"IK_MULTIMEDIA-tonex","brand":"IK MULTIMEDIA","name":"Tonex","cc":[[1,"DELAY POSITION"],[2,"DELAY POWER"],[3,"DELAY TYPE"],[4,"DIGITAL SYNC"],[5,"DIGITAL TIME"],[6,"DIGITAL FEEDBACK"],[7,"DIGITAL MODE"],[8,"DIGITAL MIX"],[13,"GATE POSITION"],[14,"GATE POWER"],[15,"GATE/THRESHOLD"],[16,"GATE RELEASE"],[17,"GATE DEPTH"],[18,"COMP POWER"],[19,"COMP/THRESHOLD"],[20,"COMP GAIN"],[21,"COMP ATTACK"],[22,"COMP POSITION"],[23,"BASS"],[24,"EQ BASS HZ"],[25,"MID"],[26,"EQ MID Q"],[27,"EQ MID HZ"],[28,"TREBLE"],[29,"EQ TREBLE HZ"],[30,"EQ POSITION"],[31,"MOD POSITION"],[32,"MOD POWER"],[33,"MOD TYPE"],[34,"CHORUS SYNC"],[35,"CHORUS RATE"],[36,"CHORUS DEPTH"],[37,"CHORUS LEVEL"],[38,"TREMOLO SYNC"],[39,"TREMOLO RATE"],[40,"TREMOLO SHAPE"],[41,"TREMOLO SPREAD"],[42,"TREMOLO LEVEL"],[43,"PHASER SYNC"],[44,"PHASER RATE"],[45,"PHASER DEPTH"],[46,"PHASER LEVEL"],[47,"FLANGER SYNC"],[48,"FLANGER RATE"],[49,"FLANGER DEPTH"],[50,"FLANGER FEEDBACK"],[51,"FLANGER LEVEL"],[52,"ROTARY SYNC"],[53,"ROTARY SPEED"],[54,"ROTARY RADIUS"],[55,"ROTARY SPREAD"],[56,"ROTARY LEVEL"],[59,"SPRING1 TIME"],[60,"SPRING1 PRE DELAY"],[61,"SPRING1 COLOR"],[62,"SPRING1 MIX"],[63,"SPRING2 TIME"],[64,"SPRING2 PRE DELAY"],[65,"SPRING2 COLOR"],[66,"SPRING2 MIX"],[67,"SPRING3 TIME"],[68,"SPRING3 PRE DELAY"],[69,"SPRING3 COLOR"],[70,"SPRING3 MIX"],[71,"ROOM TIME"],[72,"ROOM PRE DELAY"],[73,"ROOM COLOR"],[74,"ROOM MIX"],[75,"REVERB POWER"],[76,"PLATE TIME"],[77,"PLATE PRE DELAY"],[78,"PLATE COLOR"],[79,"PLATE MIX"],[80,"SPRING4 TIME"],[81,"SPRING4 PRE DELAY"],[82,"SPRING4 COLOR"],[83,"SPRING4 MIX"],[84,"REVERB POSITION"],[85,"REVERB TYPE"],[91,"TAPE SYNC"],[92,"TAPE TIME"],[93,"TAPE FEEDBACK"],[94,"TAPE MODE"],[95,"TAPE MIX"],[102,"GAIN"],[103,"MODEL VOL"],[104,"MODEL MIX"],[106,"PRESENCE"],[107,"DEPTH"],[108,"VIR RESO"],[109,"VIR MIC1 TYPE"],[110,"VIR MIC1 X"],[111,"VIR MIC1 Z"],[112,"VIR MIC2 TYPE"],[113,"VIR MIC2 X"],[114,"VIR MIC2 Z"],[115,"VIR BLEND"]]},{"id":"head_rush-mx5","brand":"HEAD RUSH","name":"Mx5","cc":[[50,"Footswitch 1"],[51,"Footswitch 2"],[52,"Footswitch 3"],[64,"Tap Tempo"],[65,"Looper 1/2 Speed"],[66,"Looper 2x Speed"],[67,"Looper 1/2 Loop Length"],[68,"Looper 2x Loop Length"],[69,"Looper StartStop"],[70,"Looper Record"],[71,"Looper Insert"],[72,"Looper Peel"],[73,"Looper Mute"],[74,"Looper Reverse"],[75,"Block 1"],[76,"Block 2"],[77,"Block 3"],[78,"Block 4"],[79,"Block 5"],[80,"Block 6"],[81,"Block 7"],[82,"Block 8"],[83,"Block 9"],[84,"Block 10"],[85,"Block 11"]]},{"id":"head-rush-flex-prime","brand":"HEAD RUSH","name":"Flex Prime","cc":[[1,"Internal Expression Pedal"],[2,"External Expression Pedal"],[12,"Global Tempo -"],[13,"Global Tempo +"],[14,"Internal Pedal Switch (A/B)"],[16,"Rig Up (Previous Rig)"],[17,"Rig Down (Next Rig)"],[18,"Bank Up (Previous Bank)"],[19,"Bank Down (Next Bank)"],[20,"Footswitch Bank (A/B)"],[21,"Scene 1"],[22,"Scene 2"],[23,"Scene 3"],[24,"Scene 4"],[25,"Scene 5"],[26,"Scene 6"],[49,"Footswitch 1"],[50,"Footswitch 2"],[51,"Footswitch 3"],[64,"Tap Tempo"],[65,"Looper 1/2 Speed"],[66,"Looper 2X Speed"],[67,"Looper 1/2 Loop"],[68,"Looper 2X Loop"],[69,"Looper Start/Stop"],[70,"Looper Record"],[71,"Looper Insert"],[72,"Looper Peel"],[73,"Looper Mute"],[74,"Looper Reverse"],[75,"Block 1"],[76,"Block 2"],[77,"Block 3"],[78,"Block 4"],[79,"Block 5"],[80,"Block 6"],[81,"Block 7"],[82,"Block 8"],[83,"Block 9"],[84,"Block 10"],[85,"Block 11"],[86,"Block 12"],[87,"Block 13"],[88,"Block 14"],[90,"Hands-Free - Open/Close"],[91,"Looper - Open/Close"],[92,"Tuner - Open/Close"],[93,"Lock Screen - Open/Close"],[94,"Enter Stomp FS Mode"],[95,"Enter Hybrid FS Mode"],[96,"Enter Setlist FS Mode"],[97,"Enter Rig FS Mode"],[102,"Practice Tool - Open/Close"],[103,"Practice Tool - Play/Pause"],[104,"Practice Tool - Stop"],[105,"Practice Tool - Volume -"],[106,"Practice Tool - Volume +"],[107,"Practice Tool - Loop In"],[108,"Practice Tool - Loop Out"],[109,"Practice Tool - Speed -"],[110,"Practice Tool - Speed +"],[111,"Practice Tool - Pitch -"],[112,"Practice Tool - Pitch +"],[113,"Practice Tool - Previous"],[114,"Practice Tool - Next"],[115,"Practice Tool - RWD"],[116,"Practice Tool - FWD"],[117,"Practice Tool - Loop On/Off"],[118,"Metronome - On/Off"],[119,"Metronome - Volume -"],[120,"Metronome - Volume +"],[123,"Looper - Unpeel"]]},{"id":"ik-multimedia-tonex-one-plus","brand":"IK MULTIMEDIA","name":"Tonex One Plus","cc":[[1,"Delay Position"],[2,"Delay Power"],[3,"Delay Type"],[4,"Digital Delay Sync"],[5,"Digital Delay Time"],[6,"Digital Delay Feedback"],[7,"Digital Delay Mode (Normal/Ping Pong)"],[8,"Digital Delay Mix"],[9,"Tuner"],[10,"Tap Tempo"],[12,"Preset On/Off"],[13,"Noise Gate Position"],[14,"Noise Gate Power"],[15,"Noise Gate Threshold"],[16,"Noise Gate Release"],[17,"Noise Gate Depth"],[18,"Compressor Power"],[19,"Compressor Threshold"],[20,"Compressor Gain"],[21,"Compressor Attack"],[22,"Compressor Position"],[23,"Bass"],[24,"Bass Freq"],[25,"Mid"],[26,"Mid Q"],[27,"Mid Freq"],[28,"Treble"],[29,"Treble Freq"],[30,"EQ Position"],[31,"Modulation Position"],[32,"Modulation Power"],[33,"Modulation Type"],[34,"Chorus Sync"],[35,"Chorus Rate"],[36,"Chorus Depth"],[37,"Chorus Level/Mix"],[38,"Tremolo/Phaser Sync"],[39,"Tremolo/Phaser Rate"],[40,"Tremolo/Phaser Shape"],[41,"Tremolo/Phaser Spread"],[42,"Tremolo/Phaser Level/Mix"],[47,"Flanger Sync"],[48,"Flanger Rate"],[49,"Flanger Depth"],[50,"Flanger Feedback"],[51,"Flanger Level/Mix"],[52,"Rotary Sync"],[53,"Rotary Speed"],[54,"Rotary Radius"],[55,"Rotary Spread"],[56,"Rotary Level/Mix"],[59,"Reverb Spring 1 Time"],[60,"Reverb Spring 1 Pre-Delay"],[61,"Reverb Spring 1 Color"],[62,"Reverb Spring 1 Mix"],[63,"Reverb Spring 2 Time"],[64,"Reverb Spring 2 Pre-Delay"],[65,"Reverb Spring 2 Color"],[66,"Reverb Spring 2 Mix"],[67,"Reverb Spring 3 Time"],[68,"Reverb Spring 3 Pre-Delay"],[69,"Reverb Spring 3 Color"],[70,"Reverb Spring 3 Mix"],[71,"Reverb Room Time"],[72,"Reverb Room Pre-Delay"],[73,"Reverb Room Color"],[74,"Reverb Room Mix"],[75,"Reverb Power"],[76,"Reverb Plate Time"],[77,"Reverb Plate Pre-Delay"],[78,"Reverb Plate Color"],[79,"Reverb Plate Mix"],[80,"Reverb Spring 4 Time"],[81,"Reverb Spring 4 Pre-Delay"],[82,"Reverb Spring 4 Color"],[83,"Reverb Spring 4 Mix"],[84,"Reverb Position"],[85,"Reverb Type"],[86,"Preset Down"],[87,"Preset Up"],[88,"BPM"],[91,"Tape Delay Sync"],[92,"Tape Delay Time"],[93,"Tape Delay Feedback"],[94,"Tape Delay Mode (Normal/Ping Pong)"],[95,"Tape Delay Mix"],[102,"Gain"],[103,"Volume / Model"],[104,"Mix / Model"],[106,"Presence"],[107,"Depth"]]},{"id":"neural-dsp-nano-cortex","brand":"Neural DSP","name":"Nano Cortex","cc":[[1,"Pedal de Express\u00e3o"],[34,"Bypass Gate"],[35,"Bypass Capture"],[36,"Bypass CAB/IR"],[37,"Bypass FX 1"],[38,"Bypass FX 2"],[39,"Bypass FX 3"],[40,"Bypass FX 4"],[41,"Bypass FX 5"],[42,"Tap Tempo"],[43,"Afinador"]]},{"id":"line-6-hx-stomp","brand":"Line 6","name":"Hx Stomp","cc":[[1,"EXP1"],[2,"EXP2"],[10,"COMP"],[11,"BOOST"],[12,"DRIVE"],[13,"DIST"],[14,"FUZZ"],[15,"WAH"],[16,"PITCH"],[17,"OCTAVE"],[18,"HARMON"],[19,"WHAMMY"],[20,"AMP"],[21,"CAB"],[22,"EQ"],[23,"CHORUS"],[24,"FLANGER"],[25,"PHASER"],[26,"TREMOLO"],[27,"ROTARY"],[28,"VIBE"],[29,"DELAY"],[30,"REVERB"],[31,"LOOPER"],[49,"FS1"],[50,"FS2"],[51,"FS3"],[52,"FS4"],[53,"FS5"],[60,"LOOP REC"],[61,"LOOP PLAY"],[62,"LOOP ONCE"],[63,"LOOP UNDO"],[64,"TAP"],[65,"LOOP REV"],[66,"LOOP HALF"],[68,"TUNER"],[69,"SNAPSHOT"],[70,"BYPASS"],[71,"MODE"]]},{"id":"neural-dsp-quad-cortex","brand":"Neural DSP","name":"Quad Cortex","cc":[[1,"Express\u00e3o 1"],[2,"Express\u00e3o 2"],[35,"Pedal A"],[36,"Pedal B"],[37,"Pedal C"],[38,"Pedal D"],[39,"Pedal E"],[40,"Pedal F"],[41,"Pedal G"],[42,"Pedal H"],[43,"Cenas (A-H)"],[44,"Tap Tempo"],[45,"Afinador"],[46,"Gig View"],[47,"Modos (Preset/Scene/Stomp)"],[48,"Looper: Abrir/Fechar Editor"],[49,"Looper: Duplicar"],[50,"Looper: One Shot"],[51,"Looper: Meia Velocidade"],[52,"Looper: In/Out Grava\u00e7\u00e3o"],[53,"Looper: Record/Overdub"],[54,"Looper: Play/Stop"],[55,"Looper: Reverse"],[56,"Looper: Undo/Redo"],[57,"Looper: Modo Duplicado"],[58,"Looper: Quantizar"],[59,"Looper: In\u00edcio Clock MIDI"],[60,"Looper: Troca Modo Exec/Param"],[61,"Looper: Modo de Roteamento"],[62,"Ignorar PC Duplicado"]]},{"id":"strymon-elcapistan","brand":"Strymon","name":"Elcapistan","cc":[[0,"Bank Select"],[11,"Tape Head"],[12,"Time"],[13,"Wow Flutter"],[14,"Tape Age"],[15,"Mode"],[16,"Mix"],[17,"Spring"],[18,"Repeats"],[19,"Type Encoder"],[20,"Value Encoder"],[60,"Expression On/Off"],[63,"MIDI Clock On/Off"],[80,"Footswitch A"],[81,"Tap Footswitch"],[82,"Footswitch B"],[93,"Remote Tap"],[97,"Infinite Repeats"],[100,"Expression Pedal"],[102,"Bypass"]]},{"id":"line-6-hxone","brand":"Line 6","name":"Hx one","cc":[[1,"On Footswitch Toggle"],[2,"FLUX Footswitch"],[3,"Expression Pedal"],[4,"Bypass/Engage"],[5,"View Select"],[21,"Parameter 1"],[22,"Parameter 2"],[23,"Parameter 3"],[24,"Parameter 4"],[25,"Parameter 5"],[26,"Parameter 6"],[27,"Parameter 7"],[28,"Parameter 8"],[29,"Parameter 9"],[30,"Parameter 10"],[31,"Parameter 11"],[33,"Parameter 12"],[34,"Parameter 13"],[35,"Parameter 14"],[36,"Parameter 15"],[37,"Parameter 16"],[38,"Parameter 17"],[39,"Parameter 18"],[40,"Parameter 19"],[41,"Parameter 20"],[42,"Parameter 21"],[43,"Parameter 22"],[44,"Parameter 23"],[45,"Parameter 24"],[46,"FLUX OnTime"],[47,"FLUX OnCurve"],[48,"FLUX OffTime"],[49,"FLUX OffCurve"],[50,"Looper Record/Overdub"],[51,"Looper Play/Stop"],[52,"Looper Undo/Redo"],[53,"Looper Half Speed"],[54,"Looper Reverse"],[55,"Looper Level"],[93,"Tap Tempo"]]},{"id":"vtr-vtr-narciso","brand":"VTR","name":"VTR Narciso","cc":[[1,"Bypass"],[2,"Algorithm Select"],[3,"Delay Time"],[4,"Repeat"],[5,"Charm"],[6,"Mix"],[7,"Preset Next"],[8,"Preset Previous"],[9,"Rhythmic Figure"]]},{"id":"vtr-vtr-loki","brand":"VTR","name":"VTR Loki","cc":[[1,"Bypass"],[2,"Algorithm Select"],[3,"Rate"],[4,"Spade"],[5,"Diamond"],[6,"Hearts"],[7,"Preset Next"],[8,"Preset Previous"],[9,"Rhythmic Figure"]]},{"id":"vtr-kailani-kailani","brand":"VTR","name":"VTR Kailani","cc":[[1,"Bypass"],[2,"Algorithm Select"],[3,"Decay"],[4,"Sea"],[5,"Sky"],[6,"Mix"],[7,"Preset Next"],[8,"Preset Previous"]]},{"id":"vtr-vtr-ignis","brand":"VTR","name":"VTR Ignis","cc":[[1,"Bypass"]]},{"id":"vtr-vtr-helios","brand":"VTR","name":"VTR Helios","cc":[[1,"Bypass"],[2,"Clipping Type"],[3,"Bass"],[4,"Tone"],[5,"Gain"],[6,"Level"]]},{"id":"vtr-vtr-venator","brand":"VTR","name":"VTR Venator","cc":[[1,"Bypass"],[2,"Clipping Type"],[3,"Gain"],[4,"Level"],[5,"Tone"],[6,"Bass"],[7,"Blend"]]},{"id":"saturno-spacewalk","brand":"Saturnuno Pedais","name":"SPACEWALK","cc":[[0,"Bypass"],[1,"Tap Tempo"],[2,"Dry Level"],[3,"Dry Level L"],[4,"Dry Level R"],[8,"EXP Control"],[10,"Toggle Bypass"],[11,"Time Dsp 1"],[12,"Feedback Dsp1"],[13,"DelayMix Dsp1"],[14,"Reserved Dsp1"],[15,"Reserved2 Dsp1"],[21,"Time Dsp 2"],[22,"Feedback Dsp2"],[23,"DelayMix Dsp2"],[24,"Reserved Dsp2"],[25,"Reserved2 Dsp2"]]},{"id":"saturno-timespace","brand":"Saturnuno Pedais","name":"TIMESPACE","cc":[[0,"Bypass"],[1,"Tap Tempo"],[2,"Dry Level"],[3,"Dry Level L"],[4,"Dry Level R"],[8,"EXP Control"],[10,"Toggle Bypass"],[11,"Time Dsp 1"],[12,"Feedback Dsp1"],[13,"DelayMix Dsp1"],[14,"Reserved Dsp1"],[15,"Reserved2 Dsp1"],[21,"Time Dsp 2"],[22,"Feedback Dsp2"],[23,"DelayMix Dsp2"],[24,"Reserved Dsp2"],[25,"Reserved2 Dsp2"]]}]`);
+    kn = JSON.parse(`[{"id":"hotone-ampero-mini","brand":"Hotone","name":"Ampero Mini","cc":[[48,"Fx1"],[49,"Fx2"],[50,"AMP"],[51,"NR"],[52,"CAB"],[53,"EQ"],[54,"FX3"],[55,"DLY"],[56,"RVB"],[57,"TNR"],[59,"DRM"],[62,"LOP"],[72,"CTL"]]},{"id":"Valeton-gp200lt","brand":"Valeton","name":"Gp200Lt","cc":[[7,"Patch Vol"],[11,"EXP 1"],[13,"EXP1 A/B"],[16,"QA Para 1"],[17,"QA Knob 1 Adj"],[18,"QA Knob 2"],[19,"QA Knob 2 Adj"],[20,"QA Knob 3"],[21,"QA Knob 3 Adj"],[22,"BANK -"],[23,"BANK +"],[24,"Patch -"],[25,"Patch +"],[48,"PRE"],[49,"DST"],[50,"AMP"],[51,"NR"],[52,"CAB"],[53,"EQ"],[54,"MOD"],[55,"DLY"],[56,"RVB"],[57,"WAH"],[58,"TUNER"],[59,"LP On/Off"],[60,"LP Record"],[61,"LP Auto Rec"],[62,"LP Play/Stop"],[63,"LP Tempo"],[64,"LP Playback"],[65,"LP Delete"],[66,"Looper Rec"],[67,"Looper Play"],[68,"Looper Place"],[69,"CTRL 1"],[70,"CTRL 2"],[71,"CTRL 3"],[72,"CTRL 4"],[75,"Tap Tempo"],[92,"Drum Menu"],[93,"Drum Play/Stop"],[94,"Drum Type"],[95,"Drum Volume"]]},{"id":"SoniCake-master","brand":"SoniCake","name":"Pocket Master","cc":[[1,"Seleciona Patch 01-100"],[6,"Volume Master"],[7,"Volume Pre"],[22,"Bank -"],[23,"Bank +"],[24,"Preset -"],[25,"Preset +"],[43,"ON/OFF MOD NR"],[44,"ON/OFF MOD FX1"],[45,"ON/OFF MOD DRV"],[46,"ON/OFF MOD AMP"],[47,"ON/OFF MOD IR"],[48,"ON/OFF MOD EQ"],[49,"ON/OFF MOD FX2"],[50,"ON/OFF MOD DLY"],[51,"ON/OFF MOD RVB"],[58,"ON/OFF afinador"],[59,"ON/OFF looper"],[60,"Gravar no looper"],[62,"PLAY looper"],[64,"Apagar loop"],[65,"Volume REC looper"],[66,"Volume PLAY looper"],[67,"PosiAAo do looper"],[92,"ON/OFF menu de percussAo"],[93,"PLAY percussAo"],[94,"Ritmo da percussAo"],[95,"Volume da percussAo"]]},{"id":"kemper-kemper-player","brand":"Kemper","name":"Kemper Player","cc":[[1,"Wah Pedal"],[4,"Pitch Pedal"],[7,"Volume Pedal"],[10,"Panorama"],[11,"Morph Pedal"],[17,"Stomp A On/Off"],[18,"Stomp B On/Off"],[19,"Stomp C On/Off"],[20,"Stomp D On/Off"],[22,"Effect Slot X On/Off"],[24,"MOD Slot On/Off"],[26,"Delay On/Off (Corta Cauda)"],[27,"Delay On/Off (Mant\u00e9m Cauda)"],[28,"Reverb On/Off (Corta Cauda)"],[29,"Reverb On/Off (Mant\u00e9m Cauda)"],[30,"Tap Tempo"],[31,"Tuner Select"],[33,"Rotary Speaker Slow/Fast"],[34,"Delay Infinity"],[50,"Carrega Slot 1"],[51,"Carrega Slot 2"],[52,"Carrega Slot 3"],[53,"Carrega Slot 4"],[54,"Carrega Slot 5"],[68,"Delay Mix"],[69,"Delay Feedback"],[70,"Reverb Mix"],[71,"Reverb Time"],[72,"Gain"],[73,"Monitor Volume"],[75,"Emulate Effect 1"],[76,"Emulate Effect 2"],[77,"Emulate Effect 3"],[78,"Emulate Effect 4"],[80,"Morph Layer 1"],[81,"Looper Start"],[82,"Looper Stop"],[83,"Wah Wah On/Off"],[84,"Pure Booster On/Off"],[85,"Compressor On/Off"],[86,"Noise Gate On/Off"],[87,"Transpose On/Off"],[88,"Vintage Chorus On/Off"],[89,"Air Chorus On/Off"],[90,"Double Tracker On/Off"]]},{"id":"Synergy-syn2","brand":"Synergy","name":"Syn2","cc":[[56,"Channel 1A"],[57,"Channel 1B"],[58,"Channel 2A"],[59,"Channel 2B"],[60,"Bypass"],[64,"Mute"]]},{"id":"valeton-valeton-gp5","brand":"Valeton","name":"Valeton Gp5","cc":[[0,"Seleciona Patch 00-99"],[1,"Master Volume"],[7,"Volume do patch"],[11,"Par\u00e2metro EXP"],[13,"EXP ON/OFF"],[17,"Master Volume \u00b11 passo"],[19,"BPM \u00b11 passo"],[21,"Volume do patch \u00b11 passo"],[24,"Patch -"],[25,"Patch +"],[28,"Modo Patch/Stomp"],[48,"ON/OFF Noise Gate"],[49,"ON/OFF PRE"],[50,"ON/OFF Distortion"],[51,"ON/OFF SnapTone"],[52,"ON/OFF Amp"],[53,"ON/OFF Cab"],[54,"ON/OFF EQ"],[55,"ON/OFF Modulation"],[56,"ON/OFF Delay"],[57,"ON/OFF Reverb"],[58,"ON/OFF afinador"],[59,"ON/OFF Looper"],[60,"Looper Record"],[62,"Looper Play/Stop"],[65,"Apagar Loop"],[66,"Vol. grava\u00e7\u00e3o Looper"],[67,"Vol. reprodu\u00e7\u00e3o Looper"],[69,"CTRL 1"],[70,"CTRL 2"],[73,"Tempo MSB"],[74,"Tempo LSB"],[75,"Tap Tempo"],[92,"Menu Drum Machine"],[93,"Drum Machine Play/Stop"],[94,"Tipo de Drum Machine"],[95,"Volume da Drum Machine"],[96,"Drum Sync ON/OFF"]]},{"id":"custom-custom","brand":"Custom","name":"Custom","cc":[[0,"Preset Select"],[1,"Volume"],[2,"Level"],[3,"Gain"],[4,"Drive"],[5,"Tone"],[6,"Bass"],[7,"Middle"],[8,"Treble"],[9,"Presence"],[10,"Resonance"],[11,"Mix"],[12,"Blend"],[13,"Dry Level"],[14,"Wet Level"],[15,"Output Level"],[16,"Noise Gate Threshold"],[17,"Noise Gate Release"],[18,"Compressor Sustain"],[19,"Compressor Attack"],[20,"Compressor Release"],[21,"Compressor Level"],[22,"Boost Level"],[23,"Fuzz Amount"],[24,"Amp Gain"],[25,"Amp Volume"],[26,"Amp Master"],[27,"Amp Channel"],[28,"Cabinet Select"],[29,"IR Select"],[30,"EQ Low"],[31,"EQ Low Mid"],[32,"EQ High Mid"],[33,"EQ High"],[34,"EQ Frequency"],[35,"EQ Gain"],[36,"EQ Q"],[37,"Chorus Rate"],[38,"Chorus Depth"],[39,"Chorus Mix"],[40,"Chorus Tone"],[41,"Flanger Rate"],[42,"Flanger Depth"],[43,"Flanger Feedback"],[44,"Phaser Rate"],[45,"Phaser Depth"],[46,"Phaser Feedback"],[47,"Tremolo Rate"],[48,"Tremolo Depth"],[49,"Delay Time"],[50,"Delay Feedback"],[51,"Delay Mix"],[52,"Delay Level"],[53,"Delay Tone"],[54,"Delay Mod Depth"],[55,"Delay Mod Rate"],[56,"Delay Ducking"],[57,"Delay Spread"],[58,"Reverb Decay"],[59,"Reverb Mix"],[60,"Reverb Tone"],[61,"Reverb PreDelay"],[62,"Reverb Level"],[63,"Reverb Damping"],[64,"Hold / Freeze"],[65,"Effect 1 On/Off"],[66,"Effect 2 On/Off"],[67,"Effect 3 On/Off"],[68,"Effect 4 On/Off"],[69,"Effect 5 On/Off"],[70,"Effect 6 On/Off"],[71,"Effect 7 On/Off"],[72,"Effect 8 On/Off"],[73,"Tap Tempo"],[74,"BPM"],[75,"Delay Division"],[76,"Reverb Type"],[77,"Delay Type"],[78,"Modulation Type"],[79,"Drive Type"],[80,"Amp Type"],[81,"Cabinet Type"],[82,"Expression 1"],[83,"Expression 2"],[84,"Wah Position"],[85,"Volume Pedal"],[86,"Footswitch 1"],[87,"Footswitch 2"],[88,"Footswitch 3"],[89,"Footswitch 4"],[90,"Tuner"],[91,"Bypass"],[92,"Scene Select"],[93,"Snapshot Select"],[94,"Bank Select"],[95,"Preset Increment"],[96,"Preset Decrement"],[97,"Pitch Shift"],[98,"Harmony Interval"],[99,"Octave Level"],[100,"Detune Amount"],[101,"Rotary Speed"],[102,"Rotary Balance"],[103,"Univibe Rate"],[104,"Univibe Depth"],[105,"Filter Frequency"],[106,"Filter Resonance"],[107,"Auto Wah Sensitivity"],[108,"Looper Record"],[109,"Looper Play"],[110,"Looper Stop"],[111,"Looper Overdub"],[112,"Looper Undo"],[113,"Looper Clear"],[114,"Drum Start"],[115,"Drum Stop"],[116,"Drum Volume"],[117,"Drum Pattern"],[118,"Drum Tempo"],[119,"MIDI Clock Sync"],[120,"Bypass All"],[121,"Panic"],[122,"Mute"],[123,"All Notes Off"],[124,"Device Enable"],[125,"Device Disable"],[126,"Reserved"],[127,"Reserved"]]},{"id":"Universal_Audio-ruby63","brand":"Universal Audio","name":"Ruby63","cc":[[7,"Output"],[12,"FS Left"],[13,"FS Right"],[14,"Cab Up"],[15,"Cab Down"],[16,"Store"],[17,"Channel Select"],[18,"Cab Select"],[19,"Bypass"],[22,"Volume"],[30,"Room"],[31,"Bass"],[33,"Treble"],[36,"Cut"],[40,"Boost Enable"],[41,"Boost"],[60,"Vibrato Enable"],[61,"Vibrato Speed"],[62,"Vibrato Intensity"]]},{"id":"Universal_Audio-enigmatic82","brand":"Universal Audio","name":"Enigmatic82","cc":[[7,"Output"],[12,"FS Left"],[13,"FS Right"],[14,"Cab Up"],[15,"Cab Down"],[16,"Store"],[17,"Model Select"],[18,"Cab Select"],[19,"Bypass"],[20,"Channel"],[21,"Amp"],[22,"Volume"],[23,"Overdrive"],[24,"Overdrive Enable"],[25,"Ratio"],[26,"Master"],[27,"FET Trim"],[28,"OD Trim"],[30,"Room"],[31,"Bass"],[32,"Mid"],[33,"Treble"],[34,"Presence"],[35,"Deep/Mid"],[36,"Bright"],[37,"Tonestack"],[40,"Boost Enable"],[50,"RH Enable"],[51,"HRM Bass"],[52,"HRM Mid"],[53,"HRM Treble"]]},{"id":"Universal_Audio-lion68","brand":"Universal Audio","name":"Lion68","cc":[[7,"Output"],[12,"FS Left"],[13,"FS Right"],[14,"Cab Up"],[15,"Cab Down"],[16,"Store"],[17,"Model Select"],[18,"Cab Select"],[19,"Bypass"],[21,"Input"],[22,"Volume I"],[23,"Volume II"],[30,"Room"],[31,"Bass"],[32,"Mid"],[33,"Treble"],[34,"Presence"],[35,"Bright"],[36,"Ghost Notes"],[40,"Boost Enable"],[41,"Boost"],[70,"Gate Enable"],[71,"Gate Threshold"],[72,"Gate Safety"],[73,"Gate Attack"],[74,"Gate Release"],[75,"Gate Attenuation"]]},{"id":"Universal_Audio-dream65","brand":"Universal Audio","name":"Dream65","cc":[[7,"Output"],[12,"FS Left"],[13,"FS Right"],[14,"Cab Up"],[15,"Cab Down"],[16,"Store"],[17,"Mod Select"],[18,"Cab Select"],[19,"Bypass"],[22,"Volume"],[31,"Bass"],[33,"Treble"],[40,"Boost Enable"],[41,"Boost Gain"],[50,"Reverb Enable"],[51,"Reverb"],[60,"Vibrato Enable"],[61,"Vibrato Speed"],[62,"Vibrato Intensity"]]},{"id":"IK_MULTIMEDIA-tonex","brand":"IK MULTIMEDIA","name":"Tonex","cc":[[1,"DELAY POSITION"],[2,"DELAY POWER"],[3,"DELAY TYPE"],[4,"DIGITAL SYNC"],[5,"DIGITAL TIME"],[6,"DIGITAL FEEDBACK"],[7,"DIGITAL MODE"],[8,"DIGITAL MIX"],[13,"GATE POSITION"],[14,"GATE POWER"],[15,"GATE/THRESHOLD"],[16,"GATE RELEASE"],[17,"GATE DEPTH"],[18,"COMP POWER"],[19,"COMP/THRESHOLD"],[20,"COMP GAIN"],[21,"COMP ATTACK"],[22,"COMP POSITION"],[23,"BASS"],[24,"EQ BASS HZ"],[25,"MID"],[26,"EQ MID Q"],[27,"EQ MID HZ"],[28,"TREBLE"],[29,"EQ TREBLE HZ"],[30,"EQ POSITION"],[31,"MOD POSITION"],[32,"MOD POWER"],[33,"MOD TYPE"],[34,"CHORUS SYNC"],[35,"CHORUS RATE"],[36,"CHORUS DEPTH"],[37,"CHORUS LEVEL"],[38,"TREMOLO SYNC"],[39,"TREMOLO RATE"],[40,"TREMOLO SHAPE"],[41,"TREMOLO SPREAD"],[42,"TREMOLO LEVEL"],[43,"PHASER SYNC"],[44,"PHASER RATE"],[45,"PHASER DEPTH"],[46,"PHASER LEVEL"],[47,"FLANGER SYNC"],[48,"FLANGER RATE"],[49,"FLANGER DEPTH"],[50,"FLANGER FEEDBACK"],[51,"FLANGER LEVEL"],[52,"ROTARY SYNC"],[53,"ROTARY SPEED"],[54,"ROTARY RADIUS"],[55,"ROTARY SPREAD"],[56,"ROTARY LEVEL"],[59,"SPRING1 TIME"],[60,"SPRING1 PRE DELAY"],[61,"SPRING1 COLOR"],[62,"SPRING1 MIX"],[63,"SPRING2 TIME"],[64,"SPRING2 PRE DELAY"],[65,"SPRING2 COLOR"],[66,"SPRING2 MIX"],[67,"SPRING3 TIME"],[68,"SPRING3 PRE DELAY"],[69,"SPRING3 COLOR"],[70,"SPRING3 MIX"],[71,"ROOM TIME"],[72,"ROOM PRE DELAY"],[73,"ROOM COLOR"],[74,"ROOM MIX"],[75,"REVERB POWER"],[76,"PLATE TIME"],[77,"PLATE PRE DELAY"],[78,"PLATE COLOR"],[79,"PLATE MIX"],[80,"SPRING4 TIME"],[81,"SPRING4 PRE DELAY"],[82,"SPRING4 COLOR"],[83,"SPRING4 MIX"],[84,"REVERB POSITION"],[85,"REVERB TYPE"],[91,"TAPE SYNC"],[92,"TAPE TIME"],[93,"TAPE FEEDBACK"],[94,"TAPE MODE"],[95,"TAPE MIX"],[102,"GAIN"],[103,"MODEL VOL"],[104,"MODEL MIX"],[106,"PRESENCE"],[107,"DEPTH"],[108,"VIR RESO"],[109,"VIR MIC1 TYPE"],[110,"VIR MIC1 X"],[111,"VIR MIC1 Z"],[112,"VIR MIC2 TYPE"],[113,"VIR MIC2 X"],[114,"VIR MIC2 Z"],[115,"VIR BLEND"]]},{"id":"head_rush-mx5","brand":"HEAD RUSH","name":"Mx5","cc":[[50,"Footswitch 1"],[51,"Footswitch 2"],[52,"Footswitch 3"],[64,"Tap Tempo"],[65,"Looper 1/2 Speed"],[66,"Looper 2x Speed"],[67,"Looper 1/2 Loop Length"],[68,"Looper 2x Loop Length"],[69,"Looper StartStop"],[70,"Looper Record"],[71,"Looper Insert"],[72,"Looper Peel"],[73,"Looper Mute"],[74,"Looper Reverse"],[75,"Block 1"],[76,"Block 2"],[77,"Block 3"],[78,"Block 4"],[79,"Block 5"],[80,"Block 6"],[81,"Block 7"],[82,"Block 8"],[83,"Block 9"],[84,"Block 10"],[85,"Block 11"]]},{"id":"head-rush-flex-prime","brand":"HEAD RUSH","name":"Flex Prime","cc":[[1,"Internal Expression Pedal"],[2,"External Expression Pedal"],[12,"Global Tempo -"],[13,"Global Tempo +"],[14,"Internal Pedal Switch (A/B)"],[16,"Rig Up (Previous Rig)"],[17,"Rig Down (Next Rig)"],[18,"Bank Up (Previous Bank)"],[19,"Bank Down (Next Bank)"],[20,"Footswitch Bank (A/B)"],[21,"Scene 1"],[22,"Scene 2"],[23,"Scene 3"],[24,"Scene 4"],[25,"Scene 5"],[26,"Scene 6"],[49,"Footswitch 1"],[50,"Footswitch 2"],[51,"Footswitch 3"],[64,"Tap Tempo"],[65,"Looper 1/2 Speed"],[66,"Looper 2X Speed"],[67,"Looper 1/2 Loop"],[68,"Looper 2X Loop"],[69,"Looper Start/Stop"],[70,"Looper Record"],[71,"Looper Insert"],[72,"Looper Peel"],[73,"Looper Mute"],[74,"Looper Reverse"],[75,"Block 1"],[76,"Block 2"],[77,"Block 3"],[78,"Block 4"],[79,"Block 5"],[80,"Block 6"],[81,"Block 7"],[82,"Block 8"],[83,"Block 9"],[84,"Block 10"],[85,"Block 11"],[86,"Block 12"],[87,"Block 13"],[88,"Block 14"],[90,"Hands-Free - Open/Close"],[91,"Looper - Open/Close"],[92,"Tuner - Open/Close"],[93,"Lock Screen - Open/Close"],[94,"Enter Stomp FS Mode"],[95,"Enter Hybrid FS Mode"],[96,"Enter Setlist FS Mode"],[97,"Enter Rig FS Mode"],[102,"Practice Tool - Open/Close"],[103,"Practice Tool - Play/Pause"],[104,"Practice Tool - Stop"],[105,"Practice Tool - Volume -"],[106,"Practice Tool - Volume +"],[107,"Practice Tool - Loop In"],[108,"Practice Tool - Loop Out"],[109,"Practice Tool - Speed -"],[110,"Practice Tool - Speed +"],[111,"Practice Tool - Pitch -"],[112,"Practice Tool - Pitch +"],[113,"Practice Tool - Previous"],[114,"Practice Tool - Next"],[115,"Practice Tool - RWD"],[116,"Practice Tool - FWD"],[117,"Practice Tool - Loop On/Off"],[118,"Metronome - On/Off"],[119,"Metronome - Volume -"],[120,"Metronome - Volume +"],[123,"Looper - Unpeel"]]},{"id":"ik-multimedia-tonex-one-plus","brand":"IK MULTIMEDIA","name":"Tonex One Plus","cc":[[1,"Delay Position"],[2,"Delay Power"],[3,"Delay Type"],[4,"Digital Delay Sync"],[5,"Digital Delay Time"],[6,"Digital Delay Feedback"],[7,"Digital Delay Mode (Normal/Ping Pong)"],[8,"Digital Delay Mix"],[9,"Tuner"],[10,"Tap Tempo"],[12,"Preset On/Off"],[13,"Noise Gate Position"],[14,"Noise Gate Power"],[15,"Noise Gate Threshold"],[16,"Noise Gate Release"],[17,"Noise Gate Depth"],[18,"Compressor Power"],[19,"Compressor Threshold"],[20,"Compressor Gain"],[21,"Compressor Attack"],[22,"Compressor Position"],[23,"Bass"],[24,"Bass Freq"],[25,"Mid"],[26,"Mid Q"],[27,"Mid Freq"],[28,"Treble"],[29,"Treble Freq"],[30,"EQ Position"],[31,"Modulation Position"],[32,"Modulation Power"],[33,"Modulation Type"],[34,"Chorus Sync"],[35,"Chorus Rate"],[36,"Chorus Depth"],[37,"Chorus Level/Mix"],[38,"Tremolo/Phaser Sync"],[39,"Tremolo/Phaser Rate"],[40,"Tremolo/Phaser Shape"],[41,"Tremolo/Phaser Spread"],[42,"Tremolo/Phaser Level/Mix"],[47,"Flanger Sync"],[48,"Flanger Rate"],[49,"Flanger Depth"],[50,"Flanger Feedback"],[51,"Flanger Level/Mix"],[52,"Rotary Sync"],[53,"Rotary Speed"],[54,"Rotary Radius"],[55,"Rotary Spread"],[56,"Rotary Level/Mix"],[59,"Reverb Spring 1 Time"],[60,"Reverb Spring 1 Pre-Delay"],[61,"Reverb Spring 1 Color"],[62,"Reverb Spring 1 Mix"],[63,"Reverb Spring 2 Time"],[64,"Reverb Spring 2 Pre-Delay"],[65,"Reverb Spring 2 Color"],[66,"Reverb Spring 2 Mix"],[67,"Reverb Spring 3 Time"],[68,"Reverb Spring 3 Pre-Delay"],[69,"Reverb Spring 3 Color"],[70,"Reverb Spring 3 Mix"],[71,"Reverb Room Time"],[72,"Reverb Room Pre-Delay"],[73,"Reverb Room Color"],[74,"Reverb Room Mix"],[75,"Reverb Power"],[76,"Reverb Plate Time"],[77,"Reverb Plate Pre-Delay"],[78,"Reverb Plate Color"],[79,"Reverb Plate Mix"],[80,"Reverb Spring 4 Time"],[81,"Reverb Spring 4 Pre-Delay"],[82,"Reverb Spring 4 Color"],[83,"Reverb Spring 4 Mix"],[84,"Reverb Position"],[85,"Reverb Type"],[86,"Preset Down"],[87,"Preset Up"],[88,"BPM"],[91,"Tape Delay Sync"],[92,"Tape Delay Time"],[93,"Tape Delay Feedback"],[94,"Tape Delay Mode (Normal/Ping Pong)"],[95,"Tape Delay Mix"],[102,"Gain"],[103,"Volume / Model"],[104,"Mix / Model"],[106,"Presence"],[107,"Depth"]]},{"id":"neural-dsp-nano-cortex","brand":"Neural DSP","name":"Nano Cortex","cc":[[1,"Pedal de Express\u00e3o"],[34,"Bypass Gate"],[35,"Bypass Capture"],[36,"Bypass CAB/IR"],[37,"Bypass FX 1"],[38,"Bypass FX 2"],[39,"Bypass FX 3"],[40,"Bypass FX 4"],[41,"Bypass FX 5"],[42,"Tap Tempo"],[43,"Afinador"]]},{"id":"line-6-hx-stomp","brand":"Line 6","name":"Hx Stomp","cc":[[1,"EXP1"],[2,"EXP2"],[10,"COMP"],[11,"BOOST"],[12,"DRIVE"],[13,"DIST"],[14,"FUZZ"],[15,"WAH"],[16,"PITCH"],[17,"OCTAVE"],[18,"HARMON"],[19,"WHAMMY"],[20,"AMP"],[21,"CAB"],[22,"EQ"],[23,"CHORUS"],[24,"FLANGER"],[25,"PHASER"],[26,"TREMOLO"],[27,"ROTARY"],[28,"VIBE"],[29,"DELAY"],[30,"REVERB"],[31,"LOOPER"],[49,"FS1"],[50,"FS2"],[51,"FS3"],[52,"FS4"],[53,"FS5"],[60,"LOOP REC"],[61,"LOOP PLAY"],[62,"LOOP ONCE"],[63,"LOOP UNDO"],[64,"TAP"],[65,"LOOP REV"],[66,"LOOP HALF"],[68,"TUNER"],[69,"SNAPSHOT"],[70,"BYPASS"],[71,"MODE"]]},{"id":"neural-dsp-quad-cortex","brand":"Neural DSP","name":"Quad Cortex","cc":[[1,"Express\u00e3o 1"],[2,"Express\u00e3o 2"],[35,"Pedal A"],[36,"Pedal B"],[37,"Pedal C"],[38,"Pedal D"],[39,"Pedal E"],[40,"Pedal F"],[41,"Pedal G"],[42,"Pedal H"],[43,"Cenas (A-H)"],[44,"Tap Tempo"],[45,"Afinador"],[46,"Gig View"],[47,"Modos (Preset/Scene/Stomp)"],[48,"Looper: Abrir/Fechar Editor"],[49,"Looper: Duplicar"],[50,"Looper: One Shot"],[51,"Looper: Meia Velocidade"],[52,"Looper: In/Out Grava\u00e7\u00e3o"],[53,"Looper: Record/Overdub"],[54,"Looper: Play/Stop"],[55,"Looper: Reverse"],[56,"Looper: Undo/Redo"],[57,"Looper: Modo Duplicado"],[58,"Looper: Quantizar"],[59,"Looper: In\u00edcio Clock MIDI"],[60,"Looper: Troca Modo Exec/Param"],[61,"Looper: Modo de Roteamento"],[62,"Ignorar PC Duplicado"]]},{"id":"strymon-elcapistan","brand":"Strymon","name":"Elcapistan","cc":[[0,"Bank Select"],[11,"Tape Head"],[12,"Time"],[13,"Wow Flutter"],[14,"Tape Age"],[15,"Mode"],[16,"Mix"],[17,"Spring"],[18,"Repeats"],[19,"Type Encoder"],[20,"Value Encoder"],[60,"Expression On/Off"],[63,"MIDI Clock On/Off"],[80,"Footswitch A"],[81,"Tap Footswitch"],[82,"Footswitch B"],[93,"Remote Tap"],[97,"Infinite Repeats"],[100,"Expression Pedal"],[102,"Bypass"]]},{"id":"line-6-hxone","brand":"Line 6","name":"Hx one","cc":[[1,"On Footswitch Toggle"],[2,"FLUX Footswitch"],[3,"Expression Pedal"],[4,"Bypass/Engage"],[5,"View Select"],[21,"Parameter 1"],[22,"Parameter 2"],[23,"Parameter 3"],[24,"Parameter 4"],[25,"Parameter 5"],[26,"Parameter 6"],[27,"Parameter 7"],[28,"Parameter 8"],[29,"Parameter 9"],[30,"Parameter 10"],[31,"Parameter 11"],[33,"Parameter 12"],[34,"Parameter 13"],[35,"Parameter 14"],[36,"Parameter 15"],[37,"Parameter 16"],[38,"Parameter 17"],[39,"Parameter 18"],[40,"Parameter 19"],[41,"Parameter 20"],[42,"Parameter 21"],[43,"Parameter 22"],[44,"Parameter 23"],[45,"Parameter 24"],[46,"FLUX OnTime"],[47,"FLUX OnCurve"],[48,"FLUX OffTime"],[49,"FLUX OffCurve"],[50,"Looper Record/Overdub"],[51,"Looper Play/Stop"],[52,"Looper Undo/Redo"],[53,"Looper Half Speed"],[54,"Looper Reverse"],[55,"Looper Level"],[93,"Tap Tempo"]]},{"id":"vtr-vtr-narciso","brand":"VTR","name":"VTR Narciso","cc":[[1,"Bypass"],[2,"Algorithm Select"],[3,"Delay Time"],[4,"Repeat"],[5,"Charm"],[6,"Mix"],[7,"Preset Next"],[8,"Preset Previous"],[9,"Rhythmic Figure"]]},{"id":"vtr-vtr-loki","brand":"VTR","name":"VTR Loki","cc":[[1,"Bypass"],[2,"Algorithm Select"],[3,"Rate"],[4,"Spade"],[5,"Diamond"],[6,"Hearts"],[7,"Preset Next"],[8,"Preset Previous"],[9,"Rhythmic Figure"]]},{"id":"vtr-kailani-kailani","brand":"VTR","name":"VTR Kailani","cc":[[1,"Bypass"],[2,"Algorithm Select"],[3,"Decay"],[4,"Sea"],[5,"Sky"],[6,"Mix"],[7,"Preset Next"],[8,"Preset Previous"]]},{"id":"vtr-vtr-ignis","brand":"VTR","name":"VTR Ignis","cc":[[1,"Bypass"]]},{"id":"vtr-vtr-helios","brand":"VTR","name":"VTR Helios","cc":[[1,"Bypass"],[2,"Clipping Type"],[3,"Bass"],[4,"Tone"],[5,"Gain"],[6,"Level"]]},{"id":"vtr-vtr-venator","brand":"VTR","name":"VTR Venator","cc":[[1,"Bypass"],[2,"Clipping Type"],[3,"Gain"],[4,"Level"],[5,"Tone"],[6,"Bass"],[7,"Blend"]]},{"id":"saturno-spacewalk","brand":"Saturnuno Pedais","name":"SPACEWALK","cc":[[0,"Bypass"],[1,"Tap Tempo"],[2,"Dry Level"],[3,"Dry Level L"],[4,"Dry Level R"],[8,"EXP Control"],[10,"Toggle Bypass"],[11,"Time Dsp 1"],[12,"Feedback Dsp1"],[13,"DelayMix Dsp1"],[14,"Reserved Dsp1"],[15,"Reserved2 Dsp1"],[21,"Time Dsp 2"],[22,"Feedback Dsp2"],[23,"DelayMix Dsp2"],[24,"Reserved Dsp2"],[25,"Reserved2 Dsp2"]]},{"id":"saturno-timespace","brand":"Saturnuno Pedais","name":"TIMESPACE","cc":[[0,"Bypass"],[1,"Tap Tempo"],[2,"Dry Level"],[3,"Dry Level L"],[4,"Dry Level R"],[8,"EXP Control"],[10,"Toggle Bypass"],[11,"Time Dsp 1"],[12,"Feedback Dsp1"],[13,"DelayMix Dsp1"],[14,"Reserved Dsp1"],[15,"Reserved2 Dsp1"],[21,"Time Dsp 2"],[22,"Feedback Dsp2"],[23,"DelayMix Dsp2"],[24,"Reserved Dsp2"],[25,"Reserved2 Dsp2"]]}]`);
 
 function An(e) {
     return String(e || ``).trim().toLowerCase()
@@ -12465,6 +12465,108 @@ function Wn() {
 
 function Gn() {
     Rn([])
+}
+var MIDI_DICT_SLOTS_KEY = `midi-dict-slots-v1`,
+    MIDI_DICT_SLOTS_EVT = `midi-dict-slots-updated`;
+
+function midiDictSlotKey(bus, deviceIndex, channel) {
+    let b = String(bus || `usb`).toLowerCase();
+    if (b !== `usb` && b !== `bt` && b !== `serial`) b = `usb`;
+    let d = Math.max(0, Math.min(3, Number(deviceIndex) || 0)),
+        ch = Math.max(1, Math.min(16, Number(channel) || 1));
+    return `${b}:${d}:${ch}`
+}
+
+function loadMidiDictSlots() {
+    if (typeof window > `u`) return {
+        slots: {},
+        fallbackPedalId: null
+    };
+    try {
+        let raw = window.localStorage.getItem(MIDI_DICT_SLOTS_KEY);
+        if (!raw) {
+            let leg = window.localStorage.getItem(`midiDictPedalId`);
+            return {
+                slots: {},
+                fallbackPedalId: String(leg || ``).trim().toLowerCase() || null
+            }
+        }
+        let p = JSON.parse(raw);
+        return {
+            slots: p && typeof p.slots == `object` ? p.slots : {},
+            fallbackPedalId: p?.fallbackPedalId ? String(p.fallbackPedalId).trim().toLowerCase() : null
+        }
+    } catch {
+        return {
+            slots: {},
+            fallbackPedalId: null
+        }
+    }
+}
+
+function saveMidiDictSlots(cfg) {
+    if (typeof window > `u`) return;
+    let data = {
+        slots: cfg?.slots && typeof cfg.slots == `object` ? cfg.slots : {},
+        fallbackPedalId: cfg?.fallbackPedalId ? String(cfg.fallbackPedalId).trim().toLowerCase() : null
+    };
+    window.localStorage.setItem(MIDI_DICT_SLOTS_KEY, JSON.stringify(data));
+    window.dispatchEvent(new CustomEvent(MIDI_DICT_SLOTS_EVT))
+}
+
+function setMidiDictSlot(bus, deviceIndex, channel, pedalId) {
+    let cfg = loadMidiDictSlots(),
+        key = midiDictSlotKey(bus, deviceIndex, channel);
+    if (pedalId) cfg.slots[key] = String(pedalId).trim().toLowerCase();
+    else delete cfg.slots[key];
+    saveMidiDictSlots(cfg)
+}
+
+function getUsbDeviceCount(usbmode) {
+    return Number(usbmode) === 3 ? 4 : 1
+}
+
+function outputToMidiDictBuses(output) {
+    let o = String(output || `USB+MIDI`).trim();
+    if (o === `USB`) return [`usb`];
+    if (o === `BT`) return [`bt`];
+    if (o === `MIDI`) return [`serial`];
+    if (o === `USB+BT`) return [`usb`, `bt`];
+    if (o === `USB+MIDI`) return [`usb`, `serial`];
+    if (o === `BT+MIDI`) return [`bt`, `serial`];
+    if (o === `USB+BT+MIDI`) return [`usb`, `bt`, `serial`];
+    return [`usb`]
+}
+
+function resolvePedalIdForCommand(output, channel, hubDevice, fallbackPedalId) {
+    let cfg = loadMidiDictSlots(),
+        fb = fallbackPedalId || cfg.fallbackPedalId || null;
+    try {
+        if (!fb) {
+            let leg = window.localStorage.getItem(`midiDictPedalId`);
+            if (leg) fb = String(leg).trim().toLowerCase()
+        }
+    } catch {}
+    let ch = Math.max(1, Math.min(16, Number(channel) || 1)),
+        buses = outputToMidiDictBuses(output);
+    for (let bus of buses) {
+        let devIdx = bus === `usb` ? Math.max(0, Math.min(3, Number(hubDevice) || 0)) : 0,
+            key = midiDictSlotKey(bus, devIdx, ch),
+            id = cfg.slots[key];
+        if (id) return id
+    }
+    return fb || null
+}
+
+function subscribeMidiDictSlots(cb) {
+    if (typeof window > `u`) return () => {};
+    let h = () => cb();
+    window.addEventListener(MIDI_DICT_SLOTS_EVT, h);
+    window.addEventListener(In, h);
+    return () => {
+        window.removeEventListener(MIDI_DICT_SLOTS_EVT, h);
+        window.removeEventListener(In, h)
+    }
 }
 var Kn = (...e) => e.filter((e, t, n) => !!e && e.trim() !== `` && n.indexOf(e) === t).join(` `).trim(),
     qn = e => e.replace(/([a-z0-9])([A-Z])/g, `$1-$2`).toLowerCase(),
@@ -12761,7 +12863,9 @@ var Kn = (...e) => e.filter((e, t, n) => !!e && e.trim() !== `` && n.indexOf(e) 
     }),
     pr = (0, N.createContext)({
         pedalId: null,
-        setPedalId: () => {}
+        setPedalId: () => {},
+        resolvePedalId: () => null,
+        usbmode: 0
     }),
     mr = () => typeof crypto < `u` && typeof crypto.randomUUID == `function` ? crypto.randomUUID() : `xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx`.replace(/[xy]/g, e => {
         let t = Math.random() * 16 | 0;
@@ -12773,26 +12877,29 @@ En(`/`)({
             title: `Editor de Preset — Guerrilha PRO`
         }, {
             name: `description`,
-            content: `Editor de presets para os controladores Guerrilha PRO MT-4S / MT-6S / MT-8S: bancos A–E, footswitches, expressão, Wi-Fi e Web Serial.`
+            content: `Editor de presets para os controladores Guerrilha PRO MX-4 / MX-6 / MX-8: bancos A–E, footswitches, expressão, Wi-Fi e Web Serial.`
         }]
     }),
     component: Xr
 });
 var hr = [`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`],
     gr = {
-        "MT-4S": {
+        "MX-4": {
             fs: 4,
             grid: `grid-cols-2`
         },
-        "MT-6S": {
+        "MX-6": {
             fs: 6,
             grid: `grid-cols-2`
         },
-        "MT-8S": {
+        "MX-8": {
             fs: 8,
             grid: `grid-cols-2`
         }
-    },
+    };
+    Object.defineProperties(gr, { "MT-4S": { value: gr["MX-4"] }, "MT-6S": { value: gr["MX-6"] }, "MT-8S": { value: gr["MX-8"] } });
+    var 
+    DISPLAY_STYLE_LABELS = [`Clássico`, `Ícone`, `Ícones`, `Destaque`, `Preset / Stomp`, `Vitrine`, `Custom`, `Amp`],
     _r = [`#dc2626`, `#3b82f6`, `#22c55e`, `#eab308`, `#ec4899`, `#a855f7`, `#06b6d4`, `#f43f5e`],
     vr = [{
         name: `Off`,
@@ -12832,12 +12939,12 @@ var hr = [`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`],
         value: `#ff00ff`
     }],
     yr = {
-        on: `#dc2626`,
-        off: `#0b0c0e`,
-        holdOn: `#22d3ee`,
-        holdOff: `#3b82f6`
+        on: `#ff8800`,
+        off: `#101010`,
+        holdOn: `#ff8800`,
+        holdOff: `#101010`
     },
-    br = [`Normal`, `Momentâneo`, `Tap`, `Ricochet`, `STG`],
+    br = [`Normal`, `Momentâneo`, `Tap`, `Ricochet`, `STG`, `STG Auto`],
     xr = [`USB`, `BT`, `USB+BT`, `MIDI`, `USB+MIDI`, `BT+MIDI`, `USB+BT+MIDI`],
     Sr = [`CC`, `CC Up`, `CC Down`, `PC`, `PC Up`, `PC Down`, `SysEx`, `FS Sync`, `Banco+ (interno)`, `Banco− (interno)`],
     Cr = [`CC`, `PC`, `SysEx`],
@@ -12849,6 +12956,7 @@ var hr = [`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`],
             length: 5
         }, (e, t) => ({
             ledPercent: Math.round((t + 1) * 100 / 5),
+            timeMs: 1e3,
             commands: []
         }))
     }),
@@ -12873,6 +12981,7 @@ var hr = [`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`],
     kr = e => ({
         mode: `Normal`,
         label: `FS${e}`,
+        stompName: ``,
         iconKey: ``,
         gridFill: 0,
         sceneMask: [],
@@ -12882,6 +12991,12 @@ var hr = [`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`],
         presetLed: {
             ...yr
         },
+        stgLoopCcEnabled: !1,
+        stgLoopCcOutput: `USB+BT`,
+        stgLoopCcChannel: 1,
+        stgLoopCc: 0,
+        stgLoopCcValueOn: 127,
+        stgLoopCcValueOff: 0,
         stompCommands: [{
             id: mr(),
             type: `CC`,
@@ -12894,6 +13009,14 @@ var hr = [`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`],
         }],
         presetCommands: []
     }),
+    buildCustomFxCmdDefault = (idx = 0) => ({
+        type: `CC`,
+        channel: 1,
+        cc: 0,
+        valueOn: 127,
+        valueOff: 0,
+        output: `USB+MIDI`
+    }),
     buildCustomFxDefault = e => ({
         name: `FX ${e}`,
         icon: ``,
@@ -12901,30 +13024,135 @@ var hr = [`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`],
         cc: 0,
         valueOn: 127,
         valueOff: 0,
+        output: `USB+MIDI`,
         colorR: 220,
         colorG: 38,
         colorB: 38,
-        assignedFs: 0
+        assignedFs: 0,
+        commands: [buildCustomFxCmdDefault(0)]
     }),
+    midi7 = (e, t) => {
+        if (e === void 0 || e === null || e === ``) return t;
+        let n = Number(e);
+        return Number.isFinite(n) ? Math.max(0, Math.min(127, n | 0)) : t
+    },
+    midi8 = (e, t) => {
+        if (e === void 0 || e === null || e === ``) return t;
+        let n = Number(e);
+        return Number.isFinite(n) ? Math.max(0, Math.min(255, n | 0)) : t
+    },
+    normalizeCustomFxCmd = (c, def) => {
+        let raw = c && typeof c == `object` ? c : {};
+        let t = typeof raw.type == `string` ? (raw.type.toUpperCase() === `PC` ? `PC` : `CC`) : (Number(raw.type) === 1 ? `PC` : `CC`);
+        let outStr = typeof raw.output == `number` ? (xr[raw.output] || `USB+MIDI`) : (typeof raw.output == `string` && xr.includes(raw.output) ? raw.output : (def?.output || `USB+MIDI`));
+        return {
+            type: t,
+            channel: Math.max(1, Math.min(16, Number(raw.channel) || def?.channel || 1)),
+            cc: midi7(raw.cc, def?.cc || 0),
+            valueOn: midi7(raw.valueOn, def?.valueOn ?? 127),
+            valueOff: midi7(raw.valueOff, def?.valueOff ?? 0),
+            output: outStr
+        };
+    },
     normalizeCustomFx = (e, t) => {
         let n = buildCustomFxDefault(t),
             r = e && typeof e == `object` ? e : {};
+        let outStr = typeof r.output == `number` ? (xr[r.output] || n.output) : (typeof r.output == `string` && xr.includes(r.output) ? r.output : n.output);
+        let cmds = Array.isArray(r.commands) && r.commands.length > 0 
+            ? r.commands.slice(0, 4).map(c => normalizeCustomFxCmd(c, n.commands[0]))
+            : [normalizeCustomFxCmd({
+                type: `CC`,
+                channel: r.channel,
+                cc: r.cc,
+                valueOn: r.valueOn,
+                valueOff: r.valueOff,
+                output: outStr
+            }, n.commands[0])];
+        let first = cmds[0];
         return {
             ...n,
             ...r,
             name: typeof r.name == `string` && r.name.trim() ? r.name.slice(0, 15) : n.name,
             icon: typeof r.icon == `string` ? r.icon.slice(0, 23) : ``,
-            channel: Math.max(1, Math.min(16, Number(r.channel) || 1)),
-            cc: Math.max(0, Math.min(127, Number(r.cc) || 0)),
-            valueOn: Math.max(0, Math.min(127, Number(r.valueOn) || 0)),
-            valueOff: Math.max(0, Math.min(127, Number(r.valueOff) || 0)),
-            colorR: Math.max(0, Math.min(255, Number(r.colorR) || 0)),
-            colorG: Math.max(0, Math.min(255, Number(r.colorG) || 0)),
-            colorB: Math.max(0, Math.min(255, Number(r.colorB) || 0)),
-            assignedFs: Math.max(0, Math.min(8, Number(r.assignedFs) || 0))
+            channel: first.channel,
+            cc: first.cc,
+            valueOn: first.valueOn,
+            valueOff: first.valueOff,
+            output: first.output,
+            colorR: midi8(r.colorR, n.colorR),
+            colorG: midi8(r.colorG, n.colorG),
+            colorB: midi8(r.colorB, n.colorB),
+            assignedFs: Math.max(0, Math.min(8, Number(r.assignedFs) || 0)),
+            commands: cmds
         }
     },
     customFxHex = e => Mr(Number(e?.colorR) || 0, Number(e?.colorG) || 0, Number(e?.colorB) || 0);
+
+
+function applyFxColorsToStompLeds(fsMap, usb) {
+    if (!fsMap || typeof fsMap != `object`) return fsMap;
+    let list = Array.isArray(usb?.customFx) ? usb.customFx : [];
+    if (!list.length) return fsMap;
+    let next = fsMap,
+        changed = !1;
+    for (let i = 0; i < list.length; i++) {
+        let fx = normalizeCustomFx(list[i], i + 1),
+            fs = Number(fx.assignedFs) || 0;
+        if (fs < 1 || fs > 8) continue;
+        let hex = customFxHex(fx),
+            cur = next[fs] || kr(fs);
+        if ((cur.stompLed || yr).on === hex) continue;
+        if (!changed) {
+            next = {
+                ...fsMap
+            }, changed = !0
+        }
+        next[fs] = {
+            ...cur,
+            stompLed: {
+                ...(cur.stompLed || yr),
+                on: hex,
+                holdOn: hex
+            }
+        }
+    }
+    return next
+}
+
+function displayStyleOptionsForFs(fsCount) {
+    let fs = Number(fsCount || 0);
+    if (fs === 8) return [`Preset / Stomp`, `Ícones`, `Amp`, `Custom`];
+    return [`Clássico`, `Custom`];
+}
+
+function displayStyleLabelForValue(v) {
+    return DISPLAY_STYLE_LABELS[Math.max(0, Math.min(7, Number(v || 0)))] || `Clássico`;
+}
+
+function displayStyleValueForLabel(fsCount, label) {
+    let fs = Number(fsCount || 0);
+    if (fs === 8) {
+        if (label === `Ícones` || label === `Blocos`) return 2;
+        if (label === `Amp` || label === `AMP`) return 7;
+        if (label === `Custom` || label === `Imagem de Fundo` || label === `Fundo Puro`) return 6;
+        if (label === `Preset / Stomp` || label === `Anel` || label === `Anel Preset`) return 4;
+        return 4;
+    }
+    if (label === `Custom` || label === `Imagem de Fundo` || label === `Fundo Puro`) return 6;
+    return 0;
+}
+
+function displayStyleClampForModel(fsCount, style) {
+    let fs = Number(fsCount || 0);
+    let v = Math.max(0, Math.min(7, Number(style || 0)));
+    if (!fs && (v === 2 || v === 4 || v === 7)) fs = 8;
+    if (fs === 8) {
+        if (v === 2 || v === 4 || v === 6 || v === 7) return v;
+        return 4;
+    }
+    if (v === 6) return 6;
+    return 0;
+}
 
 function Ar(e, t) {
     let n = Math.max(0, Math.min(100, t)) / 100,
@@ -12936,7 +13164,7 @@ function Ar(e, t) {
 }
 
 function jr(e) {
-    return e === `Momentâneo` ? Cr : e === `Tap` ? wr : e === `Ricochet` || e === `STG` ? [] : Sr
+    return e === `Momentâneo` ? Cr : e === `Tap` ? wr : e === `Ricochet` || e === `STG` || e === `STG Auto` ? [] : Sr
 }
 
 function Mr(e, t, n) {
@@ -13331,6 +13559,7 @@ function mergeSistemaFields(usb, cfg) {
     let midiEnable = pick(cfg.midiEnable, cfg.S_MIDI_EN, cfg.midiSerialEn, cfg.midiSerialEnable),
         midiChannel = pick(cfg.midiChannel, cfg.S_MIDI_CH, cfg.midiSerialCh, cfg.midiSerialChannel),
         midiPreset = pick(cfg.midiPreset, cfg.MIDI_PRESET, cfg.midiSerialPre, cfg.midiSerialPreset),
+        midiInRoute = pick(cfg.midiInRoute, cfg.S_MIDI_IN_ROUTE),
         btMode = pick(cfg.btMode, cfg.BT_MODE),
         btPreset = pick(cfg.btPreset, cfg.BT_PRESET),
         btMidiCc = pick(cfg.btMidiCc, cfg.BT_MIDI_CC),
@@ -13344,6 +13573,7 @@ function mergeSistemaFields(usb, cfg) {
     if (Number.isFinite(Number(midiEnable))) out.midiEnable = out.S_MIDI_EN = Number(midiEnable);
     if (Number.isFinite(Number(midiChannel))) out.midiChannel = out.S_MIDI_CH = Number(midiChannel);
     if (Number.isFinite(Number(midiPreset))) out.midiPreset = out.MIDI_PRESET = Number(midiPreset);
+    if (Number.isFinite(Number(midiInRoute))) out.midiInRoute = out.S_MIDI_IN_ROUTE = Number(midiInRoute);
     if (Number.isFinite(Number(btMode))) out.btMode = out.BT_MODE = Number(btMode);
     if (Number.isFinite(Number(btPreset))) out.btPreset = out.BT_PRESET = Number(btPreset);
     if (Number.isFinite(Number(btMidiCc))) out.btMidiCc = out.BT_MIDI_CC = Number(btMidiCc);
@@ -13734,20 +13964,7 @@ function buildGbUsbParts(e, t = {}) {
             customBankUpHoldFs: e?.customBankUpHoldFs,
             customBankDownHoldFs: e?.customBankDownHoldFs
         }),
-        r = scrubUsbPart({
-            midiPcUpDownShared: e?.midiPcUpDownShared,
-            midiPcGlobalStart: e?.midiPcGlobalStart,
-            midiPcGlobalEnd: e?.midiPcGlobalEnd,
-            midiPcGlobalInc: e?.midiPcGlobalInc,
-            midiPcGlobalLoop: e?.midiPcGlobalLoop,
-            midiPcSharedValue: e?.midiPcSharedValue,
-            midiCcUpDownShared: e?.midiCcUpDownShared,
-            midiCcGlobalStart: e?.midiCcGlobalStart,
-            midiCcGlobalEnd: e?.midiCcGlobalEnd,
-            midiCcGlobalInc: e?.midiCcGlobalInc,
-            midiCcGlobalLoop: e?.midiCcGlobalLoop,
-            midiCcSharedValue: e?.midiCcSharedValue
-        }),
+        r = null,
         i = scrubUsbPart({
             bankLedR_on: e?.bankLedR_on,
             bankLedG_on: e?.bankLedG_on,
@@ -13821,7 +14038,7 @@ function buildExpUsbParts(e) {
     }
     return parts.filter(Boolean)
 }
-function buildSistemaUsbParts(e) {
+function buildConexoesUsbParts(e) {
     let parts = [];
     let usbPart = scrubUsbPart({
         usbmode: usbFieldPresent(e, `usbmode`) ? Number(e.usbmode) : void 0,
@@ -13829,18 +14046,21 @@ function buildSistemaUsbParts(e) {
         controllerPath: usbFieldPresent(e, `controllerPath`) ? Number(e.controllerPath) : void 0
     });
     usbPart && parts.push(usbPart);
-    let hasMidi = [`midiEnable`, `S_MIDI_EN`, `midiChannel`, `S_MIDI_CH`, `midiPreset`, `MIDI_PRESET`].some(k => usbFieldPresent(e, k));
+    let hasMidi = [`midiEnable`, `S_MIDI_EN`, `midiChannel`, `S_MIDI_CH`, `midiPreset`, `MIDI_PRESET`, `midiInRoute`, `S_MIDI_IN_ROUTE`].some(k => usbFieldPresent(e, k));
     if (hasMidi) {
         let o = Number(e?.midiEnable ?? e?.S_MIDI_EN ?? 0),
             s = Math.max(1, Math.min(16, Number(e?.midiChannel ?? e?.S_MIDI_CH) || 1)),
-            c = Number(e?.midiPreset ?? e?.MIDI_PRESET ?? 0);
+            c = Number(e?.midiPreset ?? e?.MIDI_PRESET ?? 0),
+            route = Math.max(0, Math.min(4, Number(e?.midiInRoute ?? e?.S_MIDI_IN_ROUTE ?? 0)));
         parts.push(scrubUsbPart({
             S_MIDI_EN: o,
             S_MIDI_CH: s,
             MIDI_PRESET: c,
+            S_MIDI_IN_ROUTE: route,
             midiEnable: o,
             midiChannel: s,
-            midiPreset: c
+            midiPreset: c,
+            midiInRoute: route
         }))
     }
     let hasBt = [`btMode`, `BT_MODE`, `btPreset`, `BT_PRESET`, `btMidiCc`, `BT_MIDI_CC`, `btCustomEnable`, `BT_CUST_EN`, `btCustomName`, `BT_CUST_NAME`].some(k => usbFieldPresent(e, k));
@@ -13863,11 +14083,14 @@ function buildSistemaUsbParts(e) {
             btCustomName: a
         }))
     }
-    /* USB → MIDI → BT (BT por último — SPIFFS mais pesado). */
-    let hasDisp = [`displayStyle`, `displayNameSrc`, `displayLayout`, `displayGridCenterName`, `displayBgMode`, `displayBgR`, `displayBgG`, `displayBgB`, `displayBgR2`, `displayBgG2`, `displayBgB2`].some(k => usbFieldPresent(e, k));
+    return parts.filter(Boolean)
+}
+function buildTelaUsbParts(e) {
+    let parts = [];
+    let hasDisp = [`displayStyle`, `displayNameSrc`, `displayLayout`, `displayGridCenterName`, `displayBgMode`, `displayBgR`, `displayBgG`, `displayBgB`, `displayBgR2`, `displayBgG2`, `displayBgB2`, `displaySimpleBankR`, `displaySimpleBankG`, `displaySimpleBankB`, `displaySimpleFootR`, `displaySimpleFootG`, `displaySimpleFootB`, `displaySimpleNameR`, `displaySimpleNameG`, `displaySimpleNameB`, `displayPresetLayout`, `displayLiveLayout`, `displayIconShape`, `displayPresetShowNames`].some(k => usbFieldPresent(e, k));
     if (hasDisp) {
         parts.push(scrubUsbPart({
-            displayStyle: Math.max(0, Math.min(3, Number(e?.displayStyle || 0))),
+            displayStyle: displayStyleClampForModel(e?.fsCount, e?.displayStyle),
             displayNameSrc: Number(e?.displayNameSrc || 0) ? 1 : 0,
             displayLayout: Math.max(0, Math.min(3, Number(e?.displayLayout || 0))),
             displayGridCenterName: Number(e?.displayGridCenterName || 0) ? 1 : 0,
@@ -13877,10 +14100,38 @@ function buildSistemaUsbParts(e) {
             displayBgB: Math.max(0, Math.min(255, Number(e?.displayBgB ?? 0))),
             displayBgR2: Math.max(0, Math.min(255, Number(e?.displayBgR2 ?? 24))),
             displayBgG2: Math.max(0, Math.min(255, Number(e?.displayBgG2 ?? 24))),
-            displayBgB2: Math.max(0, Math.min(255, Number(e?.displayBgB2 ?? 24)))
+            displayBgB2: Math.max(0, Math.min(255, Number(e?.displayBgB2 ?? 24))),
+            displaySimpleBankR: Math.max(0, Math.min(255, Number(e?.displaySimpleBankR ?? 255))),
+            displaySimpleBankG: Math.max(0, Math.min(255, Number(e?.displaySimpleBankG ?? 255))),
+            displaySimpleBankB: Math.max(0, Math.min(255, Number(e?.displaySimpleBankB ?? 255))),
+            displaySimpleFootR: Math.max(0, Math.min(255, Number(e?.displaySimpleFootR ?? 56))),
+            displaySimpleFootG: Math.max(0, Math.min(255, Number(e?.displaySimpleFootG ?? 189))),
+            displaySimpleFootB: Math.max(0, Math.min(255, Number(e?.displaySimpleFootB ?? 248))),
+            displaySimpleNameR: Math.max(0, Math.min(255, Number(e?.displaySimpleNameR ?? 255))),
+            displaySimpleNameG: Math.max(0, Math.min(255, Number(e?.displaySimpleNameG ?? 255))),
+            displaySimpleNameB: Math.max(0, Math.min(255, Number(e?.displaySimpleNameB ?? 255))),
+            displayPresetLayout: usbFieldPresent(e, `displayPresetLayout`) ? Number(e.displayPresetLayout ?? 0) : void 0,
+            displayLiveLayout: usbFieldPresent(e, `displayLiveLayout`) ? Number(e.displayLiveLayout ?? 2) : void 0,
+            displayIconShape: usbFieldPresent(e, `displayIconShape`) ? Number(e.displayIconShape ?? 0) : void 0,
+            displayPresetShowNames: usbFieldPresent(e, `displayPresetShowNames`) ? (Number(e.displayPresetShowNames || 0) ? 1 : 0) : void 0
         }))
     }
+    if (Array.isArray(e?.fsBgSlot)) {
+        parts.push(scrubUsbPart({ fsBgSlot: e.fsBgSlot }));
+    }
+    if (Array.isArray(e?.fsIconKey)) {
+        parts.push(scrubUsbPart({ fsIconKey: e.fsIconKey }));
+    }
+    if (Array.isArray(e?.customPositionsPreset) || Array.isArray(e?.customPositionsLive)) {
+        parts.push(scrubUsbPart({
+            customPositionsPreset: Array.isArray(e?.customPositionsPreset) ? e.customPositionsPreset : void 0,
+            customPositionsLive: Array.isArray(e?.customPositionsLive) ? e.customPositionsLive : void 0
+        }));
+    }
     return parts.filter(Boolean)
+}
+function buildSistemaUsbParts(e) {
+    return [...buildConexoesUsbParts(e), ...buildTelaUsbParts(e)]
 }
 function buildAllGlobalUsbParts(e, t = {}) {
     return [...buildGbUsbParts(e, t), ...buildStompUsbParts(e, t), ...buildExpUsbParts(e)]
@@ -14179,6 +14430,7 @@ var DISPLAY_WHITE_PACK = [
     [`wah`, `Wah`],
     [`wahx`, `Exp`],
 ];
+var DISPLAY_WHITE_PACK_MAP = (typeof DISPLAY_WHITE_PACK !== "undefined") ? Object.fromEntries(DISPLAY_WHITE_PACK) : {};
 
 var DISPLAY_WHITE_PACK_PNG = {
     "amp": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEYAAABGCAYAAABxLuKEAAAEaklEQVR4nO2cz29URRzAP9/XbVEQvZlSlh+lmzcvISGBAwkJRDTGiBiLED0QhHjx6h9gE03q0US56cUYq56suiYqejAVgsGLGhLcXX5IY2lrBC4CoWnKfj28QXdfO2Wbvn19rPO57NuZedPvfHY6O/vefhc8Hk8KyFIaKwhRtAPVQWAPsA4oAmvaEdwyuAVMAH8ichKRslQqPy+lg5bEKAjGvAAMA+HS48wFNWCIWm1UQO/V+J5itFQaoKvrE2CnLfoD1TJB8BVwmZ6eSTl79tbyYk4X3bz5AVat2gT0A/uAQ8D6uFLPIHJYarXLi/WxqBgNw92IjAKPAlcQGaa3930ZG5tLZQQZoRBgzCHgLWAjcB14UWq1713nOMWoMY8D3wLdwBfAUanVbqQaccbo1q0PMTc3AhwAZhF5SqrVH1rvoFQaUGOuqTGqxryjS1yk84xCoMYct2O7qsb0t3qiqDE/qTGqYTiqELQ51syxcspWzo8LvfDzBx2/++wEpujuPiZQzyDWTBGoc+fOS8AksIsoOphs0yTGmhuOz5bX5Ny5m1kEuhLIxYt/o/oGAKpvJuubZ0wU7SDep0xSrX6YQXwrS1/fB8QbwUhLpe2NVc1iVA/Yo0878V8oiYyNzaFaBqBQGGysS64xu+3jiQziygtfA6C6p7EwKSbeHQbBpUxCygP/jXV9U3GiWS8At29PZBBSPlCdtkd9jcVJMWsBZHx8JouY8kDDbn5tY3nHbd7Swotx4MU48GIceDEOvBgHXowDL8ZB6mJUdb+qXtHsmFDVfWmPox0z5l0SnzvaTBF4L+1OC2l3SBwoIpLJdWJVVWBD2v36NcaBF+PAi3HgxTjwYhx4MQ68GAft2McA/+4v7lv8jHHQthmT8c43dfyMceDFOPBiHLRjjbkCFDN+V0r9zmk7ZswrxHKyYsL+zVRJfcaIyDe04fpI1vg1xoEX48CLceDFOPBiHHgxDrwYB16Mg6SYG2CzNP4naLH4oD1syqxJiom/wVivr8sgpnywevUmezTZWJwUE1fW6wMZhJQPVO+OdaqxuFmMyCnb+JlMgsoDQRCPVbUpoSsppmwfB3Xv3rZd9swLCl3A8/ET/bKxrllMpfILcbbpRqanj2UU38oRhi8Tp0hX5MKFXxurmsTYtNsh+/R1Nabp29KdhJZKDyNyNzdrKFk/fx9Tq42ieob4mspIp6b+0dU1Qpw7cZpq9fNkm3mDFlBEDgPXgEGMebuT5CgEhOFx4DngKiJHFkpQd6cXR9FjqH4H9NAp6cVbtjxCofARIs8Cs6g+KefPn1qorXMm2HzkJ4C/iPOUf1djXrUr+X2FQqBheJTu7t+slOvA0y4p0MpPGMR5yR8Du2zRNKqjqJ5A5BKzs+N5S+PRbdvWMDOzAegnCPbbH+ko2urTiByRanV8sT5a/9GLKDpos02jZUW9clQQGZJq9bNWGi/5/rKWStspFAZtDmEf8SuRtw+dN4lv4UyhehLVcnKf4vF4MuEf87G0qFPzd4wAAAAASUVORK5CYII=",
@@ -14288,22 +14540,20 @@ function displayIconRgb565FromImageData(img, asWhite, plain) {
         } else {
             if (asWhite) {
                 let y = Math.round(((d[i] * 77 + d[i + 1] * 150 + d[i + 2] * 29) >> 8) * a / 255);
-                if (y < 32) v = chroma;
+                /* Máscara/pack: só fundo quase-preto → chroma (não comer AA cinza). */
+                if (y < 8) v = chroma;
                 else {
                     r = g = b = y;
                     v = (r >> 3 << 11) | (g >> 2 << 5) | (b >> 3);
                     if (v === chroma) v = 0x07C0
                 }
             } else {
+                /* Foto a cores: transparência só por alpha — não apagar pixels escuros. */
                 r = Math.round(d[i] * a / 255);
                 g = Math.round(d[i + 1] * a / 255);
                 b = Math.round(d[i + 2] * a / 255);
-                let y = (r * 77 + g * 150 + b * 29) >> 8;
-                if (y < 16 && a < 200) v = chroma;
-                else {
-                    v = (r >> 3 << 11) | (g >> 2 << 5) | (b >> 3);
-                    if (v === chroma) v = 0x07C0
-                }
+                v = (r >> 3 << 11) | (g >> 2 << 5) | (b >> 3);
+                if (v === chroma) v = 0x07C0
             }
         }
         out[p] = v & 255, out[p + 1] = v >> 8
@@ -14366,25 +14616,26 @@ var DISPLAY_ICON_PX = 192,
     DISPLAY_BG_W_MT8 = 480,
     DISPLAY_BG_H_MT8 = 320,
     DISPLAY_BG_KEY = `bg`,
-    DISPLAY_ICON_SLOT_N = 10,
+    DISPLAY_ICON_SLOT_N = 16,
     DISPLAY_ICON_CHROMA_RGB565 = 0x07E0,
-    DISPLAY_ICON_BUDGET = 2048 * 1024,
+    DISPLAY_ICON_BUDGET = 8128 * 1024,
     DISPLAY_WHITE_PACK_URLS = null,
     DISPLAY_ICON_THUMB_CACHE = {};
+var DISPLAY_ICON_THUMB_LISTENERS = new Set();
 
 function displayIconSlotKey(i) {
     return `s${i}`
 }
 
 function displayIconUiSlotN(fsCount) {
-    let n = Number(fsCount);
-    if (n >= 8) return 8;
-    if (n >= 6) return 6;
-    return 4
+    /* 16 slots de fotos/ícones para todos os modelos (MT-4, MT-6, MT-8) */
+    return 16;
 }
 
 function displayIconGridCols(n) {
-    return Number(n) === 8 ? 4 : Math.max(1, Number(n) || 4)
+    let c = Number(n) || 4;
+    if (c >= 8) return 4;
+    return Math.max(1, c)
 }
 
 function displayIconGridStyle(cols) {
@@ -14465,32 +14716,132 @@ function displayIconRasterColor(img, size, zoom, panX, panY) {
     });
     ctx.clearRect(0, 0, size, size);
     if (!img || !img.width) return ctx.getImageData(0, 0, size, size);
-    let cover = Math.max(size / img.width, size / img.height),
-        sc = cover * Math.max(.5, Number(zoom) || 1),
+    /* contain (+ pad): cover cortava pedaços de logos não-quadrados. */
+    let pad = size * .06,
+        fit = Math.min((size - 2 * pad) / img.width, (size - 2 * pad) / img.height),
+        sc = fit * Math.max(.2, Number(zoom) || 1),
         dw = img.width * sc,
         dh = img.height * sc,
-        dx = (size - dw) / 2 + (Number(panX) || 0) / 50 * Math.max(0, (dw - size) / 2),
-        dy = (size - dh) / 2 + (Number(panY) || 0) / 50 * Math.max(0, (dh - size) / 2);
-    ctx.imageSmoothingEnabled = sc < 1.05;
+        travelX = Math.max(Math.abs(dw - size) / 2, size * 0.6),
+        travelY = Math.max(Math.abs(dh - size) / 2, size * 0.6),
+        dx = (size - dw) / 2 + ((Number(panX) || 0) / 50) * travelX,
+        dy = (size - dh) / 2 + ((Number(panY) || 0) / 50) * travelY;
+    ctx.imageSmoothingEnabled = true;
+    if ('imageSmoothingQuality' in ctx) ctx.imageSmoothingQuality = 'high';
     ctx.drawImage(img, dx, dy, dw, dh);
     return ctx.getImageData(0, 0, size, size)
 }
 
-function displayBgRasterColor(img, w, h, zoom, panX, panY) {
+
+var GUERRILHA_TRANS_BG_KEY = 'guerrilha_trans_bg_config';
+var GUERRILHA_TRANS_BG_LISTENERS = typeof GUERRILHA_TRANS_BG_LISTENERS !== 'undefined' ? GUERRILHA_TRANS_BG_LISTENERS : new Set();
+var s_cachedMainBgImg = null;
+var s_cachedMainBgUrl = null;
+
+function getTransBgConfig() {
+    try {
+        let raw = localStorage.getItem(GUERRILHA_TRANS_BG_KEY);
+        if (raw) {
+            let parsed = JSON.parse(raw);
+            if (parsed && typeof parsed === 'object') return parsed;
+        }
+    } catch {}
+    return {
+        mode: 'color', // 'color' | 'main_bg' | 'custom_img'
+        color: '#000000',
+        customImg: ''
+    };
+}
+
+function setTransBgConfig(cfg) {
+    try {
+        let cur = getTransBgConfig();
+        let next = { ...cur, ...cfg };
+        localStorage.setItem(GUERRILHA_TRANS_BG_KEY, JSON.stringify(next));
+        if (typeof GUERRILHA_TRANS_BG_LISTENERS !== 'undefined') {
+            GUERRILHA_TRANS_BG_LISTENERS.forEach(fn => { try { fn(next); } catch {} });
+        }
+    } catch {}
+}
+
+function checkImageTransparency(imageObj) {
+    if (!imageObj || !imageObj.width || !imageObj.height) return false;
+    try {
+        let cv = document.createElement('canvas');
+        let sw = Math.min(80, imageObj.width);
+        let sh = Math.min(80, imageObj.height);
+        cv.width = sw;
+        cv.height = sh;
+        let ctx = cv.getContext('2d');
+        ctx.drawImage(imageObj, 0, 0, sw, sh);
+        let data = ctx.getImageData(0, 0, sw, sh).data;
+        for (let i = 3; i < data.length; i += 4) {
+            if (data[i] < 240) return true;
+        }
+    } catch {}
+    return false;
+}
+
+async function getMainBgImage() {
+    let url = DISPLAY_ICON_THUMB_CACHE[DISPLAY_BG_KEY];
+    if (!url) {
+        try {
+            url = await displayIconFetchFullUrl(DISPLAY_BG_KEY);
+        } catch {}
+    }
+    if (!url) return null;
+    if (s_cachedMainBgImg && s_cachedMainBgUrl === url) return s_cachedMainBgImg;
+    try {
+        let im = await displayIconImageFromUrl(url);
+        s_cachedMainBgImg = im;
+        s_cachedMainBgUrl = url;
+        return im;
+    } catch {
+        return null;
+    }
+}
+
+function displayBgRasterColor(img, w, h, zoom, panX, panY, baseBg) {
     let c = document.createElement(`canvas`);
     c.width = w, c.height = h;
     let ctx = c.getContext(`2d`, {
         alpha: !0
     });
-    ctx.clearRect(0, 0, w, h);
+    ctx.imageSmoothingEnabled = true;
+    if ('imageSmoothingQuality' in ctx) ctx.imageSmoothingQuality = 'high';
+
+    // Fundo base garantido: preencher sempre com cor sólida (default preto)
+    // para que imagens transparentes (PNG) nunca fiquem com grade/película esbranquiçada!
+    let bgColor = (baseBg && baseBg.color) ? baseBg.color : '#000000';
+    ctx.fillStyle = bgColor;
+    ctx.fillRect(0, 0, w, h);
+
+    if (baseBg && baseBg.hasAlpha) {
+        if (baseBg.mode === 'main_bg' && baseBg.mainBgImg) {
+            let bim = baseBg.mainBgImg;
+            let bCover = Math.max(w / bim.width, h / bim.height);
+            let bW = bim.width * bCover;
+            let bH = bim.height * bCover;
+            ctx.drawImage(bim, (w - bW) / 2, (h - bH) / 2, bW, bH);
+        } else if (baseBg.mode === 'custom_img' && baseBg.customImgObj) {
+            let bim = baseBg.customImgObj;
+            let bCover = Math.max(w / bim.width, h / bim.height);
+            let bW = bim.width * bCover;
+            let bH = bim.height * bCover;
+            ctx.drawImage(bim, (w - bW) / 2, (h - bH) / 2, bW, bH);
+        }
+    }
+
     if (!img || !img.width) return ctx.getImageData(0, 0, w, h);
+
     let cover = Math.max(w / img.width, h / img.height),
-        sc = cover * Math.max(.5, Number(zoom) || 1),
+        sc = cover * Math.max(.2, Number(zoom) || 1),
         dw = img.width * sc,
         dh = img.height * sc,
-        dx = (w - dw) / 2 + (Number(panX) || 0) / 50 * Math.max(0, (dw - w) / 2),
-        dy = (h - dh) / 2 + (Number(panY) || 0) / 50 * Math.max(0, (dh - h) / 2);
-    ctx.imageSmoothingEnabled = sc < 1.05;
+        travelX = Math.max(Math.abs(dw - w) / 2, w * 0.75),
+        travelY = Math.max(Math.abs(dh - h) / 2, h * 0.75),
+        dx = (w - dw) / 2 + ((Number(panX) || 0) / 50) * travelX,
+        dy = (h - dh) / 2 + ((Number(panY) || 0) / 50) * travelY;
     ctx.drawImage(img, dx, dy, dw, dh);
     return ctx.getImageData(0, 0, w, h)
 }
@@ -14501,15 +14852,26 @@ async function displayIconUploadRgb(key, rgb, w, h) {
     let total = rgb.length,
         chunk = 6000;
     for (let offset = 0; offset < total; offset += chunk) {
-        let slice = rgb.subarray(offset, Math.min(offset + chunk, total));
-        await Br(`/api/display-icon`, {
-            key: k,
-            w,
-            h,
-            offset,
-            total,
-            data: displayIconU8ToB64(slice)
-        }, 45e3)
+        let slice = rgb.subarray(offset, Math.min(offset + chunk, total)),
+            lastErr = null;
+        for (let attempt = 0; attempt < 4; attempt++) {
+            try {
+                if (attempt > 0) await new Promise(ok => setTimeout(ok, 350 * attempt));
+                await Br(`/api/display-icon`, {
+                    key: k,
+                    w,
+                    h,
+                    offset,
+                    total,
+                    data: displayIconU8ToB64(slice)
+                }, 45e3);
+                lastErr = null;
+                break
+            } catch (err) {
+                lastErr = err
+            }
+        }
+        if (lastErr) throw lastErr
     }
     return k
 }
@@ -14554,12 +14916,46 @@ async function displayIconSyncAllPackToDeviceOnce() {
 }
 
 function displayIconIsMaskKey(key) {
-    return /^m([1-9]|10)$/.test(String(key || ``))
+    return /^m([1-9]|1[0-6])$/.test(String(key || ``))
 }
 
-function displayIconInvalidateThumb(key) {
+function notifyIconThumbUpdated(key, directUrl) {
+    displayIconInvalidateThumb(key, directUrl);
+}
+
+async function deleteLittleFsFile(key) {
     let k = displayIconSanitizeKey(key);
-    if (k) delete DISPLAY_ICON_THUMB_CACHE[k]
+    if (!k) return;
+    return await Br(`/api/display-icon`, {
+        action: `delete`,
+        key: k
+    }, 2e4);
+}
+
+if (typeof window !== 'undefined') {
+    window.notifyIconThumbUpdated = notifyIconThumbUpdated;
+    window.deleteLittleFsFile = deleteLittleFsFile;
+    window.displayIconInvalidateThumb = displayIconInvalidateThumb;
+}
+
+function displayIconInvalidateThumb(key, directUrl) {
+    let k = displayIconSanitizeKey(key);
+    if (k) {
+        if (directUrl !== undefined) {
+            if (directUrl) {
+                DISPLAY_ICON_THUMB_CACHE[k] = directUrl;
+            } else {
+                delete DISPLAY_ICON_THUMB_CACHE[k];
+            }
+        } else {
+            delete DISPLAY_ICON_THUMB_CACHE[k];
+        }
+        if (typeof DISPLAY_ICON_THUMB_LISTENERS !== 'undefined' && DISPLAY_ICON_THUMB_LISTENERS) {
+            DISPLAY_ICON_THUMB_LISTENERS.forEach(fn => {
+                try { fn(k, directUrl); } catch {}
+            });
+        }
+    }
 }
 
 async function displayIconFetchFullUrl(key) {
@@ -14584,22 +14980,63 @@ function displayIconImageFromUrl(url) {
     })
 }
 
-async function displayIconFetchThumb(key) {
+let thumbFetchQueue = Promise.resolve();
+
+async function displayIconFetchThumb(key, forceFresh) {
     let k = displayIconSanitizeKey(key);
     if (!k) return ``;
     if (displayIconIsPack(k)) return displayIconWhitePackUrl(k) || ``;
-    if (DISPLAY_ICON_THUMB_CACHE[k]) return DISPLAY_ICON_THUMB_CACHE[k];
-    let r = await zr(`/api/display-icon?key=${encodeURIComponent(k)}&thumb=48`),
-        body = r?.data && r.data.data ? r.data : r;
-    if (!body?.data) return ``;
-    let url = displayIconRgb565ToUrl(displayIconB64ToU8(body.data), Number(body.w) || 48, Number(body.h) || 48);
-    if (url) DISPLAY_ICON_THUMB_CACHE[k] = url;
-    return url
+    if (!forceFresh && DISPLAY_ICON_THUMB_CACHE[k] !== undefined) return DISPLAY_ICON_THUMB_CACHE[k] || ``;
+    return new Promise(resolve => {
+        thumbFetchQueue = thumbFetchQueue.then(async () => {
+            if (!forceFresh && DISPLAY_ICON_THUMB_CACHE[k] !== undefined) {
+                resolve(DISPLAY_ICON_THUMB_CACHE[k] || ``);
+                return;
+            }
+            let query = `/api/display-icon?key=${encodeURIComponent(k)}&thumb=48` + (forceFresh ? `&_t=${Date.now()}` : ``);
+            try {
+                let r = await zr(query),
+                    body = r?.data && r.data.data ? r.data : r;
+                if (!body?.data) {
+                    DISPLAY_ICON_THUMB_CACHE[k] = ``;
+                    resolve(``);
+                    return;
+                }
+                let url = displayIconRgb565ToUrl(displayIconB64ToU8(body.data), Number(body.w) || 48, Number(body.h) || 48);
+                DISPLAY_ICON_THUMB_CACHE[k] = url || ``;
+                resolve(url || ``);
+            } catch {
+                DISPLAY_ICON_THUMB_CACHE[k] = ``;
+                resolve(``);
+            }
+            await new Promise(ok => setTimeout(ok, 25));
+        });
+    });
 }
 
 function useDisplayIconThumb(key) {
     let k = displayIconSanitizeKey(key || ``),
+        [rev, setRev] = (0, N.useState)(0),
         [url, setUrl] = (0, N.useState)(() => k && displayIconIsPack(k) ? displayIconWhitePackUrl(k) || `` : DISPLAY_ICON_THUMB_CACHE[k] || ``);
+    (0, N.useEffect)(() => {
+        let onThumbUpdated = (updatedKey, directUrl) => {
+            if (updatedKey === k) {
+                if (directUrl !== undefined) {
+                    setUrl(directUrl || ``);
+                } else {
+                    setRev(r => r + 1);
+                }
+            }
+        };
+        if (typeof DISPLAY_ICON_THUMB_LISTENERS !== 'undefined' && DISPLAY_ICON_THUMB_LISTENERS) {
+            DISPLAY_ICON_THUMB_LISTENERS.add(onThumbUpdated);
+        }
+        return () => {
+            if (typeof DISPLAY_ICON_THUMB_LISTENERS !== 'undefined' && DISPLAY_ICON_THUMB_LISTENERS) {
+                DISPLAY_ICON_THUMB_LISTENERS.delete(onThumbUpdated);
+            }
+        };
+    }, [k]);
     (0, N.useEffect)(() => {
         if (!k) {
             setUrl(``);
@@ -14609,14 +15046,14 @@ function useDisplayIconThumb(key) {
             setUrl(displayIconWhitePackUrl(k) || ``);
             return
         }
-        if (DISPLAY_ICON_THUMB_CACHE[k]) {
+        if (DISPLAY_ICON_THUMB_CACHE[k] && rev === 0) {
             setUrl(DISPLAY_ICON_THUMB_CACHE[k]);
             return
         }
         let cancelled = !1;
         (async () => {
             try {
-                let u = await displayIconFetchThumb(k);
+                let u = await displayIconFetchThumb(k, rev > 0);
                 if (!cancelled) setUrl(u || ``)
             } catch {
                 if (!cancelled) setUrl(``)
@@ -14625,7 +15062,7 @@ function useDisplayIconThumb(key) {
         return () => {
             cancelled = !0
         }
-    }, [k]);
+    }, [k, rev]);
     return url
 }
 
@@ -14640,27 +15077,42 @@ function FsScreenIconCropModal({
     onClose: onClose,
     onSaved: onSaved
 }) {
-    let bgMt8 = !!(hideMask && targetKey === DISPLAY_BG_KEY && Number(fsCount) === 8),
-        exportW = bgMt8 ? DISPLAY_BG_W_MT8 : DISPLAY_ICON_PX,
-        exportH = bgMt8 ? DISPLAY_BG_H_MT8 : DISPLAY_ICON_PX,
-        previewW = bgMt8 ? 240 : 96,
-        previewH = bgMt8 ? 160 : 96,
+    let isAmp = String(targetKey).startsWith('amp'),
+        isBg = !isAmp && !!(hideMask || targetKey === DISPLAY_BG_KEY || String(targetKey).startsWith('bg')),
+        useRect = isBg || isAmp,
+        isMt8 = Number(fsCount) === 8,
+        exportW = isAmp ? 480 : (isBg ? (isMt8 ? DISPLAY_BG_W_MT8 : 240) : DISPLAY_ICON_PX),
+        exportH = isAmp ? 146 : (isBg ? (isMt8 ? DISPLAY_BG_H_MT8 : 240) : DISPLAY_ICON_PX),
+        previewW = isAmp ? 240 : (isBg ? (isMt8 ? 240 : 200) : 160),
+        previewH = isAmp ? 73 : (isBg ? (isMt8 ? 160 : 200) : 160),
         pickRef = (0, N.useRef)(null),
         [img, setImg] = (0, N.useState)(null),
         [zoom, setZoom] = (0, N.useState)(1),
         [panX, setPanX] = (0, N.useState)(0),
         [panY, setPanY] = (0, N.useState)(0),
-        [asMask, setAsMask] = (0, N.useState)(!!asMaskDefault),
         [busy, setBusy] = (0, N.useState)(!1),
         [loadErr, setLoadErr] = (0, N.useState)(``),
+        [hasAlpha, setHasAlpha] = (0, N.useState)(!1),
+        [transCfg, setTransCfg] = (0, N.useState)(() => getTransBgConfig()),
+        [mainBgImg, setMainBgImg] = (0, N.useState)(null),
+        [customImgObj, setCustomImgObj] = (0, N.useState)(null),
+        customImgPickRef = (0, N.useRef)(null),
         canvasRef = (0, N.useRef)(null),
         drag = (0, N.useRef)(null);
+    (0, N.useEffect)(() => {
+        if (transCfg.mode === 'main_bg') {
+            getMainBgImage().then(im => { if (im) setMainBgImg(im); });
+        } else if (transCfg.mode === 'custom_img' && transCfg.customImg) {
+            displayIconImageFromUrl(transCfg.customImg).then(im => { if (im) setCustomImgObj(im); }).catch(() => {});
+        }
+    }, [transCfg.mode, transCfg.customImg]);
+
     let loadBlob = (0, N.useCallback)(blob => {
         if (!blob) return;
         let url = URL.createObjectURL(blob),
             im = new Image;
         im.onload = () => {
-            setImg(im), setLoadErr(``), setZoom(1), setPanX(0), setPanY(0), URL.revokeObjectURL(url)
+            setImg(im), setLoadErr(``), setZoom(1), setPanX(0), setPanY(0), setHasAlpha(checkImageTransparency(im)), URL.revokeObjectURL(url)
         };
         im.onerror = () => {
             URL.revokeObjectURL(url), setLoadErr(`Não foi possível ler o ficheiro`)
@@ -14679,7 +15131,7 @@ function FsScreenIconCropModal({
             try {
                 let url = await displayIconFetchFullUrl(key),
                     im = await displayIconImageFromUrl(url);
-                if (!cancelled) setImg(im), setLoadErr(``)
+                if (!cancelled) setImg(im), setHasAlpha(checkImageTransparency(im)), setLoadErr(``)
             } catch {
                 if (!cancelled) setLoadErr(`Não foi possível carregar o ícone do pedal`)
             }
@@ -14703,10 +15155,44 @@ function FsScreenIconCropModal({
             ctx.fillStyle = `#111`, ctx.fillRect(0, 0, c.width, c.height);
             return
         }
-        ctx.putImageData(bgMt8 ? displayBgRasterColor(img, c.width, c.height, zoom, panX, panY) : displayIconRasterColor(img, c.width, zoom, panX, panY), 0, 0)
-    }, [img, zoom, panX, panY, bgMt8]);
+        let baseBg = useRect && hasAlpha ? {
+            hasAlpha: true,
+            mode: transCfg.mode,
+            color: transCfg.color,
+            mainBgImg,
+            customImgObj
+        } : null;
+        ctx.putImageData(useRect ? displayBgRasterColor(img, c.width, c.height, zoom, panX, panY, baseBg) : displayIconRasterColor(img, c.width, zoom, panX, panY), 0, 0)
+    }, [img, zoom, panX, panY, isBg, useRect, hideMask, hasAlpha, transCfg, mainBgImg, customImgObj]);
     let clamp = (v, a, b) => Math.min(b, Math.max(a, v)),
-        saveKey = targetKey || (asMask ? displayIconMaskKey(slot) : displayIconSlotKey(slot)),
+        saveKey = targetKey || displayIconSlotKey(slot),
+        alignTop = () => {
+            if (!img || !img.width || !img.height) return;
+            let cover = useRect ? Math.max(previewW / img.width, previewH / img.height) : Math.min((previewW - 2 * previewW * .06) / img.width, (previewH - 2 * previewH * .06) / img.height);
+            let sc = cover * (Number(zoom) || 1);
+            let dh = img.height * sc;
+            let travelY = useRect ? Math.max(Math.abs(dh - previewH) / 2, previewH * 0.75) : Math.max(Math.abs(dh - previewH) / 2, previewH * 0.6);
+            let targetPanY = Math.round(((dh - previewH) / 2 / travelY) * 50);
+            setPanY(clamp(targetPanY, -100, 100));
+        },
+        alignCenter = () => {
+            setPanX(0);
+            setPanY(0);
+        },
+        alignBottom = () => {
+            if (!img || !img.width || !img.height) return;
+            let cover = useRect ? Math.max(previewW / img.width, previewH / img.height) : Math.min((previewW - 2 * previewW * .06) / img.width, (previewH - 2 * previewH * .06) / img.height);
+            let sc = cover * (Number(zoom) || 1);
+            let dh = img.height * sc;
+            let travelY = useRect ? Math.max(Math.abs(dh - previewH) / 2, previewH * 0.75) : Math.max(Math.abs(dh - previewH) / 2, previewH * 0.6);
+            let targetPanY = Math.round(-((dh - previewH) / 2 / travelY) * 50);
+            setPanY(clamp(targetPanY, -100, 100));
+        },
+        resetCrop = () => {
+            setZoom(1);
+            setPanX(0);
+            setPanY(0);
+        },
         modal = (0, P.jsx)(`div`, {
             className: `fixed inset-0 flex items-center justify-center p-4`,
             style: {
@@ -14718,7 +15204,7 @@ function FsScreenIconCropModal({
                 className: `border border-border bg-canvas`,
                 onClick: ev => ev.stopPropagation(),
                 style: {
-                    width: bgMt8 ? `280px` : `240px`,
+                    width: isAmp ? `280px` : (isBg ? (isMt8 ? `280px` : `260px`) : `240px`),
                     maxWidth: `calc(100vw - 2rem)`,
                     borderRadius: `16px`,
                     boxShadow: `0 24px 48px -16px rgba(0,0,0,0.7)`
@@ -14751,7 +15237,7 @@ function FsScreenIconCropModal({
                         }
                     }), (0, P.jsx)(`div`, {
                         className: `mb-2 text-center font-mono text-[9px] uppercase tracking-widest text-muted-foreground`,
-                        children: hideMask ? `cobre o ecrã` : `espaço do ícone no ecrã`
+                        children: isAmp ? `delimitação do cabeçote (480×146)` : (isBg ? (isMt8 ? `cobre o display (480×320)` : `cobre o display (240×240)`) : `espaço do ícone no display`)
                     }), (0, P.jsxs)(`div`, {
                         className: `relative mx-auto overflow-hidden rounded-lg border-2 border-dashed border-accent/50`,
                         style: {
@@ -14775,8 +15261,8 @@ function FsScreenIconCropModal({
                         },
                         onPointerMove: ev => {
                             if (!drag.current) return;
-                            setPanX(clamp(drag.current.panX + (ev.clientX - drag.current.x) * .35, -50, 50));
-                            setPanY(clamp(drag.current.panY + (ev.clientY - drag.current.y) * .35, -50, 50))
+                            setPanX(clamp(drag.current.panX + (ev.clientX - drag.current.x) * .6, -100, 100));
+                            setPanY(clamp(drag.current.panY + (ev.clientY - drag.current.y) * .6, -100, 100))
                         },
                         onPointerUp: () => {
                             drag.current = null
@@ -14787,7 +15273,7 @@ function FsScreenIconCropModal({
                         onWheel: ev => {
                             if (!img) return;
                             ev.preventDefault();
-                            setZoom(z => clamp(z * (ev.deltaY > 0 ? .95 : 1.05), .5, 3))
+                            setZoom(z => clamp(z * (ev.deltaY > 0 ? .95 : 1.05), .2, 4))
                         },
                         children: [(0, P.jsx)(`canvas`, {
                             ref: canvasRef,
@@ -14808,7 +15294,31 @@ function FsScreenIconCropModal({
                     }), loadErr ? (0, P.jsx)(`div`, {
                         className: `mt-2 text-center font-mono text-[9px] text-red-400`,
                         children: loadErr
-                    }) : null, img ? [[`Zoom`, zoom, .5, 3, .01, setZoom, v => `${Number(v).toFixed(2)}x`], [`Horizontal`, panX, -50, 50, .5, setPanX, v => `${Math.round(v)}%`], [`Vertical`, panY, -50, 50, .5, setPanY, v => `${Math.round(v)}%`]].map(([lab, val, min, max, step, set, fmt]) => (0, P.jsxs)(`label`, {
+                    }) : null, img ? (0, P.jsxs)(P.Fragment, {
+                        children: [(0, P.jsxs)(`div`, {
+                            className: `mt-2 flex items-center justify-center gap-1.5`,
+                            children: [(0, P.jsx)(`button`, {
+                                type: `button`,
+                                onClick: alignTop,
+                                className: `rounded border border-border bg-card/60 px-2 py-1 font-mono text-[9px] text-muted-foreground hover:border-accent/60 hover:text-foreground`,
+                                children: `⬆ Topo`
+                            }), (0, P.jsx)(`button`, {
+                                type: `button`,
+                                onClick: alignCenter,
+                                className: `rounded border border-border bg-card/60 px-2 py-1 font-mono text-[9px] text-muted-foreground hover:border-accent/60 hover:text-foreground`,
+                                children: `✛ Centro`
+                            }), (0, P.jsx)(`button`, {
+                                type: `button`,
+                                onClick: alignBottom,
+                                className: `rounded border border-border bg-card/60 px-2 py-1 font-mono text-[9px] text-muted-foreground hover:border-accent/60 hover:text-foreground`,
+                                children: `⬇ Base`
+                            }), (0, P.jsx)(`button`, {
+                                type: `button`,
+                                onClick: resetCrop,
+                                className: `rounded border border-border bg-card/60 px-2 py-1 font-mono text-[9px] text-muted-foreground hover:border-accent/60 hover:text-foreground`,
+                                children: `↺ 100%`
+                            })]
+                        }), [[`Zoom`, zoom, .2, 4, .01, setZoom, v => `${Number(v).toFixed(2)}x`], [`Horizontal`, panX, -100, 100, .5, setPanX, v => `${Math.round(v)}%`], [`Vertical`, panY, -100, 100, .5, setPanY, v => `${Math.round(v)}%`]].map(([lab, val, min, max, step, set, fmt]) => (0, P.jsxs)(`label`, {
                         className: `mt-2 block`,
                         children: [(0, P.jsxs)(`div`, {
                             className: `mb-0.5 flex justify-between font-mono text-[9px] text-muted-foreground`,
@@ -14826,30 +15336,148 @@ function FsScreenIconCropModal({
                             onChange: ev => set(Number(ev.target.value)),
                             className: `w-full accent-orange-500`
                         })]
-                    }, lab)) : null, (0, P.jsx)(`button`, {
+                    }, lab))]
+                    }) : null, (0, P.jsx)(`button`, {
                         type: `button`,
                         onClick: () => pickRef.current && pickRef.current.click(),
                         className: `mt-2 w-full rounded-lg border border-border px-2 py-1.5 font-display text-[9px] uppercase tracking-[0.16em] text-muted-foreground`,
                         children: img ? `Trocar ficheiro` : `Escolher PNG / JPEG`
-                    }), hideMask ? null : (0, P.jsxs)(`button`, {
-                        type: `button`,
-                        onClick: () => setAsMask(v => !v),
-                        className: `mt-2 flex w-full items-center justify-between rounded-lg border border-border px-3 py-2 text-left`,
-                        children: [(0, P.jsxs)(`span`, {
-                            children: [(0, P.jsx)(`span`, {
-                                className: `block font-display text-[10px] uppercase tracking-[0.14em] text-foreground`,
-                                children: `Máscara LED`
-                            }), (0, P.jsx)(`span`, {
-                                className: `font-mono text-[8px] text-muted-foreground`,
-                                children: asMask ? `pinta com o LED` : `foto a cores`
-                            })]
-                        }), (0, P.jsx)(`span`, {
-                            className: `relative h-5 w-9 shrink-0 rounded-full ${asMask?`bg-accent`:`bg-muted`}`,
-                            children: (0, P.jsx)(`span`, {
-                                className: `absolute top-0.5 size-4 rounded-full bg-white shadow ${asMask?`left-4`:`left-0.5`}`
-                            })
-                        })]
-                    })]
+                    }),
+                    isBg && hasAlpha ? (0, P.jsxs)('div', {
+                        className: 'mt-2.5 rounded-xl border border-zinc-800 bg-[#0d0e12] p-2.5',
+                        children: [
+                            (0, P.jsxs)('div', {
+                                className: 'mb-1.5 flex items-center justify-between',
+                                children: [
+                                    (0, P.jsx)('span', {
+                                        style: { fontFamily: 'inherit', fontSize: '10px', fontWeight: 900, textTransform: 'uppercase', color: '#f87171' },
+                                        children: 'Fundo da Transparência (PNG)'
+                                    }),
+                                    (0, P.jsx)('span', {
+                                        style: { fontFamily: 'monospace', fontSize: '8px', color: '#10b981', background: 'rgba(16, 185, 129, 0.15)', padding: '2px 6px', borderRadius: '4px' },
+                                        children: 'Sem fundo detectado'
+                                    })
+                                ]
+                            }),
+                            (0, P.jsx)('div', {
+                                style: { display: 'flex', gap: '4px', marginBottom: '8px' },
+                                children: [
+                                    { id: 'color', lbl: 'Cor' },
+                                    { id: 'main_bg', lbl: 'Fundo (bg)' },
+                                    { id: 'custom_img', lbl: 'Imagem Fixa' }
+                                ].map(m => (0, P.jsx)('button', {
+                                    key: m.id,
+                                    type: 'button',
+                                    onClick: () => {
+                                        let next = { ...transCfg, mode: m.id };
+                                        setTransCfg(next);
+                                        setTransBgConfig(next);
+                                    },
+                                    style: {
+                                        flex: 1,
+                                        padding: '4px 2px',
+                                        borderRadius: '6px',
+                                        fontFamily: 'monospace',
+                                        fontSize: '9px',
+                                        fontWeight: 800,
+                                        cursor: 'pointer',
+                                        border: transCfg.mode === m.id ? '1px solid #ef4444' : '1px solid #27272a',
+                                        background: transCfg.mode === m.id ? 'rgba(239, 68, 68, 0.2)' : '#141519',
+                                        color: transCfg.mode === m.id ? '#f87171' : '#a1a1aa'
+                                    },
+                                    children: m.lbl
+                                }))
+                            }),
+                            transCfg.mode === 'color' ? (0, P.jsxs)('div', {
+                                style: { display: 'flex', alignItems: 'center', gap: '8px' },
+                                children: [
+                                    (0, P.jsx)('input', {
+                                        type: 'color',
+                                        value: transCfg.color || '#000000',
+                                        onChange: ev => {
+                                            let next = { ...transCfg, color: ev.target.value };
+                                            setTransCfg(next);
+                                            setTransBgConfig(next);
+                                        },
+                                        style: { width: '28px', height: '24px', borderRadius: '4px', border: '1px solid #3f3f46', cursor: 'pointer', background: '#000' }
+                                    }),
+                                    (0, P.jsx)('span', {
+                                        style: { fontFamily: 'monospace', fontSize: '10px', color: '#d4d4d8', fontWeight: 'bold' },
+                                        children: (transCfg.color || '#000000').toUpperCase()
+                                    }),
+                                    (0, P.jsx)('span', {
+                                        style: { fontFamily: 'monospace', fontSize: '8px', color: '#71717a', marginLeft: 'auto' },
+                                        children: 'Fundo da imagem'
+                                    })
+                                ]
+                            }) : null,
+                            transCfg.mode === 'main_bg' ? (0, P.jsx)('div', {
+                                style: { fontFamily: 'monospace', fontSize: '9px', color: '#a1a1aa', lineHeight: 1.3 },
+                                children: 'O wallpaper principal (bg) será desenhado por baixo da transparência.'
+                            }) : null,
+                            transCfg.mode === 'custom_img' ? (0, P.jsxs)('div', {
+                                style: { display: 'flex', alignItems: 'center', gap: '6px' },
+                                children: [
+                                    (0, P.jsx)('input', {
+                                        ref: customImgPickRef,
+                                        type: 'file',
+                                        accept: 'image/png,image/jpeg',
+                                        className: 'hidden',
+                                        onChange: ev => {
+                                            let f = ev.target.files && ev.target.files[0];
+                                            ev.target.value = '';
+                                            if (f) {
+                                                let reader = new FileReader();
+                                                reader.onload = () => {
+                                                    let dataUrl = String(reader.result || '');
+                                                    let next = { ...transCfg, customImg: dataUrl };
+                                                    setTransCfg(next);
+                                                    setTransBgConfig(next);
+                                                };
+                                                reader.readAsDataURL(f);
+                                            }
+                                        }
+                                    }),
+                                    (0, P.jsx)('button', {
+                                        type: 'button',
+                                        onClick: () => customImgPickRef.current && customImgPickRef.current.click(),
+                                        style: {
+                                            flex: 1,
+                                            padding: '4px 8px',
+                                            borderRadius: '6px',
+                                            border: '1px solid #ef4444',
+                                            background: 'rgba(239, 68, 68, 0.15)',
+                                            color: '#f87171',
+                                            fontFamily: 'monospace',
+                                            fontSize: '9px',
+                                            fontWeight: 900,
+                                            cursor: 'pointer'
+                                        },
+                                        children: transCfg.customImg ? 'Trocar Imagem Base' : '+ Escolher Imagem Base'
+                                    }),
+                                    transCfg.customImg ? (0, P.jsx)('button', {
+                                        type: 'button',
+                                        onClick: () => {
+                                            let next = { ...transCfg, customImg: '' };
+                                            setTransCfg(next);
+                                            setTransBgConfig(next);
+                                        },
+                                        style: {
+                                            padding: '4px 8px',
+                                            borderRadius: '6px',
+                                            border: '1px solid #3f3f46',
+                                            background: 'transparent',
+                                            color: '#a1a1aa',
+                                            fontFamily: 'monospace',
+                                            fontSize: '9px',
+                                            cursor: 'pointer'
+                                        },
+                                        children: '✕'
+                                    }) : null
+                                ]
+                            }) : null
+                        ]
+                    }) : null]
                 }), (0, P.jsxs)(`div`, {
                     className: `flex gap-2 border-t border-border px-3 py-2.5`,
                     children: [(0, P.jsx)(`button`, {
@@ -14864,13 +15492,37 @@ function FsScreenIconCropModal({
                             if (!img) return;
                             setBusy(!0);
                             try {
-                                let raster = bgMt8 ? displayBgRasterColor(img, exportW, exportH, zoom, panX, panY) : displayIconRasterColor(img, exportW, zoom, panX, panY),
-                                    rgb = displayIconRgb565FromImageData(raster, hideMask ? !1 : !!asMask, !!hideMask),
-                                    key = targetKey || (asMask ? displayIconMaskKey(slot) : displayIconSlotKey(slot));
-                                displayIconInvalidateThumb(key);
+                                let baseBg = useRect && hasAlpha ? {
+                                        hasAlpha: true,
+                                        mode: transCfg.mode,
+                                        color: transCfg.color,
+                                        mainBgImg,
+                                        customImgObj
+                                    } : null;
+                                    let raster = useRect ? displayBgRasterColor(img, exportW, exportH, zoom, panX, panY, baseBg) : displayIconRasterColor(img, exportW, zoom, panX, panY),
+                                    rgb = displayIconRgb565FromImageData(raster, !1, useRect ? true : !!hideMask),
+                                    key = targetKey || displayIconSlotKey(slot);
+                                let instantThumb = '';
+                                try {
+                                    let tCv = document.createElement('canvas');
+                                    tCv.width = isAmp ? 80 : 72;
+                                    tCv.height = isAmp ? 24 : 48;
+                                    let tCtx = tCv.getContext('2d');
+                                    let sCv = document.createElement('canvas');
+                                    sCv.width = exportW;
+                                    sCv.height = exportH;
+                                    sCv.getContext('2d').putImageData(raster, 0, 0);
+                                    tCtx.drawImage(sCv, 0, 0, tCv.width, tCv.height);
+                                    instantThumb = tCv.toDataURL('image/png');
+                                } catch {}
+                                if (instantThumb) {
+                                    displayIconInvalidateThumb(key, instantThumb);
+                                } else {
+                                    displayIconInvalidateThumb(key);
+                                }
                                 await displayIconUploadRgb(key, rgb, exportW, exportH);
-                                rt.success(hideMask || targetKey === DISPLAY_BG_KEY ? `Textura gravada` : asMask ? `Máscara ${key} gravada` : `Foto ${key} gravada`);
-                                onSaved(key)
+                                rt.success(isAmp ? `Cabeçote ${key} gravado` : (hideMask || targetKey === DISPLAY_BG_KEY || String(targetKey).startsWith('bg') ? `Wallpaper ${key} gravado` : `Foto ${key} gravada`));
+                                onSaved(key, instantThumb)
                             } catch (err) {
                                 rt.error(`Falha a enviar: ${String(err?.message || err)}`)
                             } finally {
@@ -14894,18 +15546,19 @@ function displayIconSlotButtons({
     onOpen: onOpen,
     onDelete: onDelete
 }) {
-    let n = displayIconUiSlotN(slotN);
+    /* slotN já é a contagem da UI (4/6/16) — não voltar a passar por displayIconUiSlotN. */
+    let n = Math.max(1, Math.min(DISPLAY_ICON_SLOT_N, Number(slotN) || 4));
     return (0, P.jsx)(`div`, {
         style: displayIconGridStyle(displayIconGridCols(n)),
         children: Array.from({
             length: n
         }, (_, i) => i + 1).map(slot => {
-            let key = prefix === `m` ? displayIconMaskKey(slot) : displayIconSlotKey(slot),
+            let key = displayIconSlotKey(slot),
                 filled = !!catalog.map[key];
             return (0, P.jsxs)(`button`, {
                 type: `button`,
                 title: filled ? `Editar ${key}` : `Importar ${key}`,
-                onClick: () => onOpen(slot, prefix === `m`, filled),
+                onClick: () => onOpen(slot, !1, filled),
                 className: `tile-inset relative flex flex-col items-center rounded-xl border px-1.5 pb-2 pt-2 ${filled ? `border-border` : `border-dashed border-border`}`,
                 style: {
                     minHeight: 76
@@ -14994,8 +15647,8 @@ function displayIconsLibraryPanel({
                 setEditor(null), refresh()
             }
         }), (0, P.jsxs)(I, {
-            title: `Pack branco`,
-            subtitle: `Pictogramas · cor do LED no ecrã`,
+            title: `Ícones`,
+            subtitle: `Pictogramas · cor do LED no display`,
             children: [(0, P.jsx)(`div`, {
                 style: displayIconGridStyle(6),
                 children: DISPLAY_WHITE_PACK.map(([key, lab]) => (0, P.jsxs)(`button`, {
@@ -15047,30 +15700,15 @@ function displayIconsLibraryPanel({
                 catalog,
                 thumbs,
                 slotN,
-                onOpen: (slot, asMask, filled) => setEditor({
+                onOpen: (slot, _asMask, filled) => setEditor({
                     slot,
                     asMask: !1,
                     existingKey: filled ? displayIconSlotKey(slot) : ``
                 }),
                 onDelete: delKey
-            })]
-        }), (0, P.jsxs)(I, {
-            title: `Máscaras LED`,
-            subtitle: `m1–m${slotN} · PNG branco/preto`,
-            children: [(0, P.jsx)(displayIconSlotButtons, {
-                prefix: `m`,
-                catalog,
-                thumbs,
-                slotN,
-                onOpen: (slot, asMask, filled) => setEditor({
-                    slot,
-                    asMask: !0,
-                    existingKey: filled ? displayIconMaskKey(slot) : ``
-                }),
-                onDelete: delKey
             }), (0, P.jsx)(`div`, {
                 className: `mt-2 rounded-lg border border-dashed border-border px-3 py-2 font-mono text-[10px] leading-relaxed text-muted-foreground`,
-                children: `Máscara = desenho em branco ou preto. No ecrã pinta com a cor do LED da chave. Quadrados vazios: toca para importar PNG.`
+                children: `Importa PNG/JPEG a cores (foto). 16 slots disponíveis. Depois associa à chave em Preset → Ícones.`
             })]
         })]
     })
@@ -15119,9 +15757,7 @@ function FsScreenIconSection({
     fsNumber: e,
     iconKey: t,
     fsCount: n,
-    gridFill: r,
-    onSetKey: i,
-    onPatchGridFill: a
+    onSetKey: i
 }) {
     (0, N.useEffect)(() => {
         displayIconSyncAllPackToDeviceOnce().catch(() => {})
@@ -15139,7 +15775,7 @@ function FsScreenIconSection({
                     children: [`Ícone · FS`, e]
                 }), (0, P.jsx)(`span`, {
                     className: `font-display text-[9px] uppercase tracking-[0.3em] text-accent/70`,
-                    children: `· Ecrã`
+                    children: `· Display`
                 })]
             })]
         }), (0, P.jsx)(FsScreenIconPicker, {
@@ -15148,24 +15784,6 @@ function FsScreenIconSection({
             fsCount: n,
             embedded: !0,
             onSetKey: i
-        }), (0, P.jsxs)(`button`, {
-            type: `button`,
-            onClick: () => typeof a == `function` && a(r ? 0 : 1),
-            className: `mt-4 flex w-full items-center justify-between rounded-lg border border-border px-3 py-2 text-left`,
-            children: [(0, P.jsxs)(`span`, {
-                children: [(0, P.jsx)(`span`, {
-                    className: `block font-display text-[10px] uppercase tracking-[0.14em] text-foreground`,
-                    children: `Preencher célula`
-                }), (0, P.jsx)(`span`, {
-                    className: `font-mono text-[8px] text-muted-foreground`,
-                    children: r ? `cor do LED nos blocos` : `transparente nos blocos`
-                })]
-            }), (0, P.jsx)(`span`, {
-                className: `relative h-5 w-9 shrink-0 rounded-full ${r ? `bg-accent` : `bg-muted`}`,
-                children: (0, P.jsx)(`span`, {
-                    className: `absolute top-0.5 size-4 rounded-full bg-white shadow ${r ? `left-4` : `left-0.5`}`
-                })
-            })]
         })]
     })
 }
@@ -15206,8 +15824,9 @@ function FsScreenIconPicker({
         if (busyKey) return;
         try {
             setBusyKey(key || `_clear`);
-            if (key && displayIconIsPack(key)) await displayIconEnsurePackOnDevice(key), refresh();
-            n(key)
+            /* Associa já — Salvar do modal não pode correr antes do upload e perder o key. */
+            n(key);
+            if (key && displayIconIsPack(key)) await displayIconEnsurePackOnDevice(key), refresh()
         } catch (err) {
             rt.error(`Falha a gravar ícone: ${String(err?.message || err)}`)
         } finally {
@@ -15224,7 +15843,7 @@ function FsScreenIconPicker({
                     className: `size-1.5 rounded-full bg-accent led-glow`
                 }), (0, P.jsx)(`span`, {
                     className: `font-display text-[10px] uppercase tracking-[0.3em] text-muted-foreground`,
-                    children: `Ícone no ecrã`
+                    children: `Ícones`
                 })]
             }), (0, P.jsx)(`div`, {
                 className: `font-display text-[10px] uppercase tracking-[0.2em] text-accent`,
@@ -15261,24 +15880,8 @@ function FsScreenIconPicker({
                 onPick: pickKey
             }, key))
         }), (0, P.jsx)(`div`, {
-            className: `mb-2 font-display text-[9px] uppercase tracking-[0.25em] text-muted-foreground`,
-            children: `Máscaras`
-        }), (0, P.jsx)(`div`, {
-            className: `mb-3`,
-            style: displayIconGridStyle(displayIconGridCols(slotN)),
-            children: Array.from({
-                length: slotN
-            }, (_, i) => displayIconMaskKey(i + 1)).map((key, i) => (0, P.jsx)(displayIconAssignTile, {
-                iconKey: key,
-                label: String(i + 1),
-                src: thumbs[key] || ``,
-                selected: r === key,
-                disabled: !catalog.map[key] || !!busyKey,
-                onPick: pickKey
-            }, key))
-        }), (0, P.jsx)(`div`, {
             className: `mb-3 rounded-xl border border-dashed border-border px-3 py-2 font-mono text-[9px] leading-relaxed text-muted-foreground`,
-            children: `Toque num glifo do Pack para atribuir à chave (grava no pedal se ainda não estiver). Fotos e máscaras: importar em Sistema → Tela.`
+            children: `Toque num glifo do Pack para atribuir à chave. Fotos: importar em Sistema → Tela.`
         }), (0, P.jsxs)(`div`, {
             className: `flex items-center justify-between gap-2`,
             children: [(0, P.jsx)(`button`, {
@@ -15292,6 +15895,143 @@ function FsScreenIconPicker({
             })]
         })]
     })
+}
+
+function FsScreenAmpTile({ ampKey, slot, selected, disabled, onPick }) {
+    let thumb = useDisplayIconThumb(ampKey);
+    return (0, P.jsxs)(`button`, {
+        type: `button`,
+        disabled: disabled,
+        onClick: () => onPick && onPick(ampKey),
+        style: {
+            display: `flex`,
+            flexDirection: `column`,
+            alignItems: `center`,
+            justifyContent: `center`,
+            gap: `4px`,
+            padding: `6px 4px`,
+            borderRadius: `8px`,
+            border: selected ? `2px solid #ef4444` : (thumb ? `1px solid #3f3f46` : `1px dashed #27272a`),
+            background: selected ? `rgba(239, 68, 68, 0.15)` : `#101114`,
+            cursor: disabled ? `not-allowed` : `pointer`,
+            transition: `all .15s`,
+            boxSizing: `border-box`,
+            outline: `none`
+        },
+        children: [
+            (0, P.jsx)(`div`, {
+                style: {
+                    width: `100%`,
+                    height: `36px`,
+                    borderRadius: `4px`,
+                    border: `1px solid ` + (selected ? `#ef4444` : `#27272a`),
+                    background: thumb ? `center / cover no-repeat url(` + thumb + `)` : `#18191e`,
+                    display: `flex`,
+                    alignItems: `center`,
+                    justifyContent: `center`,
+                    color: `#71717a`,
+                    fontSize: `9px`,
+                    fontFamily: `monospace`,
+                    overflow: `hidden`
+                },
+                children: thumb ? null : `Amp ` + slot
+            }),
+            (0, P.jsx)(`span`, {
+                style: {
+                    fontFamily: `monospace`,
+                    fontSize: `9px`,
+                    fontWeight: selected ? 900 : 700,
+                    color: selected ? `#f87171` : (thumb ? `#d4d4d8` : `#71717a`),
+                    textTransform: `uppercase`
+                },
+                children: `Amp ` + slot
+            })
+        ]
+    });
+}
+
+function FsScreenAmpPicker({ ampKey: e, fsIndex: t, onSetKey: n, embedded: embedded }) {
+    let currentKey = String(e || ``).trim(),
+        [busyKey, setBusyKey] = (0, N.useState)(``);
+
+    let pickKey = async key => {
+        if (busyKey) return;
+        try {
+            setBusyKey(key || `_clear`);
+            n(key);
+        } catch (err) {
+            rt.error(`Falha ao selecionar cabeçote: ${String(err?.message || err)}`);
+        } finally {
+            setBusyKey(``);
+        }
+    };
+
+    return (0, P.jsxs)(`div`, {
+        className: embedded ? `rounded-xl border border-border bg-canvas p-3` : `mt-4 rounded-2xl border border-border bg-panel/70 p-4 shadow-2xl shadow-black/40`,
+        children: [
+            (0, P.jsxs)(`div`, {
+                className: `mb-4 flex items-center justify-between gap-2`,
+                children: [
+                    (0, P.jsxs)(`div`, {
+                        className: `flex items-center gap-2`,
+                        children: [
+                            (0, P.jsx)(`span`, { className: `size-1.5 rounded-full bg-accent led-glow` }),
+                            (0, P.jsx)(`span`, {
+                                className: `font-display text-[10px] uppercase tracking-[0.3em] text-muted-foreground`,
+                                children: `CABEÇOTES DE AMP`
+                            })
+                        ]
+                    }),
+                    (0, P.jsx)(`div`, {
+                        className: `font-display text-[10px] uppercase tracking-[0.2em] text-accent font-bold`,
+                        children: currentKey ? currentKey.toUpperCase() : `NENHUM`
+                    })
+                ]
+            }),
+            (0, P.jsx)(`div`, {
+                className: `mb-2 font-display text-[9px] uppercase tracking-[0.25em] text-muted-foreground`,
+                children: `Escolha o cabeçote para esta chave (1 a 16):`
+            }),
+            (0, P.jsx)(`div`, {
+                style: {
+                    display: `grid`,
+                    gridTemplateColumns: `repeat(4, minmax(0, 1fr))`,
+                    gap: `8px`,
+                    marginBottom: `14px`
+                },
+                children: Array.from({ length: 16 }, (_, i) => i + 1).map(slot => {
+                    let k = `amp` + slot;
+                    let isSel = currentKey === k;
+                    return (0, P.jsx)(FsScreenAmpTile, {
+                        ampKey: k,
+                        slot: slot,
+                        selected: isSel,
+                        disabled: !!busyKey,
+                        onPick: pickKey
+                    }, k);
+                })
+            }),
+            (0, P.jsx)(`div`, {
+                className: `mb-3 rounded-xl border border-dashed border-border px-3 py-2 font-mono text-[9px] leading-relaxed text-muted-foreground`,
+                children: `Importe e edite as fotos dos cabeçotes na aba Sistema → Tela.`
+            }),
+            (0, P.jsxs)(`div`, {
+                className: `flex items-center justify-between gap-2`,
+                children: [
+                    (0, P.jsx)(`button`, {
+                        type: `button`,
+                        onClick: () => pickKey(``),
+                        className: `rounded-full border border-border bg-canvas px-3 py-1 font-display text-[9px] uppercase tracking-widest text-muted-foreground hover:text-foreground`,
+                        children: `Sem cabeçote`
+                    }),
+                    (0, P.jsx)(`div`, {
+                        className: `font-display text-[8px] uppercase tracking-[0.2em] text-muted-foreground`,
+                        children: `Sistema → Tela`
+                    })
+                ]
+            })
+        ]
+    });
 }
 
 function Jr(e, usbCfg) {
@@ -15310,6 +16050,7 @@ function Jr(e, usbCfg) {
         d = Nr(e.stompLed?.off || yr.off),
         f = {
             fsName: String(e.label || ``).replace(/[^\x20-\x7E]/g, ``).toUpperCase().slice(0, 24),
+            stompName: String(e.stompName || ``).replace(/[^\x20-\x7E]/g, ``).toUpperCase().slice(0, 16),
             iconKey: displayIconSanitizeKey(e.iconKey || ``),
             gridFill: Number(e.gridFill) ? 1 : 0,
             scene: Array.isArray(e.sceneMask) ? e.sceneMask.map(e => e ? 1 : 0) : [],
@@ -15334,6 +16075,7 @@ function Jr(e, usbCfg) {
     f.fsMode = br.includes(e.mode) ? e.mode : `Normal`;
     f.ricochetEnabled = e.mode === `Ricochet` ? 1 : 0;
     f.stgEnabled = e.mode === `STG` ? 1 : 0;
+    f.stgAutoEnabled = e.mode === `STG Auto` ? 1 : 0;
     f.holdEnabled = e.mode === `Tap` || e.mode === `Momentâneo` ? 1 : 0;
     f.holdToggle = e.mode === `Tap` ? 1 : 0;
     f.tapTarget = 0;
@@ -15342,10 +16084,10 @@ function Jr(e, usbCfg) {
         f.pcUpDownMode = a.type === `PC Down` ? 2 : 1;
         f.pcUpDownTrigger = +((a.trigger ?? `Click`) === `Hold`);
         f.pcUpDownOutput = Hr(a.output);
-        f.pcRangeStart = 0;
-        f.pcRangeEnd = 127;
-        f.pcIncrement = 1;
-        f.pcLoop = !0;
+        f.pcRangeStart = Math.max(0, Math.min(127, Number(a.rangeStart ?? a.value ?? 0)));
+        f.pcRangeEnd = Math.max(0, Math.min(127, Number(a.rangeEnd ?? 127)));
+        f.pcIncrement = Math.max(1, Math.min(127, Number(a.increment ?? 1) || 1));
+        f.pcLoop = a.loop === void 0 ? !0 : !!a.loop;
         f.channel = Math.max(1, Math.min(16, Number(a.channel) || 1))
     } else f.pcUpDownMode = 0;
     if (o) {
@@ -15353,10 +16095,10 @@ function Jr(e, usbCfg) {
         f.ccUpDownCc = o.cc || 0;
         f.ccUpDownTrigger = +((o.trigger ?? `Click`) === `Hold`);
         f.ccUpDownOutput = Hr(o.output);
-        f.ccRangeStart = 0;
-        f.ccRangeEnd = 127;
-        f.ccIncrement = 1;
-        f.ccLoop = !0;
+        f.ccRangeStart = Math.max(0, Math.min(127, Number(o.rangeStart ?? o.value ?? 0)));
+        f.ccRangeEnd = Math.max(0, Math.min(127, Number(o.rangeEnd ?? 127)));
+        f.ccIncrement = Math.max(1, Math.min(127, Number(o.increment ?? 1) || 1));
+        f.ccLoop = o.loop === void 0 ? !0 : !!o.loop;
         !a && (f.channel = Math.max(1, Math.min(16, Number(o.channel) || 1)))
     } else f.ccUpDownMode = 0;
     if (toggleClickCommands.length > 0) {
@@ -15408,14 +16150,39 @@ function Jr(e, usbCfg) {
         f.ricochetTimeUnit = rc.timeUnit === `TAP` ? 1 : rc.timeUnit === `BPM` ? 2 : 0;
         f.ricochetBpm = Math.max(40, Math.min(240, num(rc.bpm, 120)))
     }
-    return e.mode === `STG` && e.stg && (f.stgEnabled = 1, f.stgStageCount = e.stg.stageCount, f.stgStages = e.stg.stages.map(e => ({
-        ledPercent: e.ledPercent,
-        cmds: e.commands.map(e => [Hr(e.output), e.channel || 1, e.cc || 0, e.value || 0])
-    }))), f
+    if ((e.mode === `STG` || e.mode === `STG Auto`) && e.stg) {
+        f.stgEnabled = e.mode === `STG` ? 1 : 0;
+        f.stgAutoEnabled = e.mode === `STG Auto` ? 1 : 0;
+        f.stgStageCount = e.stg.stageCount;
+        f.stgStages = e.stg.stages.map(t => ({
+            ledPercent: t.ledPercent,
+            timeMs: e.mode === `STG Auto` ? Math.max(50, Math.min(6e4, Number(t.timeMs ?? 1e3))) : void 0,
+            cmds: t.commands.map(e => [Hr(e.output), e.channel || 1, e.cc || 0, e.value || 0])
+        }));
+        if (e.mode === `STG Auto`) {
+            f.stgLoopCcEnabled = e.stgLoopCcEnabled ? 1 : 0;
+            f.stgLoopCcOutput = Hr(e.stgLoopCcOutput || `USB+BT`);
+            f.stgLoopCcChannel = Math.max(1, Math.min(16, Number(e.stgLoopCcChannel ?? 1)));
+            f.stgLoopCc = Math.max(0, Math.min(127, Number(e.stgLoopCc ?? 0)));
+            f.stgLoopCcValueOn = Math.max(0, Math.min(127, Number(e.stgLoopCcValueOn ?? 127)));
+            f.stgLoopCcValueOff = Math.max(0, Math.min(127, Number(e.stgLoopCcValueOff ?? 0)))
+        }
+    }
+    {
+        let ledCfg = e.presetLed || yr;
+        f.ledColors = {
+            on: Nr(ledCfg.on),
+            off: Nr(ledCfg.off),
+            hold_on: Nr(ledCfg.holdOn),
+            hold_off: Nr(ledCfg.holdOff)
+        }
+    }
+    return f
 }
 
 function Yr(e, t, n, usbCfg) {
     let r = !!e?.stgEnabled,
+        stgAuto = !!e?.stgAutoEnabled,
         i = !!e?.ricochetEnabled,
         a = !!e?.holdEnabled,
         o = !!e?.holdToggle,
@@ -15425,7 +16192,7 @@ function Yr(e, t, n, usbCfg) {
     else {
         /* Recuperação: holdEnabled=true + extraHold[] era bug (Normal com Hold → gravava Momentâneo). */
         if (a && !o && Array.isArray(e?.extraHold) && e.extraHold.length > 0) a = !1;
-        r ? s = `STG` : i ? s = `Ricochet` : a && o ? s = `Tap` : a ? s = `Momentâneo` : s = `Normal`
+        stgAuto ? s = `STG Auto` : r ? s = `STG` : i ? s = `Ricochet` : a && o ? s = `Tap` : a ? s = `Momentâneo` : s = `Normal`
     }
     let c = [],
         l = [];
@@ -15434,7 +16201,11 @@ function Yr(e, t, n, usbCfg) {
         type: Number(e.pcUpDownMode) === 2 ? `PC Down` : `PC Up`,
         channel: 1,
         cc: 0,
-        value: 0,
+        value: Number(e?.pcRangeStart ?? 0),
+        rangeStart: Number(e?.pcRangeStart ?? 0),
+        rangeEnd: Number(e?.pcRangeEnd ?? 127),
+        increment: Math.max(1, Number(e?.pcIncrement ?? 1) || 1),
+        loop: e?.pcLoop === void 0 ? !0 : !!e.pcLoop,
         output: Vr(e?.pcUpDownOutput === void 0 ? 2 : Number(e.pcUpDownOutput)),
         trigger: Number(e?.pcUpDownTrigger || 0) === 1 ? `Hold` : `Click`,
         state: `On`
@@ -15443,7 +16214,11 @@ function Yr(e, t, n, usbCfg) {
         type: Number(e.ccUpDownMode) === 2 ? `CC Down` : `CC Up`,
         channel: Number(e?.channel || 1),
         cc: Number(e?.ccUpDownCc || 0),
-        value: 0,
+        value: Number(e?.ccRangeStart ?? 0),
+        rangeStart: Number(e?.ccRangeStart ?? 0),
+        rangeEnd: Number(e?.ccRangeEnd ?? 127),
+        increment: Math.max(1, Number(e?.ccIncrement ?? 1) || 1),
+        loop: e?.ccLoop === void 0 ? !0 : !!e.ccLoop,
         output: Vr(e?.ccUpDownOutput === void 0 ? 2 : Number(e.ccUpDownOutput)),
         trigger: Number(e?.ccUpDownTrigger || 0) === 1 ? `Hold` : `Click`,
         state: `On`
@@ -15474,13 +16249,14 @@ function Yr(e, t, n, usbCfg) {
             holdOff: Mr(u.r_off || 0, u.g_off || 0, u.b_off || 0)
         }
     }
-    let f = s === `STG` ? {
+    let f = s === `STG` || s === `STG Auto` ? {
             stageCount: Number(e?.stgStageCount || 3),
             activeStage: 0,
             stages: Array.from({
                 length: 5
             }, (t, n) => ({
                 ledPercent: e?.stgStages && e.stgStages[n] ? Number(e.stgStages[n].ledPercent || 0) : Math.round((n + 1) * 100 / 5),
+                timeMs: Number(e?.stgStages?.[n]?.timeMs ?? 1e3),
                 commands: Array.isArray(e?.stgStages?.[n]?.cmds) ? e.stgStages[n].cmds.map(e => Array.isArray(e) ? {
                     id: mr(),
                     output: Vr(e[0] === void 0 ? 2 : Number(e[0])),
@@ -15515,7 +16291,8 @@ function Yr(e, t, n, usbCfg) {
     return {
         mode: s,
         label: e?.fsName || n.label || `FS${t}`,
-        iconKey: e?.iconKey || n.iconKey || ``,
+        stompName: typeof e?.stompName == `string` ? e.stompName : n.stompName || ``,
+        iconKey: typeof e?.iconKey == `string` ? displayIconSanitizeKey(e.iconKey) : n.iconKey || ``,
         gridFill: Number(e?.gridFill ?? n.gridFill) ? 1 : 0,
         sceneMask: Array.isArray(e?.scene) ? e.scene.map(e => typeof e == `object` && e ? !!e.enabled : !!e) : Array.isArray(n?.sceneMask) ? n.sceneMask : [],
         /* Nunca herdar comandos do FS/banco anterior — lista vazia = vazio. */
@@ -15523,25 +16300,36 @@ function Yr(e, t, n, usbCfg) {
         presetCommands: c,
         stompLed: Array.isArray(u) || u && typeof u == `object` ? d : n.stompLed,
         presetLed: (() => {
-            let lc = e?.ledColors;
-            if (!lc || typeof lc != `object`) return n.presetLed;
+            let parsed = ledColorsFromFsPayload(e?.ledColors);
+            let toHex = o => o && typeof o == `object` ? Mr(Number(o.r), Number(o.g), Number(o.b)) : null;
+            let on = toHex(parsed.on),
+                off = toHex(parsed.off),
+                hon = toHex(parsed.hold_on),
+                hoff = toHex(parsed.hold_off);
+            if (!on && !off && !hon && !hoff) return n.presetLed;
             return {
-                on: Mr(lc.r_on || 0, lc.g_on || 0, lc.b_on || 0),
-                off: Mr(lc.r_off || 0, lc.g_off || 0, lc.b_off || 0),
-                holdOn: Mr(lc.r_hold_on || 0, lc.g_hold_on || 0, lc.b_hold_on || 0),
-                holdOff: Mr(lc.r_hold_off || 0, lc.g_hold_off || 0, lc.b_hold_off || 0)
+                on: on || n.presetLed.on,
+                off: off || n.presetLed.off,
+                holdOn: hon || n.presetLed.holdOn,
+                holdOff: hoff || n.presetLed.holdOff
             }
         })(),
         stg: f,
-        ricochet: p
+        ricochet: p,
+        stgLoopCcEnabled: !!e?.stgLoopCcEnabled,
+        stgLoopCcOutput: Vr(e?.stgLoopCcOutput === void 0 ? 2 : Number(e.stgLoopCcOutput)),
+        stgLoopCcChannel: Math.max(1, Math.min(16, Number(e?.stgLoopCcChannel ?? 1))),
+        stgLoopCc: Math.max(0, Math.min(127, Number(e?.stgLoopCc ?? 0))),
+        stgLoopCcValueOn: Math.max(0, Math.min(127, Number(e?.stgLoopCcValueOn ?? 127))),
+        stgLoopCcValueOff: Math.max(0, Math.min(127, Number(e?.stgLoopCcValueOff ?? 0)))
     }
 }
 
 function Xr() {
-    let [e, t] = (0, N.useState)(`MT-6S`), [n, r] = (0, N.useState)(0), [i, a] = (0, N.useState)(1), [o, s] = (0, N.useState)(`preset`), [c, l] = (0, N.useState)({}), [expBankState, setExpBankState] = (0, N.useState)(() => expCreateEmptyBank()), [globalSubTab, setGlobalSubTab] = (0, N.useState)(`gb`), u = (0, N.useRef)(!1), modelSaveBusyRef = (0, N.useRef)(!1), modelRebootUntilRef = (0, N.useRef)(0), d = gr[e].fs, [f, p] = (0, N.useState)(1), [m, h] = (0, N.useState)(`Preset`), [g, _] = (0, N.useState)(!0), [v, y] = (0, N.useState)(null), [R, I] = (0, N.useState)(null), [B, L] = (0, N.useState)(``),     [backupBusy, setBackupBusy] = (0, N.useState)(!1), [backupProgress, setBackupProgress] = (0, N.useState)({
+    let [e, t] = (0, N.useState)(`MX-6`), [n, r] = (0, N.useState)(0), [i, a] = (0, N.useState)(1), [o, s] = (0, N.useState)(`preset`), [c, l] = (0, N.useState)({}), [expBankState, setExpBankState] = (0, N.useState)(() => expCreateEmptyBank()), [globalSubTab, setGlobalSubTab] = (0, N.useState)(`gb`), [sysSubTab, setSysSubTab] = (0, N.useState)(`conexoes`), u = (0, N.useRef)(!1), modelSaveBusyRef = (0, N.useRef)(!1), modelRebootUntilRef = (0, N.useRef)(0), iconKeyPendingRef = (0, N.useRef)(null), d = gr[e].fs, [f, p] = (0, N.useState)(1), [m, h] = (0, N.useState)(`Preset`), [g, _] = (0, N.useState)(!0), [v, y] = (0, N.useState)(null), [R, I] = (0, N.useState)(null), [B, L] = (0, N.useState)(``),     [backupBusy, setBackupBusy] = (0, N.useState)(!1), [backupProgress, setBackupProgress] = (0, N.useState)({
         pct: 0,
         label: ``
-    }), [transportState, setTransportState] = (0, N.useState)(() => getTransportSnapshot());
+    }), [fsSwitchPrompt, setFsSwitchPrompt] = (0, N.useState)(null), fsSavedSnapshotRef = (0, N.useRef)({}), fsFullSnapshotRef = (0, N.useRef)({}), [transportState, setTransportState] = (0, N.useState)(() => getTransportSnapshot()), [iconScreenOpen, setIconScreenOpen] = (0, N.useState)(!1), [ampScreenOpen, setAmpScreenOpen] = (0, N.useState)(!1);
     let reportBackupProgress = (pct, label) => {
         try {
             setBackupProgress({
@@ -15552,13 +16340,20 @@ function Xr() {
     };
     (0, N.useEffect)(() => {
         try {
-            let e = window.localStorage.getItem(`midiDictPedalId`),
-                t = String(e || ``).trim().toLowerCase();
-            t && (y(t), e !== t && window.localStorage.setItem(`midiDictPedalId`, t))
+            let cfg = loadMidiDictSlots(),
+                fb = cfg.fallbackPedalId;
+            if (!fb) {
+                let leg = window.localStorage.getItem(`midiDictPedalId`);
+                fb = String(leg || ``).trim().toLowerCase() || null
+            }
+            fb && y(fb)
         } catch {}
     }, []), (0, N.useEffect)(() => {
         try {
-            let e = String(v || ``).trim().toLowerCase();
+            let e = String(v || ``).trim().toLowerCase(),
+                cfg = loadMidiDictSlots();
+            cfg.fallbackPedalId = e || null;
+            saveMidiDictSlots(cfg);
             e ? window.localStorage.setItem(`midiDictPedalId`, e) : window.localStorage.removeItem(`midiDictPedalId`)
         } catch {}
     }, [v]), (0, N.useEffect)(() => {
@@ -15577,9 +16372,60 @@ function Xr() {
         commands: C[ee],
         led: C[S]
     }, T = Math.max(0, Math.min(4, i - 1));
+    (0, N.useEffect)(() => {
+        x(prev => applyFxColorsToStompLeds(prev, c))
+    }, [c?.customFx, c?.customFxCount]);
     let modelFs = d,
-        dualFs = Number(c?.expMode || 0) === 2,
-        effectiveFs = modelFs + (dualFs ? 2 : 0);
+        extFsCount = Number(c?.expMode || 0) === 3 ? 1 : Number(c?.expMode || 0) === 2 ? 2 : 0,
+        dualFs = extFsCount > 0,
+        effectiveFs = modelFs + extFsCount,
+        activeUsbmode = (() => {
+            let mode = Math.max(0, Math.min(si.length - 1, Number(c?.usbmode || 0)));
+            if (Number(c?.usbpreset ?? 0) === 3) mode = 0;
+            return mode
+        })(),
+        snapshotFsCompact = cfg => {
+            try {
+                return JSON.stringify(compactFsForSave(Jr(cfg || kr(1))))
+            } catch {
+                return ``
+            }
+        },
+        markFsSavedSnapshot = (fsNum, cfg) => {
+            if (!fsNum) return;
+            fsSavedSnapshotRef.current[fsNum] = snapshotFsCompact(cfg);
+            try {
+                fsFullSnapshotRef.current[fsNum] = JSON.parse(JSON.stringify(cfg))
+            } catch {}
+        },
+        isFsDirty = fsNum => {
+            let cur = b[fsNum] || kr(fsNum);
+            return fsSavedSnapshotRef.current[fsNum] !== snapshotFsCompact(cur)
+        },
+        discardCurrentFsEdits = () => {
+            let full = fsFullSnapshotRef.current[f];
+            full && x(e => ({
+                ...e,
+                [f]: JSON.parse(JSON.stringify(full))
+            }))
+        },
+        requestSelectFs = targetFs => {
+            if (targetFs === f) {
+                openFsRename(targetFs);
+                return
+            }
+            if (!isFsDirty(f)) {
+                p(targetFs);
+                return
+            }
+            setFsSwitchPrompt({
+                targetFs
+            })
+        };
+    (0, N.useEffect)(() => {
+        fsSavedSnapshotRef.current = {};
+        fsFullSnapshotRef.current = {}
+    }, [n, T]);
     let presetNames = Array.isArray(c?.presetNames) ? c.presetNames.slice(0, 5).map(e => typeof e == `string` ? e : ``) : Array.from({
             length: 5
         }, () => ``),
@@ -15626,7 +16472,47 @@ function Xr() {
                     ...e[R.index] || kr(R.index),
                     label: String(B || ``).trim().toUpperCase().slice(0, 16)
                 }
-            })), closeRename()
+            }));
+            let fsToSave = R.index;
+            let labelToSave = String(B || ``).trim().toUpperCase().slice(0, 16);
+            let pendingIcon = iconKeyPendingRef.current;
+            closeRename();
+            (async () => {
+                if (u.current) return;
+                u.current = !0;
+                try {
+                    let cfg = {
+                        ...(b[fsToSave] || kr(fsToSave)),
+                        label: labelToSave
+                    };
+                    if (pendingIcon !== null) {
+                        cfg.iconKey = displayIconSanitizeKey(pendingIcon || ``);
+                        iconKeyPendingRef.current = null
+                    }
+                    let payload = compactFsForSave(Jr(cfg, c));
+                    await postMidiConfigRetry({
+                        activePreset: T,
+                        banks: {
+                            [n]: {
+                                [`fs${fsToSave}`]: payload
+                            }
+                        }
+                    }, 8);
+                    x(prev => ({
+                        ...prev,
+                        [fsToSave]: {
+                            ...prev[fsToSave] || kr(fsToSave),
+                            label: cfg.label,
+                            iconKey: pendingIcon !== null ? cfg.iconKey : (prev[fsToSave]?.iconKey || ``)
+                        }
+                    }));
+                    rt.success(`Salvo: ${hr[n]} · FS${fsToSave}`)
+                } catch (err) {
+                    rt.error(`Erro ao salvar FS: ${softApFetchErrorMessage(err)}`)
+                } finally {
+                    u.current = !1
+                }
+            })()
         },
         scenesOn = !!Number(c?.customStompSceneEnabled),
         fxCount = Math.max(0, Math.min(12, c?.customFxCount === void 0 || c?.customFxCount === null ? scenesOn ? 4 : 0 : Number(c?.customFxCount) || 0)),
@@ -15642,7 +16528,7 @@ function Xr() {
             return {
                 ...n,
                 customStompSceneEnabled: e ? 1 : 0,
-                customFxCount: e && (i === void 0 || i === null || Number.isNaN(Number(i))) ? 4 : Math.max(0, Math.min(12, Number(i) || 0)),
+                customFxCount: e && (i === void 0 || i === null || Number.isNaN(Number(i)) || !(Number(i) > 0)) ? 1 : Math.max(0, Math.min(12, Number(i) || 0)),
                 customFx: r
             }
         }),
@@ -15668,7 +16554,26 @@ function Xr() {
                 ...t || {},
                 customFxCount: Math.max(0, Math.min(12, Number(t?.customFxCount) || fxCount)),
                 customFx: n
-            }))
+            }));
+            let fs = Number(n[e].assignedFs) || 0;
+            if (fs >= 1 && fs <= 8 && t && (t.colorR != null || t.colorG != null || t.colorB != null || t.assignedFs != null)) {
+                let hex = customFxHex(n[e]);
+                x(prev => {
+                    let cur = prev[fs] || kr(fs),
+                        led = {
+                            ...(cur.stompLed || yr),
+                            on: hex,
+                            holdOn: hex
+                        };
+                    return {
+                        ...prev,
+                        [fs]: {
+                            ...cur,
+                            stompLed: led
+                        }
+                    }
+                })
+            }
         };
     let handleModelChange = async nextModel => {
         let nextFsCount = gr[nextModel]?.fs;
@@ -15684,9 +16589,11 @@ function Xr() {
                 nextFsCount
             }), t(nextModel), l(e => ({
                 ...e || {},
-                fsCount: nextFsCount
+                fsCount: nextFsCount,
+                displayStyle: displayStyleClampForModel(nextFsCount, e?.displayStyle)
             })), await Br(`/api/usb-config`, {
-                fsCount: nextFsCount
+                fsCount: nextFsCount,
+                displayStyle: displayStyleClampForModel(nextFsCount, c?.displayStyle)
             }, 3e4), F(`B`, `model.save.usb.ok`, {
                 fsCount: nextFsCount
             }), modelRebootUntilRef.current = Date.now() + 12e3;
@@ -15757,19 +16664,18 @@ function Xr() {
                         ...n || {},
                         controllerPath: Number.isFinite(Number(n?.controllerPath))
                             ? Number(n.controllerPath)
-                            : (MAGIC_USB_CUSTOM_PRESETS.includes(Number(n?.usbpreset ?? n?.usbPreset)) || Number(n?.midiPreset ?? n?.MIDI_PRESET) === 2 || Number(n?.btPreset ?? n?.BT_PRESET) === 3)
-                                ? 1
-                                : Number(e?.controllerPath || 0),
+                            : Number(e?.controllerPath || 0),
                         midiEnable: Number.isFinite(Number(n?.midiEnable ?? n?.S_MIDI_EN)) ? Number(n?.midiEnable ?? n?.S_MIDI_EN) : Number(e?.midiEnable || 0),
                         midiChannel: Number.isFinite(Number(n?.midiChannel ?? n?.S_MIDI_CH)) ? Number(n?.midiChannel ?? n?.S_MIDI_CH) : Number(e?.midiChannel || 1),
                         midiPreset: Number.isFinite(Number(n?.midiPreset ?? n?.MIDI_PRESET)) ? Number(n?.midiPreset ?? n?.MIDI_PRESET) : Number(e?.midiPreset || 0),
+                        midiInRoute: Number.isFinite(Number(n?.midiInRoute ?? n?.S_MIDI_IN_ROUTE)) ? Number(n?.midiInRoute ?? n?.S_MIDI_IN_ROUTE) : Number(e?.midiInRoute || 0),
                         btMode: Number.isFinite(Number(n?.btMode ?? n?.BT_MODE)) ? Number(n?.btMode ?? n?.BT_MODE) : Number(e?.btMode || 0),
                         btPreset: Number.isFinite(Number(n?.btPreset ?? n?.BT_PRESET)) ? Number(n?.btPreset ?? n?.BT_PRESET) : Number(e?.btPreset || 0),
                         btMidiCc: Number.isFinite(Number(n?.btMidiCc ?? n?.BT_MIDI_CC)) ? Number(n?.btMidiCc ?? n?.BT_MIDI_CC) : Number(e?.btMidiCc || 0),
                         btCustomEnable: Number.isFinite(Number(n?.btCustomEnable ?? n?.BT_CUST_EN)) ? Number(n?.btCustomEnable ?? n?.BT_CUST_EN) : Number(e?.btCustomEnable || 0),
                         btCustomName: typeof(n?.btCustomName ?? n?.BT_CUST_NAME) == `string` ? (n?.btCustomName ?? n?.BT_CUST_NAME) : String(e?.btCustomName || ``),
                         exp: expNormalizeBank(n?.exp ?? e?.exp)
-                    })), setExpBankState(expNormalizeBank(n?.exp)), typeof n?.fsCount == `number` && (n.fsCount === 4 ? t(`MT-4S`) : n.fsCount === 6 ? t(`MT-6S`) : n.fsCount === 8 && t(`MT-8S`)), typeof n?.activePreset == `number` && a(Math.max(1, Math.min(5, n.activePreset + 1)));
+                    })), setExpBankState(expNormalizeBank(n?.exp)), typeof n?.fsCount == `number` && (n.fsCount === 4 ? t(`MX-4`) : n.fsCount === 6 ? t(`MX-6`) : n.fsCount === 8 && t(`MX-8`)), typeof n?.activePreset == `number` && a(Math.max(1, Math.min(5, n.activePreset + 1)));
                     return
                 } catch (n) {
                     lastErr = n;
@@ -15812,6 +16718,7 @@ function Xr() {
                         midiEnable: Number.isFinite(Number(n?.S_MIDI_EN)) ? Number(n.S_MIDI_EN) : e?.midiEnable,
                         midiChannel: Number.isFinite(Number(n?.S_MIDI_CH)) ? Number(n.S_MIDI_CH) : e?.midiChannel,
                         midiPreset: Number.isFinite(Number(n?.MIDI_PRESET)) ? Number(n.MIDI_PRESET) : e?.midiPreset,
+                        midiInRoute: Number.isFinite(Number(n?.S_MIDI_IN_ROUTE ?? n?.midiInRoute)) ? Number(n?.S_MIDI_IN_ROUTE ?? n?.midiInRoute) : (e?.midiInRoute ?? 0),
                         wifiSsid: typeof n?.WIFI_SSID == `string` ? n.WIFI_SSID : e?.wifiSsid,
                         wifiPw: typeof n?.WIFI_PW == `string` ? n.WIFI_PW : e?.wifiPw
                     })), F(`D`, `ws.getconfig.bootstrap.ok`, {
@@ -15892,7 +16799,8 @@ function Xr() {
                 let r = t?.banks?.[String(n)] || t?.banks?.[n] || t?.banks?.[String(t?.bank)] || (t?.fs1 ? t : null);
                 x(() => {
                     let t = {},
-                        maxFs = Math.max(8, Number(c?.expMode || 0) === 2 ? (Number(c?.fsCount) || d) + 2 : 8);
+                        extCount = Number(c?.expMode || 0) === 3 ? 1 : Number(c?.expMode || 0) === 2 ? 2 : 0,
+                        maxFs = Math.max(8, (Number(c?.fsCount) || d) + extCount);
                     for (let fs = 1; fs <= maxFs; fs++) {
                         let i = `fs${fs}`,
                             a = r?.[i];
@@ -15900,7 +16808,15 @@ function Xr() {
                         t[fs] = a && typeof a == `object` ? Yr(a, fs, kr(fs), c) : kr(fs)
                     }
                     return t
-                })
+                });
+                if (r) {
+                    let extCount = Number(c?.expMode || 0) === 3 ? 1 : Number(c?.expMode || 0) === 2 ? 2 : 0,
+                        maxFs = Math.max(8, (Number(c?.fsCount) || d) + extCount);
+                    for (let fs = 1; fs <= maxFs; fs++) {
+                        let a = r?.[`fs${fs}`];
+                        if (a && typeof a == `object`) markFsSavedSnapshot(fs, Yr(a, fs, kr(fs), c))
+                    }
+                }
             } catch (err) {
                 F(`A`, `bank.load.error`, {
                     bank: n,
@@ -15970,18 +16886,6 @@ function Xr() {
                     if (fromState.messages.length > 0) return fromState;
                     return void 0
                 })(),
-                midiPcUpDownShared: src.midiPcUpDownShared,
-                midiPcGlobalStart: src.midiPcGlobalStart,
-                midiPcGlobalEnd: src.midiPcGlobalEnd,
-                midiPcGlobalInc: src.midiPcGlobalInc,
-                midiPcGlobalLoop: src.midiPcGlobalLoop,
-                midiPcSharedValue: src.midiPcSharedValue,
-                midiCcUpDownShared: src.midiCcUpDownShared,
-                midiCcGlobalStart: src.midiCcGlobalStart,
-                midiCcGlobalEnd: src.midiCcGlobalEnd,
-                midiCcGlobalInc: src.midiCcGlobalInc,
-                midiCcGlobalLoop: src.midiCcGlobalLoop,
-                midiCcSharedValue: src.midiCcSharedValue,
                 bankLedR_on: src.bankLedR_on,
                 bankLedG_on: src.bankLedG_on,
                 bankLedB_on: src.bankLedB_on,
@@ -16001,7 +16905,8 @@ function Xr() {
                 btCustomName: typeof(src.btCustomName ?? src.BT_CUST_NAME) == `string` ? String(src.btCustomName ?? src.BT_CUST_NAME).slice(0, 24) : void 0,
                 midiEnable: src.midiEnable ?? src.S_MIDI_EN,
                 midiChannel: src.midiChannel ?? src.S_MIDI_CH,
-                midiPreset: src.midiPreset ?? src.MIDI_PRESET
+                midiPreset: src.midiPreset ?? src.MIDI_PRESET,
+                midiInRoute: src.midiInRoute ?? src.S_MIDI_IN_ROUTE
             })
         },
         collectPresetBackup = async (e, t, r = !1, includeLeds = !0) => {
@@ -16081,6 +16986,7 @@ function Xr() {
                 primary?.banks && (snap.data.config = {
                     banks: primary.banks
                 }), includeLeds && primary?.ledColors && (snap.data.ledColors = primary.ledColors);
+                snap.data.midiDictSlots = loadMidiDictSlots();
                 try {
                     await Br(`/api/usb-config`, {
                         activePreset: T
@@ -16305,6 +17211,7 @@ function Xr() {
                         method: `GET`
                     }, 15e3)
                 }
+                t?.midiDictSlots && saveMidiDictSlots(t.midiDictSlots);
                 rt.success(`Backup restaurado. Recarregando a interface...`);
                 setTimeout(() => {
                     try {
@@ -16322,8 +17229,14 @@ function Xr() {
                 u.current = !0;
                 try {
                     let e = f,
-                        t = b[e] || kr(e),
-                        r = compactFsForSave(Jr(t, c)),
+                        t = {
+                            ...(b[e] || kr(e))
+                        };
+                    if (iconKeyPendingRef.current !== null) {
+                        t.iconKey = displayIconSanitizeKey(iconKeyPendingRef.current || ``);
+                        iconKeyPendingRef.current = null
+                    }
+                    let r = compactFsForSave(Jr(t, c)),
                         clickN = (r?.extraClick || []).length,
                         holdN = (r?.extraHold || []).length;
                     if (clickN > 16 || holdN > 16) {
@@ -16349,6 +17262,38 @@ function Xr() {
                             }
                         }
                     }, 8);
+                    /* Cores ANTES do GET de confirmação — senão o 1.º save lê o azul
+                     * por defeito do banco e pinta o editor por cima da cor gravada. */
+                    try {
+                        let ledCfg = t.presetLed || yr,
+                            ledPayload = {
+                                activePreset: T,
+                                bank: n,
+                                fs: e,
+                                on: Nr(ledCfg.on),
+                                off: Nr(ledCfg.off),
+                                hold_on: Nr(ledCfg.holdOn),
+                                hold_off: Nr(ledCfg.holdOff)
+                            };
+                        F(`A`, `save.led.start`, {
+                            bank: n,
+                            fs: e,
+                            activePreset: T,
+                            led: ledCfg,
+                            ledPayload
+                        }), await new Promise(ok => setTimeout(ok, 120)), await Br(`/api/led-colors`, ledPayload, 3e4)
+                    } catch (ledErr) {
+                        F(`A`, `save.led.warn`, {
+                            message: String(ledErr?.message || ledErr)
+                        });
+                        rt.error(`Comandos gravados, mas as cores LED falharam: ${String(ledErr?.message || ledErr)}`)
+                    }
+                    let savedSnap = {
+                        ...t,
+                        presetLed: t.presetLed ? {
+                            ...t.presetLed
+                        } : t.presetLed
+                    };
                     /* Confirma na flash/RAM — com BT o SoftAP pode falhar o GET; não anula o save. */
                     let verifySoft = !1;
                     let verifyAttempts = transportUsesUsb() ? 2 : 4;
@@ -16373,10 +17318,25 @@ function Xr() {
                             if (!gotFs || gotClick !== clickN || gotHold !== holdN) {
                                 throw Error(`Confirmação falhou (ESP click=${gotClick}/${clickN} hold=${gotHold}/${holdN})`)
                             }
-                            x(prev => ({
-                                ...prev,
-                                [e]: Yr(gotFs, e, t, c)
-                            }));
+                            {
+                                let wantIk = displayIconSanitizeKey(r.iconKey || ``),
+                                    gotIk = displayIconSanitizeKey(gotFs?.iconKey || ``);
+                                if (wantIk !== gotIk) {
+                                    throw Error(`Confirmação iconKey falhou (ESP "${gotIk}"/"${wantIk}")`)
+                                }
+                            }
+                            x(prev => {
+                                let next = Yr(gotFs, e, t, c);
+                                if (t.presetLed) next.presetLed = {
+                                    ...t.presetLed
+                                };
+                                savedSnap = next;
+                                return {
+                                    ...prev,
+                                    [e]: next
+                                }
+                            });
+                            markFsSavedSnapshot(e, savedSnap);
                             F(`C`, `save.fs.verify.ok`, {
                                 bank: n,
                                 fs: e,
@@ -16399,32 +17359,8 @@ function Xr() {
                             }
                         }
                     }
-                    /* LED é extra: se falhar após FS ok, não anula o save da chave. */
-                    try {
-                        let ledCfg = t.presetLed || yr,
-                            ledPayload = {
-                                activePreset: T,
-                                bank: n,
-                                fs: e,
-                                on: Nr(ledCfg.on),
-                                off: Nr(ledCfg.off),
-                                hold_on: Nr(ledCfg.holdOn),
-                                hold_off: Nr(ledCfg.holdOff)
-                            };
-                        F(`A`, `save.led.start`, {
-                            bank: n,
-                            fs: e,
-                            activePreset: T,
-                            led: ledCfg,
-                            ledPayload
-                        }), await new Promise(e => setTimeout(e, 120)), await Br(`/api/led-colors`, ledPayload, 3e4)
-                    } catch (ledErr) {
-                        F(`A`, `save.led.warn`, {
-                            message: String(ledErr?.message || ledErr)
-                        });
-                        rt.error(`Comandos gravados, mas as cores LED falharam: ${String(ledErr?.message || ledErr)}`)
-                    }
                     gboxSoftApQuiet(8e3);
+                    markFsSavedSnapshot(e, savedSnap);
                     rt.success(verifySoft && !transportUsesUsb() ? `Salvo: ${hr[n]} · FS${e} · Preset ${T+1} (BT activo — SoftAP lento)` : `Salvo: ${hr[n]} · FS${e} · Preset ${T+1}`), F(`C`, `save.fs.ok`, {
                         bank: n,
                         fs: e,
@@ -16499,20 +17435,24 @@ function Xr() {
                 if (!(c && Object.keys(c).length > 0)) return;
                 try {
                     gboxSoftApQuiet(45e3);
-                    let parts = buildSistemaUsbParts(c);
+                    let parts = sysSubTab === `tela` ? buildTelaUsbParts(c) : buildConexoesUsbParts(c);
+                    if (!parts || !parts.length) {
+                        parts = buildSistemaUsbParts(c);
+                    }
+                    let saveLabel = sysSubTab === `tela` ? `Tela` : `Conexões`;
                     F(`E`, `usb.save.sistema.start`, {
-                        parts: parts.length
+                        parts: parts.length,
+                        subTab: sysSubTab
                     });
-                    rt.info?.(`A gravar Sistema…`);
+                    rt.info?.(`A gravar ${saveLabel}…`);
                     await BrUsbParts(parts, 25e3);
-                    /* HTTP já grava USB/BT/MIDI na SPIFFS. Não chamar SETCONFIG —
-                     * no firmware isso faz control_save_user_data(1) → esp_restart(). */
                     modelRebootUntilRef.current = 0;
                     F(`E`, `usb.save.ok`, {
-                        tab: o
-                    }), rt.success(`Sistema salvo`)
+                        tab: o,
+                        subTab: sysSubTab
+                    }), rt.success(`Salvo: ${saveLabel}`)
                 } catch (err) {
-                    modelRebootUntilRef.current = 0, rt.error(`Falha ao salvar Sistema: ${softApFetchErrorMessage(err)}`), F(`E`, `usb.save.error`, {
+                    modelRebootUntilRef.current = 0, rt.error(`Falha ao salvar: ${softApFetchErrorMessage(err)}`), F(`E`, `usb.save.error`, {
                         tab: o,
                         message: String(err?.message || err)
                     })
@@ -16520,7 +17460,7 @@ function Xr() {
                 return
             }
         };
-    let globalSaveLabel = o === `global` ? globalSubTab === `stomp` ? `Salvar Stomp` : globalSubTab === `exp` ? `Salvar EXP` : `Salvar GB` : o === `sistema` ? `Salvar Sistema` : `Salvar`;
+    let globalSaveLabel = o === `global` ? (globalSubTab === `stomp` ? `Salvar Stomp` : globalSubTab === `exp` ? `Salvar EXP` : `Salvar GB`) : o === `sistema` ? (sysSubTab === `tela` ? `Salvar Tela` : `Salvar Conexões`) : `Salvar`;
     return (0, P.jsx)(fr.Provider, {
         value: {
             stompOn: g,
@@ -16543,7 +17483,9 @@ function Xr() {
             children: (0, P.jsx)(pr.Provider, {
                 value: {
                     pedalId: v,
-                    setPedalId: y
+                    setPedalId: y,
+                    resolvePedalId: (output, channel, hubDevice) => resolvePedalIdForCommand(output, channel, hubDevice, v),
+                    usbmode: activeUsbmode
                 },
                 children: (0, P.jsxs)(`div`, {
                 className: `mx-auto max-w-[1400px] space-y-6 pb-24`,
@@ -16760,7 +17702,7 @@ function Xr() {
                                     active: f === e,
                                     name: b[e]?.label,
                                     isExt: e > modelFs,
-                                    onClick: () => f === e ? openFsRename(e) : p(e),
+                                    onClick: () => f === e ? openFsRename(e) : requestSelectFs(e),
                                     onRename: () => openFsRename(e)
                                 }, e))
                             })]
@@ -16778,6 +17720,12 @@ function Xr() {
                             ctrlMode: m,
                             onChangeCtrlMode: h,
                             fxList: fxList,
+                              allFsConfigs: b,
+                              effectiveFs: effectiveFs,
+                              globalConfig: c,
+                              onSelectFs: requestSelectFs,
+                              onOpenIconModal: () => setIconScreenOpen(!0),
+                              onRenameFsIndex: openFsRename,
                             onChangeMode: e => {
                                 if (e === `Ricochet`) {
                                     E({
@@ -16793,6 +17741,20 @@ function Xr() {
                                         mode: e,
                                         commands: [],
                                         stg: w.stg ?? Tr()
+                                    });
+                                    return
+                                }
+                                if (e === `STG Auto`) {
+                                    E({
+                                        mode: e,
+                                        commands: [],
+                                        stg: Tr(),
+                                        stgLoopCcEnabled: !1,
+                                        stgLoopCcOutput: `USB+BT`,
+                                        stgLoopCcChannel: 1,
+                                        stgLoopCc: 0,
+                                        stgLoopCcValueOn: 127,
+                                        stgLoopCcValueOff: 0
                                     });
                                     return
                                 }
@@ -16822,7 +17784,7 @@ function Xr() {
                                 })
                             },
                             onAddCommand: () => {
-                                if (m !== `Stomp` && w.mode === `STG`) {
+                                if (m !== `Stomp` && (w.mode === `STG` || w.mode === `STG Auto`)) {
                                     let e = w.stg ?? Tr(),
                                         t = e.activeStage;
                                     if (e.stages[t].commands.length >= 4) return;
@@ -16889,27 +17851,206 @@ function Xr() {
                                     }
                                 })
                             },
+                            onPatchStgLoopCc: patch => E({
+                                ...(patch.enabled !== void 0 ? {
+                                    stgLoopCcEnabled: !!patch.enabled
+                                } : {}),
+                                ...(patch.output !== void 0 ? {
+                                    stgLoopCcOutput: patch.output
+                                } : {}),
+                                ...(patch.channel !== void 0 ? {
+                                    stgLoopCcChannel: patch.channel
+                                } : {}),
+                                ...(patch.cc !== void 0 ? {
+                                    stgLoopCc: patch.cc
+                                } : {}),
+                                ...(patch.valueOn !== void 0 ? {
+                                    stgLoopCcValueOn: patch.valueOn
+                                } : {}),
+                                ...(patch.valueOff !== void 0 ? {
+                                    stgLoopCcValueOff: patch.valueOff
+                                } : {})
+                            }),
                             onChangeSceneMask: e => E({
                                 sceneMask: e
+                            }),
+                            onChangeStompName: e => E({
+                                stompName: e
                             })
                         }), f <= modelFs && (0, P.jsx)(Ci, {
                             fsNumber: f,
                             led: w.led,
-                            onChange: e => E({
-                                led: e
-                            }),
+                            onChange: e => {
+                                E({
+                                    led: e
+                                });
+                                if (m === `Stomp`) {
+                                    let rgb = Nr(e.on);
+                                    l(usb => {
+                                        let fx = Array.from({
+                                            length: 12
+                                        }, (e, i) => normalizeCustomFx(usb?.customFx?.[i], i + 1));
+                                        let changed = !1;
+                                        fx = fx.map(item => Number(item.assignedFs) !== f ? item : (changed = !0, {
+                                            ...item,
+                                            colorR: rgb.r,
+                                            colorG: rgb.g,
+                                            colorB: rgb.b
+                                        }));
+                                        return changed ? {
+                                            ...usb || {},
+                                            customFx: fx
+                                        } : usb
+                                    })
+                                }
+                            },
                             variant: m === `Stomp` ? `stomp` : w.mode === `Normal` ? `fourColor` : w.mode === `Momentâneo` ? `twoColor` : `oneColor`
-                        }), f <= modelFs && (0, P.jsx)(FsScreenIconSection, {
-                            fsNumber: f,
-                            iconKey: w.iconKey,
-                            fsCount: gr[e]?.fs,
-                            gridFill: w.gridFill,
-                            onSetKey: key => E({
-                                iconKey: key
-                            }),
-                            onPatchGridFill: v => E({
-                                gridFill: Number(v) ? 1 : 0
-                            })
+                        }), f <= modelFs && (0, P.jsxs)(P.Fragment, {
+                            children: [(Number(c?.displayStyle) === 7) ? (0, P.jsxs)(`div`, {
+                                className: `grid grid-cols-2 gap-2 w-full`,
+                                children: [
+                                    (0, P.jsx)(`button`, {
+                                        type: `button`,
+                                        onClick: () => setIconScreenOpen(!0),
+                                        className: `flex w-full items-center justify-center gap-2 rounded-xl border border-border bg-canvas px-4 py-3 font-display text-[10px] font-bold uppercase tracking-[0.2em] text-accent transition hover:border-accent/40 hover:bg-accent/5`,
+                                        children: `Ícones`
+                                    }),
+                                    (0, P.jsx)(`button`, {
+                                        type: `button`,
+                                        onClick: () => setAmpScreenOpen(!0),
+                                        className: `flex w-full items-center justify-center gap-2 rounded-xl border border-red-500/50 bg-red-950/20 px-4 py-3 font-display text-[10px] font-bold uppercase tracking-[0.2em] text-red-400 transition hover:border-red-500 hover:bg-red-900/30`,
+                                        children: `Cabeçote Amp`
+                                    })
+                                ]
+                            }) : (0, P.jsx)(`button`, {
+                                type: `button`,
+                                onClick: () => setIconScreenOpen(!0),
+                                className: `flex w-full items-center justify-center gap-2 rounded-xl border border-border bg-canvas px-4 py-3 font-display text-[10px] font-bold uppercase tracking-[0.2em] text-accent transition hover:border-accent/40 hover:bg-accent/5`,
+                                children: `Ícones`
+                            }), (0, P.jsx)(popupShell, {
+                                open: iconScreenOpen,
+                                onOpenChange: setIconScreenOpen,
+                                title: `Ícones`,
+                                subtitle: m === `Stomp` ? `FS${f} · Modo Stomp` : `FS${f}`,
+                                children: (0, P.jsx)(FsScreenIconPicker, {
+                                    iconKey: m === `Stomp` ? (fxList.find(it => Number(it?.assignedFs) === f)?.icon || (Array.isArray(c?.fsIconKey) ? c.fsIconKey[f - 1] : ``) || w.stompIcon || ``) : w.iconKey,
+                                    fsIndex: f,
+                                    fsCount: gr[e]?.fs,
+                                    embedded: !0,
+                                    onSetKey: key => {
+                                        iconKeyPendingRef.current = key;
+                                        if (m === `Stomp`) {
+                                            E({
+                                                stompIcon: key,
+                                                iconKey: key
+                                            })
+                                        } else {
+                                            E({
+                                                iconKey: key
+                                            })
+                                        }
+                                    }
+                                }),
+                                footer: (0, P.jsxs)(`div`, {
+                                    className: `flex flex-col-reverse gap-2 sm:flex-row sm:justify-end`,
+                                    children: [(0, P.jsx)(`button`, {
+                                        type: `button`,
+                                        onClick: () => setIconScreenOpen(!1),
+                                        className: `w-full rounded-md border border-border px-3 py-2 font-display text-[10px] uppercase tracking-[0.16em] text-muted-foreground transition hover:text-foreground sm:w-auto`,
+                                        children: `Fechar`
+                                    }), (0, P.jsx)(`button`, {
+                                        type: `button`,
+                                        onClick: async () => {
+                                            let chosenKey = iconKeyPendingRef.current;
+                                            setIconScreenOpen(!1);
+                                            iconKeyPendingRef.current = null;
+                                            if (m === `Stomp`) {
+                                                let finalKey = displayIconSanitizeKey(chosenKey ?? (fxList.find(it => Number(it?.assignedFs) === f)?.icon || (Array.isArray(c?.fsIconKey) ? c.fsIconKey[f - 1] : ``) || w.stompIcon || ``));
+                                                let nextFsIconKey = Array.isArray(c?.fsIconKey) ? [...c.fsIconKey] : [``,``,``,``,``,``,``,``];
+                                                while (nextFsIconKey.length < 8) nextFsIconKey.push(``);
+                                                nextFsIconKey[f - 1] = finalKey;
+
+                                                let nextFxList = Array.from({ length: 12 }, (_, t) => normalizeCustomFx(c?.customFx?.[t], t + 1));
+                                                let fxIdx = nextFxList.findIndex(item => Number(item?.assignedFs) === f);
+                                                if (fxIdx >= 0) {
+                                                    nextFxList[fxIdx] = { ...nextFxList[fxIdx], icon: finalKey };
+                                                }
+
+                                                l(prev => ({
+                                                    ...prev || {},
+                                                    fsIconKey: nextFsIconKey,
+                                                    customFx: nextFxList
+                                                }));
+
+                                                try {
+                                                    let usbPayload = { fsIconKey: nextFsIconKey };
+                                                    if (fxIdx >= 0) {
+                                                        usbPayload.customFx = nextFxList;
+                                                    }
+                                                    await Br(`/api/usb-config`, usbPayload, 2e4);
+                                                    rt.success(`Ícone Stomp salvo: FS${f}`);
+                                                } catch (err) {
+                                                    rt.error(`Erro ao salvar ícone Stomp: ${String(err?.message || err)}`);
+                                                }
+                                                E({ stompIcon: finalKey, iconKey: finalKey });
+                                            } else {
+                                                if (chosenKey === null) {
+                                                    iconKeyPendingRef.current = displayIconSanitizeKey(w.iconKey || ``)
+                                                } else {
+                                                    iconKeyPendingRef.current = chosenKey;
+                                                }
+                                                await ne()
+                                            }
+                                        },
+                                        className: `w-full rounded-md border border-accent/60 bg-accent/20 px-4 py-2 font-display text-[10px] uppercase tracking-[0.16em] text-accent shadow-[0_0_18px_-4px_rgba(220,38,38,0.7)] transition hover:bg-accent/30 sm:w-auto`,
+                                        children: `Salvar`
+                                    })]
+                                })
+                            }), (0, P.jsx)(popupShell, {
+                                open: ampScreenOpen,
+                                onOpenChange: setAmpScreenOpen,
+                                title: `Cabeçote Amp`,
+                                subtitle: `FS${f}`,
+                                children: (0, P.jsx)(FsScreenAmpPicker, {
+                                    ampKey: (Array.isArray(c?.fsBgSlot) && c.fsBgSlot[f - 1] > 0) ? (`amp` + c.fsBgSlot[f - 1]) : ``,
+                                    fsIndex: f,
+                                    embedded: !0,
+                                    onSetKey: key => {
+                                        let slotNum = 0;
+                                        if (key && key.startsWith(`amp`)) {
+                                            slotNum = parseInt(key.replace(`amp`, ``), 10) || 0;
+                                        }
+                                        let nextSlots = Array.isArray(c?.fsBgSlot) ? [...c.fsBgSlot] : [0,0,0,0,0,0,0,0];
+                                        while (nextSlots.length < 8) nextSlots.push(0);
+                                        nextSlots[f - 1] = slotNum;
+                                        l(prev => ({ ...prev, fsBgSlot: nextSlots }));
+                                    }
+                                }),
+                                footer: (0, P.jsxs)(`div`, {
+                                    className: `flex flex-col-reverse gap-2 sm:flex-row sm:justify-end`,
+                                    children: [(0, P.jsx)(`button`, {
+                                        type: `button`,
+                                        onClick: () => setAmpScreenOpen(!1),
+                                        className: `w-full rounded-md border border-border px-3 py-2 font-display text-[10px] uppercase tracking-[0.16em] text-muted-foreground transition hover:text-foreground sm:w-auto`,
+                                        children: `Fechar`
+                                    }), (0, P.jsx)(`button`, {
+                                        type: `button`,
+                                        onClick: async () => {
+                                            setAmpScreenOpen(!1);
+                                            try {
+                                                let nextSlots = Array.isArray(c?.fsBgSlot) ? [...c.fsBgSlot] : [0,0,0,0,0,0,0,0];
+                                                while (nextSlots.length < 8) nextSlots.push(0);
+                                                await Br(`/api/usb-config`, { fsBgSlot: nextSlots }, 25e3);
+                                                rt.success(`Cabeçote da FS${f} salvo com sucesso!`);
+                                            } catch (err) {
+                                                rt.error(`Falha ao salvar cabeçote: ${String(err?.message || err)}`);
+                                            }
+                                        },
+                                        className: `w-full rounded-md border border-accent/60 bg-accent/20 px-4 py-2 font-display text-[10px] uppercase tracking-[0.16em] text-accent shadow-[0_0_18px_-4px_rgba(220,38,38,0.7)] transition hover:bg-accent/30 sm:w-auto`,
+                                        children: `Salvar`
+                                    })]
+                                })
+                            })]
                         })]
                     })]
                 }), o === `global` && (0, P.jsx)(globalSectionView, {
@@ -16934,7 +18075,59 @@ function Xr() {
                     onBackupLite: opts => downloadBackupSnapshot(`lite`, opts),
                     onBackupFull: () => downloadBackupSnapshot(`full`),
                     onRestoreBackup: restoreBackupFile,
-                    backupBusy
+                    backupBusy,
+                    sysTab: sysSubTab,
+                    onSysTabChange: setSysSubTab,
+                    onSave: ne
+                }), fsSwitchPrompt && (0, P.jsx)(`div`, {
+                    className: `fixed inset-0 z-[120] flex items-center justify-center bg-black/80 p-4`,
+                    onClick: () => setFsSwitchPrompt(null),
+                    children: (0, P.jsxs)(`div`, {
+                        className: `relative w-full overflow-hidden border border-border bg-canvas`,
+                        onClick: e => e.stopPropagation(),
+                        style: {
+                            width: `calc(100vw - 2rem)`,
+                            maxWidth: `24rem`,
+                            borderRadius: `20px`
+                        },
+                        children: [(0, P.jsxs)(`div`, {
+                            className: `border-b border-border bg-panel/60 px-4 py-3`,
+                            children: [(0, P.jsx)(`div`, {
+                                className: `font-display text-[11px] uppercase tracking-[0.24em] text-accent`,
+                                children: `Alterações não salvas`
+                            }), (0, P.jsxs)(`div`, {
+                                className: `mt-1 font-mono text-[10px] text-muted-foreground`,
+                                children: [`FS`, f, ` tem mudanças. Salvar antes de ir a FS`, fsSwitchPrompt.targetFs, `?`]
+                            })]
+                        }), (0, P.jsxs)(`div`, {
+                            className: `flex flex-col gap-2 px-4 py-4 sm:flex-row sm:justify-end`,
+                            children: [(0, P.jsx)(`button`, {
+                                type: `button`,
+                                onClick: () => setFsSwitchPrompt(null),
+                                className: `rounded-md border border-border px-4 py-2 font-display text-[10px] uppercase tracking-[0.16em] text-muted-foreground hover:text-foreground`,
+                                children: `Cancelar`
+                            }), (0, P.jsx)(`button`, {
+                                type: `button`,
+                                onClick: () => {
+                                    discardCurrentFsEdits();
+                                    p(fsSwitchPrompt.targetFs);
+                                    setFsSwitchPrompt(null)
+                                },
+                                className: `rounded-md border border-border px-4 py-2 font-display text-[10px] uppercase tracking-[0.16em] text-muted-foreground hover:text-foreground`,
+                                children: `Descartar`
+                            }), (0, P.jsx)(`button`, {
+                                type: `button`,
+                                onClick: async () => {
+                                    let target = fsSwitchPrompt.targetFs;
+                                    setFsSwitchPrompt(null);
+                                    await te();
+                                    p(target)
+                                },
+                                className: `rounded-md border border-accent/60 bg-accent/20 px-4 py-2 font-display text-[10px] uppercase tracking-[0.16em] text-accent hover:bg-accent/30`,
+                                children: `Salvar`
+                            })]
+                        })]
+                    })
                 }), (() => {
                     if (!R) return null;
                     let overlay = (0, P.jsx)(`div`, {
@@ -16998,18 +18191,21 @@ function Xr() {
                                 }), (0, P.jsxs)(`span`, {
                                     children: [B.length, `/`, R.kind === `preset` ? 24 : 16]
                                 })]
-                            }), R.kind !== `preset` && (0, P.jsx)(FsScreenIconPicker, {
+                            }), (0, P.jsx)(FsScreenIconPicker, {
                                 iconKey: b[R.index]?.iconKey,
                                 fsIndex: R.index,
                                 fsCount: d,
                                 embedded: !0,
-                                onSetKey: key => x(e => ({
-                                    ...e,
-                                    [R.index]: {
-                                        ...e[R.index] || kr(R.index),
-                                        iconKey: key
-                                    }
-                                }))
+                                onSetKey: key => {
+                                    iconKeyPendingRef.current = key;
+                                    x(prev => ({
+                                        ...prev,
+                                        [R.index]: {
+                                            ...prev[R.index] || kr(R.index),
+                                            iconKey: key
+                                        }
+                                    }))
+                                }
                             })]
                         }), (0, P.jsxs)(`div`, {
                             className: `relative flex shrink-0 flex-col-reverse gap-1.5 border-t border-border bg-panel/40 px-4 py-2.5 sm:flex-row sm:justify-between`,
@@ -17036,6 +18232,7 @@ function Xr() {
                 })(), (0, P.jsx)(responsiveBottomDock, {
                     tab: o,
                     globalSubTab,
+                    sysSubTab,
                     onChange: s,
                     onSave: ne
                 })]
@@ -17084,10 +18281,11 @@ function Zr({
 function responsiveBottomDock({
     tab: e,
     globalSubTab: globalSubTab,
+    sysSubTab: sysSubTab,
     onChange: t,
     onSave: n
 }) {
-    let saveLabel = e === `global` ? globalSubTab === `stomp` ? `Salvar Stomp` : globalSubTab === `exp` ? `Salvar EXP` : `Salvar GB` : e === `sistema` ? `Salvar Sistema` : `Salvar`;
+    let saveLabel = e === `global` ? (globalSubTab === `stomp` ? `Salvar Stomp` : globalSubTab === `exp` ? `Salvar EXP` : `Salvar GB`) : e === `sistema` ? (sysSubTab === `tela` ? `Salvar Tela` : `Salvar Conexões`) : `Salvar`;
     return (0, P.jsx)(`div`, {
         className: `fixed inset-x-0 bottom-0 z-30 border-t border-border bg-canvas/95 px-2 py-2 backdrop-blur-md sm:px-4 sm:py-3 lg:sticky lg:mx-auto lg:mt-6 lg:max-w-2xl lg:rounded-full lg:border`,
         children: (0, P.jsxs)(`div`, {
@@ -17325,128 +18523,6 @@ function $r({
                 className: `mt-2 w-full rounded-md bg-accent px-3 py-2 font-display text-[10px] uppercase tracking-widest text-accent-foreground`,
                 children: `Aplicar a todo o banco`
             })]
-        }), (0, P.jsxs)(I, {
-            title: `PC / CC globais`,
-            subtitle: `Up/Down partilhado entre FS e bancos · 255 = próximo passo no limite`,
-            children: [(0, P.jsxs)(`div`, {
-                className: `rounded-xl border border-border bg-canvas p-3 space-y-2`,
-                children: [(0, P.jsx)(toggleFieldControl, {
-                    label: `PC partilhado`,
-                    checked: !!Number(e?.midiPcUpDownShared || 0),
-                    onCheckedChange: v => t({
-                        midiPcUpDownShared: v ? 1 : 0
-                    })
-                }), (0, P.jsxs)(`div`, {
-                    className: `grid grid-cols-1 gap-2 sm:grid-cols-3`,
-                    children: [(0, P.jsx)(R, {
-                        label: `Início`,
-                        value: Math.max(0, Math.min(127, Number(e?.midiPcGlobalStart ?? 0))),
-                        min: 0,
-                        max: 127,
-                        onChange: v => t({
-                            midiPcGlobalStart: Math.max(0, Math.min(127, Number(v) || 0))
-                        })
-                    }), (0, P.jsx)(R, {
-                        label: `Fim`,
-                        value: Math.max(0, Math.min(127, Number(e?.midiPcGlobalEnd ?? 127))),
-                        min: 0,
-                        max: 127,
-                        onChange: v => t({
-                            midiPcGlobalEnd: Math.max(0, Math.min(127, Number(v) || 0))
-                        })
-                    }), (0, P.jsx)(R, {
-                        label: `Inc`,
-                        value: Math.max(1, Math.min(127, Number(e?.midiPcGlobalInc ?? 1) || 1)),
-                        min: 1,
-                        max: 127,
-                        onChange: v => t({
-                            midiPcGlobalInc: Math.max(1, Math.min(127, Number(v) || 1))
-                        })
-                    }), (0, P.jsx)(R, {
-                        label: `Último`,
-                        value: (() => {
-                            let n = Number(e?.midiPcSharedValue);
-                            return Number.isFinite(n) && n >= 0 && n <= 255 ? n : 255
-                        })(),
-                        min: 0,
-                        max: 255,
-                        onChange: v => {
-                            let n = Number(v);
-                            t({
-                                midiPcSharedValue: Number.isFinite(n) && n >= 0 && n <= 255 ? n : 255
-                            })
-                        }
-                    }), (0, P.jsx)(`div`, {
-                        className: `sm:col-span-2`,
-                        children: (0, P.jsx)(toggleFieldControl, {
-                            label: `Loop PC`,
-                            checked: !!Number(e?.midiPcGlobalLoop || 0),
-                            onCheckedChange: v => t({
-                                midiPcGlobalLoop: v ? 1 : 0
-                            })
-                        })
-                    })]
-                })]
-            }), (0, P.jsxs)(`div`, {
-                className: `rounded-xl border border-border bg-canvas p-3 space-y-2`,
-                children: [(0, P.jsx)(toggleFieldControl, {
-                    label: `CC partilhado`,
-                    checked: !!Number(e?.midiCcUpDownShared || 0),
-                    onCheckedChange: v => t({
-                        midiCcUpDownShared: v ? 1 : 0
-                    })
-                }), (0, P.jsxs)(`div`, {
-                    className: `grid grid-cols-1 gap-2 sm:grid-cols-3`,
-                    children: [(0, P.jsx)(R, {
-                        label: `Início`,
-                        value: Math.max(0, Math.min(127, Number(e?.midiCcGlobalStart ?? 0))),
-                        min: 0,
-                        max: 127,
-                        onChange: v => t({
-                            midiCcGlobalStart: Math.max(0, Math.min(127, Number(v) || 0))
-                        })
-                    }), (0, P.jsx)(R, {
-                        label: `Fim`,
-                        value: Math.max(0, Math.min(127, Number(e?.midiCcGlobalEnd ?? 127))),
-                        min: 0,
-                        max: 127,
-                        onChange: v => t({
-                            midiCcGlobalEnd: Math.max(0, Math.min(127, Number(v) || 0))
-                        })
-                    }), (0, P.jsx)(R, {
-                        label: `Inc`,
-                        value: Math.max(1, Math.min(127, Number(e?.midiCcGlobalInc ?? 1) || 1)),
-                        min: 1,
-                        max: 127,
-                        onChange: v => t({
-                            midiCcGlobalInc: Math.max(1, Math.min(127, Number(v) || 1))
-                        })
-                    }), (0, P.jsx)(R, {
-                        label: `Último`,
-                        value: (() => {
-                            let n = Number(e?.midiCcSharedValue);
-                            return Number.isFinite(n) && n >= 0 && n <= 255 ? n : 255
-                        })(),
-                        min: 0,
-                        max: 255,
-                        onChange: v => {
-                            let n = Number(v);
-                            t({
-                                midiCcSharedValue: Number.isFinite(n) && n >= 0 && n <= 255 ? n : 255
-                            })
-                        }
-                    }), (0, P.jsx)(`div`, {
-                        className: `sm:col-span-2`,
-                        children: (0, P.jsx)(toggleFieldControl, {
-                            label: `Loop CC`,
-                            checked: !!Number(e?.midiCcGlobalLoop || 0),
-                            onCheckedChange: v => t({
-                                midiCcGlobalLoop: v ? 1 : 0
-                            })
-                        })
-                    })]
-                })]
-            })]
         }), (0, P.jsx)(`div`, {
             className: `lg:col-span-2`,
             children: (0, P.jsx)(ei, {})
@@ -17471,7 +18547,6 @@ function ei() {
             pedalId: e
         })
     }, [e]);
-    const PICKER_VISIBLE = 8;
     let f = e => !e.trim() || /^(sem marca|outros?|other|unknown|n\/?a)$/i.test(e),
         p = (0, N.useMemo)(() => {
             let e = n.trim().toLowerCase(),
@@ -17486,21 +18561,6 @@ function ei() {
                 return n === f(t[0]) ? e[0].localeCompare(t[0]) : n ? 1 : -1
             })
         }, [n, i]),
-        needle = n.trim(),
-        filteredTotal = (0, N.useMemo)(() => p.reduce((acc, [, items]) => acc + items.length, 0), [p]),
-        displayGroups = (0, N.useMemo)(() => {
-            if (needle) return p;
-            let remaining = PICKER_VISIBLE,
-                out = [];
-            for (let [brand, items] of p) {
-                if (remaining <= 0) break;
-                let slice = items.slice(0, remaining);
-                slice.length && out.push([brand, slice]);
-                remaining -= slice.length
-            }
-            return out
-        }, [p, needle]),
-        hiddenCount = !needle ? Math.max(0, filteredTotal - PICKER_VISIBLE) : 0,
         m = (0, N.useMemo)(() => Wn().length, [i]),
         h = () => {
             let e = Un(c);
@@ -17550,7 +18610,7 @@ function ei() {
                 },
                 className: `flex w-full items-center justify-between px-3 py-2 text-left font-mono text-xs ${e===null?`bg-accent/20 text-accent`:`text-muted-foreground hover:bg-white/5`}`,
                 children: `— Nenhuma (CC# numérico) —`
-            }), displayGroups.map(([n, i]) => (0, P.jsxs)(`div`, {
+            }), p.map(([n, i]) => (0, P.jsxs)(`div`, {
                 children: [(0, P.jsx)(`div`, {
                     className: `sticky top-0 bg-panel px-3 py-1 font-display text-[10px] font-bold uppercase tracking-[0.2em] text-foreground/90`,
                     children: n ? v(n) : `SEM MARCA`
@@ -17572,13 +18632,7 @@ function ei() {
                 className: `px-3 py-6 text-center font-mono text-[10px] text-muted-foreground`,
                 children: `Nenhuma pedaleira encontrada`
             })]
-        }), hiddenCount > 0 ? (0, P.jsxs)(`div`, {
-            className: `mt-1 px-1 font-mono text-[9px] text-muted-foreground`,
-            children: [`Mostrando `, PICKER_VISIBLE, ` de `, filteredTotal, ` — use a busca para encontrar outras.`]
-        }) : needle && filteredTotal > PICKER_VISIBLE ? (0, P.jsxs)(`div`, {
-            className: `mt-1 px-1 font-mono text-[9px] text-muted-foreground`,
-            children: [filteredTotal, ` resultados — role a lista ou refine a busca.`]
-        }) : null, (0, P.jsx)(`div`, {
+        }), (0, P.jsx)(`div`, {
             className: `mt-2 rounded-xl border border-dashed border-border bg-canvas/40 px-3 py-2 font-mono text-[10px] text-muted-foreground`,
             children: _ ? `${v(_.brand)} · ${v(_.name)} · ${_.cc.length} CC disponíveis` : `Selecione uma pedaleira para carregar a lista de CC# no campo Adicionar Comando.`
         }), (0, P.jsxs)(`div`, {
@@ -17649,8 +18703,8 @@ function ei() {
     })
 }
 
-var stompSceneOutputOptions = [`Auto (USB+BT+Serial)`, `USB`, `Bluetooth (BLE)`, `MIDI Serial (DIN/UART)`],
-    stompSceneTriggerOptions = [`Só ON`, `Só OFF`, `ON + OFF`];
+var stompSceneOutputOptions = [`Auto (USB+BT+MIDI)`, `USB`, `Bluetooth (BLE)`, `MIDI`],
+    stompSceneTriggerOptions = [`Só ON`, `Só OFF`, `ON + OFF`, `Desativado`];
 
 function ti({
     usbCfg: usbCfg,
@@ -17667,14 +18721,19 @@ function ti({
             setFxCount: o,
             fxList: s,
             patchFx: c
-        } = (0, N.useContext)(scenesContext);
+        } = (0, N.useContext)(scenesContext),
+        {
+            pedalId: dictPedalId,
+            setPedalId: setDictPedalId
+        } = (0, N.useContext)(pr);
     let l = Math.max(0, Math.min(stompSceneOutputOptions.length - 1, Number(usbCfg?.customSceneOutput) || 0)),
         u = Math.max(0, Math.min(stompSceneTriggerOptions.length - 1, Number(usbCfg?.customSceneTriggerMode) || 0));
     return (0, P.jsxs)(`div`, {
-        className: `grid gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)]`,
+        className: `grid gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] min-w-0 w-full`,
         children: [(0, P.jsxs)(I, {
             title: `Stomp Global`,
-            subtitle: `Modo CUSTOM · Scenes`,
+            subtitle: `FX + opções. Scenes/cmds/LED por FS: gravar no Preset.`,
+            className: `min-w-0 w-full`,
             children: [(0, P.jsx)(toggleFieldControl, {
                 label: `Modo Stomp`,
                 checked: e,
@@ -17704,12 +18763,27 @@ function ti({
                 max: 12,
                 suffix: `/ 12`,
                 onChange: o
+            }), (0, P.jsx)(midiDictPedalPicker, {
+                label: `Dicionário CC (Pedaleira)`,
+                value: dictPedalId || ``,
+                allowNone: !0,
+                noneLabel: `— Nenhuma (Manual) —`,
+                onChange: e => {
+                    setDictPedalId?.(e || null);
+                    try {
+                        let cfg = loadMidiDictSlots();
+                        cfg.fallbackPedalId = e || null;
+                        saveMidiDictSlots(cfg);
+                        e ? window.localStorage.setItem(`midiDictPedalId`, e) : window.localStorage.removeItem(`midiDictPedalId`);
+                    } catch {}
+                }
             })]
         }), (0, P.jsx)(I, {
             title: `FX Globais`,
             subtitle: `${a} de 12 efeitos`,
+            className: `min-w-0 w-full`,
             children: (0, P.jsxs)(`div`, {
-                className: `space-y-2 max-h-[520px] overflow-y-auto pr-1`,
+                className: `space-y-3 sm:max-h-[520px] sm:overflow-y-auto sm:pr-1 min-w-0 w-full`,
                 children: [Array.from({
                     length: a
                 }, (e, t) => t).map(e => (0, P.jsx)(stompFxCard, {
@@ -17834,91 +18908,236 @@ function stompFxCard({
     cfg: t,
     onPatch: n
 }) {
-    let r = customFxHex(t || buildCustomFxDefault(e));
+    let def = buildCustomFxDefault(e);
+    let cur = t || def;
+    let r = customFxHex(cur);
+    let commands = Array.isArray(cur.commands) && cur.commands.length > 0 
+        ? cur.commands 
+        : [normalizeCustomFxCmd({
+            type: `CC`,
+            channel: cur.channel,
+            cc: cur.cc,
+            valueOn: cur.valueOn,
+            valueOff: cur.valueOff,
+            output: cur.output || `USB+MIDI`
+        }, def.commands[0])];
+
+    const patchCmd = (cidx, patch) => {
+        let nextCmds = [...commands];
+        nextCmds[cidx] = { ...nextCmds[cidx], ...patch };
+        let first = nextCmds[0];
+        n({
+            commands: nextCmds,
+            channel: first.channel,
+            cc: first.cc,
+            valueOn: first.valueOn,
+            valueOff: first.valueOff,
+            output: first.output
+        });
+    };
+
+    const addCmd = () => {
+        if (commands.length >= 4) return;
+        let last = commands[commands.length - 1] || commands[0];
+        let nextCmds = [
+            ...commands,
+            {
+                type: `CC`,
+                channel: last?.channel || 1,
+                cc: Math.min(127, (last?.cc ?? 0) + 1),
+                valueOn: 127,
+                valueOff: 0,
+                output: last?.output || `USB+MIDI`
+            }
+        ];
+        n({ commands: nextCmds });
+    };
+
+    const removeCmd = (cidx) => {
+        if (commands.length <= 1) return;
+        let nextCmds = commands.filter((_, i) => i !== cidx);
+        let first = nextCmds[0];
+        n({
+            commands: nextCmds,
+            channel: first.channel,
+            cc: first.cc,
+            valueOn: first.valueOn,
+            valueOff: first.valueOff,
+            output: first.output
+        });
+    };
+
     return (0, P.jsxs)(`div`, {
-        className: `rounded-xl border border-border bg-canvas p-3 space-y-2`,
-        children: [(0, P.jsxs)(`div`, {
-            className: `flex items-center gap-2`,
-            children: [(0, P.jsx)(`span`, {
-                className: `grid size-8 shrink-0 place-items-center rounded-md border border-border font-display text-[10px] font-black text-foreground`,
-                style: {
-                    background: `#dc2626`,
-                    boxShadow: `0 0 10px rgba(220, 38, 38, 0.45)`
-                },
-                children: e
-            }), (0, P.jsx)(`input`, {
-                value: t?.name || `FX ${e}`,
-                onChange: e => n({
-                    name: e.target.value.slice(0, 15)
-                }),
-                maxLength: 15,
-                className: `min-w-0 flex-1 rounded-md border border-border bg-panel px-2 py-1.5 font-mono text-xs font-bold text-foreground focus:border-accent/50 focus:outline-none`,
-                placeholder: `Nome (max 15)`
-            }), (0, P.jsx)(`input`, {
-                type: `color`,
-                value: r === `#0b0c0e` ? `#000000` : r,
-                onChange: e => {
-                    let t = Nr(e.target.value);
-                    n({
-                        colorR: t.r,
-                        colorG: t.g,
-                        colorB: t.b
+        className: `rounded-xl border border-border bg-canvas p-2.5 sm:p-3 space-y-2.5 sm:space-y-3 min-w-0 w-full overflow-hidden`,
+        children: [
+            (0, P.jsxs)(`div`, {
+                className: `flex flex-wrap sm:flex-nowrap items-center gap-2 min-w-0 w-full`,
+                children: [
+                    (0, P.jsx)(`span`, {
+                        className: `grid size-8 shrink-0 place-items-center rounded-md border border-border font-display text-[10px] font-black text-foreground`,
+                        style: {
+                            background: r,
+                            boxShadow: `0 0 10px ${r}73`
+                        },
+                        children: e
+                    }),
+                    (0, P.jsx)(`input`, {
+                        value: cur.name || `FX ${e}`,
+                        onChange: ev => n({ name: ev.target.value.slice(0, 15) }),
+                        maxLength: 15,
+                        className: `min-w-0 flex-1 rounded-md border border-border bg-panel px-2 py-1.5 font-mono text-xs font-bold text-foreground focus:border-accent/50 focus:outline-none`,
+                        placeholder: `Nome (max 15)`
+                    }),
+                    (0, P.jsx)(`input`, {
+                        type: `color`,
+                        value: r === `#0b0c0e` ? `#000000` : r,
+                        onChange: ev => {
+                            let clr = Nr(ev.target.value);
+                            n({ colorR: clr.r, colorG: clr.g, colorB: clr.b });
+                        },
+                        className: `size-8 shrink-0 cursor-pointer rounded-md border border-border bg-panel`
+                    }),
+                    (0, P.jsx)(`div`, {
+                        className: `w-16 sm:w-20 shrink-0`,
+                        children: (0, P.jsx)(L, {
+                            label: `FS`,
+                            value: String(Number(cur.assignedFs) || 0),
+                            options: [`0`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`],
+                            onChange: val => n({ assignedFs: Number(val) || 0 })
+                        })
                     })
-                },
-                className: `size-8 shrink-0 cursor-pointer rounded-md border border-border bg-panel`
-            })]
-        }), (0, P.jsxs)(`div`, {
-            className: `grid grid-cols-2 gap-2 sm:grid-cols-5`,
-            children: [(0, P.jsx)(R, {
-                label: `Canal`,
-                value: Number(t?.channel) || 1,
-                min: 1,
-                max: 16,
-                onChange: e => n({
-                    channel: e
-                })
-            }), (0, P.jsx)(R, {
-                label: `CC`,
-                value: Number(t?.cc) || 0,
-                min: 0,
-                max: 127,
-                onChange: e => n({
-                    cc: e
-                })
-            }), (0, P.jsx)(R, {
-                label: `Val ON`,
-                value: Number(t?.valueOn) || 127,
-                min: 0,
-                max: 127,
-                onChange: e => n({
-                    valueOn: e
-                })
-            }), (0, P.jsx)(R, {
-                label: `Val OFF`,
-                value: Number(t?.valueOff) || 0,
-                min: 0,
-                max: 127,
-                onChange: e => n({
-                    valueOff: e
-                })
-            }), (0, P.jsx)(L, {
-                label: `FS`,
-                value: String(Number(t?.assignedFs) || 0),
-                options: [`0`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`],
-                onChange: e => n({
-                    assignedFs: Number(e) || 0
-                })
-            })]
-        }), (0, P.jsx)(`input`, {
-            value: t?.icon || ``,
-            onChange: e => n({
-                icon: e.target.value.slice(0, 23)
+                ]
             }),
-            maxLength: 23,
-            placeholder: `Icone (opcional, max 23)`,
-            className: `w-full rounded-md border border-border bg-panel px-2 py-1.5 font-mono text-[11px] text-foreground focus:border-accent/50 focus:outline-none`
-        })]
-    })
+            (0, P.jsx)(`input`, {
+                value: cur.icon || ``,
+                onChange: ev => n({ icon: ev.target.value.slice(0, 23) }),
+                maxLength: 23,
+                placeholder: `Ícone (opcional, max 23)`,
+                className: `w-full min-w-0 rounded-md border border-border bg-panel px-2 py-1.5 font-mono text-[11px] text-foreground focus:border-accent/50 focus:outline-none`
+            }),
+            (0, P.jsxs)(`div`, {
+                className: `space-y-2 pt-1 border-t border-border/50 min-w-0 w-full`,
+                children: [
+                    (0, P.jsxs)(`div`, {
+                        className: `flex items-center justify-between text-[10px] font-bold text-muted-foreground uppercase tracking-wider`,
+                        children: [
+                            (0, P.jsxs)(`span`, {
+                                children: [`Comandos MIDI (`, commands.length, `/4)`]
+                            }),
+                            commands.length < 4 && (0, P.jsx)(`button`, {
+                                type: `button`,
+                                onClick: addCmd,
+                                className: `rounded px-2 py-0.5 font-mono text-[10px] font-bold text-accent bg-accent/10 hover:bg-accent/20 border border-accent/30 transition-colors`,
+                                children: `+ Adicionar comando`
+                            })
+                        ]
+                    }),
+                    commands.map((cmd, cidx) => (0, P.jsxs)(`div`, {
+                        key: cidx,
+                        className: `rounded-lg border border-border/60 bg-panel/40 p-2 space-y-1.5 min-w-0 w-full overflow-hidden`,
+                        children: [
+                            (0, P.jsxs)(`div`, {
+                                className: `flex flex-wrap sm:flex-nowrap items-center justify-between gap-1`,
+                                children: [
+                                    (0, P.jsxs)(`div`, {
+                                        className: `flex flex-wrap items-center gap-1.5 min-w-0`,
+                                        children: [
+                                            (0, P.jsx)(`span`, {
+                                                className: `grid size-4 place-items-center rounded-full bg-accent/20 font-mono text-[9px] font-bold text-accent shrink-0`,
+                                                children: cidx + 1
+                                            }),
+                                            (0, P.jsx)(`span`, {
+                                                className: `font-mono text-[10px] font-bold text-muted-foreground shrink-0`,
+                                                children: `CMD ${cidx + 1}`
+                                            }),
+                                            (0, P.jsx)(`span`, {
+                                                className: `rounded px-1 font-mono text-[9px] shrink-0 ${cmd.type === `PC` ? `bg-purple-500/20 text-purple-300 border border-purple-500/30` : `bg-blue-500/20 text-blue-300 border border-blue-500/30`}`,
+                                                children: cmd.type
+                                            }),
+                                            (0, P.jsx)(`span`, {
+                                                className: `rounded px-1 font-mono text-[9px] bg-canvas text-muted-foreground border border-border/50 truncate max-w-[120px] sm:max-w-none`,
+                                                children: cmd.output || `USB+MIDI`
+                                            })
+                                        ]
+                                    }),
+                                    commands.length > 1 && (0, P.jsx)(`button`, {
+                                        type: `button`,
+                                        onClick: () => removeCmd(cidx),
+                                        title: `Remover comando`,
+                                        className: `grid size-5 place-items-center rounded text-muted-foreground hover:bg-destructive/20 hover:text-destructive transition-colors shrink-0 ml-auto`,
+                                        children: (0, P.jsx)(dr, { className: `size-3` })
+                                    })
+                                ]
+                            }),
+                            (0, P.jsxs)(`div`, {
+                                className: `grid grid-cols-2 gap-1.5 sm:grid-cols-6 min-w-0 w-full`,
+                                children: [
+                                    (0, P.jsx)(`div`, { className: `min-w-0 w-full`, children: (0, P.jsx)(L, {
+                                        label: `Tipo`,
+                                        value: cmd.type || `CC`,
+                                        options: [`CC`, `PC`],
+                                        onChange: val => patchCmd(cidx, { type: val })
+                                    }) }),
+                                    (0, P.jsx)(`div`, { className: `min-w-0 w-full`, children: (0, P.jsx)(L, {
+                                        label: `Saída`,
+                                        value: cmd.output || `USB+MIDI`,
+                                        options: xr,
+                                        onChange: val => patchCmd(cidx, { output: val })
+                                    }) }),
+                                    (0, P.jsx)(`div`, { className: `min-w-0 w-full`, children: (0, P.jsx)(R, {
+                                        label: `Canal`,
+                                        value: Number(cmd.channel) || 1,
+                                        min: 1,
+                                        max: 16,
+                                        onChange: val => patchCmd(cidx, { channel: val })
+                                    }) }),
+                                    (0, P.jsx)(`div`, { className: `min-w-0 w-full`, children: cmd.type === `PC` ? (0, P.jsx)(R, {
+                                        label: `PC#`,
+                                        value: Number(cmd.cc) || 0,
+                                        min: 0,
+                                        max: 127,
+                                        onChange: val => patchCmd(cidx, { cc: val })
+                                    }) : (0, P.jsx)(popupCcFieldControl, {
+                                        label: `CC#`,
+                                        value: Number(cmd.cc) || 0,
+                                        onChange: val => patchCmd(cidx, { cc: val }),
+                                        output: cmd.output || `USB+MIDI`,
+                                        channel: Number(cmd.channel) || 1
+                                    }) }),
+                                    (0, P.jsx)(`div`, { className: `min-w-0 w-full`, children: cmd.type !== `PC` ? (0, P.jsx)(R, {
+                                        label: `Val ON`,
+                                        value: midi7(cmd.valueOn, 127),
+                                        min: 0,
+                                        max: 127,
+                                        onChange: val => patchCmd(cidx, { valueOn: midi7(val, 127) })
+                                    }) : (0, P.jsx)(`div`, {
+                                        className: `flex h-full flex-col justify-center rounded-xl border border-dashed border-border/40 px-2 py-2 text-center min-w-0`,
+                                        children: (0, P.jsx)(`span`, {
+                                            className: `font-mono text-[9px] text-muted-foreground/60 truncate`,
+                                            children: `(PC Liga)`
+                                        })
+                                    }) }),
+                                    (0, P.jsx)(`div`, { className: `min-w-0 w-full`, children: cmd.type !== `PC` ? (0, P.jsx)(R, {
+                                        label: `Val OFF`,
+                                        value: midi7(cmd.valueOff, 0),
+                                        min: 0,
+                                        max: 127,
+                                        onChange: val => patchCmd(cidx, { valueOff: midi7(val, 0) })
+                                    }) : (0, P.jsx)(`div`, {
+                                        className: `flex h-full flex-col justify-center rounded-xl border border-dashed border-border/40 px-2 py-2 text-center min-w-0`,
+                                        children: (0, P.jsx)(`span`, {
+                                            className: `font-mono text-[9px] text-muted-foreground/60 truncate`,
+                                            children: `—`
+                                        })
+                                    }) })
+                                ]
+                            })
+                        ]
+                    }))
+                ]
+            })
+        ]
+    });
 }
 
 function expPanelView({
@@ -17953,7 +19172,7 @@ function expPanelView({
             e = !0, clearInterval(n)
         }
     }, []);
-    let l = Number(e?.expMode || 0) === 2 ? `Dual Footswitch` : Number(e?.expMode || 0) === 1 ? `Expressão` : `Desligado`,
+    let l = Number(e?.expMode || 0) === 3 ? `One Footswitch` : Number(e?.expMode || 0) === 2 ? `Dual Footswitch` : Number(e?.expMode || 0) === 1 ? `Expressão` : `Desligado`,
         u = Number.isFinite(Number(e?.expSendHz)) ? Number(e?.expSendHz) : 50,
         d = Number.isFinite(Number(e?.expMinDelta)) ? Number(e?.expMinDelta) : 2,
         m = Number.isFinite(Number(e?.expSmoothing)) ? Number(e?.expSmoothing) : 4,
@@ -18031,10 +19250,10 @@ function expPanelView({
             subtitle: `Modo · Taxa · Filtro`,
             children: [(0, P.jsx)(L, {
                 label: `Modo`,
-                options: [`Desligado`, `Expressão`, `Dual Footswitch`],
+                options: [`Desligado`, `Expressão`, `Dual Footswitch`, `One Footswitch`],
                 value: l,
                 onChange: e => t?.({
-                    expMode: e === `Dual Footswitch` ? 2 : e === `Expressão` ? 1 : 0
+                    expMode: e === `One Footswitch` ? 3 : e === `Dual Footswitch` ? 2 : e === `Expressão` ? 1 : 0
                 })
             }), expIsExpression && (0, P.jsxs)(`div`, {
                 className: `grid grid-cols-3 gap-2`,
@@ -18069,9 +19288,9 @@ function expPanelView({
                 onCheckedChange: e => t?.({
                     expInvert: e ? 1 : 0
                 })
-            }), l === `Dual Footswitch` && (0, P.jsx)(`p`, {
+            }), (l === `Dual Footswitch` || l === `One Footswitch`) && (0, P.jsx)(`p`, {
                 className: `font-mono text-[10px] uppercase tracking-widest text-muted-foreground`,
-                children: `GPIO11/12 como EXTFS · sem LED · após o modelo`
+                children: l === `One Footswitch` ? `GPIO11 como EXTFS · GPIO12 em LOW · sem LED · após o modelo` : `GPIO11/12 como EXTFS · sem LED · após o modelo`
             })]
         }), expIsExpression && (0, P.jsxs)(I, {
             title: `EXP · Calibração`,
@@ -18384,28 +19603,1663 @@ function telaBgColorField({
 }) {
     let hex = Mr(Number(t?.r) || 0, Number(t?.g) || 0, Number(t?.b) || 0);
     return (0, P.jsxs)(`label`, {
-        className: `flex flex-col rounded-xl border border-border bg-canvas px-3 py-2`,
+        className: `flex min-w-0 flex-col rounded-xl border border-border bg-canvas px-2.5 py-1.5`,
         children: [(0, P.jsx)(`span`, {
-            className: `font-display text-[9px] uppercase tracking-[0.25em] text-muted-foreground`,
+            className: `truncate font-display text-[9px] uppercase tracking-[0.14em] text-muted-foreground`,
             children: e
         }), (0, P.jsxs)(`div`, {
-            className: `mt-1 flex items-center gap-2`,
+            className: `mt-1 flex items-center gap-1.5`,
             children: [(0, P.jsx)(`input`, {
                 type: `color`,
                 value: hex,
                 onChange: ev => n(Nr(ev.target.value)),
                 className: `shrink-0 cursor-pointer rounded border border-border bg-panel`,
                 style: {
-                    width: 28,
-                    height: 28
+                    width: 24,
+                    height: 24
                 }
             }), (0, P.jsx)(`span`, {
-                className: `font-mono text-[11px] font-bold text-foreground`,
+                className: `truncate font-mono text-[10px] font-bold text-foreground`,
                 children: hex.toUpperCase()
             })]
         })]
     })
 }
+function BgSlotCard({ slot, prefix = 'bg', onEdit, onDelete, onClickUpload, onClickDelete }) {
+    let key = (prefix || 'bg') + slot;
+    let thumb = useDisplayIconThumb(key);
+    let handleEdit = onEdit || onClickUpload;
+    let handleDelete = onDelete || onClickDelete;
+    let isAmp = prefix === 'amp';
+
+    return (0, P.jsxs)('div', {
+        style: {
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: '6px',
+            padding: '8px 6px',
+            borderRadius: '8px',
+            background: '#101114',
+            border: thumb ? '1px solid #ef4444' : '1px solid #27272a',
+            boxSizing: 'border-box'
+        },
+        children: [
+            (0, P.jsx)('div', {
+                onClick: () => handleEdit && handleEdit(slot),
+                style: {
+                    width: '100%',
+                    height: isAmp ? '38px' : '46px',
+                    borderRadius: '4px',
+                    border: '1px solid #3f3f46',
+                    overflow: 'hidden',
+                    background: thumb ? 'center / cover no-repeat url(' + thumb + ')' : '#18191e',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: '#71717a',
+                    fontSize: '9px',
+                    fontFamily: 'monospace',
+                    cursor: 'pointer',
+                    boxShadow: thumb ? '0 0 6px rgba(239, 68, 68, 0.25)' : 'none'
+                },
+                children: thumb ? null : (isAmp ? 'Amp ' + slot : 'Slot ' + slot)
+            }),
+            (0, P.jsx)('span', {
+                style: { fontFamily: 'monospace', fontSize: '10px', fontWeight: 900, color: thumb ? '#f87171' : '#a1a1aa' },
+                children: isAmp ? 'Amp ' + slot : 'Slot ' + slot
+            }),
+            (0, P.jsxs)('div', {
+                style: { display: 'flex', gap: '4px', width: '100%' },
+                children: [
+                    (0, P.jsx)('button', {
+                        type: 'button',
+                        onClick: () => handleEdit && handleEdit(slot),
+                        style: {
+                            flex: 1,
+                            padding: '4px 0',
+                            borderRadius: '4px',
+                            border: '1px solid #ef4444',
+                            background: 'rgba(239, 68, 68, 0.15)',
+                            color: '#f87171',
+                            fontFamily: 'inherit',
+                            fontSize: '9px',
+                            fontWeight: 900,
+                            cursor: 'pointer',
+                            textAlign: 'center'
+                        },
+                        children: thumb ? 'Trocar' : '+ Foto'
+                    }),
+                    thumb ? (0, P.jsx)('button', {
+                        type: 'button',
+                        onClick: (ev) => handleDelete && handleDelete(slot, ev),
+                        style: {
+                            padding: '4px 6px',
+                            borderRadius: '4px',
+                            border: '1px solid #3f3f46',
+                            background: 'transparent',
+                            color: '#a1a1aa',
+                            fontFamily: 'inherit',
+                            fontSize: '9px',
+                            cursor: 'pointer'
+                        },
+                        children: '✕'
+                    }) : null
+                ]
+            })
+        ]
+    });
+}
+var BgSlotThumbnailItem = BgSlotCard;
+
+function TransBgConfigCard() {
+    let [cfg, setCfg] = (0, N.useState)(() => getTransBgConfig());
+    let pickRef = (0, N.useRef)(null);
+    let bgThumb = useDisplayIconThumb(typeof DISPLAY_BG_KEY !== 'undefined' ? DISPLAY_BG_KEY : 'bg');
+
+    (0, N.useEffect)(() => {
+        let listener = (next) => setCfg({ ...next });
+        GUERRILHA_TRANS_BG_LISTENERS.add(listener);
+        return () => GUERRILHA_TRANS_BG_LISTENERS.delete(listener);
+    }, []);
+
+    let update = (patch) => {
+        let next = { ...cfg, ...patch };
+        setCfg(next);
+        setTransBgConfig(next);
+    };
+
+    return (0, P.jsxs)('div', {
+        style: {
+            padding: '10px 12px',
+            borderRadius: '10px',
+            background: '#0d0e12',
+            border: '1px solid #27272a',
+            marginBottom: '14px'
+        },
+        children: [
+            (0, P.jsxs)('div', {
+                style: { display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '6px' },
+                children: [
+                    (0, P.jsx)('span', {
+                        style: { fontFamily: 'inherit', fontSize: '10px', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#f87171' },
+                        children: 'Base Fixa para PNGs Transparentes (Sem Fundo)'
+                    }),
+                    (0, P.jsx)('span', {
+                        style: { fontFamily: 'monospace', fontSize: '9px', color: '#71717a' },
+                        children: 'bg1..bg16'
+                    })
+                ]
+            }),
+            (0, P.jsx)('p', {
+                style: { marginBottom: '8px', fontFamily: 'monospace', fontSize: '9px', color: '#a1a1aa', lineHeight: 1.4 },
+                children: 'Ao importar fotos PNG sem fundo nos slots (bg1..bg16), esta base é aplicada automaticamente por baixo. Imagens que não forem transparentes permanecem intactas.'
+            }),
+            (0, P.jsx)('div', {
+                style: { display: 'flex', gap: '6px', marginBottom: '8px' },
+                children: [
+                    { id: 'color', lbl: 'Cor Sólida' },
+                    { id: 'main_bg', lbl: 'Fundo Principal (bg)' },
+                    { id: 'custom_img', lbl: 'Imagem Base Fixa' }
+                ].map(m => (0, P.jsx)('button', {
+                    key: m.id,
+                    type: 'button',
+                    onClick: () => update({ mode: m.id }),
+                    style: {
+                        flex: 1,
+                        padding: '6px 4px',
+                        borderRadius: '6px',
+                        fontFamily: 'monospace',
+                        fontSize: '9px',
+                        fontWeight: 900,
+                        cursor: 'pointer',
+                        border: cfg.mode === m.id ? '1px solid #ef4444' : '1px solid #27272a',
+                        background: cfg.mode === m.id ? 'rgba(239, 68, 68, 0.2)' : '#141519',
+                        color: cfg.mode === m.id ? '#f87171' : '#a1a1aa'
+                    },
+                    children: m.lbl
+                }))
+            }),
+            cfg.mode === 'color' ? (0, P.jsxs)('div', {
+                style: { display: 'flex', alignItems: 'center', gap: '10px' },
+                children: [
+                    (0, P.jsx)('input', {
+                        type: 'color',
+                        value: cfg.color || '#000000',
+                        onChange: ev => update({ color: ev.target.value }),
+                        style: { width: '32px', height: '28px', borderRadius: '4px', border: '1px solid #3f3f46', cursor: 'pointer', background: '#000' }
+                    }),
+                    (0, P.jsx)('span', {
+                        style: { fontFamily: 'monospace', fontSize: '11px', color: '#ffffff', fontWeight: 'bold' },
+                        children: (cfg.color || '#000000').toUpperCase()
+                    }),
+                    (0, P.jsx)('span', {
+                        style: { fontFamily: 'monospace', fontSize: '9px', color: '#71717a', marginLeft: 'auto' },
+                        children: 'Cor de preenchimento'
+                    })
+                ]
+            }) : null,
+            cfg.mode === 'main_bg' ? (0, P.jsxs)('div', {
+                style: { display: 'flex', alignItems: 'center', gap: '10px' },
+                children: [
+                    (0, P.jsx)('div', {
+                        style: {
+                            width: '48px',
+                            height: '32px',
+                            borderRadius: '4px',
+                            border: '1px solid #3f3f46',
+                            overflow: 'hidden',
+                            background: bgThumb ? 'center / cover no-repeat url(' + bgThumb + ')' : '#18191e'
+                        }
+                    }),
+                    (0, P.jsx)('span', {
+                        style: { fontFamily: 'monospace', fontSize: '9px', color: '#d4d4d8' },
+                        children: bgThumb ? 'O wallpaper principal configurado acima será a base fixa.' : 'Importe o wallpaper principal (bg) acima para usá-lo como base.'
+                    })
+                ]
+            }) : null,
+            cfg.mode === 'custom_img' ? (0, P.jsxs)('div', {
+                style: { display: 'flex', alignItems: 'center', gap: '8px' },
+                children: [
+                    (0, P.jsx)('input', {
+                        ref: pickRef,
+                        type: 'file',
+                        accept: 'image/png,image/jpeg',
+                        className: 'hidden',
+                        onChange: ev => {
+                            let f = ev.target.files && ev.target.files[0];
+                            ev.target.value = '';
+                            if (f) {
+                                let reader = new FileReader();
+                                reader.onload = () => {
+                                    update({ customImg: String(reader.result || '') });
+                                };
+                                reader.readAsDataURL(f);
+                            }
+                        }
+                    }),
+                    cfg.customImg ? (0, P.jsx)('div', {
+                        style: {
+                            width: '48px',
+                            height: '32px',
+                            borderRadius: '4px',
+                            border: '1px solid #3f3f46',
+                            overflow: 'hidden',
+                            background: 'center / cover no-repeat url(' + cfg.customImg + ')'
+                        }
+                    }) : null,
+                    (0, P.jsx)('button', {
+                        type: 'button',
+                        onClick: () => pickRef.current && pickRef.current.click(),
+                        style: {
+                            flex: 1,
+                            padding: '6px 12px',
+                            borderRadius: '6px',
+                            border: '1px solid #ef4444',
+                            background: 'rgba(239, 68, 68, 0.15)',
+                            color: '#f87171',
+                            fontFamily: 'monospace',
+                            fontSize: '10px',
+                            fontWeight: 900,
+                            cursor: 'pointer'
+                        },
+                        children: cfg.customImg ? 'Trocar Imagem Base' : '+ Escolher Imagem Base'
+                    }),
+                    cfg.customImg ? (0, P.jsx)('button', {
+                        type: 'button',
+                        onClick: () => update({ customImg: '' }),
+                        style: {
+                            padding: '6px 10px',
+                            borderRadius: '6px',
+                            border: '1px solid #3f3f46',
+                            background: 'transparent',
+                            color: '#a1a1aa',
+                            fontFamily: 'monospace',
+                            fontSize: '10px',
+                            cursor: 'pointer'
+                        },
+                        children: '✕'
+                    }) : null
+                ]
+            }) : null
+        ]
+    });
+}
+
+function TelaLayoutsVisualPanel({ usbConfig: e, onChange: t }) {
+    let fsCount = Number(e?.fsCount || 8);
+    let isMt8 = fsCount === 8;
+    let maxBgSlots = 16;
+    let displayStyle = Number(e?.displayStyle ?? (isMt8 ? 4 : 0));
+    /* MT-8 permite Estilo 0 (Simples) */
+    if (!isMt8 && displayStyle !== 0 && displayStyle !== 6) displayStyle = 0;
+
+    let presetLayout = Number(e?.displayPresetLayout || 0);
+    let liveLayout = Number(e?.displayLiveLayout || 1);
+    let iconShape = Number(e?.displayIconShape || 0);
+    let showNames = Number(e?.displayPresetShowNames ?? 1) === 1;
+    let [selectedSw, setSelectedSw] = (0, N.useState)(0);
+    let [bgModalSlot, setBgModalSlot] = (0, N.useState)(null);
+    let [ampModalSlot, setAmpModalSlot] = (0, N.useState)(null);
+    let bgThumb = useDisplayIconThumb(typeof DISPLAY_BG_KEY !== 'undefined' ? DISPLAY_BG_KEY : 'bg');
+
+    let defaultPresetPos = [
+        { x: 3, y: 15, size: 20, enabled: true },
+        { x: 27, y: 15, size: 20, enabled: true },
+        { x: 51, y: 15, size: 20, enabled: true },
+        { x: 75, y: 15, size: 20, enabled: true },
+        { x: 3, y: 55, size: 20, enabled: true },
+        { x: 27, y: 55, size: 20, enabled: true },
+        { x: 51, y: 55, size: 20, enabled: true },
+        { x: 75, y: 55, size: 20, enabled: true }
+    ];
+
+    let defaultLivePos = [
+        { x: 3, y: 15, size: 20, enabled: true },
+        { x: 27, y: 15, size: 20, enabled: true },
+        { x: 51, y: 15, size: 20, enabled: true },
+        { x: 75, y: 15, size: 20, enabled: true },
+        { x: 3, y: 55, size: 20, enabled: true },
+        { x: 27, y: 55, size: 20, enabled: true },
+        { x: 51, y: 55, size: 20, enabled: true },
+        { x: 75, y: 55, size: 20, enabled: true }
+    ];
+
+    let presetPos = Array.isArray(e?.customPositionsPreset) && e.customPositionsPreset.length === 8
+        ? e.customPositionsPreset
+        : defaultPresetPos;
+
+    let livePos = Array.isArray(e?.customPositionsLive) && e.customPositionsLive.length === 8
+        ? e.customPositionsLive
+        : defaultLivePos;
+
+    let handlePresetPosChange = (idx, changes) => {
+        let arr = [...presetPos];
+        arr[idx] = { ...arr[idx], ...changes };
+        t({ customPositionsPreset: arr });
+    };
+
+    let handleLivePosChange = (idx, changes) => {
+        let arr = [...livePos];
+        arr[idx] = { ...arr[idx], ...changes };
+        t({ customPositionsLive: arr });
+    };
+
+    let handleRestore = isLive => {
+        if (isLive) t({ customPositionsLive: defaultLivePos });
+        else t({ customPositionsPreset: defaultPresetPos });
+    };
+
+    let renderCustomEditor = isLive => {
+        let arr = isLive ? livePos : presetPos;
+        let curTile = arr[selectedSw] || { x: 0, y: 0, size: 20, enabled: true };
+
+        return (0, P.jsxs)('div', {
+            className: 'bfg-custom-editor',
+            style: {
+                marginTop: '16px',
+                paddingTop: '16px',
+                borderTop: '1px solid #27272a'
+            },
+            children: [
+                /* Cabeçalho da Tela Custom */
+                (0, P.jsxs)('div', {
+                    style: { display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '10px' },
+                    children: [
+                        (0, P.jsx)('span', {
+                            style: { color: '#f87171', font: '800 11px/1 ui-monospace, monospace', letterSpacing: '.08em', textTransform: 'uppercase' },
+                            children: 'TELA DE POSICIONAMENTO DOS BLOCOS (480×320)'
+                        }),
+                        (0, P.jsx)('span', {
+                            style: { color: '#71717a', font: '700 9px/1 ui-monospace, monospace', textTransform: 'uppercase' },
+                            children: 'ARRASTE OU CLIQUE PARA POSICIONAR'
+                        })
+                    ]
+                }),
+
+                /* A TELA DO DISPLAY (Interactive Mockup Canvas) */
+                (0, P.jsxs)('div', {
+                    className: 'bfg-custom-screen-canvas',
+                    style: {
+                        position: 'relative',
+                        width: '100%',
+                        maxWidth: '480px',
+                        aspectRatio: '3 / 2',
+                        margin: '0 auto 16px auto',
+                        borderRadius: '10px',
+                        overflow: 'hidden',
+                        border: '2px solid #3f3f46',
+                        background: bgThumb ? 'center / cover no-repeat url(' + bgThumb + ')' : '#0d0e12',
+                        boxShadow: '0 8px 24px rgba(0,0,0,0.75), inset 0 0 0 1px rgba(255,255,255,0.06)',
+                        cursor: 'crosshair',
+                        touchAction: 'none',
+                        userSelect: 'none'
+                    },
+                    onClick: ev => {
+                        let rect = ev.currentTarget.getBoundingClientRect();
+                        let clickPxX = ev.clientX - rect.left;
+                        let clickPxY = ev.clientY - rect.top;
+                        let curSize = Math.max(12, Math.min(45, curTile.size || 20));
+                        let boxWPx = (curSize / 1.5 / 100) * rect.width;
+                        let boxHPx = (curSize / 100) * rect.height;
+                        let travelPxX = rect.width - boxWPx;
+                        let travelPxY = rect.height - boxHPx;
+                        let nextX = travelPxX > 0 ? Math.round(Math.max(0, Math.min(100, ((clickPxX - boxWPx / 2) / travelPxX) * 100))) : 0;
+                        let nextY = travelPxY > 0 ? Math.round(Math.max(0, Math.min(100, ((clickPxY - boxHPx / 2) / travelPxY) * 100))) : 0;
+                        if (isLive) handleLivePosChange(selectedSw, { x: nextX, y: nextY });
+                        else handlePresetPosChange(selectedSw, { x: nextX, y: nextY });
+                    },
+                    children: [
+                        /* Grade sutil de alinhamento */
+                        (0, P.jsx)('div', {
+                            className: 'bfg-canvas-bg-layer',
+                            style: {
+                                position: 'absolute',
+                                inset: 0,
+                                backgroundImage: 'linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px)',
+                                backgroundSize: '12.5% 25%',
+                                pointerEvents: 'none'
+                            }
+                        }),
+
+                        /* Linha central horizontal */
+                        (0, P.jsx)('div', {
+                            className: 'bfg-canvas-bg-layer',
+                            style: {
+                                position: 'absolute',
+                                left: 0,
+                                right: 0,
+                                top: '50%',
+                                borderTop: '1px dashed rgba(255,255,255,0.1)',
+                                pointerEvents: 'none'
+                            }
+                        }),
+
+                        /* Barra inferior clássica semitransparente (estilo Fundo Puro) - Opcional */
+                        (displayStyle === 6 && showNames) ? (0, P.jsxs)('div', {
+                            className: 'bfg-canvas-bg-layer',
+                            style: {
+                                position: 'absolute',
+                                left: 0,
+                                right: 0,
+                                bottom: 0,
+                                height: '17.5%',
+                                background: 'linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.55) 100%)',
+                                borderTop: '1px solid rgba(255,255,255,0.12)',
+                                display: 'flex',
+                                alignItems: 'center',
+                                padding: '0 10px',
+                                gap: '8px',
+                                pointerEvents: 'none',
+                                zIndex: 1
+                            },
+                            children: [
+                                (0, P.jsx)('div', {
+                                    style: {
+                                        padding: '2px 6px',
+                                        borderRadius: '3px',
+                                        background: '#ef4444',
+                                        color: '#ffffff',
+                                        font: '900 9px/1 ui-monospace, monospace'
+                                    },
+                                    children: 'A1'
+                                }),
+                                (0, P.jsx)('span', {
+                                    style: {
+                                        color: '#e4e4e7',
+                                        font: '700 9px/1 ui-monospace, monospace',
+                                        letterSpacing: '.05em'
+                                    },
+                                    children: 'PRESET NOME'
+                                })
+                            ]
+                        }) : null,
+
+                        /* Os 8 Blocos de Footswitch */
+                        arr.map((sw, idx) => {
+                            let isEnabled = sw?.enabled !== undefined ? !!sw.enabled : (sw?.vis !== undefined ? !!sw.vis : true);
+                            let isSel = selectedSw === idx;
+                            let size = Math.max(12, Math.min(45, sw?.size || 20));
+                            let boxH = size;
+                            let boxW = size / 1.5;
+                            let maxTravelX = 100 - boxW;
+                            let maxTravelY = 100 - boxH;
+                            let leftPct = (Math.max(0, Math.min(100, sw?.x || 0)) * maxTravelX) / 100;
+                            let topPct = (Math.max(0, Math.min(100, sw?.y || 0)) * maxTravelY) / 100;
+                            let isBorderless = iconShape === 1;
+
+                            return (0, P.jsxs)('div', {
+                                key: idx,
+                                style: {
+                                    position: 'absolute',
+                                    left: leftPct + '%',
+                                    top: topPct + '%',
+                                    width: boxW + '%',
+                                    height: boxH + '%',
+                                    borderRadius: '8px', /* Quadradinho com cantos arredondados como os outros layouts */
+                                    border: isSel
+                                        ? '2px solid #ef4444'
+                                        : isBorderless
+                                            ? (isEnabled ? '1px dashed rgba(255, 255, 255, 0.3)' : 'none')
+                                            : isEnabled
+                                                ? '1.5px solid rgba(255, 255, 255, 0.7)'
+                                                : '1px dashed #52525b',
+                                    background: isSel
+                                        ? 'rgba(239, 68, 68, 0.15)'
+                                        : 'transparent', /* Totalmente transparente! */
+                                    boxShadow: isSel
+                                        ? '0 0 10px rgba(239, 68, 68, 0.7)'
+                                        : 'none',
+                                    opacity: isEnabled ? 1 : 0.4,
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    cursor: 'grab',
+                                    zIndex: isSel ? 10 : 3,
+                                    transition: 'box-shadow .15s, border-color .15s',
+                                    boxSizing: 'border-box'
+                                },
+                                onPointerDown: ev => {
+                                    ev.stopPropagation();
+                                    ev.preventDefault();
+                                    setSelectedSw(idx);
+                                    let target = ev.currentTarget;
+                                    try { target.setPointerCapture(ev.pointerId); } catch (_) {}
+                                    let startClientX = ev.clientX;
+                                    let startClientY = ev.clientY;
+                                    let origX = sw?.x || 0;
+                                    let origY = sw?.y || 0;
+                                    let parent = target.parentElement;
+                                    let rect = parent ? parent.getBoundingClientRect() : null;
+
+                                    let onPointerMove = moveEv => {
+                                        if (!rect) return;
+                                        let deltaPxX = moveEv.clientX - startClientX;
+                                        let deltaPxY = moveEv.clientY - startClientY;
+                                        let travelPxX = (maxTravelX / 100) * rect.width;
+                                        let travelPxY = (maxTravelY / 100) * rect.height;
+                                        let deltaPctX = travelPxX > 0 ? (deltaPxX / travelPxX) * 100 : 0;
+                                        let deltaPctY = travelPxY > 0 ? (deltaPxY / travelPxY) * 100 : 0;
+                                        let nextX = Math.round(Math.max(0, Math.min(100, origX + deltaPctX)));
+                                        let nextY = Math.round(Math.max(0, Math.min(100, origY + deltaPctY)));
+                                        if (isLive) handleLivePosChange(idx, { x: nextX, y: nextY });
+                                        else handlePresetPosChange(idx, { x: nextX, y: nextY });
+                                    };
+
+                                    let onPointerUp = upEv => {
+                                        try { target.releasePointerCapture(upEv.pointerId); } catch (_) {}
+                                        target.removeEventListener('pointermove', onPointerMove);
+                                        target.removeEventListener('pointerup', onPointerUp);
+                                        target.removeEventListener('pointercancel', onPointerUp);
+                                    };
+
+                                    target.addEventListener('pointermove', onPointerMove);
+                                    target.addEventListener('pointerup', onPointerUp);
+                                    target.addEventListener('pointercancel', onPointerUp);
+                                },
+                                children: [
+                                    (0, P.jsx)('span', {
+                                        style: {
+                                            color: isSel ? '#ffffff' : isEnabled ? '#f87171' : '#71717a',
+                                            font: '900 11px/1 ui-monospace, monospace',
+                                            textShadow: '0 1px 3px rgba(0,0,0,0.8)'
+                                        },
+                                        children: 'SW' + (idx + 1)
+                                    }),
+                                    !isEnabled ? (0, P.jsx)('span', {
+                                        style: {
+                                            color: '#71717a',
+                                            font: '700 8px/1 ui-monospace, monospace',
+                                            marginTop: '2px'
+                                        },
+                                        children: 'OFF'
+                                    }) : null
+                                ]
+                            });
+                        })
+                    ]
+                }),
+
+                /* Informações do Footswitch Selecionado */
+                (0, P.jsxs)('div', {
+                    className: 'bfg-eyebrow-row',
+                    style: {
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        color: '#a1a1aa',
+                        font: '800 10px/1 ui-monospace, monospace',
+                        letterSpacing: '.08em',
+                        textTransform: 'uppercase',
+                        marginBottom: '8px'
+                    },
+                    children: [
+                        (0, P.jsxs)('span', {
+                            children: [
+                                'SW' + (selectedSw + 1) + ' · X ',
+                                (0, P.jsx)('span', { style: { color: '#f87171' }, children: Math.round(curTile.x || 0) + '%' }),
+                                ' · Y ',
+                                (0, P.jsx)('span', { style: { color: '#f87171' }, children: Math.round(curTile.y || 0) + '%' })
+                            ]
+                        }),
+                        (0, P.jsxs)('span', {
+                            children: [
+                                'TAMANHO · ',
+                                (0, P.jsx)('span', { style: { color: '#f87171' }, children: Math.round(curTile.size || 20) + '%' })
+                            ]
+                        })
+                    ]
+                }),
+
+                /* Sliders de ajuste fino: Posição X, Posição Y e Tamanho */
+                (0, P.jsxs)('div', {
+                    style: {
+                        display: 'grid',
+                        gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))',
+                        gap: '12px',
+                        padding: '10px 12px',
+                        borderRadius: '8px',
+                        background: '#101114',
+                        border: '1px solid #27272a',
+                        marginBottom: '14px'
+                    },
+                    children: [
+                        (0, P.jsxs)('div', {
+                            style: { display: 'flex', flexDirection: 'column', gap: '4px' },
+                            children: [
+                                (0, P.jsxs)('span', {
+                                    style: { font: '700 9px/1 ui-monospace, monospace', color: '#71717a', textTransform: 'uppercase' },
+                                    children: ['POSIÇÃO X (', Math.round(curTile.x || 0), '%)']
+                                }),
+                                (0, P.jsx)('input', {
+                                    type: 'range',
+                                    min: '0',
+                                    max: '100',
+                                    step: '1',
+                                    value: Math.round(curTile.x || 0),
+                                    onChange: ev => {
+                                        let val = Number(ev.target.value);
+                                        if (isLive) handleLivePosChange(selectedSw, { x: val });
+                                        else handlePresetPosChange(selectedSw, { x: val });
+                                    },
+                                    style: { width: '100%', accentColor: '#ef4444', cursor: 'pointer' }
+                                })
+                            ]
+                        }),
+                        (0, P.jsxs)('div', {
+                            style: { display: 'flex', flexDirection: 'column', gap: '4px' },
+                            children: [
+                                (0, P.jsxs)('span', {
+                                    style: { font: '700 9px/1 ui-monospace, monospace', color: '#71717a', textTransform: 'uppercase' },
+                                    children: ['POSIÇÃO Y (', Math.round(curTile.y || 0), '%)']
+                                }),
+                                (0, P.jsx)('input', {
+                                    type: 'range',
+                                    min: '0',
+                                    max: '100',
+                                    step: '1',
+                                    value: Math.round(curTile.y || 0),
+                                    onChange: ev => {
+                                        let val = Number(ev.target.value);
+                                        if (isLive) handleLivePosChange(selectedSw, { y: val });
+                                        else handlePresetPosChange(selectedSw, { y: val });
+                                    },
+                                    style: { width: '100%', accentColor: '#ef4444', cursor: 'pointer' }
+                                })
+                            ]
+                        }),
+                        (0, P.jsxs)('div', {
+                            style: { display: 'flex', flexDirection: 'column', gap: '4px' },
+                            children: [
+                                (0, P.jsxs)('span', {
+                                    style: { font: '700 9px/1 ui-monospace, monospace', color: '#71717a', textTransform: 'uppercase' },
+                                    children: ['TAMANHO (', Math.round(curTile.size || 20), '%)']
+                                }),
+                                (0, P.jsx)('input', {
+                                    type: 'range',
+                                    min: '12',
+                                    max: '45',
+                                    step: '1',
+                                    value: Math.round(curTile.size || 20),
+                                    onChange: ev => {
+                                        let val = Number(ev.target.value);
+                                        if (isLive) handleLivePosChange(selectedSw, { size: val });
+                                        else handlePresetPosChange(selectedSw, { size: val });
+                                    },
+                                    style: { width: '100%', accentColor: '#ef4444', cursor: 'pointer' }
+                                })
+                            ]
+                        })
+                    ]
+                }),
+
+                /* Ícones Visíveis / Seleção rápida */
+                (0, P.jsx)('div', {
+                    className: 'bfg-eyebrow-row bfg-custom-visible',
+                    style: {
+                        color: '#a1a1aa',
+                        font: '800 9px/1 ui-monospace, monospace',
+                        letterSpacing: '.2em',
+                        textTransform: 'uppercase'
+                    },
+                    children: 'ÍCONES VISÍVEIS'
+                }),
+                (0, P.jsx)('div', {
+                    className: 'bfg-custom-switches',
+                    style: {
+                        display: 'grid',
+                        gridTemplateColumns: 'repeat(8, 1fr)',
+                        gap: '6px',
+                        marginTop: '6px'
+                    },
+                    children: arr.map((sw, idx) => {
+                        let isEnabled = sw?.enabled !== undefined ? !!sw.enabled : (sw?.vis !== undefined ? !!sw.vis : true);
+                        let isSel = selectedSw === idx;
+                        return (0, P.jsx)('button', {
+                            key: idx,
+                            type: 'button',
+                            'aria-pressed': isEnabled,
+                            onClick: () => {
+                                setSelectedSw(idx);
+                                let nextEnabled = !isEnabled;
+                                if (isLive) handleLivePosChange(idx, { enabled: nextEnabled, vis: nextEnabled ? 1 : 0 });
+                                else handlePresetPosChange(idx, { enabled: nextEnabled, vis: nextEnabled ? 1 : 0 });
+                            },
+                            style: {
+                                appearance: 'none',
+                                minWidth: 0,
+                                padding: '8px 2px',
+                                borderRadius: '9px',
+                                border: isSel ? '2px solid #ef4444' : isEnabled ? '1px solid rgba(239, 68, 68, 0.6)' : '1px solid #27272a',
+                                background: isEnabled ? 'rgba(239, 68, 68, 0.16)' : '#141519',
+                                color: isEnabled ? '#f87171' : '#71717a',
+                                font: '800 10px/1 ui-monospace, monospace',
+                                cursor: 'pointer',
+                                transition: 'all .15s'
+                            },
+                            children: 'SW' + (idx + 1)
+                        });
+                    })
+                }),
+
+                /* Botão Restaurar Posições */
+                (0, P.jsx)('div', {
+                    style: { marginTop: '12px', display: 'flex', justifyContent: 'flex-end', gap: '8px' },
+                    children: (0, P.jsx)('button', {
+                        type: 'button',
+                        className: 'bfg-custom-reset',
+                        onClick: () => handleRestore(isLive),
+                        style: {
+                            appearance: 'none',
+                            border: '1px solid #27272a',
+                            background: '#18191e',
+                            color: '#d4d4d8',
+                            padding: '6px 14px',
+                            borderRadius: '8px',
+                            font: '800 10px/1 ui-monospace, monospace',
+                            textTransform: 'uppercase',
+                            cursor: 'pointer'
+                        },
+                        children: 'RESTAURAR POSIÇÕES'
+                    })
+                })
+            ]
+        });
+    };
+
+    let renderWireframe = (type, isSelected) => {
+        let bStyle = {
+            backgroundColor: isSelected ? 'rgba(239, 68, 68, 0.45)' : 'rgba(39, 39, 42, 0.85)',
+            border: isSelected ? '1px solid #ef4444' : '1px solid #52525b',
+            borderRadius: '2px',
+            boxSizing: 'border-box'
+        };
+
+        if (type === 'NENHUM' || type === 'CLASSICO') {
+            return (0, P.jsx)('div', {
+                style: { width: '100%', height: '28px', display: 'flex', alignItems: 'center', justifyContent: 'center' },
+                children: (0, P.jsx)('div', {
+                    style: { width: '28px', height: '4px', borderRadius: '2px', background: isSelected ? '#ef4444' : '#71717a', boxShadow: isSelected ? '0 0 8px rgba(239, 68, 68, 0.9)' : 'none' }
+                })
+            });
+        }
+        if (type === 'L1' || type === 'SPLIT') {
+            return (0, P.jsxs)('div', {
+                style: { width: '100%', height: '28px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', padding: '1px 0' },
+                children: [
+                    (0, P.jsx)('div', {
+                        style: { display: 'flex', justifyContent: 'center', gap: '2px' },
+                        children: [0, 1, 2, 3].map(i => (0, P.jsx)('div', { key: i, style: { ...bStyle, width: '14px', height: '9px', borderRadius: '3px' } }, i))
+                    }),
+                    (0, P.jsx)('div', {
+                        style: { height: '3px', width: '100%', borderRadius: '2px', background: isSelected ? '#ef4444' : '#71717a', boxShadow: isSelected ? '0 0 6px rgba(239, 68, 68, 0.9)' : 'none' }
+                    }),
+                    (0, P.jsx)('div', {
+                        style: { display: 'flex', justifyContent: 'center', gap: '2px' },
+                        children: [0, 1, 2, 3].map(i => (0, P.jsx)('div', { key: i, style: { ...bStyle, width: '14px', height: '9px', borderRadius: '3px' } }, i))
+                    })
+                ]
+            });
+        }
+        if (type === 'L2' || type === 'PEDALBOARD') {
+            return (0, P.jsxs)('div', {
+                style: { width: '100%', height: '28px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', padding: '1px 0' },
+                children: [
+                    (0, P.jsx)('div', {
+                        style: { height: '3px', width: '60%', borderRadius: '2px', background: isSelected ? '#ef4444' : '#52525b', alignSelf: 'center' }
+                    }),
+                    (0, P.jsx)('div', {
+                        style: { display: 'flex', justifyContent: 'center', gap: '1px' },
+                        children: [0, 1, 2, 3, 4, 5, 6, 7].map(i => (0, P.jsx)('div', {
+                            key: i,
+                            style: {
+                                ...bStyle,
+                                width: '6px',
+                                height: '14px',
+                                borderRadius: '1px',
+                                ...(isSelected && i === 0 ? { border: '1.5px solid #ffffff', boxShadow: '0 0 4px #ffffff' } : {})
+                            }
+                        }, i))
+                    })
+                ]
+            });
+        }
+        if (type === 'L3' || type === 'TOPO') {
+            return (0, P.jsxs)('div', {
+                style: { width: '100%', height: '28px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', padding: '1px 0' },
+                children: [
+                    (0, P.jsx)('div', {
+                        style: { height: '5px', width: '100%', borderRadius: '2px', background: isSelected ? '#ef4444' : '#71717a', boxShadow: isSelected ? '0 0 6px rgba(239, 68, 68, 0.9)' : 'none' }
+                    }),
+                    (0, P.jsx)('div', {
+                        style: { display: 'flex', justifyContent: 'center', gap: '2px' },
+                        children: [0, 1, 2, 3].map(i => (0, P.jsx)('div', { key: i, style: { ...bStyle, width: '15px', height: '18px', borderRadius: '3px' } }, i))
+                    })
+                ]
+            });
+        }
+        if (type === 'L4' || type === 'COMPACTO') {
+            return (0, P.jsxs)('div', {
+                style: { width: '100%', height: '28px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', padding: '1px 0' },
+                children: [
+                    (0, P.jsx)('div', {
+                        style: { height: '3px', width: '100%', borderRadius: '2px', background: isSelected ? '#ef4444' : '#71717a' }
+                    }),
+                    (0, P.jsx)('div', {
+                        style: { display: 'flex', justifyContent: 'center', gap: '1px' },
+                        children: [0, 1, 2, 3, 4, 5, 6, 7].map(i => (0, P.jsx)('div', { key: i, style: { ...bStyle, width: '7px', height: '18px', borderRadius: '2px' } }, i))
+                    })
+                ]
+            });
+        }
+        if (type === 'LISTA' || type === 'SETLIST') {
+            return (0, P.jsxs)('div', {
+                style: { width: '100%', height: '28px', display: 'flex', flexDirection: 'column', justifyContent: 'space-around', padding: '1px 3px' },
+                children: [0, 1, 2, 3, 4].map(i => (0, P.jsx)('div', {
+                    key: i,
+                    style: {
+                        height: '3px',
+                        width: i === 1 ? '90%' : '75%',
+                        borderRadius: '2px',
+                        background: isSelected && i === 1 ? '#ef4444' : isSelected ? 'rgba(239, 68, 68, 0.45)' : '#52525b',
+                        boxShadow: isSelected && i === 1 ? '0 0 6px rgba(239, 68, 68, 0.9)' : 'none'
+                    }
+                }, i))
+            });
+        }
+        if (type === 'CUSTOM') {
+            return (0, P.jsxs)('div', {
+                style: { width: '100%', height: '28px', position: 'relative' },
+                children: [
+                    (0, P.jsx)('div', { style: { ...bStyle, position: 'absolute', top: '2px', left: '4px', width: '9px', height: '9px', borderRadius: '2px' } }),
+                    (0, P.jsx)('div', { style: { ...bStyle, position: 'absolute', top: '12px', left: '16px', width: '11px', height: '11px', borderRadius: '2px' } }),
+                    (0, P.jsx)('div', { style: { ...bStyle, position: 'absolute', top: '4px', right: '14px', width: '8px', height: '8px', borderRadius: '2px' } }),
+                    (0, P.jsx)('div', { style: { ...bStyle, position: 'absolute', bottom: '2px', right: '4px', width: '12px', height: '12px', borderRadius: '2px' } })
+                ]
+            });
+        }
+        return null;
+    };
+
+    let styleLabels = {
+        0: 'CLÁSSICO',
+        2: 'ÍCONES',
+        4: 'PRESET / STOMP',
+        6: 'CUSTOM',
+        7: 'AMP'
+    };
+
+    let styles = isMt8 ? [
+        { id: 4, lbl: 'PRESET / STOMP', desc: 'Anel clássico de presets' },
+        { id: 2, lbl: 'ÍCONES', desc: 'Nome no meio dos blocos' },
+        { id: 7, lbl: 'AMP', desc: 'Cabeçote + 8 Footswitches' },
+        { id: 6, lbl: 'CUSTOM', desc: 'Foto com barra ou blocos' }
+    ] : [
+        { id: 0, lbl: 'CLÁSSICO', desc: 'Preset: Clássico · Stomp: Ícones' },
+        { id: 6, lbl: 'CUSTOM', desc: 'Modo Clássico (Fundo Puro)' }
+    ];
+
+    let subTitle = (isMt8 ? 'MX-8' : (fsCount === 6 ? 'MX-6' : 'MX-4')) + ' · ' + (styleLabels[displayStyle] || (isMt8 ? 'PRESET / STOMP' : 'CLÁSSICO'));
+
+    return (0, P.jsxs)('div', {
+        style: { display: 'contents' },
+        children: [
+            /* Card 0: Seletor Estilo do Display */
+            (0, P.jsxs)(I, {
+                title: 'Estilo do Display',
+                subtitle: subTitle,
+                children: [
+                    (0, P.jsx)('div', {
+                        style: { display: 'flex', flexWrap: 'wrap', gap: '8px' },
+                        children: styles.map(st => {
+                            let isSel = displayStyle === st.id;
+                            return (0, P.jsxs)('button', {
+                                key: st.id,
+                                type: 'button',
+                                onClick: () => {
+                                    if (st.id === 0) t({ displayStyle: 0, displayPresetLayout: 0 });
+                                    else if (st.id === 2) t({ displayStyle: 2, displayGridCenterName: 1 });
+                                    else if (st.id === 4) t({ displayStyle: 4, displayPresetLayout: 0, displayLiveLayout: 0 });
+                                    else if (st.id === 7) t({ displayStyle: 7 });
+                                    else if (st.id === 6) t({ displayStyle: 6 });
+                                },
+                                style: {
+                                    flex: '1 1 95px',
+                                    minWidth: '85px',
+                                    padding: '8px 6px',
+                                    borderRadius: '10px',
+                                    border: isSel ? '2px solid #ef4444' : '1px solid #27272a',
+                                    background: isSel ? '#240a0a' : '#141519',
+                                    color: isSel ? '#f87171' : '#a1a1aa',
+                                    boxShadow: isSel ? '0 0 14px rgba(239, 68, 68, 0.45), inset 0 0 8px rgba(239, 68, 68, 0.2)' : 'none',
+                                    cursor: 'pointer',
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    transition: 'all .15s'
+                                },
+                                children: [
+                                    (0, P.jsx)('span', {
+                                        style: { fontFamily: 'inherit', fontSize: '12px', fontWeight: 900, letterSpacing: '0.05em', color: isSel ? '#f87171' : '#e4e4e7' },
+                                        children: st.lbl
+                                    }),
+                                    (0, P.jsx)('span', {
+                                        style: { marginTop: '4px', fontFamily: 'monospace', fontSize: '9px', color: isSel ? '#fca5a5' : '#71717a', textAlign: 'center', lineHeight: 1.2 },
+                                        children: st.desc
+                                    })
+                                ]
+                            });
+                        })
+                    }),
+
+                    /* Opção Geral: Nome no Display */
+                    (0, P.jsx)('div', {
+                        className: 'mt-3.5',
+                        children: (0, P.jsx)(L, {
+                            label: `Nome no display`,
+                            options: [`Footswitch (app)`, `ToneX quando ligado`],
+                            value: Number(e?.displayNameSrc || 0) ? `ToneX quando ligado` : `Footswitch (app)`,
+                            onChange: v => t({
+                                displayNameSrc: +(v === `ToneX quando ligado`)
+                            })
+                        })
+                    }),
+
+                    /* Bloco de Cores e Fundo (Modo SIMPLES no ST7789 ou PRESET/STOMP no MT-8) */
+                    ((!isMt8 && displayStyle === 0) || (isMt8 && displayStyle === 4)) ? (0, P.jsxs)('div', {
+                        className: 'mt-4 flex flex-col gap-3 rounded-xl border p-3.5',
+                        style: { border: '1px solid rgba(239, 68, 68, 0.35)', background: '#160d0d' },
+                        children: [
+                            (0, P.jsx)(L, {
+                                label: `Fundo do display`,
+                                options: [`Cor sólida`, `Gradiente vertical`, `Gradiente horizontal`, `Textura`],
+                                value: [`Cor sólida`, `Gradiente vertical`, `Gradiente horizontal`, `Textura`][Math.max(0, Math.min(3, Number(e?.displayBgMode || 0)))],
+                                onChange: v => t({
+                                    displayBgMode: Math.max(0, [`Cor sólida`, `Gradiente vertical`, `Gradiente horizontal`, `Textura`].indexOf(v))
+                                })
+                            }),
+                            Number(e?.displayBgMode) === 3 ? (0, P.jsx)(telaBgTextureField, {
+                                fsCount: e?.fsCount,
+                                onChangeMode: m => t({
+                                    displayBgMode: m
+                                })
+                            }) : (0, P.jsxs)(`div`, {
+                                className: `grid grid-cols-2 gap-2`,
+                                style: {
+                                    gridTemplateColumns: Number(e?.displayBgMode || 0) ? `1fr 1fr` : `1fr`
+                                },
+                                children: [
+                                    (0, P.jsx)(telaBgColorField, {
+                                        label: Number(e?.displayBgMode || 0) ? `Cor 1` : `Cor`,
+                                        rgb: {
+                                            r: Number(e?.displayBgR ?? 0),
+                                            g: Number(e?.displayBgG ?? 0),
+                                            b: Number(e?.displayBgB ?? 0)
+                                        },
+                                        onChange: c => t({
+                                            displayBgR: c.r,
+                                            displayBgG: c.g,
+                                            displayBgB: c.b
+                                        })
+                                    }),
+                                    Number(e?.displayBgMode || 0) ? (0, P.jsx)(telaBgColorField, {
+                                        label: `Cor 2`,
+                                        rgb: {
+                                            r: Number(e?.displayBgR2 ?? 24),
+                                            g: Number(e?.displayBgG2 ?? 24),
+                                            b: Number(e?.displayBgB2 ?? 24)
+                                        },
+                                        onChange: c => t({
+                                            displayBgR2: c.r,
+                                            displayBgG2: c.g,
+                                            displayBgB2: c.b
+                                        })
+                                    }) : null
+                                ]
+                            }),
+                            Number(e?.displayBgMode) === 3 ? null : (0, P.jsx)(`div`, {
+                                className: `rounded-lg border border-border`,
+                                style: {
+                                    height: 26,
+                                    background: Number(e?.displayBgMode || 0) === 1 ? `linear-gradient(${Mr(Number(e?.displayBgR ?? 0), Number(e?.displayBgG ?? 0), Number(e?.displayBgB ?? 0))}, ${Mr(Number(e?.displayBgR2 ?? 24), Number(e?.displayBgG2 ?? 24), Number(e?.displayBgB2 ?? 24))})` : Number(e?.displayBgMode || 0) === 2 ? `linear-gradient(90deg, ${Mr(Number(e?.displayBgR ?? 0), Number(e?.displayBgG ?? 0), Number(e?.displayBgB ?? 0))}, ${Mr(Number(e?.displayBgR2 ?? 24), Number(e?.displayBgG2 ?? 24), Number(e?.displayBgB2 ?? 24))})` : Mr(Number(e?.displayBgR ?? 0), Number(e?.displayBgG ?? 0), Number(e?.displayBgB ?? 0))
+                                }
+                            }),
+                            (0, P.jsxs)(`div`, {
+                                className: `grid grid-cols-3 gap-2`,
+                                children: [
+                                    (0, P.jsx)(telaBgColorField, {
+                                        label: `Cor banco`,
+                                        rgb: {
+                                            r: Number(e?.displaySimpleBankR ?? 255),
+                                            g: Number(e?.displaySimpleBankG ?? 255),
+                                            b: Number(e?.displaySimpleBankB ?? 255)
+                                        },
+                                        onChange: c => t({
+                                            displaySimpleBankR: c.r,
+                                            displaySimpleBankG: c.g,
+                                            displaySimpleBankB: c.b
+                                        })
+                                    }),
+                                    (0, P.jsx)(telaBgColorField, {
+                                        label: `Cor foot`,
+                                        rgb: {
+                                            r: Number(e?.displaySimpleFootR ?? 56),
+                                            g: Number(e?.displaySimpleFootG ?? 189),
+                                            b: Number(e?.displaySimpleFootB ?? 248)
+                                        },
+                                        onChange: c => t({
+                                            displaySimpleFootR: c.r,
+                                            displaySimpleFootG: c.g,
+                                            displaySimpleFootB: c.b
+                                        })
+                                    }),
+                                    (0, P.jsx)(telaBgColorField, {
+                                        label: `Cor nome`,
+                                        rgb: {
+                                            r: Number(e?.displaySimpleNameR ?? 255),
+                                            g: Number(e?.displaySimpleNameG ?? 255),
+                                            b: Number(e?.displaySimpleNameB ?? 255)
+                                        },
+                                        onChange: c => t({
+                                            displaySimpleNameR: c.r,
+                                            displaySimpleNameG: c.g,
+                                            displaySimpleNameB: c.b
+                                        })
+                                    })
+                                ]
+                            }),
+                            (0, P.jsx)(`p`, {
+                                className: `rounded-lg border border-border/60 bg-surface/40 px-3 py-2 text-[10px] leading-relaxed text-muted-foreground`,
+                                children: isMt8 ? 'Modo Preset / Stomp: exibe o anel de presets clássico com a cor de fundo e cores do Banco e Foot configuradas acima.' : 'Modo Preset: exibe Banco, Footswitch e Nome do preset. Modo Stomp: exibe os ícones configurados por footswitch.'
+                            })
+                        ]
+                    }) : null,
+
+                    /* Bloco de Imagem de Fundo / Fotos (Custom ou Amp) */
+                    (displayStyle === 6) ? (0, P.jsxs)('div', {
+                        style: {
+                            marginTop: '16px',
+                            padding: '16px 18px',
+                            borderRadius: '12px',
+                            border: '1px solid rgba(239, 68, 68, 0.45)',
+                            background: '#160d0d',
+                            boxSizing: 'border-box',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            gap: '14px'
+                        },
+                        children: [
+                            /* Modal de Crop / Importação de Fundo */
+                            bgModalSlot !== null ? (0, P.jsx)(FsScreenIconCropModal, {
+                                slot: bgModalSlot === 0 ? 1 : bgModalSlot,
+                                targetKey: bgModalSlot === 0 ? DISPLAY_BG_KEY : 'bg' + bgModalSlot,
+                                hideMask: true,
+                                fsCount: fsCount,
+                                onClose: () => setBgModalSlot(null),
+                                onSaved: () => {
+                                    setBgModalSlot(null);
+                                    displayIconInvalidateThumb(bgModalSlot === 0 ? DISPLAY_BG_KEY : 'bg' + bgModalSlot);
+                                }
+                            }) : null,
+
+                            /* Cabeçalho do Bloco de Wallpapers */
+                            (0, P.jsxs)('div', {
+                                style: { padding: '2px 4px 0 4px', boxSizing: 'border-box' },
+                                children: [
+                                    (0, P.jsxs)('div', {
+                                        style: { display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '4px' },
+                                        children: [
+                                            (0, P.jsx)('span', {
+                                                style: { fontFamily: 'inherit', fontSize: '11px', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#f87171' },
+                                                children: isMt8 ? 'FOTOS DE FUNDO / WALLPAPERS (480×320 FULL-RES)' : 'FOTOS DE FUNDO / WALLPAPERS (240×240 FULL-RES)'
+                                            }),
+                                            (0, P.jsx)('span', {
+                                                style: { fontFamily: 'monospace', fontSize: '9px', fontWeight: 700, color: '#71717a' },
+                                                children: isMt8 ? 'TFT ST7796' : 'TFT ST7789'
+                                            })
+                                        ]
+                                    }),
+                                    (0, P.jsx)('p', {
+                                        style: { margin: 0, fontFamily: 'monospace', fontSize: '9px', color: '#a1a1aa', lineHeight: 1.4 },
+                                        children: isMt8
+                                            ? 'Carregue fotos em alta resolução 480×320 pixels. O pedal suporta até 16 fotos de fundo individuais (bg1..bg16) mais o wallpaper principal!'
+                                            : 'Carregue fotos em resolução 240×240 pixels (proporção 1:1). O pedal suporta até 16 fotos de fundo individuais (bg1..bg16) mais o wallpaper principal!'
+                                    })
+                                ]
+                            }),
+
+                            /* Card Foto de Fundo Principal com miniatura e botão */
+                            (0, P.jsxs)('div', {
+                                style: {
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    gap: '14px',
+                                    padding: '12px 14px',
+                                    borderRadius: '10px',
+                                    background: '#101114',
+                                    border: '1px solid #27272a',
+                                    boxSizing: 'border-box'
+                                },
+                                children: [
+                                    (0, P.jsx)('div', {
+                                        style: {
+                                            width: isMt8 ? '80px' : '64px',
+                                            height: isMt8 ? '54px' : '64px',
+                                            flexShrink: 0,
+                                            borderRadius: '8px',
+                                            border: '1px solid #3f3f46',
+                                            background: bgThumb ? 'center / cover no-repeat url(' + bgThumb + ')' : '#18191e',
+                                            overflow: 'hidden',
+                                            boxShadow: 'inset 0 0 6px rgba(0,0,0,0.6)'
+                                        }
+                                    }),
+                                    (0, P.jsxs)('div', {
+                                        style: { flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', gap: '6px' },
+                                        children: [
+                                            (0, P.jsx)('button', {
+                                                type: 'button',
+                                                onClick: () => setBgModalSlot(0),
+                                                style: {
+                                                    width: '100%',
+                                                    padding: '10px 16px',
+                                                    borderRadius: '8px',
+                                                    border: '1px solid #ef4444',
+                                                    background: '#240a0a',
+                                                    color: '#f87171',
+                                                    fontFamily: 'inherit',
+                                                    fontSize: '11px',
+                                                    fontWeight: 900,
+                                                    letterSpacing: '0.08em',
+                                                    textTransform: 'uppercase',
+                                                    cursor: 'pointer',
+                                                    boxShadow: '0 0 10px rgba(239, 68, 68, 0.25)',
+                                                    transition: 'all .15s'
+                                                },
+                                                children: bgThumb ? 'TROCAR FUNDO PRINCIPAL (BG)' : 'CARREGAR FUNDO PRINCIPAL (BG)'
+                                            }),
+                                            (0, P.jsx)('span', {
+                                                style: { fontFamily: 'monospace', fontSize: '9px', color: '#71717a' },
+                                                children: 'Fundo exibido por padrão em todas as chaves.'
+                                            })
+                                        ]
+                                    })
+                                ]
+                            }),
+
+                            /* Componente de Configuração de Fundo Transparente / Cor Base */
+                            (0, P.jsx)(TransBgConfigCard, {
+                                usbConfig: e,
+                                onChange: t
+                            }),
+
+                            /* Galeria de Miniaturas / Slots de Fundo */
+                            (0, P.jsxs)('div', {
+                                style: { padding: '0 4px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' },
+                                children: [
+                                    (0, P.jsx)('span', {
+                                        style: { fontFamily: 'inherit', fontSize: '10px', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '0.06em', color: '#d4d4d8' },
+                                        children: 'GALERIA DE SLOTS DE FOTOS DE FUNDO (BG1..BG' + maxBgSlots + '):'
+                                    }),
+                                    (0, P.jsx)('span', {
+                                        style: { fontFamily: 'monospace', fontSize: '9px', color: '#71717a' },
+                                        children: 'Clique na miniatura para importar'
+                                    })
+                                ]
+                            }),
+                            (0, P.jsx)('div', {
+                                style: { display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(75px, 1fr))', gap: '8px', boxSizing: 'border-box' },
+                                children: Array.from({ length: maxBgSlots }, (_, i) => i + 1).map(slot => (
+                                    (0, P.jsx)(BgSlotCard, {
+                                        key: slot,
+                                        slot: slot,
+                                        onEdit: s => setBgModalSlot(s),
+                                        onDelete: async (s, ev) => {
+                                            if (ev) ev.stopPropagation();
+                                            if (confirm('Deseja apagar a foto do slot ' + s + '?')) {
+                                                try {
+                                                    await deleteLittleFsFile('bg' + s);
+                                                    displayIconInvalidateThumb('bg' + s);
+                                                    rt.success('Foto slot ' + s + ' apagada');
+                                                } catch (err) {
+                                                    rt.error('Falha ao apagar: ' + String(err?.message || err));
+                                                }
+                                            }
+                                        }
+                                    }, slot)
+                                ))
+                            }),
+
+                            /* Seleção de fotos individuais por footswitch */
+                            (0, P.jsx)('div', {
+                                style: { padding: '4px 4px 0 4px', fontFamily: 'inherit', fontSize: '10px', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '0.06em', color: '#d4d4d8' },
+                                children: 'FOTO DE FUNDO ASSOCIADA A CADA CHAVE (FS1..FS' + fsCount + '):'
+                            }),
+                            (0, P.jsx)('div', {
+                                style: { display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(105px, 1fr))', gap: '8px', boxSizing: 'border-box' },
+                                children: Array.from({ length: fsCount }, (_, i) => i).map(idx => {
+                                    let curSlots = Array.isArray(e?.fsBgSlot) ? e.fsBgSlot : [0,0,0,0,0,0,0,0];
+                                    let curVal = Number(curSlots[idx] || 0);
+                                    return (0, P.jsxs)('div', {
+                                        key: idx,
+                                        style: { display: 'flex', flexDirection: 'column', gap: '4px', borderRadius: '8px', border: '1px solid #27272a', background: '#101114', padding: '8px', boxSizing: 'border-box' },
+                                        children: [
+                                            (0, P.jsx)('span', {
+                                                style: { fontFamily: 'monospace', fontSize: '10px', fontWeight: 900, textTransform: 'uppercase', color: '#f87171' },
+                                                children: 'FS' + (idx + 1)
+                                            }),
+                                            (0, P.jsx)('select', {
+                                                value: curVal,
+                                                onChange: ev => {
+                                                    let next = [...curSlots];
+                                                    next[idx] = Number(ev.target.value);
+                                                    t({ fsBgSlot: next });
+                                                },
+                                                style: { width: '100%', borderRadius: '4px', border: '1px solid #3f3f46', background: '#0a0a0d', padding: '4px 6px', fontFamily: 'monospace', fontSize: '11px', fontWeight: 'bold', color: '#ffffff', outline: 'none', boxSizing: 'border-box' },
+                                                children: [
+                                                    (0, P.jsx)('option', { value: 0, children: 'Padrão (bg principal)' }),
+                                                    ...Array.from({ length: maxBgSlots }, (_, i) => (0, P.jsx)('option', {
+                                                        value: i + 1,
+                                                        children: 'Foto slot bg' + (i + 1)
+                                                    }, i + 1))
+                                                ]
+                                            })
+                                        ]
+                                    });
+                                })
+                            })
+                        ]
+                    }) : null,
+
+                    /* Bloco de Cabeçotes de Amp (Exclusivo Modo AMP no MT-8 / Estilo 7) */
+                    (isMt8 && displayStyle === 7) ? (0, P.jsxs)('div', {
+                        style: {
+                            marginTop: '16px',
+                            padding: '16px 18px',
+                            borderRadius: '12px',
+                            border: '1px solid rgba(239, 68, 68, 0.45)',
+                            background: '#160d0d',
+                            boxSizing: 'border-box',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            gap: '14px'
+                        },
+                        children: [
+                            /* Modal de Crop / Importação de Cabeçote */
+                            ampModalSlot !== null ? (0, P.jsx)(FsScreenIconCropModal, {
+                                slot: ampModalSlot,
+                                targetKey: 'amp' + ampModalSlot,
+                                hideMask: true,
+                                fsCount: fsCount,
+                                onClose: () => setAmpModalSlot(null),
+                                onSaved: () => {
+                                    setAmpModalSlot(null);
+                                    displayIconInvalidateThumb('amp' + ampModalSlot);
+                                }
+                            }) : null,
+
+                            /* Cabeçalho do Bloco de Cabeçotes */
+                            (0, P.jsxs)('div', {
+                                style: { padding: '2px 4px 0 4px', boxSizing: 'border-box' },
+                                children: [
+                                    (0, P.jsxs)('div', {
+                                        style: { display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '4px' },
+                                        children: [
+                                            (0, P.jsx)('span', {
+                                                style: { fontFamily: 'inherit', fontSize: '11px', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#f87171' },
+                                                children: 'CABEÇOTES DE AMPLIFICADOR (16 SLOTS — 480×146)'
+                                            }),
+                                            (0, P.jsx)('span', {
+                                                style: { fontFamily: 'monospace', fontSize: '9px', fontWeight: 700, color: '#71717a' },
+                                                children: 'TFT ST7796'
+                                            })
+                                        ]
+                                    }),
+                                    (0, P.jsx)('p', {
+                                        style: { margin: 0, fontFamily: 'monospace', fontSize: '9px', color: '#a1a1aa', lineHeight: 1.4 },
+                                        children: 'Carregue até 16 fotos de cabeçotes (amp1..amp16) cortadas na proporção do head de amplificador (480×146 pixels). Na aba Preset, utilize o botão Amp em cada chave para escolher o cabeçote do preset ativo.'
+                                    })
+                                ]
+                            }),
+
+                            /* Galeria de Miniaturas / Slots de Amp */
+                            (0, P.jsxs)('div', {
+                                style: { padding: '0 4px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' },
+                                children: [
+                                    (0, P.jsx)('span', {
+                                        style: { fontFamily: 'inherit', fontSize: '10px', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '0.06em', color: '#d4d4d8' },
+                                        children: 'SLOTS DE CABEÇOTES DISPONÍVEIS (AMP1..AMP16):'
+                                    }),
+                                    (0, P.jsx)('span', {
+                                        style: { fontFamily: 'monospace', fontSize: '9px', color: '#71717a' },
+                                        children: 'Clique na miniatura para importar'
+                                    })
+                                ]
+                            }),
+                            (0, P.jsx)('div', {
+                                style: { display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(85px, 1fr))', gap: '8px', boxSizing: 'border-box' },
+                                children: Array.from({ length: 16 }, (_, i) => i + 1).map(slot => (
+                                    (0, P.jsx)(BgSlotCard, {
+                                        key: 'amp' + slot,
+                                        slot: slot,
+                                        prefix: 'amp',
+                                        onEdit: s => setAmpModalSlot(s),
+                                        onDelete: async (s, ev) => {
+                                            if (ev) ev.stopPropagation();
+                                            if (confirm('Deseja apagar a foto do cabeçote Amp ' + s + '?')) {
+                                                try {
+                                                    await deleteLittleFsFile('amp' + s);
+                                                    displayIconInvalidateThumb('amp' + s);
+                                                    rt.success('Cabeçote Amp ' + s + ' apagado');
+                                                } catch (err) {
+                                                    rt.error('Falha ao apagar: ' + String(err?.message || err));
+                                                }
+                                            }
+                                        }
+                                    }, 'amp' + slot)
+                                ))
+                            })
+                        ]
+                    }) : null,
+
+                    /* Bloco informativo para Modo BLOCOS no MT-8 */
+                    (isMt8 && displayStyle === 2) ? (0, P.jsxs)('div', {
+                        className: 'mt-4 rounded-xl border p-3.5',
+                        style: { border: '1px solid rgba(239, 68, 68, 0.35)', background: '#160d0d' },
+                        children: [
+                            (0, P.jsxs)('div', {
+                                style: { display: 'flex', alignItems: 'center', justifyContent: 'space-between' },
+                                children: [
+                                    (0, P.jsxs)('div', {
+                                        children: [
+                                            (0, P.jsx)('span', {
+                                                style: { fontFamily: 'inherit', fontSize: '11px', fontWeight: 900, textTransform: 'uppercase', color: '#f87171' },
+                                                children: 'NOME DA FS NO MEIO DOS BLOCOS'
+                                            }),
+                                            (0, P.jsx)('p', {
+                                                className: 'mt-1 font-mono text-[9px] text-zinc-400',
+                                                children: 'Grelha neon 2×4 com uma faixa central destacando o nome do Footswitch ativo entre as chaves superiores e inferiores.'
+                                            })
+                                        ]
+                                    }),
+                                    (0, P.jsx)('span', {
+                                        style: {
+                                            padding: '3px 10px',
+                                            borderRadius: '6px',
+                                            background: '#ef4444',
+                                            color: '#ffffff',
+                                            fontSize: '10px',
+                                            fontWeight: 900,
+                                            fontFamily: 'monospace',
+                                            boxShadow: '0 0 10px rgba(239, 68, 68, 0.5)'
+                                        },
+                                        children: 'ATIVO'
+                                    })
+                                ]
+                            })
+                        ]
+                    }) : null
+                ]
+            }),
+
+            /* Card 1: Layout - Custom (Quando estilo for 6) */
+            (displayStyle === 6) ? (0, P.jsx)('div', {
+                style: isMt8 && presetLayout === 6 ? { gridColumn: '1 / -1' } : {},
+                children: (0, P.jsxs)(I, {
+                    title: 'Layout - Custom',
+                    subtitle: isMt8
+                        ? (presetLayout === 0 ? 'CLÁSSICO' : presetLayout === 1 ? 'SPLIT' : presetLayout === 2 ? 'PEDALBOARD' : presetLayout === 4 ? 'COMPACTO' : 'CUSTOM')
+                        : 'CLÁSSICO (FUNDO PURO)',
+                    children: [
+                    isMt8 ? (0, P.jsxs)(P.Fragment, {
+                        children: [
+                            (0, P.jsx)('div', {
+                                style: { display: 'flex', flexWrap: 'wrap', gap: '8px' },
+                                children: [
+                                    { id: 0, code: 'NENHUM', lbl: 'CLÁSSICO' },
+                                    { id: 1, code: 'L1', lbl: 'SPLIT' },
+                                    { id: 2, code: 'L2', lbl: 'PEDALBOARD' },
+                                    { id: 4, code: 'L4', lbl: 'COMPACTO' },
+                                    { id: 6, code: 'CUSTOM', lbl: 'CUSTOM' }
+                                ].map(item => {
+                                    let isSel = presetLayout === item.id;
+                                    return (0, P.jsxs)('button', {
+                                        key: item.code,
+                                        type: 'button',
+                                        onClick: () => {
+                                            t({ displayPresetLayout: item.id });
+                                        },
+                                        style: {
+                                            width: '84px',
+                                            height: '64px',
+                                            minWidth: '78px',
+                                            display: 'flex',
+                                            flexDirection: 'column',
+                                            alignItems: 'center',
+                                            justifyContent: 'space-between',
+                                            padding: '6px',
+                                            borderRadius: '10px',
+                                            border: isSel ? '2px solid #ef4444' : '1px solid #27272a',
+                                            background: isSel ? '#240a0a' : '#141519',
+                                            boxShadow: isSel ? '0 0 14px rgba(239, 68, 68, 0.45), inset 0 0 8px rgba(239, 68, 68, 0.2)' : 'none',
+                                            cursor: 'pointer',
+                                            transition: 'all .15s'
+                                        },
+                                        children: [
+                                            renderWireframe(item.code, isSel),
+                                            (0, P.jsx)('span', {
+                                                style: { fontSize: '9px', fontWeight: 900, letterSpacing: '0.04em', color: isSel ? '#f87171' : '#71717a' },
+                                                children: item.lbl
+                                            })
+                                        ]
+                                    });
+                                })
+                            }),
+                            (0, P.jsx)('p', {
+                                className: 'mt-3 font-mono text-[9px] uppercase tracking-wider text-zinc-500',
+                                children: 'CLÁSSICO = MODO FUNDO PURO (FOTO COMPLETA COM BARRA). SPLIT/PEDALBOARD/COMPACTO/CUSTOM EXIBEM OS ÍCONES EM CIMA DA IMAGEM DE FUNDO.'
+                            }),
+
+                            /* Toggle Mostrar nomes */
+                            (0, P.jsxs)('div', {
+                                className: 'mt-4 flex items-center justify-between border-t border-zinc-800 pt-3',
+                                children: [
+                                    (0, P.jsxs)('div', {
+                                        children: [
+                                            (0, P.jsx)('span', {
+                                                className: 'font-mono text-[9px] font-black uppercase tracking-[0.2em] text-zinc-400',
+                                                children: presetLayout === 6 ? 'BARRA INFERIOR (NOME DO PRESET)' : 'MOSTRAR NOMES DOS PRESETS'
+                                            }),
+                                            (0, P.jsx)('p', {
+                                                className: 'font-mono text-[9px] text-zinc-500',
+                                                children: presetLayout === 6 ? 'Exibe a barra de status inferior (banco e nome do preset ativo) sobre a imagem de fundo' : 'Exibe o nome do preset abaixo de cada bloco no display'
+                                            })
+                                        ]
+                                    }),
+                                    (0, P.jsxs)('div', {
+                                        style: { display: 'flex', alignItems: 'center', gap: '8px' },
+                                        children: [
+                                            (0, P.jsx)('span', {
+                                                style: {
+                                                    padding: '2px 8px',
+                                                    borderRadius: '4px',
+                                                    background: showNames ? '#ef4444' : '#27272a',
+                                                    color: showNames ? '#ffffff' : '#71717a',
+                                                    fontSize: '10px',
+                                                    fontWeight: 900,
+                                                    fontFamily: 'monospace',
+                                                    letterSpacing: '0.08em',
+                                                    boxShadow: showNames ? '0 0 8px rgba(239, 68, 68, 0.4)' : 'none'
+                                                },
+                                                children: showNames ? 'ATIVO' : 'INATIVO'
+                                            }),
+                                            (0, P.jsx)('button', {
+                                                type: 'button',
+                                                onClick: () => t({ displayPresetShowNames: showNames ? 0 : 1 }),
+                                                style: {
+                                                    position: 'relative',
+                                                    width: '44px',
+                                                    height: '24px',
+                                                    borderRadius: '9999px',
+                                                    border: showNames ? '1px solid #ef4444' : '1px solid #3f3f46',
+                                                    background: showNames ? '#ef4444' : '#27272a',
+                                                    cursor: 'pointer',
+                                                    transition: 'all .2s'
+                                                },
+                                                children: (0, P.jsx)('span', {
+                                                    style: {
+                                                        position: 'absolute',
+                                                        top: '2px',
+                                                        left: showNames ? '22px' : '2px',
+                                                        width: '18px',
+                                                        height: '18px',
+                                                        borderRadius: '9999px',
+                                                        background: '#ffffff',
+                                                        boxShadow: '0 2px 4px rgba(0,0,0,0.4)',
+                                                        transition: 'left .2s'
+                                                    }
+                                                })
+                                            })
+                                        ]
+                                    })
+                                ]
+                            }),
+
+                            /* Formato do Ícone */
+                            (0, P.jsxs)('div', {
+                                className: 'mt-4',
+                                children: [
+                                    (0, P.jsx)('span', {
+                                        className: 'font-mono text-[9px] font-black uppercase tracking-[0.2em] text-zinc-400',
+                                        children: 'FORMATO DO ÍCONE'
+                                    }),
+                                    (0, P.jsx)('div', {
+                                        className: 'mt-1.5 flex rounded-xl border border-zinc-800 bg-[#0d0e11] p-1',
+                                        children: [
+                                            { id: 0, lbl: 'PADRÃO' },
+                                            { id: 1, lbl: 'SEM CONTORNO' }
+                                        ].map(sh => {
+                                            let isSel = iconShape === sh.id;
+                                            return (0, P.jsx)('button', {
+                                                key: sh.id,
+                                                type: 'button',
+                                                onClick: () => t({ displayIconShape: sh.id }),
+                                                style: {
+                                                    flex: 1,
+                                                    borderRadius: '8px',
+                                                    padding: '8px 4px',
+                                                    fontFamily: 'inherit',
+                                                    fontSize: '11px',
+                                                    fontWeight: 900,
+                                                    textTransform: 'uppercase',
+                                                    letterSpacing: '0.06em',
+                                                    border: 'none',
+                                                    background: isSel ? '#ef4444' : 'transparent',
+                                                    color: isSel ? '#000000' : '#a1a1aa',
+                                                    boxShadow: isSel ? '0 0 10px rgba(239, 68, 68, 0.45)' : 'none',
+                                                    cursor: 'pointer',
+                                                    transition: 'all .15s'
+                                                },
+                                                children: sh.lbl
+                                            }, sh.id);
+                                        })
+                                    })
+                                ]
+                            }),
+
+                            /* Seletor Custom se ativo */
+                            presetLayout === 6 ? renderCustomEditor(false) : null
+                        ]
+                    }) : (0, P.jsxs)(P.Fragment, {
+                        children: [
+                            (0, P.jsx)('div', {
+                                style: { display: 'flex', justifyContent: 'center' },
+                                children: (0, P.jsxs)('div', {
+                                    style: {
+                                        width: '120px',
+                                        height: '100px',
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        alignItems: 'center',
+                                        justifyContent: 'space-between',
+                                        padding: '10px 8px',
+                                        borderRadius: '12px',
+                                        border: '2px solid #ef4444',
+                                        background: '#240a0a',
+                                        boxShadow: '0 0 14px rgba(239, 68, 68, 0.45), inset 0 0 8px rgba(239, 68, 68, 0.2)'
+                                    },
+                                    children: [
+                                        renderWireframe('CLASSICO', true),
+                                        (0, P.jsx)('span', {
+                                            style: { fontSize: '10px', fontWeight: 900, letterSpacing: '0.04em', color: '#f87171' },
+                                            children: 'CLÁSSICO'
+                                        })
+                                    ]
+                                })
+                            }),
+                            (0, P.jsx)('p', {
+                                className: 'mt-3 font-mono text-[9px] uppercase tracking-wider text-zinc-400 text-center',
+                                children: 'MODO CLÁSSICO: A FOTO DE FUNDO PREENCHE O DISPLAY (240×240) COM UMA BARRA INFERIOR SEMI-TRANSPARENTE CONTENDO O BANCO E O NOME DO PRESET ATIVO.'
+                            })
+                        ]
+                    })
+                ]
+            }) }) : null,
+
+            /* Card 2: Layout dos Footswitches (Modo AMP no MT-8) */
+            (isMt8 && displayStyle === 7) ? (0, P.jsx)('div', {
+                children: (0, P.jsxs)(I, {
+                    title: 'Layout dos Footswitches (Modo AMP)',
+                    subtitle: liveLayout === 2 ? 'FILEIRA 1×8' : '4×2 BLOCOS',
+                    children: [
+                    (0, P.jsx)('div', {
+                        style: { display: 'flex', flexWrap: 'wrap', gap: '8px' },
+                        children: [
+                            { id: 0, code: 'L4', lbl: '4×2 BLOCOS' },
+                            { id: 2, code: 'L2', lbl: 'FILEIRA 1×8' }
+                        ].map(item => {
+                            let isSel = (liveLayout === item.id) || (item.id === 0 && liveLayout !== 2);
+                            return (0, P.jsxs)('button', {
+                                key: item.code,
+                                type: 'button',
+                                onClick: () => t({ displayLiveLayout: item.id, displayPresetLayout: item.id }),
+                                style: {
+                                    width: '100px',
+                                    height: '68px',
+                                    minWidth: '90px',
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    alignItems: 'center',
+                                    justifyContent: 'space-between',
+                                    padding: '6px',
+                                    borderRadius: '10px',
+                                    border: isSel ? '2px solid #ef4444' : '1px solid #27272a',
+                                    background: isSel ? '#240a0a' : '#141519',
+                                    boxShadow: isSel ? '0 0 14px rgba(239, 68, 68, 0.45), inset 0 0 8px rgba(239, 68, 68, 0.2)' : 'none',
+                                    cursor: 'pointer',
+                                    transition: 'all .15s'
+                                },
+                                children: [
+                                    renderWireframe(item.code, isSel),
+                                    (0, P.jsx)('span', {
+                                        style: { fontSize: '9px', fontWeight: 900, letterSpacing: '0.04em', color: isSel ? '#f87171' : '#71717a' },
+                                        children: item.lbl
+                                    })
+                                ]
+                            });
+                        })
+                    }),
+                    (0, P.jsx)('p', {
+                        className: 'mt-3 font-mono text-[9px] uppercase tracking-wider text-zinc-500',
+                        children: 'MODO AMP: A IMAGEM DO CABEÇOTE (HEAD) É EXIBIDA NO TOPO (0..160px) E OS 8 FOOTSWITCHES SÃO EXIBIDOS NA BASE (160..320px).'
+                    })
+                ]
+            }) }) : null
+        ]
+    });
+}
+
+
 var si = [`TONEX / MODELLER`, `MIDI USB HOST`, `MIDI USB PC`, `HUB MIDI`, `MIDI SERIAL (DIN/UART)`],
     ci = {
         0: [
@@ -18502,6 +21356,7 @@ var si = [`TONEX / MODELLER`, `MIDI USB HOST`, `MIDI USB PC`, `HUB MIDI`, `MIDI 
     liBtPresetsUi = [`Desabilitado`, `BlackBox`, `LCD Tonex`, `Nano Cortex`],
     liMidiEnable = [`Desativado`, `Ativado`],
     liMidiPreset = [`Desativado`, `Padrão`, `Custom`],
+    liMidiInRoute = [`Desativado`, `USB`, `MIDI Serial`, `Bluetooth`, `Todas`],
     MAGIC_USB_CUSTOM_PRESETS = [1, 8, 18, 23, 27];
 
 const backupFsDefaultValues = {
@@ -18560,7 +21415,14 @@ const backupFsDefaultValues = {
     ricochetTimeUnit: 0,
     ricochetBpm: 120,
     stgEnabled: !1,
+    stgAutoEnabled: !1,
     stgStageCount: 2,
+    stgLoopCcEnabled: !1,
+    stgLoopCcOutput: 2,
+    stgLoopCcChannel: 1,
+    stgLoopCc: 0,
+    stgLoopCcValueOn: 127,
+    stgLoopCcValueOff: 0,
     fsName: ``
 };
 const backupDefaultStompLed = {
@@ -18585,10 +21447,8 @@ function isDefaultStgStages(e) {
 }
 
 function isDefaultStompLed(e) {
-    if (Array.isArray(e) && e.length >= 6) {
-        return Number(e[0]) === backupDefaultStompLed.r_on && Number(e[1]) === backupDefaultStompLed.g_on && Number(e[2]) === backupDefaultStompLed.b_on && Number(e[3]) === backupDefaultStompLed.r_off && Number(e[4]) === backupDefaultStompLed.g_off && Number(e[5]) === backupDefaultStompLed.b_off
-    }
-    return !!e && Number(e?.r_on ?? 255) === backupDefaultStompLed.r_on && Number(e?.g_on ?? 136) === backupDefaultStompLed.g_on && Number(e?.b_on ?? 0) === backupDefaultStompLed.b_on && Number(e?.r_off ?? 16) === backupDefaultStompLed.r_off && Number(e?.g_off ?? 16) === backupDefaultStompLed.g_off && Number(e?.b_off ?? 16) === backupDefaultStompLed.b_off
+    /* Nunca omitir stompLed no save — default laranja é cor real. */
+    return !1
 }
 
 function compactFsForBackup(e) {
@@ -18619,8 +21479,10 @@ function compactFsForSave(e) {
     t.holdToggle = e?.holdToggle ? 1 : 0;
     t.ricochetEnabled = e?.ricochetEnabled ? 1 : 0;
     t.stgEnabled = e?.stgEnabled ? 1 : 0;
+    t.stgAutoEnabled = e?.stgAutoEnabled ? 1 : 0;
     t.iconKey = displayIconSanitizeKey(e?.iconKey || ``);
     t.gridFill = Number(e?.gridFill) ? 1 : 0;
+    t.stompName = typeof e?.stompName == `string` ? e.stompName : ``;
     if (Array.isArray(e?.stompLed) && e.stompLed.length >= 6) t.stompLed = e.stompLed;
     else if (e?.stompLed && typeof e.stompLed == `object`) t.stompLed = e.stompLed;
     if (Number(t.ricochetEnabled) === 1) {
@@ -18641,6 +21503,15 @@ function compactFsForSave(e) {
         t.ricochetTimeUnit = Math.max(0, Math.min(2, Number(e?.ricochetTimeUnit ?? 0)));
         t.ricochetBpm = Math.max(40, Math.min(240, Number(e?.ricochetBpm ?? 120)))
     }
+    if (Number(t.stgAutoEnabled) === 1) {
+        t.stgLoopCcEnabled = e?.stgLoopCcEnabled ? 1 : 0;
+        t.stgLoopCcOutput = Number(e?.stgLoopCcOutput ?? 2);
+        t.stgLoopCcChannel = Math.max(1, Math.min(16, Number(e?.stgLoopCcChannel ?? 1)));
+        t.stgLoopCc = Math.max(0, Math.min(127, Number(e?.stgLoopCc ?? 0)));
+        t.stgLoopCcValueOn = Math.max(0, Math.min(127, Number(e?.stgLoopCcValueOn ?? 127)));
+        t.stgLoopCcValueOff = Math.max(0, Math.min(127, Number(e?.stgLoopCcValueOff ?? 0)))
+    }
+    if (e?.ledColors && typeof e.ledColors == `object`) t.ledColors = e.ledColors;
     return t
 }
 
@@ -18780,6 +21651,7 @@ function extractBackupPayload(e) {
         a = isPlainBackupObject(t.ledColors) ? t.ledColors : null,
         o = typeof t.currentBank == `number` ? t.currentBank : null,
         s = typeof t.fsCount == `number` ? t.fsCount : null,
+        midiDictSlots = t?.midiDictSlots && typeof t.midiDictSlots == `object` ? t.midiDictSlots : null,
         c = typeof t.activePreset == `number` ? t.activePreset : typeof i?.activePreset == `number` ? i.activePreset : 0,
         l = typeof e?.mode == `string` ? e.mode : typeof t?.mode == `string` ? t.mode : r ? `full` : `lite`;
     if (!n?.banks && r) {
@@ -18799,8 +21671,406 @@ function extractBackupPayload(e) {
         usb: i,
         ledColors: a,
         currentBank: o,
-        fsCount: s
+        fsCount: s,
+        midiDictSlots
     }
+}
+
+function parseMidiDictSlotKey(key) {
+    let parts = String(key || ``).split(`:`);
+    if (parts.length !== 3) return null;
+    let bus = parts[0],
+        dev = Math.max(0, Math.min(3, Number(parts[1]) || 0)),
+        ch = Math.max(1, Math.min(16, Number(parts[2]) || 1));
+    if (bus !== `usb` && bus !== `bt` && bus !== `serial`) return null;
+    return {
+        bus,
+        deviceIndex: dev,
+        channel: ch
+    }
+}
+
+function midiDictSlotRouteLabel(bus, deviceIndex, hubMode) {
+    if (bus === `bt`) return `Bluetooth`;
+    if (bus === `serial`) return `MIDI Serial`;
+    if (hubMode) return `USB HUB · Dev ${Math.max(0, Number(deviceIndex) || 0) + 1}`;
+    return `USB`
+}
+
+function midiDictIsWeakBrand(brand) {
+    let e = String(brand || ``).trim();
+    return !e || /^(sem marca|outros?|other|unknown|n\/?a)$/i.test(e)
+}
+
+function midiDictPedalLabel(pedal) {
+    if (!pedal) return ``;
+    let brand = String(pedal.brand || ``).trim(),
+        name = String(pedal.name || ``).trim(),
+        id = String(pedal.id || ``).trim();
+    if (brand && name) return `${brand} · ${name}`;
+    if (name) return name;
+    if (brand) return brand;
+    return id || `(sem nome)`
+}
+
+function midiDictPedalPicker({
+    label: labelProp,
+    value: valueProp,
+    onChange: onChangeProp,
+    allowNone: allowNone = !1,
+    noneLabel: noneLabel = `— Nenhuma —`,
+    placeholder: placeholderProp
+}) {
+    const PICKER_VISIBLE = 8;
+    let [q, setQ] = (0, N.useState)(``), [tick, setTick] = (0, N.useState)(0);
+    (0, N.useEffect)(() => Hn(() => setTick(e => e + 1)), []);
+    let selected = Vn(valueProp),
+        selectedLabel = selected ? midiDictPedalLabel(selected) : allowNone && !valueProp ? noneLabel : ``,
+        filtered = (0, N.useMemo)(() => {
+            let needle = q.trim().toLowerCase(),
+                list = [];
+            for (let p of zn) {
+                let label = midiDictPedalLabel(p),
+                    brand = String(p.brand || ``),
+                    name = String(p.name || ``),
+                    id = String(p.id || ``);
+                if (needle && !label.toLowerCase().includes(needle) && !brand.toLowerCase().includes(needle) && !name.toLowerCase().includes(needle) && !id.toLowerCase().includes(needle)) continue;
+                list.push({
+                    id: p.id,
+                    label,
+                    brand,
+                    weak: midiDictIsWeakBrand(brand) || !name
+                })
+            }
+            list.sort((a, b) => {
+                if (a.weak !== b.weak) return a.weak ? 1 : -1;
+                return a.label.localeCompare(b.label, `pt`, {
+                    sensitivity: `base`
+                })
+            });
+            return list
+        }, [q, tick]),
+        needle = q.trim(),
+        displayList = needle ? filtered : filtered.slice(0, PICKER_VISIBLE),
+        hiddenCount = !needle && filtered.length > PICKER_VISIBLE ? filtered.length - PICKER_VISIBLE : 0;
+    return (0, P.jsxs)(`div`, {
+        className: `flex flex-col gap-1`,
+        children: [(0, P.jsx)(`span`, {
+            className: `font-display text-[9px] uppercase tracking-[0.2em] text-muted-foreground`,
+            children: labelProp
+        }), (0, P.jsx)(`input`, {
+            type: `search`,
+            value: q,
+            onChange: e => setQ(e.target.value),
+            placeholder: selectedLabel || placeholderProp || `Buscar marca ou modelo…`,
+            className: `w-full rounded-lg border border-border bg-canvas px-2 py-1.5 font-mono text-[11px] text-foreground placeholder:text-muted-foreground/70 focus:border-accent/60 focus:outline-none`
+        }), selectedLabel ? (0, P.jsxs)(`div`, {
+            className: `flex items-center justify-between gap-2 rounded-md border border-accent/30 bg-accent/10 px-2 py-1`,
+            children: [(0, P.jsx)(`span`, {
+                className: `truncate font-mono text-[10px] text-accent`,
+                children: selectedLabel
+            }), (0, P.jsx)(`button`, {
+                type: `button`,
+                onClick: () => {
+                    onChangeProp?.(allowNone ? null : ``), setQ(``)
+                },
+                className: `shrink-0 font-mono text-[9px] uppercase tracking-wider text-muted-foreground hover:text-foreground`,
+                children: `Limpar`
+            })]
+        }) : null, (0, P.jsxs)(`div`, {
+            className: `max-h-64 overflow-y-auto rounded-lg border border-border bg-canvas/60`,
+            children: [allowNone && (0, P.jsx)(`button`, {
+                type: `button`,
+                onClick: () => {
+                    onChangeProp?.(null), setQ(``)
+                },
+                className: `flex w-full items-center px-2.5 py-1.5 text-left font-mono text-[11px] ${!valueProp?`bg-accent/20 text-accent`:`text-muted-foreground hover:bg-white/5`}`,
+                children: noneLabel
+            }), displayList.map(opt => (0, P.jsxs)(`button`, {
+                type: `button`,
+                onClick: () => {
+                    onChangeProp?.(opt.id), setQ(``)
+                },
+                className: `flex w-full items-center justify-between gap-2 px-2.5 py-1.5 text-left font-mono text-[11px] ${opt.id===valueProp?`bg-accent/20 text-accent`:`text-foreground hover:bg-white/5`}`,
+                children: [(0, P.jsx)(`span`, {
+                    className: `truncate`,
+                    children: opt.label
+                }), opt.weak ? (0, P.jsx)(`span`, {
+                    className: `shrink-0 font-mono text-[9px] uppercase tracking-wider text-muted-foreground`,
+                    children: `sem marca`
+                }) : null]
+            }, opt.id)), displayList.length === 0 && (0, P.jsx)(`div`, {
+                className: `px-2.5 py-3 text-center font-mono text-[10px] text-muted-foreground`,
+                children: `Nenhuma pedaleira encontrada`
+            })]
+        }), hiddenCount > 0 ? (0, P.jsxs)(`div`, {
+            className: `px-1 font-mono text-[9px] text-muted-foreground`,
+            children: [`Mostrando `, PICKER_VISIBLE, ` de `, filtered.length, ` — use a busca para encontrar outras.`]
+        }) : needle && filtered.length > PICKER_VISIBLE ? (0, P.jsxs)(`div`, {
+            className: `px-1 font-mono text-[9px] text-muted-foreground`,
+            children: [filtered.length, ` resultados — role a lista ou refine a busca.`]
+        }) : null]
+    })
+}
+
+function midiDictSlotsPanel({
+    usbmode: usbmodeProp,
+    midiEnable: midiEnableProp
+}) {
+    let {
+        pedalId: fallbackId,
+        setPedalId: setFallbackPedal
+    } = (0, N.useContext)(pr), [slotsCfg, setSlotsCfg] = (0, N.useState)(() => loadMidiDictSlots()), [addRoute, setAddRoute] = (0, N.useState)(`usb:0`), [addChannel, setAddChannel] = (0, N.useState)(1), [addPedalId, setAddPedalId] = (0, N.useState)(``), [importOpen, setImportOpen] = (0, N.useState)(!1), [importText, setImportText] = (0, N.useState)(``), [importMsg, setImportMsg] = (0, N.useState)(null), [dictTick, setDictTick] = (0, N.useState)(0);
+    (0, N.useEffect)(() => subscribeMidiDictSlots(() => {
+        setSlotsCfg(loadMidiDictSlots());
+        setDictTick(e => e + 1)
+    }), []);
+    let usbmode = Number(usbmodeProp) || 0,
+        hubMode = usbmode === 3,
+        serialOn = Number(midiEnableProp || 0) >= 1,
+        routeOptions = (0, N.useMemo)(() => {
+            let opts = hubMode ? [{
+                value: `usb:0`,
+                label: `USB HUB · Dev 1`
+            }, {
+                value: `usb:1`,
+                label: `USB HUB · Dev 2`
+            }, {
+                value: `usb:2`,
+                label: `USB HUB · Dev 3`
+            }, {
+                value: `usb:3`,
+                label: `USB HUB · Dev 4`
+            }] : [{
+                value: `usb:0`,
+                label: `USB`
+            }];
+            opts.push({
+                value: `bt:0`,
+                label: `Bluetooth`
+            });
+            if (serialOn) opts.push({
+                value: `serial:0`,
+                label: `MIDI Serial`
+            });
+            return opts
+        }, [hubMode, serialOn]),
+        importModel = `[
+  {
+    "id": "brand-modelo-x",
+    "brand": "Marca",
+    "name": "Modelo X",
+    "cc": [
+      [1, "Wah"],
+      [7, "Volume"]
+    ]
+  }
+]`,
+        mappedEntries = (0, N.useMemo)(() => {
+            let rows = [];
+            for (let [key, pedalId] of Object.entries(slotsCfg.slots || {})) {
+                if (!pedalId) continue;
+                let parsed = parseMidiDictSlotKey(key);
+                if (!parsed) continue;
+                let pedal = Vn(pedalId);
+                rows.push({
+                    key,
+                    ...parsed,
+                    pedalId,
+                    pedalLabel: pedal ? midiDictPedalLabel(pedal) : String(pedalId)
+                })
+            }
+            rows.sort((a, b) => a.bus.localeCompare(b.bus) || a.deviceIndex - b.deviceIndex || a.channel - b.channel);
+            return rows
+        }, [slotsCfg, dictTick]),
+        refreshSlots = () => setSlotsCfg(loadMidiDictSlots()),
+        addMapping = () => {
+            if (!addPedalId) {
+                try {
+                    rt.error(`Escolha um modelo do dicionário`)
+                } catch {}
+                return
+            }
+            let parts = String(addRoute || `usb:0`).split(`:`),
+                bus = parts[0] || `usb`,
+                dev = Math.max(0, Math.min(3, Number(parts[1]) || 0));
+            setMidiDictSlot(bus, dev, addChannel, addPedalId);
+            refreshSlots()
+        },
+        removeMapping = key => {
+            let parsed = parseMidiDictSlotKey(key);
+            if (!parsed) return;
+            setMidiDictSlot(parsed.bus, parsed.deviceIndex, parsed.channel, null);
+            refreshSlots()
+        },
+        patchFallback = id => {
+            let cfg = loadMidiDictSlots();
+            cfg.fallbackPedalId = id || null;
+            saveMidiDictSlots(cfg);
+            setFallbackPedal(id || null);
+            refreshSlots()
+        },
+        runImport = () => {
+            let res = Un(importText);
+            res.ok ? (setImportMsg({
+                ok: !0,
+                text: `+${res.added} importados · ${res.total} extras`
+            }), setImportText(``), setDictTick(e => e + 1)) : setImportMsg({
+                ok: !1,
+                text: res.error
+            })
+        };
+    (0, N.useEffect)(() => {
+        if (!routeOptions.some(e => e.value === addRoute)) setAddRoute(routeOptions[0]?.value || `usb:0`)
+    }, [routeOptions, addRoute]);
+    return (0, P.jsxs)(I, {
+        title: `Dicionário MIDI por dispositivo e canal`,
+        subtitle: `Adicione só os mapas que precisa`,
+        children: [(0, P.jsx)(`p`, {
+            className: `font-mono text-[10px] leading-relaxed text-muted-foreground`,
+            children: hubMode ? `Escolha saída (porta HUB), canal e modelo. Porta HUB no comando só afecta nomes CC; a rotação MIDI é do firmware.` : `Escolha saída, canal MIDI e o modelo do dicionário — só entram as linhas que adicionar.`
+        }), (0, P.jsxs)(`div`, {
+            className: `rounded-xl border border-border bg-canvas/50 p-3 space-y-2`,
+            children: [(0, P.jsx)(`div`, {
+                className: `font-display text-[9px] uppercase tracking-[0.2em] text-muted-foreground`,
+                children: `Adicionar mapa`
+            }), (0, P.jsxs)(`div`, {
+                className: `grid gap-2 sm:grid-cols-[minmax(0,1.2fr)_72px]`,
+                children: [(0, P.jsxs)(`label`, {
+                    className: `flex flex-col gap-1`,
+                    children: [(0, P.jsx)(`span`, {
+                        className: `font-display text-[9px] uppercase tracking-[0.2em] text-muted-foreground`,
+                        children: `Saída`
+                    }), (0, P.jsx)(`select`, {
+                        value: addRoute,
+                        onChange: e => setAddRoute(e.target.value),
+                        className: `w-full rounded-lg border border-border bg-canvas px-2 py-1.5 font-mono text-[11px] text-foreground focus:border-accent/60 focus:outline-none`,
+                        children: routeOptions.map(opt => (0, P.jsx)(`option`, {
+                            value: opt.value,
+                            className: `bg-canvas text-foreground`,
+                            children: opt.label
+                        }, opt.value))
+                    })]
+                }), (0, P.jsxs)(`label`, {
+                    className: `flex flex-col gap-1`,
+                    children: [(0, P.jsx)(`span`, {
+                        className: `font-display text-[9px] uppercase tracking-[0.2em] text-muted-foreground`,
+                        children: `Canal`
+                    }), (0, P.jsx)(`select`, {
+                        value: String(addChannel),
+                        onChange: e => setAddChannel(Math.max(1, Math.min(16, Number(e.target.value) || 1))),
+                        className: `w-full rounded-lg border border-border bg-canvas px-2 py-1.5 font-mono text-[11px] text-foreground focus:border-accent/60 focus:outline-none`,
+                        children: Array.from({
+                            length: 16
+                        }, (e, t) => t + 1).map(ch => (0, P.jsx)(`option`, {
+                            value: String(ch),
+                            className: `bg-canvas text-foreground`,
+                            children: ch
+                        }, ch))
+                    })]
+                })]
+            }), (0, P.jsx)(midiDictPedalPicker, {
+                label: `Modelo`,
+                value: addPedalId,
+                onChange: id => setAddPedalId(id || ``),
+                allowNone: !1,
+                placeholder: `Digite para buscar pedaleira…`
+            }), (0, P.jsx)(`button`, {
+                type: `button`,
+                onClick: addMapping,
+                disabled: !addPedalId,
+                className: `rounded-lg border border-accent/40 bg-accent/10 px-3 py-1.5 font-display text-[10px] font-bold uppercase tracking-[0.14em] text-accent hover:bg-accent/20 disabled:opacity-40`,
+                children: `Adicionar`
+            })]
+        }), (0, P.jsxs)(`div`, {
+            className: `rounded-xl border border-border bg-canvas/50 p-3`,
+            children: [(0, P.jsxs)(`div`, {
+                className: `mb-2 flex items-center justify-between gap-2`,
+                children: [(0, P.jsx)(`div`, {
+                    className: `font-display text-[9px] uppercase tracking-[0.2em] text-muted-foreground`,
+                    children: `Mapas activos`
+                }), (0, P.jsxs)(`span`, {
+                    className: `font-mono text-[10px] text-muted-foreground`,
+                    children: [mappedEntries.length, ` entrada`, mappedEntries.length === 1 ? `` : `s`]
+                })]
+            }), mappedEntries.length === 0 ? (0, P.jsx)(`div`, {
+                className: `py-4 text-center font-mono text-[10px] text-muted-foreground`,
+                children: `Nenhum mapa. Adicione saída + canal + modelo acima.`
+            }) : (0, P.jsx)(`div`, {
+                className: `max-h-56 space-y-1.5 overflow-y-auto pr-1`,
+                children: mappedEntries.map(row => (0, P.jsxs)(`div`, {
+                    className: `flex items-center gap-2 rounded-lg border border-border bg-canvas px-2.5 py-2`,
+                    children: [(0, P.jsxs)(`div`, {
+                        className: `min-w-0 flex-1`,
+                        children: [(0, P.jsxs)(`div`, {
+                            className: `font-mono text-[11px] font-bold text-foreground`,
+                            children: [midiDictSlotRouteLabel(row.bus, row.deviceIndex, hubMode), ` · CH `, row.channel]
+                        }), (0, P.jsx)(`div`, {
+                            className: `truncate font-mono text-[10px] text-muted-foreground`,
+                            children: row.pedalLabel
+                        })]
+                    }), (0, P.jsx)(`button`, {
+                        type: `button`,
+                        onClick: () => removeMapping(row.key),
+                        className: `shrink-0 rounded-md border border-border px-2 py-1 font-mono text-[10px] text-muted-foreground hover:border-destructive/40 hover:text-destructive`,
+                        children: `Remover`
+                    })]
+                }, row.key))
+            })]
+        }), (0, P.jsxs)(`div`, {
+            className: `rounded-xl border border-border bg-canvas px-3 py-2 space-y-2`,
+            children: [(0, P.jsx)(`span`, {
+                className: `font-display text-[9px] uppercase tracking-[0.25em] text-muted-foreground`,
+                children: `Fallback global`
+            }), (0, P.jsx)(`p`, {
+                className: `font-mono text-[10px] leading-relaxed text-muted-foreground`,
+                children: `Usado só quando o comando não tem mapa para aquela saída/canal. Se também estiver vazio, o CC# fica numérico.`
+            }), (0, P.jsx)(midiDictPedalPicker, {
+                label: `Pedaleira fallback`,
+                value: fallbackId || slotsCfg.fallbackPedalId || ``,
+                onChange: id => patchFallback(id || null),
+                allowNone: !0,
+                noneLabel: `— Nenhuma (CC# numérico) —`,
+                placeholder: `Digite para buscar…`
+            })]
+        }), (0, P.jsxs)(`div`, {
+            className: `flex flex-wrap items-center justify-between gap-2`,
+            children: [(0, P.jsxs)(`span`, {
+                className: `font-mono text-[10px] text-muted-foreground`,
+                children: [zn.length, ` pedaleiras · `, Wn().length, ` extras`]
+            }), (0, P.jsx)(`button`, {
+                type: `button`,
+                onClick: () => setImportOpen(e => !e),
+                className: `rounded-lg border border-accent/40 bg-accent/10 px-2 py-1 font-mono text-[10px] text-accent hover:bg-accent/20`,
+                children: importOpen ? `Fechar import` : `Importar JSON`
+            })]
+        }), importOpen && (0, P.jsxs)(`div`, {
+            className: `space-y-2 rounded-xl border border-border bg-canvas/60 p-3`,
+            children: [(0, P.jsx)(`textarea`, {
+                value: importText,
+                onChange: e => setImportText(e.target.value),
+                placeholder: importModel,
+                className: `h-32 w-full resize-y rounded-lg border border-border bg-canvas p-2 font-mono text-[11px] text-foreground focus:outline-none focus:ring-1 focus:ring-accent`
+            }), (0, P.jsxs)(`div`, {
+                className: `flex flex-wrap gap-2`,
+                children: [(0, P.jsx)(`button`, {
+                    type: `button`,
+                    onClick: () => setImportText(importModel),
+                    className: `rounded-lg border border-border px-2 py-1 font-mono text-[10px] text-muted-foreground hover:bg-white/5`,
+                    children: `Ver modelo`
+                }), (0, P.jsx)(`button`, {
+                    type: `button`,
+                    onClick: runImport,
+                    disabled: !importText.trim(),
+                    className: `rounded-lg border border-accent/40 bg-accent/10 px-3 py-1 font-mono text-[10px] text-accent hover:bg-accent/20 disabled:opacity-40`,
+                    children: `Importar`
+                })]
+            }), importMsg && (0, P.jsx)(`div`, {
+                className: `font-mono text-[10px] ${importMsg.ok?`text-accent`:`text-destructive`}`,
+                children: importMsg.text
+            })]
+        })]
+    })
 }
 
 function systemSettingsPanel({
@@ -18809,7 +22079,10 @@ function systemSettingsPanel({
     onBackupLite: n,
     onBackupFull: r,
     onRestoreBackup: i,
-    backupBusy: a
+    backupBusy: a,
+    sysTab: sysTabProp,
+    onSysTabChange: onSysTabChangeProp,
+    onSave: onSaveProp
 }) {
     let o = (0, N.useRef)(null),
         activePresetIdx = Math.max(0, Math.min(4, Number(e?.activePreset) || 0)),
@@ -18817,7 +22090,9 @@ function systemSettingsPanel({
         [litePresets, setLitePresets] = (0, N.useState)(() => [activePresetIdx]),
         [liteUsb, setLiteUsb] = (0, N.useState)(!0),
         [liteLeds, setLiteLeds] = (0, N.useState)(!0),
-        [sysTab, setSysTab] = (0, N.useState)(`conexoes`),
+        [internalSysTab, setInternalSysTab] = (0, N.useState)(`conexoes`),
+        sysTab = sysTabProp || internalSysTab,
+        setSysTab = onSysTabChangeProp || setInternalSysTab,
         s = (() => {
             let mode = Math.max(0, Math.min(si.length - 1, Number(e?.usbmode || 0)));
             /* GP5 legado em Host → tratar como TONEX/MODELLER */
@@ -18843,6 +22118,7 @@ function systemSettingsPanel({
         v = Math.max(0, Math.min(1, Number(e?.midiEnable || 0))),
         y = Math.max(1, Math.min(16, Number(e?.midiChannel || 1))),
         b = Math.max(0, Math.min(2, Number(e?.midiPreset || 0))),
+        midiInRouteVal = Math.max(0, Math.min(4, Number(e?.midiInRoute ?? e?.S_MIDI_IN_ROUTE ?? 0))),
         x = typeof e?.wifiSsid == `string` && e.wifiSsid ? e.wifiSsid : `—`,
         S = typeof e?.wifiPw == `string` && e.wifiPw ? e.wifiPw : `—`,
         C = typeof e?.usbModeDescription == `string` && e.usbModeDescription ? e.usbModeDescription : si[s],
@@ -18922,6 +22198,12 @@ function systemSettingsPanel({
                             let fallback = (ci[s] || [])[0]?.value;
                             if (fallback !== void 0) patch.usbpreset = fallback
                         }
+                    } else {
+                        /* Preset: reverte MIDI serial / BT se estavam em Custom */
+                        let curMidi = Number(e?.midiPreset ?? e?.MIDI_PRESET ?? 0);
+                        if (curMidi === 2) patch.midiPreset = 0;
+                        let curBt = Number(e?.btPreset ?? e?.BT_PRESET ?? 0);
+                        if (curBt === 3) patch.btPreset = 0;
                     }
                     t(patch)
                 }
@@ -19027,6 +22309,14 @@ function systemSettingsPanel({
                 onChange: e => t({
                     midiPreset: Math.max(0, liMidiPreset.indexOf(e))
                 })
+            }), (0, P.jsx)(L, {
+                label: `Roteamento MIDI IN`,
+                options: liMidiInRoute,
+                value: liMidiInRoute[midiInRouteVal],
+                onChange: e => t({
+                    midiInRoute: Math.max(0, liMidiInRoute.indexOf(e)),
+                    S_MIDI_IN_ROUTE: Math.max(0, liMidiInRoute.indexOf(e))
+                })
             })]
         }), (0, P.jsxs)(I, {
             title: `Wi-Fi`,
@@ -19038,6 +22328,12 @@ function systemSettingsPanel({
                 label: `Senha`,
                 value: S
             })]
+        }), (0, P.jsx)(`div`, {
+            className: `lg:col-span-2`,
+            children: (0, P.jsx)(midiDictSlotsPanel, {
+                usbmode: s,
+                midiEnable: v
+            })
         }), (0, P.jsxs)(I, {
             title: `Backup`,
             subtitle: `Formato v3 · completo ou seletivo`,
@@ -19169,95 +22465,36 @@ function systemSettingsPanel({
                     size: 14
                 }), ` Apagar tudo (master reset)`]
             })]
-        })]
+        }), onSaveProp ? (0, P.jsx)(`div`, {
+            style: { gridColumn: `1 / -1` },
+            className: `flex justify-end pt-2`,
+            children: (0, P.jsxs)(`button`, {
+                type: `button`,
+                onClick: onSaveProp,
+                className: `flex items-center gap-2 rounded-full bg-gradient-to-b from-[#ef4444] to-[#b91c1c] px-6 py-2.5 font-display text-[10px] font-black uppercase tracking-[0.2em] text-accent-foreground shadow-[0_2px_10px_rgba(220,38,38,0.5)] hover:opacity-95`,
+                children: [(0, P.jsx)(cr, { className: `size-3.5` }), `Salvar Conexões`]
+            })
+        }) : null]
     }), sysTab === `tela` && (0, P.jsxs)(`div`, {
-        className: `grid gap-4`,
-        children: [(0, P.jsxs)(I, {
-            title: `Ecrã TFT`,
-            subtitle: `Layout do display no controlador`,
-            children: [(0, P.jsx)(L, {
-                label: `Estilo`,
-                options: [`Simples`, `Ícone`, `Blocos`, `Destaque`],
-                value: [`Simples`, `Ícone`, `Blocos`, `Destaque`][Math.max(0, Math.min(3, Number(e?.displayStyle || 0)))],
-                onChange: v => t({
-                    displayStyle: Math.max(0, [`Simples`, `Ícone`, `Blocos`, `Destaque`].indexOf(v))
-                })
-            }), (0, P.jsx)(L, {
-                label: `Nome no ecrã`,
-                options: [`Footswitch (app)`, `ToneX quando ligado`],
-                value: Number(e?.displayNameSrc || 0) ? `ToneX quando ligado` : `Footswitch (app)`,
-                onChange: v => t({
-                    displayNameSrc: +(v === `ToneX quando ligado`)
-                })
-            }), Number(e?.fsCount) === 8 && Number(e?.displayStyle) === 1 ? (0, P.jsx)(L, {
-                label: `Posição MT8 (estilo Ícone)`,
-                options: [`Grelha 2×4`, `Arco`, `Cantos + centro`, `Só chave activa`],
-                value: [`Grelha 2×4`, `Arco`, `Cantos + centro`, `Só chave activa`][Math.max(0, Math.min(3, Number(e?.displayLayout || 0)))],
-                onChange: v => t({
-                    displayLayout: Math.max(0, [`Grelha 2×4`, `Arco`, `Cantos + centro`, `Só chave activa`].indexOf(v))
-                })
-            }) : null, Number(e?.fsCount) === 8 && Number(e?.displayStyle) === 2 ? (0, P.jsx)(L, {
-                label: `Nome da chave no centro`,
-                options: [`Desligado`, `Ligado`],
-                value: Number(e?.displayGridCenterName || 0) ? `Ligado` : `Desligado`,
-                onChange: v => t({
-                    displayGridCenterName: v === `Ligado` ? 1 : 0
-                })
-            }) : null, (0, P.jsx)(L, {
-                label: `Fundo do ecrã`,
-                options: [`Cor sólida`, `Gradiente vertical`, `Gradiente horizontal`, `Textura`],
-                value: [`Cor sólida`, `Gradiente vertical`, `Gradiente horizontal`, `Textura`][Math.max(0, Math.min(3, Number(e?.displayBgMode || 0)))],
-                onChange: v => t({
-                    displayBgMode: Math.max(0, [`Cor sólida`, `Gradiente vertical`, `Gradiente horizontal`, `Textura`].indexOf(v))
-                })
-            }), Number(e?.displayBgMode) === 3 ? (0, P.jsx)(telaBgTextureField, {
-                fsCount: e?.fsCount,
-                onChangeMode: m => t({
-                    displayBgMode: m
-                })
-            }) : (0, P.jsxs)(`div`, {
-                className: `grid gap-2`,
-                style: {
-                    gridTemplateColumns: Number(e?.displayBgMode || 0) ? `1fr 1fr` : `1fr`
-                },
-                children: [(0, P.jsx)(telaBgColorField, {
-                    label: Number(e?.displayBgMode || 0) ? `Cor 1` : `Cor`,
-                    rgb: {
-                        r: Number(e?.displayBgR ?? 0),
-                        g: Number(e?.displayBgG ?? 0),
-                        b: Number(e?.displayBgB ?? 0)
-                    },
-                    onChange: c => t({
-                        displayBgR: c.r,
-                        displayBgG: c.g,
-                        displayBgB: c.b
-                    })
-                }), Number(e?.displayBgMode || 0) ? (0, P.jsx)(telaBgColorField, {
-                    label: `Cor 2`,
-                    rgb: {
-                        r: Number(e?.displayBgR2 ?? 24),
-                        g: Number(e?.displayBgG2 ?? 24),
-                        b: Number(e?.displayBgB2 ?? 24)
-                    },
-                    onChange: c => t({
-                        displayBgR2: c.r,
-                        displayBgG2: c.g,
-                        displayBgB2: c.b
-                    })
-                }) : null]
-            }), Number(e?.displayBgMode) === 3 ? null : (0, P.jsx)(`div`, {
-                className: `rounded-lg border border-border`,
-                style: {
-                    height: 28,
-                    background: Number(e?.displayBgMode || 0) === 1 ? `linear-gradient(${Mr(Number(e?.displayBgR ?? 0), Number(e?.displayBgG ?? 0), Number(e?.displayBgB ?? 0))}, ${Mr(Number(e?.displayBgR2 ?? 24), Number(e?.displayBgG2 ?? 24), Number(e?.displayBgB2 ?? 24))})` : Number(e?.displayBgMode || 0) === 2 ? `linear-gradient(90deg, ${Mr(Number(e?.displayBgR ?? 0), Number(e?.displayBgG ?? 0), Number(e?.displayBgB ?? 0))}, ${Mr(Number(e?.displayBgR2 ?? 24), Number(e?.displayBgG2 ?? 24), Number(e?.displayBgB2 ?? 24))})` : Mr(Number(e?.displayBgR ?? 0), Number(e?.displayBgG ?? 0), Number(e?.displayBgB ?? 0))
-                }
-            }), (0, P.jsx)(`div`, {
-                className: `rounded-lg border border-dashed border-border px-3 py-2 font-mono text-[10px] leading-relaxed text-muted-foreground`,
-                children: `Blocos: quadrados neon com ícone na cor do LED. Destaque: blocos sólidos na cor do LED, só texto centrado em preto ou branco.`
-            })]
-        }), (0, P.jsx)(displayIconsLibraryPanel, {
-            fsCount: e?.fsCount
-        })]
+        className: `grid gap-4 lg:grid-cols-2`,
+        children: [(0, P.jsx)(TelaLayoutsVisualPanel, {
+            usbConfig: e,
+            onChange: t
+        }), (0, P.jsx)(`div`, {
+            style: { gridColumn: `1 / -1` },
+            children: (0, P.jsx)(displayIconsLibraryPanel, {
+                fsCount: e?.fsCount
+            })
+        }), onSaveProp ? (0, P.jsx)(`div`, {
+            style: { gridColumn: `1 / -1` },
+            className: `flex justify-end pt-3`,
+            children: (0, P.jsxs)(`button`, {
+                type: `button`,
+                onClick: onSaveProp,
+                className: `flex items-center gap-2 rounded-full bg-gradient-to-b from-[#ef4444] to-[#b91c1c] px-6 py-2.5 font-display text-[10px] font-black uppercase tracking-[0.2em] text-accent-foreground shadow-[0_2px_10px_rgba(220,38,38,0.5)] hover:opacity-95`,
+                children: [(0, P.jsx)(cr, { className: `size-3.5` }), `Salvar Tela`]
+            })
+        }) : null]
     })]
     })
 }
@@ -19417,10 +22654,11 @@ function kemperTunerCard({
 function I({
     title: e,
     subtitle: t,
+    className: r,
     children: n
 }) {
     return (0, P.jsxs)(`section`, {
-        className: `rounded-2xl border border-border bg-panel/70 p-3 shadow-2xl shadow-black/20 sm:p-4`,
+        className: `rounded-2xl border border-border bg-panel/70 p-3 shadow-2xl shadow-black/20 sm:p-4 ${r || ``}`,
         children: [(0, P.jsxs)(`header`, {
             className: `mb-4 flex items-end justify-between gap-3`,
             children: [(0, P.jsxs)(`div`, {
@@ -19481,20 +22719,20 @@ function popupFieldTrigger({
         onClick: () => {
             !i && r?.()
         },
-        className: `group relative flex w-full flex-col items-start rounded-xl border border-border bg-canvas px-3 py-2 text-left transition-colors ${i?`opacity-70`:`hover:border-accent/40 hover:bg-panel/70`}`,
+        className: `group relative flex w-full flex-col items-start rounded-xl border border-border bg-canvas px-2.5 sm:px-3 py-2 text-left transition-colors min-w-0 overflow-hidden ${i?`opacity-70`:`hover:border-accent/40 hover:bg-panel/70`}`,
         children: [(0, P.jsxs)(`span`, {
-            className: `font-display text-[9px] uppercase tracking-[0.25em] text-muted-foreground`,
+            className: `font-display text-[9px] uppercase tracking-[0.2em] text-muted-foreground truncate w-full block`,
             children: [e, ` `, a ? (0, P.jsx)(`span`, {
                 className: `text-accent`,
                 children: a
             }) : null]
         }), (0, P.jsxs)(`div`, {
-            className: `mt-1 flex w-full items-center justify-between gap-2`,
+            className: `mt-1 flex w-full items-center justify-between gap-1.5 min-w-0`,
             children: [(0, P.jsx)(`span`, {
-                className: `truncate font-mono text-sm font-bold ${n?`text-accent`:`text-foreground`}`,
+                className: `truncate font-mono text-xs sm:text-sm font-bold ${n?`text-accent`:`text-foreground`}`,
                 children: t ?? `--`
             }), (0, P.jsx)(tr, {
-                className: `size-4 shrink-0 text-muted-foreground`
+                className: `size-3.5 sm:size-4 shrink-0 text-muted-foreground`
             })]
         })]
     })
@@ -19673,6 +22911,11 @@ var popupFsModeMeta = {
         icon: `layers`,
         description: `Ate 5 estagios sequenciais`,
         tint: `#eab308`
+    },
+    "STG Auto": {
+        icon: `clock`,
+        description: `Estagios avancam sozinhos por tempo; loop CC opcional`,
+        tint: `#84cc16`
     }
 };
 
@@ -19902,11 +23145,18 @@ function popupTextFieldControl({
 function popupCcFieldControl({
     label: e = `CC#`,
     value: t,
-    onChange: n
+    onChange: n,
+    output: outputProp,
+    channel: channelProp,
+    hubDevice: hubDeviceProp
 }) {
     let {
-        pedalId: r
-    } = (0, N.useContext)(pr), i = Vn(r), [a, o] = (0, N.useState)(!1), [s, c] = (0, N.useState)(``), [l, u] = (0, N.useState)(String(t));
+        pedalId: r,
+        resolvePedalId: resolvePedal
+    } = (0, N.useContext)(pr), resolvedId = outputProp != null || channelProp != null || hubDeviceProp != null ? resolvePedal?.(outputProp, channelProp, hubDeviceProp) ?? r : r, i = Vn(resolvedId), [a, o] = (0, N.useState)(!1), [s, c] = (0, N.useState)(``), [l, u] = (0, N.useState)(String(t));
+    (0, N.useEffect)(() => {
+        a && (u(String(t)), c(``))
+    }, [a, t]);
     if (!i) return (0, P.jsx)(popupNumberFieldControl, {
         label: e,
         value: t,
@@ -19923,9 +23173,7 @@ function popupCcFieldControl({
     let f = m.find(([e]) => Number(e) === Number(t)),
         p = s.trim().toLowerCase(),
         g = p ? m.filter(([e, t]) => String(e).includes(p) || String(t || ``).toLowerCase().includes(p)) : m;
-    return (0, N.useEffect)(() => {
-        a && (u(String(t)), c(``))
-    }, [a, t]), (0, P.jsxs)(P.Fragment, {
+    return (0, P.jsxs)(P.Fragment, {
         children: [(0, P.jsx)(popupFieldTrigger, {
             label: `${e} - ${i.name}`,
             display: f ? `CC ${t} -- ${f[1]}` : `CC ${t}`,
@@ -20267,11 +23515,9 @@ function xi({
     onClick: a,
     onRename: o
 }) {
-    let s = t.stompCommands.length + t.presetCommands.length > 0 || t.mode === `Ricochet` || t.mode === `STG`,
+    let s = t.stompCommands.length + t.presetCommands.length > 0 || t.mode === `Ricochet` || t.mode === `STG` || t.mode === `STG Auto`,
         c = n === `Stomp` ? t.stompLed : t.presetLed,
-        l = i && i !== `FS${e}` ? i : ``,
-        iconKey = !isExtFs ? displayIconSanitizeKey(t?.iconKey || ``) : ``,
-        thumb = useDisplayIconThumb(iconKey);
+        l = i && i !== `FS${e}` ? i : ``;
     return (0, P.jsxs)(`button`, {
         onClick: a,
         title: l ? `${l} - clique para renomear` : `Clique novamente para renomear`,
@@ -20302,18 +23548,11 @@ function xi({
         }), (0, P.jsxs)(`span`, {
             className: `absolute left-1.5 top-1.5 font-display text-[10px] font-black uppercase tracking-widest text-muted-foreground`,
             children: [isExtFs ? `EXT` : `FS`, e]
-        }), !isExtFs && (iconKey ? thumb ? (0, P.jsx)(`img`, {
-            src: thumb,
-            alt: iconKey,
-            className: `mb-1 h-14 w-14 object-contain`
-        }) : (0, P.jsx)(`div`, {
-            className: `mb-1 grid h-14 w-14 place-items-center rounded-lg border border-border bg-black/40 font-mono text-[9px] text-muted-foreground`,
-            children: iconKey
-        }) : (0, P.jsx)(Si, {
+        }), !isExtFs && (0, P.jsx)(Si, {
             colors: c,
             size: 54,
             className: `mb-1`
-        })), l ? (0, P.jsx)(`span`, {
+        }), l ? (0, P.jsx)(`span`, {
             className: `line-clamp-1 max-w-full px-1 text-center font-display text-sm font-black uppercase tracking-wider text-accent`,
             children: String(l).toUpperCase()
         }) : (0, P.jsx)(`span`, {
@@ -20326,11 +23565,28 @@ function xi({
 function Si({
     colors: e,
     size: t = 96,
-    className: n = ``
+    className: n = ``,
+    topColor: topColorProp,
+    bottomColor: bottomColorProp
 }) {
-    let r = e.on,
-        i = e.on,
-        a = e => e.toLowerCase() === `#0b0c0e` || e.toLowerCase() === `#000000` || e.toLowerCase() === `#111214`,
+    let isBlack = hex => {
+        if (!hex || typeof hex !== `string`) return true;
+        let h = hex.replace(`#`, ``).trim();
+        if (h.length === 3) h = h[0]+h[0]+h[1]+h[1]+h[2]+h[2];
+        if (h.length !== 6) return true;
+        let rv = parseInt(h.slice(0,2),16), gv = parseInt(h.slice(2,4),16), bv = parseInt(h.slice(4,6),16);
+        if (isNaN(rv) || isNaN(gv) || isNaN(bv)) return true;
+        return Math.max(rv, gv, bv) < 25;
+    };
+    let r = topColorProp || e?.on || `#ff8800`,
+        hasExplicitBottom = bottomColorProp !== undefined,
+        rawBottom = hasExplicitBottom ? bottomColorProp : e?.off,
+        // Se não houver cor secundária explícita ou ela for apagada/preta (como em cor única ou padrão),
+        // o anel ilumina por completo com a cor ON para representar o halo uniforme do footswitch físico.
+        // Se houver uma segunda cor real ativa (modo 2 cores / Stomp ativo), divide em topo (On) e base (Off).
+        i = (!hasExplicitBottom && isBlack(rawBottom)) ? r : (rawBottom || r),
+        topDark = isBlack(r),
+        bottomDark = isBlack(i),
         o = 50,
         s = 50,
         c = 47,
@@ -20380,14 +23636,14 @@ function Si({
                 fill: `#0b0c0e`,
                 stroke: `#1a1c1f`,
                 strokeWidth: `0.6`
-            }), !a(r) && (0, P.jsx)(`path`, {
+            }), !topDark && (0, P.jsx)(`path`, {
                 d: m,
                 fill: r,
                 opacity: `0.55`,
                 style: {
                     filter: `blur(3px)`
                 }
-            }), !a(i) && (0, P.jsx)(`path`, {
+            }), !bottomDark && (0, P.jsx)(`path`, {
                 d: p,
                 fill: i,
                 opacity: `0.55`,
@@ -20397,11 +23653,11 @@ function Si({
             }), (0, P.jsx)(`path`, {
                 d: m,
                 fill: r,
-                opacity: a(r) ? .15 : .95
+                opacity: topDark ? .15 : .95
             }), (0, P.jsx)(`path`, {
                 d: p,
                 fill: i,
-                opacity: a(i) ? .15 : .95
+                opacity: bottomDark ? .15 : .95
             }), (0, P.jsx)(`circle`, {
                 cx: o,
                 cy: s,
@@ -20543,7 +23799,7 @@ function wi({
             let e = l.current;
             if (!e || typeof window > `u`) return;
             let t = e.getBoundingClientRect(),
-                n = Math.min(t.width, window.innerWidth - 16),
+                n = Math.min(Math.max(t.width, 280), window.innerWidth - 16),
                 r = Math.max(8, Math.min(t.left, window.innerWidth - n - 8)),
                 i = t.bottom + 8,
                 a = 220;
@@ -20571,7 +23827,7 @@ function wi({
     }, [i, u]);
     let d = i && s && typeof document < `u` ? He.createPortal((0, P.jsxs)(`div`, {
         "data-color-picker-panel": !0,
-        className: `rounded-xl border border-border bg-canvas p-3 shadow-2xl`,
+        className: `rounded-xl border border-border bg-canvas p-3 sm:p-2 shadow-2xl`,
         style: {
             position: `fixed`,
             top: s.top,
@@ -20583,7 +23839,7 @@ function wi({
             className: `mb-2 font-display text-[9px] uppercase tracking-[0.25em] text-muted-foreground`,
             children: `Predefinidas`
         }), (0, P.jsx)(`div`, {
-            className: `grid grid-cols-6 gap-2`,
+            className: `grid grid-cols-6 gap-1.5 sm:gap-2`,
             children: vr.map(e => {
                 let t = e.value.toLowerCase() === n.toLowerCase();
                 return (0, P.jsx)(`button`, {
@@ -20592,7 +23848,7 @@ function wi({
                         r(e.value), a(!1)
                     },
                     title: e.name,
-                    className: `relative aspect-square rounded-full border transition-transform hover:scale-110 ${t?`border-white/80 ring-2 ring-accent/60`:`border-black/60`}`,
+                    className: `relative aspect-square w-full rounded-full border transition-transform hover:scale-110 ${t?`border-white/80 ring-2 ring-accent/60`:`border-black/60`}`,
                     style: {
                         background: e.value,
                         boxShadow: `0 0 8px ${e.value===`#0b0c0e`?`transparent`:e.value}`
@@ -20650,6 +23906,127 @@ function wi({
     })
 }
 
+
+function StompPedalThumb({ iconKey, alt }) {
+    let url = useDisplayIconThumb(iconKey);
+    if (url) {
+        return (0, P.jsx)(`img`, {
+            src: url,
+            alt: alt || `Pedal`,
+            className: `max-h-full max-w-full object-contain filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]`
+        });
+    }
+    return (0, P.jsxs)(`div`, {
+        className: `flex flex-col items-center justify-center gap-1 opacity-50 group-hover/icon:opacity-90 transition`,
+        children: [
+            (0, P.jsx)(`svg`, {
+                viewBox: `0 0 24 32`,
+                fill: `none`,
+                stroke: `currentColor`,
+                strokeWidth: `1.5`,
+                className: `h-6 w-5 text-muted-foreground`,
+                children: (0, P.jsxs)(P.Fragment, {
+                    children: [
+                        (0, P.jsx)(`rect`, { x: `2`, y: `2`, width: `20`, height: `28`, rx: `3` }),
+                        (0, P.jsx)(`circle`, { cx: `7`, cy: `7`, r: `1.5`, fill: `currentColor` }),
+                        (0, P.jsx)(`circle`, { cx: `12`, cy: `7`, r: `1.5`, fill: `currentColor` }),
+                        (0, P.jsx)(`circle`, { cx: `17`, cy: `7`, r: `1.5`, fill: `currentColor` }),
+                        (0, P.jsx)(`circle`, { cx: `12`, cy: `22`, r: `3` })
+                    ]
+                })
+            }),
+            (0, P.jsx)(`span`, {
+                className: `font-mono text-[8px] uppercase tracking-widest text-muted-foreground`,
+                children: `+ Ícone`
+            })
+        ]
+    });
+}
+
+function StompFootswitchTile({
+    fsIndex,
+    cfg,
+    isActive,
+    linkedFx,
+    globalFsIcon,
+    onSelect,
+    onOpenIcon,
+    onRename
+}) {
+    let stompName = (linkedFx?.name || cfg?.stompName || (cfg?.label && cfg?.label !== `FS${fsIndex}` ? cfg?.label : `STOMP ${fsIndex}`)).trim(),
+        iconKey = linkedFx?.icon || globalFsIcon || cfg?.stompIcon || ``,
+        stompColor = linkedFx ? customFxHex(linkedFx) : (cfg?.stompLed?.on || `#ff8800`),
+        stompLedColors = {
+            on: stompColor,
+            off: cfg?.stompLed?.off || `#000000`
+        };
+
+    return (0, P.jsxs)(`div`, {
+        onClick: onSelect,
+        className: `group relative flex flex-col items-center justify-between rounded-2xl border p-3 sm:p-3.5 transition-all cursor-pointer select-none min-h-[164px] sm:min-h-[172px] ${isActive ? `border-accent/80 bg-panel shadow-[0_0_24px_-4px_rgba(220,38,38,0.7)] ring-1 ring-accent/60` : `border-border bg-canvas/60 hover:border-accent/40 hover:bg-canvas/90`}`,
+        children: [
+            (0, P.jsxs)(`div`, {
+                className: `flex w-full items-center justify-between px-0.5`,
+                children: [
+                    (0, P.jsxs)(`span`, {
+                        className: `font-display text-[11px] font-black uppercase tracking-widest ${isActive ? `text-accent` : `text-muted-foreground`}`,
+                        children: [`FS `, fsIndex]
+                    }),
+                    isActive && (0, P.jsx)(`button`, {
+                        type: `button`,
+                        onClick: e => {
+                            e.stopPropagation();
+                            onRename && onRename();
+                        },
+                        title: `Renomear`,
+                        className: `flex h-5 w-5 items-center justify-center rounded-md border border-accent/50 bg-canvas/80 text-accent transition hover:bg-accent hover:text-white`,
+                        children: (0, P.jsx)(`svg`, {
+                            xmlns: `http://www.w3.org/2000/svg`,
+                            viewBox: `0 0 24 24`,
+                            fill: `none`,
+                            stroke: `currentColor`,
+                            strokeWidth: `2.2`,
+                            strokeLinecap: `round`,
+                            strokeLinejoin: `round`,
+                            className: `h-3 w-3`,
+                            children: (0, P.jsxs)(P.Fragment, {
+                                children: [
+                                    (0, P.jsx)(`path`, { d: `M12 20h9` }),
+                                    (0, P.jsx)(`path`, { d: `M16.5 3.5a2.12 2.12 0 1 1 3 3L7 19l-4 1 1-4Z` })
+                                ]
+                            })
+                        })
+                    })
+                ]
+            }),
+            (0, P.jsx)(`div`, {
+                className: `my-1 flex items-center justify-center`,
+                children: (0, P.jsx)(Si, {
+                    colors: stompLedColors,
+                    size: 48
+                })
+            }),
+            (0, P.jsx)(`div`, {
+                className: `line-clamp-1 w-full px-1 text-center font-display text-sm font-black uppercase tracking-wider text-accent my-0.5`,
+                title: stompName,
+                children: stompName.toUpperCase()
+            }),
+            (0, P.jsx)(`div`, {
+                onClick: e => {
+                    e.stopPropagation();
+                    onOpenIcon && onOpenIcon();
+                },
+                title: `Clique para configurar ícone/foto`,
+                className: `group/icon mt-1 flex h-14 w-14 sm:w-16 items-center justify-center rounded-xl p-1 transition hover:scale-105 hover:bg-white/5 active:scale-95`,
+                children: (0, P.jsx)(StompPedalThumb, {
+                    iconKey: iconKey,
+                    alt: stompName
+                })
+            })
+        ]
+    });
+}
+
 function Ti({
     ctrlMode: e,
     onChangeCtrlMode: t
@@ -20657,21 +24034,19 @@ function Ti({
     let {
         stompOn: n
     } = (0, N.useContext)(fr);
-    return (0, P.jsxs)(`div`, {
-        className: `mb-3 flex items-center justify-between gap-3 rounded-xl border border-border bg-canvas/60 px-3 py-2`,
-        children: [(0, P.jsx)(`span`, {
-            className: `font-display text-[10px] uppercase tracking-[0.25em] text-muted-foreground`,
-            children: `Comandos do modo`
-        }), (0, P.jsx)(`div`, {
-            className: `flex overflow-hidden rounded-full border border-border bg-canvas p-0.5`,
-            children: (n ? [`Preset`, `Stomp`] : [`Preset`]).map(n => (0, P.jsx)(`button`, {
+    let modes = n ? [`Preset`, `Stomp`] : [`Preset`];
+    return (0, P.jsx)(`div`, {
+        className: `mb-4 grid grid-cols-2 gap-2 rounded-xl border border-border bg-canvas/60 p-1`,
+        children: modes.map(m => {
+            let active = e === m;
+            return (0, P.jsx)(`button`, {
                 type: `button`,
-                onClick: () => t(n),
-                className: `rounded-full px-3 py-1 font-display text-[10px] font-bold uppercase tracking-[0.2em] transition ${e===n?`bg-accent text-accent-foreground`:`text-muted-foreground hover:text-foreground`}`,
-                children: n
-            }, n))
-        })]
-    })
+                onClick: () => t(m),
+                className: `rounded-lg py-2.5 font-display text-xs font-black uppercase tracking-[0.2em] transition ${active ? `bg-accent text-accent-foreground shadow-[0_0_16px_rgba(220,38,38,0.5)]` : `text-muted-foreground hover:bg-panel/50 hover:text-foreground`}`,
+                children: m
+            }, m);
+        })
+    });
 }
 
 function sceneMaskPicker({
@@ -20773,71 +24148,75 @@ function Ei({
     onPatchCommand: f,
     onPatchStg: p,
     onPatchRicochet: m,
+    onPatchStgLoopCc: stgLoopCcPatch,
     onChangeSceneMask: h,
-    fxList: fxListProp
+    onChangeStompName: onChangeStompName,
+    fxList: fxListProp,
+    allFsConfigs: allFsConfigs,
+    effectiveFs: effectiveFs,
+    globalConfig: globalConfig,
+    onSelectFs: onSelectFs,
+    onOpenIconModal: onOpenIconModal,
+    onRenameFsIndex: onRenameFsIndex
 }) {
     let {
             fxList: ctxFxList,
             fxCount: ctxFxCount
         } = (0, N.useContext)(scenesContext),
         isStompLayer = s === `Stomp`,
-        g = (0, N.useMemo)(() => isStompLayer ? Sr : jr(o.mode), [o.mode, isStompLayer]),
-        showPresetCmds = !isStompLayer && g.length > 0,
-        showStg = !isStompLayer && o.mode === `STG`,
-        y = o.stg,
-        b = showStg && y ? y.stages[y.activeStage].commands.length >= 4 : !1,
-        x = i && i !== `FS${r}` ? i : ``,
         assignedFx = (0, N.useMemo)(() => {
             let src = Array.isArray(fxListProp) && fxListProp.length ? fxListProp : Array.isArray(ctxFxList) ? ctxFxList : [],
                 limit = Number.isFinite(Number(ctxFxCount)) && Number(ctxFxCount) > 0 ? Number(ctxFxCount) : src.length;
-            return src.slice(0, Math.max(limit, src.length)).filter(fx => Number(fx?.assignedFs) === Number(r) && Number(fx?.assignedFs) > 0)
-        }, [fxListProp, ctxFxList, ctxFxCount, r]);
+            return src.slice(0, limit).map((fx, i) => normalizeCustomFx(fx, i + 1)).filter(fx => Number(fx?.assignedFs) === Number(r) && Number(fx?.assignedFs) > 0)
+        }, [fxListProp, ctxFxList, ctxFxCount, r]),
+        stompFxBound = isStompLayer && assignedFx.length > 0,
+        stompFree = isStompLayer && assignedFx.length === 0,
+        g = (0, N.useMemo)(() => stompFxBound ? Sr : jr(o.mode), [o.mode, stompFxBound]),
+        showPresetCmds = !isStompLayer && g.length > 0,
+        showStompFreeCmds = stompFree && g.length > 0,
+        showStg = (!isStompLayer || stompFree) && (o.mode === `STG` || o.mode === `STG Auto`),
+        y = o.stg,
+        b = showStg && y ? y.stages[y.activeStage].commands.length >= 4 : !1,
+        x = i && i !== `FS${r}` ? i : ``,
+        stompNameDisp = String(o.stompName || ``).trim(),
+        linkedFxName = assignedFx[0]?.name || ``;
+    let allAssignedFx = (0, N.useMemo)(() => {
+            let src = Array.isArray(fxListProp) && fxListProp.length ? fxListProp : Array.isArray(ctxFxList) ? ctxFxList : [],
+                limit = Number.isFinite(Number(ctxFxCount)) && Number(ctxFxCount) > 0 ? Number(ctxFxCount) : src.length;
+            return src.slice(0, limit).map((fx, i) => normalizeCustomFx(fx, i + 1));
+        }, [fxListProp, ctxFxList, ctxFxCount]);
+    let stompCols = Number(effectiveFs || 8) === 6 ? `grid-cols-3` : `grid-cols-2 sm:grid-cols-4`;
     let stompList = (0, P.jsxs)(`div`, {
-            className: `space-y-3`,
-            children: [assignedFx.map((fx, idx) => (0, P.jsxs)(`div`, {
-                className: `rounded-xl border border-accent/30 bg-accent/5 px-4 py-3`,
-                children: [(0, P.jsxs)(`div`, {
-                    className: `flex items-center justify-between gap-2`,
-                    children: [(0, P.jsx)(`span`, {
-                        className: `font-display text-[10px] uppercase tracking-[0.25em] text-accent`,
-                        children: `FX Global`
-                    }), (0, P.jsx)(`span`, {
-                        className: `size-2.5 rounded-full`,
-                        style: {
-                            backgroundColor: customFxHex(fx)
-                        }
-                    })]
-                }), (0, P.jsx)(`div`, {
-                    className: `mt-1 font-display text-sm font-bold text-foreground`,
-                    children: fx.name || `FX`
-                }), (0, P.jsxs)(`div`, {
-                    className: `mt-1 font-mono text-[11px] text-muted-foreground`,
-                    children: [`Ch `, Number(fx.channel) || 1, ` · CC `, Number(fx.cc) || 0, ` · On `, Number(fx.valueOn) || 0, ` / Off `, Number(fx.valueOff) || 0]
-                }), (0, P.jsx)(`div`, {
-                    className: `mt-2 font-display text-[9px] uppercase tracking-[0.2em] text-muted-foreground`,
-                    children: `Vinculado em Global · Stomp FX — so visual`
-                })]
-            }, `fx-global-${idx}-${fx.name || idx}`)), assignedFx.length === 0 && o.commands.length === 0 && (0, P.jsxs)(`div`, {
-                className: `rounded-xl border border-dashed border-border px-4 py-8 text-center`,
-                children: [(0, P.jsx)(`div`, {
-                    className: `font-display text-[10px] uppercase tracking-[0.3em] text-muted-foreground`,
-                    children: `Nenhum comando`
-                }), (0, P.jsx)(`div`, {
-                    className: `mt-2 font-mono text-[11px] text-muted-foreground`,
-                    children: `Sem FX Global nesta chave. Adicione um extra ou vincule em Global.`
-                }), (0, P.jsx)(`button`, {
-                    onClick: u,
-                    className: `mt-3 font-mono text-xs text-accent hover:underline`,
-                    children: `+ Adicionar primeiro comando`
-                })]
-            }), o.commands.map((cmd, t) => (0, P.jsx)(ji, {
-                index: t + 1,
-                cmd: cmd,
-                mode: `Normal`,
-                types: Sr,
-                onPatch: t => f(cmd.id, t),
-                onRemove: () => d(cmd.id)
-            }, cmd.id))]
+            className: `space-y-4`,
+            children: [
+                (0, P.jsx)(`div`, {
+                    className: `grid ${stompCols} gap-2.5 sm:gap-3`,
+                    children: Array.from({
+                        length: Number(effectiveFs || 8)
+                    }, (_, i) => i + 1).map(fsIdx => {
+                        let fsCfg = allFsConfigs?.[fsIdx] || (fsIdx === r ? o : kr(fsIdx)),
+                            fxItem = allAssignedFx.find(item => Number(item?.assignedFs) === fsIdx),
+                            gIcon = Array.isArray(globalConfig?.fsIconKey) ? globalConfig.fsIconKey[fsIdx - 1] : ``;
+                        return (0, P.jsx)(StompFootswitchTile, {
+                            fsIndex: fsIdx,
+                            cfg: fsCfg,
+                            isActive: fsIdx === r,
+                            linkedFx: fxItem,
+                            globalFsIcon: gIcon,
+                            onSelect: () => onSelectFs?.(fsIdx),
+                            onOpenIcon: () => {
+                                if (fsIdx !== r) onSelectFs?.(fsIdx);
+                                onOpenIconModal?.();
+                            },
+                            onRename: () => onRenameFsIndex?.(fsIdx)
+                        }, `stomp-fs-${fsIdx}`);
+                    })
+                }),
+                (0, P.jsx)(`div`, {
+                    className: `rounded-xl border border-border/60 bg-canvas/40 px-4 py-2.5 text-center font-display text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground/80`,
+                    children: `PARA ADICIONAR COMANDO NO MODO STOMP, VÁ EM "GLOBAL / STOMP".`
+                })
+            ]
         }),
         presetBody = showPresetCmds ? (0, P.jsxs)(`div`, {
             className: `space-y-3`,
@@ -20862,7 +24241,17 @@ function Ei({
         }) : showStg && y ? (0, P.jsx)(Di, {
             stg: y,
             baseColor: o.led.on,
-            onPatch: p
+            onPatch: p,
+            stgAuto: o.mode === `STG Auto`,
+            loopCc: o.mode === `STG Auto` ? {
+                enabled: !!o.stgLoopCcEnabled,
+                output: o.stgLoopCcOutput ?? `USB+BT`,
+                channel: o.stgLoopCcChannel ?? 1,
+                cc: o.stgLoopCc ?? 0,
+                valueOn: o.stgLoopCcValueOn ?? 127,
+                valueOff: o.stgLoopCcValueOff ?? 0
+            } : void 0,
+            onPatchLoopCc: stgLoopCcPatch
         }) : o.mode === `Ricochet` ? (0, P.jsx)(ki, {
             data: o.ricochet ?? Er(),
             onPatch: m
@@ -20894,58 +24283,115 @@ function Ei({
                     })
                 }), (0, P.jsxs)(`button`, {
                     onClick: u,
-                    disabled: isStompLayer ? !1 : !showPresetCmds && !showStg || showStg && b,
+                    disabled: stompFxBound ? !1 : isStompLayer ? !showStompFreeCmds && !showStg : !showPresetCmds && !showStg || showStg && b,
                     title: showStg && b ? `Maximo de 4 comandos por estagio` : void 0,
                     className: `flex items-center gap-1.5 rounded-lg border border-accent/40 bg-accent/10 px-3 py-1.5 font-display text-[10px] font-bold uppercase tracking-widest text-accent hover:bg-accent/20 disabled:cursor-not-allowed disabled:opacity-40`,
                     children: [(0, P.jsx)(sr, {
                         className: `size-3.5`
-                    }), !isStompLayer && showStg && y ? `Estagio ${y.activeStage+1}` : `Adicionar`]
+                    }), !stompFxBound && showStg && y ? `Estagio ${y.activeStage+1}` : `Adicionar`]
                 })]
             })]
         }), (0, P.jsxs)(`div`, {
             className: `mb-5 flex items-end justify-between gap-4`,
-            children: [(0, P.jsxs)(`button`, {
-                type: `button`,
-                onClick: a,
-                className: `group flex flex-col items-start gap-1 text-left`,
+            children: [(0, P.jsxs)(`div`, {
+                className: `flex flex-col items-start gap-1 text-left`,
                 children: [(0, P.jsxs)(`div`, {
-                    className: `flex items-center gap-2`,
-                    children: [(0, P.jsxs)(`div`, {
-                        className: `font-display text-4xl font-black tracking-tight text-foreground`,
-                        children: [`FS`, r]
-                    }), (0, P.jsx)(`span`, {
-                        className: `flex h-6 w-6 items-center justify-center rounded-md border border-accent/50 bg-canvas/80 text-accent opacity-85 transition-opacity group-hover:opacity-100`,
-                        children: (0, P.jsx)(`svg`, {
-                            xmlns: `http://www.w3.org/2000/svg`,
-                            viewBox: `0 0 24 24`,
-                            fill: `none`,
-                            stroke: `currentColor`,
-                            strokeWidth: `2.2`,
-                            strokeLinecap: `round`,
-                            strokeLinejoin: `round`,
-                            className: `h-3.5 w-3.5`,
-                            children: (0, P.jsxs)(P.Fragment, {
-                                children: [(0, P.jsx)(`path`, {
-                                    d: `M12 20h9`
-                                }), (0, P.jsx)(`path`, {
-                                    d: `M16.5 3.5a2.12 2.12 0 1 1 3 3L7 19l-4 1 1-4Z`
-                                })]
+                    className: `flex items-center gap-2.5`,
+                    children: [
+                        (0, P.jsx)(`button`, {
+                            type: `button`,
+                            onClick: () => {
+                                let total = Number(effectiveFs || 8);
+                                let prev = r > 1 ? r - 1 : total;
+                                onSelectFs?.(prev);
+                            },
+                            title: `FS Anterior`,
+                            className: `sm:hidden flex size-9 items-center justify-center rounded-lg border border-accent/50 bg-accent/10 text-accent hover:bg-accent/20 active:scale-95 transition-all shadow-[0_0_10px_rgba(220,38,38,0.25)] shrink-0`,
+                            children: (0, P.jsx)(`svg`, {
+                                xmlns: `http://www.w3.org/2000/svg`,
+                                viewBox: `0 0 24 24`,
+                                fill: `none`,
+                                stroke: `currentColor`,
+                                strokeWidth: `3`,
+                                strokeLinecap: `round`,
+                                strokeLinejoin: `round`,
+                                className: `size-5`,
+                                children: (0, P.jsx)(`path`, {
+                                    d: `m15 18-6-6 6-6`
+                                })
+                            })
+                        }),
+                        (0, P.jsxs)(`button`, {
+                            type: `button`,
+                            onClick: a,
+                            title: `Renomear FS`,
+                            className: `group flex items-center gap-2 cursor-pointer`,
+                            children: [(0, P.jsxs)(`div`, {
+                                className: `font-display text-4xl font-black tracking-tight text-foreground group-hover:text-accent transition-colors`,
+                                children: [`FS`, r]
+                            }), (0, P.jsx)(`span`, {
+                                className: `flex h-6 w-6 items-center justify-center rounded-md border border-accent/50 bg-canvas/80 text-accent opacity-85 transition-opacity group-hover:opacity-100`,
+                                children: (0, P.jsx)(`svg`, {
+                                    xmlns: `http://www.w3.org/2000/svg`,
+                                    viewBox: `0 0 24 24`,
+                                    fill: `none`,
+                                    stroke: `currentColor`,
+                                    strokeWidth: `2.2`,
+                                    strokeLinecap: `round`,
+                                    strokeLinejoin: `round`,
+                                    className: `h-3.5 w-3.5`,
+                                    children: (0, P.jsxs)(P.Fragment, {
+                                        children: [(0, P.jsx)(`path`, {
+                                            d: `M12 20h9`
+                                        }), (0, P.jsx)(`path`, {
+                                            d: `M16.5 3.5a2.12 2.12 0 1 1 3 3L7 19l-4 1 1-4Z`
+                                        })]
+                                    })
+                                })
+                            })]
+                        }),
+                        (0, P.jsx)(`button`, {
+                            type: `button`,
+                            onClick: () => {
+                                let total = Number(effectiveFs || 8);
+                                let next = r < total ? r + 1 : 1;
+                                onSelectFs?.(next);
+                            },
+                            title: `Próxima FS`,
+                            className: `sm:hidden flex size-9 items-center justify-center rounded-lg border border-accent/50 bg-accent/10 text-accent hover:bg-accent/20 active:scale-95 transition-all shadow-[0_0_10px_rgba(220,38,38,0.25)] shrink-0`,
+                            children: (0, P.jsx)(`svg`, {
+                                xmlns: `http://www.w3.org/2000/svg`,
+                                viewBox: `0 0 24 24`,
+                                fill: `none`,
+                                stroke: `currentColor`,
+                                strokeWidth: `3`,
+                                strokeLinecap: `round`,
+                                strokeLinejoin: `round`,
+                                className: `size-5`,
+                                children: (0, P.jsx)(`path`, {
+                                    d: `m9 18 6-6-6-6`
+                                })
                             })
                         })
-                    })]
-                }), x && (0, P.jsx)(`span`, {
-                    className: `truncate font-display text-xl font-black uppercase tracking-wider text-accent`,
+                    ]
+                }), (isStompLayer ? (linkedFxName || stompNameDisp || x) : x) && (0, P.jsx)(`button`, {
+                    type: `button`,
+                    onClick: a,
+                    className: `text-left truncate font-display text-xl font-black uppercase tracking-wider text-accent hover:underline cursor-pointer`,
                     style: {
                         maxWidth: 280
                     },
-                    children: String(x).toUpperCase()
+                    children: String(isStompLayer ? (linkedFxName || stompNameDisp || x) : x).toUpperCase()
                 })]
-            }), (0, P.jsx)(Mi, {
+            }), (!isStompLayer || stompFree) && (0, P.jsx)(Mi, {
                 label: `Modo`,
                 value: o.mode,
                 options: br,
                 onChange: e => l(e),
                 accent: !0
+            }), stompFxBound && (0, P.jsx)(`div`, {
+                className: `rounded-lg border border-accent/30 bg-accent/5 px-3 py-2 font-display text-[10px] uppercase tracking-widest text-accent`,
+                children: `Modo FX`
             })]
         }), (0, P.jsx)(Ti, {
             ctrlMode: s,
@@ -20960,19 +24406,27 @@ function Ei({
 function Di({
     stg: e,
     baseColor: t,
-    onPatch: n
+    onPatch: n,
+    stgAuto: stgAutoMode,
+    loopCc: loopCcCfg,
+    onPatchLoopCc: onPatchLoopCc
 }) {
-    let r = t => {
+    let [loopOpen, setLoopOpen] = (0, N.useState)(!1),
+        setStageCount = t => {
             let r = Math.max(2, Math.min(5, t));
             n({
                 stageCount: r,
-                activeStage: Math.min(e.activeStage, r - 1)
+                activeStage: Math.min(e.activeStage, r - 1),
+                stages: e.stages.map((e, t) => t < r ? e : {
+                    ...e,
+                    commands: []
+                })
             })
         },
-        i = e => n({
-            activeStage: e
+        setActiveStage = t => n({
+            activeStage: t
         }),
-        a = (t, r) => {
+        patchStage = (t, r) => {
             n({
                 stages: e.stages.map((e, n) => n === t ? {
                     ...e,
@@ -20980,21 +24434,21 @@ function Di({
                 } : e)
             })
         },
-        o = (t, n, r) => {
-            a(t, {
+        patchCmd = (t, n, r) => {
+            patchStage(t, {
                 commands: e.stages[t].commands.map(e => e.id === n ? {
                     ...e,
                     ...r
                 } : e)
             })
         },
-        s = (t, n) => {
-            a(t, {
+        removeCmd = (t, n) => {
+            patchStage(t, {
                 commands: e.stages[t].commands.filter(e => e.id !== n)
             })
         },
-        c = e.stages[e.activeStage],
-        l = Ar(t, c.ledPercent);
+        active = e.stages[e.activeStage],
+        previewColor = Ar(t, active.ledPercent);
     return (0, P.jsxs)(`div`, {
         className: `space-y-4`,
         children: [(0, P.jsxs)(`div`, {
@@ -21007,7 +24461,7 @@ function Di({
                 }), (0, P.jsx)(`div`, {
                     className: `flex items-center gap-1 rounded-full border border-border bg-muted p-1`,
                     children: [2, 3, 4, 5].map(t => (0, P.jsx)(`button`, {
-                        onClick: () => r(t),
+                        onClick: () => setStageCount(t),
                         className: `grid size-7 place-items-center rounded-full font-display text-[11px] font-bold transition-colors ${e.stageCount===t?`bg-accent text-accent-foreground`:`text-muted-foreground hover:text-foreground`}`,
                         children: t
                     }, t))
@@ -21016,9 +24470,9 @@ function Di({
                 className: `flex items-center gap-2`,
                 children: [(0, P.jsx)(Si, {
                     colors: {
-                        on: l,
+                        on: previewColor,
                         off: `#0b0c0e`,
-                        holdOn: l,
+                        holdOn: previewColor,
                         holdOff: `#0b0c0e`
                     },
                     size: 40
@@ -21029,23 +24483,23 @@ function Di({
                         children: `Preview`
                     }), (0, P.jsxs)(`span`, {
                         className: `font-mono text-[10px] text-accent`,
-                        children: [`Estágio `, e.activeStage + 1, ` · `, c.ledPercent, `%`]
+                        children: [`Estágio `, e.activeStage + 1, ` · `, active.ledPercent, `%`]
                     })]
                 })]
             })]
         }), (0, P.jsx)(`div`, {
             className: `flex flex-wrap gap-2`,
             children: e.stages.slice(0, e.stageCount).map((n, r) => {
-                let a = r === e.activeStage,
-                    o = Ar(t, n.ledPercent);
+                let selected = r === e.activeStage,
+                    dot = Ar(t, n.ledPercent);
                 return (0, P.jsxs)(`button`, {
-                    onClick: () => i(r),
-                    className: `flex items-center gap-2 rounded-xl border px-3 py-2 transition-colors ${a?`border-accent/60 bg-accent/10`:`border-border bg-canvas hover:border-white/20`}`,
+                    onClick: () => setActiveStage(r),
+                    className: `flex items-center gap-2 rounded-xl border px-3 py-2 transition-colors ${selected?`border-accent/60 bg-accent/10`:`border-border bg-canvas hover:border-white/20`}`,
                     children: [(0, P.jsx)(`span`, {
                         className: `size-3 rounded-full`,
                         style: {
-                            background: o,
-                            boxShadow: `0 0 8px ${o}`
+                            background: dot,
+                            boxShadow: `0 0 8px ${dot}`
                         }
                     }), (0, P.jsxs)(`div`, {
                         className: `flex flex-col items-start`,
@@ -21054,7 +24508,7 @@ function Di({
                             children: [`Est. `, r + 1]
                         }), (0, P.jsxs)(`span`, {
                             className: `font-mono text-[9px] text-muted-foreground`,
-                            children: [n.ledPercent, `% · `, n.commands.length, `/4`]
+                            children: [n.ledPercent, `% · `, n.commands.length, `/4`, stgAutoMode ? ` · ${Number(n.timeMs ?? 1e3)}ms` : ``]
                         })]
                     })]
                 }, r)
@@ -21068,15 +24522,15 @@ function Di({
                     children: [`Estágio `, e.activeStage + 1]
                 }), (0, P.jsxs)(`span`, {
                     className: `font-mono text-[10px] text-muted-foreground`,
-                    children: [`LED `, c.ledPercent, `%`]
+                    children: [`LED `, active.ledPercent, `%`]
                 })]
             }), (0, P.jsx)(`input`, {
                 type: `range`,
                 min: 0,
                 max: 100,
                 step: 1,
-                value: c.ledPercent,
-                onChange: t => a(e.activeStage, {
+                value: active.ledPercent,
+                onChange: t => patchStage(e.activeStage, {
                     ledPercent: Number(t.target.value)
                 }),
                 className: `w-full accent-[#dc2626]`,
@@ -21086,27 +24540,101 @@ function Di({
                     height: `6px`,
                     appearance: `none`
                 }
-            }), (0, P.jsxs)(`div`, {
+            }), stgAutoMode ? (0, P.jsx)(`div`, {
+                className: `mt-4`,
+                children: (0, P.jsx)(z, {
+                    label: `Tempo (ms)`,
+                    value: Number(active.timeMs ?? 1e3),
+                    min: 50,
+                    max: 6e4,
+                    onChange: v => patchStage(e.activeStage, {
+                        timeMs: Number(v) || 1e3
+                    })
+                })
+            }) : null, (0, P.jsxs)(`div`, {
                 className: `mt-4 space-y-2`,
-                children: [c.commands.length === 0 && (0, P.jsxs)(`div`, {
+                children: [active.commands.length === 0 && (0, P.jsxs)(`div`, {
                     className: `rounded-lg border border-dashed border-border px-3 py-6 text-center`,
                     children: [(0, P.jsx)(`div`, {
                         className: `font-display text-[10px] uppercase tracking-[0.3em] text-muted-foreground`,
-                        children: `Nenhum comando CC neste estágio`
+                        children: `Nenhum comando neste estágio`
                     }), (0, P.jsx)(`div`, {
                         className: `mt-1 font-mono text-[10px] text-muted-foreground/70`,
-                        children: `Use "Adicionar" acima (máx. 4)`
+                        children: `Use "Adicionar" acima (máx. 4) — CC ou PC`
                     })]
-                }), c.commands.map((t, n) => (0, P.jsx)(Oi, {
+                }), active.commands.map((t, n) => (0, P.jsx)(Oi, {
                     index: n + 1,
                     cmd: t,
-                    onPatch: n => o(e.activeStage, t.id, n),
-                    onRemove: () => s(e.activeStage, t.id)
+                    onPatch: n => patchCmd(e.activeStage, t.id, n),
+                    onRemove: () => removeCmd(e.activeStage, t.id)
                 }, t.id))]
             })]
-        })]
+        }), stgAutoMode ? (0, P.jsxs)(`div`, {
+            className: `rounded-xl border border-border bg-canvas`,
+            children: [(0, P.jsxs)(`button`, {
+                type: `button`,
+                onClick: () => setLoopOpen(v => !v),
+                className: `flex w-full items-center justify-between px-4 py-3 text-left`,
+                children: [(0, P.jsx)(`span`, {
+                    className: `font-display text-[10px] uppercase tracking-[0.3em] text-muted-foreground`,
+                    children: `Loop CC`
+                }), (0, P.jsx)(`span`, {
+                    className: `font-mono text-[10px] text-accent`,
+                    children: loopOpen ? `−` : `+`
+                })]
+            }), loopOpen ? (0, P.jsxs)(`div`, {
+                className: `space-y-3 border-t border-border px-4 pb-4 pt-3`,
+                children: [(0, P.jsx)(toggleFieldControl, {
+                    label: `Loop CC activo`,
+                    checked: !!loopCcCfg?.enabled,
+                    onCheckedChange: v => onPatchLoopCc?.({
+                        enabled: v
+                    })
+                }), (0, P.jsxs)(`div`, {
+                    className: `grid grid-cols-2 gap-2 sm:grid-cols-3`,
+                    children: [(0, P.jsx)(Mi, {
+                        label: `Saída`,
+                        value: loopCcCfg?.output ?? `USB+BT`,
+                        options: xr,
+                        onChange: v => onPatchLoopCc?.({
+                            output: v
+                        })
+                    }), (0, P.jsx)(z, {
+                        label: `Canal`,
+                        value: loopCcCfg?.channel ?? 1,
+                        min: 1,
+                        max: 16,
+                        onChange: v => onPatchLoopCc?.({
+                            channel: v
+                        })
+                    }), (0, P.jsx)(B, {
+                        value: loopCcCfg?.cc ?? 0,
+                        onChange: v => onPatchLoopCc?.({
+                            cc: v
+                        })
+                    }), (0, P.jsx)(z, {
+                        label: `Valor On`,
+                        value: loopCcCfg?.valueOn ?? 127,
+                        min: 0,
+                        max: 127,
+                        onChange: v => onPatchLoopCc?.({
+                            valueOn: v
+                        })
+                    }), (0, P.jsx)(z, {
+                        label: `Valor Off`,
+                        value: loopCcCfg?.valueOff ?? 0,
+                        min: 0,
+                        max: 127,
+                        onChange: v => onPatchLoopCc?.({
+                            valueOff: v
+                        })
+                    })]
+                })]
+            }) : null]
+        }) : null]
     })
 }
+
 
 function Oi({
     index: e,
@@ -21114,6 +24642,9 @@ function Oi({
     onPatch: n,
     onRemove: r
 }) {
+    let {
+        usbmode: usbmodeCtx
+    } = (0, N.useContext)(pr), hubMode = Number(usbmodeCtx) === 3, hubLabels = [`Dev 1`, `Dev 2`, `Dev 3`, `Dev 4`], hubIdx = Math.max(0, Math.min(3, Number(t.hubDevice) || 0));
     return (0, P.jsxs)(`div`, {
         className: `rounded-lg border border-border bg-canvas p-3`,
         children: [(0, P.jsxs)(`div`, {
@@ -21151,11 +24682,21 @@ function Oi({
                 onChange: e => n({
                     channel: e
                 })
+            }), hubMode && (0, P.jsx)(Mi, {
+                label: `Porta HUB`,
+                value: hubLabels[hubIdx] || hubLabels[0],
+                options: hubLabels,
+                onChange: e => n({
+                    hubDevice: hubLabels.indexOf(e)
+                })
             }), (0, P.jsx)(B, {
                 value: t.cc,
                 onChange: e => n({
                     cc: e
-                })
+                }),
+                output: t.output,
+                channel: t.channel,
+                hubDevice: t.hubDevice
             }), (0, P.jsx)(z, {
                 label: `Valor`,
                 value: t.value,
@@ -21241,7 +24782,9 @@ function ki({
                     value: e.cc,
                     onChange: e => t({
                         cc: e
-                    })
+                    }),
+                    output: e.output,
+                    channel: e.channel
                 }), (0, P.jsx)(Mi, {
                     label: `Curva`,
                     value: e.curve,
@@ -21438,7 +24981,9 @@ function ji({
     onPatch: i,
     onRemove: a
 }) {
-    let o = t.type === `FS Sync` || t.type.startsWith(`Banco`),
+    let {
+        usbmode: usbmodeCtx
+    } = (0, N.useContext)(pr), hubMode = Number(usbmodeCtx) === 3, hubLabels = [`Dev 1`, `Dev 2`, `Dev 3`, `Dev 4`], hubIdx = Math.max(0, Math.min(3, Number(t.hubDevice) || 0)), o = t.type === `FS Sync` || t.type.startsWith(`Banco`),
         s = t.type === `FS Sync` || t.type.startsWith(`Banco`) || t.type === `Tap Tempo Ampero (Serial)`,
         c = t.type === `FS Sync` || t.type.startsWith(`Banco`) || t.type === `SysEx` || t.type.startsWith(`PC`) || t.type.includes(`Up`) || t.type.includes(`Down`),
         l = n === `Normal` || n === `Momentâneo`,
@@ -21526,7 +25071,7 @@ function ji({
                 onChange: e => i({
                     targetState: e
                 })
-            }), t.type !== `SysEx` && !t.type.startsWith(`Banco`) && t.type !== `FS Sync` && (t.type.startsWith(`PC`) ? (0, P.jsx)(z, {
+            }), t.type !== `SysEx` && !t.type.startsWith(`Banco`) && t.type !== `FS Sync` && !t.type.includes(`Up`) && !t.type.includes(`Down`) && (t.type.startsWith(`PC`) ? (0, P.jsx)(z, {
                 label: `PC#`,
                 value: t.cc,
                 min: 0,
@@ -21538,8 +25083,52 @@ function ji({
                 value: t.cc,
                 onChange: e => i({
                     cc: e
-                })
-            })), !c && (0, P.jsx)(z, {
+                }),
+                output: t.output,
+                channel: t.channel,
+                hubDevice: t.hubDevice
+            })), (t.type === `CC Up` || t.type === `CC Down`) && (0, P.jsx)(B, {
+                value: t.cc,
+                onChange: e => i({
+                    cc: e
+                }),
+                output: t.output,
+                channel: t.channel,
+                hubDevice: t.hubDevice
+            }), (t.type.includes(`Up`) || t.type.includes(`Down`)) && (0, P.jsxs)(P.Fragment, {
+                children: [(0, P.jsx)(z, {
+                    label: `Início`,
+                    value: Number(t.rangeStart ?? t.value ?? 0),
+                    min: 0,
+                    max: 127,
+                    onChange: e => i({
+                        rangeStart: e,
+                        value: e
+                    })
+                }), (0, P.jsx)(z, {
+                    label: `Fim`,
+                    value: Number(t.rangeEnd ?? 127),
+                    min: 0,
+                    max: 127,
+                    onChange: e => i({
+                        rangeEnd: e
+                    })
+                }), (0, P.jsx)(z, {
+                    label: `Inc`,
+                    value: Math.max(1, Number(t.increment ?? 1) || 1),
+                    min: 1,
+                    max: 127,
+                    onChange: e => i({
+                        increment: Math.max(1, Number(e) || 1)
+                    })
+                }), (0, P.jsx)(toggleFieldControl, {
+                    label: `Loop`,
+                    checked: t.loop === void 0 ? !0 : !!t.loop,
+                    onCheckedChange: e => i({
+                        loop: !!e
+                    })
+                })]
+            }), !c && !t.type.includes(`Up`) && !t.type.includes(`Down`) && (0, P.jsx)(z, {
                 label: `Valor`,
                 value: t.value,
                 min: 0,
@@ -21568,6 +25157,13 @@ function ji({
                 onChange: e => i({
                     trigger: e
                 })
+            }), !s && hubMode && (0, P.jsx)(Mi, {
+                label: `Porta HUB`,
+                value: hubLabels[hubIdx] || hubLabels[0],
+                options: hubLabels,
+                onChange: e => i({
+                    hubDevice: hubLabels.indexOf(e)
+                })
             }), !s && (0, P.jsx)(Mi, {
                 label: `Saída`,
                 value: t.output,
@@ -21587,7 +25183,7 @@ function Mi({
     onChange: r,
     accent: i
 }) {
-    let a = e === `Modo` && Array.isArray(n) && n.length === 5 && n[0] === `Normal` && n[4] === `STG` ? popupFsModeMeta : null;
+    let a = e === `Modo` && Array.isArray(n) && n.length === 6 && n[0] === `Normal` && n[5] === `STG Auto` ? popupFsModeMeta : null;
     return (0, P.jsx)(popupSelectFieldControl, {
         label: e,
         value: t,
@@ -21617,12 +25213,18 @@ function z({
 function B({
     label: e = `CC#`,
     value: t,
-    onChange: n
+    onChange: n,
+    output: cmdOut,
+    channel: cmdCh,
+    hubDevice: cmdHub
 }) {
     return (0, P.jsx)(popupCcFieldControl, {
         label: e,
         value: t,
-        onChange: n
+        onChange: n,
+        output: cmdOut,
+        channel: cmdCh,
+        hubDevice: cmdHub
     });
     let {
         pedalId: r

@@ -16307,10 +16307,13 @@ function $r({
     usbCfg: e,
     onPatchUsbCfg: t
 }) {
-    /* ledHoldMode: 0=NORMAL, 1=PISCA (get_led_hold_mode / acionaledcustomhold); default 1 */
-    let holdOpts = [`NORMAL`, `PISCA`],
-        holdLabel = e => Number(e ?? 1) === 1 ? `PISCA` : `NORMAL`,
-        holdValue = e => +(e === `PISCA`),
+    /* ledHoldMode: 0=NORMAL, 1=PISCA, 2=PISCA+FICA (get_led_hold_mode / acionaledcustomhold); default 1 */
+    let holdOpts = [`NORMAL`, `PISCA`, `PISCA+FICA`],
+        holdLabel = e => {
+            let v = Number(e ?? 1);
+            return v === 2 ? `PISCA+FICA` : v === 0 ? `NORMAL` : `PISCA`
+        },
+        holdValue = e => e === `PISCA+FICA` ? 2 : e === `NORMAL` ? 0 : 1,
         /* ledClickMode: 0=ON/OFF, 1=INTENSIDADE, 2=INTENSIDADE 2 (get_led_click_mode / acionaledcustom); default 1 */
         clickOpts = [`INTENSIDADE`, `INTENSIDADE 2`, `ON/OFF`],
         clickLabel = e => {
