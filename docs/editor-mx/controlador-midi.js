@@ -12983,6 +12983,8 @@ var hr = [`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`],
         label: `FS${e}`,
         stompName: ``,
         iconKey: ``,
+        stompIcon: ``,
+        stompSlots: Array.from({ length: 8 }, () => ({ icon: ``, name: ``, color: `#ff8800` })),
         gridFill: 0,
         sceneMask: [],
         stompLed: {
@@ -16052,6 +16054,12 @@ function Jr(e, usbCfg) {
             fsName: String(e.label || ``).replace(/[^\x20-\x7E]/g, ``).toUpperCase().slice(0, 24),
             stompName: String(e.stompName || ``).replace(/[^\x20-\x7E]/g, ``).toUpperCase().slice(0, 16),
             iconKey: displayIconSanitizeKey(e.iconKey || ``),
+            stompIcon: displayIconSanitizeKey(e.stompIcon || ``),
+            stompSlots: Array.isArray(e.stompSlots) ? e.stompSlots.slice(0, 8).map(s => ({
+                icon: displayIconSanitizeKey(s?.icon || ``),
+                name: String(s?.name || ``).replace(/[^\x20-\x7E]/g, ``).toUpperCase().slice(0, 16),
+                color: typeof s?.color === `string` ? s.color : `#ff8800`
+            })) : [],
             gridFill: Number(e.gridFill) ? 1 : 0,
             scene: Array.isArray(e.sceneMask) ? e.sceneMask.map(e => e ? 1 : 0) : [],
             toggle: e.mode === `Momentâneo` ? 0 : +!!i,
@@ -16293,6 +16301,12 @@ function Yr(e, t, n, usbCfg) {
         label: e?.fsName || n.label || `FS${t}`,
         stompName: typeof e?.stompName == `string` ? e.stompName : n.stompName || ``,
         iconKey: typeof e?.iconKey == `string` ? displayIconSanitizeKey(e.iconKey) : n.iconKey || ``,
+        stompIcon: typeof e?.stompIcon == `string` ? displayIconSanitizeKey(e.stompIcon) : n.stompIcon || ``,
+        stompSlots: Array.isArray(e?.stompSlots) ? e.stompSlots.slice(0, 8).map(s => ({
+            icon: typeof s?.icon === `string` ? displayIconSanitizeKey(s.icon) : ``,
+            name: typeof s?.name === `string` ? s.name : ``,
+            color: typeof s?.color === `string` ? s.color : (typeof s?.color === `number` ? `#` + s.color.toString(16).padStart(6, `0`) : `#ff8800`)
+        })) : (Array.isArray(n?.stompSlots) ? n.stompSlots : Array.from({ length: 8 }, () => ({ icon: ``, name: ``, color: `#ff8800` }))),
         gridFill: Number(e?.gridFill ?? n.gridFill) ? 1 : 0,
         sceneMask: Array.isArray(e?.scene) ? e.scene.map(e => typeof e == `object` && e ? !!e.enabled : !!e) : Array.isArray(n?.sceneMask) ? n.sceneMask : [],
         /* Nunca herdar comandos do FS/banco anterior — lista vazia = vazio. */
@@ -16326,7 +16340,7 @@ function Yr(e, t, n, usbCfg) {
 }
 
 function Xr() {
-    let [e, t] = (0, N.useState)(`MX-6`), [n, r] = (0, N.useState)(0), [i, a] = (0, N.useState)(1), [o, s] = (0, N.useState)(`preset`), [c, l] = (0, N.useState)({}), [expBankState, setExpBankState] = (0, N.useState)(() => expCreateEmptyBank()), [globalSubTab, setGlobalSubTab] = (0, N.useState)(`gb`), [sysSubTab, setSysSubTab] = (0, N.useState)(`conexoes`), u = (0, N.useRef)(!1), modelSaveBusyRef = (0, N.useRef)(!1), modelRebootUntilRef = (0, N.useRef)(0), iconKeyPendingRef = (0, N.useRef)(null), d = gr[e].fs, [f, p] = (0, N.useState)(1), [m, h] = (0, N.useState)(`Preset`), [g, _] = (0, N.useState)(!0), [v, y] = (0, N.useState)(null), [R, I] = (0, N.useState)(null), [B, L] = (0, N.useState)(``),     [backupBusy, setBackupBusy] = (0, N.useState)(!1), [backupProgress, setBackupProgress] = (0, N.useState)({
+    let [e, t] = (0, N.useState)(`MX-6`), [n, r] = (0, N.useState)(0), [i, a] = (0, N.useState)(1), [o, s] = (0, N.useState)(`preset`), [c, l] = (0, N.useState)({}), [expBankState, setExpBankState] = (0, N.useState)(() => expCreateEmptyBank()), [globalSubTab, setGlobalSubTab] = (0, N.useState)(`gb`), [sysSubTab, setSysSubTab] = (0, N.useState)(`conexoes`), u = (0, N.useRef)(!1), modelSaveBusyRef = (0, N.useRef)(!1), modelRebootUntilRef = (0, N.useRef)(0), iconKeyPendingRef = (0, N.useRef)(null), activeStompSlotRef = (0, N.useRef)(1), [activeStompSlot, setActiveStompSlot] = (0, N.useState)(1), d = gr[e].fs, [f, p] = (0, N.useState)(1), [m, h] = (0, N.useState)(`Preset`), [g, _] = (0, N.useState)(!0), [v, y] = (0, N.useState)(null), [R, I] = (0, N.useState)(null), [B, L] = (0, N.useState)(``),     [backupBusy, setBackupBusy] = (0, N.useState)(!1), [backupProgress, setBackupProgress] = (0, N.useState)({
         pct: 0,
         label: ``
     }), [fsSwitchPrompt, setFsSwitchPrompt] = (0, N.useState)(null), fsSavedSnapshotRef = (0, N.useRef)({}), fsFullSnapshotRef = (0, N.useRef)({}), [transportState, setTransportState] = (0, N.useState)(() => getTransportSnapshot()), [iconScreenOpen, setIconScreenOpen] = (0, N.useState)(!1), [ampScreenOpen, setAmpScreenOpen] = (0, N.useState)(!1);
@@ -16439,12 +16453,13 @@ function Xr() {
                 index: e
             }), L(presetLabel(e))
         },
-        openFsRename = e => {
+        openFsRename = (e, stompSlotIdx = null) => {
             let t = b[e] || kr(e);
             p(e), I({
                 kind: `fs`,
-                index: e
-            }), L(t?.label === `FS${e}` ? `` : String(t?.label || ``))
+                index: e,
+                stompSlotIndex: stompSlotIdx
+            }), L(m === `Stomp` ? (stompSlotIdx ? (t?.stompSlots?.[stompSlotIdx - 1]?.name || ``) : (t?.stompName || ``)) : (t?.label === `FS${e}` ? `` : String(t?.label || ``)))
         },
         commitRename = () => {
             if (!R) return;
@@ -16476,7 +16491,85 @@ function Xr() {
             let fsToSave = R.index;
             let labelToSave = String(B || ``).trim().toUpperCase().slice(0, 16);
             let pendingIcon = iconKeyPendingRef.current;
+            let stompSlotIdx = R.stompSlotIndex || activeStompSlotRef.current || 1;
             closeRename();
+            if (m === `Stomp`) {
+                x(e => {
+                    let curFs = e[fsToSave] || kr(fsToSave);
+                    let slots = Array.isArray(curFs.stompSlots) ? [...curFs.stompSlots] : Array.from({ length: 8 }, () => ({ icon: ``, name: ``, color: `#ff8800` }));
+                    while (slots.length < 8) slots.push({ icon: ``, name: ``, color: `#ff8800` });
+                    if (stompSlotIdx >= 1 && stompSlotIdx <= 8) {
+                        slots[stompSlotIdx - 1] = {
+                            ...slots[stompSlotIdx - 1],
+                            name: labelToSave,
+                            ...(pendingIcon !== null ? { icon: displayIconSanitizeKey(pendingIcon || ``) } : {})
+                        };
+                    }
+                    return {
+                        ...e,
+                        [fsToSave]: {
+                            ...curFs,
+                            stompName: (!R.stompSlotIndex || R.stompSlotIndex === fsToSave) ? labelToSave : curFs.stompName,
+                            stompSlots: slots,
+                            ...(pendingIcon !== null && (!R.stompSlotIndex || R.stompSlotIndex === fsToSave) ? { stompIcon: displayIconSanitizeKey(pendingIcon || ``) } : {})
+                        }
+                    };
+                });
+                (async () => {
+                    if (u.current) return;
+                    u.current = !0;
+                    try {
+                        let curFs = b[fsToSave] || kr(fsToSave);
+                        let slots = Array.isArray(curFs.stompSlots) ? [...curFs.stompSlots] : Array.from({ length: 8 }, () => ({ icon: ``, name: ``, color: `#ff8800` }));
+                        while (slots.length < 8) slots.push({ icon: ``, name: ``, color: `#ff8800` });
+                        if (stompSlotIdx >= 1 && stompSlotIdx <= 8) {
+                            slots[stompSlotIdx - 1] = {
+                                ...slots[stompSlotIdx - 1],
+                                name: labelToSave,
+                                ...(pendingIcon !== null ? { icon: displayIconSanitizeKey(pendingIcon || ``) } : {})
+                            };
+                        }
+                        let cfg = {
+                            ...curFs,
+                            stompName: (!R.stompSlotIndex || R.stompSlotIndex === fsToSave) ? labelToSave : curFs.stompName,
+                            stompSlots: slots
+                        };
+                        if (pendingIcon !== null) {
+                            if (!R.stompSlotIndex || R.stompSlotIndex === fsToSave) {
+                                cfg.stompIcon = displayIconSanitizeKey(pendingIcon || ``);
+                            }
+                            iconKeyPendingRef.current = null;
+                        }
+                        let payload = compactFsForSave(Jr(cfg, c));
+                        await postMidiConfigRetry({
+                            activePreset: T,
+                            banks: {
+                                [n]: {
+                                    [`fs${fsToSave}`]: payload
+                                }
+                            }
+                        }, 8);
+                        x(prev => {
+                            let pFs = prev[fsToSave] || kr(fsToSave);
+                            return {
+                                ...prev,
+                                [fsToSave]: {
+                                    ...pFs,
+                                    stompName: cfg.stompName,
+                                    stompSlots: slots,
+                                    stompIcon: cfg.stompIcon
+                                }
+                            };
+                        });
+                        rt.success(`Salvo Stomp: ${hr[n]} · Preset FS${fsToSave} · Slot ${stompSlotIdx}`);
+                    } catch (err) {
+                        rt.error(`Erro ao salvar Stomp FS: ${err?.message || err}`);
+                    } finally {
+                        u.current = !1;
+                    }
+                })();
+                return;
+            }
             (async () => {
                 if (u.current) return;
                 u.current = !0;
@@ -17264,29 +17357,31 @@ function Xr() {
                     }, 8);
                     /* Cores ANTES do GET de confirmação — senão o 1.º save lê o azul
                      * por defeito do banco e pinta o editor por cima da cor gravada. */
-                    try {
-                        let ledCfg = t.presetLed || yr,
-                            ledPayload = {
-                                activePreset: T,
+                    if (m !== "Stomp") {
+                        try {
+                            let ledCfg = (t.presetLed || yr),
+                                ledPayload = {
+                                    activePreset: T,
+                                    bank: n,
+                                    fs: e,
+                                    on: Nr(ledCfg.on),
+                                    off: Nr(ledCfg.off),
+                                    hold_on: Nr(ledCfg.holdOn),
+                                    hold_off: Nr(ledCfg.holdOff)
+                                };
+                            F(`A`, `save.led.start`, {
                                 bank: n,
                                 fs: e,
-                                on: Nr(ledCfg.on),
-                                off: Nr(ledCfg.off),
-                                hold_on: Nr(ledCfg.holdOn),
-                                hold_off: Nr(ledCfg.holdOff)
-                            };
-                        F(`A`, `save.led.start`, {
-                            bank: n,
-                            fs: e,
-                            activePreset: T,
-                            led: ledCfg,
-                            ledPayload
-                        }), await new Promise(ok => setTimeout(ok, 120)), await Br(`/api/led-colors`, ledPayload, 3e4)
-                    } catch (ledErr) {
-                        F(`A`, `save.led.warn`, {
-                            message: String(ledErr?.message || ledErr)
-                        });
-                        rt.error(`Comandos gravados, mas as cores LED falharam: ${String(ledErr?.message || ledErr)}`)
+                                activePreset: T,
+                                led: ledCfg,
+                                ledPayload
+                            }), await new Promise(ok => setTimeout(ok, 120)), await Br(`/api/led-colors`, ledPayload, 3e4)
+                        } catch (ledErr) {
+                            F(`A`, `save.led.warn`, {
+                                message: String(ledErr?.message || ledErr)
+                            });
+                            rt.error(`Comandos gravados, mas as cores LED falharam: ${String(ledErr?.message || ledErr)}`)
+                        }
                     }
                     let savedSnap = {
                         ...t,
@@ -17330,6 +17425,10 @@ function Xr() {
                                 if (t.presetLed) next.presetLed = {
                                     ...t.presetLed
                                 };
+                                if (t.stompLed) next.stompLed = {
+                                    ...t.stompLed
+                                };
+                                if (Array.isArray(t.stompSlots)) next.stompSlots = t.stompSlots;
                                 savedSnap = next;
                                 return {
                                     ...prev,
@@ -17726,6 +17825,10 @@ function Xr() {
                               onSelectFs: requestSelectFs,
                               onOpenIconModal: () => setIconScreenOpen(!0),
                               onRenameFsIndex: openFsRename,
+                              activeStompSlot: activeStompSlot,
+                              onSelectStompSlot: slotIdx => { setActiveStompSlot(slotIdx); activeStompSlotRef.current = slotIdx; },
+                              onOpenStompIcon: slotIdx => { activeStompSlotRef.current = slotIdx; setIconScreenOpen(!0); },
+                              onRenameStompSlot: slotIdx => openFsRename(f, slotIdx),
                             onChangeMode: e => {
                                 if (e === `Ricochet`) {
                                     E({
@@ -17879,29 +17982,54 @@ function Xr() {
                             })
                         }), f <= modelFs && (0, P.jsx)(Ci, {
                             fsNumber: f,
-                            led: w.led,
+                            led: m === "Stomp" ? (w.stompSlots?.[activeStompSlotRef.current - 1]?.color ? { on: w.stompSlots[activeStompSlotRef.current - 1].color, off: w.stompLed?.off || "#000000" } : (w.stompLed || yr)) : w.led,
                             onChange: e => {
-                                E({
-                                    led: e
-                                });
-                                if (m === `Stomp`) {
-                                    let rgb = Nr(e.on);
-                                    l(usb => {
-                                        let fx = Array.from({
-                                            length: 12
-                                        }, (e, i) => normalizeCustomFx(usb?.customFx?.[i], i + 1));
-                                        let changed = !1;
-                                        fx = fx.map(item => Number(item.assignedFs) !== f ? item : (changed = !0, {
-                                            ...item,
-                                            colorR: rgb.r,
-                                            colorG: rgb.g,
-                                            colorB: rgb.b
-                                        }));
-                                        return changed ? {
-                                            ...usb || {},
-                                            customFx: fx
-                                        } : usb
-                                    })
+                                if (m === "Stomp") {
+                                    let slotIdx = activeStompSlotRef.current || 1;
+                                    let curFs = b[f] || kr(f);
+                                    let slots = Array.isArray(curFs.stompSlots) ? [...curFs.stompSlots] : Array.from({ length: 8 }, () => ({ icon: "", name: "", color: "#ff8800" }));
+                                    while (slots.length < 8) slots.push({ icon: "", name: "", color: "#ff8800" });
+                                    let newColor = e?.on || "#ff8800";
+                                    if (slotIdx >= 1 && slotIdx <= 8) {
+                                        slots[slotIdx - 1] = {
+                                            ...slots[slotIdx - 1],
+                                            color: newColor
+                                        };
+                                    }
+                                    let updatedFs = {
+                                        ...curFs,
+                                        stompSlots: slots,
+                                        ...(slotIdx === f ? { stompLed: e } : {})
+                                    };
+                                    E({
+                                        stompSlots: slots,
+                                        ...(slotIdx === f ? { stompLed: e } : {})
+                                    });
+                                    (async () => {
+                                        try {
+                                            let savePayload = compactFsForSave(Jr(updatedFs, c));
+                                            gboxSoftApQuiet(2e4);
+                                            await postMidiConfigRetry({
+                                                activePreset: T,
+                                                banks: { [n]: { [`fs${f}`]: savePayload } }
+                                            }, 4);
+                                            x(prev => ({
+                                                ...prev,
+                                                [f]: {
+                                                    ...prev[f] || kr(f),
+                                                    stompSlots: slots,
+                                                    ...(slotIdx === f ? { stompLed: e } : {})
+                                                }
+                                            }));
+                                            rt.success(`Cor Stomp salva: Preset FS${f} · Stomp FS${slotIdx}`);
+                                        } catch (err) {
+                                            rt.error(`Erro ao salvar cor Stomp: ${softApFetchErrorMessage(err)}`);
+                                        }
+                                    })();
+                                } else {
+                                    E({
+                                        led: e
+                                    });
                                 }
                             },
                             variant: m === `Stomp` ? `stomp` : w.mode === `Normal` ? `fourColor` : w.mode === `Momentâneo` ? `twoColor` : `oneColor`
@@ -17933,7 +18061,7 @@ function Xr() {
                                 title: `Ícones`,
                                 subtitle: m === `Stomp` ? `FS${f} · Modo Stomp` : `FS${f}`,
                                 children: (0, P.jsx)(FsScreenIconPicker, {
-                                    iconKey: m === `Stomp` ? (fxList.find(it => Number(it?.assignedFs) === f)?.icon || (Array.isArray(c?.fsIconKey) ? c.fsIconKey[f - 1] : ``) || w.stompIcon || ``) : w.iconKey,
+                                    iconKey: m === `Stomp` ? (activeStompSlotRef.current ? (w.stompSlots?.[activeStompSlotRef.current - 1]?.icon || ``) : (w.stompIcon || ``)) : w.iconKey,
                                     fsIndex: f,
                                     fsCount: gr[e]?.fs,
                                     embedded: !0,
@@ -17965,34 +18093,44 @@ function Xr() {
                                             setIconScreenOpen(!1);
                                             iconKeyPendingRef.current = null;
                                             if (m === `Stomp`) {
-                                                let finalKey = displayIconSanitizeKey(chosenKey ?? (fxList.find(it => Number(it?.assignedFs) === f)?.icon || (Array.isArray(c?.fsIconKey) ? c.fsIconKey[f - 1] : ``) || w.stompIcon || ``));
-                                                let nextFsIconKey = Array.isArray(c?.fsIconKey) ? [...c.fsIconKey] : [``,``,``,``,``,``,``,``];
-                                                while (nextFsIconKey.length < 8) nextFsIconKey.push(``);
-                                                nextFsIconKey[f - 1] = finalKey;
-
-                                                let nextFxList = Array.from({ length: 12 }, (_, t) => normalizeCustomFx(c?.customFx?.[t], t + 1));
-                                                let fxIdx = nextFxList.findIndex(item => Number(item?.assignedFs) === f);
-                                                if (fxIdx >= 0) {
-                                                    nextFxList[fxIdx] = { ...nextFxList[fxIdx], icon: finalKey };
+                                                let sIdx = activeStompSlotRef.current || 1;
+                                                let finalKey = displayIconSanitizeKey(chosenKey ?? ``);
+                                                let curFs = b[f] || kr(f);
+                                                let slots = Array.isArray(curFs.stompSlots) ? [...curFs.stompSlots] : Array.from({ length: 8 }, () => ({ icon: ``, name: ``, color: `#ff8800` }));
+                                                while (slots.length < 8) slots.push({ icon: ``, name: ``, color: `#ff8800` });
+                                                if (sIdx >= 1 && sIdx <= 8) {
+                                                    slots[sIdx - 1] = {
+                                                        ...slots[sIdx - 1],
+                                                        icon: finalKey
+                                                    };
                                                 }
-
-                                                l(prev => ({
-                                                    ...prev || {},
-                                                    fsIconKey: nextFsIconKey,
-                                                    customFx: nextFxList
-                                                }));
-
+                                                let updatedFs = {
+                                                    ...curFs,
+                                                    stompSlots: slots,
+                                                    ...(sIdx === f ? { stompIcon: finalKey } : {})
+                                                };
+                                                E({
+                                                    stompSlots: slots,
+                                                    ...(sIdx === f ? { stompIcon: finalKey } : {})
+                                                });
                                                 try {
-                                                    let usbPayload = { fsIconKey: nextFsIconKey };
-                                                    if (fxIdx >= 0) {
-                                                        usbPayload.customFx = nextFxList;
-                                                    }
-                                                    await Br(`/api/usb-config`, usbPayload, 2e4);
-                                                    rt.success(`Ícone Stomp salvo: FS${f}`);
+                                                    let savePayload = compactFsForSave(Jr(updatedFs, c));
+                                                    await postMidiConfigRetry({
+                                                        activePreset: T,
+                                                        banks: { [n]: { [`fs${f}`]: savePayload } }
+                                                    }, 4);
+                                                    x(prev => ({
+                                                        ...prev,
+                                                        [f]: {
+                                                            ...prev[f] || kr(f),
+                                                            stompSlots: slots,
+                                                            ...(sIdx === f ? { stompIcon: finalKey } : {})
+                                                        }
+                                                    }));
+                                                    rt.success(`Ícone Stomp salvo: Preset FS${f} · Stomp FS${sIdx}`);
                                                 } catch (err) {
                                                     rt.error(`Erro ao salvar ícone Stomp: ${String(err?.message || err)}`);
                                                 }
-                                                E({ stompIcon: finalKey, iconKey: finalKey });
                                             } else {
                                                 if (chosenKey === null) {
                                                     iconKeyPendingRef.current = displayIconSanitizeKey(w.iconKey || ``)
@@ -19902,6 +20040,7 @@ function TelaLayoutsVisualPanel({ usbConfig: e, onChange: t }) {
     let [bgModalSlot, setBgModalSlot] = (0, N.useState)(null);
     let [ampModalSlot, setAmpModalSlot] = (0, N.useState)(null);
     let bgThumb = useDisplayIconThumb(typeof DISPLAY_BG_KEY !== 'undefined' ? DISPLAY_BG_KEY : 'bg');
+    let lastDragTimeRef = (0, N.useRef)(0);
 
     let defaultPresetPos = [
         { x: 3, y: 15, size: 20, enabled: true },
@@ -19996,6 +20135,8 @@ function TelaLayoutsVisualPanel({ usbConfig: e, onChange: t }) {
                         userSelect: 'none'
                     },
                     onClick: ev => {
+                        if (ev.target !== ev.currentTarget) return;
+                        if (Date.now() - lastDragTimeRef.current < 400) return;
                         let rect = ev.currentTarget.getBoundingClientRect();
                         let clickPxX = ev.clientX - rect.left;
                         let clickPxY = ev.clientY - rect.top;
@@ -20120,6 +20261,10 @@ function TelaLayoutsVisualPanel({ usbConfig: e, onChange: t }) {
                                     transition: 'box-shadow .15s, border-color .15s',
                                     boxSizing: 'border-box'
                                 },
+                                onClick: ev => {
+                                    ev.stopPropagation();
+                                    ev.preventDefault();
+                                },
                                 onPointerDown: ev => {
                                     ev.stopPropagation();
                                     ev.preventDefault();
@@ -20132,11 +20277,16 @@ function TelaLayoutsVisualPanel({ usbConfig: e, onChange: t }) {
                                     let origY = sw?.y || 0;
                                     let parent = target.parentElement;
                                     let rect = parent ? parent.getBoundingClientRect() : null;
+                                    let hasMoved = false;
 
                                     let onPointerMove = moveEv => {
                                         if (!rect) return;
                                         let deltaPxX = moveEv.clientX - startClientX;
                                         let deltaPxY = moveEv.clientY - startClientY;
+                                        if (Math.hypot(deltaPxX, deltaPxY) > 2) {
+                                            hasMoved = true;
+                                            lastDragTimeRef.current = Date.now();
+                                        }
                                         let travelPxX = (maxTravelX / 100) * rect.width;
                                         let travelPxY = (maxTravelY / 100) * rect.height;
                                         let deltaPctX = travelPxX > 0 ? (deltaPxX / travelPxX) * 100 : 0;
@@ -20152,6 +20302,9 @@ function TelaLayoutsVisualPanel({ usbConfig: e, onChange: t }) {
                                         target.removeEventListener('pointermove', onPointerMove);
                                         target.removeEventListener('pointerup', onPointerUp);
                                         target.removeEventListener('pointercancel', onPointerUp);
+                                        if (hasMoved) {
+                                            lastDragTimeRef.current = Date.now();
+                                        }
                                     };
 
                                     target.addEventListener('pointermove', onPointerMove);
@@ -21260,7 +21413,7 @@ function TelaLayoutsVisualPanel({ usbConfig: e, onChange: t }) {
 }
 
 
-var si = [`TONEX / MODELLER`, `MIDI USB HOST`, `MIDI USB PC`, `HUB MIDI`, `MIDI SERIAL (DIN/UART)`],
+var si = [`TONEX / MODELLER`, `MIDI USB HOST`, `MIDI USB PC`, `HUB MIDI`, `MIDI SERIAL (DIN/UART)`, `HUB + TONEX`],
     ci = {
         0: [
         /* { value: 18, label: `TONEX CUSTOM` }, — usar controllerPath=Custom */
@@ -21349,6 +21502,9 @@ var si = [`TONEX / MODELLER`, `MIDI USB HOST`, `MIDI USB PC`, `HUB MIDI`, `MIDI 
             label: `MIDI SERIAL`
         }
         /* , { value: 27, label: `MIDI SERIAL CUSTOM` } */
+        ],
+        5: [
+        /* HUB + TONEX: sem sub-presets (rotação MIDI + ToneX lite) */
         ]
     },
     liBtModes = [`Desabilitado`, `Central`, `Peripheral`],
@@ -21482,6 +21638,8 @@ function compactFsForSave(e) {
     t.stgAutoEnabled = e?.stgAutoEnabled ? 1 : 0;
     t.iconKey = displayIconSanitizeKey(e?.iconKey || ``);
     t.gridFill = Number(e?.gridFill) ? 1 : 0;
+    t.stompIcon = displayIconSanitizeKey(e?.stompIcon || "");
+    t.stompSlots = Array.isArray(e?.stompSlots) ? e.stompSlots : [];
     t.stompName = typeof e?.stompName == `string` ? e.stompName : ``;
     if (Array.isArray(e?.stompLed) && e.stompLed.length >= 6) t.stompLed = e.stompLed;
     else if (e?.stompLed && typeof e.stompLed == `object`) t.stompLed = e.stompLed;
@@ -23945,6 +24103,7 @@ function StompPedalThumb({ iconKey, alt }) {
 
 function StompFootswitchTile({
     fsIndex,
+    slot,
     cfg,
     isActive,
     linkedFx,
@@ -23953,9 +24112,10 @@ function StompFootswitchTile({
     onOpenIcon,
     onRename
 }) {
-    let stompName = (linkedFx?.name || cfg?.stompName || (cfg?.label && cfg?.label !== `FS${fsIndex}` ? cfg?.label : `STOMP ${fsIndex}`)).trim(),
-        iconKey = linkedFx?.icon || globalFsIcon || cfg?.stompIcon || ``,
-        stompColor = linkedFx ? customFxHex(linkedFx) : (cfg?.stompLed?.on || `#ff8800`),
+    let sName = typeof slot?.name === `string` ? slot.name : (cfg?.stompName || ``),
+        stompName = (sName || (linkedFx?.name || `STOMP ${fsIndex}`)).trim(),
+        iconKey = typeof slot?.icon === `string` ? slot.icon : (cfg?.stompIcon || ``),
+        stompColor = (slot?.color && slot.color !== `#000000`) ? slot.color : (linkedFx ? customFxHex(linkedFx) : (cfg?.stompLed?.on || `#ff8800`)),
         stompLedColors = {
             on: stompColor,
             off: cfg?.stompLed?.off || `#000000`
@@ -24157,7 +24317,11 @@ function Ei({
     globalConfig: globalConfig,
     onSelectFs: onSelectFs,
     onOpenIconModal: onOpenIconModal,
-    onRenameFsIndex: onRenameFsIndex
+    onRenameFsIndex: onRenameFsIndex,
+    activeStompSlot: activeStompSlot,
+    onSelectStompSlot: onSelectStompSlot,
+    onOpenStompIcon: onOpenStompIcon,
+    onRenameStompSlot: onRenameStompSlot
 }) {
     let {
             fxList: ctxFxList,
@@ -24194,21 +24358,20 @@ function Ei({
                     children: Array.from({
                         length: Number(effectiveFs || 8)
                     }, (_, i) => i + 1).map(fsIdx => {
-                        let fsCfg = allFsConfigs?.[fsIdx] || (fsIdx === r ? o : kr(fsIdx)),
+                        let slotData = (Array.isArray(o?.stompSlots) && o.stompSlots[fsIdx - 1]) ? o.stompSlots[fsIdx - 1] : { icon: ``, name: ``, color: `#ff8800` },
+                            fsCfg = allFsConfigs?.[fsIdx] || (fsIdx === r ? o : kr(fsIdx)),
                             fxItem = allAssignedFx.find(item => Number(item?.assignedFs) === fsIdx),
                             gIcon = Array.isArray(globalConfig?.fsIconKey) ? globalConfig.fsIconKey[fsIdx - 1] : ``;
                         return (0, P.jsx)(StompFootswitchTile, {
                             fsIndex: fsIdx,
+                            slot: slotData,
                             cfg: fsCfg,
-                            isActive: fsIdx === r,
+                            isActive: fsIdx === (activeStompSlot || 1),
                             linkedFx: fxItem,
                             globalFsIcon: gIcon,
-                            onSelect: () => onSelectFs?.(fsIdx),
-                            onOpenIcon: () => {
-                                if (fsIdx !== r) onSelectFs?.(fsIdx);
-                                onOpenIconModal?.();
-                            },
-                            onRename: () => onRenameFsIndex?.(fsIdx)
+                            onSelect: () => onSelectStompSlot ? onSelectStompSlot(fsIdx) : onSelectFs?.(fsIdx),
+                            onOpenIcon: () => onOpenStompIcon ? onOpenStompIcon(fsIdx) : onOpenIconModal?.(fsIdx),
+                            onRename: () => onRenameStompSlot ? onRenameStompSlot(fsIdx) : onRenameFsIndex?.(fsIdx)
                         }, `stomp-fs-${fsIdx}`);
                     })
                 }),
