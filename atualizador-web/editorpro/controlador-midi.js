@@ -14278,12 +14278,15 @@ function qr(e, t, n) {
         targetStateFlag = Number(raw?.state);
         if (!Number.isFinite(targetStateFlag) || targetStateFlag > 1) targetStateFlag = 0;
         targetStateFlag = targetStateFlag ? 1 : 0;
+    } else {
+        /* CC/PC/SysEx: 0=On, 1=Off (vale para Click e Hold). */
+        phaseFlag = Number(raw?.onOff) === 1 ? 1 : 0;
     }
     let c = n === `Momentâneo`
         ? phaseFlag === 1 ? `Solta` : `Aperta`
         : r === `FS Sync`
             ? phaseFlag === 2 ? `On/Off` : phaseFlag === 1 ? `Off` : `On`
-            : t === `Hold` ? `On` : phaseFlag === 1 ? `Off` : `On`;
+            : phaseFlag === 1 ? `Off` : `On`;
     let out = {
         id: mr(),
         type: r,
