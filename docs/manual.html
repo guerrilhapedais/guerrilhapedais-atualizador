@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Manual Interativo Oficial — Guerrilha MX & PRO Series</title>
+  <title>Manual Interativo Oficial — Guerrilha MX Series</title>
   <style>
     :root {
       --bg-main: #0a0c10;
@@ -1232,7 +1232,7 @@
   <aside class="sidebar" id="sidebar">
     <div class="sidebar-header">
       <div class="brand-title">
-        GUERRILHA <span class="brand-badge">PRO</span>
+        GUERRILHA <span class="brand-badge">MX</span>
       </div>
       <div class="brand-subtitle">Manual Interativo do Usuário</div>
     </div>
@@ -1278,7 +1278,7 @@
 
     <div class="sidebar-footer">
       Guerrilha Controllers © 2026<br>
-      Linha MX & PRO Series
+      Linha MX Series
     </div>
   </aside>
 
@@ -1302,7 +1302,7 @@
       <!-- Hero Banner -->
       <section class="hero-banner" id="inicio">
         <div class="hero-tag">Manual Oficial do Usuário</div>
-        <h1 class="hero-title">Guerrilha MX & PRO Series</h1>
+        <h1 class="hero-title">Guerrilha MX Series</h1>
         <p class="hero-desc">
           O controlador MIDI definitivo para guitarristas, baixistas e produtores. Desenvolvido para oferecer máxima velocidade no palco e total facilidade de programação através de qualquer celular, tablet ou computador.
         </p>
@@ -1386,7 +1386,7 @@
           <div class="hw-picker-buttons">
             <button type="button" class="hw-picker-btn active" data-hw="mx8">
               <span class="hw-p-badge">TOP DE LINHA</span>
-              <strong>GUERRILHA MX-8 / PRO</strong>
+              <strong>GUERRILHA MX-8</strong>
               <small>8 FS · ST7796 480×320</small>
             </button>
             <button type="button" class="hw-picker-btn" data-hw="mx6">
@@ -1406,7 +1406,7 @@
         <div class="hw-diagram-container">
           <div class="hw-diagram-header">
             <div class="hw-dh-left">
-              <span class="hw-dh-title" id="hwDiagramTitle">GUERRILHA MX-8 / PRO — DIAGRAMA TÉCNICO</span>
+              <span class="hw-dh-title" id="hwDiagramTitle">GUERRILHA MX-8 — DIAGRAMA TÉCNICO</span>
               <span class="hw-dh-status"><span class="hw-dot"></span>ESCALA VETORIAL DE ALTA PRECISÃO</span>
             </div>
             <div class="hw-view-switch">
@@ -1427,32 +1427,34 @@
 
         <!-- Cards Técnicos O Que Liga Onde -->
         <div class="hw-cards-grid">
+          <!-- 1. DC -->
           <div class="hw-port-card" id="card-port-power">
             <div class="hw-pc-head">
               <span class="hw-pc-badge">1</span>
               <div class="hw-pc-title-wrap">
                 <h4>9V DC — Alimentação Principal</h4>
-                <span class="hw-pc-type">P4 2.1mm · Centro Negativo (-)</span>
+                <span class="hw-pc-type">Plugue P4 2.1mm · Centro Negativo (-)</span>
               </div>
             </div>
-            <p>Alimentação padrão de pedalboard 9V DC (admite 9V a 12V regulados). Consumo típico de <strong>350mA a 450mA</strong>. Possui filtro interno de choque LC contra ruído de fontes digitais chaveadas e proteção ativa contra inversão acidental de polaridade.</p>
+            <p>Alimentação padrão de pedalboard 9V DC (admite 9V a 12V regulados). Consumo típico de <strong>350mA a 450mA</strong>. Possui filtro interno de choque LC contra ruídos de fontes chaveadas e proteção ativa contra inversão acidental de polaridade.</p>
             <div class="hw-pc-meta">
               <span><strong>Consumo:</strong> 9V DC / ~400mA</span>
               <span><strong>Compatibilidade:</strong> Fontes isoladas padrão Boss</span>
             </div>
           </div>
 
+          <!-- 2. EXP / Foot -->
           <div class="hw-port-card" id="card-port-exp">
             <div class="hw-pc-head">
               <span class="hw-pc-badge">2</span>
               <div class="hw-pc-title-wrap">
-                <h4>EXP / DUAL SWITCH — Expansão Física</h4>
+                <h4>EXP / FOOT — Expressão & Footswitch</h4>
                 <span class="hw-pc-type">Jack 1/4" P10 Estéreo (TRS)</span>
               </div>
             </div>
             <p>Porta multifunção inteligente configurável em <strong>Sistema › Conexões › Modo EXP</strong>:
               <br>• <strong>Modo Expressão:</strong> Conecta pedal de expressão passivo (potenciômetro linear de 10kΩ a 50kΩ) para Wah, Volume, Whammy ou Pitch.
-              <br>• <strong>Modo Dual Footswitch:</strong> Conecta um pedal duplo externo (TRS) adicionando FS externas para troca de bancos ou disparos extras.
+              <br>• <strong>Modo Dual Footswitch:</strong> Conecta pedal duplo externo (TRS) adicionando FS extras para bancos ou disparos.
               <br>• <strong>Modo One Footswitch:</strong> Chave simples mono (TS) de acionamento único.</p>
             <div class="hw-pc-meta">
               <span><strong>Impedância:</strong> 10kΩ ~ 50kΩ Linear</span>
@@ -1460,65 +1462,116 @@
             </div>
           </div>
 
-          <div class="hw-port-card" id="card-port-midiout">
+          <!-- 3. Botão BOOT -->
+          <div class="hw-port-card" id="card-port-reset">
             <div class="hw-pc-head">
               <span class="hw-pc-badge">3</span>
               <div class="hw-pc-title-wrap">
-                <h4>MIDI OUT — Saída MIDI Tradicional</h4>
-                <span class="hw-pc-type">Conector DIN 5 Pinos Padrão</span>
+                <h4>BOTÃO BOOT — Modo Carregamento de Firmware</h4>
+                <span class="hw-pc-type">Micro-Botão Traseiro de Atualização & Recuperação</span>
               </div>
             </div>
-            <p>Saída física MIDI tradicional com optoacoplador e isolamento galvânico. Conecta diretamente a pedaleiras de ponta (<strong>Line 6 Helix, Quad Cortex, Fractal FM3/FM9, Kemper Profiler, Boss GT-1000</strong>) e amplificadores valvulados com chaveamento MIDI de canal.</p>
+            <p>Este botão serve exclusivamente para colocar o controlador em <strong>modo de carregamento de firmware</strong>, permitindo instalar novas versões do sistema ou realizar uma recuperação completa caso necessário.</p>
+            <div style="background: rgba(220, 38, 38, 0.08); border-left: 3px solid #dc2626; padding: 10px 14px; border-radius: 6px; margin: 10px 0; font-size: 0.88rem; line-height: 1.5;">
+              <strong style="color: #f87171; display: block; margin-bottom: 4px;">Como colocar em Modo de Carregamento:</strong>
+              <ol style="margin: 0 0 0 18px; padding: 0;">
+                <li>Desligue o controlador (desconecte a fonte 9V e o cabo USB);</li>
+                <li>Pressione e mantenha apertado o botão <strong>BOOT</strong> traseiro (com o auxílio da ponta de um palito ou clipe de papel);</li>
+                <li>Ligue a alimentação (conecte a fonte 9V ou o cabo USB no computador);</li>
+                <li><strong>Mantenha o botão pressionado por 5 segundos</strong> após ligar e então solte.</li>
+              </ol>
+              <div style="margin-top: 6px; color: var(--text-muted, #94a3b8); font-size: 0.82rem;">
+                O controlador estará em modo de carregamento, pronto para ser atualizado diretamente pelo Atualizador Web no navegador.
+              </div>
+            </div>
             <div class="hw-pc-meta">
-              <span><strong>Baud Rate:</strong> 31.250 bps</span>
-              <span><strong>Transmissão:</strong> PC, CC, SysEx, Clock, Tap</span>
+              <span><strong>Função:</strong> Atualização e Recuperação do Sistema</span>
+              <span><strong>Procedimento:</strong> Segurar 5s ao ligar a energia</span>
             </div>
           </div>
 
-          <div class="hw-port-card" id="card-port-midiin">
-            <div class="hw-pc-head">
-              <span class="hw-pc-badge">4</span>
-              <div class="hw-pc-title-wrap">
-                <h4>MIDI IN / TRS — Entrada MIDI Auxiliar</h4>
-                <span class="hw-pc-type">Mini-jack 3.5mm P2 TRS (Tipo A)</span>
-              </div>
-            </div>
-            <p>Entrada MIDI minijack compacta no padrão industrial <strong>MIDI TRS Tipo A</strong>. Permite receber sincronização de MIDI Clock, comandos de pedais mestre externos ou encadear dois controladores Guerrilha no mesmo pedalboard.</p>
-            <div class="hw-pc-meta">
-              <span><strong>Padrão:</strong> MIDI Spec TRS Tipo A</span>
-              <span><strong>Cabo:</strong> P2 TRS para P2 ou adaptador DIN</span>
-            </div>
-          </div>
-
+          <!-- 4. USB Host -->
           <div class="hw-port-card" id="card-port-usbhost">
             <div class="hw-pc-head">
-              <span class="hw-pc-badge">5</span>
+              <span class="hw-pc-badge">4</span>
               <div class="hw-pc-title-wrap">
                 <h4>USB HOST — Porta USB Host Plus</h4>
                 <span class="hw-pc-type">USB Type-C (Modo Master / OTG)</span>
               </div>
             </div>
-            <p>Porta mestre capaz de <strong>alimentar e controlar periféricos USB diretamente</strong>, sem necessidade de computador. Sincroniza bidirecionalmente a <strong>IK Multimedia ToneX One</strong> (carregando nomes, cores e parâmetros), teclados controladores MIDI USB ou interfaces de áudio compatíveis com USB Class Compliant.</p>
+            <p>Porta mestre inteligente capaz de <strong>alimentar e controlar periféricos USB diretamente</strong>, sem necessidade de computador:
+              <br>• <strong>Linha IK Multimedia ToneX (ToneX One & ToneX Pedal):</strong> Sincronização bidirecional completa — lê e exibe na tela do Guerrilha os nomes reais dos presets, sincroniza cores dos LEDs, estados e parâmetros em tempo real sem atraso.
+              <br>• <strong>Controladores & Periféricos MIDI:</strong> Conecta teclados controladores, baterias eletrônicas, interfaces de áudio USB Class Compliant ou USB Hub para expansão.</p>
             <div class="hw-pc-meta">
-              <span><strong>Fornecimento:</strong> 5V DC / até 500mA</span>
-              <span><strong>Protocolo:</strong> USB Host CDC / MIDI Host</span>
+              <span><strong>Sincronização:</strong> ToneX One & ToneX Pedal (Bidirecional)</span>
+              <span><strong>Alimentação:</strong> 5V DC / até 500mA</span>
             </div>
           </div>
 
+          <!-- 5. USB DVC -->
           <div class="hw-port-card" id="card-port-usbdvc">
             <div class="hw-pc-head">
-              <span class="hw-pc-badge">6</span>
+              <span class="hw-pc-badge">5</span>
               <div class="hw-pc-title-wrap">
-                <h4>USB DVC — USB Device & Editor</h4>
+                <h4>USB DVC — USB Device, Kemper Player & Editor</h4>
                 <span class="hw-pc-type">USB Type-C (Modo Periférico / Slave)</span>
               </div>
             </div>
-            <p>Conexão ao Computador (Windows / macOS / Linux), tablet ou iPad. O Guerrilha é reconhecido nativamente pelo sistema sem necessidade de instalar drivers:
-              <br>• <strong>Interface MIDI USB:</strong> Dispara plugins como Neural DSP Archetype, Helix Native, Amplitube e DAWs (Reaper, Ableton, Logic).
-              <br>• <strong>USB Serial CDC:</strong> Comunicação de altíssima velocidade com o <strong>Editor Desktop</strong> e atualização de firmware via navegador.</p>
+            <p>Porta periférica de alta velocidade com suporte a múltiplos modos:
+              <br>• <strong>Kemper Profiler Player (Sincronização Bidirecional):</strong> Conectado diretamente à porta USB do Kemper Player, o Guerrilha sincroniza bidirecionalmente em tempo real — lê os nomes dos Rigs, o estado dos blocos de efeito (FX A–D, Mod, Delay, Reverb) e integra o <strong>Afinador (Tuner)</strong> com display em tempo real na tela do Guerrilha.
+              <br>• <strong>Computadores & Tablets (PC / Mac / iPad / Android):</strong> Interface MIDI USB nativa sem drivers para DAWs e plugins (Neural DSP, Helix Native, Amplitube).
+              <br>• <strong>Editor Desktop:</strong> Comunicação ultraveloz para edição e atualização de firmware no navegador.</p>
             <div class="hw-pc-meta">
-              <span><strong>Driver:</strong> USB Class Compliant nativo</span>
-              <span><strong>Compatibilidade:</strong> PC, Mac, iPad, iPhone, Linux</span>
+              <span><strong>Sincronização:</strong> Kemper Profiler Player (Bidirecional + Afinador)</span>
+              <span><strong>Driver:</strong> USB Class Compliant Nativo (Plug & Play)</span>
+            </div>
+          </div>
+
+          <!-- 6. MIDI In P2 -->
+          <div class="hw-port-card" id="card-port-midiin">
+            <div class="hw-pc-head">
+              <span class="hw-pc-badge">6</span>
+              <div class="hw-pc-title-wrap">
+                <h4>MIDI IN P2 — Entrada MIDI Auxiliar</h4>
+                <span class="hw-pc-type">Mini-jack 3.5mm P2 TRS (Tipo A) · Único P2</span>
+              </div>
+            </div>
+            <p>Entrada MIDI minijack compacta no padrão industrial <strong>MIDI TRS Tipo A</strong> (o único conector P2 do controlador). Permite receber sincronização de MIDI Clock, comandos de pedais mestre externos ou encadear dois controladores Guerrilha no mesmo pedalboard.</p>
+            <div class="hw-pc-meta">
+              <span><strong>Padrão:</strong> MIDI Spec TRS Tipo A (P2 3.5mm)</span>
+              <span><strong>Conector:</strong> Mini-jack 3.5mm Estéreo</span>
+            </div>
+          </div>
+
+          <!-- 7. MIDI TRS P10 -->
+          <div class="hw-port-card" id="card-port-miditrsp10">
+            <div class="hw-pc-head">
+              <span class="hw-pc-badge">7</span>
+              <div class="hw-pc-title-wrap">
+                <h4>MIDI TRS P10 — Saída MIDI Jack 1/4"</h4>
+                <span class="hw-pc-type">Jack 1/4" P10 Estéreo (TRS Tipo A)</span>
+              </div>
+            </div>
+            <p>Saída MIDI moderna balanceada/isolada em conector Jack 1/4" P10 no padrão mundial <strong>MIDI TRS Tipo A</strong>. Conecta diretamente via cabo P10 estéreo comum a pedais de última geração como <strong>Boss (série 200/500), Strymon, Chase Bliss, Meris, Eventide, Neural DSP Quad Cortex e Morningstar</strong>, sem a necessidade de adaptadores DIN no pedalboard.</p>
+            <div class="hw-pc-meta">
+              <span><strong>Padrão:</strong> MIDI Spec TRS Tipo A</span>
+              <span><strong>Cabo:</strong> Jack 1/4" P10 TRS Estéreo</span>
+            </div>
+          </div>
+
+          <!-- 8. MIDI DIN 5 PINOS FEMEA -->
+          <div class="hw-port-card" id="card-port-midiout">
+            <div class="hw-pc-head">
+              <span class="hw-pc-badge">8</span>
+              <div class="hw-pc-title-wrap">
+                <h4>MIDI DIN 5 PINOS FÊMEA — Saída Tradicional</h4>
+                <span class="hw-pc-type">Conector DIN 5 Pinos Circular Fêmea</span>
+              </div>
+            </div>
+            <p>Saída física MIDI tradicional com optoacoplador e isolamento galvânico completo. Conecta diretamente a pedaleiras de ponta (<strong>Line 6 Helix, Fractal FM3/FM9, Kemper Profiler, Boss GT-1000</strong>) e amplificadores valvulados com chaveamento MIDI de canal.</p>
+            <div class="hw-pc-meta">
+              <span><strong>Baud Rate:</strong> 31.250 bps</span>
+              <span><strong>Transmissão:</strong> PC, CC, SysEx, Clock, Tap</span>
             </div>
           </div>
         </div>
@@ -1620,7 +1673,7 @@
                   <strong>2. Clique no Modelo do Seu Controlador:</strong>
                   <br>• Se você possui o <strong>Guerrilha MX-4</strong>: Clique em <strong style="color:#f87171;">MX-4</strong> (4 Footswitches).
                   <br>• Se você possui o <strong>Guerrilha MX-6</strong>: Clique em <strong style="color:#f87171;">MX-6</strong> (6 Footswitches).
-                  <br>• Se você possui o <strong>Guerrilha MX-8 / PRO</strong>: Clique em <strong style="color:#f87171;">MX-8</strong> (8 Footswitches).
+                  <br>• Se você possui o <strong>Guerrilha MX-8</strong>: Clique em <strong style="color:#f87171;">MX-8</strong> (8 Footswitches).
                 </div>
                 <div class="step-subitem">
                   <strong>3. Adaptação Instantânea:</strong> Ao clicar, o botão selecionado acende em vermelho e tanto a interface do aplicativo quanto o display TFT do pedal se reorganizam no mesmo instante para a quantidade de footswitches físicos da sua placa!
@@ -2456,8 +2509,12 @@
             <div class="ui-card-title">Gerenciador Central de Conexões</div>
             <div class="feature-grid">
               <div class="feature-item">
-                <h4>🔌 USB: Modo ToneX / Modeller</h4>
-                <p>Comunica e sincroniza diretamente com pedais como o ToneX One, lendo e trocando presets automaticamente.</p>
+                <h4>🔌 USB Host: ToneX One & ToneX Pedal</h4>
+                <p>Sincronização bidirecional completa com a linha IK Multimedia (ToneX One e ToneX Pedal). O Guerrilha lê os nomes reais dos presets e espelha cores e parâmetros instantaneamente.</p>
+              </div>
+              <div class="feature-item">
+                <h4>⚡ USB DVC: Kemper Profiler Player</h4>
+                <p>Sincronização bidirecional nativa com o Kemper Player: lê nomes de Rigs em tempo real, reflete o estado ligado/desligado de efeitos e ativa o Afinador (Tuner) na tela do pedal.</p>
               </div>
               <div class="feature-item">
                 <h4>📡 Bluetooth Sem Fio (BLE)</h4>
@@ -2621,6 +2678,29 @@
             </tr>
           </tbody>
         </table>
+
+        <!-- Destaque: Modo de Carregamento de Firmware (Botão BOOT) -->
+        <div style="margin-top: 24px; background: rgba(220, 38, 38, 0.08); border: 1px solid rgba(220, 38, 38, 0.3); border-left: 4px solid #dc2626; border-radius: 8px; padding: 18px 20px;">
+          <h4 style="margin: 0 0 8px 0; color: #f87171; display: flex; align-items: center; gap: 8px; font-size: 1.05rem;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+            Modo de Carregamento de Firmware (Botão BOOT Traseiro)
+          </h4>
+          <p style="margin: 0 0 10px 0; font-size: 0.92rem; line-height: 1.5; color: var(--text, #e2e8f0);">
+            Se você precisar regravar o sistema, instalar uma atualização de fábrica ou recuperar o pedal caso haja interrupção no processo de gravação, utilize o micro-botão <strong>BOOT</strong> no painel traseiro:
+          </p>
+          <div style="background: rgba(0,0,0,0.25); border-radius: 6px; padding: 12px 16px; font-size: 0.88rem; line-height: 1.6;">
+            <strong>Procedimento Passo a Passo:</strong>
+            <ol style="margin: 4px 0 0 20px; padding: 0;">
+              <li>Desligue a alimentação do controlador (fonte 9V e cabo USB).</li>
+              <li>Pressione e mantenha apertado o botão <strong>BOOT</strong> no painel traseiro (com o auxílio de um palito ou clipe de papel).</li>
+              <li>Ligue o controlador à energia (conecte a fonte 9V ou o cabo USB no computador).</li>
+              <li><strong>Mantenha segurado por 5 segundos</strong> e solte.</li>
+            </ol>
+            <p style="margin: 8px 0 0 0; color: #38bdf8; font-size: 0.84rem;">
+              ➔ O controlador entra imediatamente em modo de carregamento, pronto para receber a gravação pelo Atualizador Web.
+            </p>
+          </div>
+        </div>
       </section>
 
       <!-- 23. FAQ -->
@@ -2640,8 +2720,12 @@
             <p>Você pode atribuir uma footswitch (ou toque Hold) para alternar entre a camada de Presets e a camada Stomp com um único pisão.</p>
           </div>
           <div class="feature-item">
-            <h4>❓ Posso conectar o pedal direto na ToneX One?</h4>
-            <p>Sim! Conecte o cabo USB Type-C na porta USB Host do Guerrilha e na ToneX One. Em Sistema, coloque o Modo USB em "ToneX / Modeller" e ele sincronizará na hora.</p>
+            <h4>❓ Posso conectar o pedal direto na ToneX One ou ToneX Pedal?</h4>
+            <p>Sim! Ligue um cabo USB Type-C na porta <strong>USB HOST</strong> do Guerrilha e na sua <strong>ToneX One</strong> ou <strong>ToneX Pedal</strong>. Na aba Sistema, selecione o Modo USB correspondente e a sincronização bidirecional começará automaticamente, carregando os nomes dos presets e cores na tela do Guerrilha.</p>
+          </div>
+          <div class="feature-item">
+            <h4>❓ Como funciona a sincronização com o Kemper Profiler Player?</h4>
+            <p>Basta conectar um cabo USB da porta <strong>USB DVC</strong> do Guerrilha diretamente na entrada USB do <strong>Kemper Player</strong>. Eles se comunicam bidirecionalmente: o Guerrilha exibe o nome do Rig ativo, mostra os efeitos ativos/desativados nas chaves e exibe o Afinador em tempo real na tela.</p>
           </div>
         </div>
       </section>
@@ -2709,125 +2793,146 @@
     });
 
     /* =========================================================================
-     * Módulo de Hardware SVG Interativo — Guerrilha MX & PRO
+     * Módulo de Hardware SVG Interativo — Guerrilha MX Series
      * ========================================================================= */
     const HW_DATA = {
       mx8: {
-        title: "GUERRILHA MX-8 / PRO — DIAGRAMA TÉCNICO",
-        specs: "8 Footswitches · Display ST7796 480×320 · USB Host Plus",
+        title: "GUERRILHA MX-8 — DIAGRAMA TÉCNICO",
+        specs: "8 Footswitches em 2 Andares · Display Central ST7796 480×320 · USB Host Plus",
         renderTop: function() {
-          return '<svg viewBox="0 0 820 440" width="820" height="440" xmlns="http://www.w3.org/2000/svg">' +
-            '<rect x="15" y="15" width="790" height="410" rx="18" fill="#12151f" stroke="#2a3246" stroke-width="2.5"/>' +
-            '<rect x="25" y="25" width="770" height="390" rx="14" fill="#0d1017" stroke="#1c2230" stroke-width="1.5"/>' +
-            '<circle cx="34" cy="34" r="5" fill="#1f2637" stroke="#333f5a" stroke-width="1.2"/>' +
-            '<circle cx="786" cy="34" r="5" fill="#1f2637" stroke="#333f5a" stroke-width="1.2"/>' +
-            '<circle cx="34" cy="406" r="5" fill="#1f2637" stroke="#333f5a" stroke-width="1.2"/>' +
-            '<circle cx="786" cy="406" r="5" fill="#1f2637" stroke="#333f5a" stroke-width="1.2"/>' +
-            '<rect x="280" y="45" width="260" height="150" rx="10" fill="#040508" stroke="#374158" stroke-width="2"/>' +
-            '<rect x="290" y="55" width="240" height="130" rx="6" fill="#0b0e14" stroke="#1f2638" stroke-width="1"/>' +
-            '<rect x="290" y="55" width="240" height="24" fill="#161c28"/>' +
-            '<text x="300" y="71" font-family="monospace" font-size="11" font-weight="700" fill="#ef4444">BANCO A · PRESET 1</text>' +
-            '<text x="515" y="71" font-family="monospace" font-size="10" font-weight="700" fill="#10b981" text-anchor="end">120 BPM</text>' +
-            '<text x="410" y="125" font-family="sans-serif" font-size="20" font-weight="800" fill="#f8fafc" text-anchor="middle">LEAD PLEXI</text>' +
-            '<text x="410" y="152" font-family="monospace" font-size="11" fill="#94a3b8" text-anchor="middle">SCENE A · EXP: WAH</text>' +
-            '<text x="75" y="62" font-family="sans-serif" font-size="18" font-weight="900" letter-spacing="2" fill="#ef4444">GUERRILHA</text>' +
-            '<text x="75" y="80" font-family="monospace" font-size="10" font-weight="700" letter-spacing="3" fill="#64748b">PRO SERIES · MX-8</text>' +
-            '<text x="745" y="65" font-family="monospace" font-size="10" font-weight="700" fill="#64748b" text-anchor="end">16MB FLASH · 8MB PSRAM</text>' +
-            '<text x="745" y="82" font-family="monospace" font-size="10" font-weight="700" fill="#10b981" text-anchor="end">BT + SOFTAP + USB HOST</text>' +
-            renderFoot(85, 140, "FS 5", "CH 5", "#3b82f6") +
-            renderFoot(195, 140, "FS 6", "CH 6", "#10b981") +
-            renderFoot(625, 140, "FS 7", "CH 7", "#f59e0b") +
-            renderFoot(735, 140, "FS 8", "CH 8", "#a855f7") +
-            renderFoot(85, 305, "FS 1", "PRESET 1", "#ef4444") +
-            renderFoot(225, 305, "FS 2", "PRESET 2", "#3b82f6") +
-            renderFoot(365, 305, "FS 3", "PRESET 3", "#10b981") +
-            renderFoot(505, 305, "FS 4", "PRESET 4", "#eab308") +
-            renderFoot(645, 305, "FS 5*", "SOLO BOOST", "#f97316") +
-            renderFoot(735, 305, "TAP", "HOLD: TUNER", "#06b6d4") +
+          return '<svg viewBox="0 0 860 460" width="860" height="460" xmlns="http://www.w3.org/2000/svg">' +
+            '<rect x="15" y="15" width="830" height="430" rx="18" fill="#12151f" stroke="#2a3246" stroke-width="2.5"/>' +
+            '<rect x="25" y="25" width="810" height="410" rx="14" fill="#0d1017" stroke="#1c2230" stroke-width="1.5"/>' +
+            '<circle cx="36" cy="36" r="5" fill="#1f2637" stroke="#333f5a" stroke-width="1.2"/>' +
+            '<circle cx="824" cy="36" r="5" fill="#1f2637" stroke="#333f5a" stroke-width="1.2"/>' +
+            '<circle cx="36" cy="424" r="5" fill="#1f2637" stroke="#333f5a" stroke-width="1.2"/>' +
+            '<circle cx="824" cy="424" r="5" fill="#1f2637" stroke="#333f5a" stroke-width="1.2"/>' +
+            // 4 Chaves em Cima (Y = 85)
+            renderFoot(115, 85, "FS 5", "CH 5", "#3b82f6") +
+            renderFoot(315, 85, "FS 6", "CH 6", "#10b981") +
+            renderFoot(545, 85, "FS 7", "CH 7", "#f59e0b") +
+            renderFoot(745, 85, "FS 8", "CH 8", "#a855f7") +
+            // Área Central: Tela no meio entre as chaves
+            '<rect x="260" y="170" width="340" height="120" rx="10" fill="#040508" stroke="#374158" stroke-width="2"/>' +
+            '<rect x="270" y="180" width="320" height="100" rx="6" fill="#0b0e14" stroke="#1f2638" stroke-width="1"/>' +
+            '<rect x="270" y="180" width="320" height="22" fill="#161c28"/>' +
+            '<text x="280" y="195" font-family="monospace" font-size="11" font-weight="700" fill="#ef4444">BANCO A · PRESET 1</text>' +
+            '<text x="580" y="195" font-family="monospace" font-size="10" font-weight="700" fill="#10b981" text-anchor="end">120 BPM</text>' +
+            '<text x="430" y="235" font-family="sans-serif" font-size="22" font-weight="800" fill="#f8fafc" text-anchor="middle">LEAD PLEXI</text>' +
+            '<text x="430" y="260" font-family="monospace" font-size="11" fill="#94a3b8" text-anchor="middle">SCENE A · EXP: WAH</text>' +
+            // Lado Esquerdo do Centro: Marca
+            '<text x="50" y="222" font-family="sans-serif" font-size="18" font-weight="900" letter-spacing="2" fill="#ef4444">GUERRILHA</text>' +
+            '<text x="50" y="240" font-family="monospace" font-size="10" font-weight="700" letter-spacing="3" fill="#64748b">MX SERIES · MX-8</text>' +
+            // Lado Direito do Centro: Specs
+            '<text x="810" y="222" font-family="monospace" font-size="10" font-weight="700" fill="#64748b" text-anchor="end">16MB FLASH · 8MB PSRAM</text>' +
+            '<text x="810" y="240" font-family="monospace" font-size="10" font-weight="700" fill="#10b981" text-anchor="end">MIDI DIN5 + TRS P10</text>' +
+            // 4 Chaves Embaixo (Y = 375)
+            renderFoot(115, 375, "FS 1", "PRESET 1", "#ef4444") +
+            renderFoot(315, 375, "FS 2", "PRESET 2", "#3b82f6") +
+            renderFoot(545, 375, "FS 3", "PRESET 3", "#10b981") +
+            renderFoot(745, 375, "FS 4", "PRESET 4", "#eab308") +
             '</svg>';
         },
         renderRear: function() {
-          return '<svg viewBox="0 0 820 180" width="820" height="180" xmlns="http://www.w3.org/2000/svg">' +
-            '<rect x="15" y="15" width="790" height="150" rx="12" fill="#12151f" stroke="#2a3246" stroke-width="2.5"/>' +
-            '<rect x="25" y="25" width="770" height="130" rx="8" fill="#0a0c12" stroke="#1a202c" stroke-width="1.5"/>' +
-            renderRearPort(80, 85, "power", "9V DC", "CENTRO (-)", "#ef4444", "1", "dc") +
-            renderRearPort(210, 85, "exp", "EXP / DUAL", "TRS 1/4\"", "#3b82f6", "2", "jack") +
-            renderRearPort(365, 85, "midiout", "MIDI OUT", "DIN 5-PIN", "#10b981", "3", "din") +
-            renderRearPort(495, 85, "midiin", "MIDI IN", "TRS P2 (A)", "#eab308", "4", "trs") +
-            renderRearPort(625, 85, "usbhost", "USB HOST", "TONEX / MIDI", "#f97316", "5", "usbc") +
-            renderRearPort(735, 85, "usbdvc", "USB DVC", "PC / EDITOR", "#06b6d4", "6", "usbc") +
+          return '<svg viewBox="0 0 940 180" width="940" height="180" xmlns="http://www.w3.org/2000/svg">' +
+            '<rect x="15" y="15" width="910" height="150" rx="12" fill="#12151f" stroke="#2a3246" stroke-width="2.5"/>' +
+            '<rect x="25" y="25" width="890" height="130" rx="8" fill="#0a0c12" stroke="#1a202c" stroke-width="1.5"/>' +
+            renderRearPort(60, 85, "power", "DC 9V", "CENTRO (-)", "#ef4444", "1", "dc") +
+            renderRearPort(155, 85, "exp", "EXP / FOOT", "TRS 1/4\"", "#3b82f6", "2", "jack") +
+            renderRearPort(250, 85, "reset", "BOOT", "MODO FLASH", "#f43f5e", "3", "reset") +
+            renderRearPort(350, 85, "usbhost", "USB HOST", "TONEX/OTG", "#f97316", "4", "usbc") +
+            renderRearPort(455, 85, "usbdvc", "USB DVC", "PC/EDITOR", "#06b6d4", "5", "usbc") +
+            renderRearPort(565, 85, "midiin", "MIDI IN", "TRS P2 (3.5mm)", "#eab308", "6", "trs") +
+            renderRearPort(680, 85, "miditrsp10", "MIDI TRS", "P10 (1/4\")", "#8b5cf6", "7", "jack") +
+            renderRearPort(815, 85, "midiout", "MIDI DIN", "5-PIN FÊMEA", "#10b981", "8", "din") +
             '</svg>';
         }
       },
       mx6: {
         title: "GUERRILHA MX-6 — DIAGRAMA TÉCNICO",
-        specs: "6 Footswitches · Display ST7789 240×240 · Formato Equilibrado",
+        specs: "6 Footswitches em Formato Régua (3 Chaves + Tela + 3 Chaves) · Display ST7789",
         renderTop: function() {
-          return '<svg viewBox="0 0 680 400" width="680" height="400" xmlns="http://www.w3.org/2000/svg">' +
-            '<rect x="15" y="15" width="650" height="370" rx="16" fill="#12151f" stroke="#2a3246" stroke-width="2.5"/>' +
-            '<rect x="25" y="25" width="630" height="350" rx="12" fill="#0d1017" stroke="#1c2230" stroke-width="1.5"/>' +
-            '<rect x="260" y="45" width="160" height="140" rx="8" fill="#040508" stroke="#374158" stroke-width="2"/>' +
-            '<rect x="268" y="53" width="144" height="124" rx="4" fill="#0b0e14"/>' +
-            '<rect x="268" y="53" width="144" height="20" fill="#161c28"/>' +
-            '<text x="274" y="67" font-family="monospace" font-size="9" font-weight="700" fill="#ef4444">BNK A · P1</text>' +
-            '<text x="406" y="67" font-family="monospace" font-size="9" font-weight="700" fill="#10b981" text-anchor="end">120</text>' +
-            '<text x="340" y="118" font-family="sans-serif" font-size="16" font-weight="800" fill="#f8fafc" text-anchor="middle">CRUNCH</text>' +
-            '<text x="340" y="140" font-family="monospace" font-size="9" fill="#94a3b8" text-anchor="middle">TONEX RIG 02</text>' +
-            '<text x="65" y="60" font-family="sans-serif" font-size="16" font-weight="900" letter-spacing="1.5" fill="#ef4444">GUERRILHA</text>' +
-            '<text x="65" y="75" font-family="monospace" font-size="9" font-weight="700" letter-spacing="2" fill="#64748b">MX-6 SERIES</text>' +
-            renderFoot(110, 130, "FS 5", "MOD / DLY", "#3b82f6") +
-            renderFoot(570, 130, "FS 6", "TAP / TUNER", "#06b6d4") +
-            renderFoot(95, 280, "FS 1", "P1 CLEAN", "#ef4444") +
-            renderFoot(235, 280, "FS 2", "P2 CRUNCH", "#3b82f6") +
-            renderFoot(445, 280, "FS 3", "P3 LEAD", "#10b981") +
-            renderFoot(585, 280, "FS 4", "P4 SOLO", "#eab308") +
+          return '<svg viewBox="0 0 1020 220" width="1020" height="220" xmlns="http://www.w3.org/2000/svg">' +
+            '<rect x="15" y="15" width="990" height="190" rx="16" fill="#12151f" stroke="#2a3246" stroke-width="2.5"/>' +
+            '<rect x="25" y="25" width="970" height="170" rx="12" fill="#0d1017" stroke="#1c2230" stroke-width="1.5"/>' +
+            '<circle cx="35" cy="35" r="4.5" fill="#1f2637" stroke="#333f5a" stroke-width="1.2"/>' +
+            '<circle cx="985" cy="35" r="4.5" fill="#1f2637" stroke="#333f5a" stroke-width="1.2"/>' +
+            '<circle cx="35" cy="185" r="4.5" fill="#1f2637" stroke="#333f5a" stroke-width="1.2"/>' +
+            '<circle cx="985" cy="185" r="4.5" fill="#1f2637" stroke="#333f5a" stroke-width="1.2"/>' +
+            // 3 Chaves na Esquerda (Y = 110)
+            renderFoot(95, 110, "FS 1", "P1 CLEAN", "#ef4444") +
+            renderFoot(225, 110, "FS 2", "P2 CRUNCH", "#3b82f6") +
+            renderFoot(355, 110, "FS 3", "P3 DRIVE", "#10b981") +
+            // Tela no Meio (x = 440, y = 48)
+            '<rect x="440" y="48" width="140" height="124" rx="8" fill="#040508" stroke="#374158" stroke-width="2"/>' +
+            '<rect x="448" y="56" width="124" height="108" rx="4" fill="#0b0e14"/>' +
+            '<rect x="448" y="56" width="124" height="18" fill="#161c28"/>' +
+            '<text x="454" y="69" font-family="monospace" font-size="9" font-weight="700" fill="#ef4444">BNK A · P2</text>' +
+            '<text x="566" y="69" font-family="monospace" font-size="9" font-weight="700" fill="#10b981" text-anchor="end">120</text>' +
+            '<text x="510" y="112" font-family="sans-serif" font-size="15" font-weight="800" fill="#f8fafc" text-anchor="middle">CRUNCH</text>' +
+            '<text x="510" y="132" font-family="monospace" font-size="9" fill="#94a3b8" text-anchor="middle">RIG 02</text>' +
+            '<text x="510" y="190" font-family="monospace" font-size="9" font-weight="800" letter-spacing="1.5" fill="#64748b" text-anchor="middle">GUERRILHA MX-6</text>' +
+            // 3 Chaves na Direita (Y = 110)
+            renderFoot(665, 110, "FS 4", "P4 LEAD", "#eab308") +
+            renderFoot(795, 110, "FS 5", "P5 SOLO", "#f97316") +
+            renderFoot(925, 110, "FS 6", "TAP/TUNER", "#06b6d4") +
             '</svg>';
         },
         renderRear: function() {
-          return '<svg viewBox="0 0 680 180" width="680" height="180" xmlns="http://www.w3.org/2000/svg">' +
-            '<rect x="15" y="15" width="650" height="150" rx="12" fill="#12151f" stroke="#2a3246" stroke-width="2.5"/>' +
-            '<rect x="25" y="25" width="630" height="130" rx="8" fill="#0a0c12" stroke="#1a202c" stroke-width="1.5"/>' +
-            renderRearPort(70, 85, "power", "9V DC", "CENTRO (-)", "#ef4444", "1", "dc") +
-            renderRearPort(180, 85, "exp", "EXP / DUAL", "TRS 1/4\"", "#3b82f6", "2", "jack") +
-            renderRearPort(305, 85, "midiout", "MIDI OUT", "DIN 5-PIN", "#10b981", "3", "din") +
-            renderRearPort(415, 85, "midiin", "MIDI IN", "TRS P2 (A)", "#eab308", "4", "trs") +
-            renderRearPort(520, 85, "usbhost", "USB HOST", "TONEX", "#f97316", "5", "usbc") +
-            renderRearPort(610, 85, "usbdvc", "USB DVC", "PC/APP", "#06b6d4", "6", "usbc") +
+          return '<svg viewBox="0 0 940 180" width="940" height="180" xmlns="http://www.w3.org/2000/svg">' +
+            '<rect x="15" y="15" width="910" height="150" rx="12" fill="#12151f" stroke="#2a3246" stroke-width="2.5"/>' +
+            '<rect x="25" y="25" width="890" height="130" rx="8" fill="#0a0c12" stroke="#1a202c" stroke-width="1.5"/>' +
+            renderRearPort(60, 85, "power", "DC 9V", "CENTRO (-)", "#ef4444", "1", "dc") +
+            renderRearPort(155, 85, "exp", "EXP / FOOT", "TRS 1/4\"", "#3b82f6", "2", "jack") +
+            renderRearPort(250, 85, "reset", "BOOT", "MODO FLASH", "#f43f5e", "3", "reset") +
+            renderRearPort(350, 85, "usbhost", "USB HOST", "TONEX/OTG", "#f97316", "4", "usbc") +
+            renderRearPort(455, 85, "usbdvc", "USB DVC", "PC/EDITOR", "#06b6d4", "5", "usbc") +
+            renderRearPort(565, 85, "midiin", "MIDI IN", "TRS P2 (3.5mm)", "#eab308", "6", "trs") +
+            renderRearPort(680, 85, "miditrsp10", "MIDI TRS", "P10 (1/4\")", "#8b5cf6", "7", "jack") +
+            renderRearPort(815, 85, "midiout", "MIDI DIN", "5-PIN FÊMEA", "#10b981", "8", "din") +
             '</svg>';
         }
       },
       mx4: {
         title: "GUERRILHA MX-4 — DIAGRAMA TÉCNICO",
-        specs: "4 Footswitches · Display ST7789 240×240 · Ultra Compacto",
+        specs: "4 Footswitches em Formato Régua (2 Chaves + Tela + 2 Chaves) · Display ST7789",
         renderTop: function() {
-          return '<svg viewBox="0 0 540 380" width="540" height="380" xmlns="http://www.w3.org/2000/svg">' +
-            '<rect x="15" y="15" width="510" height="350" rx="16" fill="#12151f" stroke="#2a3246" stroke-width="2.5"/>' +
-            '<rect x="25" y="25" width="490" height="330" rx="12" fill="#0d1017" stroke="#1c2230" stroke-width="1.5"/>' +
-            '<rect x="195" y="45" width="150" height="130" rx="8" fill="#040508" stroke="#374158" stroke-width="2"/>' +
-            '<rect x="203" y="53" width="134" height="114" rx="4" fill="#0b0e14"/>' +
-            '<rect x="203" y="53" width="134" height="20" fill="#161c28"/>' +
-            '<text x="209" y="67" font-family="monospace" font-size="9" font-weight="700" fill="#ef4444">BNK A · P1</text>' +
-            '<text x="331" y="67" font-family="monospace" font-size="9" font-weight="700" fill="#10b981" text-anchor="end">120</text>' +
-            '<text x="270" y="115" font-family="sans-serif" font-size="16" font-weight="800" fill="#f8fafc" text-anchor="middle">ACOUSTIC</text>' +
-            '<text x="270" y="135" font-family="monospace" font-size="9" fill="#94a3b8" text-anchor="middle">PRESET 01</text>' +
-            '<text x="60" y="60" font-family="sans-serif" font-size="15" font-weight="900" letter-spacing="1.5" fill="#ef4444">GUERRILHA</text>' +
-            '<text x="60" y="74" font-family="monospace" font-size="9" font-weight="700" letter-spacing="2" fill="#64748b">MX-4 COMPACT</text>' +
-            renderFoot(85, 255, "FS 1", "CLEAN", "#ef4444") +
-            renderFoot(195, 255, "FS 2", "DRIVE", "#3b82f6") +
-            renderFoot(345, 255, "FS 3", "LEAD", "#10b981") +
-            renderFoot(455, 255, "FS 4", "TAP/TUNER", "#06b6d4") +
+          return '<svg viewBox="0 0 860 220" width="860" height="220" xmlns="http://www.w3.org/2000/svg">' +
+            '<rect x="15" y="15" width="830" height="190" rx="16" fill="#12151f" stroke="#2a3246" stroke-width="2.5"/>' +
+            '<rect x="25" y="25" width="810" height="170" rx="12" fill="#0d1017" stroke="#1c2230" stroke-width="1.5"/>' +
+            '<circle cx="35" cy="35" r="4.5" fill="#1f2637" stroke="#333f5a" stroke-width="1.2"/>' +
+            '<circle cx="825" cy="35" r="4.5" fill="#1f2637" stroke="#333f5a" stroke-width="1.2"/>' +
+            '<circle cx="35" cy="185" r="4.5" fill="#1f2637" stroke="#333f5a" stroke-width="1.2"/>' +
+            '<circle cx="825" cy="185" r="4.5" fill="#1f2637" stroke="#333f5a" stroke-width="1.2"/>' +
+            // 2 Chaves na Esquerda (Y = 110)
+            renderFoot(120, 110, "FS 1", "CLEAN", "#ef4444") +
+            renderFoot(260, 110, "FS 2", "DRIVE", "#3b82f6") +
+            // Tela no Meio (x = 360, y = 48)
+            '<rect x="360" y="48" width="140" height="124" rx="8" fill="#040508" stroke="#374158" stroke-width="2"/>' +
+            '<rect x="368" y="56" width="124" height="108" rx="4" fill="#0b0e14"/>' +
+            '<rect x="368" y="56" width="124" height="18" fill="#161c28"/>' +
+            '<text x="374" y="69" font-family="monospace" font-size="9" font-weight="700" fill="#ef4444">BNK A · P1</text>' +
+            '<text x="486" y="69" font-family="monospace" font-size="9" font-weight="700" fill="#10b981" text-anchor="end">120</text>' +
+            '<text x="430" y="112" font-family="sans-serif" font-size="15" font-weight="800" fill="#f8fafc" text-anchor="middle">ACOUSTIC</text>' +
+            '<text x="430" y="132" font-family="monospace" font-size="9" fill="#94a3b8" text-anchor="middle">PRESET 01</text>' +
+            '<text x="430" y="190" font-family="monospace" font-size="9" font-weight="800" letter-spacing="1.5" fill="#64748b" text-anchor="middle">GUERRILHA MX-4</text>' +
+            // 2 Chaves na Direita (Y = 110)
+            renderFoot(600, 110, "FS 3", "LEAD", "#10b981") +
+            renderFoot(740, 110, "FS 4", "TAP/TUNER", "#06b6d4") +
             '</svg>';
         },
         renderRear: function() {
-          return '<svg viewBox="0 0 540 180" width="540" height="180" xmlns="http://www.w3.org/2000/svg">' +
-            '<rect x="15" y="15" width="510" height="150" rx="12" fill="#12151f" stroke="#2a3246" stroke-width="2.5"/>' +
-            '<rect x="25" y="25" width="490" height="130" rx="8" fill="#0a0c12" stroke="#1a202c" stroke-width="1.5"/>' +
-            renderRearPort(60, 85, "power", "9V DC", "CENTRO (-)", "#ef4444", "1", "dc") +
-            renderRearPort(155, 85, "exp", "EXP/FS", "TRS 1/4\"", "#3b82f6", "2", "jack") +
-            renderRearPort(255, 85, "midiout", "MIDI OUT", "DIN 5", "#10b981", "3", "din") +
-            renderRearPort(345, 85, "midiin", "MIDI IN", "TRS P2", "#eab308", "4", "trs") +
-            renderRearPort(425, 85, "usbhost", "HOST", "TONEX", "#f97316", "5", "usbc") +
-            renderRearPort(485, 85, "usbdvc", "DVC", "PC/APP", "#06b6d4", "6", "usbc") +
+          return '<svg viewBox="0 0 940 180" width="940" height="180" xmlns="http://www.w3.org/2000/svg">' +
+            '<rect x="15" y="15" width="910" height="150" rx="12" fill="#12151f" stroke="#2a3246" stroke-width="2.5"/>' +
+            '<rect x="25" y="25" width="890" height="130" rx="8" fill="#0a0c12" stroke="#1a202c" stroke-width="1.5"/>' +
+            renderRearPort(60, 85, "power", "DC 9V", "CENTRO (-)", "#ef4444", "1", "dc") +
+            renderRearPort(155, 85, "exp", "EXP / FOOT", "TRS 1/4\"", "#3b82f6", "2", "jack") +
+            renderRearPort(250, 85, "reset", "BOOT", "MODO FLASH", "#f43f5e", "3", "reset") +
+            renderRearPort(350, 85, "usbhost", "USB HOST", "TONEX/OTG", "#f97316", "4", "usbc") +
+            renderRearPort(455, 85, "usbdvc", "USB DVC", "PC/EDITOR", "#06b6d4", "5", "usbc") +
+            renderRearPort(565, 85, "midiin", "MIDI IN", "TRS P2 (3.5mm)", "#eab308", "6", "trs") +
+            renderRearPort(680, 85, "miditrsp10", "MIDI TRS", "P10 (1/4\")", "#8b5cf6", "7", "jack") +
+            renderRearPort(815, 85, "midiout", "MIDI DIN", "5-PIN FÊMEA", "#10b981", "8", "din") +
             '</svg>';
         }
       }
@@ -2835,13 +2940,13 @@
 
     function renderFoot(cx, cy, label, sub, color) {
       return '<g>' +
-        '<circle cx="' + cx + '" cy="' + cy + '" r="34" fill="none" stroke="' + color + '" stroke-width="4.5" opacity="0.85" filter="drop-shadow(0 0 6px ' + color + ')"/>' +
-        '<circle cx="' + cx + '" cy="' + cy + '" r="28" fill="#1e2433" stroke="#3b455e" stroke-width="2"/>' +
-        '<circle cx="' + cx + '" cy="' + cy + '" r="21" fill="#2d3748" stroke="#4a5568" stroke-width="1"/>' +
-        '<circle cx="' + cx + '" cy="' + cy + '" r="14" fill="#cbd5e0"/>' +
+        '<circle cx="' + cx + '" cy="' + cy + '" r="33" fill="none" stroke="' + color + '" stroke-width="4.5" opacity="0.85" filter="drop-shadow(0 0 6px ' + color + ')"/>' +
+        '<circle cx="' + cx + '" cy="' + cy + '" r="27" fill="#1e2433" stroke="#3b455e" stroke-width="2"/>' +
+        '<circle cx="' + cx + '" cy="' + cy + '" r="20" fill="#2d3748" stroke="#4a5568" stroke-width="1"/>' +
+        '<circle cx="' + cx + '" cy="' + cy + '" r="13" fill="#cbd5e0"/>' +
         '<circle cx="' + (cx - 3) + '" cy="' + (cy - 3) + '" r="4" fill="#ffffff" opacity="0.6"/>' +
-        '<text x="' + cx + '" y="' + (cy + 48) + '" font-family="monospace" font-size="11" font-weight="800" fill="#f1f5f9" text-anchor="middle">' + label + '</text>' +
-        '<text x="' + cx + '" y="' + (cy + 61) + '" font-family="sans-serif" font-size="8.5" font-weight="600" fill="' + color + '" text-anchor="middle">' + sub + '</text>' +
+        '<text x="' + cx + '" y="' + (cy + 47) + '" font-family="monospace" font-size="11" font-weight="800" fill="#f1f5f9" text-anchor="middle">' + label + '</text>' +
+        '<text x="' + cx + '" y="' + (cy + 60) + '" font-family="sans-serif" font-size="8" font-weight="600" fill="' + color + '" text-anchor="middle">' + sub + '</text>' +
         '</g>';
     }
 
@@ -2855,6 +2960,10 @@
         icon = '<rect x="' + (cx - 14) + '" y="' + (cy - 19) + '" width="28" height="28" rx="4" fill="#1a1e29" stroke="#374158" stroke-width="2"/>' +
                '<circle cx="' + cx + '" cy="' + (cy - 5) + '" r="9" fill="#0d1017" stroke="#4a5568" stroke-width="1.5"/>' +
                '<circle cx="' + cx + '" cy="' + (cy - 5) + '" r="4.5" fill="#1e2433"/>';
+      } else if (type === 'reset') {
+        icon = '<circle cx="' + cx + '" cy="' + (cy - 5) + '" r="11" fill="#151924" stroke="#3b455e" stroke-width="1.8"/>' +
+               '<circle cx="' + cx + '" cy="' + (cy - 5) + '" r="6.5" fill="#dc2626" stroke="#f87171" stroke-width="1.2"/>' +
+               '<circle cx="' + (cx - 1.5) + '" cy="' + (cy - 6.5) + '" r="1.5" fill="#ffffff" opacity="0.7"/>';
       } else if (type === 'din') {
         icon = '<circle cx="' + cx + '" cy="' + (cy - 5) + '" r="19" fill="#1a1e29" stroke="#374158" stroke-width="2"/>' +
                '<circle cx="' + (cx - 8) + '" cy="' + (cy - 10) + '" r="2" fill="#cbd5e0"/>' +
