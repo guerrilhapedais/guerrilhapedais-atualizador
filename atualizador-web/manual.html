@@ -1,0 +1,2937 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manual Interativo Oficial — Guerrilha MX & PRO Series</title>
+  <style>
+    :root {
+      --bg-main: #0a0c10;
+      --bg-surface: #11141d;
+      --bg-card: #151924;
+      --bg-card-hover: #1b202e;
+      --bg-sidebar: #080a0e;
+      --border-color: #222736;
+      --border-focus: #ef4444;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --primary: #ef4444;
+      --primary-hover: #dc2626;
+      --primary-glow: rgba(239, 68, 68, 0.4);
+      --accent-orange: #f97316;
+      --accent-cyan: #06b6d4;
+      --accent-green: #10b981;
+      --accent-purple: #a855f7;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-mono: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      line-height: 1.65;
+      display: flex;
+      min-height: 100vh;
+      font-size: 15px;
+    }
+
+    /* Scrollbars */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--bg-main);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #252c3f;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--primary);
+    }
+
+    /* Barra Lateral */
+    .sidebar {
+      width: 320px;
+      background: var(--bg-sidebar);
+      border-right: 1px solid var(--border-color);
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      z-index: 100;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .sidebar-header {
+      padding: 24px 20px;
+      border-bottom: 1px solid var(--border-color);
+      background: rgba(8, 10, 14, 0.95);
+      backdrop-filter: blur(8px);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .brand-title {
+      font-size: 1.2rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-badge {
+      background: linear-gradient(135deg, #ef4444, #b91c1c);
+      color: #fff;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      box-shadow: 0 0 10px var(--primary-glow);
+    }
+
+    .brand-subtitle {
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      margin-top: 6px;
+      font-weight: 500;
+    }
+
+    .sidebar-nav {
+      padding: 16px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      flex: 1;
+    }
+
+    .nav-group-title {
+      font-size: 0.68rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-dim);
+      padding: 14px 10px 4px 10px;
+    }
+
+    .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      border-radius: 6px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.86rem;
+      font-weight: 500;
+      transition: all 0.15s ease;
+    }
+
+    .nav-link:hover {
+      background: var(--bg-card);
+      color: #fff;
+      transform: translateX(3px);
+    }
+
+    .nav-link.active {
+      background: rgba(239, 68, 68, 0.15);
+      color: #f87171;
+      border-left: 3px solid var(--primary);
+      font-weight: 600;
+    }
+
+    .nav-icon {
+      width: 18px;
+      height: 18px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--text-dim);
+      transition: color 0.15s ease, transform 0.15s ease;
+    }
+    .nav-link:hover .nav-icon {
+      color: #fff;
+      transform: scale(1.1);
+    }
+    .nav-link.active .nav-icon {
+      color: #f87171;
+    }
+    .nav-icon svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    /* Conteúdo Principal */
+    .main-wrapper {
+      margin-left: 320px;
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .top-bar {
+      position: sticky;
+      top: 0;
+      background: rgba(10, 12, 16, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-color);
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 32px;
+      z-index: 40;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: #181d2a;
+      border: 1px solid var(--border-color);
+      color: #fff;
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .btn-action {
+      background: #181d2a;
+      border: 1px solid #283042;
+      color: var(--text-main);
+      padding: 7px 16px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.15s ease;
+    }
+
+    .btn-action:hover {
+      background: #22293b;
+      border-color: var(--primary);
+      color: #fff;
+    }
+
+    .content-container {
+      max-width: 1060px;
+      margin: 0 auto;
+      padding: 40px 32px 100px 32px;
+      width: 100%;
+    }
+
+    /* Banner de Boas-Vindas */
+    .hero-banner {
+      background: radial-gradient(circle at top right, rgba(239, 68, 68, 0.16), transparent 60%),
+                  linear-gradient(145deg, #161b26, #0d1017);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 40px;
+      margin-bottom: 48px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6);
+    }
+
+    .hero-banner::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--primary);
+      box-shadow: 0 0 12px var(--primary);
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(239, 68, 68, 0.15);
+      border: 1px solid rgba(239, 68, 68, 0.4);
+      color: #f87171;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .hero-title {
+      font-size: 2.3rem;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 14px;
+    }
+
+    .hero-desc {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      max-width: 760px;
+      line-height: 1.65;
+    }
+
+    /* Seções */
+    .section-block {
+      margin-bottom: 64px;
+      scroll-margin-top: 80px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .section-badge-num {
+      background: #191f2e;
+      color: #f87171;
+      border: 1px solid rgba(239, 68, 68, 0.35);
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1rem;
+      font-family: var(--font-mono);
+      flex-shrink: 0;
+    }
+
+    .section-title {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -0.01em;
+    }
+
+    .section-intro {
+      font-size: 1.02rem;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+      line-height: 1.65;
+    }
+
+    /* Cards de Hardware */
+    .hardware-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+
+    .hardware-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.2s ease;
+    }
+
+    .hardware-card:hover {
+      border-color: #3f4a66;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .hardware-img-wrap {
+      background: #090b10;
+      padding: 16px;
+      text-align: center;
+      cursor: zoom-in;
+    }
+
+    .hardware-img-wrap img {
+      width: 100%;
+      height: 220px;
+      object-fit: contain;
+      transition: transform 0.25s ease;
+    }
+
+    .hardware-img-wrap:hover img {
+      transform: scale(1.03);
+    }
+
+    .hardware-body {
+      padding: 20px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .hardware-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .hardware-tag {
+      font-size: 0.7rem;
+      padding: 3px 8px;
+      border-radius: 4px;
+      background: #1f2738;
+      color: var(--accent-cyan);
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .hardware-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    /* Showcase Cards para Telas & Partes Cruciais */
+    .ui-showcase-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      overflow: hidden;
+      margin-bottom: 32px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+    }
+
+    .ui-showcase-card.crucial {
+      border-color: rgba(239, 68, 68, 0.4);
+      background: linear-gradient(to bottom, #171b26, #131722);
+    }
+
+    .crucial-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(239, 68, 68, 0.2);
+      border: 1px solid rgba(239, 68, 68, 0.5);
+      color: #f87171;
+      padding: 3px 10px;
+      border-radius: 4px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .ui-img-container {
+      background: #08090d;
+      padding: 16px;
+      border-bottom: 1px solid var(--border-color);
+      text-align: center;
+      position: relative;
+      cursor: zoom-in;
+    }
+
+    .ui-img-container img {
+      width: 100%;
+      max-height: 520px;
+      object-fit: contain;
+      border-radius: 8px;
+      display: block;
+      margin: 0 auto;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7);
+    }
+
+    .ui-img-container.compact img {
+      max-height: 340px;
+    }
+
+    .ui-zoom-hint {
+      position: absolute;
+      bottom: 22px;
+      right: 24px;
+      background: rgba(0, 0, 0, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #fff;
+      padding: 5px 12px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      pointer-events: none;
+    }
+
+    .ui-info-content {
+      padding: 26px;
+    }
+
+    .ui-card-title {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .ui-card-desc {
+      font-size: 0.98rem;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+      line-height: 1.65;
+    }
+
+    /* Grids de Recursos & Passos */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .feature-item {
+      background: #11141d;
+      border: 1px solid #222736;
+      border-radius: 10px;
+      padding: 18px;
+    }
+
+    .feature-item h4 {
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .feature-item p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    /* Caixas de Destaque */
+    .callout {
+      background: #141722;
+      border-left: 4px solid var(--primary);
+      border-radius: 0 10px 10px 0;
+      padding: 18px 22px;
+      margin: 24px 0;
+      display: flex;
+      gap: 16px;
+    }
+
+    .callout.tip {
+      border-left-color: var(--accent-green);
+      background: rgba(16, 185, 129, 0.08);
+    }
+
+    .callout.info {
+      border-left-color: var(--accent-cyan);
+      background: rgba(6, 182, 212, 0.08);
+    }
+
+    .callout.warning {
+      border-left-color: var(--accent-orange);
+      background: rgba(249, 115, 22, 0.08);
+    }
+
+    .callout-icon {
+      font-size: 1.4rem;
+      line-height: 1;
+    }
+
+    .callout-body h5 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    .callout-body p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    /* Tabelas */
+    .custom-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      background: var(--bg-card);
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+      font-size: 0.92rem;
+    }
+
+    .custom-table th {
+      background: #181d2b;
+      color: #fff;
+      text-align: left;
+      padding: 14px 18px;
+      font-weight: 700;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .custom-table td {
+      padding: 13px 18px;
+      border-bottom: 1px solid #1e2434;
+      color: var(--text-muted);
+    }
+
+    .custom-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .custom-table tr:hover td {
+      background: rgba(255, 255, 255, 0.02);
+      color: var(--text-main);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      font-family: var(--font-mono);
+    }
+
+    .badge-red { background: rgba(239, 68, 68, 0.2); color: #f87171; }
+    .badge-cyan { background: rgba(6, 182, 212, 0.2); color: #38bdf8; }
+    .badge-green { background: rgba(16, 185, 129, 0.2); color: #34d399; }
+    .badge-orange { background: rgba(249, 115, 22, 0.2); color: #fb923c; }
+
+    /* Lightbox Modal */
+    .lightbox-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.92);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      cursor: zoom-out;
+    }
+
+    .lightbox-modal.active {
+      display: flex;
+    }
+
+    .lightbox-img {
+      max-width: 95vw;
+      max-height: 92vh;
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.95), 0 0 0 1px rgba(255, 255, 255, 0.15);
+      animation: zoomIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 24px;
+      right: 32px;
+      color: #fff;
+      font-size: 2.2rem;
+      font-weight: 300;
+      background: rgba(255, 255, 255, 0.12);
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    @keyframes zoomIn {
+      from { transform: scale(0.94); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    @media (max-width: 960px) {
+      .sidebar {
+        transform: translateX(-100%);
+      }
+      .sidebar.open {
+        transform: translateX(0);
+      }
+      .main-wrapper {
+        margin-left: 0;
+      }
+      .mobile-menu-btn {
+        display: block;
+      }
+      .content-container {
+        padding: 24px 16px 60px 16px;
+      }
+      .hero-banner {
+        padding: 26px;
+      }
+      .hero-title {
+        font-size: 1.8rem;
+      }
+    }
+
+    /* === Módulo de Hardware e Conexões SVG === */
+    .hw-model-picker {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 18px 20px;
+      margin-bottom: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .hw-picker-label {
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+    .hw-picker-buttons {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+    }
+    .hw-picker-btn {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 14px 16px;
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.2s ease;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .hw-picker-btn:hover {
+      background: var(--bg-card-hover);
+      border-color: #3b455e;
+      transform: translateY(-2px);
+    }
+    .hw-picker-btn.active {
+      background: rgba(239, 68, 68, 0.08);
+      border-color: var(--primary);
+      box-shadow: 0 0 16px rgba(239, 68, 68, 0.2);
+    }
+    .hw-p-badge {
+      font-size: 0.62rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #94a3b8;
+      background: #1e2433;
+      padding: 2px 6px;
+      border-radius: 4px;
+      align-self: flex-start;
+    }
+    .hw-picker-btn.active .hw-p-badge {
+      background: var(--primary);
+      color: #fff;
+    }
+    .hw-picker-btn strong {
+      font-size: 0.95rem;
+      color: var(--text-main);
+      font-family: var(--font-sans);
+    }
+    .hw-picker-btn small {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .hw-diagram-container {
+      background: #090b10;
+      border: 1px solid #1f2535;
+      border-radius: 14px;
+      padding: 20px;
+      margin-bottom: 28px;
+      overflow: hidden;
+      box-shadow: inset 0 2px 12px rgba(0, 0, 0, 0.6);
+    }
+    .hw-diagram-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid #181d2a;
+      margin-bottom: 20px;
+    }
+    .hw-dh-left {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .hw-dh-title {
+      font-family: var(--font-mono);
+      font-size: 0.92rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: #f1f5f9;
+    }
+    .hw-dh-status {
+      font-size: 0.72rem;
+      color: #64748b;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+    }
+    .hw-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #10b981;
+      box-shadow: 0 0 8px #10b981;
+    }
+    .hw-view-switch {
+      display: inline-flex;
+      background: #121622;
+      border: 1px solid #232a3d;
+      border-radius: 8px;
+      padding: 3px;
+      gap: 4px;
+    }
+    .hw-view-btn {
+      background: transparent;
+      border: none;
+      color: #94a3b8;
+      font-size: 0.74rem;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      letter-spacing: 0.04em;
+      transition: all 0.15s ease;
+    }
+    .hw-view-btn:hover {
+      color: #fff;
+    }
+    .hw-view-btn.active {
+      background: #1e2538;
+      color: #f1f5f9;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    }
+
+    .hw-svg-viewport {
+      width: 100%;
+      min-height: 260px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: radial-gradient(circle at center, #111520 0%, #080a0f 100%);
+      border-radius: 10px;
+      border: 1px solid #161b26;
+      padding: 24px 12px;
+      overflow-x: auto;
+    }
+    .hw-svg-viewport svg {
+      max-width: 100%;
+      height: auto;
+      filter: drop-shadow(0 12px 24px rgba(0,0,0,0.5));
+    }
+    .hw-diagram-footer {
+      margin-top: 14px;
+      text-align: center;
+      font-size: 0.78rem;
+      color: #64748b;
+    }
+
+    /* Cards Técnicos O Que Liga Onde */
+    .hw-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 16px;
+    }
+    .hw-port-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: all 0.25s ease;
+      position: relative;
+    }
+    .hw-port-card:hover, .hw-port-card.highlight {
+      border-color: var(--primary);
+      box-shadow: 0 4px 20px rgba(239, 68, 68, 0.18);
+      transform: translateY(-2px);
+    }
+    .hw-port-card.highlight {
+      background: #191c28;
+    }
+    .hw-pc-head {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .hw-pc-badge {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #202638;
+      border: 1px solid #374158;
+      color: #f1f5f9;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .hw-port-card.highlight .hw-pc-badge {
+      background: var(--primary);
+      border-color: #f87171;
+      box-shadow: 0 0 10px rgba(239, 68, 68, 0.6);
+    }
+    .hw-pc-title-wrap h4 {
+      font-size: 0.96rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 2px;
+    }
+    .hw-pc-type {
+      font-size: 0.74rem;
+      font-family: var(--font-mono);
+      color: var(--text-muted);
+    }
+    .hw-port-card p {
+      font-size: 0.86rem;
+      line-height: 1.5;
+      color: var(--text-muted);
+      margin: 0;
+    }
+    .hw-port-card p strong {
+      color: #f1f5f9;
+    }
+    .hw-pc-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 16px;
+      padding-top: 10px;
+      border-top: 1px solid #1e2435;
+      font-size: 0.76rem;
+      color: #94a3b8;
+    }
+    .hw-pc-meta strong {
+      color: #cbd5e1;
+    }
+
+    /* Estilos interativos do SVG */
+    .svg-port-target {
+      cursor: pointer;
+      transition: filter 0.2s ease, opacity 0.2s ease;
+    }
+    .svg-port-target:hover {
+      filter: brightness(1.3) drop-shadow(0 0 8px rgba(239, 68, 68, 0.8));
+    }
+    .svg-port-target:hover text {
+      fill: #fff !important;
+      font-weight: 800;
+    }
+
+
+    /* === Guias Passo a Passo e Anatomia MIDI === */
+    .step-wizard {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin: 24px 0 32px 0;
+    }
+    .step-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 22px 24px;
+      position: relative;
+      display: flex;
+      gap: 20px;
+      transition: all 0.2s ease;
+    }
+    .step-card:hover {
+      border-color: #3b455e;
+      background: var(--bg-card-hover);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    }
+    .step-card.crucial-step {
+      border-color: rgba(239, 68, 68, 0.45);
+      background: linear-gradient(135deg, rgba(239, 68, 68, 0.05) 0%, rgba(17, 20, 29, 0.95) 100%);
+    }
+    .step-num-badge {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: #1a202c;
+      border: 2px solid #374158;
+      color: #f1f5f9;
+      font-family: var(--font-mono);
+      font-size: 1.15rem;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+    }
+    .step-card.crucial-step .step-num-badge {
+      background: var(--primary);
+      border-color: #f87171;
+      color: #fff;
+      box-shadow: 0 0 14px rgba(239, 68, 68, 0.6);
+    }
+    .step-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .step-content h3 {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0;
+    }
+    .step-content p {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin: 0;
+    }
+    .step-sublist {
+      margin-top: 6px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .step-subitem {
+      background: #0d1017;
+      border: 1px solid #1a202c;
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-size: 0.88rem;
+      line-height: 1.5;
+      color: #cbd5e1;
+    }
+    .step-subitem strong {
+      color: #fff;
+    }
+
+    /* Diagrama Visual de Mensagem MIDI */
+    .midi-pipeline-box {
+      background: #080a0f;
+      border: 1px solid #1f2638;
+      border-radius: 14px;
+      padding: 24px;
+      margin: 24px 0 32px 0;
+      box-shadow: inset 0 2px 12px rgba(0, 0, 0, 0.7);
+    }
+    .midi-pipeline-title {
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #64748b;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .midi-pipeline-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 12px;
+      align-items: center;
+    }
+    .midi-pipe-node {
+      background: #111522;
+      border: 1px solid #232a3d;
+      border-radius: 10px;
+      padding: 16px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      position: relative;
+    }
+    .midi-pipe-node .node-label {
+      font-size: 0.68rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-dim);
+    }
+    .midi-pipe-node .node-val {
+      font-family: var(--font-mono);
+      font-size: 1.15rem;
+      font-weight: 900;
+      color: #f1f5f9;
+    }
+    .midi-pipe-node .node-desc {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+    .midi-pipe-node.highlight-red {
+      border-color: rgba(239, 68, 68, 0.6);
+      background: rgba(239, 68, 68, 0.08);
+    }
+    .midi-pipe-node.highlight-red .node-val {
+      color: #f87171;
+    }
+    .midi-pipe-node.highlight-green {
+      border-color: rgba(16, 185, 129, 0.6);
+      background: rgba(16, 185, 129, 0.08);
+    }
+    .midi-pipe-node.highlight-green .node-val {
+      color: #34d399;
+    }
+    .midi-pipe-node.highlight-cyan {
+      border-color: rgba(6, 182, 212, 0.6);
+      background: rgba(6, 182, 212, 0.08);
+    }
+    .midi-pipe-node.highlight-cyan .node-val {
+      color: #38bdf8;
+    }
+    .midi-pipe-node.highlight-orange {
+      border-color: rgba(249, 115, 22, 0.6);
+      background: rgba(249, 115, 22, 0.08);
+    }
+    .midi-pipe-node.highlight-orange .node-val {
+      color: #fb923c;
+    }
+
+    /* Cards de Cenários Práticos */
+    .scenario-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
+      margin: 20px 0 28px 0;
+    }
+    .scenario-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .scenario-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .scenario-badge {
+      font-size: 0.68rem;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      background: #1e2434;
+      color: #94a3b8;
+    }
+    .scenario-badge.pc {
+      background: rgba(239, 68, 68, 0.18);
+      color: #f87171;
+      border: 1px solid rgba(239, 68, 68, 0.4);
+    }
+    .scenario-badge.cc {
+      background: rgba(16, 185, 129, 0.18);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.4);
+    }
+    .scenario-card h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #fff;
+      margin: 0;
+    }
+    .scenario-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.84rem;
+      background: #0d1017;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .scenario-table td {
+      padding: 8px 12px;
+      border-bottom: 1px solid #1a202c;
+    }
+    .scenario-table tr:last-child td {
+      border-bottom: none;
+    }
+    .scenario-table td:first-child {
+      color: var(--text-dim);
+      font-weight: 600;
+      width: 40%;
+    }
+    .scenario-table td:last-child {
+      color: #f1f5f9;
+      font-family: var(--font-mono);
+      font-weight: 700;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Barra Lateral -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="brand-title">
+        GUERRILHA <span class="brand-badge">PRO</span>
+      </div>
+      <div class="brand-subtitle">Manual Interativo do Usuário</div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-group-title">Introdução & Setup</div>
+      <a href="#inicio" class="nav-link active"><span class="nav-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span> Início</a>
+      <a href="#hardware" class="nav-link"><span class="nav-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/><circle cx="7" cy="15" r="1.5"/><circle cx="12" cy="15" r="1.5"/><circle cx="17" cy="15" r="1.5"/></svg></span> Modelos de Hardware</a>
+      <a href="#conexoes" class="nav-link"><span class="nav-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6"/><path d="m19 13-7-7-7 7"/><path d="M9 22v-4"/><path d="M15 22v-4"/><path d="M8 12h8v6a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2v-6Z"/></svg></span> Conexões Físicas</a>
+      <a href="#primeiro-acesso" class="nav-link"><span class="nav-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-4.05 11a22.4 22.4 0 0 1-3.95 2z"/><line x1="9" y1="9" x2="9.01" y2="9"/></svg></span> 1º Acesso & Configurar Modelo</a>
+      <a href="#fundamentos-midi" class="nav-link"><span class="nav-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="8" cy="10" r="1.5"/><circle cx="16" cy="10" r="1.5"/><circle cx="7" cy="14" r="1.5"/><circle cx="17" cy="14" r="1.5"/><circle cx="12" cy="8" r="1.5"/></svg></span> O que é MIDI & Mensagens</a>
+
+      <div class="nav-group-title">Acesso & Navegação</div>
+      <a href="#conectar-app" class="nav-link"><span class="nav-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg></span> Conexão Wi-Fi & USB</a>
+      <a href="#aba-preset" class="nav-link"><span class="nav-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg></span> Aba PRESET & Tela Inicial</a>
+      <a href="#bancos-modos" class="nav-link"><span class="nav-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></span> Bancos, Preset & Live</a>
+
+      <div class="nav-group-title">Configuração dos Botões</div>
+      <a href="#primeiro-comando" class="nav-link"><span class="nav-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg></span> Como Criar o 1º Comando</a>
+      <a href="#config-leds" class="nav-link"><span class="nav-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg></span> Anéis de LED Inteligentes</a>
+      <a href="#modos-footswitch" class="nav-link"><span class="nav-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 8v8"/><path d="M8 12h8"/></svg></span> Os 6 Modos de Footswitch</a>
+      <a href="#modo-normal" class="nav-link"><span class="nav-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span> 1. Modo Normal & Comandos</a>
+      <a href="#modo-momentaneo" class="nav-link"><span class="nav-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 11V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0"/><path d="M14 10V4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v2"/><path d="M10 10.5V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v8"/><path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/></svg></span> 2. Modo Momentâneo</a>
+      <a href="#modo-tap" class="nav-link"><span class="nav-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span> 3. Modo Tap Tempo</a>
+      <a href="#modo-ricochet" class="nav-link"><span class="nav-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h3l3-7 4 14 3-7h7"/></svg></span> 4. Modo Ricochet (Auto-Swell)</a>
+      <a href="#modo-stg" class="nav-link"><span class="nav-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span> 5. Modo STG (Estágios)</a>
+      <a href="#modo-stg-auto" class="nav-link"><span class="nav-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m17 2 4 4-4 4"/><path d="M3 11v-1a4 4 0 0 1 4-4h14"/><path d="m7 22-4-4 4-4"/><path d="M21 13v1a4 4 0 0 1-4 4H3"/></svg></span> 6. Modo STG Auto (Loop)</a>
+      <a href="#galeria-icones" class="nav-link"><span class="nav-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg></span> Biblioteca de Ícones</a>
+
+      <div class="nav-group-title">Modo Stomp & Hardware</div>
+      <a href="#modo-stomp" class="nav-link"><span class="nav-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="20" x="5" y="2" rx="2"/><circle cx="12" cy="14" r="3"/><line x1="9" y1="6" x2="15" y2="6"/></svg></span> Modo Stomp & Dicionário CC</a>
+      <a href="#aba-global" class="nav-link"><span class="nav-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span> Global, LEDs & Bancos</a>
+      <a href="#calibracao-exp" class="nav-link"><span class="nav-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12A10 10 0 0 0 12 2v10z"/><path d="M12 12 2.1 7.1A10 10 0 0 0 12 22v-10z"/></svg></span> Calibração de Expressão</a>
+      <a href="#sistema-conexoes" class="nav-link"><span class="nav-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h.01"/><path d="M2 8.82a15 15 0 0 1 20 0"/><path d="M5 12.859a10 10 0 0 1 14 0"/><path d="M8.5 16.429a5 5 0 0 1 7 0"/></svg></span> Sistema: Conexões</a>
+      <a href="#sistema-tela" class="nav-link"><span class="nav-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></span> Sistema: Estilos & Tela</a>
+      <a href="#modo-custom" class="nav-link"><span class="nav-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg></span> Modo Custom & Wallpapers</a>
+
+      <div class="nav-group-title">Emergência & Palco</div>
+      <a href="#menu-tft" class="nav-link"><span class="nav-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="15" x="2" y="4" rx="2"/><polyline points="8 9 10 11 8 13"/><line x1="12" y1="13" x2="16" y2="13"/></svg></span> Menu On-Device (No Pedal)</a>
+      <a href="#atalhos-boot" class="nav-link"><span class="nav-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-4.05 11a22.4 22.4 0 0 1-3.95 2z"/></svg></span> Atalhos de Inicialização</a>
+      <a href="#faq" class="nav-link"><span class="nav-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span> Dúvidas Frequentes</a>
+    </nav>
+
+    <div class="sidebar-footer">
+      Guerrilha Controllers © 2026<br>
+      Linha MX & PRO Series
+    </div>
+  </aside>
+
+  <!-- Estrutura Principal -->
+  <div class="main-wrapper">
+    <!-- Topo -->
+    <header class="top-bar">
+      <button class="mobile-menu-btn" id="menuToggle" aria-label="Abrir Menu">☰ Menu</button>
+      <div style="font-weight: 700; font-size: 0.95rem; color: #fff;">
+        Manual Oficial & Guia Visual de Operação
+      </div>
+      <div class="top-actions">
+        <button class="btn-action" onclick="window.print()">
+          <span>🖨️</span> Imprimir / PDF
+        </button>
+      </div>
+    </header>
+
+    <main class="content-container">
+
+      <!-- Hero Banner -->
+      <section class="hero-banner" id="inicio">
+        <div class="hero-tag">Manual Oficial do Usuário</div>
+        <h1 class="hero-title">Guerrilha MX & PRO Series</h1>
+        <p class="hero-desc">
+          O controlador MIDI definitivo para guitarristas, baixistas e produtores. Desenvolvido para oferecer máxima velocidade no palco e total facilidade de programação através de qualquer celular, tablet ou computador.
+        </p>
+      </section>
+
+      <!-- 1. Hardware -->
+      <section class="section-block" id="hardware">
+        <div class="section-header">
+          <div class="section-badge-num">01</div>
+          <h2 class="section-title">Modelos da Linha Guerrilha MX</h2>
+        </div>
+        <p class="section-intro">
+          Controladores construídos em metal dobrado com pintura epóxi fosca industrial de altíssima durabilidade, footswitches silenciosos de curso macio e anéis de LED RGB em volta de cada chave.
+        </p>
+
+        <div class="hardware-grid">
+          <!-- MX-4 -->
+          <div class="hardware-card">
+            <div class="hardware-img-wrap" onclick="openLightbox('Imagens do aplicativo/MX 4.png')">
+              <img src="Imagens do aplicativo/MX 4.png" alt="Guerrilha MX-4 Black">
+            </div>
+            <div class="hardware-body">
+              <div class="hardware-title">
+                MX-4 Black
+                <span class="hardware-tag">Ultra Compacto</span>
+              </div>
+              <p class="hardware-desc">
+                Ideal para pedalboards reduzidos e fly-rigs. 4 Footswitches multifunção, controle de bancos A–I, display colorido e suporte a pedal de expressão.
+              </p>
+            </div>
+          </div>
+
+          <!-- MX-6 -->
+          <div class="hardware-card">
+            <div class="hardware-img-wrap" onclick="openLightbox('Imagens do aplicativo/MX 6.png')">
+              <img src="Imagens do aplicativo/MX 6.png" alt="Guerrilha MX-6 Black">
+            </div>
+            <div class="hardware-body">
+              <div class="hardware-title">
+                MX-6 Black
+                <span class="hardware-tag">Equilíbrio Perfeito</span>
+              </div>
+              <p class="hardware-desc">
+                6 Footswitches na medida certa para alternar entre 5 presets diretos mais botão de modo, ou operar 6 pedais Stomp virtuais individuais no pé.
+              </p>
+            </div>
+          </div>
+
+          <!-- MX-8 -->
+          <div class="hardware-card">
+            <div class="hardware-img-wrap" onclick="openLightbox('Imagens do aplicativo/MX 8.png')">
+              <img src="Imagens do aplicativo/MX 8.png" alt="Guerrilha MX-8 Black">
+            </div>
+            <div class="hardware-body">
+              <div class="hardware-title">
+                MX-8 Black
+                <span class="hardware-tag">Comando Total</span>
+              </div>
+              <p class="hardware-desc">
+                O topo de linha. 8 Footswitches no formato clássico de pedalboard, display panorâmico ST7796 de alta definição, layouts em 2 linhas e suporte a fotos de fundo em alta resolução.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      
+      <!-- 2. Conexões Físicas Interativas -->
+      <section class="section-block" id="conexoes">
+        <div class="section-header">
+          <div class="section-badge-num">02</div>
+          <h2 class="section-title">Painel de Conexões Físicas & Diagramas</h2>
+        </div>
+        <p class="section-intro">
+          Todas as portas foram projetadas com isolamento galvânico e filtros anti-ruído para integração direta em palcos profissionais e pedalboards complexos. Selecione o modelo do seu controlador para inspecionar os conectores e o diagrama técnico:
+        </p>
+
+        <!-- Seletor de Modelo de Hardware -->
+        <div class="hw-model-picker">
+          <div class="hw-picker-label">ESCOLHA O MODELO:</div>
+          <div class="hw-picker-buttons">
+            <button type="button" class="hw-picker-btn active" data-hw="mx8">
+              <span class="hw-p-badge">TOP DE LINHA</span>
+              <strong>GUERRILHA MX-8 / PRO</strong>
+              <small>8 FS · ST7796 480×320</small>
+            </button>
+            <button type="button" class="hw-picker-btn" data-hw="mx6">
+              <span class="hw-p-badge">EQUILÍBRIO</span>
+              <strong>GUERRILHA MX-6</strong>
+              <small>6 FS · ST7789 240×240</small>
+            </button>
+            <button type="button" class="hw-picker-btn" data-hw="mx4">
+              <span class="hw-p-badge">COMPACTO</span>
+              <strong>GUERRILHA MX-4</strong>
+              <small>4 FS · ST7789 240×240</small>
+            </button>
+          </div>
+        </div>
+
+        <!-- Palco do Diagrama SVG -->
+        <div class="hw-diagram-container">
+          <div class="hw-diagram-header">
+            <div class="hw-dh-left">
+              <span class="hw-dh-title" id="hwDiagramTitle">GUERRILHA MX-8 / PRO — DIAGRAMA TÉCNICO</span>
+              <span class="hw-dh-status"><span class="hw-dot"></span>ESCALA VETORIAL DE ALTA PRECISÃO</span>
+            </div>
+            <div class="hw-view-switch">
+              <button type="button" class="hw-view-btn active" data-view="rear">VISTA TRASEIRA (CONECTORES)</button>
+              <button type="button" class="hw-view-btn" data-view="top">VISTA SUPERIOR (PEDALBOARD)</button>
+            </div>
+          </div>
+
+          <!-- Palco SVG Interativo -->
+          <div class="hw-svg-viewport" id="hwSvgViewport">
+            <!-- Renderizado dinamicamente via JS -->
+          </div>
+
+          <div class="hw-diagram-footer">
+            <span>Toque ou passe o cursor sobre qualquer conector para destacar seus detalhes técnicos na tabela abaixo.</span>
+          </div>
+        </div>
+
+        <!-- Cards Técnicos O Que Liga Onde -->
+        <div class="hw-cards-grid">
+          <div class="hw-port-card" id="card-port-power">
+            <div class="hw-pc-head">
+              <span class="hw-pc-badge">1</span>
+              <div class="hw-pc-title-wrap">
+                <h4>9V DC — Alimentação Principal</h4>
+                <span class="hw-pc-type">P4 2.1mm · Centro Negativo (-)</span>
+              </div>
+            </div>
+            <p>Alimentação padrão de pedalboard 9V DC (admite 9V a 12V regulados). Consumo típico de <strong>350mA a 450mA</strong>. Possui filtro interno de choque LC contra ruído de fontes digitais chaveadas e proteção ativa contra inversão acidental de polaridade.</p>
+            <div class="hw-pc-meta">
+              <span><strong>Consumo:</strong> 9V DC / ~400mA</span>
+              <span><strong>Compatibilidade:</strong> Fontes isoladas padrão Boss</span>
+            </div>
+          </div>
+
+          <div class="hw-port-card" id="card-port-exp">
+            <div class="hw-pc-head">
+              <span class="hw-pc-badge">2</span>
+              <div class="hw-pc-title-wrap">
+                <h4>EXP / DUAL SWITCH — Expansão Física</h4>
+                <span class="hw-pc-type">Jack 1/4" P10 Estéreo (TRS)</span>
+              </div>
+            </div>
+            <p>Porta multifunção inteligente configurável em <strong>Sistema › Conexões › Modo EXP</strong>:
+              <br>• <strong>Modo Expressão:</strong> Conecta pedal de expressão passivo (potenciômetro linear de 10kΩ a 50kΩ) para Wah, Volume, Whammy ou Pitch.
+              <br>• <strong>Modo Dual Footswitch:</strong> Conecta um pedal duplo externo (TRS) adicionando FS externas para troca de bancos ou disparos extras.
+              <br>• <strong>Modo One Footswitch:</strong> Chave simples mono (TS) de acionamento único.</p>
+            <div class="hw-pc-meta">
+              <span><strong>Impedância:</strong> 10kΩ ~ 50kΩ Linear</span>
+              <span><strong>Cabo:</strong> P10 TRS Estéreo blindado</span>
+            </div>
+          </div>
+
+          <div class="hw-port-card" id="card-port-midiout">
+            <div class="hw-pc-head">
+              <span class="hw-pc-badge">3</span>
+              <div class="hw-pc-title-wrap">
+                <h4>MIDI OUT — Saída MIDI Tradicional</h4>
+                <span class="hw-pc-type">Conector DIN 5 Pinos Padrão</span>
+              </div>
+            </div>
+            <p>Saída física MIDI tradicional com optoacoplador e isolamento galvânico. Conecta diretamente a pedaleiras de ponta (<strong>Line 6 Helix, Quad Cortex, Fractal FM3/FM9, Kemper Profiler, Boss GT-1000</strong>) e amplificadores valvulados com chaveamento MIDI de canal.</p>
+            <div class="hw-pc-meta">
+              <span><strong>Baud Rate:</strong> 31.250 bps</span>
+              <span><strong>Transmissão:</strong> PC, CC, SysEx, Clock, Tap</span>
+            </div>
+          </div>
+
+          <div class="hw-port-card" id="card-port-midiin">
+            <div class="hw-pc-head">
+              <span class="hw-pc-badge">4</span>
+              <div class="hw-pc-title-wrap">
+                <h4>MIDI IN / TRS — Entrada MIDI Auxiliar</h4>
+                <span class="hw-pc-type">Mini-jack 3.5mm P2 TRS (Tipo A)</span>
+              </div>
+            </div>
+            <p>Entrada MIDI minijack compacta no padrão industrial <strong>MIDI TRS Tipo A</strong>. Permite receber sincronização de MIDI Clock, comandos de pedais mestre externos ou encadear dois controladores Guerrilha no mesmo pedalboard.</p>
+            <div class="hw-pc-meta">
+              <span><strong>Padrão:</strong> MIDI Spec TRS Tipo A</span>
+              <span><strong>Cabo:</strong> P2 TRS para P2 ou adaptador DIN</span>
+            </div>
+          </div>
+
+          <div class="hw-port-card" id="card-port-usbhost">
+            <div class="hw-pc-head">
+              <span class="hw-pc-badge">5</span>
+              <div class="hw-pc-title-wrap">
+                <h4>USB HOST — Porta USB Host Plus</h4>
+                <span class="hw-pc-type">USB Type-C (Modo Master / OTG)</span>
+              </div>
+            </div>
+            <p>Porta mestre capaz de <strong>alimentar e controlar periféricos USB diretamente</strong>, sem necessidade de computador. Sincroniza bidirecionalmente a <strong>IK Multimedia ToneX One</strong> (carregando nomes, cores e parâmetros), teclados controladores MIDI USB ou interfaces de áudio compatíveis com USB Class Compliant.</p>
+            <div class="hw-pc-meta">
+              <span><strong>Fornecimento:</strong> 5V DC / até 500mA</span>
+              <span><strong>Protocolo:</strong> USB Host CDC / MIDI Host</span>
+            </div>
+          </div>
+
+          <div class="hw-port-card" id="card-port-usbdvc">
+            <div class="hw-pc-head">
+              <span class="hw-pc-badge">6</span>
+              <div class="hw-pc-title-wrap">
+                <h4>USB DVC — USB Device & Editor</h4>
+                <span class="hw-pc-type">USB Type-C (Modo Periférico / Slave)</span>
+              </div>
+            </div>
+            <p>Conexão ao Computador (Windows / macOS / Linux), tablet ou iPad. O Guerrilha é reconhecido nativamente pelo sistema sem necessidade de instalar drivers:
+              <br>• <strong>Interface MIDI USB:</strong> Dispara plugins como Neural DSP Archetype, Helix Native, Amplitube e DAWs (Reaper, Ableton, Logic).
+              <br>• <strong>USB Serial CDC:</strong> Comunicação de altíssima velocidade com o <strong>Editor Desktop</strong> e atualização de firmware via navegador.</p>
+            <div class="hw-pc-meta">
+              <span><strong>Driver:</strong> USB Class Compliant nativo</span>
+              <span><strong>Compatibilidade:</strong> PC, Mac, iPad, iPhone, Linux</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      
+      <!-- Seção: 1º Acesso & Configurar Modelo -->
+      <section class="section-block" id="primeiro-acesso">
+        <div class="section-header">
+          <div class="section-badge-num">03</div>
+          <h2 class="section-title">Guia do Primeiro Acesso & Configuração do Modelo</h2>
+        </div>
+        <p class="section-intro">
+          Parabéns pelo seu controlador <strong>Guerrilha MX Series</strong>! Este guia rápido de 3 etapas ensina como ligar, acessar o aplicativo interno e certificar-se de que o pedal está calibrado exatamente para a quantidade de footswitches físicos do seu modelo (MX-4, MX-6 ou MX-8).
+        </p>
+
+        <div class="step-wizard">
+          <!-- Passo 1 -->
+          <div class="step-card">
+            <div class="step-num-badge">1</div>
+            <div class="step-content">
+              <h3>⚡ Alimentação Elétrica Correta</h3>
+              <p>
+                Conecte a fonte de alimentação no conector traseiro <strong>9V DC</strong>. O Guerrilha MX utiliza o padrão mundial de pedais de guitarra:
+              </p>
+              <div class="step-sublist">
+                <div class="step-subitem">
+                  <strong>🔌 Tensão & Polaridade:</strong> Fonte <strong>9V DC regulada</strong> com plugue <strong>P4 (2.1mm) e Centro Negativo (-)</strong>.
+                </div>
+                <div class="step-subitem">
+                  <strong>🔋 Capacidade de Corrente:</strong> Consumo médio de <strong>350mA a 450mA</strong>. Recomendamos saídas isoladas de pelo menos <strong>500mA</strong> (fontes padrão Cioks, Voodoo Lab, Landscape, Boss).
+                </div>
+                <div class="step-subitem" style="border-left: 3px solid #f87171;">
+                  <strong style="color:#f87171;">⚠️ ATENÇÃO:</strong> Nunca use fontes de corrente alternada (AC 9V/12V) ou polaridade invertida (centro positivo), pois isso danificará os circuitos de proteção do pedal.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Passo 2 -->
+          <div class="step-card">
+            <div class="step-num-badge">2</div>
+            <div class="step-content">
+              <h3>📱 Escolha Como Acessar o Aplicativo</h3>
+              <p>
+                O Guerrilha é autossuficiente: todo o aplicativo de controle reside dentro da memória do próprio pedal. Não é preciso baixar nada da App Store ou Play Store!
+              </p>
+              <div class="feature-grid" style="margin-top:8px;">
+                <div class="feature-item" style="border-color:#374158;">
+                  <h4>📶 Opção A: Celular / Tablet (Wi-Fi SoftAP)</h4>
+                  <p>
+                    1. Ligue o pedal e aguarde 3 segundos.<br>
+                    2. No Wi-Fi do celular, conecte na rede: <strong>G_APP</strong>.<br>
+                    3. Digite a senha: <code style="color:#f87171;">12345678</code>.<br>
+                    4. Abra o Chrome ou Safari e digite: <strong style="color:var(--accent-cyan);">http://192.168.4.1</strong>.<br>
+                    <em>Nota: Se o celular avisar "Rede sem internet", selecione "Continuar Conectado".</em>
+                  </p>
+                </div>
+                <div class="feature-item" style="border-color: rgba(239, 68, 68, 0.5); background: rgba(239, 68, 68, 0.05);">
+                  <h4 style="color:#f87171;">💻 Opção B: Computador (Cabo USB & Modo Editor)</h4>
+                  <p>
+                    <strong>1. Conecte o Cabo:</strong> Plugue o cabo USB Type-C na porta traseira <strong>USB DVC</strong> e no seu PC/Mac.<br>
+                    <strong>2. Ligue Segurando a Chave 2 (FS 2):</strong> Com a fonte desconectada, <strong>segure o footswitch FS 2</strong> e conecte o plugue de 9V. Mantenha pressionado até os anéis de LED acenderem em <strong>vermelho fixo</strong>. O pedal entrará diretamente no <em>Modo Editor USB Device</em>.<br>
+                    <strong>3. Abra o Editor / Atualizador Web:</strong> No navegador <strong>Google Chrome</strong> ou <strong>Microsoft Edge</strong>, acesse o link oficial:<br>
+                    <a href="https://guerrilhapedais.github.io/guerrilhapedais-atualizador/index.html" target="_blank" rel="noopener" style="color:var(--accent-cyan); font-weight:700; word-break:break-all; text-decoration:underline;">https://guerrilhapedais.github.io/guerrilhapedais-atualizador/index.html</a><br>
+                    <span style="font-size:0.82rem; color:var(--text-muted);">(Nesta página você tem tanto o <strong>Editor Completo</strong> quanto o <strong>Atualizador de Firmware Web</strong> integrados).</span><br>
+                    <strong>4. Clique em LIGAR USB:</strong> No canto superior direito da tela do editor, clique em <strong>LIGAR USB</strong> e selecione o controlador para conectar instantaneamente!
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Passo 3 Crucial -->
+          <div class="step-card crucial-step">
+            <div class="step-num-badge">3</div>
+            <div class="step-content">
+              <h3>🎛️ Configurando o Modelo do Hardware (Com 1 Clique na Tela Inicial!)</h3>
+              <p>
+                A linha Guerrilha MX compartilha uma mesma arquitetura de firmware de ultra-velocidade para os 3 modelos de controlador. Para que o pedal e a interface gráfica apresentem o número exato de botões físicos do seu aparelho (4, 6 ou 8 footswitches), a seleção é feita <strong>diretamente na tela inicial PRESET</strong> com 1 clique:
+              </p>
+              
+              <!-- Card com imagem do seletor -->
+              <div style="background:#090b10; border:1px solid #222a3d; border-radius:10px; padding:16px; margin:10px 0; text-align:center;">
+                <div style="font-size:0.75rem; font-weight:800; letter-spacing:0.1em; color:var(--text-dim); text-transform:uppercase; margin-bottom:10px;">
+                  SELETOR RÁPIDO DE MODELO (NA BARRA SUPERIOR DA TELA PRESET)
+                </div>
+                <div style="cursor:zoom-in; display:inline-block;" onclick="openLightbox('Imagens do aplicativo/seletor-modelo.png')">
+                  <img src="Imagens do aplicativo/seletor-modelo.png" alt="Seletor de Modelo MX-4 / MX-6 / MX-8" style="max-width:280px; height:auto; border-radius:30px; box-shadow:0 0 20px rgba(239, 68, 68, 0.25);">
+                </div>
+                <div style="font-size:0.75rem; color:#64748b; margin-top:8px;">🔍 Clique na imagem para ampliar</div>
+              </div>
+
+              <div class="step-sublist">
+                <div class="step-subitem">
+                  <strong>1. Localize o Seletor no Topo:</strong> Na tela principal (aba <strong>PRESET</strong>), localize a barra de seleção com os botões <strong>MX-4</strong>, <strong>MX-6</strong> e <strong>MX-8</strong>.
+                </div>
+                <div class="step-subitem">
+                  <strong>2. Clique no Modelo do Seu Controlador:</strong>
+                  <br>• Se você possui o <strong>Guerrilha MX-4</strong>: Clique em <strong style="color:#f87171;">MX-4</strong> (4 Footswitches).
+                  <br>• Se você possui o <strong>Guerrilha MX-6</strong>: Clique em <strong style="color:#f87171;">MX-6</strong> (6 Footswitches).
+                  <br>• Se você possui o <strong>Guerrilha MX-8 / PRO</strong>: Clique em <strong style="color:#f87171;">MX-8</strong> (8 Footswitches).
+                </div>
+                <div class="step-subitem">
+                  <strong>3. Adaptação Instantânea:</strong> Ao clicar, o botão selecionado acende em vermelho e tanto a interface do aplicativo quanto o display TFT do pedal se reorganizam no mesmo instante para a quantidade de footswitches físicos da sua placa!
+                </div>
+              </div>
+
+              <div class="callout tip" style="margin-top:12px; margin-bottom:0;">
+                <div class="callout-icon">💡</div>
+                <div class="callout-body">
+                  <h5>Também Disponível na Tela do Pedal (Sem Wi-Fi):</h5>
+                  <p>Você também pode conferir e ajustar o modelo diretamente no visor do pedal pelo <strong>Menu On-Device (TFT)</strong>: segure <strong>FS1 + FS4</strong> por 1,5 segundo para abrir o menu no display e navegue até <strong>Sistema › Tela</strong>.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      
+      <!-- Seção: O que é MIDI & Como Montar Mensagens -->
+      <section class="section-block" id="fundamentos-midi">
+        <div class="section-header">
+          <div class="section-badge-num">04</div>
+          <h2 class="section-title">O Que É MIDI & Como Montar Mensagens</h2>
+        </div>
+        <p class="section-intro">
+          Se você nunca usou MIDI antes, não se preocupe: o protocolo MIDI é muito mais simples do que parece. Entenda a lógica universal para controlar qualquer pedaleira, amplificador valvulado, plugin ou DAW do mercado.
+        </p>
+
+        <div class="callout info">
+          <div class="callout-icon">ℹ️</div>
+          <div class="callout-body">
+            <h5>O Conceito Fundamental: MIDI Não Transmite Áudio!</h5>
+            <p>
+              O cabo MIDI ou sinal USB não carrega o som da sua guitarra. Ele transmite <strong>instruções digitais de controle</strong>. Quando você pisa em um botão do Guerrilha, ele envia uma mensagem curta dizendo: <em>"Aparelho do Canal 1, troque imediatamente para o Preset 5 e ligue o Delay!"</em>. O aparelho receptor lê essa instrução e executa a mudança no mesmo milissegundo.
+            </p>
+          </div>
+        </div>
+
+        <!-- Pipeline Visual da Mensagem MIDI -->
+        <div class="midi-pipeline-box">
+          <div class="midi-pipeline-title">ANATOMIA UNIVERSAL DE UMA MENSAGEM MIDI GUERRILHA</div>
+          <div class="midi-pipeline-grid">
+            <div class="midi-pipe-node highlight-cyan">
+              <span class="node-label">1. DESTINATÁRIO</span>
+              <span class="node-val">CANAL 1</span>
+              <span class="node-desc">Canais 1 a 16 independentes</span>
+            </div>
+            <div class="midi-pipe-node highlight-red">
+              <span class="node-label">2. TIPO DE AÇÃO</span>
+              <span class="node-val">PC ou CC</span>
+              <span class="node-desc">Program Change ou Control Change</span>
+            </div>
+            <div class="midi-pipe-node highlight-orange">
+              <span class="node-label">3. PARÂMETRO / VALOR</span>
+              <span class="node-val">0 a 127</span>
+              <span class="node-desc">Nº do Preset ou Intensidade</span>
+            </div>
+            <div class="midi-pipe-node highlight-green">
+              <span class="node-label">4. ROTA DE SAÍDA</span>
+              <span class="node-val">MIDI / USB / BT</span>
+              <span class="node-desc">Físico DIN, USB PC ou Sem Fio</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Explicação dos 3 Pilares -->
+        <div class="feature-grid">
+          <div class="feature-item">
+            <h4>📻 1. O Canal MIDI (1 a 16)</h4>
+            <p>
+              Pense nos canais como frequências de rádio ou caixas de correio. O protocolo MIDI possui 16 canais isolados. Se a sua pedaleira <strong>Helix</strong> está configurada para ouvir no <strong>Canal 1</strong> e o seu amplificador está no <strong>Canal 2</strong>, o Guerrilha pode enviar comandos que mudam a pedaleira sem alterar o amplificador, ou comandar ambos simultaneamente com um único clique!
+            </p>
+          </div>
+
+          <div class="feature-item">
+            <h4>🎯 2. Program Change (PC) — Troca de Sons</h4>
+            <p>
+              O <strong>PC</strong> é a mensagem usada para <strong>trocar de preset, patch ou cena inteira</strong>. Ele não tem estado de "ligado" ou "desligado": apenas diz o número do som desejado de 0 a 127.
+              <br>• Exemplo: Enviar <code>PC #12</code> faz sua pedaleira pular imediatamente para o Rig/Preset 12.
+            </p>
+          </div>
+
+          <div class="feature-item">
+            <h4>🎛️ 3. Control Change (CC) — Pedais & Efeitos</h4>
+            <p>
+              O <strong>CC</strong> controla blocos de efeitos individuais, botões e controles contínuos. É composto por:
+              <br>• <strong>Número do CC (CC#):</strong> Qual efeito controlar (ex: CC 15 = Delay).
+              <br>• <strong>Valor (0 a 127):</strong> <code>127</code> significa LIGAR (On/Max) e <code>0</code> significa DESLIGAR (Off/Bypass).
+              <br>• Para pedal de Expressão (Wah/Volume), o valor varia suavemente de 0 a 127 conforme o pedal se move.
+            </p>
+          </div>
+
+          <div class="feature-item">
+            <h4>🚦 4. Rotas de Saída (Output Routing)</h4>
+            <p>
+              Você escolhe por onde cada comando deve sair:
+              <br>• <strong>USB:</strong> Envia direto para plugins de guitarra (Neural DSP, Helix Native) e DAWs no PC/Mac.
+              <br>• <strong>MIDI:</strong> Envia pela porta física traseira (DIN 5 pinos ou TRS 3.5mm).
+              <br>• <strong>BT:</strong> Envia sem fio via Bluetooth BLE.
+              <br>• <strong>USB + MIDI:</strong> Envia ao mesmo tempo para a pedaleira física no chão e para o computador!
+            </p>
+          </div>
+        </div>
+
+        <!-- Tabela Comparativa Resumo -->
+        <table class="custom-table" style="margin-top:24px;">
+          <thead>
+            <tr>
+              <th>Tipo de Mensagem</th>
+              <th>Para que Serve?</th>
+              <th>Exemplo de Uso</th>
+              <th>Valores Típicos</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong style="color:#f87171;">PC (Program Change)</strong></td>
+              <td>Trocar de Preset / Som completo</td>
+              <td>Pisar no botão e chamar o preset <em>"03 Lead Solo"</em></td>
+              <td>Número do Preset (0 a 127)</td>
+            </tr>
+            <tr>
+              <td><strong style="color:#34d399;">CC (Control Change)</strong></td>
+              <td>Ligar/desligar efeito individual (Stomp)</td>
+              <td>Ligar e desligar o Overdrive dentro do preset</td>
+              <td>On: 127 · Off: 0</td>
+            </tr>
+            <tr>
+              <td><strong style="color:#38bdf8;">CC com Expressão</strong></td>
+              <td>Controle contínuo de Wah, Pitch ou Volume</td>
+              <td>Mover o pedal de expressão no chão</td>
+              <td>Faixa contínua de 0 (calcanhar) a 127 (ponta)</td>
+            </tr>
+            <tr>
+              <td><strong style="color:#fb923c;">Tap Tempo / Clock</strong></td>
+              <td>Sincronizar tempo de atraso de Delay e Reverb</td>
+              <td>Pisar no ritmo da música para ajustar os BPMs</td>
+              <td>Pulso CC ou MIDI Clock em tempo real</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+
+      <!-- 3. Como Conectar -->
+      <section class="section-block" id="conectar-app">
+        <div class="section-header">
+          <div class="section-badge-num">05</div>
+          <h2 class="section-title">Como Acessar o Aplicativo de Edição</h2>
+        </div>
+        <p class="section-intro">
+          O aplicativo do Guerrilha roda 100% embarcado na memória flash do próprio pedal. Não é necessário instalar nenhum programa ou app externo!
+        </p>
+
+        <div class="feature-grid">
+          <div class="feature-item">
+            <h4>📱 No Celular ou Tablet (via Wi-Fi)</h4>
+            <p>
+              1. Ligue o pedal Guerrilha.<br>
+              2. Vá nos ajustes de Wi-Fi do seu celular e conecte-se na rede <strong>G_APP</strong>.<br>
+              3. Digite a senha padrão: <code style="color:#f87171">12345678</code>.<br>
+              4. Abra o navegador (Google Chrome, Safari ou Edge) e acesse:<br>
+              <strong style="color:var(--accent-cyan); font-family:var(--font-mono);">http://192.168.4.1</strong>
+            </p>
+          </div>
+
+          <div class="feature-item" style="border-color: rgba(239, 68, 68, 0.5); background: rgba(239, 68, 68, 0.05);">
+            <h4 style="color:#f87171;">💻 No Computador (via Cabo USB & Modo Editor)</h4>
+            <p>
+              <strong>1. Conexão Física:</strong> Conecte o cabo USB Type-C na porta <strong>USB DVC</strong> do pedal e no computador.<br>
+              <strong>2. Inicie no Modo Editor (Chave 2):</strong> Ligue o pedal <strong>segurando o footswitch FS 2</strong> até os LEDs acenderem em <strong>vermelho</strong>. Isso força a comunicação serial USB direta CDC de altíssima velocidade.<br>
+              <strong>3. Acesse o Editor / Atualizador Online:</strong> Abra o Google Chrome ou Edge e acesse o portal:<br>
+              <a href="https://guerrilhapedais.github.io/guerrilhapedais-atualizador/index.html" target="_blank" rel="noopener" style="color:var(--accent-cyan); font-weight:700; word-break:break-all; text-decoration:underline;">https://guerrilhapedais.github.io/guerrilhapedais-atualizador/index.html</a><br>
+              <span style="font-size:0.82rem; color:var(--text-muted);">(Contém tanto o <strong>Editor de Parâmetros</strong> quanto o <strong>Atualizador de Firmware</strong> oficial).</span><br>
+              <strong>4. Conectar:</strong> Clique no botão <strong>LIGAR USB</strong> no canto superior direito e autorize a porta serial para programar em tempo real com latência zero!
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. Bancos, Preset e Live -->
+      <section class="section-block" id="aba-preset">
+        <div class="section-header">
+          <div class="section-badge-num">06</div>
+          <h2 class="section-title">Aba PRESET — Edição de Sons e Botões</h2>
+        </div>
+        <p class="section-intro">
+          Na aba principal <strong>PRESET</strong> você configura exatamente o que acontece quando você pisa em cada footswitch.
+        </p>
+
+        <div class="ui-showcase-card">
+          <div class="ui-img-container" onclick="openLightbox('Imagens do aplicativo/Tela inicial-preset.png')">
+            <img src="Imagens do aplicativo/Tela inicial-preset.png" alt="Tela Inicial do Modo Preset">
+            <div class="ui-zoom-hint">🔍 Clique para ampliar</div>
+          </div>
+          <div class="ui-info-content">
+            <div class="ui-card-title">Visão Geral da Aba PRESET</div>
+            <p class="ui-card-desc">
+              À esquerda, selecione qual footswitch você quer editar (FS1 a FS8). Ao centro, digite o nome do preset clicando no ícone do lápis (ex: <em>"CLEAN FENDER"</em>), escolha o Modo da chave e adicione os comandos MIDI.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. Bancos, Preset e Live -->
+      <section class="section-block" id="bancos-modos">
+        <div class="section-header">
+          <div class="section-badge-num">07</div>
+          <h2 class="section-title">Bancos, Modo Preset e Modo Live (Stomp)</h2>
+        </div>
+        <p class="section-intro">
+          Entenda como funciona a navegação rápida e a alternância entre os modos principais do controlador.
+        </p>
+
+        <div class="ui-showcase-card crucial">
+          <div class="ui-img-container compact" onclick="openLightbox('Imagens do aplicativo/Botão-banco.png')">
+            <img src="Imagens do aplicativo/Botão-banco.png" alt="Botão Seletor de Banco e Indicador Live">
+            <div class="ui-zoom-hint">🔍 Clique para ampliar</div>
+          </div>
+          <div class="ui-info-content">
+            <span class="crucial-badge">Parte Crucial da Interface</span>
+            <div class="ui-card-title">O Botão de Banco & Indicador de Modo</div>
+            <p class="ui-card-desc">
+              No canto superior esquerdo da tela, o bloco do Banco mostra a letra do banco atual (de <strong>A</strong> até <strong>I</strong>) e as setas laterais para avançar ou recuar.
+            </p>
+            <div class="feature-grid">
+              <div class="feature-item">
+                <h4>🔄 Indicador ● LIVE / PRESET</h4>
+                <p>
+                  A pequena luz no canto do botão indica em qual camada o pedal está operando. Quando azul (<strong>● LIVE</strong>), o pedal está no modo de acionamento direto de efeitos (Stomp). No modo Preset, ele chama sonoridades completas.
+                </p>
+              </div>
+              <div class="feature-item">
+                <h4>🎯 9 Bancos com Acesso Rápido</h4>
+                <p>
+                  Você pode trocar de banco clicando nas setas do aplicativo ou programar uma pisada de pé (como segurar uma chave) para subir e descer de banco direto no chão.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-block" id="primeiro-comando">
+        <div class="section-header">
+          <div class="section-badge-num">08</div>
+          <h2 class="section-title">Tutorial Prático: Como Criar Seu 1º Comando</h2>
+        </div>
+        <p class="section-intro">
+          Chega de teoria! Vamos programar juntos os dois cenários mais comuns do mundo real: trocar de preset com 1 pisada e criar um botão de acionamento de efeito liga/desliga com retorno luminoso no anel de LED.
+        </p>
+
+        <div class="scenario-grid">
+          <!-- Cenário 1: Troca de Som -->
+          <div class="scenario-card" style="border-color: rgba(239, 68, 68, 0.4);">
+            <div class="scenario-header">
+              <span class="scenario-badge pc">Cenário Prático 1</span>
+              <h4>Chamar o Som de "SOLO LEAD" (Program Change)</h4>
+            </div>
+            <p style="font-size:0.88rem; color:var(--text-muted);">
+              Queremos que ao pisar no <strong>FS 1</strong>, a pedaleira pule direto para o preset de solo e o anel de LED fique vermelho vivo.
+            </p>
+            <table class="scenario-table">
+              <tr>
+                <td>1. Footswitch:</td>
+                <td>FS 1</td>
+              </tr>
+              <tr>
+                <td>2. Nome do Botão:</td>
+                <td>SOLO LEAD</td>
+              </tr>
+              <tr>
+                <td>3. Disparo:</td>
+                <td>Click (Toque Curto)</td>
+              </tr>
+              <tr>
+                <td>4. Tipo de Comando:</td>
+                <td>PC (Program Change)</td>
+              </tr>
+              <tr>
+                <td>5. Canal MIDI:</td>
+                <td>Canal 1</td>
+              </tr>
+              <tr>
+                <td>6. Número PC#:</td>
+                <td>3 (preset desejado)</td>
+              </tr>
+              <tr>
+                <td>7. Porta de Saída:</td>
+                <td>MIDI (ou USB+MIDI)</td>
+              </tr>
+              <tr>
+                <td>8. Cor do Anel:</td>
+                <td>ON: Vermelho · OFF: Preto</td>
+              </tr>
+            </table>
+            <div class="step-subitem" style="background:#111522; font-size:0.84rem;">
+              <strong>Como Fazer no App:</strong> Na aba <strong>PRESET</strong>, clique no FS 1. Em <em>Disparo no Toque (Click)</em> clique em <strong>+ Adicionar Comando</strong>. Preencha os campos acima, clique em OK e em seguida clique no botão verde <strong>Gravar Preset</strong>. Pronto!
+            </div>
+          </div>
+
+          <!-- Cenário 2: Liga/Desliga de Efeito -->
+          <div class="scenario-card" style="border-color: rgba(16, 185, 129, 0.4);">
+            <div class="scenario-header">
+              <span class="scenario-badge cc">Cenário Prático 2</span>
+              <h4>Ligar / Desligar o DELAY (Control Change)</h4>
+            </div>
+            <p style="font-size:0.88rem; color:var(--text-muted);">
+              Queremos que o <strong>FS 2</strong> funcione como um pedal de stomp tradicional: 1ª pisada liga o Delay (LED verde), 2ª pisada desliga (LED azul suave).
+            </p>
+            <table class="scenario-table">
+              <tr>
+                <td>1. Footswitch:</td>
+                <td>FS 2</td>
+              </tr>
+              <tr>
+                <td>2. Nome do Botão:</td>
+                <td>DELAY FX</td>
+              </tr>
+              <tr>
+                <td>3. Modo da Chave:</td>
+                <td>Normal (Toggle / Alternância)</td>
+              </tr>
+              <tr>
+                <td>4. Tipo de Comando:</td>
+                <td>CC (Control Change)</td>
+              </tr>
+              <tr>
+                <td>5. Canal MIDI:</td>
+                <td>Canal 1</td>
+              </tr>
+              <tr>
+                <td>6. Número CC#:</td>
+                <td>15 (CC de bypass do Delay)</td>
+              </tr>
+              <tr>
+                <td>7. Valores:</td>
+                <td>Valor ON: 127 · Valor OFF: 0</td>
+              </tr>
+              <tr>
+                <td>8. Cor do Anel:</td>
+                <td>ON: Verde · OFF: Azul Escuro</td>
+              </tr>
+            </table>
+            <div class="step-subitem" style="background:#111522; font-size:0.84rem;">
+              <strong>Como Fazer no App:</strong> No FS 2, adicione o comando CC com valor On 127 e Off 0. Na paleta de LEDs, escolha Verde para o estado ON e Azul para o estado OFF. Clique em <strong>Gravar Preset</strong>. Agora cada pisada alterna o efeito com retorno visual impecável!
+            </div>
+          </div>
+        </div>
+
+        <!-- Dica de ouro: Função dupla com Hold -->
+        <div class="callout tip" style="margin-top:20px;">
+          <div class="callout-icon">🔥</div>
+          <div class="callout-body">
+            <h5>O Pulo do Gato: Dupla Função no Mesmo Footswitch com o Toque Longo (Hold)</h5>
+            <p>
+              No Guerrilha você não precisa gastar um botão inteiro só para o Afinador (Tuner) ou Tap Tempo!
+              No mesmo botão (ex: FS 1), mantenha o toque rápido (Click) trocando o seu preset e adicione um segundo comando na seção <strong>Disparo ao Segurar (Hold)</strong> com o CC de afinador da sua pedaleira. Assim, um toque curto toca o som de Solo, mas segurar o pé por 500ms silencia o som e abre o Afinador na tela!
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. Configuração dos Anéis de LED -->
+      <section class="section-block" id="config-leds">
+        <div class="section-header">
+          <div class="section-badge-num">09</div>
+          <h2 class="section-title">Configuração dos Anéis de LED Inteligentes</h2>
+        </div>
+        <p class="section-intro">
+          Os LEDs do Guerrilha possuem iluminação individual RGB com indicação de status de ligado, desligado e segurado.
+        </p>
+
+        <div class="ui-showcase-card crucial">
+          <div class="ui-img-container compact" onclick="openLightbox('Imagens do aplicativo/Config-led.png')">
+            <img src="Imagens do aplicativo/Config-led.png" alt="Configuração de LED por Footswitch">
+            <div class="ui-zoom-hint">🔍 Clique para ampliar</div>
+          </div>
+          <div class="ui-info-content">
+            <span class="crucial-badge">Parte Crucial da Interface</span>
+            <div class="ui-card-title">Anel Gráfico de Iluminação (ON, OFF, HOLD)</div>
+            <p class="ui-card-desc">
+              O editor exibe um anel idêntico ao anel físico do pedal. Você pode escolher cores independentes para cada momento:
+            </p>
+            <div class="feature-grid">
+              <div class="feature-item">
+                <h4>🟢 Estado ON (Ativo)</h4>
+                <p>A cor que o anel acende quando o preset estiver selecionado e tocando no momento (ex: Laranja, Verde, Azul, Ciano).</p>
+              </div>
+              <div class="feature-item">
+                <h4>⚪ Estado OFF (Inativo)</h4>
+                <p>A cor suave quando a chave não está ativa. Pode ser uma cor fraca ou preto total para não poluir visualmente.</p>
+              </div>
+              <div class="feature-item">
+                <h4>🟠 HOLD ON / HOLD OFF</h4>
+                <p>Quando você programa uma segunda função ao segurar o pé (Hold), o anel pode mudar de cor para avisar que a função segurada está ativa!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7. Os 6 Modos de Footswitch -->
+      <section class="section-block" id="modos-footswitch">
+        <div class="section-header">
+          <div class="section-badge-num">10</div>
+          <h2 class="section-title">Os 6 Modos de Operação dos Footswitches</h2>
+        </div>
+        <p class="section-intro">
+          Cada botão pode ter uma inteligência diferente de acordo com a sua necessidade musical.
+        </p>
+
+        <div class="ui-showcase-card crucial">
+          <div class="ui-img-container compact" onclick="openLightbox('Imagens do aplicativo/popup modos.png')">
+            <img src="Imagens do aplicativo/popup modos.png" alt="Popup de Seleção de Modos">
+            <div class="ui-zoom-hint">🔍 Clique para ampliar</div>
+          </div>
+          <div class="ui-info-content">
+            <span class="crucial-badge">Popup Crucial da Interface</span>
+            <div class="ui-card-title">Menu de Escolha de Modo</div>
+            <p class="ui-card-desc">
+              Ao clicar no campo <strong>MODO</strong> no topo da footswitch, este modal se abre permitindo escolher entre os 6 comportamentos disponíveis:
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 8. Modo Normal -->
+      <section class="section-block" id="modo-normal">
+        <div class="section-header">
+          <div class="section-badge-num">11</div>
+          <h2 class="section-title">1. Modo Normal — Comandos Click & Hold</h2>
+        </div>
+        <p class="section-intro">
+          O modo clássico mais versátil. Cada footswitch pode enviar múltiplos comandos simultâneos no toque rápido (Click) e comandos ao segurar o pé (Hold).
+        </p>
+
+        <div class="ui-showcase-card crucial">
+          <div class="ui-img-container compact" onclick="openLightbox('Imagens do aplicativo/popup-tipo-modonormal.png')">
+            <img src="Imagens do aplicativo/popup-tipo-modonormal.png" alt="Tipos de Comando no Modo Normal">
+            <div class="ui-zoom-hint">🔍 Clique para ampliar</div>
+          </div>
+          <div class="ui-info-content">
+            <span class="crucial-badge">Lista de Comandos Disponíveis</span>
+            <div class="ui-card-title">Tipos de Comando MIDI Suportados</div>
+            <table class="custom-table">
+              <thead>
+                <tr>
+                  <th>Tipo</th>
+                  <th>Como Funciona</th>
+                  <th>Aplicação Prática</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>CC (Control Change)</strong></td>
+                  <td>Envia número de CC# (0–127) e Valor (0–127).</td>
+                  <td>Ligar/desligar blocos de efeito, acionar afinador, mudar canais.</td>
+                </tr>
+                <tr>
+                  <td><strong>PC (Program Change)</strong></td>
+                  <td>Envia número de Preset (0–127).</td>
+                  <td>Trocar de patch/preset na pedaleira ou no plugin.</td>
+                </tr>
+                <tr>
+                  <td><strong>CC Up / CC Down</strong></td>
+                  <td>Aumenta ou diminui o valor de um CC a cada pisada.</td>
+                  <td>Subir ou descer ganho, volume ou mix do reverb em degraus.</td>
+                </tr>
+                <tr>
+                  <td><strong>PC Up / PC Down</strong></td>
+                  <td>Avança ou recua os presets em sequência.</td>
+                  <td>Navegar pela setlist de canções sequencialmente.</td>
+                </tr>
+                <tr>
+                  <td><strong>SysEx</strong></td>
+                  <td>Mensagem hexadecimal livre (F0 ... F7).</td>
+                  <td>Controle exclusivo de pedaleiras e racks vintage.</td>
+                </tr>
+                <tr>
+                  <td><strong>FS Sync</strong></td>
+                  <td>Comando interno de sincronização.</td>
+                  <td>Faz uma footswitch alterar o estado de outra chave no pedal.</td>
+                </tr>
+                <tr>
+                  <td><strong>Banco+ / Banco− (interno)</strong></td>
+                  <td>Comando interno de navegação.</td>
+                  <td>Muda para o próximo banco ou banco anterior sem enviar MIDI.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- 9. Modo Momentâneo -->
+      <section class="section-block" id="modo-momentaneo">
+        <div class="section-header">
+          <div class="section-badge-num">12</div>
+          <h2 class="section-title">2. Modo Momentâneo — Aperta vs. Solta</h2>
+        </div>
+        <p class="section-intro">
+          O efeito só permanece ativo enquanto você estiver pressionando o botão com o pé. Ao tirar o pé, ele desliga imediatamente.
+        </p>
+
+        <div class="ui-showcase-card crucial">
+          <div class="ui-img-container compact" onclick="openLightbox('Imagens do aplicativo/modo-momentaneo.png')">
+            <img src="Imagens do aplicativo/modo-momentaneo.png" alt="Configuração do Modo Momentâneo">
+            <div class="ui-zoom-hint">🔍 Clique para ampliar</div>
+          </div>
+          <div class="ui-info-content">
+            <span class="crucial-badge">Parte Crucial da Interface</span>
+            <div class="ui-card-title">Dois Momentos: Aperta e Solta</div>
+            <p class="ui-card-desc">
+              Observe na imagem que a lista se divide claramente entre dois comandos:<br>
+              • <strong>Comando 1 (Momento: Aperta):</strong> Dispara quando o pé pisa na chave (ex: CC Valor 127 = Liga Efeito).<br>
+              • <strong>Comando 2 (Momento: Solta):</strong> Dispara no milissegundo em que você tira o pé (ex: CC Valor 0 = Desliga Efeito).
+            </p>
+            <div class="callout tip">
+              <div class="callout-icon">🎸</div>
+              <div class="callout-body">
+                <h5>Melhores Usos do Modo Momentâneo:</h5>
+                <p>Perfeito para <em>Freeze</em> de Reverb (congelar um acorde de fundo enquanto você sola por cima), efeito <em>Whammy</em> de subir uma oitava, ou ligar um Boost só para uma frase rápida de 2 compassos!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 10. Modo Tap Tempo -->
+      <section class="section-block" id="modo-tap">
+        <div class="section-header">
+          <div class="section-badge-num">13</div>
+          <h2 class="section-title">3. Modo Tap Tempo — Batidas de Sincronia</h2>
+        </div>
+        <p class="section-intro">
+          Pise no ritmo da música para ajustar o tempo de atraso dos Delays e oscilação das Modulações (Chorus, Tremolo, Phaser).
+        </p>
+
+        <div class="ui-showcase-card crucial">
+          <div class="ui-img-container compact" onclick="openLightbox('Imagens do aplicativo/modo-tap.png')">
+            <img src="Imagens do aplicativo/modo-tap.png" alt="Configuração do Modo Tap Tempo">
+            <div class="ui-zoom-hint">🔍 Clique para ampliar</div>
+          </div>
+          <div class="ui-info-content">
+            <span class="crucial-badge">Parte Crucial da Interface</span>
+            <div class="ui-card-title">Tipos de Envio no Tap Tempo</div>
+            <p class="ui-card-desc">
+              O Guerrilha calcula o BPM das suas pisadas com precisão milimétrica e pode enviar de 3 formas:
+            </p>
+            <div class="feature-grid">
+              <div class="feature-item">
+                <h4>⏱️ MIDI Clock (BPM)</h4>
+                <p>Envia o pulso de clock contínuo padrão MIDI para sincronizar pedaleiras digitais e DAWs no computador.</p>
+              </div>
+              <div class="feature-item">
+                <h4>🎯 MIDI Clock Tap</h4>
+                <p>Envia o comando de tap como gatilho nos canais USB ou DIN.</p>
+              </div>
+              <div class="feature-item">
+                <h4>⚡ Tap Tempo Ampero (Serial)</h4>
+                <p>Protocolo serial exclusivo de alta velocidade compatível com as pedaleiras da linha Hotone Ampero.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 11. Modo Ricochet -->
+      <section class="section-block" id="modo-ricochet">
+        <div class="section-header">
+          <div class="section-badge-num">14</div>
+          <h2 class="section-title">4. Modo Ricochet — Rampa Automática de CC</h2>
+        </div>
+        <p class="section-intro">
+          Um pedal de expressão automático sob o seu comando! Ao pisar, ele realiza uma transição suave e gradual de valores.
+        </p>
+
+        <div class="ui-showcase-card crucial">
+          <div class="ui-img-container" onclick="openLightbox('Imagens do aplicativo/modo-ricochete.png')">
+            <img src="Imagens do aplicativo/modo-ricochete.png" alt="Configuração do Modo Ricochet">
+            <div class="ui-zoom-hint">🔍 Clique para ampliar</div>
+          </div>
+          <div class="ui-info-content">
+            <span class="crucial-badge">Gráfico de Trajetória Interativo</span>
+            <div class="ui-card-title">Controle Completo da Curva de Rampa</div>
+            <p class="ui-card-desc">
+              Veja no gráfico vermelho a trajetória desenhada em tempo real:
+            </p>
+            <div class="feature-grid">
+              <div class="feature-item">
+                <h4>📈 Curva de Resposta</h4>
+                <p>Escolha entre <strong>Linear</strong>, <strong>Logarítmica</strong>, <strong>Exponencial</strong> ou <strong>Senoidal (Sine)</strong> para uma transição suave e natural ao ouvido.</p>
+              </div>
+              <div class="feature-item">
+                <h4>⏱️ Tempos de Subida e Retorno</h4>
+                <p>Ajuste o tempo em milissegundos: por exemplo, <strong>1000ms de Subida</strong> e <strong>800ms de Retorno</strong>.</p>
+              </div>
+              <div class="feature-item">
+                <h4>🕹️ Disparo & Comportamento</h4>
+                <p><strong>Momentâneo ("Soltar volta"):</strong> a rampa sobe enquanto você segura e desce quando tira o pé. Ou modo <strong>On/Off</strong> onde cada pisada completa o ciclo.</p>
+              </div>
+              <div class="feature-item">
+                <h4>↔️ Inversão</h4>
+                <p>Inverta o sentido facilmente pela chave se quiser que ele comece no topo e caia para o mínimo.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 12. Modo STG -->
+      <section class="section-block" id="modo-stg">
+        <div class="section-header">
+          <div class="section-badge-num">15</div>
+          <h2 class="section-title">5. Modo STG — Estágios Sequenciais na Mesma Chave</h2>
+        </div>
+        <p class="section-intro">
+          Permite que uma única footswitch passe por até 5 níveis sonoros diferentes a cada pisada!
+        </p>
+
+        <div class="ui-showcase-card crucial">
+          <div class="ui-img-container" onclick="openLightbox('Imagens do aplicativo/modo-stg.png')">
+            <img src="Imagens do aplicativo/modo-stg.png" alt="Configuração do Modo STG">
+            <div class="ui-zoom-hint">🔍 Clique para ampliar</div>
+          </div>
+          <div class="ui-info-content">
+            <span class="crucial-badge">Controle em Degraus</span>
+            <div class="ui-card-title">Como Funciona o STG Manual:</div>
+            <p class="ui-card-desc">
+              Escolha a quantidade de estágios (de 2 a 5). Por exemplo, em 4 estágios:<br>
+              • <strong>Pisada 1 (Estágio 1):</strong> Ganho Baixo • LED a 39% de brilho.<br>
+              • <strong>Pisada 2 (Estágio 2):</strong> Ganho Médio • LED a 48% de brilho.<br>
+              • <strong>Pisada 3 (Estágio 3):</strong> Ganho Forte • LED a 68% de brilho.<br>
+              • <strong>Pisada 4 (Estágio 4):</strong> Solo Total • LED a 100% de brilho máximo!<br>
+              Cada estágio possui sua própria barra deslizante de brilho do LED e seus próprios comandos MIDI.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 13. Modo STG Auto -->
+      <section class="section-block" id="modo-stg-auto">
+        <div class="section-header">
+          <div class="section-badge-num">16</div>
+          <h2 class="section-title">6. Modo STG Auto — Avanço Automático por Tempo</h2>
+        </div>
+        <p class="section-intro">
+          Os estágios avançam sozinhos com base em tempos pré-programados, criando sequências automáticas sem precisar pisar novamente.
+        </p>
+
+        <div class="ui-showcase-card crucial">
+          <div class="ui-img-container" onclick="openLightbox('Imagens do aplicativo/modo-stg-auto.png')">
+            <img src="Imagens do aplicativo/modo-stg-auto.png" alt="Configuração do Modo STG Auto">
+            <div class="ui-zoom-hint">🔍 Clique para ampliar</div>
+          </div>
+          <div class="ui-info-content">
+            <span class="crucial-badge">Sequenciador Automático</span>
+            <div class="ui-card-title">Automação de Efeitos por Tempo</div>
+            <p class="ui-card-desc">
+              No STG Auto, você define o <strong>TEMPO (MS)</strong> de duração de cada estágio (ex: 1000ms = 1 segundo). Ao pisar, o pedal toca o Estágio 1 por 1 segundo, avança sozinho para o Estágio 2, depois Estágio 3 e pode reiniciar continuamente através da opção <strong>LOOP CC</strong> no rodapé!
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 14. Galeria de Ícones -->
+      <section class="section-block" id="galeria-icones">
+        <div class="section-header">
+          <div class="section-badge-num">17</div>
+          <h2 class="section-title">Biblioteca de Ícones & Pictogramas</h2>
+        </div>
+        <p class="section-intro">
+          Dê um acabamento gráfico profissional ao display do seu pedal escolhendo ícones dedicados para cada efeito.
+        </p>
+
+        <div class="ui-showcase-card crucial">
+          <div class="ui-img-container" onclick="openLightbox('Imagens do aplicativo/popup icones.png')">
+            <img src="Imagens do aplicativo/popup icones.png" alt="Biblioteca de Ícones">
+            <div class="ui-zoom-hint">🔍 Clique para ampliar</div>
+          </div>
+          <div class="ui-info-content">
+            <span class="crucial-badge">Catálogo Completo de Efeitos</span>
+            <div class="ui-card-title">Significado dos Pictogramas do Pack:</div>
+            <div class="feature-grid">
+              <div class="feature-item">
+                <h4>AMP / HEA / CAB</h4>
+                <p>Amplificadores valvulados, cabeçotes (Head) e caixas acústicas (Cabinet).</p>
+              </div>
+              <div class="feature-item">
+                <h4>COM / FUZZ / DYN</h4>
+                <p>Compressores ópticos, distorções pesadas (Fuzz) e controle de dinâmica.</p>
+              </div>
+              <div class="feature-item">
+                <h4>ECH / REV / HAL</h4>
+                <p>Efeitos de tempo: Tape Echo, Reverb clássico e Reverb Hall espacial.</p>
+              </div>
+              <div class="feature-item">
+                <h4>VOL / WAH / EXP</h4>
+                <p>Pedais de expressão tradicionais: Volume, Wah-wah e Pitch Expression.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 15. Modo Stomp & Dicionário -->
+      <section class="section-block" id="modo-stomp">
+        <div class="section-header">
+          <div class="section-badge-num">18</div>
+          <h2 class="section-title">Modo STOMP & Dicionário MIDI Integrado</h2>
+        </div>
+        <p class="section-intro">
+          Transforme o controlador em um pedalboard analógico com o acionamento direto de pedais individuais.
+        </p>
+
+        <div class="ui-showcase-card">
+          <div class="ui-img-container" onclick="openLightbox('Imagens do aplicativo/Tela inicial-Stomp.png')">
+            <img src="Imagens do aplicativo/Tela inicial-Stomp.png" alt="Tela Inicial do Modo Stomp">
+            <div class="ui-zoom-hint">🔍 Clique para ampliar</div>
+          </div>
+          <div class="ui-info-content">
+            <div class="ui-card-title">Aba Inicial em Modo Stomp</div>
+            <p class="ui-card-desc">
+              Ao alternar para a chave <strong>STOMP</strong> no centro, cada footswitch vira um pedal independente (STOMP 1 até STOMP 6 ou 8). Você escolhe a cor exclusiva do LED no modo Stomp (ex: Laranja #FF8800) e o ícone do efeito.
+            </p>
+          </div>
+        </div>
+
+        <!-- Dicionário MIDI -->
+        <div class="ui-showcase-card crucial">
+          <div class="ui-img-container compact" onclick="openLightbox('Imagens do aplicativo/dicionario-midi.png')">
+            <img src="Imagens do aplicativo/dicionario-midi.png" alt="Dicionário MIDI Integrado">
+            <div class="ui-zoom-hint">🔍 Clique para ampliar</div>
+          </div>
+          <div class="ui-info-content">
+            <span class="crucial-badge">Mais de 400 Pedaleiras Cadastradas</span>
+            <div class="ui-card-title">Dicionário CC: Selecione e Use!</div>
+            <p class="ui-card-desc">
+              Você não precisa abrir o manual técnico da sua pedaleira para descobrir qual o número do CC do Delay ou do Boost. Basta abrir o <strong>Dicionário MIDI</strong>, escolher a sua pedaleira (ex: <em>Neural DSP Nano Cortex, Quad Cortex, Hotone Ampero, Line 6 Helix, Boss, etc.</em>) e o sistema listará todos os efeitos com os números de CC# corretos prontos para salvar!
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 16. Aba Global: GB e Bancos -->
+      <section class="section-block" id="aba-global">
+        <div class="section-header">
+          <div class="section-badge-num">19</div>
+          <h2 class="section-title">Aba GLOBAL — Comportamento de LEDs e Bancos</h2>
+        </div>
+        <p class="section-intro">
+          Ajustes centrais de iluminação e regras de navegação entre bancos.
+        </p>
+
+        <div class="ui-showcase-card crucial">
+          <div class="ui-img-container compact" onclick="openLightbox('Imagens do aplicativo/menu-led.png')">
+            <img src="Imagens do aplicativo/menu-led.png" alt="Menu LED e Reset">
+            <div class="ui-zoom-hint">🔍 Clique para ampliar</div>
+          </div>
+          <div class="ui-info-content">
+            <span class="crucial-badge">Parte Crucial da Interface</span>
+            <div class="ui-card-title">Comportamento Global de LEDs e Reset</div>
+            <p class="ui-card-desc">
+              • <strong>LED HOLD:</strong> Escolha se o LED deve <em>PISCAR</em> quando estiver na função segurada ou ficar <em>FIXO</em>.<br>
+              • <strong>MODO DO LED:</strong> <em>INTENSIDADE</em> (o LED fica mais forte ou mais fraco) ou <em>COR ÚNICA</em>.<br>
+              • <strong>RESET AO TROCAR FS:</strong> Se ativado, ao mudar para outro footswitch o estado segurado da chave anterior é automaticamente desligado.
+            </p>
+          </div>
+        </div>
+
+        <div class="ui-showcase-card crucial">
+          <div class="ui-img-container compact" onclick="openLightbox('Imagens do aplicativo/menu-bancos.png')">
+            <img src="Imagens do aplicativo/menu-bancos.png" alt="Configuração de Bancos no Modo Custom">
+            <div class="ui-zoom-hint">🔍 Clique para ampliar</div>
+          </div>
+          <div class="ui-info-content">
+            <span class="crucial-badge">Navegação Entre Bancos</span>
+            <div class="ui-card-title">Loop de Bancos e Navegação por Footswitch</div>
+            <p class="ui-card-desc">
+              Defina a quantidade de bancos ativos (A–I) e configure chaves dedicadas para <strong>FS BANCO +</strong> e <strong>FS BANCO −</strong> para navegar pelo repertório inteiro sem tirar as mãos da guitarra!
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 17. Calibração de Expressão -->
+      <section class="section-block" id="calibracao-exp">
+        <div class="section-header">
+          <div class="section-badge-num">20</div>
+          <h2 class="section-title">Calibração do Pedal de Expressão</h2>
+        </div>
+        <p class="section-intro">
+          O conversor analógico-digital (ADC) de 10 bits do Guerrilha garante precisão cirúrgica no controle de Wah e Volume.
+        </p>
+
+        <div class="ui-showcase-card crucial">
+          <div class="ui-img-container" onclick="openLightbox('Imagens do aplicativo/Menu-global-exp-2.png')">
+            <img src="Imagens do aplicativo/Menu-global-exp-2.png" alt="Tela de Calibração do Pedal de Expressão">
+            <div class="ui-zoom-hint">🔍 Clique para ampliar</div>
+          </div>
+          <div class="ui-info-content">
+            <span class="crucial-badge">Gráfico em Tempo Real</span>
+            <div class="ui-card-title">Como Calibrar Qualquer Pedal de Expressão em 4 Passos:</div>
+            <p class="ui-card-desc">
+              1. Conecte o cabo estéreo P10 TRS do pedal de expressão na porta <strong>EXP</strong>.<br>
+              2. Mude o Modo para <strong>Expressão</strong> e clique no botão vermelho <strong>CALIBRAR</strong>.<br>
+              3. Pise até o calcanhar (mínimo) e depois até a ponta (máximo). Os valores <strong>MIN RAW</strong> e <strong>MAX RAW</strong> serão registrados automaticamente!<br>
+              4. O filtro de <strong>Suavização (1 a 8)</strong> remove qualquer tremor elétrico, garantindo varreduras ultra-limpas.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 18. Sistema Conexões -->
+      <section class="section-block" id="sistema-conexoes">
+        <div class="section-header">
+          <div class="section-badge-num">21</div>
+          <h2 class="section-title">Aba SISTEMA — Gerenciador de Comunicação</h2>
+        </div>
+        <p class="section-intro">
+          Configure a rota de cada sinal MIDI: USB, Bluetooth, MIDI DIN e Wi-Fi.
+        </p>
+
+        <div class="ui-showcase-card">
+          <div class="ui-img-container" onclick="openLightbox('Imagens do aplicativo/Menu-Sistemas-Conexões 1.png')">
+            <img src="Imagens do aplicativo/Menu-Sistemas-Conexões 1.png" alt="Aba Sistema Conexões">
+            <div class="ui-zoom-hint">🔍 Clique para ampliar</div>
+          </div>
+          <div class="ui-info-content">
+            <div class="ui-card-title">Gerenciador Central de Conexões</div>
+            <div class="feature-grid">
+              <div class="feature-item">
+                <h4>🔌 USB: Modo ToneX / Modeller</h4>
+                <p>Comunica e sincroniza diretamente com pedais como o ToneX One, lendo e trocando presets automaticamente.</p>
+              </div>
+              <div class="feature-item">
+                <h4>📡 Bluetooth Sem Fio (BLE)</h4>
+                <p>Ative a conexão Bluetooth e personalize o nome da rede (ex: <em>"Guerrilha-BLE"</em>) para pareamento imediato com tablets e iPads.</p>
+              </div>
+              <div class="feature-item">
+                <h4>🎛️ MIDI Serial DIN</h4>
+                <p>Habilite a saída física traseira DIN 5 pinos, ajuste a taxa padrão (31.250 bps) e o Canal MIDI principal de transmissão (1 a 16).</p>
+              </div>
+              <div class="feature-item">
+                <h4>📶 Rede Wi-Fi (SoftAP)</h4>
+                <p>Altere o nome da rede e a senha de segurança de acesso ao aplicativo para tocar com total privacidade.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 19. Sistema Tela & Modo Custom -->
+      <section class="section-block" id="sistema-tela">
+        <div class="section-header">
+          <div class="section-badge-num">22</div>
+          <h2 class="section-title">Aba SISTEMA — Estilos de Tela & Layouts</h2>
+        </div>
+        <p class="section-intro">
+          Personalize como as informações e blocos são exibidos no display colorido integrado.
+        </p>
+
+        <div class="ui-showcase-card">
+          <div class="ui-img-container" onclick="openLightbox('Imagens do aplicativo/Menu-Sistemas-Tela 1.png')">
+            <img src="Imagens do aplicativo/Menu-Sistemas-Tela 1.png" alt="Estilos de Display e Cores">
+            <div class="ui-zoom-hint">🔍 Clique para ampliar</div>
+          </div>
+          <div class="ui-info-content">
+            <div class="ui-card-title">Estilo do Display & Cores Sólidas</div>
+            <p class="ui-card-desc">
+              Escolha entre o estilo de <strong>Preset/Stomp</strong> clássico, modo <strong>Ícones</strong>, <strong>Amp</strong> (head valvulado) ou <strong>Custom</strong>. Ajuste as cores de fundo sólidas, cores da fonte do banco e nome do som.
+            </p>
+          </div>
+        </div>
+
+        <div class="ui-showcase-card">
+          <div class="ui-img-container" onclick="openLightbox('Imagens do aplicativo/Menu-Sistemas-Tela 2.png')">
+            <img src="Imagens do aplicativo/Menu-Sistemas-Tela 2.png" alt="Layouts e Formatos de Botão">
+            <div class="ui-zoom-hint">🔍 Clique para ampliar</div>
+          </div>
+          <div class="ui-info-content">
+            <div class="ui-card-title">Variações de Layout & Formato de Ícone</div>
+            <p class="ui-card-desc">
+              • <strong>Nenhum (Clássico):</strong> Banco grande centralizado.<br>
+              • <strong>L1 (Split Central):</strong> Barra central com nome + blocos no topo e fundo.<br>
+              • <strong>L2 (Pedalboard):</strong> 8 pedais virtuais preenchendo a tela.<br>
+              • <strong>Formato dos Blocos:</strong> Escolha entre cantos <strong>Padrão</strong> arredondados, <strong>Círculo</strong> ou <strong>Octógono</strong>.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 20. Modo Custom & Wallpapers -->
+      <section class="section-block" id="modo-custom">
+        <div class="section-header">
+          <div class="section-badge-num">23</div>
+          <h2 class="section-title">Modo Custom & Fotos de Fundo em Alta Resolução</h2>
+        </div>
+        <p class="section-intro">
+          O modo mais avançado de customização visual: envie fotos personalizadas e posicione cada botão onde quiser!
+        </p>
+
+        <div class="ui-showcase-card crucial">
+          <div class="ui-img-container" onclick="openLightbox('Imagens do aplicativo/Menu-Sistemas-Tela 4.png')">
+            <img src="Imagens do aplicativo/Menu-Sistemas-Tela 4.png" alt="Modo Custom e Fotos de Fundo">
+            <div class="ui-zoom-hint">🔍 Clique para ampliar</div>
+          </div>
+          <div class="ui-info-content">
+            <span class="crucial-badge">16 Slots de Papel de Parede</span>
+            <div class="ui-card-title">Fotos de Fundo Individuais por Preset</div>
+            <p class="ui-card-desc">
+              Você pode carregar até <strong>16 fotos de fundo (bg1 a bg16)</strong> em resolução 480×320. No painel inferior, associe cada footswitch (FS1 a FS8) a uma foto diferente: ao pisar na chave no palco, a tela do pedal troca instantaneamente para a foto correspondente com a barra translúcida de identificação!
+            </p>
+            <div class="callout tip">
+              <div class="callout-icon">🖐️</div>
+              <div class="callout-body">
+                <h5>Arrasto Livre dos Footswitches na Tela</h5>
+                <p>No editor de tela Custom, clique e arraste os quadradinhos para qualquer coordenada da tela 480×320. O sistema conta com trava anti-salto, garantindo que o botão permaneça exatamente onde você soltou no mockup e no visor físico do pedal!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 21. Menu no Visor -->
+      <section class="section-block" id="menu-tft">
+        <div class="section-header">
+          <div class="section-badge-num">24</div>
+          <h2 class="section-title">Menu no Visor do Pedal (Sem Celular)</h2>
+        </div>
+        <p class="section-intro">
+          Está sem o celular no palco? Faça qualquer alteração emergencial direto nos footswitches e no display do pedal:
+        </p>
+
+        <div class="feature-grid">
+          <div class="feature-item">
+            <h4>🚪 Como Abrir o Menu</h4>
+            <p>Pressione e segure juntos os botões <strong>FS1 + FS4</strong> (no MX-4/MX-8) ou <strong>FS1 + FS6</strong> (no MX-6) por <strong>1,5 segundo</strong>. O visor exibirá o menu de sistema preto e vermelho.</p>
+          </div>
+          <div class="feature-item">
+            <h4>🕹️ Navegação pelos Botões</h4>
+            <p>
+              <strong>FS 1 (Volta):</strong> Retorna ao menu anterior ou cancela.<br>
+              <strong>FS 2 (−):</strong> Move o cursor para cima ou diminui o valor.<br>
+              <strong>FS 3 (+):</strong> Move o cursor para baixo ou aumenta o valor.<br>
+              <strong>FS 4 (OK):</strong> Confirma o item ou avança de campo.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 22. Atalhos de Boot -->
+      <section class="section-block" id="atalhos-boot">
+        <div class="section-header">
+          <div class="section-badge-num">25</div>
+          <h2 class="section-title">Atalhos Especiais de Inicialização (Boot)</h2>
+        </div>
+        <p class="section-intro">
+          Segure um dos botões abaixo enquanto conecta a alimentação para inicializar em modos de segurança:
+        </p>
+
+        <table class="custom-table">
+          <thead>
+            <tr>
+              <th>Segurar no Boot</th>
+              <th>Modo Ativado</th>
+              <th>Cor dos LEDs</th>
+              <th>Finalidade</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="badge badge-red">FS 1</span></td>
+              <td><strong>Modo Atualizador</strong></td>
+              <td>Piscando</td>
+              <td>Atualização de firmware via cabo ou navegador web.</td>
+            </tr>
+            <tr>
+              <td><span class="badge badge-red">FS 2</span></td>
+              <td><strong>Modo Editor USB Direto</strong></td>
+              <td>Vermelho</td>
+              <td>Força USB Device (CDC + MIDI) e Bluetooth ativo, desativando o Wi-Fi para máxima velocidade no Editor Desktop.</td>
+            </tr>
+            <tr>
+              <td><span class="badge badge-cyan">FS 3</span></td>
+              <td><strong>Modo Wi-Fi Rápido</strong></td>
+              <td>Ciano</td>
+              <td>Inicia o Wi-Fi sem Bluetooth para conexão rápida no celular.</td>
+            </tr>
+            <tr>
+              <td><span class="badge badge-green">Nenhum</span></td>
+              <td><strong>Arranque Padrão</strong></td>
+              <td>Colorido</td>
+              <td>Modo operacional padrão com todas as conexões ativas.</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- 23. FAQ -->
+      <section class="section-block" id="faq">
+        <div class="section-header">
+          <div class="section-badge-num">26</div>
+          <h2 class="section-title">Perguntas Frequentes (FAQ)</h2>
+        </div>
+
+        <div class="feature-grid">
+          <div class="feature-item">
+            <h4>❓ O pedal perde os dados se faltar energia?</h4>
+            <p>Não. Todas as alterações gravadas são salvas na memória Flash não volátil e permanecem guardadas permanentemente.</p>
+          </div>
+          <div class="feature-item">
+            <h4>❓ Como alternar rapidamente entre Preset e Stomp?</h4>
+            <p>Você pode atribuir uma footswitch (ou toque Hold) para alternar entre a camada de Presets e a camada Stomp com um único pisão.</p>
+          </div>
+          <div class="feature-item">
+            <h4>❓ Posso conectar o pedal direto na ToneX One?</h4>
+            <p>Sim! Conecte o cabo USB Type-C na porta USB Host do Guerrilha e na ToneX One. Em Sistema, coloque o Modo USB em "ToneX / Modeller" e ele sincronizará na hora.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Rodapé -->
+      <div style="text-align: center; padding: 48px 0; border-top: 1px solid var(--border-color); color: var(--text-dim); font-size: 0.88rem;">
+        <strong style="color: #fff;">GUERRILHA CONTROLLERS</strong><br>
+        Música, Tecnologia e Controle Sob os Seus Pés • Brasil
+      </div>
+
+    </main>
+  </div>
+
+  <!-- Lightbox Modal -->
+  <div class="lightbox-modal" id="lightboxModal" onclick="closeLightbox()">
+    <div class="lightbox-close">&times;</div>
+    <img class="lightbox-img" id="lightboxImg" src="" alt="Imagem Ampliada">
+  </div>
+
+  <script>
+    function openLightbox(src) {
+      const modal = document.getElementById('lightboxModal');
+      const img = document.getElementById('lightboxImg');
+      img.src = src;
+      modal.classList.add('active');
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightboxModal').classList.remove('active');
+    }
+
+    const menuToggle = document.getElementById('menuToggle');
+    const sidebar = document.getElementById('sidebar');
+    if (menuToggle && sidebar) {
+      menuToggle.addEventListener('click', () => {
+        sidebar.classList.toggle('open');
+      });
+      document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+          if (window.innerWidth <= 960) {
+            sidebar.classList.remove('open');
+          }
+        });
+      });
+    }
+
+    const sections = document.querySelectorAll('.section-block, .hero-banner');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 130;
+        if (pageYOffset >= sectionTop) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + current) {
+          link.classList.add('active');
+        }
+      });
+    });
+
+    /* =========================================================================
+     * Módulo de Hardware SVG Interativo — Guerrilha MX & PRO
+     * ========================================================================= */
+    const HW_DATA = {
+      mx8: {
+        title: "GUERRILHA MX-8 / PRO — DIAGRAMA TÉCNICO",
+        specs: "8 Footswitches · Display ST7796 480×320 · USB Host Plus",
+        renderTop: function() {
+          return '<svg viewBox="0 0 820 440" width="820" height="440" xmlns="http://www.w3.org/2000/svg">' +
+            '<rect x="15" y="15" width="790" height="410" rx="18" fill="#12151f" stroke="#2a3246" stroke-width="2.5"/>' +
+            '<rect x="25" y="25" width="770" height="390" rx="14" fill="#0d1017" stroke="#1c2230" stroke-width="1.5"/>' +
+            '<circle cx="34" cy="34" r="5" fill="#1f2637" stroke="#333f5a" stroke-width="1.2"/>' +
+            '<circle cx="786" cy="34" r="5" fill="#1f2637" stroke="#333f5a" stroke-width="1.2"/>' +
+            '<circle cx="34" cy="406" r="5" fill="#1f2637" stroke="#333f5a" stroke-width="1.2"/>' +
+            '<circle cx="786" cy="406" r="5" fill="#1f2637" stroke="#333f5a" stroke-width="1.2"/>' +
+            '<rect x="280" y="45" width="260" height="150" rx="10" fill="#040508" stroke="#374158" stroke-width="2"/>' +
+            '<rect x="290" y="55" width="240" height="130" rx="6" fill="#0b0e14" stroke="#1f2638" stroke-width="1"/>' +
+            '<rect x="290" y="55" width="240" height="24" fill="#161c28"/>' +
+            '<text x="300" y="71" font-family="monospace" font-size="11" font-weight="700" fill="#ef4444">BANCO A · PRESET 1</text>' +
+            '<text x="515" y="71" font-family="monospace" font-size="10" font-weight="700" fill="#10b981" text-anchor="end">120 BPM</text>' +
+            '<text x="410" y="125" font-family="sans-serif" font-size="20" font-weight="800" fill="#f8fafc" text-anchor="middle">LEAD PLEXI</text>' +
+            '<text x="410" y="152" font-family="monospace" font-size="11" fill="#94a3b8" text-anchor="middle">SCENE A · EXP: WAH</text>' +
+            '<text x="75" y="62" font-family="sans-serif" font-size="18" font-weight="900" letter-spacing="2" fill="#ef4444">GUERRILHA</text>' +
+            '<text x="75" y="80" font-family="monospace" font-size="10" font-weight="700" letter-spacing="3" fill="#64748b">PRO SERIES · MX-8</text>' +
+            '<text x="745" y="65" font-family="monospace" font-size="10" font-weight="700" fill="#64748b" text-anchor="end">16MB FLASH · 8MB PSRAM</text>' +
+            '<text x="745" y="82" font-family="monospace" font-size="10" font-weight="700" fill="#10b981" text-anchor="end">BT + SOFTAP + USB HOST</text>' +
+            renderFoot(85, 140, "FS 5", "CH 5", "#3b82f6") +
+            renderFoot(195, 140, "FS 6", "CH 6", "#10b981") +
+            renderFoot(625, 140, "FS 7", "CH 7", "#f59e0b") +
+            renderFoot(735, 140, "FS 8", "CH 8", "#a855f7") +
+            renderFoot(85, 305, "FS 1", "PRESET 1", "#ef4444") +
+            renderFoot(225, 305, "FS 2", "PRESET 2", "#3b82f6") +
+            renderFoot(365, 305, "FS 3", "PRESET 3", "#10b981") +
+            renderFoot(505, 305, "FS 4", "PRESET 4", "#eab308") +
+            renderFoot(645, 305, "FS 5*", "SOLO BOOST", "#f97316") +
+            renderFoot(735, 305, "TAP", "HOLD: TUNER", "#06b6d4") +
+            '</svg>';
+        },
+        renderRear: function() {
+          return '<svg viewBox="0 0 820 180" width="820" height="180" xmlns="http://www.w3.org/2000/svg">' +
+            '<rect x="15" y="15" width="790" height="150" rx="12" fill="#12151f" stroke="#2a3246" stroke-width="2.5"/>' +
+            '<rect x="25" y="25" width="770" height="130" rx="8" fill="#0a0c12" stroke="#1a202c" stroke-width="1.5"/>' +
+            renderRearPort(80, 85, "power", "9V DC", "CENTRO (-)", "#ef4444", "1", "dc") +
+            renderRearPort(210, 85, "exp", "EXP / DUAL", "TRS 1/4\"", "#3b82f6", "2", "jack") +
+            renderRearPort(365, 85, "midiout", "MIDI OUT", "DIN 5-PIN", "#10b981", "3", "din") +
+            renderRearPort(495, 85, "midiin", "MIDI IN", "TRS P2 (A)", "#eab308", "4", "trs") +
+            renderRearPort(625, 85, "usbhost", "USB HOST", "TONEX / MIDI", "#f97316", "5", "usbc") +
+            renderRearPort(735, 85, "usbdvc", "USB DVC", "PC / EDITOR", "#06b6d4", "6", "usbc") +
+            '</svg>';
+        }
+      },
+      mx6: {
+        title: "GUERRILHA MX-6 — DIAGRAMA TÉCNICO",
+        specs: "6 Footswitches · Display ST7789 240×240 · Formato Equilibrado",
+        renderTop: function() {
+          return '<svg viewBox="0 0 680 400" width="680" height="400" xmlns="http://www.w3.org/2000/svg">' +
+            '<rect x="15" y="15" width="650" height="370" rx="16" fill="#12151f" stroke="#2a3246" stroke-width="2.5"/>' +
+            '<rect x="25" y="25" width="630" height="350" rx="12" fill="#0d1017" stroke="#1c2230" stroke-width="1.5"/>' +
+            '<rect x="260" y="45" width="160" height="140" rx="8" fill="#040508" stroke="#374158" stroke-width="2"/>' +
+            '<rect x="268" y="53" width="144" height="124" rx="4" fill="#0b0e14"/>' +
+            '<rect x="268" y="53" width="144" height="20" fill="#161c28"/>' +
+            '<text x="274" y="67" font-family="monospace" font-size="9" font-weight="700" fill="#ef4444">BNK A · P1</text>' +
+            '<text x="406" y="67" font-family="monospace" font-size="9" font-weight="700" fill="#10b981" text-anchor="end">120</text>' +
+            '<text x="340" y="118" font-family="sans-serif" font-size="16" font-weight="800" fill="#f8fafc" text-anchor="middle">CRUNCH</text>' +
+            '<text x="340" y="140" font-family="monospace" font-size="9" fill="#94a3b8" text-anchor="middle">TONEX RIG 02</text>' +
+            '<text x="65" y="60" font-family="sans-serif" font-size="16" font-weight="900" letter-spacing="1.5" fill="#ef4444">GUERRILHA</text>' +
+            '<text x="65" y="75" font-family="monospace" font-size="9" font-weight="700" letter-spacing="2" fill="#64748b">MX-6 SERIES</text>' +
+            renderFoot(110, 130, "FS 5", "MOD / DLY", "#3b82f6") +
+            renderFoot(570, 130, "FS 6", "TAP / TUNER", "#06b6d4") +
+            renderFoot(95, 280, "FS 1", "P1 CLEAN", "#ef4444") +
+            renderFoot(235, 280, "FS 2", "P2 CRUNCH", "#3b82f6") +
+            renderFoot(445, 280, "FS 3", "P3 LEAD", "#10b981") +
+            renderFoot(585, 280, "FS 4", "P4 SOLO", "#eab308") +
+            '</svg>';
+        },
+        renderRear: function() {
+          return '<svg viewBox="0 0 680 180" width="680" height="180" xmlns="http://www.w3.org/2000/svg">' +
+            '<rect x="15" y="15" width="650" height="150" rx="12" fill="#12151f" stroke="#2a3246" stroke-width="2.5"/>' +
+            '<rect x="25" y="25" width="630" height="130" rx="8" fill="#0a0c12" stroke="#1a202c" stroke-width="1.5"/>' +
+            renderRearPort(70, 85, "power", "9V DC", "CENTRO (-)", "#ef4444", "1", "dc") +
+            renderRearPort(180, 85, "exp", "EXP / DUAL", "TRS 1/4\"", "#3b82f6", "2", "jack") +
+            renderRearPort(305, 85, "midiout", "MIDI OUT", "DIN 5-PIN", "#10b981", "3", "din") +
+            renderRearPort(415, 85, "midiin", "MIDI IN", "TRS P2 (A)", "#eab308", "4", "trs") +
+            renderRearPort(520, 85, "usbhost", "USB HOST", "TONEX", "#f97316", "5", "usbc") +
+            renderRearPort(610, 85, "usbdvc", "USB DVC", "PC/APP", "#06b6d4", "6", "usbc") +
+            '</svg>';
+        }
+      },
+      mx4: {
+        title: "GUERRILHA MX-4 — DIAGRAMA TÉCNICO",
+        specs: "4 Footswitches · Display ST7789 240×240 · Ultra Compacto",
+        renderTop: function() {
+          return '<svg viewBox="0 0 540 380" width="540" height="380" xmlns="http://www.w3.org/2000/svg">' +
+            '<rect x="15" y="15" width="510" height="350" rx="16" fill="#12151f" stroke="#2a3246" stroke-width="2.5"/>' +
+            '<rect x="25" y="25" width="490" height="330" rx="12" fill="#0d1017" stroke="#1c2230" stroke-width="1.5"/>' +
+            '<rect x="195" y="45" width="150" height="130" rx="8" fill="#040508" stroke="#374158" stroke-width="2"/>' +
+            '<rect x="203" y="53" width="134" height="114" rx="4" fill="#0b0e14"/>' +
+            '<rect x="203" y="53" width="134" height="20" fill="#161c28"/>' +
+            '<text x="209" y="67" font-family="monospace" font-size="9" font-weight="700" fill="#ef4444">BNK A · P1</text>' +
+            '<text x="331" y="67" font-family="monospace" font-size="9" font-weight="700" fill="#10b981" text-anchor="end">120</text>' +
+            '<text x="270" y="115" font-family="sans-serif" font-size="16" font-weight="800" fill="#f8fafc" text-anchor="middle">ACOUSTIC</text>' +
+            '<text x="270" y="135" font-family="monospace" font-size="9" fill="#94a3b8" text-anchor="middle">PRESET 01</text>' +
+            '<text x="60" y="60" font-family="sans-serif" font-size="15" font-weight="900" letter-spacing="1.5" fill="#ef4444">GUERRILHA</text>' +
+            '<text x="60" y="74" font-family="monospace" font-size="9" font-weight="700" letter-spacing="2" fill="#64748b">MX-4 COMPACT</text>' +
+            renderFoot(85, 255, "FS 1", "CLEAN", "#ef4444") +
+            renderFoot(195, 255, "FS 2", "DRIVE", "#3b82f6") +
+            renderFoot(345, 255, "FS 3", "LEAD", "#10b981") +
+            renderFoot(455, 255, "FS 4", "TAP/TUNER", "#06b6d4") +
+            '</svg>';
+        },
+        renderRear: function() {
+          return '<svg viewBox="0 0 540 180" width="540" height="180" xmlns="http://www.w3.org/2000/svg">' +
+            '<rect x="15" y="15" width="510" height="150" rx="12" fill="#12151f" stroke="#2a3246" stroke-width="2.5"/>' +
+            '<rect x="25" y="25" width="490" height="130" rx="8" fill="#0a0c12" stroke="#1a202c" stroke-width="1.5"/>' +
+            renderRearPort(60, 85, "power", "9V DC", "CENTRO (-)", "#ef4444", "1", "dc") +
+            renderRearPort(155, 85, "exp", "EXP/FS", "TRS 1/4\"", "#3b82f6", "2", "jack") +
+            renderRearPort(255, 85, "midiout", "MIDI OUT", "DIN 5", "#10b981", "3", "din") +
+            renderRearPort(345, 85, "midiin", "MIDI IN", "TRS P2", "#eab308", "4", "trs") +
+            renderRearPort(425, 85, "usbhost", "HOST", "TONEX", "#f97316", "5", "usbc") +
+            renderRearPort(485, 85, "usbdvc", "DVC", "PC/APP", "#06b6d4", "6", "usbc") +
+            '</svg>';
+        }
+      }
+    };
+
+    function renderFoot(cx, cy, label, sub, color) {
+      return '<g>' +
+        '<circle cx="' + cx + '" cy="' + cy + '" r="34" fill="none" stroke="' + color + '" stroke-width="4.5" opacity="0.85" filter="drop-shadow(0 0 6px ' + color + ')"/>' +
+        '<circle cx="' + cx + '" cy="' + cy + '" r="28" fill="#1e2433" stroke="#3b455e" stroke-width="2"/>' +
+        '<circle cx="' + cx + '" cy="' + cy + '" r="21" fill="#2d3748" stroke="#4a5568" stroke-width="1"/>' +
+        '<circle cx="' + cx + '" cy="' + cy + '" r="14" fill="#cbd5e0"/>' +
+        '<circle cx="' + (cx - 3) + '" cy="' + (cy - 3) + '" r="4" fill="#ffffff" opacity="0.6"/>' +
+        '<text x="' + cx + '" y="' + (cy + 48) + '" font-family="monospace" font-size="11" font-weight="800" fill="#f1f5f9" text-anchor="middle">' + label + '</text>' +
+        '<text x="' + cx + '" y="' + (cy + 61) + '" font-family="sans-serif" font-size="8.5" font-weight="600" fill="' + color + '" text-anchor="middle">' + sub + '</text>' +
+        '</g>';
+    }
+
+    function renderRearPort(cx, cy, targetId, label, sub, color, num, type) {
+      var icon = '';
+      if (type === 'dc') {
+        icon = '<circle cx="' + cx + '" cy="' + (cy - 5) + '" r="15" fill="#1a1e29" stroke="#374158" stroke-width="2"/>' +
+               '<circle cx="' + cx + '" cy="' + (cy - 5) + '" r="6" fill="#0d1017"/>' +
+               '<circle cx="' + cx + '" cy="' + (cy - 5) + '" r="2.5" fill="#e2e8f0"/>';
+      } else if (type === 'jack') {
+        icon = '<rect x="' + (cx - 14) + '" y="' + (cy - 19) + '" width="28" height="28" rx="4" fill="#1a1e29" stroke="#374158" stroke-width="2"/>' +
+               '<circle cx="' + cx + '" cy="' + (cy - 5) + '" r="9" fill="#0d1017" stroke="#4a5568" stroke-width="1.5"/>' +
+               '<circle cx="' + cx + '" cy="' + (cy - 5) + '" r="4.5" fill="#1e2433"/>';
+      } else if (type === 'din') {
+        icon = '<circle cx="' + cx + '" cy="' + (cy - 5) + '" r="19" fill="#1a1e29" stroke="#374158" stroke-width="2"/>' +
+               '<circle cx="' + (cx - 8) + '" cy="' + (cy - 10) + '" r="2" fill="#cbd5e0"/>' +
+               '<circle cx="' + (cx - 10) + '" cy="' + (cy - 3) + '" r="2" fill="#cbd5e0"/>' +
+               '<circle cx="' + cx + '" cy="' + (cy - 12) + '" r="2" fill="#cbd5e0"/>' +
+               '<circle cx="' + (cx + 8) + '" cy="' + (cy - 10) + '" r="2" fill="#cbd5e0"/>' +
+               '<circle cx="' + (cx + 10) + '" cy="' + (cy - 3) + '" r="2" fill="#cbd5e0"/>';
+      } else if (type === 'trs') {
+        icon = '<circle cx="' + cx + '" cy="' + (cy - 5) + '" r="12" fill="#1a1e29" stroke="#374158" stroke-width="2"/>' +
+               '<circle cx="' + cx + '" cy="' + (cy - 5) + '" r="5.5" fill="#0d1017" stroke="#4a5568" stroke-width="1"/>' +
+               '<circle cx="' + cx + '" cy="' + (cy - 5) + '" r="2.5" fill="#e2e8f0"/>';
+      } else if (type === 'usbc') {
+        icon = '<rect x="' + (cx - 12) + '" y="' + (cy - 12) + '" width="24" height="14" rx="7" fill="#1a1e29" stroke="#374158" stroke-width="2"/>' +
+               '<rect x="' + (cx - 7) + '" y="' + (cy - 7) + '" width="14" height="4" rx="2" fill="#0d1017"/>';
+      }
+
+      return '<g class="svg-port-target" onclick="highlightPortCard(\'card-port-' + targetId + '\')">' +
+        '<circle cx="' + (cx - 18) + '" cy="' + (cy - 24) + '" r="9" fill="' + color + '"/>' +
+        '<text x="' + (cx - 18) + '" y="' + (cy - 20) + '" font-family="monospace" font-size="9" font-weight="900" fill="#ffffff" text-anchor="middle">' + num + '</text>' +
+        icon +
+        '<text x="' + cx + '" y="' + (cy + 24) + '" font-family="monospace" font-size="10" font-weight="800" fill="#f1f5f9" text-anchor="middle">' + label + '</text>' +
+        '<text x="' + cx + '" y="' + (cy + 37) + '" font-family="sans-serif" font-size="7.5" font-weight="700" fill="' + color + '" text-anchor="middle">' + sub + '</text>' +
+        '</g>';
+    }
+
+    var currentHwModel = 'mx8';
+    var currentHwView = 'rear';
+
+    function updateHwDiagram() {
+      var data = HW_DATA[currentHwModel];
+      if (!data) return;
+
+      var titleEl = document.getElementById('hwDiagramTitle');
+      if (titleEl) titleEl.textContent = data.title;
+
+      var viewport = document.getElementById('hwSvgViewport');
+      if (!viewport) return;
+
+      if (currentHwView === 'top') {
+        viewport.innerHTML = data.renderTop();
+      } else {
+        viewport.innerHTML = data.renderRear();
+      }
+    }
+
+    function highlightPortCard(cardId) {
+      document.querySelectorAll('.hw-port-card').forEach(function(c) {
+        c.classList.remove('highlight');
+      });
+      var card = document.getElementById(cardId);
+      if (card) {
+        card.classList.add('highlight');
+        card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }
+
+    document.querySelectorAll('.hw-picker-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.hw-picker-btn').forEach(function(b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        currentHwModel = btn.getAttribute('data-hw');
+        updateHwDiagram();
+      });
+    });
+
+    document.querySelectorAll('.hw-view-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.hw-view-btn').forEach(function(b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        currentHwView = btn.getAttribute('data-view');
+        updateHwDiagram();
+      });
+    });
+
+    // Iniciar diagrama inicial
+    setTimeout(updateHwDiagram, 100);
+
+  </script>
+</body>
+</html>
