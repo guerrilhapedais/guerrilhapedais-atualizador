@@ -1,5 +1,4 @@
-Notas da Versão — Guerrilha MT-S
+Notas da Versão — Guerrilha MX
 
 Atualização do APP web - ao abrir app web pela primeira, tem de limpar os caches do navegador CTRL + F5.
-Melhorias no consumo de memoria e BT.
-Correções de bug.
+
