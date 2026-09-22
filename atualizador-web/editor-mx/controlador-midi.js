@@ -12946,6 +12946,7 @@ var hr = [`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`],
     },
     br = [`Normal`, `Momentâneo`, `Tap`, `Ricochet`, `STG`, `STG Auto`],
     xr = [`USB`, `BT`, `USB+BT`, `MIDI`, `USB+MIDI`, `BT+MIDI`, `USB+BT+MIDI`],
+    usbHubTargetLabels = [`ToneX + MIDI`, `Apenas ToneX`, `Apenas MIDI`],
     Sr = [`CC`, `CC Up`, `CC Down`, `PC`, `PC Up`, `PC Down`, `SysEx`, `FS Sync`, `Banco+ (interno)`, `Banco− (interno)`],
     Cr = [`CC`, `PC`, `SysEx`],
     wr = [`CC`, `MIDI Clock (BPM)`, `MIDI Clock Tap`, `Tap Tempo Ampero (Serial)`],
@@ -13074,7 +13075,7 @@ var hr = [`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`],
         return {
             ...n,
             ...r,
-            name: typeof r.name == `string` && r.name.trim() ? r.name.slice(0, 15) : n.name,
+            name: typeof r.name == `string` ? r.name.slice(0, 15) : (r.name != null ? String(r.name).slice(0, 15) : n.name),
             icon: typeof r.icon == `string` ? r.icon.slice(0, 23) : ``,
             channel: first.channel,
             cc: first.cc,
@@ -13124,7 +13125,7 @@ function applyFxColorsToStompLeds(fsMap, usb) {
 function displayStyleOptionsForFs(fsCount) {
     let fs = Number(fsCount || 0);
     if (fs === 8) return [`Preset / Stomp`, `Ícones`, `Amp`, `Custom`];
-    return [`Clássico`, `Custom`];
+    return [`Clássico`, `Ícones`, `Custom`];
 }
 
 function displayStyleLabelForValue(v) {
@@ -13140,6 +13141,7 @@ function displayStyleValueForLabel(fsCount, label) {
         if (label === `Preset / Stomp` || label === `Anel` || label === `Anel Preset`) return 4;
         return 4;
     }
+    if (label === `Ícones` || label === `Ícone`) return 1;
     if (label === `Custom` || label === `Imagem de Fundo` || label === `Fundo Puro`) return 6;
     return 0;
 }
@@ -13152,7 +13154,7 @@ function displayStyleClampForModel(fsCount, style) {
         if (v === 2 || v === 4 || v === 6 || v === 7) return v;
         return 4;
     }
-    if (v === 6) return 6;
+    if (v === 1 || v === 6) return v;
     return 0;
 }
 
@@ -13991,7 +13993,11 @@ function buildGbUsbParts(e, t = {}) {
 function buildStompUsbParts(e, t = {}) {
     let n = Math.max(0, Math.min(12, Number(t.fxCount ?? e?.customFxCount) || 0)),
         r = Array.isArray(t.fxList) ? t.fxList : Array.isArray(e?.customFx) ? e.customFx : [],
-        i = r.slice(0, n).map((e, t) => normalizeCustomFx(e, t + 1)),
+        i = r.slice(0, n).map((e, t) => {
+            let norm = normalizeCustomFx(e, t + 1);
+            if (!norm.name || !norm.name.trim()) norm.name = `FX ${t + 1}`;
+            return norm;
+        }),
         a = [scrubUsbPart({
             customStompEnabled: t.stompEnabled !== void 0 ? t.stompEnabled ? 1 : 0 : e?.customStompEnabled,
             customStompSceneEnabled: t.scenesOn !== void 0 ? t.scenesOn ? 1 : 0 : e?.customStompSceneEnabled,
@@ -14277,6 +14283,24 @@ function Hr(e) {
     let t = xr.indexOf(e);
     return t >= 0 ? t : 2
 }
+
+function usbHubTargetLabel(v) {
+    return usbHubTargetLabels[Math.max(0, Math.min(2, Number(v) || 0))] || usbHubTargetLabels[0]
+}
+
+function usbHubTargetValue(label) {
+    let i = usbHubTargetLabels.indexOf(label);
+    return i >= 0 ? i : 0
+}
+
+/** Destino USB só no modo Sistema = HUB + TONEX (índice 5). */
+function isHubTonexUsbMode(usbmode) {
+    return Number(usbmode) === 5
+}
+
+function outputIncludesUsb(outStr) {
+    return typeof outStr === `string` && outStr.indexOf(`USB`) >= 0
+}
 var Ur = [`CC`, `PC`, `SysEx`, `PC Up`, `PC Down`, `MIDI Clock (BPM)`, `MIDI Clock Tap`, `CC Up`, `CC Down`, `FS Sync`, `Banco+ (interno)`, `Banco− (interno)`, `Tap Tempo Ampero (Serial)`];
 
 function Wr(e) {
@@ -14302,7 +14326,7 @@ function kemperCcToggleValue(val, state, usbCfg) {
 }
 
 function Kr(e, usbCfg) {
-    /* Formato compacto = menos bytes no SoftAP: [type,ch,cc,val,pc,onOff,output,(state|sysexHex)] */
+    /* Formato compacto: [type,ch,cc,val,pc,onOff,output,(state|sysexHex),(usbTarget)] */
     let type = Wr(e.type),
         ch = Number(e.channel) || 1,
         cc = Number(e.cc) || 0,
@@ -14343,11 +14367,14 @@ function Kr(e, usbCfg) {
         let hex = String(e.sysex || e.value || ``).trim().replace(/\s+/g, ``).toUpperCase();
         if (hex) arr.push(hex)
     }
+    let ut = Math.max(0, Math.min(2, Number(e.usbTarget) || 0));
+    /* Sempre enviar (incl. 0) — o GET SoftAP devolve objecto com usbTarget. */
+    arr.push(ut);
     return arr
 }
 
 function qr(e, t, n, usbCfg) {
-    /* Aceita objeto legado ou array compacto [type,ch,cc,val,pc,onOff,output,(state)] */
+    /* Aceita objeto legado ou array compacto [type,ch,cc,val,pc,onOff,output,(state|sysex),(usbTarget)] */
     let raw = e;
     if (Array.isArray(e)) {
         raw = {
@@ -14358,7 +14385,18 @@ function qr(e, t, n, usbCfg) {
             pc: e[4],
             onOff: e[5],
             output: e[6],
-            state: e[7]
+            state: e[7],
+            usbTarget: 0
+        };
+        let typ = Number(e[0] || 0);
+        if (typ === 9) {
+            raw.state = e[7];
+            raw.usbTarget = Number(e[8] || 0);
+        } else if (typ === 2) {
+            raw.sysex = typeof e[7] === `string` ? e[7] : ``;
+            raw.usbTarget = Number(typeof e[8] === `number` ? e[8] : 0);
+        } else {
+            raw.usbTarget = Number(typeof e[7] === `number` ? e[7] : 0);
         }
     }
     let r = Gr(raw?.type === void 0 ? 0 : Number(raw.type)),
@@ -14388,6 +14426,7 @@ function qr(e, t, n, usbCfg) {
         let kv = kemperCcToggleValue(s, c, usbCfg);
         if (kv !== null) s = kv
     }
+    let ut = Math.max(0, Math.min(2, Number(raw?.usbTarget) || 0));
     let out = {
         id: mr(),
         type: r,
@@ -14396,7 +14435,8 @@ function qr(e, t, n, usbCfg) {
         value: s,
         output: i,
         trigger: t,
-        state: c
+        state: c,
+        usbTarget: ut
     };
     if (r === `FS Sync`) out.targetState = targetStateFlag === 1 ? `Off` : `On`;
     return out
@@ -14732,6 +14772,28 @@ function displayIconRasterColor(img, size, zoom, panX, panY) {
     if ('imageSmoothingQuality' in ctx) ctx.imageSmoothingQuality = 'high';
     ctx.drawImage(img, dx, dy, dw, dh);
     return ctx.getImageData(0, 0, size, size)
+}
+
+function displayAmpRasterColor(img, w, h, zoom, panX, panY) {
+    let c = document.createElement(`canvas`);
+    c.width = w, c.height = h;
+    let ctx = c.getContext(`2d`, {
+        alpha: !0
+    });
+    ctx.clearRect(0, 0, w, h);
+    if (!img || !img.width) return ctx.getImageData(0, 0, w, h);
+    let fit = Math.min(w / img.width, h / img.height),
+        sc = fit * Math.max(.2, Number(zoom) || 1),
+        dw = img.width * sc,
+        dh = img.height * sc,
+        travelX = Math.max(Math.abs(dw - w) / 2, w * 0.75),
+        travelY = Math.max(Math.abs(dh - h) / 2, h * 0.75),
+        dx = (w - dw) / 2 + ((Number(panX) || 0) / 50) * travelX,
+        dy = (h - dh) / 2 + ((Number(panY) || 0) / 50) * travelY;
+    ctx.imageSmoothingEnabled = true;
+    if ('imageSmoothingQuality' in ctx) ctx.imageSmoothingQuality = 'high';
+    ctx.drawImage(img, dx, dy, dw, dh);
+    return ctx.getImageData(0, 0, w, h)
 }
 
 
@@ -15164,7 +15226,7 @@ function FsScreenIconCropModal({
             mainBgImg,
             customImgObj
         } : null;
-        ctx.putImageData(useRect ? displayBgRasterColor(img, c.width, c.height, zoom, panX, panY, baseBg) : displayIconRasterColor(img, c.width, zoom, panX, panY), 0, 0)
+        ctx.putImageData(isAmp ? displayAmpRasterColor(img, c.width, c.height, zoom, panX, panY) : (useRect ? displayBgRasterColor(img, c.width, c.height, zoom, panX, panY, baseBg) : displayIconRasterColor(img, c.width, zoom, panX, panY)), 0, 0)
     }, [img, zoom, panX, panY, isBg, useRect, hideMask, hasAlpha, transCfg, mainBgImg, customImgObj]);
     let clamp = (v, a, b) => Math.min(b, Math.max(a, v)),
         saveKey = targetKey || displayIconSlotKey(slot),
@@ -15501,8 +15563,9 @@ function FsScreenIconCropModal({
                                         mainBgImg,
                                         customImgObj
                                     } : null;
-                                    let raster = useRect ? displayBgRasterColor(img, exportW, exportH, zoom, panX, panY, baseBg) : displayIconRasterColor(img, exportW, zoom, panX, panY),
-                                    rgb = displayIconRgb565FromImageData(raster, !1, useRect ? true : !!hideMask),
+                                    let raster = isAmp ? displayAmpRasterColor(img, exportW, exportH, zoom, panX, panY) : (useRect ? displayBgRasterColor(img, exportW, exportH, zoom, panX, panY, baseBg) : displayIconRasterColor(img, exportW, zoom, panX, panY)),
+                                    plain = isAmp ? false : (useRect ? true : !!hideMask),
+                                    rgb = displayIconRgb565FromImageData(raster, !1, plain),
                                     key = targetKey || displayIconSlotKey(slot);
                                 let instantThumb = '';
                                 try {
@@ -15510,6 +15573,7 @@ function FsScreenIconCropModal({
                                     tCv.width = isAmp ? 80 : 72;
                                     tCv.height = isAmp ? 24 : 48;
                                     let tCtx = tCv.getContext('2d');
+                                    tCtx.clearRect(0, 0, tCv.width, tCv.height);
                                     let sCv = document.createElement('canvas');
                                     sCv.width = exportW;
                                     sCv.height = exportH;
@@ -16395,7 +16459,8 @@ function Xr() {
         effectiveFs = modelFs + extFsCount,
         activeUsbmode = (() => {
             let mode = Math.max(0, Math.min(si.length - 1, Number(c?.usbmode || 0)));
-            if (Number(c?.usbpreset ?? 0) === 3) mode = 0;
+            /* preset 3 → UI “TONEX modeller”; não aplicar no HUB+TONEX (modo 5). */
+            if (mode !== 5 && Number(c?.usbpreset ?? 0) === 3) mode = 0;
             return mode
         })(),
         snapshotFsCompact = cfg => {
@@ -17777,7 +17842,7 @@ function Xr() {
                                 onRename: () => openPresetRename(e)
                             }, e))
                         })]
-                    }), (0, P.jsx)(`section`, {
+                    }), m !== `Stomp` ? (0, P.jsx)(`section`, {
                         className: `order-3 lg:order-none lg:col-start-1 lg:row-start-2 lg:sticky lg:top-4 lg:self-start`,
                         children: (0, P.jsxs)(`div`, {
                             className: `rounded-2xl border border-border bg-panel/70 p-3 shadow-2xl shadow-black/40 sm:p-4`,
@@ -17806,7 +17871,7 @@ function Xr() {
                                 }, e))
                             })]
                         })
-                    }), (0, P.jsxs)(`section`, {
+                    }) : null, (0, P.jsxs)(`section`, {
                         className: `order-4 space-y-4 lg:order-none lg:col-start-2 lg:row-start-1 lg:row-span-2`,
                         children: [(0, P.jsx)(Ei, {
                             model: e,
@@ -18034,22 +18099,11 @@ function Xr() {
                             },
                             variant: m === `Stomp` ? `stomp` : w.mode === `Normal` ? `fourColor` : w.mode === `Momentâneo` ? `twoColor` : `oneColor`
                         }), f <= modelFs && (0, P.jsxs)(P.Fragment, {
-                            children: [(Number(c?.displayStyle) === 7) ? (0, P.jsxs)(`div`, {
-                                className: `grid grid-cols-2 gap-2 w-full`,
-                                children: [
-                                    (0, P.jsx)(`button`, {
-                                        type: `button`,
-                                        onClick: () => setIconScreenOpen(!0),
-                                        className: `flex w-full items-center justify-center gap-2 rounded-xl border border-border bg-canvas px-4 py-3 font-display text-[10px] font-bold uppercase tracking-[0.2em] text-accent transition hover:border-accent/40 hover:bg-accent/5`,
-                                        children: `Ícones`
-                                    }),
-                                    (0, P.jsx)(`button`, {
-                                        type: `button`,
-                                        onClick: () => setAmpScreenOpen(!0),
-                                        className: `flex w-full items-center justify-center gap-2 rounded-xl border border-red-500/50 bg-red-950/20 px-4 py-3 font-display text-[10px] font-bold uppercase tracking-[0.2em] text-red-400 transition hover:border-red-500 hover:bg-red-900/30`,
-                                        children: `Cabeçote Amp`
-                                    })
-                                ]
+                            children: [(Number(c?.displayStyle) === 7) ? (0, P.jsx)(`button`, {
+                                type: `button`,
+                                onClick: () => setAmpScreenOpen(!0),
+                                className: `flex w-full items-center justify-center gap-2 rounded-xl border border-red-500/50 bg-red-950/20 px-4 py-3 font-display text-[10px] font-bold uppercase tracking-[0.2em] text-red-400 transition hover:border-red-500 hover:bg-red-900/30`,
+                                children: `Cabeçote Amp`
                             }) : (0, P.jsx)(`button`, {
                                 type: `button`,
                                 onClick: () => setIconScreenOpen(!0),
@@ -19120,11 +19174,16 @@ function stompFxCard({
                         children: e
                     }),
                     (0, P.jsx)(`input`, {
-                        value: cur.name || `FX ${e}`,
+                        value: cur.name !== undefined && cur.name !== null ? cur.name : ``,
                         onChange: ev => n({ name: ev.target.value.slice(0, 15) }),
+                        onBlur: ev => {
+                            if (!ev.target.value.trim()) {
+                                n({ name: `FX ${e}` });
+                            }
+                        },
                         maxLength: 15,
                         className: `min-w-0 flex-1 rounded-md border border-border bg-panel px-2 py-1.5 font-mono text-xs font-bold text-foreground focus:border-accent/50 focus:outline-none`,
-                        placeholder: `Nome (max 15)`
+                        placeholder: `FX ${e}`
                     }),
                     (0, P.jsx)(`input`, {
                         type: `color`,
@@ -19791,7 +19850,7 @@ function BgSlotCard({ slot, prefix = 'bg', onEdit, onDelete, onClickUpload, onCl
                     borderRadius: '4px',
                     border: '1px solid #3f3f46',
                     overflow: 'hidden',
-                    background: thumb ? 'center / cover no-repeat url(' + thumb + ')' : '#18191e',
+                    background: thumb ? (isAmp ? 'center / contain no-repeat url(' + thumb + ')' : 'center / cover no-repeat url(' + thumb + ')') : '#18191e',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -20030,10 +20089,10 @@ function TelaLayoutsVisualPanel({ usbConfig: e, onChange: t }) {
     let maxBgSlots = 16;
     let displayStyle = Number(e?.displayStyle ?? (isMt8 ? 4 : 0));
     /* MT-8 permite Estilo 0 (Simples) */
-    if (!isMt8 && displayStyle !== 0 && displayStyle !== 6) displayStyle = 0;
+    if (!isMt8 && displayStyle !== 0 && displayStyle !== 1 && displayStyle !== 6) displayStyle = 0;
 
     let presetLayout = Number(e?.displayPresetLayout || 0);
-    let liveLayout = Number(e?.displayLiveLayout || 1);
+    let liveLayout = Number(e?.displayLiveLayout ?? 0);
     let iconShape = Number(e?.displayIconShape || 0);
     let showNames = Number(e?.displayPresetShowNames ?? 1) === 1;
     let [selectedSw, setSelectedSw] = (0, N.useState)(0);
@@ -20636,6 +20695,7 @@ function TelaLayoutsVisualPanel({ usbConfig: e, onChange: t }) {
 
     let styleLabels = {
         0: 'CLÁSSICO',
+        1: 'ÍCONES',
         2: 'ÍCONES',
         4: 'PRESET / STOMP',
         6: 'CUSTOM',
@@ -20649,6 +20709,7 @@ function TelaLayoutsVisualPanel({ usbConfig: e, onChange: t }) {
         { id: 6, lbl: 'CUSTOM', desc: 'Foto com barra ou blocos' }
     ] : [
         { id: 0, lbl: 'CLÁSSICO', desc: 'Preset: Clássico · Stomp: Ícones' },
+        { id: 1, lbl: 'ÍCONES', desc: fsCount === 6 ? 'Grade 2×3 ou 1 por tela' : 'Grade 2×2 ou 1 por tela' },
         { id: 6, lbl: 'CUSTOM', desc: 'Modo Clássico (Fundo Puro)' }
     ];
 
@@ -20671,9 +20732,10 @@ function TelaLayoutsVisualPanel({ usbConfig: e, onChange: t }) {
                                 type: 'button',
                                 onClick: () => {
                                     if (st.id === 0) t({ displayStyle: 0, displayPresetLayout: 0 });
+                                    else if (st.id === 1) t({ displayStyle: 1, displayLayout: Number(e?.displayLayout ?? 0) });
                                     else if (st.id === 2) t({ displayStyle: 2, displayGridCenterName: 1 });
                                     else if (st.id === 4) t({ displayStyle: 4, displayPresetLayout: 0, displayLiveLayout: 0 });
-                                    else if (st.id === 7) t({ displayStyle: 7 });
+                                    else if (st.id === 7) t({ displayStyle: 7, displayLiveLayout: Number(e?.displayLiveLayout ?? 0), displayPresetLayout: Number(e?.displayPresetLayout ?? 0) });
                                     else if (st.id === 6) t({ displayStyle: 6 });
                                 },
                                 style: {
@@ -20825,6 +20887,70 @@ function TelaLayoutsVisualPanel({ usbConfig: e, onChange: t }) {
                             (0, P.jsx)(`p`, {
                                 className: `rounded-lg border border-border/60 bg-surface/40 px-3 py-2 text-[10px] leading-relaxed text-muted-foreground`,
                                 children: isMt8 ? 'Modo Preset / Stomp: exibe o anel de presets clássico com a cor de fundo e cores do Banco e Foot configuradas acima.' : 'Modo Preset: exibe Banco, Footswitch e Nome do preset. Modo Stomp: exibe os ícones configurados por footswitch.'
+                            })
+                        ]
+                    }) : null,
+
+                    /* Bloco do Modo ÍCONES para ST7789 (MT-4 / MT-6) */
+                    (!isMt8 && displayStyle === 1) ? (0, P.jsxs)('div', {
+                        className: 'mt-4 flex flex-col gap-3 rounded-xl border p-3.5',
+                        style: { border: '1px solid rgba(239, 68, 68, 0.35)', background: '#160d0d' },
+                        children: [
+                            (0, P.jsxs)('div', {
+                                style: { display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '4px' },
+                                children: [
+                                    (0, P.jsx)('span', {
+                                        style: { fontFamily: 'inherit', fontSize: '11px', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#f87171' },
+                                        children: 'MODO DE EXIBIÇÃO DOS ÍCONES'
+                                    }),
+                                    (0, P.jsx)('span', {
+                                        style: { fontFamily: 'monospace', fontSize: '9px', fontWeight: 700, color: '#71717a' },
+                                        children: fsCount === 6 ? 'MX-6 (2×3)' : 'MX-4 (2×2)'
+                                    })
+                                ]
+                            }),
+                            (0, P.jsx)('div', {
+                                style: { display: 'flex', gap: '8px' },
+                                children: [
+                                    { id: 0, lbl: 'GRADE', desc: fsCount === 6 ? 'Grade 2×3 (6 ícones)' : 'Grade 2×2 (4 ícones)' },
+                                    { id: 3, lbl: '1 POR TELA', desc: 'Ícone único em destaque da FS ativa' }
+                                ].map(opt => {
+                                    let isSel = (Number(e?.displayLayout ?? 0) === opt.id) || (opt.id === 0 && Number(e?.displayLayout ?? 0) !== 3);
+                                    return (0, P.jsxs)('button', {
+                                        key: opt.id,
+                                        type: 'button',
+                                        onClick: () => t({ displayLayout: opt.id }),
+                                        style: {
+                                            flex: '1 1 0',
+                                            padding: '10px 8px',
+                                            borderRadius: '10px',
+                                            border: isSel ? '2px solid #ef4444' : '1px solid #27272a',
+                                            background: isSel ? '#240a0a' : '#141519',
+                                            color: isSel ? '#f87171' : '#a1a1aa',
+                                            boxShadow: isSel ? '0 0 14px rgba(239, 68, 68, 0.45), inset 0 0 8px rgba(239, 68, 68, 0.2)' : 'none',
+                                            cursor: 'pointer',
+                                            display: 'flex',
+                                            flexDirection: 'column',
+                                            alignItems: 'center',
+                                            justifyContent: 'center',
+                                            transition: 'all .15s'
+                                        },
+                                        children: [
+                                            (0, P.jsx)('span', {
+                                                style: { fontFamily: 'inherit', fontSize: '12px', fontWeight: 900, letterSpacing: '0.05em', color: isSel ? '#f87171' : '#e4e4e7' },
+                                                children: opt.lbl
+                                            }),
+                                            (0, P.jsx)('span', {
+                                                style: { marginTop: '4px', fontFamily: 'monospace', fontSize: '9px', color: isSel ? '#fca5a5' : '#71717a', textAlign: 'center', lineHeight: 1.2 },
+                                                children: opt.desc
+                                            })
+                                        ]
+                                    });
+                                })
+                            }),
+                            (0, P.jsx)('p', {
+                                className: 'rounded-lg border border-border/60 bg-surface/40 px-3 py-2 text-[10px] leading-relaxed text-muted-foreground',
+                                children: (Number(e?.displayLayout ?? 0) === 3) ? '1 por tela: exibe o ícone grande da chave ativa no display.' : (fsCount === 6 ? 'Grade 2×3: exibe os 6 blocos com ícones no tamanho máximo sem nome no meio.' : 'Grade 2×2: exibe os 4 blocos com ícones no tamanho máximo sem nome no meio.')
                             })
                         ]
                     }) : null,
@@ -21363,15 +21489,15 @@ function TelaLayoutsVisualPanel({ usbConfig: e, onChange: t }) {
             (isMt8 && displayStyle === 7) ? (0, P.jsx)('div', {
                 children: (0, P.jsxs)(I, {
                     title: 'Layout dos Footswitches (Modo AMP)',
-                    subtitle: liveLayout === 2 ? 'FILEIRA 1×8' : '4×2 BLOCOS',
+                    subtitle: (liveLayout === 1) ? 'AMP NO CENTRO (2×4)' : 'AMP NO TOPO (2×4)',
                     children: [
                     (0, P.jsx)('div', {
                         style: { display: 'flex', flexWrap: 'wrap', gap: '8px' },
                         children: [
-                            { id: 0, code: 'L4', lbl: '4×2 BLOCOS' },
-                            { id: 2, code: 'L2', lbl: 'FILEIRA 1×8' }
+                            { id: 0, code: 'L4', lbl: 'AMP NO TOPO' },
+                            { id: 1, code: 'L1', lbl: 'AMP NO CENTRO' }
                         ].map(item => {
-                            let isSel = (liveLayout === item.id) || (item.id === 0 && liveLayout !== 2);
+                            let isSel = liveLayout === item.id;
                             return (0, P.jsxs)('button', {
                                 key: item.code,
                                 type: 'button',
@@ -21404,7 +21530,7 @@ function TelaLayoutsVisualPanel({ usbConfig: e, onChange: t }) {
                     }),
                     (0, P.jsx)('p', {
                         className: 'mt-3 font-mono text-[9px] uppercase tracking-wider text-zinc-500',
-                        children: 'MODO AMP: A IMAGEM DO CABEÇOTE (HEAD) É EXIBIDA NO TOPO (0..160px) E OS 8 FOOTSWITCHES SÃO EXIBIDOS NA BASE (160..320px).'
+                        children: 'MODO AMP: ESCOLHA ENTRE CABEÇOTE NO TOPO (COM 8 FOOTSWITCHES 2×4 NA BASE) OU CABEÇOTE NO CENTRO (4 CHAVES EM CIMA E 4 EM BAIXO).'
                     })
                 ]
             }) }) : null
@@ -21668,6 +21794,10 @@ function compactFsForSave(e) {
         t.stgLoopCc = Math.max(0, Math.min(127, Number(e?.stgLoopCc ?? 0)));
         t.stgLoopCcValueOn = Math.max(0, Math.min(127, Number(e?.stgLoopCcValueOn ?? 127)));
         t.stgLoopCcValueOff = Math.max(0, Math.min(127, Number(e?.stgLoopCcValueOff ?? 0)))
+    }
+    if (Number(t.stgEnabled) === 1 || Number(t.stgAutoEnabled) === 1) {
+        t.stgStageCount = Math.max(2, Math.min(5, Number(e?.stgStageCount || 2)));
+        t.stgStages = Array.isArray(e?.stgStages) ? e.stgStages : [];
     }
     if (e?.ledColors && typeof e.ledColors == `object`) t.ledColors = e.ledColors;
     return t
@@ -22253,8 +22383,8 @@ function systemSettingsPanel({
         setSysTab = onSysTabChangeProp || setInternalSysTab,
         s = (() => {
             let mode = Math.max(0, Math.min(si.length - 1, Number(e?.usbmode || 0)));
-            /* GP5 legado em Host → tratar como TONEX/MODELLER */
-            if (Number(e?.usbpreset ?? 0) === 3) mode = 0;
+            /* GP5 legado em Host → tratar como TONEX/MODELLER; não no HUB+TONEX. */
+            if (mode !== 5 && Number(e?.usbpreset ?? 0) === 3) mode = 0;
             return mode;
         })(),
         pathCustom = Number(e?.controllerPath || 0) === 1,
@@ -23072,7 +23202,7 @@ var popupFsModeMeta = {
     },
     "STG Auto": {
         icon: `clock`,
-        description: `Estagios avancam sozinhos por tempo; loop CC opcional`,
+        description: `Loop contínuo dos estágios por tempo; 1º clique inicia, 2º para`,
         tint: `#84cc16`
     }
 };
@@ -24733,67 +24863,14 @@ function Di({
                 }, t.id))]
             })]
         }), stgAutoMode ? (0, P.jsxs)(`div`, {
-            className: `rounded-xl border border-border bg-canvas`,
-            children: [(0, P.jsxs)(`button`, {
-                type: `button`,
-                onClick: () => setLoopOpen(v => !v),
-                className: `flex w-full items-center justify-between px-4 py-3 text-left`,
-                children: [(0, P.jsx)(`span`, {
-                    className: `font-display text-[10px] uppercase tracking-[0.3em] text-muted-foreground`,
-                    children: `Loop CC`
-                }), (0, P.jsx)(`span`, {
-                    className: `font-mono text-[10px] text-accent`,
-                    children: loopOpen ? `−` : `+`
-                })]
-            }), loopOpen ? (0, P.jsxs)(`div`, {
-                className: `space-y-3 border-t border-border px-4 pb-4 pt-3`,
-                children: [(0, P.jsx)(toggleFieldControl, {
-                    label: `Loop CC activo`,
-                    checked: !!loopCcCfg?.enabled,
-                    onCheckedChange: v => onPatchLoopCc?.({
-                        enabled: v
-                    })
-                }), (0, P.jsxs)(`div`, {
-                    className: `grid grid-cols-2 gap-2 sm:grid-cols-3`,
-                    children: [(0, P.jsx)(Mi, {
-                        label: `Saída`,
-                        value: loopCcCfg?.output ?? `USB+BT`,
-                        options: xr,
-                        onChange: v => onPatchLoopCc?.({
-                            output: v
-                        })
-                    }), (0, P.jsx)(z, {
-                        label: `Canal`,
-                        value: loopCcCfg?.channel ?? 1,
-                        min: 1,
-                        max: 16,
-                        onChange: v => onPatchLoopCc?.({
-                            channel: v
-                        })
-                    }), (0, P.jsx)(B, {
-                        value: loopCcCfg?.cc ?? 0,
-                        onChange: v => onPatchLoopCc?.({
-                            cc: v
-                        })
-                    }), (0, P.jsx)(z, {
-                        label: `Valor On`,
-                        value: loopCcCfg?.valueOn ?? 127,
-                        min: 0,
-                        max: 127,
-                        onChange: v => onPatchLoopCc?.({
-                            valueOn: v
-                        })
-                    }), (0, P.jsx)(z, {
-                        label: `Valor Off`,
-                        value: loopCcCfg?.valueOff ?? 0,
-                        min: 0,
-                        max: 127,
-                        onChange: v => onPatchLoopCc?.({
-                            valueOff: v
-                        })
-                    })]
-                })]
-            }) : null]
+            className: `rounded-xl border border-accent/30 bg-accent/5 p-4`,
+            children: [(0, P.jsx)(`div`, {
+                className: `font-display text-[10px] font-bold uppercase tracking-[0.25em] text-accent`,
+                children: `Sequenciador em Loop Contínuo`
+            }), (0, P.jsx)(`p`, {
+                className: `mt-1 text-xs leading-relaxed text-muted-foreground`,
+                children: `Os estágios (1 a ${e.stageCount}) são executados em loop contínuo automático no tempo definido em cada um. O 1º clique na FS inicia o loop e o 2º clique interrompe a reprodução.`
+            })]
         }) : null]
     })
 }
@@ -24807,7 +24884,9 @@ function Oi({
 }) {
     let {
         usbmode: usbmodeCtx
-    } = (0, N.useContext)(pr), hubMode = Number(usbmodeCtx) === 3, hubLabels = [`Dev 1`, `Dev 2`, `Dev 3`, `Dev 4`], hubIdx = Math.max(0, Math.min(3, Number(t.hubDevice) || 0));
+    } = (0, N.useContext)(pr), hubMode = Number(usbmodeCtx) === 3, hubTonexMode = isHubTonexUsbMode(usbmodeCtx), hubLabels = [`Dev 1`, `Dev 2`, `Dev 3`, `Dev 4`], hubIdx = Math.max(0, Math.min(3, Number(t.hubDevice) || 0)),
+        showUsbDest = hubTonexMode,
+        usbDestLabel = usbHubTargetLabel(t.usbTarget);
     return (0, P.jsxs)(`div`, {
         className: `rounded-lg border border-border bg-canvas p-3`,
         children: [(0, P.jsxs)(`div`, {
@@ -24851,6 +24930,13 @@ function Oi({
                 options: hubLabels,
                 onChange: e => n({
                     hubDevice: hubLabels.indexOf(e)
+                })
+            }), showUsbDest && (0, P.jsx)(Mi, {
+                label: `Destino USB`,
+                value: usbDestLabel,
+                options: usbHubTargetLabels,
+                onChange: e => n({
+                    usbTarget: usbHubTargetValue(e)
                 })
             }), (0, P.jsx)(B, {
                 value: t.cc,
@@ -25146,7 +25232,7 @@ function ji({
 }) {
     let {
         usbmode: usbmodeCtx
-    } = (0, N.useContext)(pr), hubMode = Number(usbmodeCtx) === 3, hubLabels = [`Dev 1`, `Dev 2`, `Dev 3`, `Dev 4`], hubIdx = Math.max(0, Math.min(3, Number(t.hubDevice) || 0)), o = t.type === `FS Sync` || t.type.startsWith(`Banco`),
+    } = (0, N.useContext)(pr), hubMode = Number(usbmodeCtx) === 3, hubTonexMode = isHubTonexUsbMode(usbmodeCtx), hubLabels = [`Dev 1`, `Dev 2`, `Dev 3`, `Dev 4`], hubIdx = Math.max(0, Math.min(3, Number(t.hubDevice) || 0)), o = t.type === `FS Sync` || t.type.startsWith(`Banco`),
         s = t.type === `FS Sync` || t.type.startsWith(`Banco`) || t.type === `Tap Tempo Ampero (Serial)`,
         c = t.type === `FS Sync` || t.type.startsWith(`Banco`) || t.type === `SysEx` || t.type.startsWith(`PC`) || t.type.includes(`Up`) || t.type.includes(`Down`),
         l = n === `Normal` || n === `Momentâneo`,
@@ -25155,7 +25241,9 @@ function ji({
         isHold = (t.trigger ?? `Click`) === `Hold`,
         isOff = (t.state ?? `On`) === `Off`,
         isPhaseBoth = (t.state ?? `On`) === `On/Off`,
-        normalRing = isNormal ? isHold ? ` cmd-ring-hold` : ` cmd-ring-click` : ``;
+        normalRing = isNormal ? isHold ? ` cmd-ring-hold` : ` cmd-ring-click` : ``,
+        showUsbDest = hubTonexMode && !s,
+        usbDestLabel = usbHubTargetLabel(t.usbTarget);
     return (0, P.jsxs)(`div`, {
         className: `tile-inset rounded-xl p-3${normalRing}`,
         children: [(0, P.jsxs)(`div`, {
@@ -25326,6 +25414,13 @@ function ji({
                 options: hubLabels,
                 onChange: e => i({
                     hubDevice: hubLabels.indexOf(e)
+                })
+            }), showUsbDest && (0, P.jsx)(Mi, {
+                label: `Destino USB`,
+                value: usbDestLabel,
+                options: usbHubTargetLabels,
+                onChange: e => i({
+                    usbTarget: usbHubTargetValue(e)
                 })
             }), !s && (0, P.jsx)(Mi, {
                 label: `Saída`,
