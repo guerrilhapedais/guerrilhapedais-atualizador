@@ -1,6 +1,6 @@
 {
-  "version": "1.0.0.0",
-  "label": "GUERRILHA-MX-Series — Firmware 1.0.0.0 + partition-table. Leia notas da versão.",
+  "version": "1.0.0.2",
+  "label": "GUERRILHA-MX-Series — Firmware 1.0.0.2 + partition-table. Leia notas da versão.",
   "firmware": "GUERRILHA-MX-Series.bin",
   "partition": "partition-table.bin",
   "bootloader": "bootloader.bin"
