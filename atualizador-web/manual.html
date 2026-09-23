@@ -1362,7 +1362,7 @@
                 <span class="hardware-tag">Comando Total</span>
               </div>
               <p class="hardware-desc">
-                O topo de linha. 8 Footswitches no formato clássico de pedalboard, display panorâmico ST7796 de alta definição, layouts em 2 linhas e suporte a fotos de fundo em alta resolução.
+                O topo de linha. 8 Footswitches no formato clássico de pedalboard, display panorâmico 480×320 de alta definição, layouts em 2 linhas e suporte a fotos de fundo em alta resolução.
               </p>
             </div>
           </div>
@@ -1387,17 +1387,17 @@
             <button type="button" class="hw-picker-btn active" data-hw="mx8">
               <span class="hw-p-badge">TOP DE LINHA</span>
               <strong>GUERRILHA MX-8</strong>
-              <small>8 FS · ST7796 480×320</small>
+              <small>8 FS · Display 480×320</small>
             </button>
             <button type="button" class="hw-picker-btn" data-hw="mx6">
               <span class="hw-p-badge">EQUILÍBRIO</span>
               <strong>GUERRILHA MX-6</strong>
-              <small>6 FS · ST7789 240×240</small>
+              <small>6 FS · Display 240×240</small>
             </button>
             <button type="button" class="hw-picker-btn" data-hw="mx4">
               <span class="hw-p-badge">COMPACTO</span>
               <strong>GUERRILHA MX-4</strong>
-              <small>4 FS · ST7789 240×240</small>
+              <small>4 FS · Display 240×240</small>
             </button>
           </div>
         </div>
@@ -2333,11 +2333,17 @@
             <div class="ui-zoom-hint">🔍 Clique para ampliar</div>
           </div>
           <div class="ui-info-content">
-            <span class="crucial-badge">Sequenciador Automático</span>
-            <div class="ui-card-title">Automação de Efeitos por Tempo</div>
+            <span class="crucial-badge">Sequenciador em Loop</span>
+            <div class="ui-card-title">Loop Contínuo de Estágios por Tempo</div>
             <p class="ui-card-desc">
-              No STG Auto, você define o <strong>TEMPO (MS)</strong> de duração de cada estágio (ex: 1000ms = 1 segundo). Ao pisar, o pedal toca o Estágio 1 por 1 segundo, avança sozinho para o Estágio 2, depois Estágio 3 e pode reiniciar continuamente através da opção <strong>LOOP CC</strong> no rodapé!
+              No <strong>STG Auto</strong>, os estágios avançam automaticamente em <strong>loop contínuo</strong> baseado no <strong>TEMPO (MS)</strong> programado para cada um (ex: 1000ms = 1 segundo):
             </p>
+            <ul style="margin: 8px 0 0 16px; padding: 0; font-size: 13px; line-height: 1.6; color: var(--text-dim);">
+              <li><strong>Iniciar o Loop:</strong> O 1º pisão na footswitch inicia a sequência a partir do Estágio 1.</li>
+              <li><strong>Ciclo Contínuo:</strong> O pedal executa o Estágio 1 pelo tempo determinado, avança sozinho para o Estágio 2, depois Estágio 3... e ao concluir o último estágio, retorna imediatamente ao Estágio 1, repetindo o ciclo sem parar.</li>
+              <li><strong>Disparo dos Comandos:</strong> A cada troca de estágio, todos os comandos MIDI do estágio são enviados e o LED físico é atualizado.</li>
+              <li><strong>Parar a Reprodução:</strong> O loop contínuo só é interrompido quando você <strong>pisar novamente na mesma footswitch</strong> onde ele foi ativado.</li>
+            </ul>
           </div>
         </div>
       </section>
@@ -2798,7 +2804,7 @@
     const HW_DATA = {
       mx8: {
         title: "GUERRILHA MX-8 — DIAGRAMA TÉCNICO",
-        specs: "8 Footswitches em 2 Andares · Display Central ST7796 480×320 · USB Host Plus",
+        specs: "8 Footswitches em 2 Andares · Display Central 480×320 · USB Host Plus",
         renderTop: function() {
           return '<svg viewBox="0 0 860 460" width="860" height="460" xmlns="http://www.w3.org/2000/svg">' +
             '<rect x="15" y="15" width="830" height="430" rx="18" fill="#12151f" stroke="#2a3246" stroke-width="2.5"/>' +
@@ -2850,7 +2856,7 @@
       },
       mx6: {
         title: "GUERRILHA MX-6 — DIAGRAMA TÉCNICO",
-        specs: "6 Footswitches em Formato Régua (3 Chaves + Tela + 3 Chaves) · Display ST7789",
+        specs: "6 Footswitches em Formato Régua (3 Chaves + Tela + 3 Chaves) · Display 240×240",
         renderTop: function() {
           return '<svg viewBox="0 0 1020 220" width="1020" height="220" xmlns="http://www.w3.org/2000/svg">' +
             '<rect x="15" y="15" width="990" height="190" rx="16" fill="#12151f" stroke="#2a3246" stroke-width="2.5"/>' +
@@ -2895,7 +2901,7 @@
       },
       mx4: {
         title: "GUERRILHA MX-4 — DIAGRAMA TÉCNICO",
-        specs: "4 Footswitches em Formato Régua (2 Chaves + Tela + 2 Chaves) · Display ST7789",
+        specs: "4 Footswitches em Formato Régua (2 Chaves + Tela + 2 Chaves) · Display 240×240",
         renderTop: function() {
           return '<svg viewBox="0 0 860 220" width="860" height="220" xmlns="http://www.w3.org/2000/svg">' +
             '<rect x="15" y="15" width="830" height="190" rx="16" fill="#12151f" stroke="#2a3246" stroke-width="2.5"/>' +
