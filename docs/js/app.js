@@ -19,7 +19,7 @@ const ADDR_PART = 0x8000;
 const ADDR_APP = 0x10000;
 /** ESP32-S3: bootloader vive em 0x0 (no ESP32 clássico era 0x1000). */
 const ADDR_BOOTLOADER = 0x0;
-const FLASH_SIZE = "4MB";
+const FLASH_SIZE = document.documentElement.getAttribute("data-flash-size") || "4MB";
 
 const el = (id) => document.getElementById(id);
 
