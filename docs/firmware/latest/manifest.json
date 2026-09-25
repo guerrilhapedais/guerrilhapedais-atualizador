@@ -1,7 +1,7 @@
 {
-  "version": "2.4.7.1",
-  "label": "MT-Series (TONEXONE) — firmware 2.4.7.1 + partition-table",
-  "firmware": "TONEXONE-MTSeries.bin",
+  "version": "3.0.0.0",
+  "label": "MT-Series — firmware 3.0.0.0 + partition-table",
+  "firmware": "GUERRILHA-MT-Series.bin",
   "partition": "partition-table.bin",
   "bootloader": "bootloader.bin"
 }
