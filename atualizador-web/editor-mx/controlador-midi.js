@@ -12947,6 +12947,7 @@ var hr = [`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`],
     br = [`Normal`, `Momentâneo`, `Tap`, `Ricochet`, `STG`, `STG Auto`],
     xr = [`USB`, `BT`, `USB+BT`, `MIDI`, `USB+MIDI`, `BT+MIDI`, `USB+BT+MIDI`],
     usbHubTargetLabels = [`ToneX + MIDI`, `Apenas ToneX`, `Apenas MIDI`],
+    usbDualTargetLabels = [`Ambos`, `ToneX 1`, `ToneX 2`],
     Sr = [`CC`, `CC Up`, `CC Down`, `PC`, `PC Up`, `PC Down`, `SysEx`, `FS Sync`, `Banco+ (interno)`, `Banco− (interno)`],
     Cr = [`CC`, `PC`, `SysEx`],
     wr = [`CC`, `MIDI Clock (BPM)`, `MIDI Clock Tap`, `Tap Tempo Ampero (Serial)`],
@@ -13122,9 +13123,12 @@ function applyFxColorsToStompLeds(fsMap, usb) {
     return next
 }
 
-function displayStyleOptionsForFs(fsCount) {
+function displayStyleOptionsForFs(fsCount, customStompEnabled) {
     let fs = Number(fsCount || 0);
-    if (fs === 8) return [`Preset / Stomp`, `Ícones`, `Amp`, `Custom`];
+    if (fs === 8) {
+        if (customStompEnabled) return [`Preset / Stomp`, `Amp`, `Custom`];
+        return [`Preset / Stomp`, `Ícones`, `Amp`, `Custom`];
+    }
     return [`Clássico`, `Ícones`, `Custom`];
 }
 
@@ -13146,15 +13150,16 @@ function displayStyleValueForLabel(fsCount, label) {
     return 0;
 }
 
-function displayStyleClampForModel(fsCount, style) {
+function displayStyleClampForModel(fsCount, style, customStompEnabled) {
     let fs = Number(fsCount || 0);
     let v = Math.max(0, Math.min(7, Number(style || 0)));
     if (!fs && (v === 2 || v === 4 || v === 7)) fs = 8;
     if (fs === 8) {
+        if (customStompEnabled && v === 2) return 4;
         if (v === 2 || v === 4 || v === 6 || v === 7) return v;
         return 4;
     }
-    if (v === 1 || v === 6) return v;
+    if (v === 1 || v === 6 || v === 7) return v;
     return 0;
 }
 
@@ -14098,9 +14103,9 @@ function buildTelaUsbParts(e) {
     let hasDisp = [`displayStyle`, `displayNameSrc`, `displayLayout`, `displayGridCenterName`, `displayBgMode`, `displayBgR`, `displayBgG`, `displayBgB`, `displayBgR2`, `displayBgG2`, `displayBgB2`, `displaySimpleBankR`, `displaySimpleBankG`, `displaySimpleBankB`, `displaySimpleFootR`, `displaySimpleFootG`, `displaySimpleFootB`, `displaySimpleNameR`, `displaySimpleNameG`, `displaySimpleNameB`, `displayPresetLayout`, `displayLiveLayout`, `displayIconShape`, `displayPresetShowNames`].some(k => usbFieldPresent(e, k));
     if (hasDisp) {
         parts.push(scrubUsbPart({
-            displayStyle: displayStyleClampForModel(e?.fsCount, e?.displayStyle),
+            displayStyle: displayStyleClampForModel(e?.fsCount, e?.displayStyle, Number(e?.customStompEnabled) === 1),
             displayNameSrc: Number(e?.displayNameSrc || 0) ? 1 : 0,
-            displayLayout: Math.max(0, Math.min(3, Number(e?.displayLayout || 0))),
+            displayLayout: Math.max(0, Math.min(4, Number(e?.displayLayout || 0))),
             displayGridCenterName: Number(e?.displayGridCenterName || 0) ? 1 : 0,
             displayBgMode: Math.max(0, Math.min(3, Number(e?.displayBgMode || 0))),
             displayBgR: Math.max(0, Math.min(255, Number(e?.displayBgR ?? 0))),
@@ -14284,18 +14289,25 @@ function Hr(e) {
     return t >= 0 ? t : 2
 }
 
-function usbHubTargetLabel(v) {
-    return usbHubTargetLabels[Math.max(0, Math.min(2, Number(v) || 0))] || usbHubTargetLabels[0]
+function usbHubTargetLabelsForMode(usbmode) {
+    return Number(usbmode) === 6 ? usbDualTargetLabels : usbHubTargetLabels
 }
 
-function usbHubTargetValue(label) {
-    let i = usbHubTargetLabels.indexOf(label);
+function usbHubTargetLabel(v, usbmode) {
+    let labels = usbHubTargetLabelsForMode(usbmode);
+    return labels[Math.max(0, Math.min(2, Number(v) || 0))] || labels[0]
+}
+
+function usbHubTargetValue(label, usbmode) {
+    let labels = usbHubTargetLabelsForMode(usbmode);
+    let i = labels.indexOf(label);
     return i >= 0 ? i : 0
 }
 
-/** Destino USB só no modo Sistema = HUB + TONEX (índice 5). */
+/** Destino USB: HUB+TONEX (5) ou Dual ToneX (6). */
 function isHubTonexUsbMode(usbmode) {
-    return Number(usbmode) === 5
+    let m = Number(usbmode);
+    return m === 5 || m === 6
 }
 
 function outputIncludesUsb(outStr) {
@@ -15145,10 +15157,10 @@ function FsScreenIconCropModal({
         isBg = !isAmp && !!(hideMask || targetKey === DISPLAY_BG_KEY || String(targetKey).startsWith('bg')),
         useRect = isBg || isAmp,
         isMt8 = Number(fsCount) === 8,
-        exportW = isAmp ? 480 : (isBg ? (isMt8 ? DISPLAY_BG_W_MT8 : 240) : DISPLAY_ICON_PX),
-        exportH = isAmp ? 146 : (isBg ? (isMt8 ? DISPLAY_BG_H_MT8 : 240) : DISPLAY_ICON_PX),
-        previewW = isAmp ? 240 : (isBg ? (isMt8 ? 240 : 200) : 160),
-        previewH = isAmp ? 73 : (isBg ? (isMt8 ? 160 : 200) : 160),
+        exportW = isAmp ? (isMt8 ? 480 : 232) : (isBg ? (isMt8 ? DISPLAY_BG_W_MT8 : 240) : DISPLAY_ICON_PX),
+        exportH = isAmp ? (isMt8 ? 146 : 100) : (isBg ? (isMt8 ? DISPLAY_BG_H_MT8 : 240) : DISPLAY_ICON_PX),
+        previewW = isAmp ? (isMt8 ? 240 : 232) : (isBg ? (isMt8 ? 240 : 200) : 160),
+        previewH = isAmp ? (isMt8 ? 73 : 100) : (isBg ? (isMt8 ? 160 : 200) : 160),
         pickRef = (0, N.useRef)(null),
         [img, setImg] = (0, N.useState)(null),
         [zoom, setZoom] = (0, N.useState)(1),
@@ -15301,7 +15313,7 @@ function FsScreenIconCropModal({
                         }
                     }), (0, P.jsx)(`div`, {
                         className: `mb-2 text-center font-mono text-[9px] uppercase tracking-widest text-muted-foreground`,
-                        children: isAmp ? `delimitação do cabeçote (480×146)` : (isBg ? (isMt8 ? `cobre o display (480×320)` : `cobre o display (240×240)`) : `espaço do ícone no display`)
+                        children: isAmp ? (isMt8 ? `delimitação do cabeçote (480×146)` : `delimitação do cabeçote (232×100)`) : (isBg ? (isMt8 ? `cobre o display (480×320)` : `cobre o display (240×240)`) : `espaço do ícone no display`)
                     }), (0, P.jsxs)(`div`, {
                         className: `relative mx-auto overflow-hidden rounded-lg border-2 border-dashed border-accent/50`,
                         style: {
@@ -16016,9 +16028,11 @@ function FsScreenAmpTile({ ampKey, slot, selected, disabled, onPick }) {
     });
 }
 
-function FsScreenAmpPicker({ ampKey: e, fsIndex: t, onSetKey: n, embedded: embedded }) {
+function FsScreenAmpPicker({ ampKey: e, fsIndex: t, fsCount: fc, onSetKey: n, embedded: embedded }) {
     let currentKey = String(e || ``).trim(),
         [busyKey, setBusyKey] = (0, N.useState)(``);
+    let effCount = Number(fc || (typeof fsCount !== 'undefined' ? fsCount : 8));
+    let maxSlots = effCount === 8 ? 16 : 12;
 
     let pickKey = async key => {
         if (busyKey) return;
@@ -16056,7 +16070,7 @@ function FsScreenAmpPicker({ ampKey: e, fsIndex: t, onSetKey: n, embedded: embed
             }),
             (0, P.jsx)(`div`, {
                 className: `mb-2 font-display text-[9px] uppercase tracking-[0.25em] text-muted-foreground`,
-                children: `Escolha o cabeçote para esta chave (1 a 16):`
+                children: `Escolha o cabeçote para esta chave (1 a ` + maxSlots + `):`
             }),
             (0, P.jsx)(`div`, {
                 style: {
@@ -16065,7 +16079,7 @@ function FsScreenAmpPicker({ ampKey: e, fsIndex: t, onSetKey: n, embedded: embed
                     gap: `8px`,
                     marginBottom: `14px`
                 },
-                children: Array.from({ length: 16 }, (_, i) => i + 1).map(slot => {
+                children: Array.from({ length: maxSlots }, (_, i) => i + 1).map(slot => {
                     let k = `amp` + slot;
                     let isSel = currentKey === k;
                     return (0, P.jsx)(FsScreenAmpTile, {
@@ -18099,7 +18113,7 @@ function Xr() {
                             },
                             variant: m === `Stomp` ? `stomp` : w.mode === `Normal` ? `fourColor` : w.mode === `Momentâneo` ? `twoColor` : `oneColor`
                         }), f <= modelFs && (0, P.jsxs)(P.Fragment, {
-                            children: [(Number(c?.displayStyle) === 7) ? (0, P.jsx)(`button`, {
+                            children: [((Number(c?.displayStyle) === 7) || (Number(c?.displayStyle) === 1 && Number(c?.displayLayout) === 4)) ? (0, P.jsx)(`button`, {
                                 type: `button`,
                                 onClick: () => setAmpScreenOpen(!0),
                                 className: `flex w-full items-center justify-center gap-2 rounded-xl border border-red-500/50 bg-red-950/20 px-4 py-3 font-display text-[10px] font-bold uppercase tracking-[0.2em] text-red-400 transition hover:border-red-500 hover:bg-red-900/30`,
@@ -18206,6 +18220,7 @@ function Xr() {
                                 children: (0, P.jsx)(FsScreenAmpPicker, {
                                     ampKey: (Array.isArray(c?.fsBgSlot) && c.fsBgSlot[f - 1] > 0) ? (`amp` + c.fsBgSlot[f - 1]) : ``,
                                     fsIndex: f,
+                                    fsCount: gr[e]?.fs || c?.fsCount || 8,
                                     embedded: !0,
                                     onSetKey: key => {
                                         let slotNum = 0;
@@ -20086,10 +20101,13 @@ function TransBgConfigCard() {
 function TelaLayoutsVisualPanel({ usbConfig: e, onChange: t }) {
     let fsCount = Number(e?.fsCount || 8);
     let isMt8 = fsCount === 8;
+    let isGlobalStompOn = Boolean(Number(e?.customStompEnabled ?? 0) === 1);
     let maxBgSlots = 16;
+    let maxAmpSlots = isMt8 ? 16 : 12;
     let displayStyle = Number(e?.displayStyle ?? (isMt8 ? 4 : 0));
+    if (isMt8 && isGlobalStompOn && displayStyle === 2) displayStyle = 4;
     /* MT-8 permite Estilo 0 (Simples) */
-    if (!isMt8 && displayStyle !== 0 && displayStyle !== 1 && displayStyle !== 6) displayStyle = 0;
+    if (!isMt8 && displayStyle !== 0 && displayStyle !== 1 && displayStyle !== 6 && displayStyle !== 7) displayStyle = 0;
 
     let presetLayout = Number(e?.displayPresetLayout || 0);
     let liveLayout = Number(e?.displayLiveLayout ?? 0);
@@ -20100,6 +20118,12 @@ function TelaLayoutsVisualPanel({ usbConfig: e, onChange: t }) {
     let [ampModalSlot, setAmpModalSlot] = (0, N.useState)(null);
     let bgThumb = useDisplayIconThumb(typeof DISPLAY_BG_KEY !== 'undefined' ? DISPLAY_BG_KEY : 'bg');
     let lastDragTimeRef = (0, N.useRef)(0);
+
+    (0, N.useEffect)(() => {
+        if (isMt8 && isGlobalStompOn && Number(e?.displayStyle) === 2) {
+            t({ displayStyle: 4 });
+        }
+    }, [isMt8, isGlobalStompOn, e?.displayStyle]);
 
     let defaultPresetPos = [
         { x: 3, y: 15, size: 20, enabled: true },
@@ -20704,12 +20728,13 @@ function TelaLayoutsVisualPanel({ usbConfig: e, onChange: t }) {
 
     let styles = isMt8 ? [
         { id: 4, lbl: 'PRESET / STOMP', desc: 'Anel clássico de presets' },
-        { id: 2, lbl: 'ÍCONES', desc: 'Nome no meio dos blocos' },
+        ...(isGlobalStompOn ? [] : [{ id: 2, lbl: 'ÍCONES', desc: 'Nome no meio dos blocos' }]),
         { id: 7, lbl: 'AMP', desc: 'Cabeçote + 8 Footswitches' },
         { id: 6, lbl: 'CUSTOM', desc: 'Foto com barra ou blocos' }
     ] : [
         { id: 0, lbl: 'CLÁSSICO', desc: 'Preset: Clássico · Stomp: Ícones' },
         { id: 1, lbl: 'ÍCONES', desc: fsCount === 6 ? 'Grade 2×3 ou 1 por tela' : 'Grade 2×2 ou 1 por tela' },
+        { id: 7, lbl: 'AMP', desc: 'Head de amp + footswitches' },
         { id: 6, lbl: 'CUSTOM', desc: 'Modo Clássico (Fundo Puro)' }
     ];
 
@@ -20735,7 +20760,7 @@ function TelaLayoutsVisualPanel({ usbConfig: e, onChange: t }) {
                                     else if (st.id === 1) t({ displayStyle: 1, displayLayout: Number(e?.displayLayout ?? 0) });
                                     else if (st.id === 2) t({ displayStyle: 2, displayGridCenterName: 1 });
                                     else if (st.id === 4) t({ displayStyle: 4, displayPresetLayout: 0, displayLiveLayout: 0 });
-                                    else if (st.id === 7) t({ displayStyle: 7, displayLiveLayout: Number(e?.displayLiveLayout ?? 0), displayPresetLayout: Number(e?.displayPresetLayout ?? 0) });
+                                    else if (st.id === 7) t({ displayStyle: 7, displayLayout: 4, displayLiveLayout: Number(e?.displayLiveLayout ?? 0), displayPresetLayout: Number(e?.displayPresetLayout ?? 0) });
                                     else if (st.id === 6) t({ displayStyle: 6 });
                                 },
                                 style: {
@@ -20781,8 +20806,68 @@ function TelaLayoutsVisualPanel({ usbConfig: e, onChange: t }) {
                         })
                     }),
 
-                    /* Bloco de Cores e Fundo (Modo SIMPLES no ST7789 ou PRESET/STOMP no MT-8) */
-                    ((!isMt8 && displayStyle === 0) || (isMt8 && displayStyle === 4)) ? (0, P.jsxs)('div', {
+                    /* Opção Geral: Exibição no Modo Stomp (Apenas MT-4 e MT-6 quando Modo Stomp Global ativo) */
+                    (!isMt8 && isGlobalStompOn) ? (0, P.jsxs)('div', {
+                        className: 'mt-3.5 flex flex-col gap-2 rounded-xl border p-3',
+                        style: { border: '1px solid rgba(239, 68, 68, 0.25)', background: '#121316' },
+                        children: [
+                            (0, P.jsxs)('div', {
+                                style: { display: 'flex', alignItems: 'center', justifyContent: 'space-between' },
+                                children: [
+                                    (0, P.jsx)('span', {
+                                        style: { fontFamily: 'inherit', fontSize: '10px', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#f87171' },
+                                        children: 'MODO STOMP: EXIBIÇÃO DOS ÍCONES'
+                                    }),
+                                    (0, P.jsx)('span', {
+                                        style: { fontFamily: 'monospace', fontSize: '9px', fontWeight: 700, color: '#71717a' },
+                                        children: 'STOMP / LIVE'
+                                    })
+                                ]
+                            }),
+                            (0, P.jsx)('div', {
+                                style: { display: 'flex', gap: '8px' },
+                                children: [
+                                    { id: 0, lbl: 'NA GRADE', desc: isMt8 ? 'Exibe grade completa de blocos' : (fsCount === 6 ? 'Grade 2×3 com todos os blocos' : 'Grade 2×2 com todos os blocos') },
+                                    { id: 3, lbl: 'POR CHAVE', desc: 'Ícone único em destaque da chave ativa' }
+                                ].map(opt => {
+                                    let isSel = (Number(e?.displayLiveLayout ?? 0) === opt.id) || (opt.id === 0 && Number(e?.displayLiveLayout ?? 0) !== 3);
+                                    return (0, P.jsxs)('button', {
+                                        key: opt.id,
+                                        type: 'button',
+                                        onClick: () => t({ displayLiveLayout: opt.id }),
+                                        style: {
+                                            flex: '1 1 0',
+                                            padding: '8px 6px',
+                                            borderRadius: '8px',
+                                            border: isSel ? '2px solid #ef4444' : '1px solid #27272a',
+                                            background: isSel ? '#240a0a' : '#141519',
+                                            color: isSel ? '#f87171' : '#a1a1aa',
+                                            boxShadow: isSel ? '0 0 12px rgba(239, 68, 68, 0.4)' : 'none',
+                                            cursor: 'pointer',
+                                            display: 'flex',
+                                            flexDirection: 'column',
+                                            alignItems: 'center',
+                                            justifyContent: 'center',
+                                            transition: 'all .15s'
+                                        },
+                                        children: [
+                                            (0, P.jsx)('span', {
+                                                style: { fontFamily: 'inherit', fontSize: '11px', fontWeight: 900, letterSpacing: '0.05em', color: isSel ? '#f87171' : '#e4e4e7' },
+                                                children: opt.lbl
+                                            }),
+                                            (0, P.jsx)('span', {
+                                                style: { marginTop: '2px', fontFamily: 'monospace', fontSize: '8px', color: isSel ? '#fca5a5' : '#71717a', textAlign: 'center' },
+                                                children: opt.desc
+                                            })
+                                        ]
+                                    });
+                                })
+                            })
+                        ]
+                    }) : null,
+
+                    /* Bloco de Cores e Fundo (Modo SIMPLES no ST7789 ou PRESET/STOMP no MT-8 ou Modo AMP) */
+                    ((!isMt8 && (displayStyle === 0 || displayStyle === 7)) || (isMt8 && (displayStyle === 4 || displayStyle === 7))) ? (0, P.jsxs)('div', {
                         className: 'mt-4 flex flex-col gap-3 rounded-xl border p-3.5',
                         style: { border: '1px solid rgba(239, 68, 68, 0.35)', background: '#160d0d' },
                         children: [
@@ -20840,7 +20925,7 @@ function TelaLayoutsVisualPanel({ usbConfig: e, onChange: t }) {
                                     background: Number(e?.displayBgMode || 0) === 1 ? `linear-gradient(${Mr(Number(e?.displayBgR ?? 0), Number(e?.displayBgG ?? 0), Number(e?.displayBgB ?? 0))}, ${Mr(Number(e?.displayBgR2 ?? 24), Number(e?.displayBgG2 ?? 24), Number(e?.displayBgB2 ?? 24))})` : Number(e?.displayBgMode || 0) === 2 ? `linear-gradient(90deg, ${Mr(Number(e?.displayBgR ?? 0), Number(e?.displayBgG ?? 0), Number(e?.displayBgB ?? 0))}, ${Mr(Number(e?.displayBgR2 ?? 24), Number(e?.displayBgG2 ?? 24), Number(e?.displayBgB2 ?? 24))})` : Mr(Number(e?.displayBgR ?? 0), Number(e?.displayBgG ?? 0), Number(e?.displayBgB ?? 0))
                                 }
                             }),
-                            (0, P.jsxs)(`div`, {
+                            (displayStyle !== 7) ? (0, P.jsxs)(`div`, {
                                 className: `grid grid-cols-3 gap-2`,
                                 children: [
                                     (0, P.jsx)(telaBgColorField, {
@@ -20883,77 +20968,15 @@ function TelaLayoutsVisualPanel({ usbConfig: e, onChange: t }) {
                                         })
                                     })
                                 ]
-                            }),
+                            }) : null,
                             (0, P.jsx)(`p`, {
                                 className: `rounded-lg border border-border/60 bg-surface/40 px-3 py-2 text-[10px] leading-relaxed text-muted-foreground`,
-                                children: isMt8 ? 'Modo Preset / Stomp: exibe o anel de presets clássico com a cor de fundo e cores do Banco e Foot configuradas acima.' : 'Modo Preset: exibe Banco, Footswitch e Nome do preset. Modo Stomp: exibe os ícones configurados por footswitch.'
+                                children: displayStyle === 7 ? 'Modo Amp: exibe o cabeçote com fundo transparente e o nome do preset centralizados sobre o fundo configurado.' : (isMt8 ? 'Modo Preset / Stomp: exibe o anel de presets clássico com a cor de fundo e cores do Banco e Foot configuradas acima.' : 'Modo Preset: exibe Banco, Footswitch e Nome do preset. Modo Stomp: exibe os ícones configurados por footswitch.')
                             })
                         ]
                     }) : null,
 
-                    /* Bloco do Modo ÍCONES para ST7789 (MT-4 / MT-6) */
-                    (!isMt8 && displayStyle === 1) ? (0, P.jsxs)('div', {
-                        className: 'mt-4 flex flex-col gap-3 rounded-xl border p-3.5',
-                        style: { border: '1px solid rgba(239, 68, 68, 0.35)', background: '#160d0d' },
-                        children: [
-                            (0, P.jsxs)('div', {
-                                style: { display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '4px' },
-                                children: [
-                                    (0, P.jsx)('span', {
-                                        style: { fontFamily: 'inherit', fontSize: '11px', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#f87171' },
-                                        children: 'MODO DE EXIBIÇÃO DOS ÍCONES'
-                                    }),
-                                    (0, P.jsx)('span', {
-                                        style: { fontFamily: 'monospace', fontSize: '9px', fontWeight: 700, color: '#71717a' },
-                                        children: fsCount === 6 ? 'MX-6 (2×3)' : 'MX-4 (2×2)'
-                                    })
-                                ]
-                            }),
-                            (0, P.jsx)('div', {
-                                style: { display: 'flex', gap: '8px' },
-                                children: [
-                                    { id: 0, lbl: 'GRADE', desc: fsCount === 6 ? 'Grade 2×3 (6 ícones)' : 'Grade 2×2 (4 ícones)' },
-                                    { id: 3, lbl: '1 POR TELA', desc: 'Ícone único em destaque da FS ativa' }
-                                ].map(opt => {
-                                    let isSel = (Number(e?.displayLayout ?? 0) === opt.id) || (opt.id === 0 && Number(e?.displayLayout ?? 0) !== 3);
-                                    return (0, P.jsxs)('button', {
-                                        key: opt.id,
-                                        type: 'button',
-                                        onClick: () => t({ displayLayout: opt.id }),
-                                        style: {
-                                            flex: '1 1 0',
-                                            padding: '10px 8px',
-                                            borderRadius: '10px',
-                                            border: isSel ? '2px solid #ef4444' : '1px solid #27272a',
-                                            background: isSel ? '#240a0a' : '#141519',
-                                            color: isSel ? '#f87171' : '#a1a1aa',
-                                            boxShadow: isSel ? '0 0 14px rgba(239, 68, 68, 0.45), inset 0 0 8px rgba(239, 68, 68, 0.2)' : 'none',
-                                            cursor: 'pointer',
-                                            display: 'flex',
-                                            flexDirection: 'column',
-                                            alignItems: 'center',
-                                            justifyContent: 'center',
-                                            transition: 'all .15s'
-                                        },
-                                        children: [
-                                            (0, P.jsx)('span', {
-                                                style: { fontFamily: 'inherit', fontSize: '12px', fontWeight: 900, letterSpacing: '0.05em', color: isSel ? '#f87171' : '#e4e4e7' },
-                                                children: opt.lbl
-                                            }),
-                                            (0, P.jsx)('span', {
-                                                style: { marginTop: '4px', fontFamily: 'monospace', fontSize: '9px', color: isSel ? '#fca5a5' : '#71717a', textAlign: 'center', lineHeight: 1.2 },
-                                                children: opt.desc
-                                            })
-                                        ]
-                                    });
-                                })
-                            }),
-                            (0, P.jsx)('p', {
-                                className: 'rounded-lg border border-border/60 bg-surface/40 px-3 py-2 text-[10px] leading-relaxed text-muted-foreground',
-                                children: (Number(e?.displayLayout ?? 0) === 3) ? '1 por tela: exibe o ícone grande da chave ativa no display.' : (fsCount === 6 ? 'Grade 2×3: exibe os 6 blocos com ícones no tamanho máximo sem nome no meio.' : 'Grade 2×2: exibe os 4 blocos com ícones no tamanho máximo sem nome no meio.')
-                            })
-                        ]
-                    }) : null,
+
 
                     /* Bloco de Imagem de Fundo / Fotos (Custom ou Amp) */
                     (displayStyle === 6) ? (0, P.jsxs)('div', {
@@ -21150,8 +21173,8 @@ function TelaLayoutsVisualPanel({ usbConfig: e, onChange: t }) {
                         ]
                     }) : null,
 
-                    /* Bloco de Cabeçotes de Amp (Exclusivo Modo AMP no MT-8 / Estilo 7) */
-                    (isMt8 && displayStyle === 7) ? (0, P.jsxs)('div', {
+                    /* Bloco de Cabeçotes de Amp (Modo AMP no MT-8 / Estilo 7 ou MT-4/6 Layout AMP / 4) */
+                    (displayStyle === 7 || (!isMt8 && displayStyle === 1 && Number(e?.displayLayout ?? 0) === 4)) ? (0, P.jsxs)('div', {
                         style: {
                             marginTop: '16px',
                             padding: '16px 18px',
@@ -21186,17 +21209,17 @@ function TelaLayoutsVisualPanel({ usbConfig: e, onChange: t }) {
                                         children: [
                                             (0, P.jsx)('span', {
                                                 style: { fontFamily: 'inherit', fontSize: '11px', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#f87171' },
-                                                children: 'CABEÇOTES DE AMPLIFICADOR (16 SLOTS — 480×146)'
+                                                children: isMt8 ? 'CABEÇOTES DE AMPLIFICADOR (16 SLOTS — 480×146)' : ('CABEÇOTES DE AMPLIFICADOR (' + maxAmpSlots + ' SLOTS — 232×100)')
                                             }),
                                             (0, P.jsx)('span', {
                                                 style: { fontFamily: 'monospace', fontSize: '9px', fontWeight: 700, color: '#71717a' },
-                                                children: 'TFT ST7796'
+                                                children: isMt8 ? 'TFT ST7796' : 'TFT ST7789'
                                             })
                                         ]
                                     }),
                                     (0, P.jsx)('p', {
                                         style: { margin: 0, fontFamily: 'monospace', fontSize: '9px', color: '#a1a1aa', lineHeight: 1.4 },
-                                        children: 'Carregue até 16 fotos de cabeçotes (amp1..amp16) cortadas na proporção do head de amplificador (480×146 pixels). Na aba Preset, utilize o botão Amp em cada chave para escolher o cabeçote do preset ativo.'
+                                        children: isMt8 ? 'Carregue até 16 fotos de cabeçotes (amp1..amp16) cortadas na proporção do head de amplificador (480×146 pixels). Na aba Preset, utilize o botão Cabeçote Amp em cada chave para escolher o cabeçote do preset ativo.' : ('Carregue até ' + maxAmpSlots + ' fotos de cabeçotes (amp1..amp' + maxAmpSlots + ') cortadas na proporção do head de amplificador (232×100 pixels). Na aba Preset, utilize o botão Cabeçote Amp em cada chave para escolher o cabeçote do preset ativo.')
                                     })
                                 ]
                             }),
@@ -21207,7 +21230,7 @@ function TelaLayoutsVisualPanel({ usbConfig: e, onChange: t }) {
                                 children: [
                                     (0, P.jsx)('span', {
                                         style: { fontFamily: 'inherit', fontSize: '10px', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '0.06em', color: '#d4d4d8' },
-                                        children: 'SLOTS DE CABEÇOTES DISPONÍVEIS (AMP1..AMP16):'
+                                        children: 'SLOTS DE CABEÇOTES DISPONÍVEIS (AMP1..AMP' + maxAmpSlots + '):'
                                     }),
                                     (0, P.jsx)('span', {
                                         style: { fontFamily: 'monospace', fontSize: '9px', color: '#71717a' },
@@ -21217,7 +21240,7 @@ function TelaLayoutsVisualPanel({ usbConfig: e, onChange: t }) {
                             }),
                             (0, P.jsx)('div', {
                                 style: { display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(85px, 1fr))', gap: '8px', boxSizing: 'border-box' },
-                                children: Array.from({ length: 16 }, (_, i) => i + 1).map(slot => (
+                                children: Array.from({ length: maxAmpSlots }, (_, i) => i + 1).map(slot => (
                                     (0, P.jsx)(BgSlotCard, {
                                         key: 'amp' + slot,
                                         slot: slot,
@@ -21539,7 +21562,7 @@ function TelaLayoutsVisualPanel({ usbConfig: e, onChange: t }) {
 }
 
 
-var si = [`TONEX / MODELLER`, `MIDI USB HOST`, `MIDI USB PC`, `HUB MIDI`, `MIDI SERIAL (DIN/UART)`, `HUB + TONEX`],
+var si = [`TONEX / MODELLER`, `MIDI USB HOST`, `MIDI USB PC`, `HUB MIDI`, `MIDI SERIAL (DIN/UART)`, `HUB + TONEX`, `Dual ToneX`],
     ci = {
         0: [
         /* { value: 18, label: `TONEX CUSTOM` }, — usar controllerPath=Custom */
@@ -21631,6 +21654,9 @@ var si = [`TONEX / MODELLER`, `MIDI USB HOST`, `MIDI USB PC`, `HUB MIDI`, `MIDI 
         ],
         5: [
         /* HUB + TONEX: sem sub-presets (rotação MIDI + ToneX lite) */
+        ],
+        6: [
+        /* Dual ToneX: sem sub-presets (só ToneX 1 / ToneX 2) */
         ]
     },
     liBtModes = [`Desabilitado`, `Central`, `Peripheral`],
@@ -24886,7 +24912,8 @@ function Oi({
         usbmode: usbmodeCtx
     } = (0, N.useContext)(pr), hubMode = Number(usbmodeCtx) === 3, hubTonexMode = isHubTonexUsbMode(usbmodeCtx), hubLabels = [`Dev 1`, `Dev 2`, `Dev 3`, `Dev 4`], hubIdx = Math.max(0, Math.min(3, Number(t.hubDevice) || 0)),
         showUsbDest = hubTonexMode,
-        usbDestLabel = usbHubTargetLabel(t.usbTarget);
+        usbDestOpts = usbHubTargetLabelsForMode(usbmodeCtx),
+        usbDestLabel = usbHubTargetLabel(t.usbTarget, usbmodeCtx);
     return (0, P.jsxs)(`div`, {
         className: `rounded-lg border border-border bg-canvas p-3`,
         children: [(0, P.jsxs)(`div`, {
@@ -24934,9 +24961,9 @@ function Oi({
             }), showUsbDest && (0, P.jsx)(Mi, {
                 label: `Destino USB`,
                 value: usbDestLabel,
-                options: usbHubTargetLabels,
+                options: usbDestOpts,
                 onChange: e => n({
-                    usbTarget: usbHubTargetValue(e)
+                    usbTarget: usbHubTargetValue(e, usbmodeCtx)
                 })
             }), (0, P.jsx)(B, {
                 value: t.cc,
@@ -25243,7 +25270,8 @@ function ji({
         isPhaseBoth = (t.state ?? `On`) === `On/Off`,
         normalRing = isNormal ? isHold ? ` cmd-ring-hold` : ` cmd-ring-click` : ``,
         showUsbDest = hubTonexMode && !s,
-        usbDestLabel = usbHubTargetLabel(t.usbTarget);
+        usbDestOpts = usbHubTargetLabelsForMode(usbmodeCtx),
+        usbDestLabel = usbHubTargetLabel(t.usbTarget, usbmodeCtx);
     return (0, P.jsxs)(`div`, {
         className: `tile-inset rounded-xl p-3${normalRing}`,
         children: [(0, P.jsxs)(`div`, {
@@ -25418,9 +25446,9 @@ function ji({
             }), showUsbDest && (0, P.jsx)(Mi, {
                 label: `Destino USB`,
                 value: usbDestLabel,
-                options: usbHubTargetLabels,
+                options: usbDestOpts,
                 onChange: e => i({
-                    usbTarget: usbHubTargetValue(e)
+                    usbTarget: usbHubTargetValue(e, usbmodeCtx)
                 })
             }), !s && (0, P.jsx)(Mi, {
                 label: `Saída`,

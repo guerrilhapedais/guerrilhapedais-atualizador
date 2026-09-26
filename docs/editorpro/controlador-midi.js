@@ -14568,7 +14568,7 @@ function Xr() {
     let [e, t] = (0, N.useState)(`MT-6S`), [n, r] = (0, N.useState)(0), [i, a] = (0, N.useState)(1), [o, s] = (0, N.useState)(`preset`), [c, l] = (0, N.useState)({}), [expBankState, setExpBankState] = (0, N.useState)(() => expCreateEmptyBank()), [globalSubTab, setGlobalSubTab] = (0, N.useState)(`gb`), u = (0, N.useRef)(!1), modelSaveBusyRef = (0, N.useRef)(!1), modelRebootUntilRef = (0, N.useRef)(0), d = gr[e].fs, [f, p] = (0, N.useState)(1), [m, h] = (0, N.useState)(`Preset`), [g, _] = (0, N.useState)(!0), [v, y] = (0, N.useState)(null), [R, I] = (0, N.useState)(null), [B, L] = (0, N.useState)(``),     [backupBusy, setBackupBusy] = (0, N.useState)(!1), [backupProgress, setBackupProgress] = (0, N.useState)({
         pct: 0,
         label: ``
-    }), [fsSwitchPrompt, setFsSwitchPrompt] = (0, N.useState)(null), fsSavedSnapshotRef = (0, N.useRef)({}), fsFullSnapshotRef = (0, N.useRef)({}), [transportState, setTransportState] = (0, N.useState)(() => getTransportSnapshot());
+    }), [fsSwitchPrompt, setFsSwitchPrompt] = (0, N.useState)(null), [bankSwitchPrompt, setBankSwitchPrompt] = (0, N.useState)(null), fsSavedSnapshotRef = (0, N.useRef)({}), fsFullSnapshotRef = (0, N.useRef)({}), [transportState, setTransportState] = (0, N.useState)(() => getTransportSnapshot());
     let reportBackupProgress = (pct, label) => {
         try {
             setBackupProgress({
@@ -14638,6 +14638,7 @@ function Xr() {
         },
         isFsDirty = fsNum => {
             let cur = b[fsNum] || kr(fsNum);
+            if (typeof fsSavedSnapshotRef.current[fsNum] > `u`) return !1;
             return fsSavedSnapshotRef.current[fsNum] !== snapshotFsCompact(cur)
         },
         discardCurrentFsEdits = () => {
@@ -14646,6 +14647,59 @@ function Xr() {
                 ...e,
                 [f]: JSON.parse(JSON.stringify(full))
             }))
+        },
+        changeBankTo = targetBank => {
+            if (targetBank === n) return;
+            r(targetBank);
+            F(`B`, `bank.cycle.click`, {
+                from: n,
+                to: targetBank,
+                activePreset: T
+            });
+            (async () => {
+                try {
+                    let e = await zr(`/api/set-current-bank?bank=${targetBank}&activePreset=${T}`, {
+                        method: `GET`
+                    }, 15e3);
+                    F(`B`, `bank.cycle.api.ok`, {
+                        bank: targetBank,
+                        activePreset: T,
+                        resp: e
+                    });
+                    try {
+                        let e = await zr(`/api/active-key`, {
+                            method: `GET`
+                        }, 8e3);
+                        F(`B`, `activeKey.afterBank.ok`, {
+                            bank: targetBank,
+                            activePreset: T,
+                            ak: e
+                        })
+                    } catch (e) {
+                        F(`B`, `activeKey.afterBank.err`, {
+                            bank: targetBank,
+                            activePreset: T,
+                            message: String(e?.message || e)
+                        })
+                    }
+                } catch (e) {
+                    rt.error(`Aviso: banco na tela OK, dispositivo não confirmou (${String(e?.message || e).slice(0, 80)})`), F(`B`, `bank.cycle.api.err`, {
+                        bank: targetBank,
+                        activePreset: T,
+                        message: String(e?.message || e)
+                    })
+                }
+            })()
+        },
+        requestSelectBank = targetBank => {
+            if (targetBank === n) return;
+            if (!isFsDirty(f)) {
+                changeBankTo(targetBank);
+                return
+            }
+            setBankSwitchPrompt({
+                targetBank
+            })
         },
         requestSelectFs = targetFs => {
             if (targetFs === f) {
@@ -15440,7 +15494,7 @@ function Xr() {
                         holdN = (r?.extraHold || []).length;
                     if (clickN > 16 || holdN > 16) {
                         rt.error(`Máximo 16 comandos por chave (Click ou Hold).`);
-                        return
+                        return !1
                     }
                     F(`D`, `save.fs.start`, {
                         bank: n,
@@ -15540,18 +15594,21 @@ function Xr() {
                         fs: e,
                         activePreset: T,
                         verify: verifySoft ? `soft` : `ok`
-                    })
+                    });
+                    return !0
                 } catch (err) {
                     rt.error(`Erro ao salvar FS: ${softApFetchErrorMessage(err)}`), F(`C`, `save.fs.error`, {
                         bank: n,
                         fs: f,
                         activePreset: T,
                         message: String(err?.message || err)
-                    })
+                    });
+                    return !1
                 } finally {
                     u.current = !1
                 }
             }
+            return !1
         }, ne = async () => {
             if (F(`C`, `handleSave.click`, {
                     tab: o,
@@ -15631,6 +15688,21 @@ function Xr() {
             }
         };
     let globalSaveLabel = o === `global` ? globalSubTab === `stomp` ? `Salvar Stomp` : globalSubTab === `exp` ? `Salvar EXP` : `Salvar GB` : o === `sistema` ? `Salvar Sistema` : `Salvar`;
+    let bankLimit = Math.max(1, Math.min(hr.length, Number(c?.customBankLimit || hr.length)));
+    let bankSafe = Math.max(0, Math.min(bankLimit - 1, n));
+    (0, N.useEffect)(() => {
+        if (o !== `preset`) return;
+        if (n < bankLimit) return;
+        let next = bankLimit - 1;
+        r(next);
+        (async () => {
+            try {
+                await zr(`/api/set-current-bank?bank=${next}&activePreset=${T}`, {
+                    method: `GET`
+                }, 15e3)
+            } catch {}
+        })()
+    }, [o, n, bankLimit, T]);
     return (0, P.jsx)(fr.Provider, {
         value: {
             stompOn: g,
@@ -15740,91 +15812,10 @@ function Xr() {
                     children: [(0, P.jsx)(`section`, {
                         className: `order-1 lg:order-none lg:contents`,
                         children: (0, P.jsx)(yi, {
-                            letter: hr[n],
-                            sublabel: presetLabel(i) ? `${hr[n]}${i} · ${presetLabel(i)}` : `${hr[n]}${i}`,
-                            onPrev: () => r(e => {
-                                let t = (e - 1 + hr.length) % hr.length;
-                                return F(`B`, `bank.cycle.click`, {
-                                    from: e,
-                                    to: t,
-                                    activePreset: T
-                                }), (async () => {
-                                    try {
-                                        let e = await zr(`/api/set-current-bank?bank=${t}&activePreset=${T}`, {
-                                            method: `GET`
-                                        }, 15e3);
-                                        F(`B`, `bank.cycle.api.ok`, {
-                                            bank: t,
-                                            activePreset: T,
-                                            resp: e
-                                        });
-                                        try {
-                                            let e = await zr(`/api/active-key`, {
-                                                method: `GET`
-                                            }, 8e3);
-                                            F(`B`, `activeKey.afterBank.ok`, {
-                                                bank: t,
-                                                activePreset: T,
-                                                ak: e
-                                            })
-                                        } catch (e) {
-                                            F(`B`, `activeKey.afterBank.err`, {
-                                                bank: t,
-                                                activePreset: T,
-                                                message: String(e?.message || e)
-                                            })
-                                        }
-                                    } catch (e) {
-                                        /* UI já mudou o banco; aviso só se o dispositivo não acompanhou. */
-                                        rt.error(`Aviso: banco na tela OK, dispositivo não confirmou (${String(e?.message || e).slice(0, 80)})`), F(`B`, `bank.cycle.api.err`, {
-                                            bank: t,
-                                            activePreset: T,
-                                            message: String(e?.message || e)
-                                        })
-                                    }
-                                })(), t
-                            }),
-                            onNext: () => r(e => {
-                                let t = (e + 1) % hr.length;
-                                return F(`B`, `bank.cycle.click`, {
-                                    from: e,
-                                    to: t,
-                                    activePreset: T
-                                }), (async () => {
-                                    try {
-                                        let e = await zr(`/api/set-current-bank?bank=${t}&activePreset=${T}`, {
-                                            method: `GET`
-                                        }, 15e3);
-                                        F(`B`, `bank.cycle.api.ok`, {
-                                            bank: t,
-                                            activePreset: T,
-                                            resp: e
-                                        });
-                                        try {
-                                            let e = await zr(`/api/active-key`, {
-                                                method: `GET`
-                                            }, 8e3);
-                                            F(`B`, `activeKey.afterBank.ok`, {
-                                                bank: t,
-                                                activePreset: T,
-                                                ak: e
-                                            })
-                                        } catch (e) {
-                                            F(`B`, `activeKey.afterBank.err`, {
-                                                bank: t,
-                                                activePreset: T,
-                                                message: String(e?.message || e)
-                                            })
-                                        }
-                                    } catch (e) {
-                                        rt.error(`Aviso: banco na tela OK, dispositivo não confirmou (${String(e?.message || e).slice(0, 80)})`), F(`B`, `bank.cycle.api.err`, {
-                                            bank: t,
-                                            activePreset: T,
-                                            message: String(e?.message || e)
-                                        })
-                                    }
-                                })(), t
-                            })
+                            letter: hr[bankSafe],
+                            sublabel: presetLabel(i) ? `${hr[bankSafe]}${i} · ${presetLabel(i)}` : `${hr[bankSafe]}${i}`,
+                            onPrev: () => requestSelectBank((bankSafe - 1 + bankLimit) % bankLimit),
+                            onNext: () => requestSelectBank((bankSafe + 1) % bankLimit)
                         })
                     }), (0, P.jsxs)(`section`, {
                         className: `order-2 space-y-3 lg:order-none lg:col-start-3 lg:row-start-1 lg:row-span-2`,
@@ -16078,9 +16069,66 @@ function Xr() {
                                 type: `button`,
                                 onClick: async () => {
                                     let target = fsSwitchPrompt.targetFs;
+                                    let ok = await te();
+                                    if (!ok) return;
                                     setFsSwitchPrompt(null);
-                                    await te();
                                     p(target)
+                                },
+                                className: `rounded-md border border-accent/60 bg-accent/20 px-4 py-2 font-display text-[10px] uppercase tracking-[0.16em] text-accent hover:bg-accent/30`,
+                                children: `Salvar`
+                            })]
+                        })]
+                    })
+                }), bankSwitchPrompt && (0, P.jsx)(`div`, {
+                    className: `fixed inset-0 z-[120] flex items-center justify-center bg-black/80 p-4`,
+                    onClick: () => setBankSwitchPrompt(null),
+                    children: (0, P.jsxs)(`div`, {
+                        className: `relative w-full overflow-hidden border border-border bg-canvas`,
+                        onClick: e => e.stopPropagation(),
+                        style: {
+                            width: `calc(100vw - 2rem)`,
+                            maxWidth: `24rem`,
+                            borderRadius: `20px`,
+                            background: `radial-gradient(120% 100% at 50% 0%, rgba(220, 38, 38, 0.12), transparent 60%), linear-gradient(180deg, var(--tile-top) 0%, var(--tile-bot) 100%)`,
+                            boxShadow: `0 40px 80px -20px rgba(0, 0, 0, 0.7)`
+                        },
+                        children: [(0, P.jsxs)(`div`, {
+                            className: `border-b border-border bg-panel/60 px-4 py-3`,
+                            children: [(0, P.jsx)(`div`, {
+                                className: `font-display text-[11px] uppercase tracking-[0.24em] text-accent`,
+                                children: `Alterações não salvas`
+                            }), (0, P.jsxs)(`div`, {
+                                className: `mt-1 font-mono text-[10px] text-muted-foreground`,
+                                children: [`FS`, f, ` tem mudanças. Salvar antes de ir ao banco `, hr[bankSwitchPrompt.targetBank], `?`]
+                            })]
+                        }), (0, P.jsxs)(`div`, {
+                            className: `flex flex-col gap-2 px-4 py-4 sm:flex-row sm:justify-end`,
+                            children: [(0, P.jsx)(`button`, {
+                                type: `button`,
+                                onClick: () => setBankSwitchPrompt(null),
+                                className: `rounded-md border border-border px-4 py-2 font-display text-[10px] uppercase tracking-[0.16em] text-muted-foreground hover:text-foreground`,
+                                children: `Cancelar`
+                            }), (0, P.jsx)(`button`, {
+                                type: `button`,
+                                onClick: () => {
+                                    discardCurrentFsEdits();
+                                    let target = bankSwitchPrompt.targetBank;
+                                    setBankSwitchPrompt(null);
+                                    changeBankTo(target)
+                                },
+                                className: `rounded-md border border-border px-4 py-2 font-display text-[10px] uppercase tracking-[0.16em] text-muted-foreground hover:text-foreground`,
+                                children: `Descartar`
+                            }), (0, P.jsx)(`button`, {
+                                type: `button`,
+                                onClick: async () => {
+                                    let target = bankSwitchPrompt.targetBank;
+                                    let ok = await te();
+                                    if (!ok) {
+                                        rt.error(`Não foi possível salvar. Banco não mudou.`);
+                                        return
+                                    }
+                                    setBankSwitchPrompt(null);
+                                    changeBankTo(target)
                                 },
                                 className: `rounded-md border border-accent/60 bg-accent/20 px-4 py-2 font-display text-[10px] uppercase tracking-[0.16em] text-accent hover:bg-accent/30`,
                                 children: `Salvar`
