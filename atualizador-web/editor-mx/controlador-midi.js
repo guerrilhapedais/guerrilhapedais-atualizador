@@ -13650,27 +13650,27 @@ async function usbRouteJson(e, t = {}, n = 15e3) {
             }
         };
         if (t.fs) return wrapBank(await fetchOne(t), t.bank);
-        try {
-            return wrapBank(await fetchOne(t), t.bank)
-        } catch (err) {
-            let bankObj = {},
-                maxFs = 8;
-            for (let i = 1; i <= maxFs; i++) {
-                try {
-                    let one = await usbTransportRequest(`midi_config`, {
-                        bank: t.bank,
-                        fs: i
-                    }, Math.min(n, 8e3));
-                    let data = usbRouteNormalizeResponse(one, `midi_config`);
-                    if (data?.[`fs${i}`]) bankObj[`fs${i}`] = data[`fs${i}`]
-                } catch {}
-            }
-            if (!Object.keys(bankObj).length) throw err;
-            return wrapBank({
-                bank: t.bank,
-                ...bankObj
-            }, t.bank)
+        /* No transporte USB CDC, buscar footswitches individualmente (FS1..FS8) evita
+         * payloads gigantes (>12KB com >1000 nós cJSON) que estouram a stack/heap interna do ESP32. */
+        let bankObj = {},
+            maxFs = 8;
+        for (let i = 1; i <= maxFs; i++) {
+            try {
+                let one = await usbTransportRequest(`midi_config`, {
+                    bank: t.bank,
+                    fs: i
+                }, Math.min(n, 8e3));
+                let data = usbRouteNormalizeResponse(one, `midi_config`);
+                if (data?.[`fs${i}`]) bankObj[`fs${i}`] = data[`fs${i}`];
+            } catch {}
         }
+        if (!Object.keys(bankObj).length) {
+            return wrapBank(await fetchOne(t), t.bank);
+        }
+        return wrapBank({
+            bank: t.bank,
+            ...bankObj
+        }, t.bank);
     }
     if (i === `/api/led-colors`) {
         if (a === `POST`) return usbRouteNormalizeResponse(await usbTransportRequest(`led_colors`, {
@@ -16136,7 +16136,13 @@ function FsBoxVisualCustomizer({
     let w = fsConfig || {};
     let isStomp = ctrlMode === `Stomp`;
 
-    let ampSlot = (Array.isArray(globalConfig?.fsBgSlot) && globalConfig.fsBgSlot[fsNumber - 1] > 0) ? globalConfig.fsBgSlot[fsNumber - 1] : 0;
+    let ampSlot = (() => {
+        let k = w?.iconKey;
+        if (k && (String(k).startsWith(`amp`) || String(k).startsWith(`bg`))) {
+            return parseInt(String(k).replace(/^(amp|bg)/, ``), 10) || 0;
+        }
+        return (Array.isArray(globalConfig?.fsBgSlot) && globalConfig.fsBgSlot[fsNumber - 1] > 0) ? globalConfig.fsBgSlot[fsNumber - 1] : 0;
+    })();
     let ampKey = ampSlot > 0 ? (`amp` + ampSlot) : ``;
     let ampThumb = useDisplayIconThumb(ampKey);
 
@@ -16697,9 +16703,11 @@ function Jr(e, usbCfg) {
         toggleHoldCommands = e.mode === `Momentâneo` ? [] : c,
         l = Array.isArray(e.stompCommands) ? e.stompCommands : [],
         u = Nr(e.stompLed?.on || yr.on),
-        d = Nr(e.stompLed?.off || yr.off),
-        f = {
-            fsName: String(e.label || ``).replace(/[^\x20-\x7E]/g, ``).toUpperCase().slice(0, 24),
+        d = Nr(e.stompLed?.off || yr.off);
+    let rawFsLabel = String(e.label || ``).replace(/[^\x20-\x7E]/g, ``).trim().toUpperCase().slice(0, 24);
+    if (rawFsLabel.startsWith('FS') && !isNaN(rawFsLabel.slice(2))) rawFsLabel = '';
+    let f = {
+            fsName: rawFsLabel,
             stompName: String(e.stompName || ``).replace(/[^\x20-\x7E]/g, ``).toUpperCase().slice(0, 16),
             iconKey: displayIconSanitizeKey(e.iconKey || ``),
             stompIcon: displayIconSanitizeKey(e.stompIcon || ``),
@@ -18171,9 +18179,7 @@ function Xr() {
                                       (Number(fsCopy.gridFill || 0) > 0) ||
                                       isFsDirty(fsNum);
 
-                    // A chave aberta (f) pode ser gravada vazia se o usuário limpou de propósito.
-                    // Mas chaves que NÃO estão na tela e não têm comandos NÃO são enviadas como vazio.
-                    if (fsNum !== f && !hasCommands) continue;
+                    // Grava todas as footswitches do banco para higienizar e garantir persistência independente por banco
 
                     if (fsNum === f && iconKeyPendingRef.current !== null) {
                         if (m === 'Stomp') {
@@ -18428,11 +18434,12 @@ function Xr() {
                         className: `order-1 lg:order-none lg:contents`,
                         children: (0, P.jsx)(yi, {
                             letter: hr[n],
-                            sublabel: presetLabel(i) ? `${hr[n]}${i} · ${presetLabel(i)}` : `${hr[n]}${i}`,
+                            sublabel: hr[n],
                             onPrev: () => {
                                 let t = (n - 1 + hr.length) % hr.length;
                                 requestSelectBank(t, () => {
                                     r(t);
+                                    x(Object.fromEntries(Array.from({ length: effectiveFs }, (_, i) => [i + 1, kr(i + 1)])));
                                     F(`B`, `bank.cycle.click`, {
                                         from: n,
                                         to: t,
@@ -18479,6 +18486,7 @@ function Xr() {
                                 let t = (n + 1) % hr.length;
                                 requestSelectBank(t, () => {
                                     r(t);
+                                    x(Object.fromEntries(Array.from({ length: effectiveFs }, (_, i) => [i + 1, kr(i + 1)])));
                                     F(`B`, `bank.cycle.click`, {
                                         from: n,
                                         to: t,
@@ -18895,20 +18903,22 @@ function Xr() {
                                 title: `Cabeçote Amp`,
                                 subtitle: `FS${f}`,
                                 children: (0, P.jsx)(FsScreenAmpPicker, {
-                                    ampKey: (Array.isArray(c?.fsBgSlot) && c.fsBgSlot[f - 1] > 0) ? (`amp` + c.fsBgSlot[f - 1]) : ``,
+                                    ampKey: (() => {
+                                        let curFs = b[f];
+                                        let k = curFs?.iconKey;
+                                        if (k && (String(k).startsWith(`amp`) || String(k).startsWith(`bg`))) {
+                                            return String(k);
+                                        }
+                                        let gSlot = (Array.isArray(c?.fsBgSlot) && c.fsBgSlot[f - 1] > 0) ? c.fsBgSlot[f - 1] : 0;
+                                        return gSlot > 0 ? (`amp` + gSlot) : ``;
+                                    })(),
                                     fsIndex: f,
                                     fsCount: gr[e]?.fs || c?.fsCount || 8,
                                     embedded: !0,
                                     onSetKey: key => {
-                                        let slotNum = 0;
-                                        if (key && key.startsWith(`amp`)) {
-                                            slotNum = parseInt(key.replace(`amp`, ``), 10) || 0;
-                                        }
-                                        let nextSlots = Array.isArray(c?.fsBgSlot) ? [...c.fsBgSlot] : [0,0,0,0,0,0,0,0];
-                                        while (nextSlots.length < 8) nextSlots.push(0);
-                                        nextSlots[f - 1] = slotNum;
-                                        pendingFsBgSlotsRef.current = nextSlots;
-                                        l(prev => ({ ...prev, fsBgSlot: nextSlots }));
+                                        let finalKey = key || ``;
+                                        E({ iconKey: finalKey });
+                                        iconKeyPendingRef.current = finalKey;
                                     }
                                 }),
                                 footer: (0, P.jsxs)(`div`, {
@@ -18922,15 +18932,10 @@ function Xr() {
                                         type: `button`,
                                         onClick: async () => {
                                             setAmpScreenOpen(!1);
-                                            try {
-                                                let slotsToSave = pendingFsBgSlotsRef.current ?? (Array.isArray(c?.fsBgSlot) ? [...c.fsBgSlot] : [0,0,0,0,0,0,0,0]);
-                                                while (slotsToSave.length < 8) slotsToSave.push(0);
-                                                pendingFsBgSlotsRef.current = null;
-                                                await Br(`/api/usb-config`, { fsBgSlot: slotsToSave }, 25e3);
-                                                rt.success(`Cabeçote da FS${f} salvo com sucesso!`);
-                                            } catch (err) {
-                                                rt.error(`Falha ao salvar cabeçote: ${String(err?.message || err)}`);
-                                            }
+                                            let finalKey = iconKeyPendingRef.current !== null ? iconKeyPendingRef.current : (b[f]?.iconKey || ``);
+                                            E({ iconKey: finalKey });
+                                            iconKeyPendingRef.current = finalKey;
+                                            await ne();
                                         },
                                         className: `w-full rounded-md border border-accent/60 bg-accent/20 px-4 py-2 font-display text-[10px] uppercase tracking-[0.16em] text-accent shadow-[0_0_18px_-4px_rgba(220,38,38,0.7)] transition hover:bg-accent/30 sm:w-auto`,
                                         children: `Salvar`
@@ -22689,6 +22694,12 @@ function compactFsForSave(e) {
     t.stompIcon = displayIconSanitizeKey(e?.stompIcon || "");
     t.stompSlots = Array.isArray(e?.stompSlots) ? e.stompSlots : [];
     t.stompName = typeof e?.stompName == `string` ? e.stompName : ``;
+    let rawFsName = typeof e?.fsName === 'string' ? e.fsName : (typeof e?.label === 'string' ? e.label : '');
+    let cleanFsName = String(rawFsName || '').replace(/[^\x20-\x7E]/g, '').trim().toUpperCase().slice(0, 24);
+    if (cleanFsName.startsWith('FS') && !isNaN(cleanFsName.slice(2))) {
+        cleanFsName = '';
+    }
+    t.fsName = cleanFsName;
     if (Array.isArray(e?.stompLed) && e.stompLed.length >= 6) t.stompLed = e.stompLed;
     else if (e?.stompLed && typeof e.stompLed == `object`) t.stompLed = e.stompLed;
     if (Number(t.ricochetEnabled) === 1) {
@@ -25480,7 +25491,7 @@ function Ei({
                     className: `size-1.5 rounded-full bg-accent led-glow`
                 }), (0, P.jsxs)(`span`, {
                     className: `font-display text-[10px] uppercase tracking-[0.3em] text-muted-foreground`,
-                    children: [e, ` · `, t, n, ` · Editando`]
+                    children: [e, ` · `, t, r, ` · Editando`]
                 })]
             }), (0, P.jsxs)(`div`, {
                 className: `flex items-center gap-2`,
