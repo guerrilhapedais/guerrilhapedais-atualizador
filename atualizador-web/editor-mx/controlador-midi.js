@@ -12940,9 +12940,9 @@ var hr = [`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`],
     }],
     yr = {
         on: `#ff8800`,
-        off: `#101010`,
+        off: `#000000`,
         holdOn: `#ff8800`,
-        holdOff: `#101010`
+        holdOff: `#000000`
     },
     br = [`Normal`, `Momentâneo`, `Tap`, `Ricochet`, `STG`, `STG Auto`],
     xr = [`USB`, `BT`, `USB+BT`, `MIDI`, `USB+MIDI`, `BT+MIDI`, `USB+BT+MIDI`],
@@ -13129,7 +13129,7 @@ function displayStyleOptionsForFs(fsCount, customStompEnabled) {
         if (customStompEnabled) return [`Preset / Stomp`, `Amp`, `Custom`];
         return [`Preset / Stomp`, `Ícones`, `Amp`, `Custom`];
     }
-    return [`Clássico`, `Ícones`, `Custom`];
+    return [`Clássico`, `Ícones`, `Amp`, `Custom`];
 }
 
 function displayStyleLabelForValue(v) {
@@ -13146,6 +13146,7 @@ function displayStyleValueForLabel(fsCount, label) {
         return 4;
     }
     if (label === `Ícones` || label === `Ícone`) return 1;
+    if (label === `Amp` || label === `AMP`) return 7;
     if (label === `Custom` || label === `Imagem de Fundo` || label === `Fundo Puro`) return 6;
     return 0;
 }
@@ -14100,7 +14101,7 @@ function buildConexoesUsbParts(e) {
 }
 function buildTelaUsbParts(e) {
     let parts = [];
-    let hasDisp = [`displayStyle`, `displayNameSrc`, `displayLayout`, `displayGridCenterName`, `displayBgMode`, `displayBgR`, `displayBgG`, `displayBgB`, `displayBgR2`, `displayBgG2`, `displayBgB2`, `displaySimpleBankR`, `displaySimpleBankG`, `displaySimpleBankB`, `displaySimpleFootR`, `displaySimpleFootG`, `displaySimpleFootB`, `displaySimpleNameR`, `displaySimpleNameG`, `displaySimpleNameB`, `displayPresetLayout`, `displayLiveLayout`, `displayIconShape`, `displayPresetShowNames`].some(k => usbFieldPresent(e, k));
+    let hasDisp = [`displayStyle`, `displayNameSrc`, `displayLayout`, `displayGridCenterName`, `displayBgMode`, `displayBgR`, `displayBgG`, `displayBgB`, `displayBgR2`, `displayBgG2`, `displayBgB2`, `displaySimpleBankR`, `displaySimpleBankG`, `displaySimpleBankB`, `displaySimpleFootR`, `displaySimpleFootG`, `displaySimpleFootB`, `displaySimpleNameR`, `displaySimpleNameG`, `displaySimpleNameB`, `displayPresetLayout`, `displayLiveLayout`, `displayIconColorMode`, `displayIconShape`, `displayPresetShowNames`].some(k => usbFieldPresent(e, k));
     if (hasDisp) {
         parts.push(scrubUsbPart({
             displayStyle: displayStyleClampForModel(e?.fsCount, e?.displayStyle, Number(e?.customStompEnabled) === 1),
@@ -14125,6 +14126,7 @@ function buildTelaUsbParts(e) {
             displaySimpleNameB: Math.max(0, Math.min(255, Number(e?.displaySimpleNameB ?? 255))),
             displayPresetLayout: usbFieldPresent(e, `displayPresetLayout`) ? Number(e.displayPresetLayout ?? 0) : void 0,
             displayLiveLayout: usbFieldPresent(e, `displayLiveLayout`) ? Number(e.displayLiveLayout ?? 2) : void 0,
+            displayIconColorMode: usbFieldPresent(e, `displayIconColorMode`) ? Number(e.displayIconColorMode ?? 0) : void 0,
             displayIconShape: usbFieldPresent(e, `displayIconShape`) ? Number(e.displayIconShape ?? 0) : void 0,
             displayPresetShowNames: usbFieldPresent(e, `displayPresetShowNames`) ? (Number(e.displayPresetShowNames || 0) ? 1 : 0) : void 0
         }))
@@ -14762,13 +14764,31 @@ function displayIconWhitePackUrl(key) {
     return DISPLAY_WHITE_PACK_URLS[key]
 }
 
-function displayIconRasterColor(img, size, zoom, panX, panY) {
+function displayIconRasterColor(img, size, zoom, panX, panY, baseBg) {
     let c = document.createElement(`canvas`);
     c.width = size, c.height = size;
     let ctx = c.getContext(`2d`, {
         alpha: !0
     });
     ctx.clearRect(0, 0, size, size);
+    if (baseBg && baseBg.hasAlpha && baseBg.mode !== 'transparent') {
+        if (baseBg.mode === 'color') {
+            ctx.fillStyle = baseBg.color || '#000000';
+            ctx.fillRect(0, 0, size, size);
+        } else if (baseBg.mode === 'main_bg' && baseBg.mainBgImg) {
+            let bim = baseBg.mainBgImg;
+            let bCover = Math.max(size / bim.width, size / bim.height);
+            let bW = bim.width * bCover;
+            let bH = bim.height * bCover;
+            ctx.drawImage(bim, (size - bW) / 2, (size - bH) / 2, bW, bH);
+        } else if (baseBg.mode === 'custom_img' && baseBg.customImgObj) {
+            let bim = baseBg.customImgObj;
+            let bCover = Math.max(size / bim.width, size / bim.height);
+            let bW = bim.width * bCover;
+            let bH = bim.height * bCover;
+            ctx.drawImage(bim, (size - bW) / 2, (size - bH) / 2, bW, bH);
+        }
+    }
     if (!img || !img.width) return ctx.getImageData(0, 0, size, size);
     /* contain (+ pad): cover cortava pedaços de logos não-quadrados. */
     let pad = size * .06,
@@ -14786,13 +14806,31 @@ function displayIconRasterColor(img, size, zoom, panX, panY) {
     return ctx.getImageData(0, 0, size, size)
 }
 
-function displayAmpRasterColor(img, w, h, zoom, panX, panY) {
+function displayAmpRasterColor(img, w, h, zoom, panX, panY, baseBg) {
     let c = document.createElement(`canvas`);
     c.width = w, c.height = h;
     let ctx = c.getContext(`2d`, {
         alpha: !0
     });
     ctx.clearRect(0, 0, w, h);
+    if (baseBg && baseBg.hasAlpha && baseBg.mode !== 'transparent') {
+        if (baseBg.mode === 'color') {
+            ctx.fillStyle = baseBg.color || '#000000';
+            ctx.fillRect(0, 0, w, h);
+        } else if (baseBg.mode === 'main_bg' && baseBg.mainBgImg) {
+            let bim = baseBg.mainBgImg;
+            let bCover = Math.max(w / bim.width, h / bim.height);
+            let bW = bim.width * bCover;
+            let bH = bim.height * bCover;
+            ctx.drawImage(bim, (w - bW) / 2, (h - bH) / 2, bW, bH);
+        } else if (baseBg.mode === 'custom_img' && baseBg.customImgObj) {
+            let bim = baseBg.customImgObj;
+            let bCover = Math.max(w / bim.width, h / bim.height);
+            let bW = bim.width * bCover;
+            let bH = bim.height * bCover;
+            ctx.drawImage(bim, (w - bW) / 2, (h - bH) / 2, bW, bH);
+        }
+    }
     if (!img || !img.width) return ctx.getImageData(0, 0, w, h);
     let fit = Math.min(w / img.width, h / img.height),
         sc = fit * Math.max(.2, Number(zoom) || 1),
@@ -14823,7 +14861,7 @@ function getTransBgConfig() {
         }
     } catch {}
     return {
-        mode: 'color', // 'color' | 'main_bg' | 'custom_img'
+        mode: 'transparent', // 'transparent' | 'color' | 'main_bg' | 'custom_img'
         color: '#000000',
         customImg: ''
     };
@@ -14886,14 +14924,15 @@ function displayBgRasterColor(img, w, h, zoom, panX, panY, baseBg) {
     ctx.imageSmoothingEnabled = true;
     if ('imageSmoothingQuality' in ctx) ctx.imageSmoothingQuality = 'high';
 
-    // Fundo base garantido: preencher sempre com cor sólida (default preto)
-    // para que imagens transparentes (PNG) nunca fiquem com grade/película esbranquiçada!
-    let bgColor = (baseBg && baseBg.color) ? baseBg.color : '#000000';
-    ctx.fillStyle = bgColor;
-    ctx.fillRect(0, 0, w, h);
-
+    ctx.clearRect(0, 0, w, h);
     if (baseBg && baseBg.hasAlpha) {
-        if (baseBg.mode === 'main_bg' && baseBg.mainBgImg) {
+        if (baseBg.mode === 'transparent') {
+            // Mantém 100% transparente
+        } else if (baseBg.mode === 'color') {
+            let bgColor = (baseBg && baseBg.color) ? baseBg.color : '#000000';
+            ctx.fillStyle = bgColor;
+            ctx.fillRect(0, 0, w, h);
+        } else if (baseBg.mode === 'main_bg' && baseBg.mainBgImg) {
             let bim = baseBg.mainBgImg;
             let bCover = Math.max(w / bim.width, h / bim.height);
             let bW = bim.width * bCover;
@@ -14906,6 +14945,10 @@ function displayBgRasterColor(img, w, h, zoom, panX, panY, baseBg) {
             let bH = bim.height * bCover;
             ctx.drawImage(bim, (w - bW) / 2, (h - bH) / 2, bW, bH);
         }
+    } else {
+        let bgColor = (baseBg && baseBg.color) ? baseBg.color : '#000000';
+        ctx.fillStyle = bgColor;
+        ctx.fillRect(0, 0, w, h);
     }
 
     if (!img || !img.width) return ctx.getImageData(0, 0, w, h);
@@ -15231,14 +15274,14 @@ function FsScreenIconCropModal({
             ctx.fillStyle = `#111`, ctx.fillRect(0, 0, c.width, c.height);
             return
         }
-        let baseBg = useRect && hasAlpha ? {
+        let baseBg = hasAlpha ? {
             hasAlpha: true,
             mode: transCfg.mode,
             color: transCfg.color,
             mainBgImg,
             customImgObj
         } : null;
-        ctx.putImageData(isAmp ? displayAmpRasterColor(img, c.width, c.height, zoom, panX, panY) : (useRect ? displayBgRasterColor(img, c.width, c.height, zoom, panX, panY, baseBg) : displayIconRasterColor(img, c.width, zoom, panX, panY)), 0, 0)
+        ctx.putImageData(isAmp ? displayAmpRasterColor(img, c.width, c.height, zoom, panX, panY, baseBg) : (useRect ? displayBgRasterColor(img, c.width, c.height, zoom, panX, panY, baseBg) : displayIconRasterColor(img, c.width, zoom, panX, panY, baseBg)), 0, 0)
     }, [img, zoom, panX, panY, isBg, useRect, hideMask, hasAlpha, transCfg, mainBgImg, customImgObj]);
     let clamp = (v, a, b) => Math.min(b, Math.max(a, v)),
         saveKey = targetKey || displayIconSlotKey(slot),
@@ -15419,7 +15462,7 @@ function FsScreenIconCropModal({
                         className: `mt-2 w-full rounded-lg border border-border px-2 py-1.5 font-display text-[9px] uppercase tracking-[0.16em] text-muted-foreground`,
                         children: img ? `Trocar ficheiro` : `Escolher PNG / JPEG`
                     }),
-                    isBg && hasAlpha ? (0, P.jsxs)('div', {
+                    hasAlpha ? (0, P.jsxs)('div', {
                         className: 'mt-2.5 rounded-xl border border-zinc-800 bg-[#0d0e12] p-2.5',
                         children: [
                             (0, P.jsxs)('div', {
@@ -15438,6 +15481,7 @@ function FsScreenIconCropModal({
                             (0, P.jsx)('div', {
                                 style: { display: 'flex', gap: '4px', marginBottom: '8px' },
                                 children: [
+                                    { id: 'transparent', lbl: 'Transparente' },
                                     { id: 'color', lbl: 'Cor' },
                                     { id: 'main_bg', lbl: 'Fundo (bg)' },
                                     { id: 'custom_img', lbl: 'Imagem Fixa' }
@@ -15464,6 +15508,10 @@ function FsScreenIconCropModal({
                                     children: m.lbl
                                 }))
                             }),
+                            transCfg.mode === 'transparent' ? (0, P.jsx)('div', {
+                                style: { fontFamily: 'monospace', fontSize: '9px', color: '#10b981', lineHeight: 1.3 },
+                                children: 'Fundo transparente nativo mantido (Chroma-Key do visor).'
+                            }) : null,
                             transCfg.mode === 'color' ? (0, P.jsxs)('div', {
                                 style: { display: 'flex', alignItems: 'center', gap: '8px' },
                                 children: [
@@ -15568,15 +15616,16 @@ function FsScreenIconCropModal({
                             if (!img) return;
                             setBusy(!0);
                             try {
-                                let baseBg = useRect && hasAlpha ? {
+                                let baseBg = hasAlpha ? {
                                         hasAlpha: true,
                                         mode: transCfg.mode,
                                         color: transCfg.color,
                                         mainBgImg,
                                         customImgObj
                                     } : null;
-                                    let raster = isAmp ? displayAmpRasterColor(img, exportW, exportH, zoom, panX, panY) : (useRect ? displayBgRasterColor(img, exportW, exportH, zoom, panX, panY, baseBg) : displayIconRasterColor(img, exportW, zoom, panX, panY)),
-                                    plain = isAmp ? false : (useRect ? true : !!hideMask),
+                                    let raster = isAmp ? displayAmpRasterColor(img, exportW, exportH, zoom, panX, panY, baseBg) : (useRect ? displayBgRasterColor(img, exportW, exportH, zoom, panX, panY, baseBg) : displayIconRasterColor(img, exportW, zoom, panX, panY, baseBg)),
+                                    isTransMode = hasAlpha && transCfg.mode === 'transparent',
+                                    plain = isAmp ? !isTransMode : (useRect ? !isTransMode : (isTransMode ? false : !!hideMask)),
                                     rgb = displayIconRgb565FromImageData(raster, !1, plain),
                                     key = targetKey || displayIconSlotKey(slot);
                                 let instantThumb = '';
@@ -15726,50 +15775,7 @@ function displayIconsLibraryPanel({
             }
         }), (0, P.jsxs)(I, {
             title: `Ícones`,
-            subtitle: `Pictogramas · cor do LED no display`,
-            children: [(0, P.jsx)(`div`, {
-                style: displayIconGridStyle(6),
-                children: DISPLAY_WHITE_PACK.map(([key, lab]) => (0, P.jsxs)(`button`, {
-                    type: `button`,
-                    title: lab,
-                    onClick: async () => {
-                        try {
-                            let rgb = displayIconRgb565FromImageData(await displayIconPackRaster(key, DISPLAY_ICON_PX), !0);
-                            displayIconInvalidateThumb(key);
-                            await displayIconUploadRgb(key, rgb, DISPLAY_ICON_PX, DISPLAY_ICON_PX);
-                            rt.success(`${lab} no pedal`);
-                            refresh()
-                        } catch (err) {
-                            rt.error(`Falha: ${String(err?.message || err)}`)
-                        }
-                    },
-                    className: `tile-inset flex flex-col items-center rounded-xl border px-1.5 pb-2 pt-2 ${catalog.map[key] ? `border-accent/50` : `border-border`}`,
-                    style: {
-                        minHeight: 76
-                    },
-                    children: [(0, P.jsx)(`div`, {
-                        className: `grid flex-1 place-items-center`,
-                        style: {
-                            width: `100%`,
-                            height: 36
-                        },
-                        children: (0, P.jsx)(`img`, {
-                            src: displayIconWhitePackUrl(key),
-                            alt: lab,
-                            className: `max-h-9 max-w-full object-contain`
-                        })
-                    }), (0, P.jsx)(`span`, {
-                        className: `mt-1 w-full truncate text-center font-display text-[9px] font-bold uppercase tracking-[0.16em] text-muted-foreground`,
-                        children: lab.slice(0, 3)
-                    })]
-                }, key))
-            }), (0, P.jsx)(`div`, {
-                className: `rounded-lg border border-dashed border-border px-3 py-2 font-mono text-[10px] leading-relaxed text-muted-foreground`,
-                children: `Toque para gravar o glifo no pedal (fundo transparente). Em Blocos e Destaque, o ícone pinta com a cor do LED; o texto fica branco.`
-            })]
-        }), (0, P.jsxs)(I, {
-            title: `Fotos`,
-            subtitle: `s1–s${slotN} · um ao lado do outro`,
+            subtitle: `s1–s${slotN} · slots do pedal`,
             children: [(0, P.jsxs)(`div`, {
                 className: `mb-2 text-center font-mono text-[10px] text-muted-foreground`,
                 children: [(catalog.used / 1024).toFixed(1), ` / `, (DISPLAY_ICON_BUDGET / 1024).toFixed(0), ` KB`]
@@ -15786,7 +15792,7 @@ function displayIconsLibraryPanel({
                 onDelete: delKey
             }), (0, P.jsx)(`div`, {
                 className: `mt-2 rounded-lg border border-dashed border-border px-3 py-2 font-mono text-[10px] leading-relaxed text-muted-foreground`,
-                children: `Importa PNG/JPEG a cores (foto). 16 slots disponíveis. Depois associa à chave em Preset → Ícones.`
+                children: `Importe ícones PNG/JPEG a cores ou transparentes para os slots do pedal (${slotN} slots disponíveis). Depois associe à chave em Preset → Ícones.`
             })]
         })]
     })
@@ -16114,6 +16120,570 @@ function FsScreenAmpPicker({ ampKey: e, fsIndex: t, fsCount: fc, onSetKey: n, em
     });
 }
 
+function FsBoxVisualCustomizer({
+    fsNumber,
+    fsConfig,
+    ctrlMode,
+    globalConfig,
+    activeStompSlot,
+    onPatch,
+    onOpenIcon,
+    onOpenAmp
+}) {
+    let [previewOn, setPreviewOn] = (0, N.useState)(true);
+    let [bgModalOpen, setBgModalOpen] = (0, N.useState)(false);
+    let [visualTab, setVisualTab] = (0, N.useState)(`auto`);
+    let w = fsConfig || {};
+    let isStomp = ctrlMode === `Stomp`;
+
+    let ampSlot = (Array.isArray(globalConfig?.fsBgSlot) && globalConfig.fsBgSlot[fsNumber - 1] > 0) ? globalConfig.fsBgSlot[fsNumber - 1] : 0;
+    let ampKey = ampSlot > 0 ? (`amp` + ampSlot) : ``;
+    let ampThumb = useDisplayIconThumb(ampKey);
+
+    let iconKey = isStomp ? (activeStompSlot ? (w.stompSlots?.[activeStompSlot - 1]?.icon || ``) : (w.stompIcon || ``)) : (w.iconKey || ``);
+    let iconThumb = useDisplayIconThumb(iconKey);
+
+    let hasAmp = ampSlot > 0;
+    let hasIcon = !!(iconKey && String(iconKey).trim());
+    let currentDisplayStyle = Number(globalConfig?.displayStyle ?? (globalConfig?.fsCount === 8 ? 4 : 0));
+    let isGlobalAmpStyle = currentDisplayStyle === 7;
+    let isGlobalIconStyle = currentDisplayStyle === 1 || currentDisplayStyle === 2;
+    let effectiveVisual = isGlobalAmpStyle ? `amp` : (isGlobalIconStyle ? `icon` : (visualTab === `auto` ? (hasAmp ? `amp` : (hasIcon ? `icon` : `none`)) : visualTab));
+    let isAmpMode = effectiveVisual === `amp`;
+
+    function toHexColor(val, defaultHex) {
+        if (!val) return defaultHex;
+        if (typeof val === 'string' && val.startsWith('#')) return val;
+        if (Array.isArray(val) && val.length >= 3) {
+            return '#' + [val[0], val[1], val[2]].map(x => Math.max(0, Math.min(255, Number(x) || 0)).toString(16).padStart(2, '0')).join('');
+        }
+        if (typeof val === 'object') {
+            if (val.r !== undefined) {
+                return '#' + [val.r, val.g, val.b].map(x => Math.max(0, Math.min(255, Number(x) || 0)).toString(16).padStart(2, '0')).join('');
+            }
+            if (val.r_on !== undefined) {
+                return '#' + [val.r_on, val.g_on, val.b_on].map(x => Math.max(0, Math.min(255, Number(x) || 0)).toString(16).padStart(2, '0')).join('');
+            }
+        }
+        return defaultHex;
+    }
+
+    let ledColorOn = `#3b82f6`;
+    let ledColorOff = `#1e293b`;
+    if (isStomp) {
+        let slotColor = activeStompSlot ? w.stompSlots?.[activeStompSlot - 1]?.color : null;
+        ledColorOn = toHexColor(slotColor || w.stompLed?.on || w.led?.on || w.stompLed, `#ff8800`);
+        ledColorOff = toHexColor(w.stompLed?.off || w.led?.off, `#27272a`);
+    } else {
+        ledColorOn = toHexColor(w.presetLed?.on || w.led?.on || w.ledColors?.on || w.presetLed || w.color, `#3b82f6`);
+        ledColorOff = toHexColor(w.presetLed?.off || w.led?.off || w.ledColors?.off, `#1e293b`);
+    }
+    let curLedColor = previewOn ? ledColorOn : ledColorOff;
+
+    let currentFill = Number.isFinite(Number(w.gridFill)) ? Number(w.gridFill) : 0;
+
+    let fillPresets = [
+        // Padrão / Dinâmico
+        { id: 0, cat: `padrao`, name: `Transparente`, desc: `Padrão Neon do Sistema`, isDefault: true, gradOn: `transparent`, gradOff: `rgba(0,0,0,0.7)`, borderOn: curLedColor, borderOff: `#3f3f46` },
+        { id: 1, cat: `padrao`, name: `Cor do Footswitch`, desc: `Acompanha o LED do FS`, gradOn: ledColorOn, gradOff: `rgba(40,40,45,0.85)`, borderOn: `#ffffff`, borderOff: `#52525b` },
+
+        // Cores Sólidas / Normais
+        { id: 10, cat: `solida`, name: `Vermelho`, desc: `Sólido`, gradOn: `#EF4444`, gradOff: `#450a0a`, borderOn: `#f87171`, borderOff: `#7f1d1d` },
+        { id: 11, cat: `solida`, name: `Laranja`, desc: `Sólido`, gradOn: `#F97316`, gradOff: `#431407`, borderOn: `#fb923c`, borderOff: `#7c2d12` },
+        { id: 12, cat: `solida`, name: `Âmbar`, desc: `Sólido`, gradOn: `#F59E0B`, gradOff: `#451a03`, borderOn: `#fbbf24`, borderOff: `#78350f` },
+        { id: 13, cat: `solida`, name: `Amarelo`, desc: `Sólido`, gradOn: `#EAB308`, gradOff: `#422006`, borderOn: `#fde047`, borderOff: `#713f12` },
+        { id: 14, cat: `solida`, name: `Verde Lima`, desc: `Sólido`, gradOn: `#84CC16`, gradOff: `#1a2e05`, borderOn: `#a3e635`, borderOff: `#365314` },
+        { id: 15, cat: `solida`, name: `Esmeralda`, desc: `Sólido`, gradOn: `#10B981`, gradOff: `#022c22`, borderOn: `#34d399`, borderOff: `#064e3b` },
+        { id: 16, cat: `solida`, name: `Ciano`, desc: `Sólido`, gradOn: `#06B6D4`, gradOff: `#083344`, borderOn: `#22d3ee`, borderOff: `#164e63` },
+        { id: 17, cat: `solida`, name: `Azul Royal`, desc: `Sólido`, gradOn: `#3B82F6`, gradOff: `#172554`, borderOn: `#60a5fa`, borderOff: `#1e3a8a` },
+        { id: 18, cat: `solida`, name: `Roxo`, desc: `Sólido`, gradOn: `#8B5CF6`, gradOff: `#2e1065`, borderOn: `#a78bfa`, borderOff: `#4c1d95` },
+        { id: 19, cat: `solida`, name: `Magenta`, desc: `Sólido`, gradOn: `#EC4899`, gradOff: `#500724`, borderOn: `#f472b6`, borderOff: `#831843` },
+        { id: 20, cat: `solida`, name: `Branco Gelo`, desc: `Sólido`, gradOn: `#F8FAFC`, gradOff: `#1e293b`, borderOn: `#ffffff`, borderOff: `#64748b` },
+        { id: 21, cat: `solida`, name: `Grafite`, desc: `Sólido`, gradOn: `#475569`, gradOff: `#0f172a`, borderOn: `#94a3b8`, borderOff: `#334155` },
+
+        // Gradientes Estilizados
+        { id: 2, cat: `gradiente`, name: `Fire`, desc: `Laranja para Vermelho`, gradOn: `linear-gradient(180deg, #FF5500 0%, #B91C1C 100%)`, gradOff: `linear-gradient(180deg, #5c2002 0%, #3f0909 100%)`, borderOn: `#ff7733`, borderOff: `#451a0a` },
+        { id: 3, cat: `gradiente`, name: `Cyber`, desc: `Roxo para Ciano`, gradOn: `linear-gradient(180deg, #8B5CF6 0%, #06B6D4 100%)`, gradOff: `linear-gradient(180deg, #321f5c 0%, #033c46 100%)`, borderOn: `#a78bfa`, borderOff: `#1e1b4b` },
+        { id: 4, cat: `gradiente`, name: `Ocean`, desc: `Azul para Marinho`, gradOn: `linear-gradient(180deg, #0284C7 0%, #0F172A 100%)`, gradOff: `linear-gradient(180deg, #023149 0%, #050b16 100%)`, borderOn: `#38bdf8`, borderOff: `#082f49` },
+        { id: 5, cat: `gradiente`, name: `Sunset`, desc: `Rosa para Ouro`, gradOn: `linear-gradient(180deg, #F43F5E 0%, #F59E0B 100%)`, gradOff: `linear-gradient(180deg, #53141f 0%, #523304 100%)`, borderOn: `#fb7185`, borderOff: `#4c0519` },
+        { id: 6, cat: `gradiente`, name: `Emerald`, desc: `Verde para Esmeralda`, gradOn: `linear-gradient(180deg, #10B981 0%, #047857 100%)`, gradOff: `linear-gradient(180deg, #053b2a 0%, #02241a 100%)`, borderOn: `#34d399`, borderOff: `#064e3b` },
+        { id: 7, cat: `gradiente`, name: `Dark Slate`, desc: `Grafite para Preto`, gradOn: `linear-gradient(180deg, #334155 0%, #09090B 100%)`, gradOff: `linear-gradient(180deg, #18202c 0%, #030304 100%)`, borderOn: `#64748b`, borderOff: `#1e293b` },
+        { id: 8, cat: `gradiente`, name: `Neon Matrix`, desc: `Verde Neon para Preto`, gradOn: `linear-gradient(180deg, #22C55E 0%, #052E16 100%)`, gradOff: `linear-gradient(180deg, #0d381b 0%, #02140a 100%)`, borderOn: `#4ade80`, borderOff: `#14532d` },
+        { id: 9, cat: `gradiente`, name: `Vaporwave`, desc: `Magenta para Roxo`, gradOn: `linear-gradient(180deg, #EC4899 0%, #6366F1 100%)`, gradOff: `linear-gradient(180deg, #4c0d2e 0%, #1e1b4b 100%)`, borderOn: `#f472b6`, borderOff: `#312e81` },
+        { id: 22, cat: `gradiente`, name: `Blood Red`, desc: `Rubi para Preto`, gradOn: `linear-gradient(180deg, #991B1B 0%, #450A0A 100%)`, gradOff: `linear-gradient(180deg, #450a0a 0%, #150202 100%)`, borderOn: `#ef4444`, borderOff: `#7f1d1d` },
+        { id: 23, cat: `gradiente`, name: `Gold Rush`, desc: `Dourado para Bronze`, gradOn: `linear-gradient(180deg, #FBBF24 0%, #78350F 100%)`, gradOff: `linear-gradient(180deg, #451a03 0%, #1f0b01 100%)`, borderOn: `#fde047`, borderOff: `#92400e` },
+        { id: 24, cat: `gradiente`, name: `Toxic Lime`, desc: `Amarelo para Verde`, gradOn: `linear-gradient(180deg, #A3E635 0%, #14532D 100%)`, gradOff: `linear-gradient(180deg, #365314 0%, #052e16 100%)`, borderOn: `#bef264`, borderOff: `#166534` },
+        { id: 25, cat: `gradiente`, name: `Ice Blue`, desc: `Ciano para Azul Escuro`, gradOn: `linear-gradient(180deg, #38BDF8 0%, #0C4A6E 100%)`, gradOff: `linear-gradient(180deg, #075985 0%, #082f49 100%)`, borderOn: `#7dd3fc`, borderOff: `#0369a1` }
+    ];
+
+    let activePreset = fillPresets.find(p => p.id === currentFill) || fillPresets[0];
+    let boxBackground = previewOn ? activePreset.gradOn : activePreset.gradOff;
+    let boxBorder = previewOn ? (currentFill === 0 ? `2px solid ` + curLedColor : `2px solid ` + activePreset.borderOn) : (currentFill === 0 ? `1px solid #3f3f46` : `1px solid ` + activePreset.borderOff);
+    let boxGlow = (previewOn && currentFill === 0) ? `0 0 16px -2px ` + curLedColor + `88` : `none`;
+
+    let labelText = (isStomp && activeStompSlot && w.stompSlots?.[activeStompSlot - 1]?.name) ? w.stompSlots[activeStompSlot - 1].name : (w.label || (`FS` + fsNumber));
+
+    return (0, P.jsxs)(`div`, {
+        className: `rounded-2xl border border-border bg-panel/70 p-3 shadow-2xl shadow-black/40 sm:p-4 space-y-3`,
+        children: [
+            (0, P.jsxs)(`div`, {
+                className: `flex items-center justify-between px-1`,
+                children: [
+                    (0, P.jsxs)(`div`, {
+                        className: `flex items-center gap-2`,
+                        children: [
+                            (0, P.jsx)(`span`, { className: `size-2 rounded-full bg-accent led-glow` }),
+                            (0, P.jsx)(`div`, {
+                                className: `font-display text-[10px] uppercase tracking-[0.25em] text-muted-foreground font-black`,
+                                children: `VISUAL DA FS` + fsNumber
+                            })
+                        ]
+                    }),
+                    (0, P.jsxs)(`div`, {
+                        className: `flex items-center gap-1.5`,
+                        children: [
+                            !(isGlobalAmpStyle || isGlobalIconStyle) && hasAmp && hasIcon ? (0, P.jsxs)(`div`, {
+                                className: `flex items-center rounded-lg border border-border bg-canvas/80 p-0.5 mr-1`,
+                                children: [
+                                    (0, P.jsx)(`button`, {
+                                        type: `button`,
+                                        onClick: () => setVisualTab(`amp`),
+                                        className: `rounded px-1.5 py-0.5 font-mono text-[8px] font-bold uppercase tracking-wider transition ${effectiveVisual === `amp` ? `bg-red-600 text-white shadow-sm` : `text-muted-foreground hover:text-foreground`}`,
+                                        children: `AMP`
+                                    }),
+                                    (0, P.jsx)(`button`, {
+                                        type: `button`,
+                                        onClick: () => setVisualTab(`icon`),
+                                        className: `rounded px-1.5 py-0.5 font-mono text-[8px] font-bold uppercase tracking-wider transition ${effectiveVisual === `icon` ? `bg-accent text-accent-foreground shadow-sm` : `text-muted-foreground hover:text-foreground`}`,
+                                        children: `ÍCONE`
+                                    })
+                                ]
+                            }) : null,
+                            (0, P.jsxs)(`div`, {
+                                className: `flex items-center rounded-lg border border-border bg-canvas/80 p-0.5`,
+                                children: [
+                                    (0, P.jsx)(`button`, {
+                                        type: `button`,
+                                        onClick: () => setPreviewOn(true),
+                                        className: `rounded px-2 py-0.5 font-mono text-[9px] font-bold uppercase tracking-wider transition ${previewOn ? `bg-accent text-accent-foreground shadow-sm` : `text-muted-foreground hover:text-foreground`}`,
+                                        children: `ON`
+                                    }),
+                                    (0, P.jsx)(`button`, {
+                                        type: `button`,
+                                        onClick: () => setPreviewOn(false),
+                                        className: `rounded px-2 py-0.5 font-mono text-[9px] font-bold uppercase tracking-wider transition ${!previewOn ? `bg-zinc-700 text-zinc-100 shadow-sm` : `text-muted-foreground hover:text-foreground`}`,
+                                        children: `OFF`
+                                    })
+                                ]
+                            })
+                        ]
+                    })
+                ]
+            }),
+
+            (0, P.jsxs)(`div`, {
+                className: `relative flex flex-col justify-between overflow-hidden rounded-xl p-3 transition-all duration-200 select-none`,
+                style: {
+                    background: boxBackground,
+                    border: boxBorder,
+                    boxShadow: boxGlow,
+                    minHeight: isAmpMode ? `190px` : `175px`,
+                    maxHeight: isAmpMode ? `230px` : `205px`
+                },
+                children: [
+                    (0, P.jsxs)(`div`, {
+                        className: `flex items-center justify-between w-full z-10`,
+                        children: [
+                            (0, P.jsx)(`span`, {
+                                className: `font-mono text-[11px] font-black tracking-wider text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]`,
+                                children: `FS` + fsNumber
+                            }),
+                            (0, P.jsx)(`span`, {
+                                className: `size-3 rounded-full border border-black/40 transition-colors duration-200`,
+                                style: {
+                                    backgroundColor: curLedColor,
+                                    boxShadow: previewOn ? `0 0 10px ` + curLedColor : `none`
+                                }
+                            })
+                        ]
+                    }),
+
+                    (0, P.jsx)(`div`, {
+                        className: `flex flex-1 items-center justify-center py-1 z-10 overflow-hidden`,
+                        children: effectiveVisual === `amp` ? (
+                            ampThumb ? (
+                                (0, P.jsx)(`img`, {
+                                    src: ampThumb,
+                                    alt: ampKey,
+                                    className: `max-h-[125px] h-28 w-auto min-w-[120px] max-w-[90%] rounded object-contain drop-shadow-[0_8px_20px_rgba(0,0,0,0.95)] transition-all duration-200`,
+                                    style: { filter: previewOn ? `none` : `brightness(0.45) contrast(0.85)` }
+                                })
+                            ) : (
+                                (0, P.jsxs)(`div`, {
+                                    className: `flex flex-col items-center justify-center rounded border border-dashed border-red-500/40 bg-black/40 px-3 py-2 text-center text-red-300`,
+                                    children: [
+                                        (0, P.jsx)(`span`, { className: `text-[9.5px] font-black uppercase tracking-wider`, children: `CABEÇOTE AMP` }),
+                                        (0, P.jsx)(`span`, { className: `font-mono text-[8px] text-zinc-400 mt-0.5`, children: ampSlot > 0 ? `Amp #` + ampSlot : `Nenhum selecionado` })
+                                    ]
+                                })
+                            )
+                        ) : effectiveVisual === `icon` ? (
+                            iconThumb ? (
+                                (0, P.jsx)(`img`, {
+                                    src: iconThumb,
+                                    alt: iconKey,
+                                    className: (iconKey && String(iconKey).startsWith(`s`))
+                                        ? `max-h-[110px] h-24 w-auto max-w-[85%] rounded-lg object-contain drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)] transition-all duration-200`
+                                        : `size-20 rounded object-contain drop-shadow-[0_3px_10px_rgba(0,0,0,0.85)] transition-all duration-200`,
+                                    style: { filter: previewOn ? `none` : `brightness(0.4) contrast(0.8)` }
+                                })
+                            ) : (
+                                (0, P.jsx)(`div`, {
+                                    className: `flex items-center justify-center rounded border border-dashed border-white/20 bg-black/30 font-mono text-[11px] font-bold uppercase text-white/50`,
+                                    style: { width: `56px`, height: `56px` },
+                                    children: `FS` + fsNumber
+                                })
+                            )
+                        ) : (
+                            (0, P.jsx)(`div`, {
+                                className: `flex items-center justify-center rounded border border-dashed border-white/20 bg-black/30 font-mono text-[11px] font-bold uppercase text-white/50`,
+                                style: { width: `56px`, height: `56px` },
+                                children: `FS` + fsNumber
+                            })
+                        )
+                    }),
+
+                    (0, P.jsx)(`div`, {
+                        className: `w-full text-center z-10`,
+                        children: (0, P.jsx)(`span`, {
+                            className: `truncate font-display text-[11px] font-black uppercase tracking-widest text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)] block px-1`,
+                            children: labelText
+                        })
+                    })
+                ]
+            }),
+
+            (0, P.jsxs)(`button`, {
+                type: `button`,
+                onClick: () => setBgModalOpen(true),
+                className: `flex w-full items-center justify-between rounded-xl border border-border bg-canvas px-3.5 py-2.5 transition hover:border-accent/40 hover:bg-accent/5 overflow-hidden`,
+                children: [
+                    (0, P.jsxs)(`div`, {
+                        className: `flex items-center gap-3 min-w-0 flex-1 mr-2`,
+                        children: [
+                            (0, P.jsx)(`div`, {
+                                className: `size-6 rounded-lg border border-black/50 shadow-inner flex-shrink-0 flex items-center justify-center overflow-hidden`,
+                                style: {
+                                    background: currentFill === 0 ? `repeating-conic-gradient(#27272a 0% 25%, #18181b 0% 50%) 50% / 8px 8px` : activePreset.gradOn,
+                                    borderColor: currentFill === 0 ? ledColorOn : undefined,
+                                    boxShadow: currentFill === 0 ? `0 0 8px ` + ledColorOn + `55` : undefined
+                                },
+                                children: currentFill === 0 ? (0, P.jsx)(`span`, {
+                                    className: `size-2 rounded-full`,
+                                    style: { backgroundColor: ledColorOn }
+                                }) : null
+                            }),
+                            (0, P.jsxs)(`div`, {
+                                className: `flex flex-col text-left min-w-0 flex-1`,
+                                children: [
+                                    (0, P.jsx)(`span`, { className: `font-display text-[9px] uppercase tracking-wider text-muted-foreground truncate`, children: `Fundo da Caixa` }),
+                                    (0, P.jsx)(`span`, { className: `font-display text-[11px] font-black uppercase text-foreground truncate`, children: activePreset.name })
+                                ]
+                            })
+                        ]
+                    }),
+                    (0, P.jsx)(`span`, { className: `rounded bg-accent/20 px-2 py-1 font-display text-[9px] font-bold uppercase tracking-wider text-accent flex-shrink-0`, children: `Alterar Fundo` })
+                ]
+            }),
+
+            isGlobalAmpStyle ? (
+                (0, P.jsx)(`button`, {
+                    type: `button`,
+                    onClick: onOpenAmp,
+                    className: `flex w-full items-center justify-center gap-2 rounded-xl border border-red-500/60 bg-red-950/40 px-3 py-2.5 font-display text-[10px] font-black uppercase tracking-[0.12em] text-red-400 shadow-sm transition hover:border-red-500 hover:bg-red-900/50 hover:text-red-300`,
+                    children: [
+                        (0, P.jsx)(`svg`, {
+                            xmlns: `http://www.w3.org/2000/svg`,
+                            viewBox: `0 0 24 24`,
+                            fill: `none`,
+                            stroke: `currentColor`,
+                            strokeWidth: `2`,
+                            className: `size-4 flex-shrink-0`,
+                            children: (0, P.jsx)(`path`, { d: `M3 7h18M3 17h18M5 7v10M19 7v10M9 11h6` })
+                        }),
+                        (0, P.jsx)(`span`, {
+                            className: `truncate`,
+                            children: ampSlot > 0 ? `Trocar Cabeçote Amp (Amp #` + ampSlot + `)` : `Escolher Cabeçote Amp`
+                        })
+                    ]
+                })
+            ) : isGlobalIconStyle ? (
+                (0, P.jsx)(`button`, {
+                    type: `button`,
+                    onClick: onOpenIcon,
+                    className: `flex w-full items-center justify-center gap-2 rounded-xl border border-accent/60 bg-accent/10 px-3 py-2.5 font-display text-[10px] font-black uppercase tracking-[0.12em] text-accent shadow-sm transition hover:border-accent hover:bg-accent/20`,
+                    children: [
+                        (0, P.jsx)(`svg`, {
+                            xmlns: `http://www.w3.org/2000/svg`,
+                            viewBox: `0 0 24 24`,
+                            fill: `none`,
+                            stroke: `currentColor`,
+                            strokeWidth: `2`,
+                            className: `size-4 flex-shrink-0`,
+                            children: (0, P.jsx)(`rect`, { width: `18`, height: `18`, x: `3`, y: `3`, rx: `2` })
+                        }),
+                        (0, P.jsx)(`span`, {
+                            className: `truncate`,
+                            children: iconKey ? `Trocar Ícone (` + String(iconKey).toUpperCase() + `)` : `Escolher Ícone`
+                        })
+                    ]
+                })
+            ) : (
+                (0, P.jsxs)(`div`, {
+                    className: `grid grid-cols-2 gap-2`,
+                    children: [
+                        (0, P.jsxs)(`button`, {
+                            type: `button`,
+                            onClick: onOpenIcon,
+                            className: `flex items-center justify-center gap-1.5 rounded-xl border border-border bg-canvas px-2.5 py-2.5 font-display text-[9.5px] font-black uppercase tracking-[0.12em] text-accent shadow-sm transition hover:border-accent/40 hover:bg-accent/10`,
+                            children: [
+                                (0, P.jsx)(`svg`, {
+                                    xmlns: `http://www.w3.org/2000/svg`,
+                                    viewBox: `0 0 24 24`,
+                                    fill: `none`,
+                                    stroke: `currentColor`,
+                                    strokeWidth: `2`,
+                                    className: `size-3.5 flex-shrink-0`,
+                                    children: (0, P.jsx)(`rect`, { width: `18`, height: `18`, x: `3`, y: `3`, rx: `2` })
+                                }),
+                                (0, P.jsx)(`span`, {
+                                    className: `truncate`,
+                                    children: iconKey ? `Ícone: ` + String(iconKey).toUpperCase() : `Escolher Ícone`
+                                })
+                            ]
+                        }),
+                        (0, P.jsxs)(`button`, {
+                            type: `button`,
+                            onClick: onOpenAmp,
+                            className: `flex items-center justify-center gap-1.5 rounded-xl border border-red-500/50 bg-red-950/30 px-2.5 py-2.5 font-display text-[9.5px] font-black uppercase tracking-[0.12em] text-red-400 shadow-sm transition hover:border-red-500 hover:bg-red-900/40 hover:text-red-300`,
+                            children: [
+                                (0, P.jsx)(`svg`, {
+                                    xmlns: `http://www.w3.org/2000/svg`,
+                                    viewBox: `0 0 24 24`,
+                                    fill: `none`,
+                                    stroke: `currentColor`,
+                                    strokeWidth: `2`,
+                                    className: `size-3.5 flex-shrink-0`,
+                                    children: (0, P.jsx)(`path`, { d: `M3 7h18M3 17h18M5 7v10M19 7v10M9 11h6` })
+                                }),
+                                (0, P.jsx)(`span`, {
+                                    className: `truncate`,
+                                    children: ampSlot > 0 ? `Amp #` + ampSlot : `Cabeçote Amp`
+                                })
+                            ]
+                        })
+                    ]
+                })
+            ),
+
+            (0, P.jsx)(popupShell, {
+                open: bgModalOpen,
+                onOpenChange: setBgModalOpen,
+                title: `Fundo da Caixa da FS` + fsNumber,
+                subtitle: `Escolha entre Transparente, Cores Sólidas ou Gradientes Estilizados`,
+                children: (0, P.jsxs)(`div`, {
+                    className: `space-y-4 p-1 max-h-[68vh] overflow-y-auto pr-1.5`,
+                    children: [
+                        (0, P.jsxs)(`div`, {
+                            className: `space-y-1.5`,
+                            children: [
+                                (0, P.jsx)(`div`, {
+                                    className: `font-display text-[9px] uppercase tracking-[0.2em] text-muted-foreground font-bold px-1`,
+                                    children: `PADRÃO DO SISTEMA`
+                                }),
+                                (0, P.jsxs)(`button`, {
+                                    type: `button`,
+                                    onClick: () => {
+                                        onPatch({ gridFill: 0 });
+                                        setBgModalOpen(false);
+                                    },
+                                    className: `flex w-full items-center justify-between rounded-xl border p-3 text-left transition-all ${currentFill === 0 ? `border-accent bg-accent/15 ring-2 ring-accent shadow-[0_0_20px_-4px_rgba(220,38,38,0.5)]` : `border-border/80 bg-canvas/60 hover:border-white/30 hover:bg-canvas`}`,
+                                    children: [
+                                        (0, P.jsxs)(`div`, {
+                                            className: `flex items-center gap-3`,
+                                            children: [
+                                                (0, P.jsx)(`div`, {
+                                                    className: `size-8 rounded-lg border-2 border-dashed shadow-inner flex items-center justify-center font-mono text-[9px] font-bold`,
+                                                    style: { borderColor: ledColorOn, color: ledColorOn },
+                                                    children: `NEON`
+                                                }),
+                                                (0, P.jsxs)(`div`, {
+                                                    children: [
+                                                        (0, P.jsxs)(`div`, {
+                                                            className: `font-display text-[12px] font-black uppercase tracking-wider text-foreground flex items-center gap-2`,
+                                                            children: [
+                                                                `Transparente`,
+                                                                (0, P.jsx)(`span`, { className: `rounded bg-accent/25 px-1.5 py-0.5 text-[8px] font-bold text-accent tracking-widest`, children: `PADRÃO` })
+                                                            ]
+                                                        }),
+                                                        (0, P.jsx)(`div`, {
+                                                            className: `font-mono text-[9px] text-muted-foreground mt-0.5`,
+                                                            children: `Fundo vazado com contorno neon vibrante na cor do footswitch`
+                                                        })
+                                                    ]
+                                                })
+                                            ]
+                                        }),
+                                        currentFill === 0 && (0, P.jsx)(`div`, {
+                                            className: `size-5 rounded-full bg-accent flex items-center justify-center text-white`,
+                                            children: (0, P.jsx)(`svg`, { xmlns: `http://www.w3.org/2000/svg`, viewBox: `0 0 24 24`, fill: `none`, stroke: `currentColor`, strokeWidth: `3`, className: `size-3.5`, children: (0, P.jsx)(`path`, { d: `M20 6 9 17l-5-5` }) })
+                                        })
+                                    ]
+                                })
+                            ]
+                        }),
+
+                        (0, P.jsxs)(`div`, {
+                            className: `space-y-2`,
+                            children: [
+                                (0, P.jsx)(`div`, {
+                                    className: `font-display text-[9px] uppercase tracking-[0.2em] text-muted-foreground font-bold px-1`,
+                                    children: `CORES SÓLIDAS / NORMAIS`
+                                }),
+                                (0, P.jsxs)(`button`, {
+                                    type: `button`,
+                                    onClick: () => {
+                                        onPatch({ gridFill: 1 });
+                                        setBgModalOpen(false);
+                                    },
+                                    className: `flex w-full items-center justify-between rounded-xl border p-2.5 text-left transition-all ${currentFill === 1 ? `border-accent bg-accent/15 ring-2 ring-accent shadow-[0_0_20px_-4px_rgba(220,38,38,0.5)]` : `border-border/80 bg-canvas/60 hover:border-white/30 hover:bg-canvas`}`,
+                                    children: [
+                                        (0, P.jsxs)(`div`, {
+                                            className: `flex items-center gap-3`,
+                                            children: [
+                                                (0, P.jsx)(`div`, {
+                                                    className: `size-8 rounded-lg border border-black/40 shadow-inner flex-shrink-0`,
+                                                    style: { background: ledColorOn }
+                                                }),
+                                                (0, P.jsxs)(`div`, {
+                                                    children: [
+                                                        (0, P.jsx)(`div`, {
+                                                            className: `font-display text-[12px] font-black uppercase tracking-wider text-foreground`,
+                                                            children: `Cor do Footswitch (Dinâmico)`
+                                                        }),
+                                                        (0, P.jsx)(`div`, {
+                                                            className: `font-mono text-[9px] text-muted-foreground mt-0.5`,
+                                                            children: `Acompanha a cor programada do LED para este footswitch`
+                                                        })
+                                                    ]
+                                                })
+                                            ]
+                                        }),
+                                        currentFill === 1 && (0, P.jsx)(`div`, {
+                                            className: `size-5 rounded-full bg-accent flex items-center justify-center text-white`,
+                                            children: (0, P.jsx)(`svg`, { xmlns: `http://www.w3.org/2000/svg`, viewBox: `0 0 24 24`, fill: `none`, stroke: `currentColor`, strokeWidth: `3`, className: `size-3.5`, children: (0, P.jsx)(`path`, { d: `M20 6 9 17l-5-5` }) })
+                                        })
+                                    ]
+                                }),
+                                (0, P.jsx)(`div`, {
+                                    className: `grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2`,
+                                    children: fillPresets.filter(p => p.cat === `solida`).map(p => {
+                                        let isSel = currentFill === p.id;
+                                        return (0, P.jsxs)(`button`, {
+                                            key: p.id,
+                                            type: `button`,
+                                            onClick: () => {
+                                                onPatch({ gridFill: p.id });
+                                                setBgModalOpen(false);
+                                            },
+                                            className: `group relative flex items-center gap-2.5 rounded-xl border p-2 transition-all text-left ${isSel ? `border-accent bg-accent/15 ring-2 ring-accent shadow-[0_0_15px_-4px_rgba(220,38,38,0.5)]` : `border-border/80 bg-canvas/60 hover:border-white/30 hover:bg-canvas`}`,
+                                            children: [
+                                                (0, P.jsx)(`div`, {
+                                                    className: `size-7 rounded-lg border border-black/40 shadow-inner flex-shrink-0`,
+                                                    style: { background: p.gradOn }
+                                                }),
+                                                (0, P.jsx)(`div`, {
+                                                    className: `font-display text-[11px] font-black uppercase tracking-wider truncate ${isSel ? `text-accent font-bold` : `text-foreground`}`,
+                                                    children: p.name
+                                                }),
+                                                isSel && (0, P.jsx)(`div`, {
+                                                    className: `ml-auto size-4 rounded-full bg-accent flex items-center justify-center text-white flex-shrink-0`,
+                                                    children: (0, P.jsx)(`svg`, { xmlns: `http://www.w3.org/2000/svg`, viewBox: `0 0 24 24`, fill: `none`, stroke: `currentColor`, strokeWidth: `3`, className: `size-3`, children: (0, P.jsx)(`path`, { d: `M20 6 9 17l-5-5` }) })
+                                                })
+                                            ]
+                                        }, p.id);
+                                    })
+                                })
+                            ]
+                        }),
+
+                        (0, P.jsxs)(`div`, {
+                            className: `space-y-1.5`,
+                            children: [
+                                (0, P.jsx)(`div`, {
+                                    className: `font-display text-[9px] uppercase tracking-[0.2em] text-muted-foreground font-bold px-1`,
+                                    children: `PALETA DE GRADIENTES ESTILIZADOS`
+                                }),
+                                (0, P.jsx)(`div`, {
+                                    className: `grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2.5`,
+                                    children: fillPresets.filter(p => p.cat === `gradiente`).map(p => {
+                                        let isSel = currentFill === p.id;
+                                        return (0, P.jsxs)(`button`, {
+                                            key: p.id,
+                                            type: `button`,
+                                            onClick: () => {
+                                                onPatch({ gridFill: p.id });
+                                                setBgModalOpen(false);
+                                            },
+                                            className: `group relative flex items-center justify-between rounded-xl border p-2.5 transition-all text-left ${isSel ? `border-accent bg-accent/15 ring-2 ring-accent shadow-[0_0_15px_-4px_rgba(220,38,38,0.5)]` : `border-border/80 bg-canvas/60 hover:border-white/30 hover:bg-canvas`}`,
+                                            children: [
+                                                (0, P.jsxs)(`div`, {
+                                                    className: `flex items-center gap-3`,
+                                                    children: [
+                                                        (0, P.jsx)(`div`, {
+                                                            className: `size-8 rounded-lg border border-black/40 shadow-inner flex-shrink-0`,
+                                                            style: { background: p.gradOn }
+                                                        }),
+                                                        (0, P.jsxs)(`div`, {
+                                                            children: [
+                                                                (0, P.jsx)(`div`, {
+                                                                    className: `font-display text-[11px] font-black uppercase tracking-wider ${isSel ? `text-accent font-bold` : `text-foreground`}`,
+                                                                    children: p.name
+                                                                }),
+                                                                (0, P.jsx)(`div`, {
+                                                                    className: `font-mono text-[9px] text-muted-foreground`,
+                                                                    children: p.desc
+                                                                })
+                                                            ]
+                                                        })
+                                                    ]
+                                                }),
+                                                isSel && (0, P.jsx)(`div`, {
+                                                    className: `size-5 rounded-full bg-accent flex items-center justify-center text-white flex-shrink-0`,
+                                                    children: (0, P.jsx)(`svg`, { xmlns: `http://www.w3.org/2000/svg`, viewBox: `0 0 24 24`, fill: `none`, stroke: `currentColor`, strokeWidth: `3`, className: `size-3.5`, children: (0, P.jsx)(`path`, { d: `M20 6 9 17l-5-5` }) })
+                                                })
+                                            ]
+                                        }, p.id);
+                                    })
+                                })
+                            ]
+                        })
+                    ]
+                }),
+                footer: (0, P.jsx)(`div`, {
+                    className: `flex justify-end`,
+                    children: (0, P.jsx)(`button`, {
+                        type: `button`,
+                        onClick: () => setBgModalOpen(false),
+                        className: `rounded-md border border-border px-4 py-2 font-display text-[10px] uppercase tracking-[0.16em] text-muted-foreground transition hover:text-foreground`,
+                        children: `Fechar`
+                    })
+                })
+            })
+        ]
+    });
+}
+
 function Jr(e, usbCfg) {
     let t = Array.isArray(e.presetCommands) ? e.presetCommands : [],
         n = t.filter(e => (e.trigger ?? `Click`) === `Click`),
@@ -16138,7 +16708,7 @@ function Jr(e, usbCfg) {
                 name: String(s?.name || ``).replace(/[^\x20-\x7E]/g, ``).toUpperCase().slice(0, 16),
                 color: typeof s?.color === `string` ? s.color : `#ff8800`
             })) : [],
-            gridFill: Number(e.gridFill) ? 1 : 0,
+            gridFill: Number.isFinite(Number(e.gridFill)) ? Number(e.gridFill) : 0,
             scene: Array.isArray(e.sceneMask) ? e.sceneMask.map(e => e ? 1 : 0) : [],
             toggle: e.mode === `Momentâneo` ? 0 : +!!i,
             actionType: 0,
@@ -16376,16 +16946,16 @@ function Yr(e, t, n, usbCfg) {
         } : n.ricochet;
     return {
         mode: s,
-        label: e?.fsName || n.label || `FS${t}`,
-        stompName: typeof e?.stompName == `string` ? e.stompName : n.stompName || ``,
-        iconKey: typeof e?.iconKey == `string` ? displayIconSanitizeKey(e.iconKey) : n.iconKey || ``,
-        stompIcon: typeof e?.stompIcon == `string` ? displayIconSanitizeKey(e.stompIcon) : n.stompIcon || ``,
+        label: (typeof e?.fsName === 'string' && e.fsName.trim()) ? e.fsName.trim() : (n?.isExt ? n.label : `FS${t}`),
+        stompName: typeof e?.stompName == `string` ? e.stompName : ``,
+        iconKey: typeof e?.iconKey == `string` ? displayIconSanitizeKey(e.iconKey) : ``,
+        stompIcon: typeof e?.stompIcon == `string` ? displayIconSanitizeKey(e.stompIcon) : ``,
         stompSlots: Array.isArray(e?.stompSlots) ? e.stompSlots.slice(0, 8).map(s => ({
             icon: typeof s?.icon === `string` ? displayIconSanitizeKey(s.icon) : ``,
             name: typeof s?.name === `string` ? s.name : ``,
             color: typeof s?.color === `string` ? s.color : (typeof s?.color === `number` ? `#` + s.color.toString(16).padStart(6, `0`) : `#ff8800`)
         })) : (Array.isArray(n?.stompSlots) ? n.stompSlots : Array.from({ length: 8 }, () => ({ icon: ``, name: ``, color: `#ff8800` }))),
-        gridFill: Number(e?.gridFill ?? n.gridFill) ? 1 : 0,
+        gridFill: Number.isFinite(Number(e?.gridFill ?? n.gridFill)) ? Number(e?.gridFill ?? n.gridFill) : 0,
         sceneMask: Array.isArray(e?.scene) ? e.scene.map(e => typeof e == `object` && e ? !!e.enabled : !!e) : Array.isArray(n?.sceneMask) ? n.sceneMask : [],
         /* Nunca herdar comandos do FS/banco anterior — lista vazia = vazio. */
         stompCommands: l,
@@ -16421,7 +16991,7 @@ function Xr() {
     let [e, t] = (0, N.useState)(`MX-6`), [n, r] = (0, N.useState)(0), [i, a] = (0, N.useState)(1), [o, s] = (0, N.useState)(`preset`), [c, l] = (0, N.useState)({}), [expBankState, setExpBankState] = (0, N.useState)(() => expCreateEmptyBank()), [globalSubTab, setGlobalSubTab] = (0, N.useState)(`gb`), [sysSubTab, setSysSubTab] = (0, N.useState)(`conexoes`), u = (0, N.useRef)(!1), modelSaveBusyRef = (0, N.useRef)(!1), modelRebootUntilRef = (0, N.useRef)(0), iconKeyPendingRef = (0, N.useRef)(null), activeStompSlotRef = (0, N.useRef)(1), [activeStompSlot, setActiveStompSlot] = (0, N.useState)(1), d = gr[e].fs, [f, p] = (0, N.useState)(1), [m, h] = (0, N.useState)(`Preset`), [g, _] = (0, N.useState)(!0), [v, y] = (0, N.useState)(null), [R, I] = (0, N.useState)(null), [B, L] = (0, N.useState)(``),     [backupBusy, setBackupBusy] = (0, N.useState)(!1), [backupProgress, setBackupProgress] = (0, N.useState)({
         pct: 0,
         label: ``
-    }), [fsSwitchPrompt, setFsSwitchPrompt] = (0, N.useState)(null), fsSavedSnapshotRef = (0, N.useRef)({}), fsFullSnapshotRef = (0, N.useRef)({}), [transportState, setTransportState] = (0, N.useState)(() => getTransportSnapshot()), [iconScreenOpen, setIconScreenOpen] = (0, N.useState)(!1), [ampScreenOpen, setAmpScreenOpen] = (0, N.useState)(!1);
+    }), [fsSwitchPrompt, setFsSwitchPrompt] = (0, N.useState)(null), [bankSwitchPrompt, setBankSwitchPrompt] = (0, N.useState)(null), fsSavedSnapshotRef = (0, N.useRef)({}), fsFullSnapshotRef = (0, N.useRef)({}), pendingFsBgSlotsRef = (0, N.useRef)(null), [transportState, setTransportState] = (0, N.useState)(() => getTransportSnapshot()), [iconScreenOpen, setIconScreenOpen] = (0, N.useState)(!1), [ampScreenOpen, setAmpScreenOpen] = (0, N.useState)(!1);
     let reportBackupProgress = (pct, label) => {
         try {
             setBackupProgress({
@@ -16479,7 +17049,7 @@ function Xr() {
         })(),
         snapshotFsCompact = cfg => {
             try {
-                return JSON.stringify(compactFsForSave(Jr(cfg || kr(1))))
+                return JSON.stringify(compactFsForSave(Jr(cfg || kr(1), c)))
             } catch {
                 return ``
             }
@@ -16492,8 +17062,10 @@ function Xr() {
             } catch {}
         },
         isFsDirty = fsNum => {
+            let snap = fsSavedSnapshotRef.current[fsNum];
+            if (snap === undefined) return false; // sem snapshot = banco recém-carregado, sem edição
             let cur = b[fsNum] || kr(fsNum);
-            return fsSavedSnapshotRef.current[fsNum] !== snapshotFsCompact(cur)
+            return snap !== snapshotFsCompact(cur)
         },
         discardCurrentFsEdits = () => {
             let full = fsFullSnapshotRef.current[f];
@@ -16514,6 +17086,19 @@ function Xr() {
             setFsSwitchPrompt({
                 targetFs
             })
+        },
+        isAnyFsDirty = () => {
+            for (let fs = 1; fs <= effectiveFs; fs++) {
+                if (isFsDirty(fs)) return true
+            }
+            return false
+        },
+        requestSelectBank = (targetBankIdx, doChangeFn) => {
+            if (!isAnyFsDirty()) {
+                doChangeFn();
+                return
+            }
+            setBankSwitchPrompt({ targetBankIdx, doChangeFn })
         };
     (0, N.useEffect)(() => {
         fsSavedSnapshotRef.current = {};
@@ -16969,24 +17554,27 @@ function Xr() {
                     hasFs1: !!(t?.fs1 || t?.banks?.[String(n)]?.fs1 || t?.banks?.[n]?.fs1)
                 });
                 let r = t?.banks?.[String(n)] || t?.banks?.[n] || t?.banks?.[String(t?.bank)] || (t?.fs1 ? t : null);
-                x(() => {
-                    let t = {},
-                        extCount = Number(c?.expMode || 0) === 3 ? 1 : Number(c?.expMode || 0) === 2 ? 2 : 0,
-                        maxFs = Math.max(8, (Number(c?.fsCount) || d) + extCount);
-                    for (let fs = 1; fs <= maxFs; fs++) {
-                        let i = `fs${fs}`,
-                            a = r?.[i];
-                        /* Sempre partir de kr(fs) — não reutilizar estado do banco anterior. */
-                        t[fs] = a && typeof a == `object` ? Yr(a, fs, kr(fs), c) : kr(fs)
+                let extCount = Number(c?.expMode || 0) === 3 ? 1 : Number(c?.expMode || 0) === 2 ? 2 : 0,
+                    maxFs = Math.max(8, (Number(c?.fsCount) || d) + extCount);
+                if (!r || typeof r !== 'object' || Object.keys(r).length === 0) return;
+                let nextState = {};
+                let hasValidData = false;
+                for (let fs = 1; fs <= maxFs; fs++) {
+                    let a = r?.[fs] || r?.[`fs${fs}`];
+                    if (a && typeof a == `object`) {
+                        let baseFallback = kr(fs);
+                        nextState[fs] = Yr(a, fs, baseFallback, c);
+                        hasValidData = true;
+                    } else {
+                        nextState[fs] = kr(fs);
                     }
-                    return t
-                });
-                if (r) {
-                    let extCount = Number(c?.expMode || 0) === 3 ? 1 : Number(c?.expMode || 0) === 2 ? 2 : 0,
-                        maxFs = Math.max(8, (Number(c?.fsCount) || d) + extCount);
+                }
+                if (hasValidData) {
+                    x(nextState);
+                    fsSavedSnapshotRef.current = {};
+                    fsFullSnapshotRef.current = {};
                     for (let fs = 1; fs <= maxFs; fs++) {
-                        let a = r?.[`fs${fs}`];
-                        if (a && typeof a == `object`) markFsSavedSnapshot(fs, Yr(a, fs, kr(fs), c))
+                        if (nextState[fs]) markFsSavedSnapshot(fs, nextState[fs]);
                     }
                 }
             } catch (err) {
@@ -17556,7 +18144,98 @@ function Xr() {
                     u.current = !1
                 }
             }
-        }, ne = async () => {
+        },
+        saveEntireBank = async (bankToSave = n) => {
+            if (u.current) return false;
+            u.current = !0;
+            try {
+                let maxFs = effectiveFs,
+                    bankPayload = {},
+                    fsDataList = [];
+                for (let fsNum = 1; fsNum <= maxFs; fsNum++) {
+                    let curFs = b[fsNum];
+                    if (!curFs && fsNum !== f) continue;
+                    let fsCopy = curFs ? { ...curFs } : (fsNum === f ? kr(fsNum) : null);
+                    if (!fsCopy) continue;
+
+                    let hasCommands = (Array.isArray(fsCopy.presetCommands) && fsCopy.presetCommands.length > 0) ||
+                                      (Array.isArray(fsCopy.stompCommands) && fsCopy.stompCommands.length > 0) ||
+                                      (Array.isArray(fsCopy.extraClick) && fsCopy.extraClick.length > 0) ||
+                                      (Array.isArray(fsCopy.extraHold) && fsCopy.extraHold.length > 0) ||
+                                      (Array.isArray(fsCopy.commands) && fsCopy.commands.length > 0) ||
+                                      (fsCopy.cc !== undefined && fsCopy.cc !== 0) ||
+                                      (fsCopy.pc !== undefined && fsCopy.pc !== 0) ||
+                                      (fsCopy.label && fsCopy.label !== `FS${fsNum}`) ||
+                                      (fsCopy.iconKey && fsCopy.iconKey.trim() !== '') ||
+                                      (fsCopy.stompIcon && fsCopy.stompIcon.trim() !== '') ||
+                                      (Number(fsCopy.gridFill || 0) > 0) ||
+                                      isFsDirty(fsNum);
+
+                    // A chave aberta (f) pode ser gravada vazia se o usuário limpou de propósito.
+                    // Mas chaves que NÃO estão na tela e não têm comandos NÃO são enviadas como vazio.
+                    if (fsNum !== f && !hasCommands) continue;
+
+                    if (fsNum === f && iconKeyPendingRef.current !== null) {
+                        if (m === 'Stomp') {
+                            fsCopy.stompIcon = displayIconSanitizeKey(iconKeyPendingRef.current || '');
+                        } else {
+                            fsCopy.iconKey = displayIconSanitizeKey(iconKeyPendingRef.current || '');
+                        }
+                        iconKeyPendingRef.current = null;
+                    }
+                    let compacted = compactFsForSave(Jr(fsCopy, c));
+                    bankPayload['fs' + fsNum] = compacted;
+                    fsDataList.push({ fs: fsNum, data: fsCopy });
+                }
+
+                if (Object.keys(bankPayload).length === 0) {
+                    return true;
+                }
+
+                gboxSoftApQuiet(45e3);
+                await postMidiConfigRetry({
+                    activePreset: T,
+                    banks: {
+                        [bankToSave]: bankPayload
+                    }
+                }, 8);
+
+                // LED colors: salva apenas as chaves modificadas ou a chave aberta, evitando sobrecarga no Wi-Fi
+                if (m !== 'Stomp') {
+                    for (let item of fsDataList) {
+                        if (item.fs === f || isFsDirty(item.fs)) {
+                            let ledCfg = item.data.presetLed || yr;
+                            try {
+                                let ledPayload = {
+                                    activePreset: T,
+                                    bank: bankToSave,
+                                    fs: item.fs,
+                                    on: Nr(ledCfg.on),
+                                    off: Nr(ledCfg.off),
+                                    hold_on: Nr(ledCfg.holdOn),
+                                    hold_off: Nr(ledCfg.holdOff)
+                                };
+                                await Br('/api/led-colors', ledPayload, 15e3);
+                                await new Promise(r => setTimeout(r, 60));
+                            } catch (ledErr) {
+                                console.warn('LED colors save warn FS' + item.fs, ledErr);
+                            }
+                        }
+                    }
+                }
+                for (let item of fsDataList) {
+                    markFsSavedSnapshot(item.fs, item.data);
+                }
+                rt.success('Salvo: Banco ' + hr[bankToSave] + ' · Preset ' + (T + 1));
+                return true;
+            } catch (err) {
+                rt.error('Erro ao salvar Banco ' + hr[bankToSave] + ': ' + softApFetchErrorMessage(err));
+                return false;
+            } finally {
+                u.current = !1;
+            }
+        },
+        ne = async () => {
             if (F(`C`, `handleSave.click`, {
                     tab: o,
                     globalSubTab,
@@ -17567,7 +18246,7 @@ function Xr() {
                     derivedFsCount: d,
                     configFsCount: c?.fsCount
                 }), o === `preset`) {
-                await te();
+                await saveEntireBank(n);
                 return
             }
             if (o === `global`) {
@@ -17750,112 +18429,110 @@ function Xr() {
                         children: (0, P.jsx)(yi, {
                             letter: hr[n],
                             sublabel: presetLabel(i) ? `${hr[n]}${i} · ${presetLabel(i)}` : `${hr[n]}${i}`,
-                            onPrev: () => r(e => {
-                                let t = (e - 1 + hr.length) % hr.length;
-                                return F(`B`, `bank.cycle.click`, {
-                                    from: e,
-                                    to: t,
-                                    activePreset: T
-                                }), (async () => {
-                                    try {
-                                        let e = await zr(`/api/set-current-bank?bank=${t}&activePreset=${T}`, {
-                                            method: `GET`
-                                        }, 15e3);
-                                        F(`B`, `bank.cycle.api.ok`, {
-                                            bank: t,
-                                            activePreset: T,
-                                            resp: e
-                                        });
+                            onPrev: () => {
+                                let t = (n - 1 + hr.length) % hr.length;
+                                requestSelectBank(t, () => {
+                                    r(t);
+                                    F(`B`, `bank.cycle.click`, {
+                                        from: n,
+                                        to: t,
+                                        activePreset: T
+                                    });
+                                    (async () => {
                                         try {
-                                            let e = await zr(`/api/active-key`, {
+                                            let resp = await zr(`/api/set-current-bank?bank=${t}&activePreset=${T}`, {
                                                 method: `GET`
-                                            }, 8e3);
-                                            F(`B`, `activeKey.afterBank.ok`, {
+                                            }, 15e3);
+                                            F(`B`, `bank.cycle.api.ok`, {
                                                 bank: t,
                                                 activePreset: T,
-                                                ak: e
-                                            })
+                                                resp
+                                            });
+                                            try {
+                                                let ak = await zr(`/api/active-key`, {
+                                                    method: `GET`
+                                                }, 8e3);
+                                                F(`B`, `activeKey.afterBank.ok`, {
+                                                    bank: t,
+                                                    activePreset: T,
+                                                    ak
+                                                })
+                                            } catch (e) {
+                                                F(`B`, `activeKey.afterBank.err`, {
+                                                    bank: t,
+                                                    activePreset: T,
+                                                    message: String(e?.message || e)
+                                                })
+                                            }
                                         } catch (e) {
-                                            F(`B`, `activeKey.afterBank.err`, {
+                                            /* UI já mudou o banco; aviso só se o dispositivo não acompanhou. */
+                                            rt.error(`Aviso: banco na tela OK, dispositivo não confirmou (${String(e?.message || e).slice(0, 80)})`), F(`B`, `bank.cycle.api.err`, {
                                                 bank: t,
                                                 activePreset: T,
                                                 message: String(e?.message || e)
                                             })
                                         }
-                                    } catch (e) {
-                                        /* UI já mudou o banco; aviso só se o dispositivo não acompanhou. */
-                                        rt.error(`Aviso: banco na tela OK, dispositivo não confirmou (${String(e?.message || e).slice(0, 80)})`), F(`B`, `bank.cycle.api.err`, {
-                                            bank: t,
-                                            activePreset: T,
-                                            message: String(e?.message || e)
-                                        })
-                                    }
-                                })(), t
-                            }),
-                            onNext: () => r(e => {
-                                let t = (e + 1) % hr.length;
-                                return F(`B`, `bank.cycle.click`, {
-                                    from: e,
-                                    to: t,
-                                    activePreset: T
-                                }), (async () => {
-                                    try {
-                                        let e = await zr(`/api/set-current-bank?bank=${t}&activePreset=${T}`, {
-                                            method: `GET`
-                                        }, 15e3);
-                                        F(`B`, `bank.cycle.api.ok`, {
-                                            bank: t,
-                                            activePreset: T,
-                                            resp: e
-                                        });
+                                    })()
+                                })
+                            },
+                            onNext: () => {
+                                let t = (n + 1) % hr.length;
+                                requestSelectBank(t, () => {
+                                    r(t);
+                                    F(`B`, `bank.cycle.click`, {
+                                        from: n,
+                                        to: t,
+                                        activePreset: T
+                                    });
+                                    (async () => {
                                         try {
-                                            let e = await zr(`/api/active-key`, {
+                                            let resp = await zr(`/api/set-current-bank?bank=${t}&activePreset=${T}`, {
                                                 method: `GET`
-                                            }, 8e3);
-                                            F(`B`, `activeKey.afterBank.ok`, {
+                                            }, 15e3);
+                                            F(`B`, `bank.cycle.api.ok`, {
                                                 bank: t,
                                                 activePreset: T,
-                                                ak: e
-                                            })
+                                                resp
+                                            });
+                                            try {
+                                                let ak = await zr(`/api/active-key`, {
+                                                    method: `GET`
+                                                }, 8e3);
+                                                F(`B`, `activeKey.afterBank.ok`, {
+                                                    bank: t,
+                                                    activePreset: T,
+                                                    ak
+                                                })
+                                            } catch (e) {
+                                                F(`B`, `activeKey.afterBank.err`, {
+                                                    bank: t,
+                                                    activePreset: T,
+                                                    message: String(e?.message || e)
+                                                })
+                                            }
                                         } catch (e) {
-                                            F(`B`, `activeKey.afterBank.err`, {
+                                            rt.error(`Aviso: banco na tela OK, dispositivo não confirmou (${String(e?.message || e).slice(0, 80)})`), F(`B`, `bank.cycle.api.err`, {
                                                 bank: t,
                                                 activePreset: T,
                                                 message: String(e?.message || e)
                                             })
                                         }
-                                    } catch (e) {
-                                        rt.error(`Aviso: banco na tela OK, dispositivo não confirmou (${String(e?.message || e).slice(0, 80)})`), F(`B`, `bank.cycle.api.err`, {
-                                            bank: t,
-                                            activePreset: T,
-                                            message: String(e?.message || e)
-                                        })
-                                    }
-                                })(), t
-                            })
+                                    })()
+                                })
+                            }
                         })
-                    }), (0, P.jsxs)(`section`, {
+                    }), (0, P.jsx)(`section`, {
                         className: `order-2 space-y-3 lg:order-none lg:col-start-3 lg:row-start-1 lg:row-span-2`,
-                        children: [(0, P.jsxs)(`div`, {
-                            className: `flex items-center justify-between px-1 lg:hidden`,
-                            children: [(0, P.jsx)(`div`, {
-                                className: `font-display text-[10px] uppercase tracking-[0.3em] text-muted-foreground`,
-                                children: `Presets`
-                            }), (0, P.jsxs)(`span`, {
-                                className: `font-mono text-[10px] text-accent`,
-                                children: [i, ` / 5`]
-                            })]
-                        }), (0, P.jsx)(`div`, {
-                            className: `grid grid-cols-6 gap-2 lg:grid-cols-2 lg:gap-3`,
-                            children: [1, 2, 3, 4, 5].map(e => (0, P.jsx)(bi, {
-                                n: e,
-                                active: i === e,
-                                color: _r[e - 1],
-                                name: presetLabel(e),
-                                onClick: () => i === e ? openPresetRename(e) : a(e),
-                                onRename: () => openPresetRename(e)
-                            }, e))
-                        })]
+                        children: (0, P.jsx)(FsBoxVisualCustomizer, {
+                            fsNumber: f,
+                            fsConfig: w,
+                            ctrlMode: m,
+                            globalConfig: c,
+                            activeStompSlot: activeStompSlot,
+                            onPatch: E,
+                            onOpenIcon: () => setIconScreenOpen(true),
+                            onOpenAmp: () => setAmpScreenOpen(true)
+                        })
                     }), m !== `Stomp` ? (0, P.jsx)(`section`, {
                         className: `order-3 lg:order-none lg:col-start-1 lg:row-start-2 lg:sticky lg:top-4 lg:self-start`,
                         children: (0, P.jsxs)(`div`, {
@@ -18113,7 +18790,7 @@ function Xr() {
                             },
                             variant: m === `Stomp` ? `stomp` : w.mode === `Normal` ? `fourColor` : w.mode === `Momentâneo` ? `twoColor` : `oneColor`
                         }), f <= modelFs && (0, P.jsxs)(P.Fragment, {
-                            children: [((Number(c?.displayStyle) === 7) || (Number(c?.displayStyle) === 1 && Number(c?.displayLayout) === 4)) ? (0, P.jsx)(`button`, {
+                            children: [(Number(c?.displayStyle) === 7) ? (0, P.jsx)(`button`, {
                                 type: `button`,
                                 onClick: () => setAmpScreenOpen(!0),
                                 className: `flex w-full items-center justify-center gap-2 rounded-xl border border-red-500/50 bg-red-950/20 px-4 py-3 font-display text-[10px] font-bold uppercase tracking-[0.2em] text-red-400 transition hover:border-red-500 hover:bg-red-900/30`,
@@ -18230,6 +18907,7 @@ function Xr() {
                                         let nextSlots = Array.isArray(c?.fsBgSlot) ? [...c.fsBgSlot] : [0,0,0,0,0,0,0,0];
                                         while (nextSlots.length < 8) nextSlots.push(0);
                                         nextSlots[f - 1] = slotNum;
+                                        pendingFsBgSlotsRef.current = nextSlots;
                                         l(prev => ({ ...prev, fsBgSlot: nextSlots }));
                                     }
                                 }),
@@ -18245,9 +18923,10 @@ function Xr() {
                                         onClick: async () => {
                                             setAmpScreenOpen(!1);
                                             try {
-                                                let nextSlots = Array.isArray(c?.fsBgSlot) ? [...c.fsBgSlot] : [0,0,0,0,0,0,0,0];
-                                                while (nextSlots.length < 8) nextSlots.push(0);
-                                                await Br(`/api/usb-config`, { fsBgSlot: nextSlots }, 25e3);
+                                                let slotsToSave = pendingFsBgSlotsRef.current ?? (Array.isArray(c?.fsBgSlot) ? [...c.fsBgSlot] : [0,0,0,0,0,0,0,0]);
+                                                while (slotsToSave.length < 8) slotsToSave.push(0);
+                                                pendingFsBgSlotsRef.current = null;
+                                                await Br(`/api/usb-config`, { fsBgSlot: slotsToSave }, 25e3);
                                                 rt.success(`Cabeçote da FS${f} salvo com sucesso!`);
                                             } catch (err) {
                                                 rt.error(`Falha ao salvar cabeçote: ${String(err?.message || err)}`);
@@ -18332,6 +19011,58 @@ function Xr() {
                                 },
                                 className: `rounded-md border border-accent/60 bg-accent/20 px-4 py-2 font-display text-[10px] uppercase tracking-[0.16em] text-accent hover:bg-accent/30`,
                                 children: `Salvar`
+                            })]
+                        })]
+                    })
+                }), bankSwitchPrompt && (0, P.jsx)(`div`, {
+                    className: `fixed inset-0 z-[120] flex items-center justify-center bg-black/80 p-4`,
+                    onClick: () => setBankSwitchPrompt(null),
+                    children: (0, P.jsxs)(`div`, {
+                        className: `relative w-full overflow-hidden border border-border bg-canvas`,
+                        onClick: e => e.stopPropagation(),
+                        style: {
+                            width: `calc(100vw - 2rem)`,
+                            maxWidth: `24rem`,
+                            borderRadius: `20px`
+                        },
+                        children: [(0, P.jsxs)(`div`, {
+                            className: `border-b border-border bg-panel/60 px-4 py-3`,
+                            children: [(0, P.jsx)(`div`, {
+                                className: `font-display text-[11px] uppercase tracking-[0.24em] text-accent`,
+                                children: `Alterações não salvas`
+                            }), (0, P.jsxs)(`div`, {
+                                className: `mt-1 font-mono text-[10px] text-muted-foreground`,
+                                children: [`Há chaves com mudanças não salvas no banco `, hr[n], `. Ir para banco `, hr[bankSwitchPrompt.targetBankIdx], ` vai descartar essas edições.`]
+                            })]
+                        }), (0, P.jsxs)(`div`, {
+                            className: `flex flex-col gap-2 px-4 py-4 sm:flex-row sm:justify-end`,
+                            children: [(0, P.jsx)(`button`, {
+                                type: `button`,
+                                onClick: () => setBankSwitchPrompt(null),
+                                className: `rounded-md border border-border px-4 py-2 font-display text-[10px] uppercase tracking-[0.16em] text-muted-foreground hover:text-foreground`,
+                                children: `Cancelar`
+                            }), (0, P.jsx)(`button`, {
+                                type: `button`,
+                                onClick: () => {
+                                    let fn = bankSwitchPrompt.doChangeFn;
+                                    setBankSwitchPrompt(null);
+                                    fn()
+                                },
+                                className: `rounded-md border border-border px-4 py-2 font-display text-[10px] uppercase tracking-[0.16em] text-muted-foreground hover:text-foreground`,
+                                children: `Descartar e Ir`
+                            }), (0, P.jsx)(`button`, {
+                                type: `button`,
+                                onClick: async () => {
+                                    let fn = bankSwitchPrompt.doChangeFn;
+                                    setBankSwitchPrompt(null);
+                                    let ok = await saveEntireBank(n);
+                                    if (ok !== false) {
+                                        await new Promise(res => setTimeout(res, 500));
+                                        if (fn) fn();
+                                    }
+                                },
+                                className: `rounded-md border border-accent/60 bg-accent/20 px-4 py-2 font-display text-[10px] uppercase tracking-[0.16em] text-accent hover:bg-accent/30`,
+                                children: `Salvar e Ir`
                             })]
                         })]
                     })
@@ -20125,6 +20856,61 @@ function TelaLayoutsVisualPanel({ usbConfig: e, onChange: t }) {
         }
     }, [isMt8, isGlobalStompOn, e?.displayStyle]);
 
+function CustomScreenBlockTile({ idx, isSel, isEnabled, isBorderless, usbCfg }) {
+    let iconKey = Array.isArray(usbCfg?.fsIconKey) ? usbCfg.fsIconKey[idx] : ``;
+    let ampSlot = Array.isArray(usbCfg?.fsBgSlot) ? usbCfg.fsBgSlot[idx] : 0;
+    let thumbKey = ampSlot > 0 ? (`amp` + ampSlot) : (iconKey || ``);
+    let thumb = useDisplayIconThumb(thumbKey);
+
+    return (0, P.jsxs)(`div`, {
+        style: {
+            width: `100%`,
+            height: `100%`,
+            display: `flex`,
+            flexDirection: `column`,
+            alignItems: `center`,
+            justifyContent: `center`,
+            position: `relative`,
+            overflow: `hidden`
+        },
+        children: [
+            thumb ? (0, P.jsx)(`img`, {
+                src: thumb,
+                alt: `SW` + (idx + 1),
+                style: {
+                    maxHeight: `72%`,
+                    maxWidth: `86%`,
+                    objectFit: `contain`,
+                    filter: isEnabled ? `none` : `grayscale(1) opacity(0.35)`,
+                    pointerEvents: `none`,
+                    userSelect: `none`
+                }
+            }) : null,
+            (0, P.jsx)(`span`, {
+                style: {
+                    position: thumb ? `absolute` : `static`,
+                    bottom: thumb ? `2px` : `auto`,
+                    color: isSel ? `#ffffff` : (isEnabled ? `#f87171` : `#71717a`),
+                    font: `900 9px/1 ui-monospace, monospace`,
+                    textShadow: `0 1px 3px rgba(0,0,0,0.9)`,
+                    background: thumb ? `rgba(0,0,0,0.65)` : `transparent`,
+                    padding: thumb ? `1px 4px` : `0`,
+                    borderRadius: `3px`
+                },
+                children: `SW` + (idx + 1)
+            }),
+            !isEnabled && !thumb ? (0, P.jsx)(`span`, {
+                style: {
+                    color: `#71717a`,
+                    font: `700 8px/1 ui-monospace, monospace`,
+                    marginTop: `2px`
+                },
+                children: `OFF`
+            }) : null
+        ]
+    });
+}
+
     let defaultPresetPos = [
         { x: 3, y: 15, size: 20, enabled: true },
         { x: 27, y: 15, size: 20, enabled: true },
@@ -20394,24 +21180,13 @@ function TelaLayoutsVisualPanel({ usbConfig: e, onChange: t }) {
                                     target.addEventListener('pointerup', onPointerUp);
                                     target.addEventListener('pointercancel', onPointerUp);
                                 },
-                                children: [
-                                    (0, P.jsx)('span', {
-                                        style: {
-                                            color: isSel ? '#ffffff' : isEnabled ? '#f87171' : '#71717a',
-                                            font: '900 11px/1 ui-monospace, monospace',
-                                            textShadow: '0 1px 3px rgba(0,0,0,0.8)'
-                                        },
-                                        children: 'SW' + (idx + 1)
-                                    }),
-                                    !isEnabled ? (0, P.jsx)('span', {
-                                        style: {
-                                            color: '#71717a',
-                                            font: '700 8px/1 ui-monospace, monospace',
-                                            marginTop: '2px'
-                                        },
-                                        children: 'OFF'
-                                    }) : null
-                                ]
+                                children: (0, P.jsx)(CustomScreenBlockTile, {
+                                    idx,
+                                    isSel,
+                                    isEnabled,
+                                    isBorderless,
+                                    usbCfg: e
+                                })
                             });
                         })
                     ]
@@ -20757,10 +21532,10 @@ function TelaLayoutsVisualPanel({ usbConfig: e, onChange: t }) {
                                 type: 'button',
                                 onClick: () => {
                                     if (st.id === 0) t({ displayStyle: 0, displayPresetLayout: 0 });
-                                    else if (st.id === 1) t({ displayStyle: 1, displayLayout: Number(e?.displayLayout ?? 0) });
+                                    else if (st.id === 1) t({ displayStyle: 1, displayLayout: (Number(e?.displayLayout ?? 0) === 4 ? 0 : Number(e?.displayLayout ?? 0)) });
                                     else if (st.id === 2) t({ displayStyle: 2, displayGridCenterName: 1 });
                                     else if (st.id === 4) t({ displayStyle: 4, displayPresetLayout: 0, displayLiveLayout: 0 });
-                                    else if (st.id === 7) t({ displayStyle: 7, displayLayout: 4, displayLiveLayout: Number(e?.displayLiveLayout ?? 0), displayPresetLayout: Number(e?.displayPresetLayout ?? 0) });
+                                    else if (st.id === 7) t({ displayStyle: 7, displayLiveLayout: Number(e?.displayLiveLayout ?? 0), displayPresetLayout: Number(e?.displayPresetLayout ?? 0) });
                                     else if (st.id === 6) t({ displayStyle: 6 });
                                 },
                                 style: {
@@ -20806,8 +21581,69 @@ function TelaLayoutsVisualPanel({ usbConfig: e, onChange: t }) {
                         })
                     }),
 
-                    /* Opção Geral: Exibição no Modo Stomp (Apenas MT-4 e MT-6 quando Modo Stomp Global ativo) */
-                    (!isMt8 && isGlobalStompOn) ? (0, P.jsxs)('div', {
+                    /* Opção MT-4 e MT-6: Exibição no Modo Preset quando Ícones ativo */
+                    (!isMt8 && displayStyle === 1) ? (0, P.jsxs)('div', {
+                        className: 'mt-3.5 flex flex-col gap-2 rounded-xl border p-3',
+                        style: { border: '1px solid rgba(239, 68, 68, 0.25)', background: '#121316' },
+                        children: [
+                            (0, P.jsxs)('div', {
+                                style: { display: 'flex', alignItems: 'center', justifyContent: 'space-between' },
+                                children: [
+                                    (0, P.jsx)('span', {
+                                        style: { fontFamily: 'inherit', fontSize: '10px', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#f87171' },
+                                        children: 'MODO PRESET: EXIBIÇÃO DOS ÍCONES'
+                                    }),
+                                    (0, P.jsx)('span', {
+                                        style: { fontFamily: 'monospace', fontSize: '9px', fontWeight: 700, color: '#71717a' },
+                                        children: 'PRESET'
+                                    })
+                                ]
+                            }),
+                            (0, P.jsx)('div', {
+                                style: { display: 'flex', gap: '8px' },
+                                children: [
+                                    { id: 0, lbl: 'NA GRADE', desc: fsCount === 6 ? 'Grade 2×3 com todos os blocos' : 'Grade 2×2 com todos os blocos' },
+                                    { id: 3, lbl: 'POR CHAVE', desc: 'Ícone único em destaque da chave ativa' }
+                                ].map(opt => {
+                                    let curLayout = Number(e?.displayLayout ?? 0);
+                                    let isSel = (curLayout === opt.id) || (opt.id === 0 && curLayout !== 3);
+                                    return (0, P.jsxs)('button', {
+                                        key: opt.id,
+                                        type: 'button',
+                                        onClick: () => t({ displayLayout: opt.id, displayPresetLayout: opt.id }),
+                                        style: {
+                                            flex: '1 1 0',
+                                            padding: '8px 6px',
+                                            borderRadius: '8px',
+                                            border: isSel ? '2px solid #ef4444' : '1px solid #27272a',
+                                            background: isSel ? '#240a0a' : '#141519',
+                                            color: isSel ? '#f87171' : '#a1a1aa',
+                                            boxShadow: isSel ? '0 0 12px rgba(239, 68, 68, 0.4)' : 'none',
+                                            cursor: 'pointer',
+                                            display: 'flex',
+                                            flexDirection: 'column',
+                                            alignItems: 'center',
+                                            justifyContent: 'center',
+                                            transition: 'all .15s'
+                                        },
+                                        children: [
+                                            (0, P.jsx)('span', {
+                                                style: { fontFamily: 'inherit', fontSize: '11px', fontWeight: 900, letterSpacing: '0.05em', color: isSel ? '#f87171' : '#e4e4e7' },
+                                                children: opt.lbl
+                                            }),
+                                            (0, P.jsx)('span', {
+                                                style: { marginTop: '2px', fontFamily: 'monospace', fontSize: '8px', color: isSel ? '#fca5a5' : '#71717a', textAlign: 'center' },
+                                                children: opt.desc
+                                            })
+                                        ]
+                                    });
+                                })
+                            })
+                        ]
+                    }) : null,
+
+                    /* Opção Geral: Exibição no Modo Stomp (Quando Modo Stomp Global ativo) */
+                    (isGlobalStompOn) ? (0, P.jsxs)('div', {
                         className: 'mt-3.5 flex flex-col gap-2 rounded-xl border p-3',
                         style: { border: '1px solid rgba(239, 68, 68, 0.25)', background: '#121316' },
                         children: [
@@ -20865,6 +21701,66 @@ function TelaLayoutsVisualPanel({ usbConfig: e, onChange: t }) {
                             })
                         ]
                     }) : null,
+
+                    /* Opção Geral: Cor dos Ícones Padrão (Branco vs Cor do LED) */
+                    (0, P.jsxs)('div', {
+                        className: 'mt-3.5 flex flex-col gap-2 rounded-xl border p-3',
+                        style: { border: '1px solid rgba(255, 255, 255, 0.15)', background: '#121316' },
+                        children: [
+                            (0, P.jsxs)('div', {
+                                style: { display: 'flex', alignItems: 'center', justifyContent: 'space-between' },
+                                children: [
+                                    (0, P.jsx)('span', {
+                                        style: { fontFamily: 'inherit', fontSize: '10px', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#e4e4e7' },
+                                        children: 'COR DOS ÍCONES PADRÃO'
+                                    }),
+                                    (0, P.jsx)('span', {
+                                        style: { fontFamily: 'monospace', fontSize: '9px', fontWeight: 700, color: '#71717a' },
+                                        children: 'PACK DO SISTEMA'
+                                    })
+                                ]
+                            }),
+                            (0, P.jsx)('div', {
+                                style: { display: 'flex', gap: '8px' },
+                                children: [
+                                    { id: 0, lbl: 'BRANCO', desc: 'Alto contraste e destaque máximo' },
+                                    { id: 1, lbl: 'COR DO LED', desc: 'Segue a cor do footswitch' }
+                                ].map(opt => {
+                                    let isSel = Number(e?.displayIconColorMode ?? 0) === opt.id;
+                                    return (0, P.jsxs)('button', {
+                                        key: opt.id,
+                                        type: 'button',
+                                        onClick: () => t({ displayIconColorMode: opt.id }),
+                                        style: {
+                                            flex: '1 1 0',
+                                            padding: '8px 6px',
+                                            borderRadius: '8px',
+                                            border: isSel ? '2px solid #ef4444' : '1px solid #27272a',
+                                            background: isSel ? '#240a0a' : '#141519',
+                                            color: isSel ? '#f87171' : '#a1a1aa',
+                                            boxShadow: isSel ? '0 0 12px rgba(239, 68, 68, 0.4)' : 'none',
+                                            cursor: 'pointer',
+                                            display: 'flex',
+                                            flexDirection: 'column',
+                                            alignItems: 'center',
+                                            justifyContent: 'center',
+                                            transition: 'all .15s'
+                                        },
+                                        children: [
+                                            (0, P.jsx)('span', {
+                                                style: { fontFamily: 'inherit', fontSize: '11px', fontWeight: 900, letterSpacing: '0.05em', color: isSel ? '#f87171' : '#e4e4e7' },
+                                                children: opt.lbl
+                                            }),
+                                            (0, P.jsx)('span', {
+                                                style: { marginTop: '2px', fontFamily: 'monospace', fontSize: '8px', color: isSel ? '#fca5a5' : '#71717a', textAlign: 'center' },
+                                                children: opt.desc
+                                            })
+                                        ]
+                                    });
+                                })
+                            })
+                        ]
+                    }),
 
                     /* Bloco de Cores e Fundo (Modo SIMPLES no ST7789 ou PRESET/STOMP no MT-8 ou Modo AMP) */
                     ((!isMt8 && (displayStyle === 0 || displayStyle === 7)) || (isMt8 && (displayStyle === 4 || displayStyle === 7))) ? (0, P.jsxs)('div', {
@@ -21173,8 +22069,8 @@ function TelaLayoutsVisualPanel({ usbConfig: e, onChange: t }) {
                         ]
                     }) : null,
 
-                    /* Bloco de Cabeçotes de Amp (Modo AMP no MT-8 / Estilo 7 ou MT-4/6 Layout AMP / 4) */
-                    (displayStyle === 7 || (!isMt8 && displayStyle === 1 && Number(e?.displayLayout ?? 0) === 4)) ? (0, P.jsxs)('div', {
+                    /* Bloco de Cabeçotes de Amp (Modo AMP / Estilo 7) */
+                    (displayStyle === 7) ? (0, P.jsxs)('div', {
                         style: {
                             marginTop: '16px',
                             padding: '16px 18px',
@@ -21789,7 +22685,7 @@ function compactFsForSave(e) {
     t.stgEnabled = e?.stgEnabled ? 1 : 0;
     t.stgAutoEnabled = e?.stgAutoEnabled ? 1 : 0;
     t.iconKey = displayIconSanitizeKey(e?.iconKey || ``);
-    t.gridFill = Number(e?.gridFill) ? 1 : 0;
+    t.gridFill = Number.isFinite(Number(e?.gridFill)) ? Number(e?.gridFill) : 0;
     t.stompIcon = displayIconSanitizeKey(e?.stompIcon || "");
     t.stompSlots = Array.isArray(e?.stompSlots) ? e.stompSlots : [];
     t.stompName = typeof e?.stompName == `string` ? e.stompName : ``;
@@ -22794,11 +23690,8 @@ function systemSettingsPanel({
         children: [(0, P.jsx)(TelaLayoutsVisualPanel, {
             usbConfig: e,
             onChange: t
-        }), (0, P.jsx)(`div`, {
-            style: { gridColumn: `1 / -1` },
-            children: (0, P.jsx)(displayIconsLibraryPanel, {
-                fsCount: e?.fsCount
-            })
+        }), (0, P.jsx)(displayIconsLibraryPanel, {
+            fsCount: e?.fsCount
         }), onSaveProp ? (0, P.jsx)(`div`, {
             style: { gridColumn: `1 / -1` },
             className: `flex justify-end pt-3`,
@@ -23894,11 +24787,7 @@ function Si({
     };
     let r = topColorProp || e?.on || `#ff8800`,
         hasExplicitBottom = bottomColorProp !== undefined,
-        rawBottom = hasExplicitBottom ? bottomColorProp : e?.off,
-        // Se não houver cor secundária explícita ou ela for apagada/preta (como em cor única ou padrão),
-        // o anel ilumina por completo com a cor ON para representar o halo uniforme do footswitch físico.
-        // Se houver uma segunda cor real ativa (modo 2 cores / Stomp ativo), divide em topo (On) e base (Off).
-        i = (!hasExplicitBottom && isBlack(rawBottom)) ? r : (rawBottom || r),
+        i = hasExplicitBottom ? bottomColorProp : r,
         topDark = isBlack(r),
         bottomDark = isBlack(i),
         o = 50,
@@ -23997,7 +24886,7 @@ function Ci({
     onChange: n,
     variant: r = `twoColor`
 }) {
-    let [i, a] = (0, N.useState)(!1), [o, s] = (0, N.useState)(!1), c = r === `stomp`, l = r === `oneColor`, u = r === `fourColor`, d = r === `twoColor`, f = l ? t.on : u ? i ? o ? t.holdOff : t.holdOn : o ? t.off : t.on : d ? o ? t.off : t.on : t.on, p = c && o ? `#0b0c0e` : f, m = c ? t.on : f, h = c ? `Stomp` : l ? `Cor Unica` : u ? `Clique + Hold` : `Aperta/Solta`;
+    let [i, a] = (0, N.useState)(!1), [o, s] = (0, N.useState)(!1), c = r === `stomp`, l = r === `oneColor`, u = r === `fourColor`, d = r === `twoColor`, f = l ? t.on : u ? i ? o ? t.holdOff : t.holdOn : o ? t.off : t.on : d ? o ? t.off : t.on : t.on, p = c && o ? `#0b0c0e` : f, m = p, h = c ? `Stomp` : l ? `Cor Unica` : u ? `Clique + Hold` : `Aperta/Solta`;
     return (0, P.jsxs)(`div`, {
         className: `rounded-2xl border border-border bg-panel/70 p-5 shadow-2xl shadow-black/40`,
         children: [(0, P.jsxs)(`div`, {
