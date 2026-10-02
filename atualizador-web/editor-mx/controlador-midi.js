@@ -14356,6 +14356,8 @@ function Kr(e, usbCfg) {
         cc = 0, pc = 0, val = Number(e.value) || 120
     } else if (e.type === `MIDI Clock Tap`) {
         cc = 0, pc = 0, val = 0
+    } else if (type === 12) {
+        cc = 0, pc = 0, val = 0, onOff = 0, out = 3
     } else if (type === 9) {
         /* FS Sync: onOff=fase envio; state=estado alvo (0=On, 1=Off) — separados. */
         cc = Math.max(1, Math.min(8, Number(e.cc) || 1));
@@ -14900,20 +14902,29 @@ function checkImageTransparency(imageObj) {
     return false;
 }
 
-async function getMainBgImage() {
-    let url = DISPLAY_ICON_THUMB_CACHE[DISPLAY_BG_KEY];
+async function getMainBgImage(key) {
+    let k = key || DISPLAY_BG_KEY;
+    let url = DISPLAY_ICON_THUMB_CACHE[k] || DISPLAY_ICON_THUMB_CACHE[DISPLAY_BG_KEY] || DISPLAY_ICON_THUMB_CACHE['bg'];
     if (!url) {
         try {
-            url = await displayIconFetchFullUrl(DISPLAY_BG_KEY);
+            url = await displayIconFetchThumb(k, false);
+        } catch {}
+    }
+    if (!url) {
+        try {
+            url = await displayIconFetchFullUrl(k);
         } catch {}
     }
     if (!url) return null;
-    if (s_cachedMainBgImg && s_cachedMainBgUrl === url) return s_cachedMainBgImg;
+    if (s_cachedMainBgImg && s_cachedMainBgUrl === url && s_cachedMainBgImg.width) return s_cachedMainBgImg;
     try {
         let im = await displayIconImageFromUrl(url);
-        s_cachedMainBgImg = im;
-        s_cachedMainBgUrl = url;
-        return im;
+        if (im && im.width) {
+            s_cachedMainBgImg = im;
+            s_cachedMainBgUrl = url;
+            return im;
+        }
+        return null;
     } catch {
         return null;
     }
@@ -15278,8 +15289,15 @@ function FsScreenIconCropModal({
         let cancelled = !1;
         (async () => {
             try {
-                let url = await displayIconFetchFullUrl(key),
-                    im = await displayIconImageFromUrl(url);
+                let url = DISPLAY_ICON_THUMB_CACHE[key];
+                if (!url) {
+                    url = await displayIconFetchThumb(key, false);
+                }
+                if (!url && !key.startsWith('bg') && !key.startsWith('amp') && !key.startsWith('s')) {
+                    url = await displayIconFetchFullUrl(key);
+                }
+                if (!url) throw Error('url vazia');
+                let im = await displayIconImageFromUrl(url);
                 if (!cancelled) setImg(im), setHasAlpha(checkImageTransparency(im)), setLoadErr(``)
             } catch {
                 if (!cancelled) setLoadErr(`Não foi possível carregar o ícone do pedal`)
@@ -15646,11 +15664,15 @@ function FsScreenIconCropModal({
                             if (!img) return;
                             setBusy(!0);
                             try {
+                                let effectiveMainBg = mainBgImg;
+                                if (hasAlpha && transCfg.mode === 'main_bg' && (!effectiveMainBg || !effectiveMainBg.width)) {
+                                    try { effectiveMainBg = await getMainBgImage(); } catch {}
+                                }
                                 let baseBg = hasAlpha ? {
                                         hasAlpha: true,
                                         mode: transCfg.mode,
                                         color: transCfg.color,
-                                        mainBgImg,
+                                        mainBgImg: effectiveMainBg,
                                         customImgObj
                                     } : null;
                                     let raster = isAmp ? displayAmpRasterColor(img, exportW, exportH, zoom, panX, panY, baseBg) : (useRect ? displayBgRasterColor(img, exportW, exportH, zoom, panX, panY, baseBg) : displayIconRasterColor(img, exportW, zoom, panX, panY, baseBg)),
@@ -20744,8 +20766,9 @@ function TransBgConfigCard() {
             (0, P.jsx)('div', {
                 style: { display: 'flex', gap: '6px', marginBottom: '8px' },
                 children: [
-                    { id: 'color', lbl: 'Cor Sólida' },
                     { id: 'main_bg', lbl: 'Fundo Principal (bg)' },
+                    { id: 'transparent', lbl: 'Transparente Puro' },
+                    { id: 'color', lbl: 'Cor Sólida' },
                     { id: 'custom_img', lbl: 'Imagem Base Fixa' }
                 ].map(m => (0, P.jsx)('button', {
                     key: m.id,
@@ -20759,13 +20782,17 @@ function TransBgConfigCard() {
                         fontSize: '9px',
                         fontWeight: 900,
                         cursor: 'pointer',
-                        border: cfg.mode === m.id ? '1px solid #ef4444' : '1px solid #27272a',
-                        background: cfg.mode === m.id ? 'rgba(239, 68, 68, 0.2)' : '#141519',
-                        color: cfg.mode === m.id ? '#f87171' : '#a1a1aa'
+                        border: (cfg.mode || 'transparent') === m.id ? '1px solid #ef4444' : '1px solid #27272a',
+                        background: (cfg.mode || 'transparent') === m.id ? 'rgba(239, 68, 68, 0.2)' : '#141519',
+                        color: (cfg.mode || 'transparent') === m.id ? '#f87171' : '#a1a1aa'
                     },
                     children: m.lbl
                 }))
             }),
+            (!cfg.mode || cfg.mode === 'transparent') ? (0, P.jsx)('div', {
+                style: { fontFamily: 'monospace', fontSize: '9px', color: '#10b981', lineHeight: 1.3 },
+                children: 'Transparência pura: o PNG será gravado sem fundo por baixo. Para sobrepor ao wallpaper, selecione "Fundo Principal (bg)".'
+            }) : null,
             cfg.mode === 'color' ? (0, P.jsxs)('div', {
                 style: { display: 'flex', alignItems: 'center', gap: '10px' },
                 children: [
@@ -26131,7 +26158,7 @@ function ji({
         usbmode: usbmodeCtx
     } = (0, N.useContext)(pr), hubMode = Number(usbmodeCtx) === 3, hubTonexMode = isHubTonexUsbMode(usbmodeCtx), hubLabels = [`Dev 1`, `Dev 2`, `Dev 3`, `Dev 4`], hubIdx = Math.max(0, Math.min(3, Number(t.hubDevice) || 0)), o = t.type === `FS Sync` || t.type.startsWith(`Banco`),
         s = t.type === `FS Sync` || t.type.startsWith(`Banco`) || t.type === `Tap Tempo Ampero (Serial)`,
-        c = t.type === `FS Sync` || t.type.startsWith(`Banco`) || t.type === `SysEx` || t.type.startsWith(`PC`) || t.type.includes(`Up`) || t.type.includes(`Down`),
+        c = t.type === `FS Sync` || t.type.startsWith(`Banco`) || t.type === `SysEx` || t.type.startsWith(`PC`) || t.type.includes(`Up`) || t.type.includes(`Down`) || t.type === `Tap Tempo Ampero (Serial)`,
         l = n === `Normal` || n === `Momentâneo`,
         u = n === `Momentâneo` ? [`Aperta`, `Solta`] : t.type === `FS Sync` ? [`On`, `Off`, `On/Off`] : [`On`, `Off`],
         isNormal = n === `Normal`,
@@ -26220,7 +26247,7 @@ function ji({
                 onChange: e => i({
                     targetState: e
                 })
-            }), t.type !== `SysEx` && !t.type.startsWith(`Banco`) && t.type !== `FS Sync` && !t.type.includes(`Up`) && !t.type.includes(`Down`) && (t.type.startsWith(`PC`) ? (0, P.jsx)(z, {
+            }), t.type !== `SysEx` && !t.type.startsWith(`Banco`) && t.type !== `FS Sync` && t.type !== `Tap Tempo Ampero (Serial)` && !t.type.includes(`Up`) && !t.type.includes(`Down`) && (t.type.startsWith(`PC`) ? (0, P.jsx)(z, {
                 label: `PC#`,
                 value: t.cc,
                 min: 0,
@@ -26292,7 +26319,7 @@ function ji({
                     value: `F0 ${t.value.toString(16).padStart(2,`0`)} F7`,
                     onChange: () => {}
                 })
-            }), l && !t.type.includes(`Up`) && !t.type.includes(`Down`) && !t.type.startsWith(`Banco`) && (0, P.jsx)(Mi, {
+            }), l && !t.type.includes(`Up`) && !t.type.includes(`Down`) && !t.type.startsWith(`Banco`) && t.type !== `Tap Tempo Ampero (Serial)` && (0, P.jsx)(Mi, {
                 label: n === `Momentâneo` ? `Momento` : t.type === `FS Sync` ? `Fase` : `Estado`,
                 value: t.state ?? u[0],
                 options: u,
