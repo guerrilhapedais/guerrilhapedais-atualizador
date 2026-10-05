@@ -16183,13 +16183,47 @@ function FsBoxVisualCustomizer({
     activeStompSlot,
     onPatch,
     onOpenIcon,
-    onOpenAmp
+    onOpenAmp,
+    onPatchGlobal,
+    bankName,
+    onSaveFs
 }) {
     let [previewOn, setPreviewOn] = (0, N.useState)(true);
     let [bgModalOpen, setBgModalOpen] = (0, N.useState)(false);
     let [visualTab, setVisualTab] = (0, N.useState)(`auto`);
+    let [savingColors, setSavingColors] = (0, N.useState)(false);
     let w = fsConfig || {};
     let isStomp = ctrlMode === `Stomp`;
+
+    let handleSaveScreenColors = async () => {
+        try {
+            setSavingColors(true);
+            let parts = buildTelaUsbParts(globalConfig);
+            if (!parts || !parts.length) {
+                parts = [scrubUsbPart({
+                    displaySimpleBankR: Number(globalConfig?.displaySimpleBankR ?? 255),
+                    displaySimpleBankG: Number(globalConfig?.displaySimpleBankG ?? 255),
+                    displaySimpleBankB: Number(globalConfig?.displaySimpleBankB ?? 255),
+                    displaySimpleFootR: Number(globalConfig?.displaySimpleFootR ?? 56),
+                    displaySimpleFootG: Number(globalConfig?.displaySimpleFootG ?? 189),
+                    displaySimpleFootB: Number(globalConfig?.displaySimpleFootB ?? 248),
+                    displaySimpleNameR: Number(globalConfig?.displaySimpleNameR ?? 255),
+                    displaySimpleNameG: Number(globalConfig?.displaySimpleNameG ?? 255),
+                    displaySimpleNameB: Number(globalConfig?.displaySimpleNameB ?? 255)
+                })];
+            }
+            await BrUsbParts(parts, 25e3);
+            if (typeof onSaveFs === 'function') {
+                let latestFs = { ...(w || {}), gridFill: currentFill };
+                await onSaveFs(latestFs);
+            }
+            rt.success(`Cores e fundo da tela salvos com sucesso!`);
+        } catch (err) {
+            rt.error(`Erro ao salvar cores e fundo: ${String(err?.message || err)}`);
+        } finally {
+            setSavingColors(false);
+        }
+    };
 
     let ampSlot = (() => {
         let k = w?.ampKey;
@@ -16206,11 +16240,24 @@ function FsBoxVisualCustomizer({
 
     let hasAmp = ampSlot > 0;
     let hasIcon = !!(iconKey && String(iconKey).trim());
-    let currentDisplayStyle = Number(globalConfig?.displayStyle ?? (globalConfig?.fsCount === 8 ? 4 : 0));
+    let isMt8 = Number(globalConfig?.fsCount) === 8;
+    let currentDisplayStyle = Number(globalConfig?.displayStyle ?? (isMt8 ? 4 : 0));
     let isGlobalAmpStyle = currentDisplayStyle === 7;
     let isGlobalIconStyle = currentDisplayStyle === 1 || currentDisplayStyle === 2;
-    let effectiveVisual = isGlobalAmpStyle ? `amp` : (isGlobalIconStyle ? `icon` : (visualTab === `auto` ? (hasAmp ? `amp` : (hasIcon ? `icon` : `none`)) : visualTab));
+    let isGlobalPresetStomp = isMt8 && currentDisplayStyle === 4;
+    let effectiveVisual = (() => {
+        if (visualTab === `amp`) return `amp`;
+        if (visualTab === `icon`) return `icon`;
+        if (visualTab === `preset_stomp` || visualTab === `none`) return isMt8 ? `preset_stomp` : `none`;
+        if (isGlobalAmpStyle) return `amp`;
+        if (isGlobalIconStyle) return `icon`;
+        if (isGlobalPresetStomp) return `preset_stomp`;
+        if (hasAmp) return `amp`;
+        if (hasIcon) return `icon`;
+        return isMt8 ? `preset_stomp` : `none`;
+    })();
     let isAmpMode = effectiveVisual === `amp`;
+    let isPresetStompMode = effectiveVisual === `preset_stomp` || effectiveVisual === `none`;
 
     function toHexColor(val, defaultHex) {
         if (!val) return defaultHex;
@@ -16228,6 +16275,36 @@ function FsBoxVisualCustomizer({
         }
         return defaultHex;
     }
+
+    function hexToRgb(h) {
+        if (!h || typeof h !== 'string') return { r: 255, g: 255, b: 255 };
+        let clean = h.replace('#', '');
+        if (clean.length === 3) clean = clean.split('').map(x => x + x).join('');
+        let num = parseInt(clean, 16);
+        if (isNaN(num)) return { r: 255, g: 255, b: 255 };
+        return {
+            r: (num >> 16) & 255,
+            g: (num >> 8) & 255,
+            b: num & 255
+        };
+    }
+
+    let bankLetter = String(bankName || `A`).toUpperCase();
+    let simpleBankHex = Mr(
+        Number(globalConfig?.displaySimpleBankR ?? 255),
+        Number(globalConfig?.displaySimpleBankG ?? 255),
+        Number(globalConfig?.displaySimpleBankB ?? 255)
+    );
+    let simpleFootHex = Mr(
+        Number(globalConfig?.displaySimpleFootR ?? 56),
+        Number(globalConfig?.displaySimpleFootG ?? 189),
+        Number(globalConfig?.displaySimpleFootB ?? 248)
+    );
+    let simpleNameHex = Mr(
+        Number(globalConfig?.displaySimpleNameR ?? 255),
+        Number(globalConfig?.displaySimpleNameG ?? 255),
+        Number(globalConfig?.displaySimpleNameB ?? 255)
+    );
 
     let ledColorOn = `#3b82f6`;
     let ledColorOff = `#1e293b`;
@@ -16303,23 +16380,34 @@ function FsBoxVisualCustomizer({
                     (0, P.jsxs)(`div`, {
                         className: `flex items-center gap-1.5`,
                         children: [
-                            !(isGlobalAmpStyle || isGlobalIconStyle) && hasAmp && hasIcon ? (0, P.jsxs)(`div`, {
+                            (0, P.jsxs)(`div`, {
                                 className: `flex items-center rounded-lg border border-border bg-canvas/80 p-0.5 mr-1`,
                                 children: [
-                                    (0, P.jsx)(`button`, {
+                                    isMt8 ? (0, P.jsx)(`button`, {
                                         type: `button`,
-                                        onClick: () => setVisualTab(`amp`),
-                                        className: `rounded px-1.5 py-0.5 font-mono text-[8px] font-bold uppercase tracking-wider transition ${effectiveVisual === `amp` ? `bg-red-600 text-white shadow-sm` : `text-muted-foreground hover:text-foreground`}`,
-                                        children: `AMP`
+                                        onClick: () => setVisualTab(`preset_stomp`),
+                                        className: `rounded px-1.5 py-0.5 font-mono text-[8px] font-bold uppercase tracking-wider transition ${isPresetStompMode ? `bg-red-600 text-white shadow-sm` : `text-muted-foreground hover:text-foreground`}`,
+                                        children: `PRESET / STOMP`
+                                    }) : (0, P.jsx)(`button`, {
+                                        type: `button`,
+                                        onClick: () => setVisualTab(`none`),
+                                        className: `rounded px-1.5 py-0.5 font-mono text-[8px] font-bold uppercase tracking-wider transition ${isPresetStompMode ? `bg-zinc-700 text-white shadow-sm` : `text-muted-foreground hover:text-foreground`}`,
+                                        children: `CLÁSSICO`
                                     }),
                                     (0, P.jsx)(`button`, {
                                         type: `button`,
                                         onClick: () => setVisualTab(`icon`),
                                         className: `rounded px-1.5 py-0.5 font-mono text-[8px] font-bold uppercase tracking-wider transition ${effectiveVisual === `icon` ? `bg-accent text-accent-foreground shadow-sm` : `text-muted-foreground hover:text-foreground`}`,
                                         children: `ÍCONE`
+                                    }),
+                                    (0, P.jsx)(`button`, {
+                                        type: `button`,
+                                        onClick: () => setVisualTab(`amp`),
+                                        className: `rounded px-1.5 py-0.5 font-mono text-[8px] font-bold uppercase tracking-wider transition ${effectiveVisual === `amp` ? `bg-red-600 text-white shadow-sm` : `text-muted-foreground hover:text-foreground`}`,
+                                        children: `AMP`
                                     })
                                 ]
-                            }) : null,
+                            }),
                             (0, P.jsxs)(`div`, {
                                 className: `flex items-center rounded-lg border border-border bg-canvas/80 p-0.5`,
                                 children: [
@@ -16352,21 +16440,12 @@ function FsBoxVisualCustomizer({
                     maxHeight: isAmpMode ? `230px` : `205px`
                 },
                 children: [
-                    (0, P.jsxs)(`div`, {
+                    (0, P.jsx)(`div`, {
                         className: `flex items-center justify-between w-full z-10`,
-                        children: [
-                            (0, P.jsx)(`span`, {
-                                className: `font-mono text-[11px] font-black tracking-wider text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]`,
-                                children: `FS` + fsNumber
-                            }),
-                            (0, P.jsx)(`span`, {
-                                className: `size-3 rounded-full border border-black/40 transition-colors duration-200`,
-                                style: {
-                                    backgroundColor: curLedColor,
-                                    boxShadow: previewOn ? `0 0 10px ` + curLedColor : `none`
-                                }
-                            })
-                        ]
+                        children: (0, P.jsx)(`span`, {
+                            className: `font-mono text-[11px] font-black tracking-wider text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]`,
+                            children: `FS` + fsNumber
+                        })
                     }),
 
                     (0, P.jsx)(`div`, {
@@ -16406,10 +16485,34 @@ function FsBoxVisualCustomizer({
                                 })
                             )
                         ) : (
-                            (0, P.jsx)(`div`, {
-                                className: `flex items-center justify-center rounded border border-dashed border-white/20 bg-black/30 font-mono text-[11px] font-bold uppercase text-white/50`,
-                                style: { width: `56px`, height: `56px` },
-                                children: `FS` + fsNumber
+                            (0, P.jsxs)(`div`, {
+                                className: `flex flex-col items-center justify-center w-full px-2 py-1`,
+                                children: [
+                                    (0, P.jsxs)(`div`, {
+                                        className: `flex items-baseline justify-center gap-1.5 transition-all duration-200`,
+                                        style: {
+                                            filter: previewOn ? `none` : `brightness(0.35) contrast(0.8)`
+                                        },
+                                        children: [
+                                            (0, P.jsx)(`span`, {
+                                                className: `font-display text-4xl sm:text-5xl font-black tracking-tight leading-none drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)]`,
+                                                style: {
+                                                    color: simpleBankHex,
+                                                    textShadow: previewOn ? `0 0 16px ${simpleBankHex}88` : `none`
+                                                },
+                                                children: bankLetter
+                                            }),
+                                            (0, P.jsx)(`span`, {
+                                                className: `font-display text-4xl sm:text-5xl font-black tracking-tight leading-none drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)]`,
+                                                style: {
+                                                    color: simpleFootHex,
+                                                    textShadow: previewOn ? `0 0 16px ${simpleFootHex}88` : `none`
+                                                },
+                                                children: fsNumber
+                                            })
+                                        ]
+                                    })
+                                ]
                             })
                         )
                     }),
@@ -16417,7 +16520,10 @@ function FsBoxVisualCustomizer({
                     (0, P.jsx)(`div`, {
                         className: `w-full text-center z-10`,
                         children: (0, P.jsx)(`span`, {
-                            className: `truncate font-display text-[11px] font-black uppercase tracking-widest text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)] block px-1`,
+                            className: `truncate font-display text-[11px] font-black uppercase tracking-widest drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)] block px-1`,
+                            style: {
+                                color: (isPresetStompMode && previewOn) ? simpleNameHex : `#ffffff`
+                            },
                             children: labelText
                         })
                     })
@@ -16457,7 +16563,169 @@ function FsBoxVisualCustomizer({
                 ]
             }),
 
-            isGlobalAmpStyle ? (
+            isPresetStompMode ? (0, P.jsxs)(`div`, {
+                className: `rounded-xl border border-border bg-canvas/70 p-2.5 space-y-2`,
+                children: [
+                    (0, P.jsxs)(`div`, {
+                        className: `flex items-center justify-between gap-1.5 px-0.5`,
+                        children: [
+                            (0, P.jsx)(`span`, {
+                                className: `font-display text-[9px] uppercase tracking-[0.14em] text-muted-foreground font-bold truncate`,
+                                children: isMt8 ? `CORES DO DISPLAY (PRESET / STOMP)` : `CORES DA TELA (TFT)`
+                            }),
+                            (0, P.jsx)(`span`, {
+                                className: `shrink-0 rounded bg-accent/15 px-1.5 py-0.5 font-mono text-[8px] font-bold uppercase text-accent`,
+                                children: isMt8 ? `PRESET / STOMP` : `CLÁSSICO`
+                            })
+                        ]
+                    }),
+                    (0, P.jsxs)(`div`, {
+                        className: `grid grid-cols-2 gap-2`,
+                        children: [
+                            (0, P.jsxs)(`label`, {
+                                className: `flex min-w-0 flex-col justify-center rounded-xl border border-border bg-panel px-2.5 py-2 cursor-pointer hover:border-accent/40 transition-colors`,
+                                children: [
+                                    (0, P.jsx)(`span`, { className: `truncate font-display text-[9px] uppercase tracking-[0.12em] text-muted-foreground font-bold`, children: `Banco` }),
+                                    (0, P.jsxs)(`div`, {
+                                        className: `mt-1.5 flex items-center gap-2 min-w-0`,
+                                        children: [
+                                            (0, P.jsx)(`input`, {
+                                                type: `color`,
+                                                value: simpleBankHex,
+                                                onChange: ev => {
+                                                    let rgb = hexToRgb(ev.target.value);
+                                                    if (onPatchGlobal) {
+                                                        onPatchGlobal(prev => ({
+                                                            ...(prev || {}),
+                                                            displaySimpleBankR: rgb.r,
+                                                            displaySimpleBankG: rgb.g,
+                                                            displaySimpleBankB: rgb.b
+                                                        }));
+                                                    }
+                                                },
+                                                className: `size-5 shrink-0 cursor-pointer rounded border border-border bg-canvas p-0`
+                                            }),
+                                            (0, P.jsx)(`span`, { className: `truncate font-mono text-[10px] font-bold text-foreground uppercase`, children: simpleBankHex })
+                                        ]
+                                    })
+                                ]
+                            }),
+                            (0, P.jsxs)(`label`, {
+                                className: `flex min-w-0 flex-col justify-center rounded-xl border border-border bg-panel px-2.5 py-2 cursor-pointer hover:border-accent/40 transition-colors`,
+                                children: [
+                                    (0, P.jsx)(`span`, { className: `truncate font-display text-[9px] uppercase tracking-[0.12em] text-muted-foreground font-bold`, children: `Foot` }),
+                                    (0, P.jsxs)(`div`, {
+                                        className: `mt-1.5 flex items-center gap-2 min-w-0`,
+                                        children: [
+                                            (0, P.jsx)(`input`, {
+                                                type: `color`,
+                                                value: simpleFootHex,
+                                                onChange: ev => {
+                                                    let rgb = hexToRgb(ev.target.value);
+                                                    if (onPatchGlobal) {
+                                                        onPatchGlobal(prev => ({
+                                                            ...(prev || {}),
+                                                            displaySimpleFootR: rgb.r,
+                                                            displaySimpleFootG: rgb.g,
+                                                            displaySimpleFootB: rgb.b
+                                                        }));
+                                                    }
+                                                },
+                                                className: `size-5 shrink-0 cursor-pointer rounded border border-border bg-canvas p-0`
+                                            }),
+                                            (0, P.jsx)(`span`, { className: `truncate font-mono text-[10px] font-bold text-foreground uppercase`, children: simpleFootHex })
+                                        ]
+                                    })
+                                ]
+                            }),
+                            (0, P.jsxs)(`label`, {
+                                className: `flex min-w-0 flex-col justify-center rounded-xl border border-border bg-panel px-2.5 py-2 cursor-pointer hover:border-accent/40 transition-colors`,
+                                children: [
+                                    (0, P.jsx)(`span`, { className: `truncate font-display text-[9px] uppercase tracking-[0.12em] text-muted-foreground font-bold`, children: `Nome` }),
+                                    (0, P.jsxs)(`div`, {
+                                        className: `mt-1.5 flex items-center gap-2 min-w-0`,
+                                        children: [
+                                            (0, P.jsx)(`input`, {
+                                                type: `color`,
+                                                value: simpleNameHex,
+                                                onChange: ev => {
+                                                    let rgb = hexToRgb(ev.target.value);
+                                                    if (onPatchGlobal) {
+                                                        onPatchGlobal(prev => ({
+                                                            ...(prev || {}),
+                                                            displaySimpleNameR: rgb.r,
+                                                            displaySimpleNameG: rgb.g,
+                                                            displaySimpleNameB: rgb.b
+                                                        }));
+                                                    }
+                                                },
+                                                className: `size-5 shrink-0 cursor-pointer rounded border border-border bg-canvas p-0`
+                                            }),
+                                            (0, P.jsx)(`span`, { className: `truncate font-mono text-[10px] font-bold text-foreground uppercase`, children: simpleNameHex })
+                                        ]
+                                    })
+                                ]
+                            }),
+                            (0, P.jsxs)(`div`, {
+                                onClick: () => setBgModalOpen(true),
+                                className: `flex min-w-0 flex-col justify-center rounded-xl border border-border bg-panel px-2.5 py-2 cursor-pointer hover:border-accent/40 transition-colors`,
+                                children: [
+                                    (0, P.jsx)(`span`, { className: `truncate font-display text-[9px] uppercase tracking-[0.12em] text-muted-foreground font-bold`, children: `Fundo FS` }),
+                                    (0, P.jsxs)(`div`, {
+                                        className: `mt-1.5 flex items-center gap-2 min-w-0`,
+                                        children: [
+                                            (0, P.jsx)(`div`, {
+                                                className: `size-5 shrink-0 rounded border border-black/50 overflow-hidden flex items-center justify-center shadow-inner`,
+                                                style: {
+                                                    background: currentFill === 0 ? `repeating-conic-gradient(#27272a 0% 25%, #18181b 0% 50%) 50% / 6px 6px` : activePreset.gradOn,
+                                                    borderColor: currentFill === 0 ? ledColorOn : undefined
+                                                },
+                                                children: currentFill === 0 ? (0, P.jsx)(`span`, {
+                                                    className: `size-1.5 rounded-full`,
+                                                    style: { backgroundColor: ledColorOn }
+                                                }) : null
+                                            }),
+                                            (0, P.jsx)(`span`, { className: `truncate font-mono text-[10px] font-bold text-foreground uppercase`, children: activePreset.name })
+                                        ]
+                                    })
+                                ]
+                            })
+                        ]
+                    })
+                ]
+            }) : null,
+
+            isPresetStompMode ? (
+                (0, P.jsx)(`button`, {
+                    type: `button`,
+                    onClick: handleSaveScreenColors,
+                    disabled: savingColors,
+                    className: `flex w-full items-center justify-center gap-2 rounded-xl border border-red-500/60 bg-red-950/40 px-3 py-2.5 font-display text-[10px] font-black uppercase tracking-[0.14em] text-red-400 shadow-md transition hover:border-red-500 hover:bg-red-900/50 hover:text-red-300 active:scale-95 cursor-pointer disabled:opacity-50`,
+                    children: [
+                        (0, P.jsx)(`svg`, {
+                            xmlns: `http://www.w3.org/2000/svg`,
+                            viewBox: `0 0 24 24`,
+                            fill: `none`,
+                            stroke: `currentColor`,
+                            strokeWidth: `2.5`,
+                            strokeLinecap: `round`,
+                            strokeLinejoin: `round`,
+                            className: `size-4 shrink-0`,
+                            children: (0, P.jsxs)(P.Fragment, {
+                                children: [
+                                    (0, P.jsx)(`path`, { d: `M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z` }),
+                                    (0, P.jsx)(`polyline`, { points: `17 21 17 13 7 13 7 21` }),
+                                    (0, P.jsx)(`polyline`, { points: `7 3 7 8 15 8` })
+                                ]
+                            })
+                        }),
+                        (0, P.jsx)(`span`, {
+                            className: `truncate font-bold`,
+                            children: savingColors ? `GRAVANDO...` : `SALVAR NA TELA (TFT)`
+                        })
+                    ]
+                })
+            ) : effectiveVisual === `amp` ? (
                 (0, P.jsx)(`button`, {
                     type: `button`,
                     onClick: onOpenAmp,
@@ -16478,7 +16746,7 @@ function FsBoxVisualCustomizer({
                         })
                     ]
                 })
-            ) : isGlobalIconStyle ? (
+            ) : (
                 (0, P.jsx)(`button`, {
                     type: `button`,
                     onClick: onOpenIcon,
@@ -16496,52 +16764,6 @@ function FsBoxVisualCustomizer({
                         (0, P.jsx)(`span`, {
                             className: `truncate`,
                             children: iconKey ? `Trocar Ícone (` + String(iconKey).toUpperCase() + `)` : `Escolher Ícone`
-                        })
-                    ]
-                })
-            ) : (
-                (0, P.jsxs)(`div`, {
-                    className: `grid grid-cols-2 gap-2`,
-                    children: [
-                        (0, P.jsxs)(`button`, {
-                            type: `button`,
-                            onClick: onOpenIcon,
-                            className: `flex items-center justify-center gap-1.5 rounded-xl border border-border bg-canvas px-2.5 py-2.5 font-display text-[9.5px] font-black uppercase tracking-[0.12em] text-accent shadow-sm transition hover:border-accent/40 hover:bg-accent/10`,
-                            children: [
-                                (0, P.jsx)(`svg`, {
-                                    xmlns: `http://www.w3.org/2000/svg`,
-                                    viewBox: `0 0 24 24`,
-                                    fill: `none`,
-                                    stroke: `currentColor`,
-                                    strokeWidth: `2`,
-                                    className: `size-3.5 flex-shrink-0`,
-                                    children: (0, P.jsx)(`rect`, { width: `18`, height: `18`, x: `3`, y: `3`, rx: `2` })
-                                }),
-                                (0, P.jsx)(`span`, {
-                                    className: `truncate`,
-                                    children: iconKey ? `Ícone: ` + String(iconKey).toUpperCase() : `Escolher Ícone`
-                                })
-                            ]
-                        }),
-                        (0, P.jsxs)(`button`, {
-                            type: `button`,
-                            onClick: onOpenAmp,
-                            className: `flex items-center justify-center gap-1.5 rounded-xl border border-red-500/50 bg-red-950/30 px-2.5 py-2.5 font-display text-[9.5px] font-black uppercase tracking-[0.12em] text-red-400 shadow-sm transition hover:border-red-500 hover:bg-red-900/40 hover:text-red-300`,
-                            children: [
-                                (0, P.jsx)(`svg`, {
-                                    xmlns: `http://www.w3.org/2000/svg`,
-                                    viewBox: `0 0 24 24`,
-                                    fill: `none`,
-                                    stroke: `currentColor`,
-                                    strokeWidth: `2`,
-                                    className: `size-3.5 flex-shrink-0`,
-                                    children: (0, P.jsx)(`path`, { d: `M3 7h18M3 17h18M5 7v10M19 7v10M9 11h6` })
-                                }),
-                                (0, P.jsx)(`span`, {
-                                    className: `truncate`,
-                                    children: ampSlot > 0 ? `Amp #` + ampSlot : `Cabeçote Amp`
-                                })
-                            ]
                         })
                     ]
                 })
@@ -17057,6 +17279,59 @@ function Xr() {
         pct: 0,
         label: ``
     }), [fsSwitchPrompt, setFsSwitchPrompt] = (0, N.useState)(null), [bankSwitchPrompt, setBankSwitchPrompt] = (0, N.useState)(null), fsSavedSnapshotRef = (0, N.useRef)({}), fsFullSnapshotRef = (0, N.useRef)({}), pendingFsBgSlotsRef = (0, N.useRef)(null), [transportState, setTransportState] = (0, N.useState)(() => getTransportSnapshot()), [iconScreenOpen, setIconScreenOpen] = (0, N.useState)(!1), [ampScreenOpen, setAmpScreenOpen] = (0, N.useState)(!1);
+    let [copiedFs, setCopiedFs] = (0, N.useState)(null);
+    let handleCopyFs = fsNum => {
+        let sourceNum = Number(fsNum || f) || 1;
+        let sourceData = b[sourceNum] || kr(sourceNum);
+        try {
+            let cloned = JSON.parse(JSON.stringify(sourceData));
+            setCopiedFs({
+                fs: sourceNum,
+                data: cloned
+            });
+            rt.success(`FS${sourceNum} copiada!`);
+        } catch (e) {
+            rt.error(`Erro ao copiar FS: ${String(e?.message || e)}`);
+        }
+    };
+    let handlePasteFs = targetNum => {
+        let destNum = Number(targetNum || f) || 1;
+        if (!copiedFs || !copiedFs.data) {
+            rt.error(`Nenhuma chave copiada ainda.`);
+            return;
+        }
+        try {
+            let cloned = JSON.parse(JSON.stringify(copiedFs.data));
+            if (!cloned.label || cloned.label === `FS${copiedFs.fs}`) {
+                cloned.label = `FS${destNum}`;
+            }
+            if (Array.isArray(cloned.presetCommands)) {
+                cloned.presetCommands = cloned.presetCommands.map(cmd => ({
+                    ...cmd,
+                    id: mr()
+                }));
+            }
+            if (Array.isArray(cloned.stompCommands)) {
+                cloned.stompCommands = cloned.stompCommands.map(cmd => ({
+                    ...cmd,
+                    id: mr()
+                }));
+            }
+            if (Array.isArray(cloned.commands)) {
+                cloned.commands = cloned.commands.map(cmd => ({
+                    ...cmd,
+                    id: mr()
+                }));
+            }
+            x(prev => ({
+                ...prev,
+                [destNum]: cloned
+            }));
+            rt.success(`FS${copiedFs.fs} colada na FS${destNum}!`);
+        } catch (e) {
+            rt.error(`Erro ao colar FS: ${String(e?.message || e)}`);
+        }
+    };
     let reportBackupProgress = (pct, label) => {
         try {
             setBackupProgress({
@@ -18501,7 +18776,8 @@ function Xr() {
                             letter: hr[n],
                             sublabel: hr[n],
                             onPrev: () => {
-                                let t = (n - 1 + hr.length) % hr.length;
+                                let bankLimit = Math.max(1, Math.min(hr.length, Number(c?.customBankLimit || hr.length)));
+                                let t = (n - 1 + bankLimit) % bankLimit;
                                 requestSelectBank(t, () => {
                                     r(t);
                                     x(Object.fromEntries(Array.from({ length: effectiveFs }, (_, i) => [i + 1, kr(i + 1)])));
@@ -18548,7 +18824,8 @@ function Xr() {
                                 })
                             },
                             onNext: () => {
-                                let t = (n + 1) % hr.length;
+                                let bankLimit = Math.max(1, Math.min(hr.length, Number(c?.customBankLimit || hr.length)));
+                                let t = (n + 1) % bankLimit;
                                 requestSelectBank(t, () => {
                                     r(t);
                                     x(Object.fromEntries(Array.from({ length: effectiveFs }, (_, i) => [i + 1, kr(i + 1)])));
@@ -18601,10 +18878,25 @@ function Xr() {
                             fsConfig: w,
                             ctrlMode: m,
                             globalConfig: c,
+                            onPatchGlobal: l,
+                            bankName: hr[n],
                             activeStompSlot: activeStompSlot,
                             onPatch: E,
                             onOpenIcon: () => setIconScreenOpen(true),
-                            onOpenAmp: () => setAmpScreenOpen(true)
+                            onOpenAmp: () => setAmpScreenOpen(true),
+                            onSaveFs: async (updatedFsConfig) => {
+                                let fsData = updatedFsConfig || w;
+                                let payload = compactFsForSave(Jr(fsData, c));
+                                gboxSoftApQuiet(25e3);
+                                await postMidiConfigRetry({
+                                    activePreset: T,
+                                    banks: {
+                                        [n]: {
+                                            [`fs${f}`]: payload
+                                        }
+                                    }
+                                }, 4);
+                            }
                         })
                     }), m !== `Stomp` ? (0, P.jsx)(`section`, {
                         className: `order-3 lg:order-none lg:col-start-1 lg:row-start-2 lg:sticky lg:top-4 lg:self-start`,
@@ -18630,6 +18922,7 @@ function Xr() {
                                     active: f === e,
                                     name: b[e]?.label,
                                     isExt: e > modelFs,
+                                    ledClickMode: c?.ledClickMode,
                                     onClick: () => f === e ? openFsRename(e) : requestSelectFs(e),
                                     onRename: () => openFsRename(e)
                                 }, e))
@@ -18658,6 +18951,10 @@ function Xr() {
                               onSelectStompSlot: slotIdx => { setActiveStompSlot(slotIdx); activeStompSlotRef.current = slotIdx; },
                               onOpenStompIcon: slotIdx => { activeStompSlotRef.current = slotIdx; setIconScreenOpen(!0); },
                               onRenameStompSlot: slotIdx => openFsRename(f, slotIdx),
+                              onCopyFs: () => handleCopyFs(f),
+                              onPasteFs: () => handlePasteFs(f),
+                              hasCopiedFs: !!copiedFs,
+                              copiedFsNumber: copiedFs?.fs,
                             onChangeMode: e => {
                                 if (e === `Ricochet`) {
                                     E({
@@ -19385,17 +19682,17 @@ function $r({
     usbCfg: e,
     onPatchUsbCfg: t
 }) {
-    /* ledHoldMode: 0=NORMAL, 1=PISCA (get_led_hold_mode / acionaledcustomhold); default 1 */
-    let holdOpts = [`NORMAL`, `PISCA`],
-        holdLabel = e => Number(e ?? 1) === 1 ? `PISCA` : `NORMAL`,
-        holdValue = e => +(e === `PISCA`),
-        /* ledClickMode: 0=ON/OFF, 1=INTENSIDADE, 2=INTENSIDADE 2 (get_led_click_mode / acionaledcustom); default 1 */
-        clickOpts = [`INTENSIDADE`, `INTENSIDADE 2`, `ON/OFF`],
+    /* ledHoldMode: 0=NORMAL, 1=PISCA, 2=PISCA 2 (get_led_hold_mode / acionaledcustomhold); default 1 */
+    let holdOpts = [`NORMAL`, `PISCA`, `PISCA 2`],
+        holdLabel = e => Number(e ?? 1) === 2 ? `PISCA 2` : Number(e ?? 1) === 1 ? `PISCA` : `NORMAL`,
+        holdValue = e => e === `PISCA 2` ? 2 : +(e === `PISCA`),
+        /* ledClickMode: 0=ON/OFF, 1=INTENSIDADE, 2=INTENSIDADE 2, 3=DUAL STATE RING (get_led_click_mode / acionaledcustom); default 1 */
+        clickOpts = [`INTENSIDADE`, `INTENSIDADE 2`, `DUAL STATE RING`, `ON/OFF`],
         clickLabel = e => {
             let v = Number(e ?? 1);
-            return v === 0 ? `ON/OFF` : v === 2 ? `INTENSIDADE 2` : `INTENSIDADE`
+            return v === 0 ? `ON/OFF` : v === 2 ? `INTENSIDADE 2` : v === 3 ? `DUAL STATE RING` : `INTENSIDADE`
         },
-        clickValue = e => e === `ON/OFF` ? 0 : e === `INTENSIDADE 2` ? 2 : 1,
+        clickValue = e => e === `ON/OFF` ? 0 : e === `INTENSIDADE 2` ? 2 : (e === `DUAL STATE RING` || e === `DUAL STATE ANEL`) ? 3 : 1,
         a = [`A`, `A–B`, `A–C`, `A–D`, `A–E`, `A–F`, `A–G`, `A–H`, `A–I`],
         o = [{
             value: 0,
@@ -19503,28 +19800,6 @@ function $r({
                         customBankDownHoldFs: parseInt(e, 10) || 2
                     })
                 })]
-            })]
-        }), (0, P.jsxs)(I, {
-            title: `LEDs — modelo do banco`,
-            subtitle: `Cores padrão aplicáveis ao banco atual`,
-            children: [(0, P.jsxs)(`div`, {
-                className: `grid grid-cols-2 gap-2 sm:grid-cols-4`,
-                children: [(0, P.jsx)(colorPreviewField, {
-                    label: `ON`,
-                    value: `#dc2626`
-                }), (0, P.jsx)(colorPreviewField, {
-                    label: `OFF`,
-                    value: `#1a1a1a`
-                }), (0, P.jsx)(colorPreviewField, {
-                    label: `HOLD ON`,
-                    value: `#22d3ee`
-                }), (0, P.jsx)(colorPreviewField, {
-                    label: `HOLD OFF`,
-                    value: `#3b82f6`
-                })]
-            }), (0, P.jsx)(`button`, {
-                className: `mt-2 w-full rounded-md bg-accent px-3 py-2 font-display text-[10px] uppercase tracking-widest text-accent-foreground`,
-                children: `Aplicar a todo o banco`
             })]
         }), (0, P.jsx)(`div`, {
             className: `lg:col-span-2`,
@@ -24727,6 +25002,7 @@ function xi({
     active: r,
     name: i,
     isExt: isExtFs,
+    ledClickMode: clickMode,
     onClick: a,
     onRename: o
 }) {
@@ -24766,7 +25042,10 @@ function xi({
         }), !isExtFs && (0, P.jsx)(Si, {
             colors: c,
             size: 54,
-            className: `mb-1`
+            className: `mb-1`,
+            isIndividualRing: Number(clickMode) === 3,
+            isActive: r,
+            activePhase: 0
         }), l ? (0, P.jsx)(`span`, {
             className: `line-clamp-1 max-w-full px-1 text-center font-display text-sm font-black uppercase tracking-wider text-accent`,
             children: String(l).toUpperCase()
@@ -24782,7 +25061,10 @@ function Si({
     size: t = 96,
     className: n = ``,
     topColor: topColorProp,
-    bottomColor: bottomColorProp
+    bottomColor: bottomColorProp,
+    isIndividualRing: isIndividualRingProp,
+    isActive: isActiveProp,
+    activePhase: activePhaseProp = 0
 }) {
     let isBlack = hex => {
         if (!hex || typeof hex !== `string`) return true;
@@ -24793,11 +25075,14 @@ function Si({
         if (isNaN(rv) || isNaN(gv) || isNaN(bv)) return true;
         return Math.max(rv, gv, bv) < 25;
     };
-    let r = topColorProp || e?.on || `#ff8800`,
-        hasExplicitBottom = bottomColorProp !== undefined,
-        i = hasExplicitBottom ? bottomColorProp : r,
+    let hasExplicitBottom = bottomColorProp !== undefined,
+        isIndividual = Boolean(isIndividualRingProp || hasExplicitBottom),
+        r = topColorProp || e?.on || `#ff8800`,
+        i = hasExplicitBottom ? bottomColorProp : (isIndividual ? (e?.off || `#000000`) : r),
         topDark = isBlack(r),
         bottomDark = isBlack(i),
+        topDimmed = Boolean(isIndividualRingProp && (!isActiveProp || activePhaseProp !== 0)),
+        bottomDimmed = Boolean(isIndividualRingProp && (!isActiveProp || activePhaseProp === 0)),
         o = 50,
         s = 50,
         c = 47,
@@ -24847,14 +25132,14 @@ function Si({
                 fill: `#0b0c0e`,
                 stroke: `#1a1c1f`,
                 strokeWidth: `0.6`
-            }), !topDark && (0, P.jsx)(`path`, {
+            }), !topDark && !topDimmed && (0, P.jsx)(`path`, {
                 d: m,
                 fill: r,
                 opacity: `0.55`,
                 style: {
                     filter: `blur(3px)`
                 }
-            }), !bottomDark && (0, P.jsx)(`path`, {
+            }), !bottomDark && !bottomDimmed && (0, P.jsx)(`path`, {
                 d: p,
                 fill: i,
                 opacity: `0.55`,
@@ -24864,11 +25149,11 @@ function Si({
             }), (0, P.jsx)(`path`, {
                 d: m,
                 fill: r,
-                opacity: topDark ? .15 : .95
+                opacity: topDark ? .05 : (topDimmed ? .3 : .95)
             }), (0, P.jsx)(`path`, {
                 d: p,
                 fill: i,
-                opacity: bottomDark ? .15 : .95
+                opacity: bottomDark ? .05 : (bottomDimmed ? .3 : .95)
             }), (0, P.jsx)(`circle`, {
                 cx: o,
                 cy: s,
@@ -25242,12 +25527,15 @@ function StompFootswitchTile({
 
 function Ti({
     ctrlMode: e,
-    onChangeCtrlMode: t
+    onChangeCtrlMode: t,
+    controllerPath: pathProp
 }) {
     let {
         stompOn: n
     } = (0, N.useContext)(fr);
-    let modes = n ? [`Preset`, `Stomp`] : [`Preset`];
+    let isPathPreset = Number(pathProp ?? 0) === 0;
+    let allowStomp = Boolean(n || isPathPreset);
+    let modes = allowStomp ? [`Preset`, `Stomp`] : [`Preset`];
     return (0, P.jsx)(`div`, {
         className: `mb-4 grid grid-cols-2 gap-2 rounded-xl border border-border bg-canvas/60 p-1`,
         children: modes.map(m => {
@@ -25374,7 +25662,11 @@ function Ei({
     activeStompSlot: activeStompSlot,
     onSelectStompSlot: onSelectStompSlot,
     onOpenStompIcon: onOpenStompIcon,
-    onRenameStompSlot: onRenameStompSlot
+    onRenameStompSlot: onRenameStompSlot,
+    onCopyFs: onCopyFs,
+    onPasteFs: onPasteFs,
+    hasCopiedFs: hasCopiedFs,
+    copiedFsNumber: copiedFsNumber
 }) {
     let {
             fxList: ctxFxList,
@@ -25492,12 +25784,64 @@ function Ei({
                 })]
             }), (0, P.jsxs)(`div`, {
                 className: `flex items-center gap-2`,
-                children: [(0, P.jsx)(`button`, {
-                    className: `grid size-8 place-items-center rounded-lg border border-border bg-canvas text-muted-foreground hover:text-foreground`,
-                    children: (0, P.jsx)(lr, {
-                        className: `size-4`
-                    })
-                }), (0, P.jsxs)(`button`, {
+                children: [
+                    (0, P.jsxs)(`button`, {
+                        type: `button`,
+                        onClick: onCopyFs,
+                        title: `Copiar todas as configurações da FS${r}`,
+                        className: `flex items-center gap-1.5 rounded-lg border border-border bg-canvas px-2.5 py-1.5 font-display text-[9.5px] font-bold uppercase tracking-wider text-muted-foreground hover:border-accent/50 hover:bg-accent/10 hover:text-accent transition-all cursor-pointer shadow-sm active:scale-95`,
+                        children: [
+                            (0, P.jsx)(`svg`, {
+                                xmlns: `http://www.w3.org/2000/svg`,
+                                viewBox: `0 0 24 24`,
+                                fill: `none`,
+                                stroke: `currentColor`,
+                                strokeWidth: `2`,
+                                strokeLinecap: `round`,
+                                strokeLinejoin: `round`,
+                                className: `size-3.5`,
+                                children: (0, P.jsxs)(P.Fragment, {
+                                    children: [
+                                        (0, P.jsx)(`rect`, { width: `14`, height: `14`, x: `8`, y: `8`, rx: `2`, ry: `2` }),
+                                        (0, P.jsx)(`path`, { d: `M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2` })
+                                    ]
+                                })
+                            }),
+                            `Copiar FS`
+                        ]
+                    }),
+                    (0, P.jsxs)(`button`, {
+                        type: `button`,
+                        onClick: onPasteFs,
+                        disabled: !hasCopiedFs,
+                        title: hasCopiedFs ? `Colar configurações da FS${copiedFsNumber} nesta FS${r}` : `Copie uma chave primeiro para colar`,
+                        className: `flex items-center gap-1.5 rounded-lg border px-2.5 py-1.5 font-display text-[9.5px] font-bold uppercase tracking-wider transition-all shadow-sm ${hasCopiedFs ? `border-accent/60 bg-accent/15 text-accent hover:bg-accent/25 hover:border-accent cursor-pointer active:scale-95` : `border-border/50 bg-canvas/40 text-muted-foreground/40 cursor-not-allowed`}`,
+                        children: [
+                            (0, P.jsx)(`svg`, {
+                                xmlns: `http://www.w3.org/2000/svg`,
+                                viewBox: `0 0 24 24`,
+                                fill: `none`,
+                                stroke: `currentColor`,
+                                strokeWidth: `2`,
+                                strokeLinecap: `round`,
+                                strokeLinejoin: `round`,
+                                className: `size-3.5`,
+                                children: (0, P.jsxs)(P.Fragment, {
+                                    children: [
+                                        (0, P.jsx)(`rect`, { width: `8`, height: `4`, x: `8`, y: `2`, rx: `1`, ry: `1` }),
+                                        (0, P.jsx)(`path`, { d: `M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2` })
+                                    ]
+                                })
+                            }),
+                            hasCopiedFs ? `Colar FS${copiedFsNumber}` : `Colar FS`
+                        ]
+                    }),
+                    (0, P.jsx)(`button`, {
+                        className: `grid size-8 place-items-center rounded-lg border border-border bg-canvas text-muted-foreground hover:text-foreground`,
+                        children: (0, P.jsx)(lr, {
+                            className: `size-4`
+                        })
+                    }), (0, P.jsxs)(`button`, {
                     onClick: u,
                     disabled: stompFxBound ? !1 : isStompLayer ? !showStompFreeCmds && !showStg : !showPresetCmds && !showStg || showStg && b,
                     title: showStg && b ? `Maximo de 4 comandos por estagio` : void 0,
@@ -25611,7 +25955,8 @@ function Ei({
             })]
         }), (0, P.jsx)(Ti, {
             ctrlMode: s,
-            onChangeCtrlMode: c
+            onChangeCtrlMode: c,
+            controllerPath: globalConfig?.controllerPath
         }), !isStompLayer && s === `Preset` && (0, P.jsx)(sceneMaskPicker, {
             mask: o.sceneMask ?? [],
             onChange: h
@@ -25665,9 +26010,110 @@ function Di({
         },
         active = e.stages[e.activeStage],
         previewColor = Ar(t, active.ledPercent);
+    let loopEnabled = !!loopCcCfg?.enabled,
+        loopOutput = loopCcCfg?.output || `USB+BT`,
+        loopChannel = Number(loopCcCfg?.channel ?? 1),
+        loopCcNum = Number(loopCcCfg?.cc ?? 0),
+        loopValueOn = Number(loopCcCfg?.valueOn ?? 127),
+        loopValueOff = Number(loopCcCfg?.valueOff ?? 0);
     return (0, P.jsxs)(`div`, {
         className: `space-y-4`,
-        children: [(0, P.jsxs)(`div`, {
+        children: [stgAutoMode ? (0, P.jsxs)(`div`, {
+            className: `rounded-xl border border-accent/40 bg-accent/10 px-4 py-3.5 space-y-3 shadow-md box-border overflow-hidden`,
+            children: [
+                (0, P.jsxs)(`div`, {
+                    className: `flex items-center justify-between gap-3`,
+                    children: [
+                        (0, P.jsxs)(`div`, {
+                            className: `flex flex-col min-w-0 pr-2`,
+                            children: [
+                                (0, P.jsx)(`span`, {
+                                    className: `font-display text-[10px] font-black uppercase tracking-[0.2em] text-accent leading-normal`,
+                                    children: `Comando Ligar / Desligar Efeito (Automação)`
+                                }),
+                                (0, P.jsx)(`span`, {
+                                    className: `text-[11px] text-muted-foreground leading-relaxed`,
+                                    children: `Liga o efeito ao iniciar e desliga ao parar a automação`
+                                })
+                            ]
+                        }),
+                        (0, P.jsx)(`button`, {
+                            type: `button`,
+                            onClick: () => onPatchLoopCc && onPatchLoopCc({ enabled: !loopEnabled }),
+                            className: `relative inline-flex h-6 w-11 shrink-0 items-center rounded-full border p-0.5 transition-colors cursor-pointer ${loopEnabled ? `border-accent/60 bg-accent/40` : `border-border bg-muted`}`,
+                            children: (0, P.jsx)(`span`, {
+                                className: `block size-5 rounded-full bg-accent shadow-[0_0_8px_var(--color-accent)] transition-transform duration-200 ${loopEnabled ? `translate-x-5` : `translate-x-0`}`
+                            })
+                        })
+                    ]
+                }),
+                loopEnabled ? (0, P.jsxs)(`div`, {
+                    className: `space-y-3 pt-2 border-t border-border/60`,
+                    children: [
+                        (0, P.jsxs)(`div`, {
+                            className: `grid grid-cols-2 gap-2 sm:grid-cols-5`,
+                            children: [
+                                (0, P.jsx)(Mi, {
+                                    label: `Saída`,
+                                    value: loopOutput,
+                                    options: xr,
+                                    onChange: val => onPatchLoopCc && onPatchLoopCc({ output: val })
+                                }),
+                                (0, P.jsx)(z, {
+                                    label: `Canal`,
+                                    value: loopChannel,
+                                    min: 1,
+                                    max: 16,
+                                    onChange: val => onPatchLoopCc && onPatchLoopCc({ channel: Number(val) || 1 })
+                                }),
+                                (0, P.jsx)(z, {
+                                    label: `CC#`,
+                                    value: loopCcNum,
+                                    min: 0,
+                                    max: 127,
+                                    onChange: val => onPatchLoopCc && onPatchLoopCc({ cc: Number(val) || 0 })
+                                }),
+                                (0, P.jsx)(z, {
+                                    label: `Valor ON`,
+                                    value: loopValueOn,
+                                    min: 0,
+                                    max: 127,
+                                    onChange: val => onPatchLoopCc && onPatchLoopCc({ valueOn: Number(val) || 0 })
+                                }),
+                                (0, P.jsx)(z, {
+                                    label: `Valor OFF`,
+                                    value: loopValueOff,
+                                    min: 0,
+                                    max: 127,
+                                    onChange: val => onPatchLoopCc && onPatchLoopCc({ valueOff: Number(val) || 0 })
+                                })
+                            ]
+                        }),
+                        (0, P.jsxs)(`div`, {
+                            className: `rounded-lg bg-canvas/80 p-2.5 font-mono text-[10px] text-muted-foreground border border-border/50 space-y-1`,
+                            children: [
+                                (0, P.jsxs)(`div`, {
+                                    className: `flex items-center gap-1.5 text-foreground`,
+                                    children: [
+                                        (0, P.jsx)(`span`, { className: `size-1.5 rounded-full bg-emerald-400 shrink-0` }),
+                                        (0, P.jsx)(`span`, { className: `font-bold shrink-0`, children: `Ao acionar:` }),
+                                        (0, P.jsxs)(`span`, { className: `truncate`, children: [`envia CC `, loopCcNum, ` com valor `, loopValueOn, ` (ON) e inicia a automação`] })
+                                    ]
+                                }),
+                                (0, P.jsxs)(`div`, {
+                                    className: `flex items-center gap-1.5 text-muted-foreground`,
+                                    children: [
+                                        (0, P.jsx)(`span`, { className: `size-1.5 rounded-full bg-zinc-500 shrink-0` }),
+                                        (0, P.jsx)(`span`, { className: `font-bold shrink-0`, children: `Ao desligar:` }),
+                                        (0, P.jsxs)(`span`, { className: `truncate`, children: [`envia CC `, loopCcNum, ` com valor `, loopValueOff, ` (OFF) e para a automação`] })
+                                    ]
+                                })
+                            ]
+                        })
+                    ]
+                }) : null
+            ]
+        }) : null, (0, P.jsxs)(`div`, {
             className: `flex flex-wrap items-center justify-between gap-3 rounded-xl border border-border bg-canvas p-3`,
             children: [(0, P.jsxs)(`div`, {
                 className: `flex items-center gap-2`,
