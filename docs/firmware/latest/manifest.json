@@ -1,6 +1,6 @@
 {
-  "version": "3.0.1.0",
-  "label": "MT-Series — firmware 3.0.1.0 + partition-table",
+  "version": "3.0.1.2",
+  "label": "MT-Series — firmware 3.0.1.2 + partition-table",
   "firmware": "GUERRILHA-MT-Series.bin",
   "partition": "partition-table.bin",
   "bootloader": "bootloader.bin"
