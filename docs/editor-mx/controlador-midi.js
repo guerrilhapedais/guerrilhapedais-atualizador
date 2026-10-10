@@ -12886,15 +12886,15 @@ var hr = [`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`],
     gr = {
         "MX-4": {
             fs: 4,
-            grid: `grid-cols-2`
+            grid: `grid-cols-2 sm:grid-cols-2 lg:grid-cols-2`
         },
         "MX-6": {
             fs: 6,
-            grid: `grid-cols-2`
+            grid: `grid-cols-2 sm:grid-cols-2 lg:grid-cols-2`
         },
         "MX-8": {
             fs: 8,
-            grid: `grid-cols-2`
+            grid: `grid-cols-2 sm:grid-cols-2 lg:grid-cols-2`
         }
     };
     Object.defineProperties(gr, { "MT-4S": { value: gr["MX-4"] }, "MT-6S": { value: gr["MX-6"] }, "MT-8S": { value: gr["MX-8"] } });
@@ -12908,8 +12908,17 @@ var hr = [`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`],
         name: `Branco`,
         value: `#f5f5f5`
     }, {
+        name: `Cinza`,
+        value: `#888888`
+    }, {
         name: `Vermelho`,
         value: `#970202`
+    }, {
+        name: `Vermelho Vivo`,
+        value: `#ff0000`
+    }, {
+        name: `Coral`,
+        value: `#ff5555`
     }, {
         name: `Laranja`,
         value: `#ff6a00`
@@ -12917,26 +12926,53 @@ var hr = [`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`],
         name: `Âmbar`,
         value: `#f59e0b`
     }, {
+        name: `Ouro`,
+        value: `#d4af37`
+    }, {
         name: `Amarelo`,
         value: `#eab308`
+    }, {
+        name: `Lima`,
+        value: `#84cc16`
+    }, {
+        name: `Verde Claro`,
+        value: `#22c55e`
     }, {
         name: `Verde`,
         value: `#002d00`
     }, {
+        name: `Esmeralda`,
+        value: `#10b981`
+    }, {
+        name: `Turquesa`,
+        value: `#06b6d4`
+    }, {
         name: `Ciano`,
         value: `#038ba0`
+    }, {
+        name: `Azul Céu`,
+        value: `#38bdf8`
     }, {
         name: `Azul`,
         value: `#0000ff`
     }, {
+        name: `Azul Marinho`,
+        value: `#001188`
+    }, {
         name: `Roxo`,
         value: `#7904e7`
+    }, {
+        name: `Violeta`,
+        value: `#8b5cf6`
     }, {
         name: `Magenta`,
         value: `#a30052`
     }, {
         name: `Rosa`,
         value: `#ff00ff`
+    }, {
+        name: `Rosa Claro`,
+        value: `#f472b6`
     }],
     yr = {
         on: `#ff8800`,
@@ -13126,10 +13162,9 @@ function applyFxColorsToStompLeds(fsMap, usb) {
 function displayStyleOptionsForFs(fsCount, customStompEnabled) {
     let fs = Number(fsCount || 0);
     if (fs === 8) {
-        if (customStompEnabled) return [`Preset / Stomp`, `Amp`, `Custom`];
-        return [`Preset / Stomp`, `Ícones`, `Amp`, `Custom`];
+        return [`Preset / Stomp`, `Ícones`, `Amp`];
     }
-    return [`Clássico`, `Ícones`, `Amp`, `Custom`];
+    return [`Clássico`, `Ícones`, `Amp`];
 }
 
 function displayStyleLabelForValue(v) {
@@ -13972,7 +14007,13 @@ function buildGbUsbParts(e, t = {}) {
             customBankLimit: e?.customBankLimit,
             customBankHoldNavEnabled: e?.customBankHoldNavEnabled,
             customBankUpHoldFs: e?.customBankUpHoldFs,
-            customBankDownHoldFs: e?.customBankDownHoldFs
+            customBankDownHoldFs: e?.customBankDownHoldFs,
+            customBankCcEnabled: e?.customBankCcEnabled,
+            customBankCcUp: e?.customBankCcUp,
+            customBankCcDown: e?.customBankCcDown,
+            customBankCcChannel: e?.customBankCcChannel,
+            customBankCcValue: e?.customBankCcValue,
+            customBankCcOutput: e?.customBankCcOutput
         }),
         r = null,
         i = scrubUsbPart({
@@ -14682,7 +14723,22 @@ var DISPLAY_ICON_PX = 144,
     DISPLAY_ICON_CHROMA_RGB565 = 0x07E0,
     DISPLAY_ICON_BUDGET = 8128 * 1024,
     DISPLAY_WHITE_PACK_URLS = null,
-    DISPLAY_ICON_THUMB_CACHE = {};
+    DISPLAY_ICON_THUMB_CACHE = (() => {
+        let cache = {};
+        if (typeof localStorage !== 'undefined') {
+            try {
+                for (let i = 0; i < localStorage.length; i++) {
+                    let lk = localStorage.key(i);
+                    if (lk && lk.startsWith('gmx_thumb_')) {
+                        let k = lk.replace('gmx_thumb_', '');
+                        let v = localStorage.getItem(lk);
+                        if (v) cache[k] = v;
+                    }
+                }
+            } catch {}
+        }
+        return cache;
+    })();
 var DISPLAY_ICON_THUMB_LISTENERS = new Set();
 
 function displayIconSlotKey(i) {
@@ -15100,11 +15156,14 @@ function displayIconInvalidateThumb(key, directUrl) {
         if (directUrl !== undefined) {
             if (directUrl) {
                 DISPLAY_ICON_THUMB_CACHE[k] = directUrl;
+                try { if (typeof localStorage !== 'undefined') localStorage.setItem('gmx_thumb_' + k, directUrl); } catch {}
             } else {
                 delete DISPLAY_ICON_THUMB_CACHE[k];
+                try { if (typeof localStorage !== 'undefined') localStorage.removeItem('gmx_thumb_' + k); } catch {}
             }
         } else {
             delete DISPLAY_ICON_THUMB_CACHE[k];
+            try { if (typeof localStorage !== 'undefined') localStorage.removeItem('gmx_thumb_' + k); } catch {}
         }
         if (typeof DISPLAY_ICON_THUMB_LISTENERS !== 'undefined' && DISPLAY_ICON_THUMB_LISTENERS) {
             DISPLAY_ICON_THUMB_LISTENERS.forEach(fn => {
@@ -15150,7 +15209,7 @@ async function displayIconFetchThumb(key, forceFresh) {
                 return;
             }
             let isAmpOrPhoto = k.startsWith(`amp`) || k.startsWith(`bg`) || k.startsWith(`s`);
-            let reqThumb = isAmpOrPhoto ? 180 : 48;
+            let reqThumb = isAmpOrPhoto ? 64 : 48;
             let query = `/api/display-icon?key=${encodeURIComponent(k)}&thumb=${reqThumb}` + (forceFresh ? `&_t=${Date.now()}` : ``);
             try {
                 let r = await zr(query),
@@ -15164,6 +15223,9 @@ async function displayIconFetchThumb(key, forceFresh) {
                     realH = Number(body.h) || reqThumb;
                 let url = displayIconRgb565ToUrl(displayIconB64ToU8(body.data), realW, realH);
                 DISPLAY_ICON_THUMB_CACHE[k] = url || ``;
+                if (url) {
+                    try { if (typeof localStorage !== 'undefined') localStorage.setItem('gmx_thumb_' + k, url); } catch {}
+                }
                 resolve(url || ``);
             } catch {
                 DISPLAY_ICON_THUMB_CACHE[k] = ``;
@@ -15243,8 +15305,8 @@ function FsScreenIconCropModal({
         isMt8 = Number(fsCount) === 8,
         exportW = isAmp ? (isMt8 ? 480 : 232) : (isBg ? (isMt8 ? DISPLAY_BG_W_MT8 : 240) : DISPLAY_ICON_PX),
         exportH = isAmp ? (isMt8 ? 146 : 100) : (isBg ? (isMt8 ? DISPLAY_BG_H_MT8 : 240) : DISPLAY_ICON_PX),
-        previewW = isAmp ? (isMt8 ? 240 : 232) : (isBg ? (isMt8 ? 240 : 200) : 160),
-        previewH = isAmp ? (isMt8 ? 73 : 100) : (isBg ? (isMt8 ? 160 : 200) : 160),
+        previewW = isAmp ? (isMt8 ? 312 : 260) : (isBg ? (isMt8 ? 280 : 200) : 170),
+        previewH = isAmp ? (isMt8 ? 95 : 112) : (isBg ? (isMt8 ? 187 : 200) : 170),
         pickRef = (0, N.useRef)(null),
         [img, setImg] = (0, N.useState)(null),
         [zoom, setZoom] = (0, N.useState)(1),
@@ -15322,15 +15384,14 @@ function FsScreenIconCropModal({
             ctx.fillStyle = `#111`, ctx.fillRect(0, 0, c.width, c.height);
             return
         }
-        let baseBg = hasAlpha ? {
+        let effectiveTransMode = (isAmp && transCfg.mode === 'custom_img') ? 'custom_img' : 'transparent';
+        let baseBg = (hasAlpha && isAmp && effectiveTransMode === 'custom_img') ? {
             hasAlpha: true,
-            mode: transCfg.mode,
-            color: transCfg.color,
-            mainBgImg,
+            mode: 'custom_img',
             customImgObj
         } : null;
         ctx.putImageData(isAmp ? displayAmpRasterColor(img, c.width, c.height, zoom, panX, panY, baseBg) : (useRect ? displayBgRasterColor(img, c.width, c.height, zoom, panX, panY, baseBg) : displayIconRasterColor(img, c.width, zoom, panX, panY, baseBg)), 0, 0)
-    }, [img, zoom, panX, panY, isBg, useRect, hideMask, hasAlpha, transCfg, mainBgImg, customImgObj]);
+    }, [img, zoom, panX, panY, isBg, useRect, hideMask, hasAlpha, transCfg.mode, customImgObj]);
     let clamp = (v, a, b) => Math.min(b, Math.max(a, v)),
         saveKey = targetKey || displayIconSlotKey(slot),
         alignTop = () => {
@@ -15361,357 +15422,382 @@ function FsScreenIconCropModal({
             setPanY(0);
         },
         modal = (0, P.jsx)(`div`, {
-            className: `fixed inset-0 flex items-center justify-center p-4`,
+            className: `fixed inset-0 flex items-center justify-center p-3 sm:p-4`,
             style: {
-                background: `rgba(3, 7, 18, 0.72)`,
+                background: `rgba(2, 4, 8, 0.82)`,
+                backdropFilter: `blur(6px)`,
+                WebkitBackdropFilter: `blur(6px)`,
                 zIndex: 240
             },
             onClick: onClose,
             children: (0, P.jsxs)(`div`, {
-                className: `border border-border bg-canvas`,
+                className: `flex max-h-[92vh] flex-col overflow-hidden rounded-2xl border border-zinc-800 bg-[#0c0d10] shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9),0_0_0_1px_rgba(255,255,255,0.06)]`,
                 onClick: ev => ev.stopPropagation(),
                 style: {
-                    width: isAmp ? `280px` : (isBg ? (isMt8 ? `280px` : `260px`) : `240px`),
-                    maxWidth: `calc(100vw - 2rem)`,
-                    borderRadius: `16px`,
-                    boxShadow: `0 24px 48px -16px rgba(0,0,0,0.7)`
+                    width: isAmp ? `380px` : (isBg ? (isMt8 ? `380px` : `350px`) : `330px`),
+                    maxWidth: `calc(100vw - 1.5rem)`
                 },
-                children: [(0, P.jsxs)(`div`, {
-                    className: `relative border-b border-border px-3 py-2.5`,
-                    children: [(0, P.jsx)(`div`, {
-                        className: `font-display text-[11px] uppercase tracking-[0.2em] text-accent`,
-                        children: `Posicionar`
-                    }), (0, P.jsxs)(`div`, {
-                        className: `font-mono text-[9px] text-muted-foreground`,
-                        children: hideMask || targetKey === DISPLAY_BG_KEY ? `Fundo · textura` : [`Slot `, slot, ` · `, saveKey]
-                    }), (0, P.jsx)(`button`, {
-                        type: `button`,
-                        onClick: onClose,
-                        className: `absolute right-2 top-2 grid h-7 w-7 place-items-center rounded-md border border-border text-muted-foreground`,
-                        children: `✕`
-                    })]
-                }), (0, P.jsxs)(`div`, {
-                    className: `px-3 py-3`,
-                    children: [(0, P.jsx)(`input`, {
-                        ref: pickRef,
-                        type: `file`,
-                        accept: `image/png,image/jpeg`,
-                        className: `hidden`,
-                        onChange: ev => {
-                            let f = ev.target.files && ev.target.files[0];
-                            ev.target.value = ``;
-                            if (f) loadBlob(f)
-                        }
-                    }), (0, P.jsx)(`div`, {
-                        className: `mb-2 text-center font-mono text-[9px] uppercase tracking-widest text-muted-foreground`,
-                        children: isAmp ? (isMt8 ? `delimitação do cabeçote (480×146)` : `delimitação do cabeçote (232×100)`) : (isBg ? (isMt8 ? `cobre o display (480×320)` : `cobre o display (240×240)`) : `espaço do ícone no display`)
-                    }), (0, P.jsxs)(`div`, {
-                        className: `relative mx-auto overflow-hidden rounded-lg border-2 border-dashed border-accent/50`,
-                        style: {
-                            width: previewW,
-                            height: previewH,
-                            flexShrink: 0,
-                            touchAction: `none`,
-                            backgroundColor: `#1a1a1a`,
-                            backgroundImage: `linear-gradient(45deg,#2a2a2a 25%,transparent 25%),linear-gradient(-45deg,#2a2a2a 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#2a2a2a 75%),linear-gradient(-45deg,transparent 75%,#2a2a2a 75%)`,
-                            backgroundSize: `12px 12px`,
-                            backgroundPosition: `0 0,0 6px,6px -6px,-6px 0`
-                        },
-                        onPointerDown: ev => {
-                            if (!img || ev.button != null && ev.button !== 0) return;
-                            drag.current = {
-                                x: ev.clientX,
-                                y: ev.clientY,
-                                panX,
-                                panY
-                            }
-                        },
-                        onPointerMove: ev => {
-                            if (!drag.current) return;
-                            setPanX(clamp(drag.current.panX + (ev.clientX - drag.current.x) * .6, -100, 100));
-                            setPanY(clamp(drag.current.panY + (ev.clientY - drag.current.y) * .6, -100, 100))
-                        },
-                        onPointerUp: () => {
-                            drag.current = null
-                        },
-                        onPointerCancel: () => {
-                            drag.current = null
-                        },
-                        onWheel: ev => {
-                            if (!img) return;
-                            ev.preventDefault();
-                            setZoom(z => clamp(z * (ev.deltaY > 0 ? .95 : 1.05), .2, 4))
-                        },
-                        children: [(0, P.jsx)(`canvas`, {
-                            ref: canvasRef,
-                            width: previewW,
-                            height: previewH,
-                            className: `block cursor-grab`,
-                            style: {
-                                width: previewW,
-                                height: previewH,
-                                background: `transparent`
-                            }
-                        }), !img && (0, P.jsx)(`button`, {
-                            type: `button`,
-                            onClick: () => pickRef.current && pickRef.current.click(),
-                            className: `absolute inset-0 grid place-items-center font-display text-[10px] uppercase tracking-[0.16em] text-muted-foreground`,
-                            children: `Escolher imagem`
-                        })]
-                    }), loadErr ? (0, P.jsx)(`div`, {
-                        className: `mt-2 text-center font-mono text-[9px] text-red-400`,
-                        children: loadErr
-                    }) : null, img ? (0, P.jsxs)(P.Fragment, {
-                        children: [(0, P.jsxs)(`div`, {
-                            className: `mt-2 flex items-center justify-center gap-1.5`,
-                            children: [(0, P.jsx)(`button`, {
-                                type: `button`,
-                                onClick: alignTop,
-                                className: `rounded border border-border bg-card/60 px-2 py-1 font-mono text-[9px] text-muted-foreground hover:border-accent/60 hover:text-foreground`,
-                                children: `⬆ Topo`
-                            }), (0, P.jsx)(`button`, {
-                                type: `button`,
-                                onClick: alignCenter,
-                                className: `rounded border border-border bg-card/60 px-2 py-1 font-mono text-[9px] text-muted-foreground hover:border-accent/60 hover:text-foreground`,
-                                children: `✛ Centro`
-                            }), (0, P.jsx)(`button`, {
-                                type: `button`,
-                                onClick: alignBottom,
-                                className: `rounded border border-border bg-card/60 px-2 py-1 font-mono text-[9px] text-muted-foreground hover:border-accent/60 hover:text-foreground`,
-                                children: `⬇ Base`
-                            }), (0, P.jsx)(`button`, {
-                                type: `button`,
-                                onClick: resetCrop,
-                                className: `rounded border border-border bg-card/60 px-2 py-1 font-mono text-[9px] text-muted-foreground hover:border-accent/60 hover:text-foreground`,
-                                children: `↺ 100%`
-                            })]
-                        }), [[`Zoom`, zoom, .2, 4, .01, setZoom, v => `${Number(v).toFixed(2)}x`], [`Horizontal`, panX, -100, 100, .5, setPanX, v => `${Math.round(v)}%`], [`Vertical`, panY, -100, 100, .5, setPanY, v => `${Math.round(v)}%`]].map(([lab, val, min, max, step, set, fmt]) => (0, P.jsxs)(`label`, {
-                        className: `mt-2 block`,
-                        children: [(0, P.jsxs)(`div`, {
-                            className: `mb-0.5 flex justify-between font-mono text-[9px] text-muted-foreground`,
-                            children: [(0, P.jsx)(`span`, {
-                                children: lab
-                            }), (0, P.jsx)(`span`, {
-                                children: fmt(val)
-                            })]
-                        }), (0, P.jsx)(`input`, {
-                            type: `range`,
-                            min,
-                            max,
-                            step,
-                            value: val,
-                            onChange: ev => set(Number(ev.target.value)),
-                            className: `w-full accent-orange-500`
-                        })]
-                    }, lab))]
-                    }) : null, (0, P.jsx)(`button`, {
-                        type: `button`,
-                        onClick: () => pickRef.current && pickRef.current.click(),
-                        className: `mt-2 w-full rounded-lg border border-border px-2 py-1.5 font-display text-[9px] uppercase tracking-[0.16em] text-muted-foreground`,
-                        children: img ? `Trocar ficheiro` : `Escolher PNG / JPEG`
-                    }),
-                    hasAlpha ? (0, P.jsxs)('div', {
-                        className: 'mt-2.5 rounded-xl border border-zinc-800 bg-[#0d0e12] p-2.5',
+                children: [
+                    (0, P.jsxs)(`div`, {
+                        className: `relative flex shrink-0 items-center justify-between border-b border-zinc-800/80 bg-zinc-950/60 px-4 py-3`,
                         children: [
-                            (0, P.jsxs)('div', {
-                                className: 'mb-1.5 flex items-center justify-between',
+                            (0, P.jsxs)(`div`, {
+                                className: `flex flex-col`,
                                 children: [
-                                    (0, P.jsx)('span', {
-                                        style: { fontFamily: 'inherit', fontSize: '10px', fontWeight: 900, textTransform: 'uppercase', color: '#f87171' },
-                                        children: 'Fundo da Transparência (PNG)'
+                                    (0, P.jsx)(`span`, {
+                                        className: `font-display text-xs font-black uppercase tracking-[0.2em] text-white`,
+                                        children: `Posicionar Imagem`
                                     }),
-                                    (0, P.jsx)('span', {
-                                        style: { fontFamily: 'monospace', fontSize: '8px', color: '#10b981', background: 'rgba(16, 185, 129, 0.15)', padding: '2px 6px', borderRadius: '4px' },
-                                        children: 'Sem fundo detectado'
+                                    (0, P.jsx)(`span`, {
+                                        className: `font-mono text-[10px] font-medium text-zinc-400`,
+                                        children: hideMask || targetKey === DISPLAY_BG_KEY || String(targetKey).startsWith('bg') ? `Fundo · Textura` : [`Slot `, slot, ` · `, saveKey]
                                     })
                                 ]
                             }),
-                            (0, P.jsx)('div', {
-                                style: { display: 'flex', gap: '4px', marginBottom: '8px' },
-                                children: [
-                                    { id: 'transparent', lbl: 'Transparente' },
-                                    { id: 'color', lbl: 'Cor' },
-                                    { id: 'main_bg', lbl: 'Fundo (bg)' },
-                                    { id: 'custom_img', lbl: 'Imagem Fixa' }
-                                ].map(m => (0, P.jsx)('button', {
-                                    key: m.id,
-                                    type: 'button',
-                                    onClick: () => {
-                                        let next = { ...transCfg, mode: m.id };
-                                        setTransCfg(next);
-                                        setTransBgConfig(next);
-                                    },
-                                    style: {
-                                        flex: 1,
-                                        padding: '4px 2px',
-                                        borderRadius: '6px',
-                                        fontFamily: 'monospace',
-                                        fontSize: '9px',
-                                        fontWeight: 800,
-                                        cursor: 'pointer',
-                                        border: transCfg.mode === m.id ? '1px solid #ef4444' : '1px solid #27272a',
-                                        background: transCfg.mode === m.id ? 'rgba(239, 68, 68, 0.2)' : '#141519',
-                                        color: transCfg.mode === m.id ? '#f87171' : '#a1a1aa'
-                                    },
-                                    children: m.lbl
-                                }))
+                            (0, P.jsx)(`button`, {
+                                type: `button`,
+                                onClick: onClose,
+                                "aria-label": `Fechar`,
+                                className: `grid size-7.5 place-items-center rounded-lg border border-zinc-800 bg-zinc-900/60 text-zinc-400 transition-colors hover:border-zinc-700 hover:bg-zinc-800 hover:text-white`,
+                                children: (0, P.jsx)(`svg`, {
+                                    xmlns: `http://www.w3.org/2000/svg`,
+                                    viewBox: `0 0 24 24`,
+                                    fill: `none`,
+                                    stroke: `currentColor`,
+                                    strokeWidth: `2.5`,
+                                    strokeLinecap: `round`,
+                                    strokeLinejoin: `round`,
+                                    className: `size-3.5`,
+                                    children: [
+                                        (0, P.jsx)(`line`, { x1: `18`, y1: `6`, x2: `6`, y2: `18` }),
+                                        (0, P.jsx)(`line`, { x1: `6`, y1: `6`, x2: `18`, y2: `18` })
+                                    ]
+                                })
+                            })
+                        ]
+                    }),
+                    (0, P.jsxs)(`div`, {
+                        className: `flex-1 overflow-y-auto px-4 py-3.5 space-y-3`,
+                        children: [
+                            (0, P.jsx)(`input`, {
+                                ref: pickRef,
+                                type: `file`,
+                                accept: `image/png,image/jpeg`,
+                                className: `hidden`,
+                                onChange: ev => {
+                                    let f = ev.target.files && ev.target.files[0];
+                                    ev.target.value = ``;
+                                    if (f) loadBlob(f);
+                                }
                             }),
-                            transCfg.mode === 'transparent' ? (0, P.jsx)('div', {
-                                style: { fontFamily: 'monospace', fontSize: '9px', color: '#10b981', lineHeight: 1.3 },
-                                children: 'Fundo transparente nativo mantido (Chroma-Key do visor).'
-                            }) : null,
-                            transCfg.mode === 'color' ? (0, P.jsxs)('div', {
-                                style: { display: 'flex', alignItems: 'center', gap: '8px' },
+                            (0, P.jsxs)(`div`, {
+                                className: `relative mx-auto overflow-hidden rounded-xl border border-zinc-700/60 bg-black/80 shadow-inner ring-1 ring-white/5`,
+                                style: {
+                                    width: previewW,
+                                    height: previewH,
+                                    flexShrink: 0,
+                                    touchAction: `none`,
+                                    backgroundColor: `#121316`,
+                                    backgroundImage: `linear-gradient(45deg,#1c1d22 25%,transparent 25%),linear-gradient(-45deg,#1c1d22 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#1c1d22 75%),linear-gradient(-45deg,transparent 75%,#1c1d22 75%)`,
+                                    backgroundSize: `12px 12px`,
+                                    backgroundPosition: `0 0,0 6px,6px -6px,-6px 0`
+                                },
+                                onPointerDown: ev => {
+                                    if (!img || ev.button != null && ev.button !== 0) return;
+                                    drag.current = {
+                                        x: ev.clientX,
+                                        y: ev.clientY,
+                                        panX,
+                                        panY
+                                    }
+                                },
+                                onPointerMove: ev => {
+                                    if (!drag.current) return;
+                                    setPanX(clamp(drag.current.panX + (ev.clientX - drag.current.x) * .6, -100, 100));
+                                    setPanY(clamp(drag.current.panY + (ev.clientY - drag.current.y) * .6, -100, 100))
+                                },
+                                onPointerUp: () => {
+                                    drag.current = null
+                                },
+                                onPointerCancel: () => {
+                                    drag.current = null
+                                },
+                                onWheel: ev => {
+                                    if (!img) return;
+                                    ev.preventDefault();
+                                    setZoom(z => clamp(z * (ev.deltaY > 0 ? .95 : 1.05), .2, 4))
+                                },
                                 children: [
-                                    (0, P.jsx)('input', {
-                                        type: 'color',
-                                        value: transCfg.color || '#000000',
-                                        onChange: ev => {
-                                            let next = { ...transCfg, color: ev.target.value };
-                                            setTransCfg(next);
-                                            setTransBgConfig(next);
-                                        },
-                                        style: { width: '28px', height: '24px', borderRadius: '4px', border: '1px solid #3f3f46', cursor: 'pointer', background: '#000' }
-                                    }),
-                                    (0, P.jsx)('span', {
-                                        style: { fontFamily: 'monospace', fontSize: '10px', color: '#d4d4d8', fontWeight: 'bold' },
-                                        children: (transCfg.color || '#000000').toUpperCase()
-                                    }),
-                                    (0, P.jsx)('span', {
-                                        style: { fontFamily: 'monospace', fontSize: '8px', color: '#71717a', marginLeft: 'auto' },
-                                        children: 'Fundo da imagem'
-                                    })
-                                ]
-                            }) : null,
-                            transCfg.mode === 'main_bg' ? (0, P.jsx)('div', {
-                                style: { fontFamily: 'monospace', fontSize: '9px', color: '#a1a1aa', lineHeight: 1.3 },
-                                children: 'O wallpaper principal (bg) será desenhado por baixo da transparência.'
-                            }) : null,
-                            transCfg.mode === 'custom_img' ? (0, P.jsxs)('div', {
-                                style: { display: 'flex', alignItems: 'center', gap: '6px' },
-                                children: [
-                                    (0, P.jsx)('input', {
-                                        ref: customImgPickRef,
-                                        type: 'file',
-                                        accept: 'image/png,image/jpeg',
-                                        className: 'hidden',
-                                        onChange: ev => {
-                                            let f = ev.target.files && ev.target.files[0];
-                                            ev.target.value = '';
-                                            if (f) {
-                                                let reader = new FileReader();
-                                                reader.onload = () => {
-                                                    let dataUrl = String(reader.result || '');
-                                                    let next = { ...transCfg, customImg: dataUrl };
-                                                    setTransCfg(next);
-                                                    setTransBgConfig(next);
-                                                };
-                                                reader.readAsDataURL(f);
-                                            }
+                                    (0, P.jsx)(`canvas`, {
+                                        ref: canvasRef,
+                                        width: previewW,
+                                        height: previewH,
+                                        className: `block cursor-grab active:cursor-grabbing`,
+                                        style: {
+                                            width: previewW,
+                                            height: previewH,
+                                            background: `transparent`
                                         }
                                     }),
-                                    (0, P.jsx)('button', {
-                                        type: 'button',
-                                        onClick: () => customImgPickRef.current && customImgPickRef.current.click(),
-                                        style: {
-                                            flex: 1,
-                                            padding: '4px 8px',
-                                            borderRadius: '6px',
-                                            border: '1px solid #ef4444',
-                                            background: 'rgba(239, 68, 68, 0.15)',
-                                            color: '#f87171',
-                                            fontFamily: 'monospace',
-                                            fontSize: '9px',
-                                            fontWeight: 900,
-                                            cursor: 'pointer'
-                                        },
-                                        children: transCfg.customImg ? 'Trocar Imagem Base' : '+ Escolher Imagem Base'
+                                    !img && (0, P.jsx)(`button`, {
+                                        type: `button`,
+                                        onClick: () => pickRef.current && pickRef.current.click(),
+                                        className: `absolute inset-0 grid place-items-center font-display text-[11px] font-black uppercase tracking-[0.18em] text-zinc-400 hover:text-white transition-colors`,
+                                        children: `+ Escolher imagem`
+                                    })
+                                ]
+                            }),
+                            loadErr ? (0, P.jsx)(`div`, {
+                                className: `rounded-lg border border-red-500/30 bg-red-500/10 p-2 text-center font-mono text-[10px] text-red-400`,
+                                children: loadErr
+                            }) : null,
+                            img ? (0, P.jsxs)(P.Fragment, {
+                                children: [
+                                    (0, P.jsxs)(`div`, {
+                                        style: { display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '6px' },
+                                        children: [
+                                            (0, P.jsx)(`button`, {
+                                                type: `button`,
+                                                onClick: alignTop,
+                                                className: `flex items-center justify-center gap-1 rounded-lg border border-zinc-800 bg-zinc-900/90 py-1.5 font-display text-[10px] font-bold uppercase tracking-wider text-zinc-300 shadow-sm transition-all hover:border-zinc-700 hover:bg-zinc-800 hover:text-white active:scale-95`,
+                                                children: `↑ Topo`
+                                            }),
+                                            (0, P.jsx)(`button`, {
+                                                type: `button`,
+                                                onClick: alignCenter,
+                                                className: `flex items-center justify-center gap-1 rounded-lg border border-zinc-800 bg-zinc-900/90 py-1.5 font-display text-[10px] font-bold uppercase tracking-wider text-zinc-300 shadow-sm transition-all hover:border-zinc-700 hover:bg-zinc-800 hover:text-white active:scale-95`,
+                                                children: `✛ Centro`
+                                            }),
+                                            (0, P.jsx)(`button`, {
+                                                type: `button`,
+                                                onClick: alignBottom,
+                                                className: `flex items-center justify-center gap-1 rounded-lg border border-zinc-800 bg-zinc-900/90 py-1.5 font-display text-[10px] font-bold uppercase tracking-wider text-zinc-300 shadow-sm transition-all hover:border-zinc-700 hover:bg-zinc-800 hover:text-white active:scale-95`,
+                                                children: `↓ Base`
+                                            }),
+                                            (0, P.jsx)(`button`, {
+                                                type: `button`,
+                                                onClick: resetCrop,
+                                                className: `flex items-center justify-center gap-1 rounded-lg border border-zinc-800 bg-zinc-900/90 py-1.5 font-display text-[10px] font-bold uppercase tracking-wider text-zinc-300 shadow-sm transition-all hover:border-zinc-700 hover:bg-zinc-800 hover:text-white active:scale-95`,
+                                                children: `↺ 100%`
+                                            })
+                                        ]
                                     }),
-                                    transCfg.customImg ? (0, P.jsx)('button', {
-                                        type: 'button',
-                                        onClick: () => {
-                                            let next = { ...transCfg, customImg: '' };
-                                            setTransCfg(next);
-                                            setTransBgConfig(next);
-                                        },
-                                        style: {
-                                            padding: '4px 8px',
-                                            borderRadius: '6px',
-                                            border: '1px solid #3f3f46',
-                                            background: 'transparent',
-                                            color: '#a1a1aa',
-                                            fontFamily: 'monospace',
-                                            fontSize: '9px',
-                                            cursor: 'pointer'
-                                        },
-                                        children: '✕'
+                                    [[`Zoom`, zoom, .2, 4, .01, setZoom, v => `${Number(v).toFixed(2)}x`], [`Horizontal`, panX, -100, 100, .5, setPanX, v => `${Math.round(v)}%`], [`Vertical`, panY, -100, 100, .5, setPanY, v => `${Math.round(v)}%`]].map(([lab, val, min, max, step, set, fmt]) => (0, P.jsxs)(`label`, {
+                                        className: `block space-y-1`,
+                                        children: [
+                                            (0, P.jsxs)(`div`, {
+                                                className: `flex items-center justify-between`,
+                                                children: [
+                                                    (0, P.jsx)(`span`, {
+                                                        className: `font-display text-[10px] font-bold uppercase tracking-wider text-zinc-400`,
+                                                        children: lab
+                                                    }),
+                                                    (0, P.jsx)(`span`, {
+                                                        className: `rounded border border-zinc-800 bg-zinc-900/90 px-1.5 py-0.5 font-mono text-[10px] font-bold text-red-400`,
+                                                        children: fmt(val)
+                                                    })
+                                                ]
+                                            }),
+                                            (0, P.jsx)(`input`, {
+                                                type: `range`,
+                                                min,
+                                                max,
+                                                step,
+                                                value: val,
+                                                onChange: ev => set(Number(ev.target.value)),
+                                                style: { width: '100%', height: '6px', borderRadius: '3px', background: '#27272a', border: '1px solid #3f3f46', accentColor: '#ef4444', cursor: 'pointer', outline: 'none' },
+                                                className: `w-full cursor-pointer transition-colors`
+                                            })
+                                        ]
+                                    }, lab))
+                                ]
+                            }) : null,
+                            (0, P.jsxs)(`button`, {
+                                type: `button`,
+                                onClick: () => pickRef.current && pickRef.current.click(),
+                                className: `flex w-full items-center justify-center gap-2 rounded-xl border border-zinc-800 bg-zinc-900/90 py-2.5 font-display text-[10.5px] font-black uppercase tracking-[0.16em] text-zinc-200 shadow-sm transition-all hover:border-zinc-700 hover:bg-zinc-800 hover:text-white`,
+                                children: [
+                                    (0, P.jsx)(`svg`, {
+                                        xmlns: `http://www.w3.org/2000/svg`,
+                                        viewBox: `0 0 24 24`,
+                                        fill: `none`,
+                                        stroke: `currentColor`,
+                                        strokeWidth: `2`,
+                                        strokeLinecap: `round`,
+                                        strokeLinejoin: `round`,
+                                        className: `size-3.5 text-zinc-400`,
+                                        children: [
+                                            (0, P.jsx)(`path`, { d: `M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4` }),
+                                            (0, P.jsx)(`polyline`, { points: `17 8 12 3 7 8` }),
+                                            (0, P.jsx)(`line`, { x1: `12`, y1: `3`, x2: `12`, y2: `15` })
+                                        ]
+                                    }),
+                                    img ? `Trocar ficheiro` : `Escolher PNG / JPEG`
+                                ]
+                            }),
+                            (hasAlpha && isAmp) ? (0, P.jsxs)(`div`, {
+                                className: `rounded-xl border border-zinc-800/90 bg-zinc-950/80 p-3 shadow-inner space-y-2.5`,
+                                children: [
+                                    (0, P.jsx)(`div`, {
+                                        className: `flex items-center justify-between`,
+                                        children: (0, P.jsx)(`span`, {
+                                            className: `font-display text-[10px] font-black uppercase tracking-[0.16em] text-zinc-300`,
+                                            children: `Fundo da Transparência`
+                                        })
+                                    }),
+                                    (0, P.jsx)(`div`, {
+                                        className: `grid grid-cols-2 gap-1.5`,
+                                        children: [
+                                            { id: `transparent`, lbl: `Transparente` },
+                                            { id: `custom_img`, lbl: `Imagem Fixa` }
+                                        ].map(m => {
+                                            let isSel = (transCfg.mode === m.id) || (m.id === `transparent` && transCfg.mode !== `custom_img`);
+                                            return (0, P.jsx)(`button`, {
+                                                key: m.id,
+                                                type: `button`,
+                                                onClick: () => {
+                                                    let next = { ...transCfg, mode: m.id };
+                                                    setTransCfg(next);
+                                                    setTransBgConfig(next);
+                                                },
+                                                style: isSel ? {
+                                                    background: 'linear-gradient(180deg, #ef4444 0%, #b91c1c 100%)',
+                                                    backgroundColor: '#ef4444',
+                                                    color: '#ffffff',
+                                                    boxShadow: '0 0 12px rgba(220, 38, 38, 0.55)'
+                                                } : {},
+                                                className: `rounded-lg py-1.5 text-center font-display text-[10px] uppercase tracking-wider transition-all duration-150 ${
+                                                    isSel
+                                                        ? `border border-red-500/40 font-black text-white`
+                                                        : `border border-zinc-800 bg-zinc-900/80 font-bold text-zinc-400 hover:bg-zinc-800 hover:text-zinc-100`
+                                                }`,
+                                                children: m.lbl
+                                            });
+                                        })
+                                    }),
+                                    transCfg.mode === `custom_img` ? (0, P.jsxs)(`div`, {
+                                        className: `flex items-center gap-2 pt-1`,
+                                        children: [
+                                            (0, P.jsx)(`input`, {
+                                                ref: customImgPickRef,
+                                                type: `file`,
+                                                accept: `image/png,image/jpeg`,
+                                                className: `hidden`,
+                                                onChange: ev => {
+                                                    let f = ev.target.files && ev.target.files[0];
+                                                    ev.target.value = ``;
+                                                    if (f) {
+                                                        let reader = new FileReader();
+                                                        reader.onload = () => {
+                                                            let dataUrl = String(reader.result || ``);
+                                                            let next = { ...transCfg, customImg: dataUrl };
+                                                            setTransCfg(next);
+                                                            setTransBgConfig(next);
+                                                        };
+                                                        reader.readAsDataURL(f);
+                                                    }
+                                                }
+                                            }),
+                                            (0, P.jsx)(`button`, {
+                                                type: `button`,
+                                                onClick: () => customImgPickRef.current && customImgPickRef.current.click(),
+                                                className: `flex-1 rounded-xl border border-red-500/40 bg-red-500/10 hover:bg-red-500/20 py-2 font-display text-[10px] font-black uppercase tracking-wider text-red-400 transition-all`,
+                                                children: transCfg.customImg ? `Trocar Imagem Base` : `+ Escolher Imagem Base`
+                                            }),
+                                            transCfg.customImg ? (0, P.jsx)(`button`, {
+                                                type: `button`,
+                                                onClick: () => {
+                                                    let next = { ...transCfg, customImg: `` };
+                                                    setTransCfg(next);
+                                                    setTransBgConfig(next);
+                                                },
+                                                className: `rounded-xl border border-zinc-800 bg-zinc-900 hover:bg-zinc-800 px-3 py-2 text-zinc-400 hover:text-white transition-all`,
+                                                children: `✕`
+                                            }) : null
+                                        ]
                                     }) : null
                                 ]
                             }) : null
                         ]
-                    }) : null]
-                }), (0, P.jsxs)(`div`, {
-                    className: `flex gap-2 border-t border-border px-3 py-2.5`,
-                    children: [(0, P.jsx)(`button`, {
-                        type: `button`,
-                        onClick: onClose,
-                        className: `flex-1 rounded-lg border border-border py-2 font-display text-[10px] uppercase tracking-[0.14em] text-muted-foreground`,
-                        children: `Cancelar`
-                    }), (0, P.jsx)(`button`, {
-                        type: `button`,
-                        disabled: busy || !img,
-                        onClick: async () => {
-                            if (!img) return;
-                            setBusy(!0);
-                            try {
-                                let effectiveMainBg = mainBgImg;
-                                if (hasAlpha && transCfg.mode === 'main_bg' && (!effectiveMainBg || !effectiveMainBg.width)) {
-                                    try { effectiveMainBg = await getMainBgImage(); } catch {}
-                                }
-                                let baseBg = hasAlpha ? {
-                                        hasAlpha: true,
-                                        mode: transCfg.mode,
-                                        color: transCfg.color,
-                                        mainBgImg: effectiveMainBg,
-                                        customImgObj
-                                    } : null;
-                                    let raster = isAmp ? displayAmpRasterColor(img, exportW, exportH, zoom, panX, panY, baseBg) : (useRect ? displayBgRasterColor(img, exportW, exportH, zoom, panX, panY, baseBg) : displayIconRasterColor(img, exportW, zoom, panX, panY, baseBg)),
-                                    isTransMode = hasAlpha && transCfg.mode === 'transparent',
-                                    plain = isAmp ? !isTransMode : (useRect ? !isTransMode : (isTransMode ? false : !!hideMask)),
-                                    rgb = displayIconRgb565FromImageData(raster, !1, plain),
-                                    key = targetKey || displayIconSlotKey(slot);
-                                let instantThumb = '';
-                                try {
-                                    let tCv = document.createElement('canvas');
-                                    tCv.width = isAmp ? 80 : 72;
-                                    tCv.height = isAmp ? 24 : 48;
-                                    let tCtx = tCv.getContext('2d');
-                                    tCtx.clearRect(0, 0, tCv.width, tCv.height);
-                                    let sCv = document.createElement('canvas');
-                                    sCv.width = exportW;
-                                    sCv.height = exportH;
-                                    sCv.getContext('2d').putImageData(raster, 0, 0);
-                                    tCtx.drawImage(sCv, 0, 0, tCv.width, tCv.height);
-                                    instantThumb = tCv.toDataURL('image/png');
-                                } catch {}
-                                if (instantThumb) {
-                                    displayIconInvalidateThumb(key, instantThumb);
-                                } else {
-                                    displayIconInvalidateThumb(key);
-                                }
-                                await displayIconUploadRgb(key, rgb, exportW, exportH);
-                                rt.success(isAmp ? `Cabeçote ${key} gravado` : (hideMask || targetKey === DISPLAY_BG_KEY || String(targetKey).startsWith('bg') ? `Wallpaper ${key} gravado` : `Foto ${key} gravada`));
-                                onSaved(key, instantThumb)
-                            } catch (err) {
-                                rt.error(`Falha a enviar: ${String(err?.message || err)}`)
-                            } finally {
-                                setBusy(!1)
-                            }
-                        },
-                        className: `flex-[2] rounded-lg border border-accent/50 bg-accent/10 py-2 font-display text-[10px] font-bold uppercase tracking-[0.14em] text-accent disabled:opacity-40`,
-                        children: busy ? `A enviar...` : `Salvar`
-                    })]
-                })]
+                    }),
+                    (0, P.jsxs)(`div`, {
+                        className: `flex shrink-0 items-center gap-2.5 border-t border-zinc-800/80 bg-zinc-950/60 px-4 py-3`,
+                        children: [
+                            (0, P.jsx)(`button`, {
+                                type: `button`,
+                                onClick: onClose,
+                                className: `flex-1 rounded-xl border border-zinc-800 bg-zinc-900/60 py-2.5 font-display text-[11px] font-black uppercase tracking-[0.18em] text-zinc-400 transition-all hover:border-zinc-700 hover:bg-zinc-800 hover:text-white`,
+                                children: `Cancelar`
+                            }),
+                            (0, P.jsxs)(`button`, {
+                                type: `button`,
+                                disabled: busy || !img,
+                                onClick: async () => {
+                                    if (!img) return;
+                                    setBusy(!0);
+                                    try {
+                                        let effectiveTransMode = (hasAlpha && isAmp && transCfg.mode === 'custom_img') ? 'custom_img' : 'transparent';
+                                        let baseBg = (effectiveTransMode === 'custom_img') ? {
+                                                hasAlpha: true,
+                                                mode: 'custom_img',
+                                                customImgObj
+                                            } : null;
+                                        let raster = isAmp ? displayAmpRasterColor(img, exportW, exportH, zoom, panX, panY, baseBg) : (useRect ? displayBgRasterColor(img, exportW, exportH, zoom, panX, panY, baseBg) : displayIconRasterColor(img, exportW, zoom, panX, panY, baseBg)),
+                                            isTransMode = hasAlpha && effectiveTransMode === 'transparent',
+                                            plain = isAmp ? !isTransMode : (useRect ? !isTransMode : (isTransMode ? false : !!hideMask)),
+                                            rgb = displayIconRgb565FromImageData(raster, !1, plain),
+                                            key = targetKey || displayIconSlotKey(slot);
+                                        let instantThumb = '';
+                                        try {
+                                            let tCv = document.createElement('canvas');
+                                            tCv.width = isAmp ? 80 : 72;
+                                            tCv.height = isAmp ? 24 : 48;
+                                            let tCtx = tCv.getContext('2d');
+                                            tCtx.clearRect(0, 0, tCv.width, tCv.height);
+                                            let sCv = document.createElement('canvas');
+                                            sCv.width = exportW;
+                                            sCv.height = exportH;
+                                            sCv.getContext('2d').putImageData(raster, 0, 0);
+                                            tCtx.drawImage(sCv, 0, 0, tCv.width, tCv.height);
+                                            instantThumb = tCv.toDataURL('image/png');
+                                        } catch {}
+                                        if (instantThumb) {
+                                            displayIconInvalidateThumb(key, instantThumb);
+                                        } else {
+                                            displayIconInvalidateThumb(key);
+                                        }
+                                        await displayIconUploadRgb(key, rgb, exportW, exportH);
+                                        rt.success(isAmp ? `Cabeçote ${key} gravado` : (hideMask || targetKey === DISPLAY_BG_KEY || String(targetKey).startsWith('bg') ? `Wallpaper ${key} gravado` : `Foto ${key} gravada`));
+                                        onSaved(key, instantThumb)
+                                    } catch (err) {
+                                        rt.error(`Falha a enviar: ${String(err?.message || err)}`)
+                                    } finally {
+                                        setBusy(!1)
+                                    }
+                                },
+                                className: `flex-1 rounded-xl bg-gradient-to-b from-[#ef4444] to-[#b91c1c] py-2.5 font-display text-[11px] font-black uppercase tracking-[0.18em] text-white shadow-[0_2px_14px_rgba(220,38,38,0.55)] border border-red-500/40 transition-all hover:opacity-95 flex items-center justify-center gap-2 disabled:opacity-40 disabled:cursor-not-allowed`,
+                                children: [
+                                    (0, P.jsx)(`svg`, {
+                                        xmlns: `http://www.w3.org/2000/svg`,
+                                        viewBox: `0 0 24 24`,
+                                        fill: `none`,
+                                        stroke: `currentColor`,
+                                        strokeWidth: `2.5`,
+                                        strokeLinecap: `round`,
+                                        strokeLinejoin: `round`,
+                                        className: `size-3.5`,
+                                        children: [
+                                            (0, P.jsx)(`path`, { d: `M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z` }),
+                                            (0, P.jsx)(`polyline`, { points: `17 21 17 13 7 13 7 21` }),
+                                            (0, P.jsx)(`polyline`, { points: `7 3 7 8 15 8` })
+                                        ]
+                                    }),
+                                    busy ? `A enviar...` : `Salvar`
+                                ]
+                            })
+                        ]
+                    })
+                ]
             })
         });
     return typeof document < `u` && He && typeof He.createPortal == `function` ? He.createPortal(modal, document.body) : modal
@@ -15822,8 +15908,10 @@ function displayIconsLibraryPanel({
             existingKey: editor.existingKey || ``,
             asMaskDefault: editor.asMask,
             onClose: () => setEditor(null),
-            onSaved: () => {
-                setEditor(null), refresh()
+            onSaved: (k, instantThumb) => {
+                setEditor(null);
+                displayIconInvalidateThumb(k, instantThumb);
+                refresh();
             }
         }), (0, P.jsxs)(I, {
             title: `Ícones`,
@@ -15842,9 +15930,6 @@ function displayIconsLibraryPanel({
                     existingKey: filled ? displayIconSlotKey(slot) : ``
                 }),
                 onDelete: delKey
-            }), (0, P.jsx)(`div`, {
-                className: `mt-2 rounded-lg border border-dashed border-border px-3 py-2 font-mono text-[10px] leading-relaxed text-muted-foreground`,
-                children: `Importe ícones PNG/JPEG a cores ou transparentes para os slots do pedal (${slotN} slots disponíveis). Depois associe à chave em Preset → Ícones.`
             })]
         })]
     })
@@ -15863,29 +15948,46 @@ function displayIconAssignTile({
         title: label || key,
         disabled: !!disabled,
         onClick: () => !disabled && onPick(key),
-        className: `tile-inset flex flex-col items-center rounded-xl border px-1.5 pb-2 pt-2 ${selected ? `border-accent` : disabled ? `border-dashed border-border` : `border-border`}`,
+        className: `tile-inset relative flex flex-col items-center rounded-xl border px-1.5 pb-2 pt-2 transition-all duration-200 transform ${selected ? `border-accent ring-2 ring-accent ring-offset-2 ring-offset-background bg-accent/20 scale-105 shadow-[0_0_18px_rgba(220,38,38,0.7)]` : disabled ? `border-dashed border-border opacity-50` : `border-border hover:border-accent/50 hover:bg-white/5 active:scale-95`}`,
         style: {
             minHeight: 76,
             opacity: disabled && !selected ? .48 : 1
         },
-        children: [(0, P.jsx)(`div`, {
-            className: `grid flex-1 place-items-center overflow-hidden rounded-md`,
-            style: {
-                width: `100%`,
-                height: 48
-            },
-            children: src ? (0, P.jsx)(`img`, {
-                src,
-                alt: label || key,
-                className: `w-full h-12 object-cover rounded-md shadow-sm`
-            }) : (0, P.jsx)(`span`, {
-                className: `font-display text-lg text-muted-foreground/40`,
-                children: `+`
+        children: [
+            selected && (0, P.jsx)(`div`, {
+                className: `absolute -top-1.5 -right-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-accent text-white shadow-[0_0_8px_rgba(220,38,38,0.9)] ring-1 ring-white/50`,
+                children: (0, P.jsx)(`svg`, {
+                    xmlns: `http://www.w3.org/2000/svg`,
+                    viewBox: `0 0 24 24`,
+                    fill: `none`,
+                    stroke: `currentColor`,
+                    strokeWidth: `3`,
+                    strokeLinecap: `round`,
+                    strokeLinejoin: `round`,
+                    className: `h-2.5 w-2.5`,
+                    children: (0, P.jsx)(`polyline`, { points: `20 6 9 17 4 12` })
+                })
+            }),
+            (0, P.jsx)(`div`, {
+                className: `grid flex-1 place-items-center overflow-hidden rounded-md`,
+                style: {
+                    width: `100%`,
+                    height: 48
+                },
+                children: src ? (0, P.jsx)(`img`, {
+                    src,
+                    alt: label || key,
+                    className: `w-full h-12 object-cover rounded-md shadow-sm transition-transform duration-200 ${selected ? `scale-105` : ``}`
+                }) : (0, P.jsx)(`span`, {
+                    className: `font-display text-lg ${selected ? `text-accent font-bold` : `text-muted-foreground/40`}`,
+                    children: `+`
+                })
+            }),
+            (0, P.jsx)(`span`, {
+                className: `mt-1 w-full truncate text-center font-display text-[9px] font-bold uppercase tracking-[0.16em] ${selected ? `text-accent font-black` : `text-muted-foreground`}`,
+                children: label || ``
             })
-        }), (0, P.jsx)(`span`, {
-            className: `mt-1 w-full truncate text-center font-display text-[9px] font-bold uppercase tracking-[0.16em] ${selected ? `text-accent` : `text-muted-foreground`}`,
-            children: label || ``
-        })]
+        ]
     })
 }
 
@@ -15932,7 +16034,8 @@ function FsScreenIconPicker({
     onSetKey: n
 }) {
     let slotN = displayIconUiSlotN(fsCount),
-        r = displayIconSanitizeKey(e || ``),
+        [selectedKey, setSelectedKey] = (0, N.useState)(() => displayIconSanitizeKey(e || ``)),
+        r = selectedKey,
         [catalog, setCatalog] = (0, N.useState)({
             items: [],
             used: 0,
@@ -15940,6 +16043,9 @@ function FsScreenIconPicker({
         }),
         [thumbs, setThumbs] = (0, N.useState)({}),
         [busyKey, setBusyKey] = (0, N.useState)(``);
+    (0, N.useEffect)(() => {
+        setSelectedKey(displayIconSanitizeKey(e || ``));
+    }, [e]);
     let refresh = (0, N.useCallback)(async () => {
         try {
             let cat = await displayIconFetchCatalog();
@@ -15960,6 +16066,8 @@ function FsScreenIconPicker({
     }, [refresh]);
     let pickKey = async key => {
         if (busyKey) return;
+        let sanitized = displayIconSanitizeKey(key || ``);
+        setSelectedKey(sanitized);
         try {
             setBusyKey(key || `_clear`);
             n(key);
@@ -15976,14 +16084,9 @@ function FsScreenIconPicker({
         className: embedded ? `rounded-xl border border-border bg-canvas p-3` : `mt-4 rounded-2xl border border-border bg-panel/70 p-4 shadow-2xl shadow-black/40`,
         children: [(0, P.jsxs)(`div`, {
             className: `mb-4 flex items-center justify-between gap-2`,
-            children: [(0, P.jsxs)(`div`, {
-                className: `flex items-center gap-2`,
-                children: [(0, P.jsx)(`span`, {
-                    className: `size-1.5 rounded-full bg-accent led-glow`
-                }), (0, P.jsx)(`span`, {
-                    className: `font-display text-[10px] uppercase tracking-[0.3em] text-muted-foreground`,
-                    children: `Ícones`
-                })]
+            children: [(0, P.jsx)(`span`, {
+                className: `font-display text-[10px] uppercase tracking-[0.3em] text-muted-foreground`,
+                children: `Ícones`
             }), (0, P.jsx)(`div`, {
                 className: `font-display text-[10px] uppercase tracking-[0.2em] text-accent`,
                 children: r || `nenhum`
@@ -16018,9 +16121,6 @@ function FsScreenIconPicker({
                 disabled: !catalog.map[key] || !!busyKey,
                 onPick: pickKey
             }, key))
-        }), (0, P.jsx)(`div`, {
-            className: `mb-3 rounded-xl border border-dashed border-border px-3 py-2 font-mono text-[9px] leading-relaxed text-muted-foreground`,
-            children: `Toque num glifo do Pack para atribuir à chave. Fotos: importar em Sistema → Tela.`
         }), (0, P.jsxs)(`div`, {
             className: `flex items-center justify-between gap-2`,
             children: [(0, P.jsx)(`button`, {
@@ -16113,15 +16213,9 @@ function FsScreenAmpPicker({ ampKey: e, fsIndex: t, fsCount: fc, onSetKey: n, em
             (0, P.jsxs)(`div`, {
                 className: `mb-4 flex items-center justify-between gap-2`,
                 children: [
-                    (0, P.jsxs)(`div`, {
-                        className: `flex items-center gap-2`,
-                        children: [
-                            (0, P.jsx)(`span`, { className: `size-1.5 rounded-full bg-accent led-glow` }),
-                            (0, P.jsx)(`span`, {
-                                className: `font-display text-[10px] uppercase tracking-[0.3em] text-muted-foreground`,
-                                children: `CABEÇOTES DE AMP`
-                            })
-                        ]
+                    (0, P.jsx)(`span`, {
+                        className: `font-display text-[10px] uppercase tracking-[0.3em] text-muted-foreground`,
+                        children: `CABEÇOTES DE AMP`
                     }),
                     (0, P.jsx)(`div`, {
                         className: `font-display text-[10px] uppercase tracking-[0.2em] text-accent font-bold`,
@@ -16234,8 +16328,11 @@ function FsBoxVisualCustomizer({
     })();
     let ampKey = ampSlot > 0 ? (`amp` + ampSlot) : ``;
     let ampThumb = useDisplayIconThumb(ampKey);
-
-    let iconKey = isStomp ? (activeStompSlot ? (w.stompSlots?.[activeStompSlot - 1]?.icon || ``) : (w.stompIcon || ``)) : (w.iconKey || ``);
+    let activeSlotIdx = isStomp ? (Number(activeStompSlot || 1)) : Number(fsNumber || 1);
+    let curSlot = (isStomp && Array.isArray(w?.stompSlots)) ? w.stompSlots[activeSlotIdx - 1] : null;
+    let iconKey = isStomp 
+        ? ((curSlot?.icon && curSlot.icon.trim()) || (activeSlotIdx === fsNumber && w?.stompIcon ? w.stompIcon.trim() : '') || (w?.stompSlots?.[fsNumber - 1]?.icon) || ``) 
+        : (w?.iconKey || ``);
     let iconThumb = useDisplayIconThumb(iconKey);
 
     let hasAmp = ampSlot > 0;
@@ -16309,8 +16406,8 @@ function FsBoxVisualCustomizer({
     let ledColorOn = `#3b82f6`;
     let ledColorOff = `#1e293b`;
     if (isStomp) {
-        let slotColor = activeStompSlot ? w.stompSlots?.[activeStompSlot - 1]?.color : null;
-        ledColorOn = toHexColor(slotColor || w.stompLed?.on || w.led?.on || w.stompLed, `#ff8800`);
+        let slotColor = curSlot?.color;
+        ledColorOn = toHexColor(slotColor || (activeSlotIdx === fsNumber ? w.stompLed?.on : null) || w.stompLed?.on || w.led?.on || w.stompLed, `#ff8800`);
         ledColorOff = toHexColor(w.stompLed?.off || w.led?.off, `#27272a`);
     } else {
         ledColorOn = toHexColor(w.presetLed?.on || w.led?.on || w.ledColors?.on || w.presetLed || w.color, `#3b82f6`);
@@ -16359,68 +16456,79 @@ function FsBoxVisualCustomizer({
     let boxBorder = previewOn ? (currentFill === 0 ? `2px solid ` + curLedColor : `2px solid ` + activePreset.borderOn) : (currentFill === 0 ? `1px solid #3f3f46` : `1px solid ` + activePreset.borderOff);
     let boxGlow = (previewOn && currentFill === 0) ? `0 0 16px -2px ` + curLedColor + `88` : `none`;
 
-    let labelText = (isStomp && activeStompSlot && w.stompSlots?.[activeStompSlot - 1]?.name) ? w.stompSlots[activeStompSlot - 1].name : (w.label || (`FS` + fsNumber));
+    let labelText = isStomp
+        ? ((curSlot?.name && curSlot.name.trim()) || (activeSlotIdx === fsNumber && w?.stompName ? w.stompName.trim() : '') || (w?.stompSlots?.[fsNumber - 1]?.name) || w?.label || (`FS` + activeSlotIdx))
+        : (w?.label || (`FS` + fsNumber));
 
     return (0, P.jsxs)(`div`, {
         className: `rounded-2xl border border-border bg-panel/70 p-3 shadow-2xl shadow-black/40 sm:p-4 space-y-3`,
         children: [
             (0, P.jsxs)(`div`, {
-                className: `flex items-center justify-between px-1`,
+                className: `flex flex-wrap items-center justify-between gap-y-2 gap-x-1.5 px-1`,
                 children: [
-                    (0, P.jsxs)(`div`, {
-                        className: `flex items-center gap-2`,
-                        children: [
-                            (0, P.jsx)(`span`, { className: `size-2 rounded-full bg-accent led-glow` }),
-                            (0, P.jsx)(`div`, {
-                                className: `font-display text-[10px] uppercase tracking-[0.25em] text-muted-foreground font-black`,
-                                children: `VISUAL DA FS` + fsNumber
-                            })
-                        ]
+                    (0, P.jsx)(`div`, {
+                        className: `font-display text-[10px] uppercase tracking-[0.25em] text-muted-foreground font-black shrink-0`,
+                        children: ""
                     }),
                     (0, P.jsxs)(`div`, {
-                        className: `flex items-center gap-1.5`,
+                        className: `flex items-center gap-1.5 shrink-0`,
                         children: [
                             (0, P.jsxs)(`div`, {
-                                className: `flex items-center rounded-lg border border-border bg-canvas/80 p-0.5 mr-1`,
+                                className: `flex items-center rounded-lg border border-border bg-canvas/80 p-0.5 shrink-0`,
                                 children: [
                                     isMt8 ? (0, P.jsx)(`button`, {
                                         type: `button`,
                                         onClick: () => setVisualTab(`preset_stomp`),
-                                        className: `rounded px-1.5 py-0.5 font-mono text-[8px] font-bold uppercase tracking-wider transition ${isPresetStompMode ? `bg-red-600 text-white shadow-sm` : `text-muted-foreground hover:text-foreground`}`,
+                                        style: isPresetStompMode ? {
+                                            background: 'linear-gradient(180deg, #ef4444 0%, #b91c1c 100%)',
+                                            backgroundColor: '#ef4444',
+                                            color: '#ffffff'
+                                        } : {},
+                                        className: `rounded px-1.5 py-0.5 font-mono text-[8px] font-bold uppercase tracking-wider transition shrink-0 ${isPresetStompMode ? `text-white shadow-sm font-black` : `text-muted-foreground hover:text-foreground`}`,
                                         children: `PRESET / STOMP`
                                     }) : (0, P.jsx)(`button`, {
                                         type: `button`,
                                         onClick: () => setVisualTab(`none`),
-                                        className: `rounded px-1.5 py-0.5 font-mono text-[8px] font-bold uppercase tracking-wider transition ${isPresetStompMode ? `bg-zinc-700 text-white shadow-sm` : `text-muted-foreground hover:text-foreground`}`,
+                                        className: `rounded px-1.5 py-0.5 font-mono text-[8px] font-bold uppercase tracking-wider transition shrink-0 ${isPresetStompMode ? `bg-zinc-700 text-white shadow-sm` : `text-muted-foreground hover:text-foreground`}`,
                                         children: `CLÁSSICO`
                                     }),
                                     (0, P.jsx)(`button`, {
                                         type: `button`,
                                         onClick: () => setVisualTab(`icon`),
-                                        className: `rounded px-1.5 py-0.5 font-mono text-[8px] font-bold uppercase tracking-wider transition ${effectiveVisual === `icon` ? `bg-accent text-accent-foreground shadow-sm` : `text-muted-foreground hover:text-foreground`}`,
+                                        style: effectiveVisual === `icon` ? {
+                                            background: 'linear-gradient(180deg, #ef4444 0%, #b91c1c 100%)',
+                                            backgroundColor: '#ef4444',
+                                            color: '#ffffff'
+                                        } : {},
+                                        className: `rounded px-1.5 py-0.5 font-mono text-[8px] font-bold uppercase tracking-wider transition shrink-0 ${effectiveVisual === `icon` ? `text-white shadow-sm font-black` : `text-muted-foreground hover:text-foreground`}`,
                                         children: `ÍCONE`
                                     }),
                                     (0, P.jsx)(`button`, {
                                         type: `button`,
                                         onClick: () => setVisualTab(`amp`),
-                                        className: `rounded px-1.5 py-0.5 font-mono text-[8px] font-bold uppercase tracking-wider transition ${effectiveVisual === `amp` ? `bg-red-600 text-white shadow-sm` : `text-muted-foreground hover:text-foreground`}`,
+                                        style: effectiveVisual === `amp` ? {
+                                            background: 'linear-gradient(180deg, #ef4444 0%, #b91c1c 100%)',
+                                            backgroundColor: '#ef4444',
+                                            color: '#ffffff'
+                                        } : {},
+                                        className: `rounded px-1.5 py-0.5 font-mono text-[8px] font-bold uppercase tracking-wider transition shrink-0 ${effectiveVisual === `amp` ? `text-white shadow-sm font-black` : `text-muted-foreground hover:text-foreground`}`,
                                         children: `AMP`
                                     })
                                 ]
                             }),
                             (0, P.jsxs)(`div`, {
-                                className: `flex items-center rounded-lg border border-border bg-canvas/80 p-0.5`,
+                                className: `flex items-center rounded-lg border border-border bg-canvas/80 p-0.5 shrink-0`,
                                 children: [
                                     (0, P.jsx)(`button`, {
                                         type: `button`,
                                         onClick: () => setPreviewOn(true),
-                                        className: `rounded px-2 py-0.5 font-mono text-[9px] font-bold uppercase tracking-wider transition ${previewOn ? `bg-accent text-accent-foreground shadow-sm` : `text-muted-foreground hover:text-foreground`}`,
+                                        className: `rounded px-2 py-0.5 font-mono text-[9px] font-bold uppercase tracking-wider transition shrink-0 ${previewOn ? `bg-accent text-accent-foreground shadow-sm` : `text-muted-foreground hover:text-foreground`}`,
                                         children: `ON`
                                     }),
                                     (0, P.jsx)(`button`, {
                                         type: `button`,
                                         onClick: () => setPreviewOn(false),
-                                        className: `rounded px-2 py-0.5 font-mono text-[9px] font-bold uppercase tracking-wider transition ${!previewOn ? `bg-zinc-700 text-zinc-100 shadow-sm` : `text-muted-foreground hover:text-foreground`}`,
+                                        className: `rounded px-2 py-0.5 font-mono text-[9px] font-bold uppercase tracking-wider transition shrink-0 ${!previewOn ? `bg-zinc-700 text-zinc-100 shadow-sm` : `text-muted-foreground hover:text-foreground`}`,
                                         children: `OFF`
                                     })
                                 ]
@@ -16440,13 +16548,7 @@ function FsBoxVisualCustomizer({
                     maxHeight: isAmpMode ? `230px` : `205px`
                 },
                 children: [
-                    (0, P.jsx)(`div`, {
-                        className: `flex items-center justify-between w-full z-10`,
-                        children: (0, P.jsx)(`span`, {
-                            className: `font-mono text-[11px] font-black tracking-wider text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]`,
-                            children: `FS` + fsNumber
-                        })
-                    }),
+                    
 
                     (0, P.jsx)(`div`, {
                         className: `flex flex-1 items-center justify-center py-1 z-10 overflow-hidden`,
@@ -16508,7 +16610,7 @@ function FsBoxVisualCustomizer({
                                                     color: simpleFootHex,
                                                     textShadow: previewOn ? `0 0 16px ${simpleFootHex}88` : `none`
                                                 },
-                                                children: fsNumber
+                                                children: isStomp ? activeSlotIdx : fsNumber
                                             })
                                         ]
                                     })
@@ -16551,10 +16653,10 @@ function FsBoxVisualCustomizer({
                                 }) : null
                             }),
                             (0, P.jsxs)(`div`, {
-                                className: `flex flex-col text-left min-w-0 flex-1`,
+                                className: `flex flex-col text-left min-w-0 flex-1 overflow-hidden`,
                                 children: [
-                                    (0, P.jsx)(`span`, { className: `font-display text-[9px] uppercase tracking-wider text-muted-foreground truncate`, children: `Fundo da Caixa` }),
-                                    (0, P.jsx)(`span`, { className: `font-display text-[11px] font-black uppercase text-foreground truncate`, children: activePreset.name })
+                                    (0, P.jsx)(`span`, { className: `font-display text-[9px] uppercase tracking-wider text-muted-foreground whitespace-nowrap`, children: `Fundo da Caixa` }),
+                                    (0, P.jsx)(`span`, { className: `font-display text-[10.5px] font-black uppercase text-foreground truncate`, title: activePreset.name, children: activePreset.name })
                                 ]
                             })
                         ]
@@ -16564,14 +16666,14 @@ function FsBoxVisualCustomizer({
             }),
 
             isPresetStompMode ? (0, P.jsxs)(`div`, {
-                className: `rounded-xl border border-border bg-canvas/70 p-2.5 space-y-2`,
+                className: `space-y-2`,
                 children: [
                     (0, P.jsxs)(`div`, {
                         className: `flex items-center justify-between gap-1.5 px-0.5`,
                         children: [
                             (0, P.jsx)(`span`, {
                                 className: `font-display text-[9px] uppercase tracking-[0.14em] text-muted-foreground font-bold truncate`,
-                                children: isMt8 ? `CORES DO DISPLAY (PRESET / STOMP)` : `CORES DA TELA (TFT)`
+                                children: isMt8 ? `CORES DO DISPLAY` : `CORES DA TELA`
                             }),
                             (0, P.jsx)(`span`, {
                                 className: `shrink-0 rounded bg-accent/15 px-1.5 py-0.5 font-mono text-[8px] font-bold uppercase text-accent`,
@@ -16582,97 +16684,58 @@ function FsBoxVisualCustomizer({
                     (0, P.jsxs)(`div`, {
                         className: `grid grid-cols-2 gap-2`,
                         children: [
-                            (0, P.jsxs)(`label`, {
-                                className: `flex min-w-0 flex-col justify-center rounded-xl border border-border bg-panel px-2.5 py-2 cursor-pointer hover:border-accent/40 transition-colors`,
-                                children: [
-                                    (0, P.jsx)(`span`, { className: `truncate font-display text-[9px] uppercase tracking-[0.12em] text-muted-foreground font-bold`, children: `Banco` }),
-                                    (0, P.jsxs)(`div`, {
-                                        className: `mt-1.5 flex items-center gap-2 min-w-0`,
-                                        children: [
-                                            (0, P.jsx)(`input`, {
-                                                type: `color`,
-                                                value: simpleBankHex,
-                                                onChange: ev => {
-                                                    let rgb = hexToRgb(ev.target.value);
-                                                    if (onPatchGlobal) {
-                                                        onPatchGlobal(prev => ({
-                                                            ...(prev || {}),
-                                                            displaySimpleBankR: rgb.r,
-                                                            displaySimpleBankG: rgb.g,
-                                                            displaySimpleBankB: rgb.b
-                                                        }));
-                                                    }
-                                                },
-                                                className: `size-5 shrink-0 cursor-pointer rounded border border-border bg-canvas p-0`
-                                            }),
-                                            (0, P.jsx)(`span`, { className: `truncate font-mono text-[10px] font-bold text-foreground uppercase`, children: simpleBankHex })
-                                        ]
-                                    })
-                                ]
+                            (0, P.jsx)(DisplayColorSwatchField, {
+                                label: `Banco`,
+                                valueHex: simpleBankHex,
+                                onChangeHex: newHex => {
+                                    let rgb = hexToRgb(newHex);
+                                    if (onPatchGlobal) {
+                                        onPatchGlobal(prev => ({
+                                            ...(prev || {}),
+                                            displaySimpleBankR: rgb.r,
+                                            displaySimpleBankG: rgb.g,
+                                            displaySimpleBankB: rgb.b
+                                        }));
+                                    }
+                                }
                             }),
-                            (0, P.jsxs)(`label`, {
-                                className: `flex min-w-0 flex-col justify-center rounded-xl border border-border bg-panel px-2.5 py-2 cursor-pointer hover:border-accent/40 transition-colors`,
-                                children: [
-                                    (0, P.jsx)(`span`, { className: `truncate font-display text-[9px] uppercase tracking-[0.12em] text-muted-foreground font-bold`, children: `Foot` }),
-                                    (0, P.jsxs)(`div`, {
-                                        className: `mt-1.5 flex items-center gap-2 min-w-0`,
-                                        children: [
-                                            (0, P.jsx)(`input`, {
-                                                type: `color`,
-                                                value: simpleFootHex,
-                                                onChange: ev => {
-                                                    let rgb = hexToRgb(ev.target.value);
-                                                    if (onPatchGlobal) {
-                                                        onPatchGlobal(prev => ({
-                                                            ...(prev || {}),
-                                                            displaySimpleFootR: rgb.r,
-                                                            displaySimpleFootG: rgb.g,
-                                                            displaySimpleFootB: rgb.b
-                                                        }));
-                                                    }
-                                                },
-                                                className: `size-5 shrink-0 cursor-pointer rounded border border-border bg-canvas p-0`
-                                            }),
-                                            (0, P.jsx)(`span`, { className: `truncate font-mono text-[10px] font-bold text-foreground uppercase`, children: simpleFootHex })
-                                        ]
-                                    })
-                                ]
+                            (0, P.jsx)(DisplayColorSwatchField, {
+                                label: `Foot`,
+                                valueHex: simpleFootHex,
+                                onChangeHex: newHex => {
+                                    let rgb = hexToRgb(newHex);
+                                    if (onPatchGlobal) {
+                                        onPatchGlobal(prev => ({
+                                            ...(prev || {}),
+                                            displaySimpleFootR: rgb.r,
+                                            displaySimpleFootG: rgb.g,
+                                            displaySimpleFootB: rgb.b
+                                        }));
+                                    }
+                                }
                             }),
-                            (0, P.jsxs)(`label`, {
-                                className: `flex min-w-0 flex-col justify-center rounded-xl border border-border bg-panel px-2.5 py-2 cursor-pointer hover:border-accent/40 transition-colors`,
-                                children: [
-                                    (0, P.jsx)(`span`, { className: `truncate font-display text-[9px] uppercase tracking-[0.12em] text-muted-foreground font-bold`, children: `Nome` }),
-                                    (0, P.jsxs)(`div`, {
-                                        className: `mt-1.5 flex items-center gap-2 min-w-0`,
-                                        children: [
-                                            (0, P.jsx)(`input`, {
-                                                type: `color`,
-                                                value: simpleNameHex,
-                                                onChange: ev => {
-                                                    let rgb = hexToRgb(ev.target.value);
-                                                    if (onPatchGlobal) {
-                                                        onPatchGlobal(prev => ({
-                                                            ...(prev || {}),
-                                                            displaySimpleNameR: rgb.r,
-                                                            displaySimpleNameG: rgb.g,
-                                                            displaySimpleNameB: rgb.b
-                                                        }));
-                                                    }
-                                                },
-                                                className: `size-5 shrink-0 cursor-pointer rounded border border-border bg-canvas p-0`
-                                            }),
-                                            (0, P.jsx)(`span`, { className: `truncate font-mono text-[10px] font-bold text-foreground uppercase`, children: simpleNameHex })
-                                        ]
-                                    })
-                                ]
+                            (0, P.jsx)(DisplayColorSwatchField, {
+                                label: `Nome`,
+                                valueHex: simpleNameHex,
+                                onChangeHex: newHex => {
+                                    let rgb = hexToRgb(newHex);
+                                    if (onPatchGlobal) {
+                                        onPatchGlobal(prev => ({
+                                            ...(prev || {}),
+                                            displaySimpleNameR: rgb.r,
+                                            displaySimpleNameG: rgb.g,
+                                            displaySimpleNameB: rgb.b
+                                        }));
+                                    }
+                                }
                             }),
                             (0, P.jsxs)(`div`, {
                                 onClick: () => setBgModalOpen(true),
-                                className: `flex min-w-0 flex-col justify-center rounded-xl border border-border bg-panel px-2.5 py-2 cursor-pointer hover:border-accent/40 transition-colors`,
+                                className: `flex min-w-0 flex-col justify-center rounded-xl border border-border bg-panel px-3 py-2 cursor-pointer hover:border-accent/50 hover:bg-panel/90 transition-all shadow-sm`,
                                 children: [
-                                    (0, P.jsx)(`span`, { className: `truncate font-display text-[9px] uppercase tracking-[0.12em] text-muted-foreground font-bold`, children: `Fundo FS` }),
+                                    (0, P.jsx)(`span`, { className: `truncate font-display text-[9.5px] uppercase tracking-[0.14em] text-muted-foreground font-black mb-1.5 text-center`, children: `Fundo FS` }),
                                     (0, P.jsxs)(`div`, {
-                                        className: `mt-1.5 flex items-center gap-2 min-w-0`,
+                                        className: `w-full h-7 sm:h-8 rounded-lg border border-border/80 bg-black/40 flex items-center justify-center gap-2 px-2 min-w-0 transition-transform active:scale-95`,
                                         children: [
                                             (0, P.jsx)(`div`, {
                                                 className: `size-5 shrink-0 rounded border border-black/50 overflow-hidden flex items-center justify-center shadow-inner`,
@@ -16721,7 +16784,7 @@ function FsBoxVisualCustomizer({
                         }),
                         (0, P.jsx)(`span`, {
                             className: `truncate font-bold`,
-                            children: savingColors ? `GRAVANDO...` : `SALVAR NA TELA (TFT)`
+                            children: savingColors ? `GRAVANDO...` : `SALVAR NA TELA`
                         })
                     ]
                 })
@@ -16729,7 +16792,7 @@ function FsBoxVisualCustomizer({
                 (0, P.jsx)(`button`, {
                     type: `button`,
                     onClick: onOpenAmp,
-                    className: `flex w-full items-center justify-center gap-2 rounded-xl border border-red-500/60 bg-red-950/40 px-3 py-2.5 font-display text-[10px] font-black uppercase tracking-[0.12em] text-red-400 shadow-sm transition hover:border-red-500 hover:bg-red-900/50 hover:text-red-300`,
+                    className: `flex w-full items-center justify-center gap-2 rounded-xl border border-accent/60 bg-accent/10 px-3 py-2.5 font-display text-[10px] font-black uppercase tracking-[0.12em] text-accent shadow-sm transition hover:border-accent hover:bg-accent/20`,
                     children: [
                         (0, P.jsx)(`svg`, {
                             xmlns: `http://www.w3.org/2000/svg`,
@@ -16773,7 +16836,7 @@ function FsBoxVisualCustomizer({
                 open: bgModalOpen,
                 onOpenChange: setBgModalOpen,
                 title: `Fundo da Caixa da FS` + fsNumber,
-                subtitle: `Escolha entre Transparente, Cores Sólidas ou Gradientes Estilizados`,
+                
                 children: (0, P.jsxs)(`div`, {
                     className: `space-y-4 p-1 max-h-[68vh] overflow-y-auto pr-1.5`,
                     children: [
@@ -16809,10 +16872,7 @@ function FsBoxVisualCustomizer({
                                                                 (0, P.jsx)(`span`, { className: `rounded bg-accent/25 px-1.5 py-0.5 text-[8px] font-bold text-accent tracking-widest`, children: `PADRÃO` })
                                                             ]
                                                         }),
-                                                        (0, P.jsx)(`div`, {
-                                                            className: `font-mono text-[9px] text-muted-foreground mt-0.5`,
-                                                            children: `Fundo vazado com contorno neon vibrante na cor do footswitch`
-                                                        })
+                                                        null
                                                     ]
                                                 })
                                             ]
@@ -16933,10 +16993,7 @@ function FsBoxVisualCustomizer({
                                                                     className: `font-display text-[11px] font-black uppercase tracking-wider ${isSel ? `text-accent font-bold` : `text-foreground`}`,
                                                                     children: p.name
                                                                 }),
-                                                                (0, P.jsx)(`div`, {
-                                                                    className: `font-mono text-[9px] text-muted-foreground`,
-                                                                    children: p.desc
-                                                                })
+                                                                null
                                                             ]
                                                         })
                                                     ]
@@ -17237,11 +17294,19 @@ function Yr(e, t, n, usbCfg) {
         iconKey: typeof e?.iconKey == `string` && !/^amp[0-9]+$/i.test(e.iconKey) ? displayIconSanitizeKey(e.iconKey) : ``,
         ampKey: typeof e?.ampKey == `string` && e.ampKey ? displayIconSanitizeKey(e.ampKey) : (typeof e?.iconKey == `string` && /^amp[0-9]+$/i.test(e.iconKey) ? displayIconSanitizeKey(e.iconKey) : ``),
         stompIcon: typeof e?.stompIcon == `string` ? displayIconSanitizeKey(e.stompIcon) : ``,
-        stompSlots: Array.isArray(e?.stompSlots) ? e.stompSlots.slice(0, 8).map(s => ({
-            icon: typeof s?.icon === `string` ? displayIconSanitizeKey(s.icon) : ``,
-            name: typeof s?.name === `string` ? s.name : ``,
-            color: typeof s?.color === `string` ? s.color : (typeof s?.color === `number` ? `#` + s.color.toString(16).padStart(6, `0`) : `#ff8800`)
-        })) : (Array.isArray(n?.stompSlots) ? n.stompSlots : Array.from({ length: 8 }, () => ({ icon: ``, name: ``, color: `#ff8800` }))),
+        stompSlots: (() => {
+            let raw = Array.isArray(e?.stompSlots) ? e.stompSlots : (Array.isArray(n?.stompSlots) ? n.stompSlots : []);
+            let slots = [];
+            for (let s = 0; s < 8; s++) {
+                let it = raw[s];
+                slots.push({
+                    icon: typeof it?.icon === `string` ? displayIconSanitizeKey(it.icon) : ``,
+                    name: typeof it?.name === `string` ? it.name : ``,
+                    color: typeof it?.color === `string` ? it.color : (typeof it?.color === `number` ? `#` + it.color.toString(16).padStart(6, `0`) : `#ff8800`)
+                });
+            }
+            return slots;
+        })(),
         gridFill: Number.isFinite(Number(e?.gridFill ?? n.gridFill)) ? Number(e?.gridFill ?? n.gridFill) : 0,
         sceneMask: Array.isArray(e?.scene) ? e.scene.map(e => typeof e == `object` && e ? !!e.enabled : !!e) : Array.isArray(n?.sceneMask) ? n.sceneMask : [],
         /* Nunca herdar comandos do FS/banco anterior — lista vazia = vazio. */
@@ -17275,11 +17340,37 @@ function Yr(e, t, n, usbCfg) {
 }
 
 function Xr() {
-    let [e, t] = (0, N.useState)(`MX-6`), [n, r] = (0, N.useState)(0), [i, a] = (0, N.useState)(1), [o, s] = (0, N.useState)(`preset`), [c, l] = (0, N.useState)({}), [expBankState, setExpBankState] = (0, N.useState)(() => expCreateEmptyBank()), [globalSubTab, setGlobalSubTab] = (0, N.useState)(`gb`), [sysSubTab, setSysSubTab] = (0, N.useState)(`conexoes`), u = (0, N.useRef)(!1), modelSaveBusyRef = (0, N.useRef)(!1), modelRebootUntilRef = (0, N.useRef)(0), iconKeyPendingRef = (0, N.useRef)(null), ampKeyPendingRef = (0, N.useRef)(null), activeStompSlotRef = (0, N.useRef)(1), [activeStompSlot, setActiveStompSlot] = (0, N.useState)(1), d = gr[e].fs, [f, p] = (0, N.useState)(1), [m, h] = (0, N.useState)(`Preset`), [g, _] = (0, N.useState)(!0), [v, y] = (0, N.useState)(null), [R, I] = (0, N.useState)(null), [B, L] = (0, N.useState)(``),     [backupBusy, setBackupBusy] = (0, N.useState)(!1), [backupProgress, setBackupProgress] = (0, N.useState)({
+    let [e, t] = (0, N.useState)(`MX-6`), [n, r] = (0, N.useState)(0), [i, a] = (0, N.useState)(1), [o, s] = (0, N.useState)(`preset`), [c, l] = (0, N.useState)({}), [expBankState, setExpBankState] = (0, N.useState)(() => expCreateEmptyBank()), [globalSubTab, setGlobalSubTab] = (0, N.useState)(`gb`), [sysSubTab, setSysSubTab] = (0, N.useState)(`conexoes`), u = (0, N.useRef)(!1), modelSaveBusyRef = (0, N.useRef)(!1), modelRebootUntilRef = (0, N.useRef)(0), iconKeyPendingRef = (0, N.useRef)(null), ampKeyPendingRef = (0, N.useRef)(null), activeStompSlotRef = (0, N.useRef)(1), [activeStompSlot, setActiveStompSlot] = (0, N.useState)(1), d = gr[e].fs, [f, pFs] = (0, N.useState)(1), [m, h] = (0, N.useState)(`Preset`), [g, _] = (0, N.useState)(!0), [v, y] = (0, N.useState)(null), [R, I] = (0, N.useState)(null), [B, L] = (0, N.useState)(``),     [backupBusy, setBackupBusy] = (0, N.useState)(!1), [backupProgress, setBackupProgress] = (0, N.useState)({
         pct: 0,
         label: ``
     }), [fsSwitchPrompt, setFsSwitchPrompt] = (0, N.useState)(null), [bankSwitchPrompt, setBankSwitchPrompt] = (0, N.useState)(null), fsSavedSnapshotRef = (0, N.useRef)({}), fsFullSnapshotRef = (0, N.useRef)({}), pendingFsBgSlotsRef = (0, N.useRef)(null), [transportState, setTransportState] = (0, N.useState)(() => getTransportSnapshot()), [iconScreenOpen, setIconScreenOpen] = (0, N.useState)(!1), [ampScreenOpen, setAmpScreenOpen] = (0, N.useState)(!1);
-    let [copiedFs, setCopiedFs] = (0, N.useState)(null);
+    let {
+        theme: appTheme,
+        toggle: toggleAppTheme
+    } = useThemeMode(), {
+        isFull: isAppFull,
+        toggle: toggleAppFullscreen
+    } = useFullscreenState();
+    let [copiedFs, setCopiedFs] = (0, N.useState)(null),
+        [iconModalFs, setIconModalFs] = (0, N.useState)(1),
+        p = targetFs => {
+            let num = Number(targetFs) || 1;
+            iconKeyPendingRef.current = null;
+            ampKeyPendingRef.current = null;
+            setActiveStompSlot(num);
+            activeStompSlotRef.current = num;
+            pFs(num);
+        };
+    let handleChangeCtrlMode = newMode => {
+        iconKeyPendingRef.current = null;
+        ampKeyPendingRef.current = null;
+        if (newMode === `Stomp`) {
+            let currentFs = Number(f || 1) || 1;
+            setActiveStompSlot(currentFs);
+            activeStompSlotRef.current = currentFs;
+        }
+        h(newMode);
+    };
     let handleCopyFs = fsNum => {
         let sourceNum = Number(fsNum || f) || 1;
         let sourceData = b[sourceNum] || kr(sourceNum);
@@ -17359,8 +17450,10 @@ function Xr() {
             e ? window.localStorage.setItem(`midiDictPedalId`, e) : window.localStorage.removeItem(`midiDictPedalId`)
         } catch {}
     }, [v]), (0, N.useEffect)(() => {
-        !g && m === `Stomp` && h(`Preset`)
-    }, [g, m]), (0, N.useEffect)(() => {
+        let isPathPreset = Number(c?.controllerPath ?? 0) === 0;
+        let allowStomp = Boolean(g || isPathPreset);
+        !allowStomp && m === `Stomp` && h(`Preset`)
+    }, [g, m, c?.controllerPath]), (0, N.useEffect)(() => {
         typeof c?.customStompEnabled < `u` && _(!!Number(c.customStompEnabled))
     }, [c?.customStompEnabled]), (0, N.useEffect)(() => {
         return setTransportState(getTransportSnapshot()), subscribeTransportState(e => {
@@ -17565,6 +17658,11 @@ function Xr() {
                                 }
                             };
                         });
+                        if (fsToSave === f) {
+                            E({
+                                stompSlots: slots
+                            });
+                        }
                         rt.success(`Salvo Stomp: ${hr[n]} · Preset FS${fsToSave} · Slot ${stompSlotIdx}`);
                     } catch (err) {
                         rt.error(`Erro ao salvar Stomp FS: ${err?.message || err}`);
@@ -17964,6 +18062,12 @@ function Xr() {
                 customBankHoldNavEnabled: src.customBankHoldNavEnabled,
                 customBankUpHoldFs: src.customBankUpHoldFs,
                 customBankDownHoldFs: src.customBankDownHoldFs,
+                customBankCcEnabled: src.customBankCcEnabled,
+                customBankCcUp: src.customBankCcUp,
+                customBankCcDown: src.customBankCcDown,
+                customBankCcChannel: src.customBankCcChannel,
+                customBankCcValue: src.customBankCcValue,
+                customBankCcOutput: src.customBankCcOutput,
                 customStompEnabled: src.customStompEnabled ?? (g ? 1 : 0),
                 customStompSceneEnabled: src.customStompSceneEnabled ?? (scenesOn ? 1 : 0),
                 customSceneOutput: src.customSceneOutput,
@@ -18642,7 +18746,7 @@ function Xr() {
                     if (!parts || !parts.length) {
                         parts = buildSistemaUsbParts(c);
                     }
-                    let saveLabel = sysSubTab === `tela` ? `Tela` : `Conexões`;
+                    let saveLabel = sysSubTab === `tela` ? `Tela` : (sysSubTab === `utilitario` ? `Sistema` : `Conexões`);
                     F(`E`, `usb.save.sistema.start`, {
                         parts: parts.length,
                         subTab: sysSubTab
@@ -18663,7 +18767,7 @@ function Xr() {
                 return
             }
         };
-    let globalSaveLabel = o === `global` ? (globalSubTab === `stomp` ? `Salvar Stomp` : globalSubTab === `exp` ? `Salvar EXP` : `Salvar GB`) : o === `sistema` ? (sysSubTab === `tela` ? `Salvar Tela` : `Salvar Conexões`) : `Salvar`;
+    let globalSaveLabel = o === `global` ? (globalSubTab === `stomp` ? `Salvar Stomp` : globalSubTab === `exp` ? `Salvar EXP` : `Salvar GB`) : o === `sistema` ? (sysSubTab === `tela` ? `Salvar Tela` : sysSubTab === `utilitario` ? `Salvar Sistema` : `Salvar Conexões`) : `Salvar`;
     return (0, P.jsx)(fr.Provider, {
         value: {
             stompOn: g,
@@ -18699,30 +18803,83 @@ function Xr() {
                         children: [(0, P.jsx)(`h1`, {
                             className: `truncate font-display text-base font-black uppercase tracking-[0.18em] text-foreground sm:text-2xl`,
                             children: o === `preset` ? `Editar Preset` : o === `global` ? `Configuração Global` : `Sistema`
-                        }), (0, P.jsx)(`div`, {
-                            className: `lg:hidden`,
-                            children: (0, P.jsx)(vi, {
-                            label: transportState.connecting ? `A ligar…` : transportState.connected ? `USB` : `Ligar USB`,
-                            active: transportState.mode === `usb` && transportState.connected,
-                            selected: transportState.mode === `usb` && !transportState.connected,
-                            disabled: transportState.connecting || !transportState.supported,
-                            title: transportState.supported ? transportState.connected ? `USB conectado` : `Clique para conectar via USB CDC` : `Web Serial não disponível neste navegador`,
-                            onClick: async () => {
-                                if (!transportState.supported || transportState.connecting) return;
-                                try {
-                                    await usbConnectFromUi(), rt.success(`USB CDC conectado.`)
-                                } catch (e) {
-                                    rt.error(`Falha ao conectar USB.`)
-                                }
-                            }
-                        })
-                        }), (0, P.jsxs)(`button`, {
-                            type: `button`,
-                            onClick: ne,
-                            className: `flex shrink-0 items-center gap-2 rounded-full bg-gradient-to-b from-[#ef4444] to-[#b91c1c] px-3 py-2 font-display text-[10px] font-black uppercase tracking-[0.25em] text-accent-foreground shadow-[0_2px_10px_rgba(220,38,38,0.5)] hover:opacity-95 lg:hidden`,
-                            children: [(0, P.jsx)(cr, {
-                                className: `size-3.5`
-                            }), globalSaveLabel]
+                        }), (0, P.jsxs)(`div`, {
+                            className: `flex items-center gap-1.5 lg:hidden`,
+                            children: [
+                                (0, P.jsx)(`button`, {
+                                    type: `button`,
+                                    onClick: toggleAppTheme,
+                                    "aria-label": appTheme === `dark` ? `Ativar tema claro` : `Ativar tema escuro`,
+                                    title: appTheme === `dark` ? `Tema claro` : `Tema escuro`,
+                                    className: `grid size-8 place-items-center rounded-md border border-border bg-panel text-muted-foreground transition-colors hover:text-foreground hover:border-accent/40`,
+                                    children: appTheme === `dark` ? (0, P.jsx)(ur, {
+                                        className: `size-4`
+                                    }) : (0, P.jsx)(ir, {
+                                        className: `size-4`
+                                    })
+                                }),
+                                (0, P.jsx)(`button`, {
+                                    type: `button`,
+                                    onClick: toggleAppFullscreen,
+                                    "aria-label": isAppFull ? `Sair da tela cheia` : `Entrar em tela cheia`,
+                                    title: isAppFull ? `Sair da tela cheia` : `Tela cheia`,
+                                    className: `grid size-8 place-items-center rounded-md border border-border bg-panel text-muted-foreground transition-colors hover:text-foreground hover:border-accent/40`,
+                                    children: isAppFull ? (0, P.jsx)(rr, {
+                                        className: `size-4`
+                                    }) : (0, P.jsx)(nr, {
+                                        className: `size-4`
+                                    })
+                                }),
+                                (0, P.jsx)(`button`, {
+                                    type: `button`,
+                                    onClick: async () => {
+                                        if (!transportState.supported || transportState.connecting) return;
+                                        try {
+                                            await usbConnectFromUi(), rt.success(`USB CDC conectado.`)
+                                        } catch (e) {
+                                            rt.error(`Falha ao conectar USB.`)
+                                        }
+                                    },
+                                    disabled: transportState.connecting || !transportState.supported,
+                                    "aria-label": transportState.connected ? `USB Conectado` : `Conectar USB`,
+                                    title: transportState.supported ? (transportState.connected ? `USB conectado (Web Serial)` : `Conectar USB (Web Serial)`) : `Web Serial não disponível neste navegador`,
+                                    className: `grid size-8 place-items-center rounded-md border transition-all ${
+                                        transportState.connected
+                                            ? `border-emerald-500/70 bg-emerald-950/40 text-emerald-400 shadow-[0_0_12px_rgba(16,185,129,0.45)]`
+                                            : transportState.connecting
+                                            ? `border-amber-500/70 bg-amber-950/40 text-amber-300 animate-pulse`
+                                            : `border-border bg-panel text-muted-foreground transition-colors hover:text-foreground hover:border-accent/40`
+                                    }`,
+                                    children: (0, P.jsxs)(`svg`, {
+                                        xmlns: `http://www.w3.org/2000/svg`,
+                                        viewBox: `0 0 24 24`,
+                                        fill: `none`,
+                                        stroke: `currentColor`,
+                                        strokeWidth: `2`,
+                                        strokeLinecap: `round`,
+                                        strokeLinejoin: `round`,
+                                        className: `size-4`,
+                                        children: [
+                                            (0, P.jsx)(`circle`, { cx: `10`, cy: `7`, r: `1` }),
+                                            (0, P.jsx)(`circle`, { cx: `4`, cy: `20`, r: `1` }),
+                                            (0, P.jsx)(`path`, { d: `M4.7 19.3 19 5` }),
+                                            (0, P.jsx)(`path`, { d: `m21 3-3 1 2 2Z` }),
+                                            (0, P.jsx)(`path`, { d: `M9.26 7.68 5 12l2 5` }),
+                                            (0, P.jsx)(`path`, { d: `m10 14 5 2 3.5-3.5` }),
+                                            (0, P.jsx)(`path`, { d: `m18 12 1-1` }),
+                                            (0, P.jsx)(`rect`, { x: `14`, y: `17`, width: `4`, height: `4`, rx: `1` })
+                                        ]
+                                    })
+                                }),
+                                (0, P.jsxs)(`button`, {
+                                    type: `button`,
+                                    onClick: ne,
+                                    className: `flex shrink-0 items-center gap-2 rounded-full bg-gradient-to-b from-[#ef4444] to-[#b91c1c] px-3 py-2 font-display text-[10px] font-black uppercase tracking-[0.25em] text-accent-foreground shadow-[0_2px_10px_rgba(220,38,38,0.5)] hover:opacity-95`,
+                                    children: [(0, P.jsx)(cr, {
+                                        className: `size-3.5`
+                                    }), globalSaveLabel]
+                                })
+                            ]
                         })]
                     }), o === `preset` && (0, P.jsx)(_i, {
                         model: e,
@@ -18740,30 +18897,83 @@ function Xr() {
                         }
                     }), (0, P.jsxs)(`div`, {
                         className: `hidden items-center gap-2 lg:flex`,
-                        children: [(0, P.jsx)(vi, {
-                            label: transportState.connecting ? `A ligar…` : transportState.connected ? `USB` : `Ligar USB`,
-                            active: transportState.mode === `usb` && transportState.connected,
-                            selected: transportState.mode === `usb` && !transportState.connected,
-                            disabled: transportState.connecting || !transportState.supported,
-                            title: transportState.supported ? transportState.connected ? `USB conectado` : `Clique para conectar via USB CDC` : `Web Serial não disponível neste navegador`,
-                            onClick: async () => {
-                                if (!transportState.supported || transportState.connecting) return;
-                                try {
-                                    await usbConnectFromUi(), rt.success(`USB CDC conectado.`)
-                                } catch (e) {
-                                    rt.error(`Falha ao conectar USB.`), F(`U`, `usb.transport.connect.error`, {
-                                        message: String(e?.message || e)
-                                    })
-                                }
-                            }
-                        }), (0, P.jsxs)(`button`, {
-                            type: `button`,
-                            onClick: ne,
-                            className: `flex items-center gap-2 rounded-full bg-gradient-to-b from-[#ef4444] to-[#b91c1c] px-4 py-2 font-display text-[10px] font-black uppercase tracking-[0.25em] text-accent-foreground shadow-[0_2px_10px_rgba(220,38,38,0.5)] hover:opacity-95`,
-                            children: [(0, P.jsx)(cr, {
-                                className: `size-3.5`
-                            }), globalSaveLabel]
-                        })]
+                        children: [
+                            (0, P.jsx)(`button`, {
+                                type: `button`,
+                                onClick: toggleAppTheme,
+                                "aria-label": appTheme === `dark` ? `Ativar tema claro` : `Ativar tema escuro`,
+                                title: appTheme === `dark` ? `Tema claro` : `Tema escuro`,
+                                className: `grid size-8 place-items-center rounded-md border border-border bg-panel text-muted-foreground transition-colors hover:text-foreground hover:border-accent/40`,
+                                children: appTheme === `dark` ? (0, P.jsx)(ur, {
+                                    className: `size-4`
+                                }) : (0, P.jsx)(ir, {
+                                    className: `size-4`
+                                })
+                            }),
+                            (0, P.jsx)(`button`, {
+                                type: `button`,
+                                onClick: toggleAppFullscreen,
+                                "aria-label": isAppFull ? `Sair da tela cheia` : `Entrar em tela cheia`,
+                                title: isAppFull ? `Sair da tela cheia` : `Tela cheia`,
+                                className: `grid size-8 place-items-center rounded-md border border-border bg-panel text-muted-foreground transition-colors hover:text-foreground hover:border-accent/40`,
+                                children: isAppFull ? (0, P.jsx)(rr, {
+                                    className: `size-4`
+                                }) : (0, P.jsx)(nr, {
+                                    className: `size-4`
+                                })
+                            }),
+                            (0, P.jsx)(`button`, {
+                                type: `button`,
+                                onClick: async () => {
+                                    if (!transportState.supported || transportState.connecting) return;
+                                    try {
+                                        await usbConnectFromUi(), rt.success(`USB CDC conectado.`)
+                                    } catch (e) {
+                                        rt.error(`Falha ao conectar USB.`), F(`U`, `usb.transport.connect.error`, {
+                                            message: String(e?.message || e)
+                                        })
+                                    }
+                                },
+                                disabled: transportState.connecting || !transportState.supported,
+                                "aria-label": transportState.connected ? `USB Conectado` : `Conectar USB`,
+                                title: transportState.supported ? (transportState.connected ? `USB conectado (Web Serial)` : `Conectar USB (Web Serial)`) : `Web Serial não disponível neste navegador`,
+                                className: `grid size-8 place-items-center rounded-md border transition-all ${
+                                    transportState.connected
+                                        ? `border-emerald-500/70 bg-emerald-950/40 text-emerald-400 shadow-[0_0_12px_rgba(16,185,129,0.45)]`
+                                        : transportState.connecting
+                                        ? `border-amber-500/70 bg-amber-950/40 text-amber-300 animate-pulse`
+                                        : `border-border bg-panel text-muted-foreground transition-colors hover:text-foreground hover:border-accent/40`
+                                }`,
+                                children: (0, P.jsxs)(`svg`, {
+                                    xmlns: `http://www.w3.org/2000/svg`,
+                                    viewBox: `0 0 24 24`,
+                                    fill: `none`,
+                                    stroke: `currentColor`,
+                                    strokeWidth: `2`,
+                                    strokeLinecap: `round`,
+                                    strokeLinejoin: `round`,
+                                    className: `size-4`,
+                                    children: [
+                                        (0, P.jsx)(`circle`, { cx: `10`, cy: `7`, r: `1` }),
+                                        (0, P.jsx)(`circle`, { cx: `4`, cy: `20`, r: `1` }),
+                                        (0, P.jsx)(`path`, { d: `M4.7 19.3 19 5` }),
+                                        (0, P.jsx)(`path`, { d: `m21 3-3 1 2 2Z` }),
+                                        (0, P.jsx)(`path`, { d: `M9.26 7.68 5 12l2 5` }),
+                                        (0, P.jsx)(`path`, { d: `m10 14 5 2 3.5-3.5` }),
+                                        (0, P.jsx)(`path`, { d: `m18 12 1-1` }),
+                                        (0, P.jsx)(`rect`, { x: `14`, y: `17`, width: `4`, height: `4`, rx: `1` })
+                                    ]
+                                })
+                            }),
+                            (0, P.jsxs)(`button`, {
+                                type: `button`,
+                                onClick: ne,
+                                className: `flex items-center gap-2 rounded-full bg-gradient-to-b from-[#ef4444] to-[#b91c1c] px-4 py-2 font-display text-[10px] font-black uppercase tracking-[0.25em] text-accent-foreground shadow-[0_2px_10px_rgba(220,38,38,0.5)] hover:opacity-95`,
+                                children: [(0, P.jsx)(cr, {
+                                    className: `size-3.5`
+                                }), globalSaveLabel]
+                            })
+                        ]
                     })]
                 }), (0, P.jsx)(Zr, {
                     tab: o,
@@ -18872,7 +19082,7 @@ function Xr() {
                             }
                         })
                     }), (0, P.jsx)(`section`, {
-                        className: `order-2 space-y-3 lg:order-none lg:col-start-3 lg:row-start-1 lg:row-span-2`,
+                        className: `order-4 space-y-3 lg:order-none lg:col-start-3 lg:row-start-1 lg:row-span-2`,
                         children: (0, P.jsx)(FsBoxVisualCustomizer, {
                             fsNumber: f,
                             fsConfig: w,
@@ -18882,7 +19092,11 @@ function Xr() {
                             bankName: hr[n],
                             activeStompSlot: activeStompSlot,
                             onPatch: E,
-                            onOpenIcon: () => setIconScreenOpen(true),
+                            onOpenIcon: () => {
+                                iconKeyPendingRef.current = null;
+                                setIconModalFs(f);
+                                setIconScreenOpen(true);
+                            },
                             onOpenAmp: () => setAmpScreenOpen(true),
                             onSaveFs: async (updatedFsConfig) => {
                                 let fsData = updatedFsConfig || w;
@@ -18898,21 +19112,18 @@ function Xr() {
                                 }, 4);
                             }
                         })
-                    }), m !== `Stomp` ? (0, P.jsx)(`section`, {
-                        className: `order-3 lg:order-none lg:col-start-1 lg:row-start-2 lg:sticky lg:top-4 lg:self-start`,
+                    }), (0, P.jsx)(`section`, {
+                        className: `order-2 lg:order-none lg:col-start-1 lg:row-start-2 lg:sticky lg:top-4 lg:self-start`,
                         children: (0, P.jsxs)(`div`, {
-                            className: `rounded-2xl border border-border bg-panel/70 p-3 shadow-2xl shadow-black/40 sm:p-4`,
+                            className: `rounded-2xl border border-border bg-panel/70 p-2.5 sm:p-4 shadow-2xl shadow-black/40`,
                             children: [(0, P.jsxs)(`div`, {
-                                className: `mb-3 flex items-center justify-between px-1`,
+                                className: `mb-2 sm:mb-3 flex items-center justify-between px-1`,
                                 children: [(0, P.jsx)(`div`, {
                                     className: `font-display text-[10px] uppercase tracking-[0.3em] text-muted-foreground`,
                                     children: `Footswitches`
-                                }), (0, P.jsxs)(`span`, {
-                                    className: `font-mono text-[10px] text-accent`,
-                                    children: [effectiveFs, ` chaves`]
-                                })]
+                                }), null],
                             }), (0, P.jsx)(`div`, {
-                                className: `grid ${gr[e].grid} gap-3`,
+                                className: `grid ${gr[e].grid} gap-2 sm:gap-3`,
                                 children: Array.from({
                                     length: effectiveFs
                                 }, (e, t) => t + 1).map(e => (0, P.jsx)(xi, {
@@ -18928,8 +19139,8 @@ function Xr() {
                                 }, e))
                             })]
                         })
-                    }) : null, (0, P.jsxs)(`section`, {
-                        className: `order-4 space-y-4 lg:order-none lg:col-start-2 lg:row-start-1 lg:row-span-2`,
+                    }), (0, P.jsxs)(`section`, {
+                        className: `order-3 space-y-4 lg:order-none lg:col-start-2 lg:row-start-1 lg:row-span-2`,
                         children: [(0, P.jsx)(Ei, {
                             model: e,
                             bank: hr[n],
@@ -18939,22 +19150,46 @@ function Xr() {
                             onRenameFs: () => openFsRename(f),
                             config: w,
                             ctrlMode: m,
-                            onChangeCtrlMode: h,
+                            onChangeCtrlMode: handleChangeCtrlMode,
                             fxList: fxList,
-                              allFsConfigs: b,
-                              effectiveFs: effectiveFs,
-                              globalConfig: c,
-                              onSelectFs: requestSelectFs,
-                              onOpenIconModal: () => setIconScreenOpen(!0),
-                              onRenameFsIndex: openFsRename,
-                              activeStompSlot: activeStompSlot,
-                              onSelectStompSlot: slotIdx => { setActiveStompSlot(slotIdx); activeStompSlotRef.current = slotIdx; },
-                              onOpenStompIcon: slotIdx => { activeStompSlotRef.current = slotIdx; setIconScreenOpen(!0); },
-                              onRenameStompSlot: slotIdx => openFsRename(f, slotIdx),
-                              onCopyFs: () => handleCopyFs(f),
-                              onPasteFs: () => handlePasteFs(f),
-                              hasCopiedFs: !!copiedFs,
-                              copiedFsNumber: copiedFs?.fs,
+                            allFsConfigs: b,
+                            effectiveFs: effectiveFs,
+                            globalConfig: c,
+                            onSelectFs: requestSelectFs,
+                            onOpenIconModal: targetIdx => {
+                                let num = Number(targetIdx || f || 1) || 1;
+                                iconKeyPendingRef.current = null;
+                                setIconModalFs(num);
+                                setIconScreenOpen(!0);
+                            },
+                            onRenameFsIndex: openFsRename,
+                            activeStompSlot: activeStompSlot,
+                            onSelectStompSlot: slotIdx => {
+                                let num = Number(slotIdx) || 1;
+                                iconKeyPendingRef.current = null;
+                                ampKeyPendingRef.current = null;
+                                setActiveStompSlot(num);
+                                activeStompSlotRef.current = num;
+                            },
+                            onOpenStompIcon: slotIdx => {
+                                let num = Number(slotIdx) || 1;
+                                iconKeyPendingRef.current = null;
+                                ampKeyPendingRef.current = null;
+                                setActiveStompSlot(num);
+                                activeStompSlotRef.current = num;
+                                setIconModalFs(f);
+                                setIconScreenOpen(!0);
+                            },
+                            onRenameStompSlot: slotIdx => {
+                                let num = Number(slotIdx) || 1;
+                                setActiveStompSlot(num);
+                                activeStompSlotRef.current = num;
+                                openFsRename(f, num);
+                            },
+                            onCopyFs: () => handleCopyFs(f),
+                            onPasteFs: () => handlePasteFs(f),
+                            hasCopiedFs: !!copiedFs,
+                            copiedFsNumber: copiedFs?.fs,
                             onChangeMode: e => {
                                 if (e === `Ricochet`) {
                                     E({
@@ -19108,28 +19343,25 @@ function Xr() {
                             })
                         }), f <= modelFs && (0, P.jsx)(Ci, {
                             fsNumber: f,
-                            led: m === "Stomp" ? (w.stompSlots?.[activeStompSlotRef.current - 1]?.color ? { on: w.stompSlots[activeStompSlotRef.current - 1].color, off: w.stompLed?.off || "#000000" } : (w.stompLed || yr)) : w.led,
+                            led: m === "Stomp" ? (w.stompSlots?.[activeStompSlot - 1]?.color ? { on: w.stompSlots[activeStompSlot - 1].color, off: w.stompLed?.off || "#000000" } : (w.stompLed || yr)) : w.led,
                             onChange: e => {
                                 if (m === "Stomp") {
-                                    let slotIdx = activeStompSlotRef.current || 1;
+                                    let targetSlot = Number(activeStompSlotRef.current || activeStompSlot || 1);
                                     let curFs = b[f] || kr(f);
                                     let slots = Array.isArray(curFs.stompSlots) ? [...curFs.stompSlots] : Array.from({ length: 8 }, () => ({ icon: "", name: "", color: "#ff8800" }));
                                     while (slots.length < 8) slots.push({ icon: "", name: "", color: "#ff8800" });
                                     let newColor = e?.on || "#ff8800";
-                                    if (slotIdx >= 1 && slotIdx <= 8) {
-                                        slots[slotIdx - 1] = {
-                                            ...slots[slotIdx - 1],
-                                            color: newColor
-                                        };
+                                    if (targetSlot >= 1 && targetSlot <= 8) {
+                                        slots[targetSlot - 1] = { ...slots[targetSlot - 1], color: newColor };
                                     }
                                     let updatedFs = {
                                         ...curFs,
-                                        stompSlots: slots,
-                                        ...(slotIdx === f ? { stompLed: e } : {})
+                                        stompLed: e,
+                                        stompSlots: slots
                                     };
                                     E({
-                                        stompSlots: slots,
-                                        ...(slotIdx === f ? { stompLed: e } : {})
+                                        stompLed: e,
+                                        stompSlots: slots
                                     });
                                     (async () => {
                                         try {
@@ -19141,13 +19373,9 @@ function Xr() {
                                             }, 4);
                                             x(prev => ({
                                                 ...prev,
-                                                [f]: {
-                                                    ...prev[f] || kr(f),
-                                                    stompSlots: slots,
-                                                    ...(slotIdx === f ? { stompLed: e } : {})
-                                                }
+                                                [f]: updatedFs
                                             }));
-                                            rt.success(`Cor Stomp salva: Preset FS${f} · Stomp FS${slotIdx}`);
+                                            rt.success(`Cor Stomp ${targetSlot} salva na FS${f}`);
                                         } catch (err) {
                                             rt.error(`Erro ao salvar cor Stomp: ${softApFetchErrorMessage(err)}`);
                                         }
@@ -19163,103 +19391,124 @@ function Xr() {
                             children: [(Number(c?.displayStyle) === 7) ? (0, P.jsx)(`button`, {
                                 type: `button`,
                                 onClick: () => setAmpScreenOpen(!0),
-                                className: `flex w-full items-center justify-center gap-2 rounded-xl border border-red-500/50 bg-red-950/20 px-4 py-3 font-display text-[10px] font-bold uppercase tracking-[0.2em] text-red-400 transition hover:border-red-500 hover:bg-red-900/30`,
+                                className: `flex w-full items-center justify-center gap-2 rounded-xl border border-border bg-canvas px-4 py-3 font-display text-[10px] font-bold uppercase tracking-[0.2em] text-accent transition hover:border-accent/40 hover:bg-accent/5`,
                                 children: `Cabeçote Amp`
                             }) : (0, P.jsx)(`button`, {
                                 type: `button`,
-                                onClick: () => setIconScreenOpen(!0),
+                                onClick: () => {
+                                    iconKeyPendingRef.current = null;
+                                    setIconModalFs(f);
+                                    setIconScreenOpen(!0);
+                                },
                                 className: `flex w-full items-center justify-center gap-2 rounded-xl border border-border bg-canvas px-4 py-3 font-display text-[10px] font-bold uppercase tracking-[0.2em] text-accent transition hover:border-accent/40 hover:bg-accent/5`,
                                 children: `Ícones`
-                            }), (0, P.jsx)(popupShell, {
-                                open: iconScreenOpen,
-                                onOpenChange: setIconScreenOpen,
-                                title: `Ícones`,
-                                subtitle: m === `Stomp` ? `FS${f} · Modo Stomp` : `FS${f}`,
-                                children: (0, P.jsx)(FsScreenIconPicker, {
-                                    iconKey: m === `Stomp` ? (activeStompSlotRef.current ? (w.stompSlots?.[activeStompSlotRef.current - 1]?.icon || ``) : (w.stompIcon || ``)) : w.iconKey,
-                                    fsIndex: f,
-                                    fsCount: gr[e]?.fs,
-                                    embedded: !0,
-                                    onSetKey: key => {
-                                        iconKeyPendingRef.current = key;
-                                        if (m === `Stomp`) {
-                                            E({
-                                                stompIcon: key,
-                                                iconKey: key
-                                            })
-                                        } else {
-                                            E({
-                                                iconKey: key
-                                            })
+                            }), (() => {
+                                let isStomp = m === `Stomp`,
+                                    targetFs = Number(iconModalFs || f || 1),
+                                    modalTargetCfg = b[targetFs] || kr(targetFs),
+                                    targetSlot = isStomp ? Number(activeStompSlot || 1) : targetFs,
+                                    modalIconInitial = isStomp
+                                        ? (modalTargetCfg.stompSlots?.[targetSlot - 1]?.icon || (targetSlot === targetFs ? modalTargetCfg.stompIcon : '') || modalTargetCfg.iconKey || ``)
+                                        : (modalTargetCfg.iconKey || ``);
+                                return (0, P.jsx)(popupShell, {
+                                    open: iconScreenOpen,
+                                    onOpenChange: open => {
+                                        setIconScreenOpen(open);
+                                        if (!open) iconKeyPendingRef.current = null;
+                                    },
+                                    title: `Ícones`,
+                                    subtitle: isStomp ? `FS${targetFs} · Stomp Slot ${targetSlot}` : `FS${targetFs}`,
+                                    children: (0, P.jsx)(FsScreenIconPicker, {
+                                        iconKey: modalIconInitial,
+                                        fsIndex: targetFs,
+                                        fsCount: gr[e]?.fs,
+                                        embedded: !0,
+                                        onSetKey: key => {
+                                            iconKeyPendingRef.current = key;
                                         }
-                                    }
-                                }),
-                                footer: (0, P.jsxs)(`div`, {
-                                    className: `flex flex-col-reverse gap-2 sm:flex-row sm:justify-end`,
-                                    children: [(0, P.jsx)(`button`, {
-                                        type: `button`,
-                                        onClick: () => setIconScreenOpen(!1),
-                                        className: `w-full rounded-md border border-border px-3 py-2 font-display text-[10px] uppercase tracking-[0.16em] text-muted-foreground transition hover:text-foreground sm:w-auto`,
-                                        children: `Fechar`
-                                    }), (0, P.jsx)(`button`, {
-                                        type: `button`,
-                                        onClick: async () => {
-                                            let chosenKey = iconKeyPendingRef.current;
-                                            setIconScreenOpen(!1);
-                                            iconKeyPendingRef.current = null;
-                                            if (m === `Stomp`) {
-                                                let sIdx = activeStompSlotRef.current || 1;
-                                                let finalKey = displayIconSanitizeKey(chosenKey ?? ``);
-                                                let curFs = b[f] || kr(f);
-                                                let slots = Array.isArray(curFs.stompSlots) ? [...curFs.stompSlots] : Array.from({ length: 8 }, () => ({ icon: ``, name: ``, color: `#ff8800` }));
-                                                while (slots.length < 8) slots.push({ icon: ``, name: ``, color: `#ff8800` });
-                                                if (sIdx >= 1 && sIdx <= 8) {
-                                                    slots[sIdx - 1] = {
-                                                        ...slots[sIdx - 1],
-                                                        icon: finalKey
+                                    }),
+                                    footer: (0, P.jsxs)(`div`, {
+                                        className: `flex flex-col-reverse gap-2 sm:flex-row sm:justify-end`,
+                                        children: [(0, P.jsx)(`button`, {
+                                            type: `button`,
+                                            onClick: () => {
+                                                setIconScreenOpen(!1);
+                                                iconKeyPendingRef.current = null;
+                                            },
+                                            className: `w-full rounded-md border border-border px-3 py-2 font-display text-[10px] uppercase tracking-[0.16em] text-muted-foreground transition hover:text-foreground sm:w-auto`,
+                                            children: `Fechar`
+                                        }), (0, P.jsx)(`button`, {
+                                            type: `button`,
+                                            onClick: async () => {
+                                                let chosenKey = iconKeyPendingRef.current;
+                                                setIconScreenOpen(!1);
+                                                iconKeyPendingRef.current = null;
+                                                let curFs = b[targetFs] || kr(targetFs);
+                                                let finalKey = displayIconSanitizeKey(chosenKey !== null ? chosenKey : modalIconInitial);
+                                                if (isStomp) {
+                                                    let slots = Array.isArray(curFs.stompSlots) ? [...curFs.stompSlots] : Array.from({ length: 8 }, () => ({ icon: ``, name: ``, color: `#ff8800` }));
+                                                    while (slots.length < 8) slots.push({ icon: ``, name: ``, color: `#ff8800` });
+                                                    if (targetSlot >= 1 && targetSlot <= 8) {
+                                                        slots[targetSlot - 1] = {
+                                                            ...slots[targetSlot - 1],
+                                                            icon: finalKey
+                                                        };
+                                                    }
+                                                    let updatedFs = {
+                                                        ...curFs,
+                                                        stompIcon: (targetSlot === targetFs ? finalKey : (curFs.stompIcon || ``)),
+                                                        stompSlots: slots
                                                     };
-                                                }
-                                                let updatedFs = {
-                                                    ...curFs,
-                                                    stompSlots: slots,
-                                                    ...(sIdx === f ? { stompIcon: finalKey } : {})
-                                                };
-                                                E({
-                                                    stompSlots: slots,
-                                                    ...(sIdx === f ? { stompIcon: finalKey } : {})
-                                                });
-                                                try {
-                                                    let savePayload = compactFsForSave(Jr(updatedFs, c));
-                                                    await postMidiConfigRetry({
-                                                        activePreset: T,
-                                                        banks: { [n]: { [`fs${f}`]: savePayload } }
-                                                    }, 4);
                                                     x(prev => ({
                                                         ...prev,
-                                                        [f]: {
-                                                            ...prev[f] || kr(f),
-                                                            stompSlots: slots,
-                                                            ...(sIdx === f ? { stompIcon: finalKey } : {})
-                                                        }
+                                                        [targetFs]: updatedFs
                                                     }));
-                                                    rt.success(`Ícone Stomp salvo: Preset FS${f} · Stomp FS${sIdx}`);
-                                                } catch (err) {
-                                                    rt.error(`Erro ao salvar ícone Stomp: ${String(err?.message || err)}`);
-                                                }
-                                            } else {
-                                                if (chosenKey === null) {
-                                                    iconKeyPendingRef.current = displayIconSanitizeKey(w.iconKey || ``)
+                                                    E({
+                                                        ...updatedFs
+                                                    });
+                                                    try {
+                                                        let savePayload = compactFsForSave(Jr(updatedFs, c));
+                                                        await postMidiConfigRetry({
+                                                            activePreset: T,
+                                                            banks: { [n]: { [`fs${targetFs}`]: savePayload } }
+                                                        }, 4);
+                                                        rt.success(`Ícone Stomp salvo no Slot ${targetSlot} (FS${targetFs})`);
+                                                    } catch (err) {
+                                                        rt.error(`Erro ao salvar ícone Stomp: ${String(err?.message || err)}`);
+                                                    }
                                                 } else {
-                                                    iconKeyPendingRef.current = chosenKey;
+                                                    let updatedFs = {
+                                                        ...curFs,
+                                                        iconKey: finalKey
+                                                    };
+                                                    if (targetFs === f) {
+                                                        E({ iconKey: finalKey });
+                                                    }
+                                                    try {
+                                                        let savePayload = compactFsForSave(Jr(updatedFs, c));
+                                                        await postMidiConfigRetry({
+                                                            activePreset: T,
+                                                            banks: { [n]: { [`fs${targetFs}`]: savePayload } }
+                                                        }, 4);
+                                                        x(prev => ({
+                                                            ...prev,
+                                                            [targetFs]: {
+                                                                ...prev[targetFs] || kr(targetFs),
+                                                                iconKey: finalKey
+                                                            }
+                                                        }));
+                                                        rt.success(`Ícone salvo na FS${targetFs}`);
+                                                    } catch (err) {
+                                                        rt.error(`Erro ao salvar ícone: ${String(err?.message || err)}`);
+                                                    }
                                                 }
-                                                await ne()
-                                            }
-                                        },
-                                        className: `w-full rounded-md border border-accent/60 bg-accent/20 px-4 py-2 font-display text-[10px] uppercase tracking-[0.16em] text-accent shadow-[0_0_18px_-4px_rgba(220,38,38,0.7)] transition hover:bg-accent/30 sm:w-auto`,
-                                        children: `Salvar`
-                                    })]
-                                })
-                            }), (0, P.jsx)(popupShell, {
+                                            },
+                                            className: `w-full rounded-md border border-accent/60 bg-accent/20 px-4 py-2 font-display text-[10px] uppercase tracking-[0.16em] text-accent shadow-[0_0_18px_-4px_rgba(220,38,38,0.7)] transition hover:bg-accent/30 sm:w-auto`,
+                                            children: `Salvar`
+                                        })]
+                                    })
+                                });
+                            })(), (0, P.jsx)(popupShell, {
                                 open: ampScreenOpen,
                                 onOpenChange: setAmpScreenOpen,
                                 title: `Cabeçote Amp`,
@@ -19328,18 +19577,20 @@ function Xr() {
                     onSysTabChange: setSysSubTab,
                     onSave: ne
                 }), fsSwitchPrompt && (0, P.jsx)(`div`, {
-                    className: `fixed inset-0 z-[120] flex items-center justify-center bg-black/80 p-4`,
+                    className: `fixed inset-0 z-[120] flex items-center justify-center bg-black/85 backdrop-blur-md p-4`,
                     onClick: () => setFsSwitchPrompt(null),
                     children: (0, P.jsxs)(`div`, {
-                        className: `relative w-full overflow-hidden border border-border bg-canvas`,
+                        className: `relative w-full overflow-hidden rounded-[20px] border border-border bg-[#141416] shadow-2xl`,
                         onClick: e => e.stopPropagation(),
                         style: {
                             width: `calc(100vw - 2rem)`,
                             maxWidth: `24rem`,
-                            borderRadius: `20px`
+                            borderRadius: `20px`,
+                            background: `#141416`,
+                            boxShadow: `0 40px 80px -20px rgba(0, 0, 0, 0.95)`
                         },
                         children: [(0, P.jsxs)(`div`, {
-                            className: `border-b border-border bg-panel/60 px-4 py-3`,
+                            className: `border-b border-border/80 bg-[#1a1a1e] px-5 py-4`,
                             children: [(0, P.jsx)(`div`, {
                                 className: `font-display text-[11px] uppercase tracking-[0.24em] text-accent`,
                                 children: `Alterações não salvas`
@@ -19348,7 +19599,7 @@ function Xr() {
                                 children: [`FS`, f, ` tem mudanças. Salvar antes de ir a FS`, fsSwitchPrompt.targetFs, `?`]
                             })]
                         }), (0, P.jsxs)(`div`, {
-                            className: `flex flex-col gap-2 px-4 py-4 sm:flex-row sm:justify-end`,
+                            className: `flex flex-col gap-2 bg-[#141416] px-5 py-4 sm:flex-row sm:justify-end`,
                             children: [(0, P.jsx)(`button`, {
                                 type: `button`,
                                 onClick: () => setFsSwitchPrompt(null),
@@ -19377,18 +19628,20 @@ function Xr() {
                         })]
                     })
                 }), bankSwitchPrompt && (0, P.jsx)(`div`, {
-                    className: `fixed inset-0 z-[120] flex items-center justify-center bg-black/80 p-4`,
+                    className: `fixed inset-0 z-[120] flex items-center justify-center bg-black/85 backdrop-blur-md p-4`,
                     onClick: () => setBankSwitchPrompt(null),
                     children: (0, P.jsxs)(`div`, {
-                        className: `relative w-full overflow-hidden border border-border bg-canvas`,
+                        className: `relative w-full overflow-hidden rounded-[20px] border border-border bg-[#141416] shadow-2xl`,
                         onClick: e => e.stopPropagation(),
                         style: {
                             width: `calc(100vw - 2rem)`,
                             maxWidth: `24rem`,
-                            borderRadius: `20px`
+                            borderRadius: `20px`,
+                            background: `#141416`,
+                            boxShadow: `0 40px 80px -20px rgba(0, 0, 0, 0.95)`
                         },
                         children: [(0, P.jsxs)(`div`, {
-                            className: `border-b border-border bg-panel/60 px-4 py-3`,
+                            className: `border-b border-border/80 bg-[#1a1a1e] px-5 py-4`,
                             children: [(0, P.jsx)(`div`, {
                                 className: `font-display text-[11px] uppercase tracking-[0.24em] text-accent`,
                                 children: `Alterações não salvas`
@@ -19397,7 +19650,7 @@ function Xr() {
                                 children: [`Há chaves com mudanças não salvas no banco `, hr[n], `. Ir para banco `, hr[bankSwitchPrompt.targetBankIdx], ` vai descartar essas edições.`]
                             })]
                         }), (0, P.jsxs)(`div`, {
-                            className: `flex flex-col gap-2 px-4 py-4 sm:flex-row sm:justify-end`,
+                            className: `flex flex-col gap-2 bg-[#141416] px-5 py-4 sm:flex-row sm:justify-end`,
                             children: [(0, P.jsx)(`button`, {
                                 type: `button`,
                                 onClick: () => setBankSwitchPrompt(null),
@@ -19560,7 +19813,7 @@ function Zr({
         }, {
             id: `sistema`,
             label: `Sistema`,
-            hint: `Conexões · Tela`
+            hint: `Conexões · Tela · Utilitário`
         }].map(n => {
             let r = e === n.id;
             return (0, P.jsxs)(`button`, {
@@ -19585,7 +19838,7 @@ function responsiveBottomDock({
     onChange: t,
     onSave: n
 }) {
-    let saveLabel = e === `global` ? (globalSubTab === `stomp` ? `Salvar Stomp` : globalSubTab === `exp` ? `Salvar EXP` : `Salvar GB`) : e === `sistema` ? (sysSubTab === `tela` ? `Salvar Tela` : `Salvar Conexões`) : `Salvar`;
+    let saveLabel = e === `global` ? (globalSubTab === `stomp` ? `Salvar Stomp` : globalSubTab === `exp` ? `Salvar EXP` : `Salvar GB`) : e === `sistema` ? (sysSubTab === `tela` ? `Salvar Tela` : sysSubTab === `utilitario` ? `Salvar Sistema` : `Salvar Conexões`) : `Salvar`;
     return (0, P.jsx)(`div`, {
         className: `fixed inset-x-0 bottom-0 z-30 border-t border-border bg-canvas/95 px-2 py-2 backdrop-blur-md sm:px-4 sm:py-3 lg:sticky lg:mx-auto lg:mt-6 lg:max-w-2xl lg:rounded-full lg:border`,
         children: (0, P.jsxs)(`div`, {
@@ -19696,16 +19949,16 @@ function $r({
         a = [`A`, `A–B`, `A–C`, `A–D`, `A–E`, `A–F`, `A–G`, `A–H`, `A–I`],
         o = [{
             value: 0,
-            label: `Preset (toggle)`
+            label: `PRESET (TOGGLE)`
         }, {
             value: 1,
-            label: `Stomp (toggle)`
+            label: `STOMP (TOGGLE)`
         }, {
             value: 2,
-            label: `Stomp fixo`
+            label: `STOMP FIXO`
         }, {
             value: 3,
-            label: `Preset fixo`
+            label: `PRESET FIXO`
         }],
         s = o.find(t => t.value === Number(e?.customStartLayer)) || o[0];
     return (0, N.useEffect)(() => {
@@ -19718,8 +19971,8 @@ function $r({
     }, [e?.customStartLayer, e?.customBankLimit]), (0, P.jsxs)(`div`, {
         className: `grid gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]`,
         children: [(0, P.jsx)(I, {
-            title: `LED e Reset`,
-            subtitle: `Comportamento global de LEDs e reset`,
+            title: `LED E RESET`,
+            subtitle: `COMPORTAMENTO GLOBAL DE LEDS E RESET`,
             children: (0, P.jsxs)(`div`, {
                 className: `grid grid-cols-1 gap-2 sm:grid-cols-2`,
                 children: [(0, P.jsx)(L, {
@@ -19737,28 +19990,28 @@ function $r({
                         ledClickMode: clickValue(e)
                     })
                 }), (0, P.jsx)(L, {
-                    label: `Reset ao trocar FS`,
-                    options: [`Não`, `Sim`],
-                    value: Number(e?.resetOnFootChange || 0) ? `Sim` : `Não`,
+                    label: `RESET AO TROCAR FS`,
+                    options: [`NÃO`, `SIM`],
+                    value: Number(e?.resetOnFootChange || 0) ? `SIM` : `NÃO`,
                     onChange: e => t({
-                        resetOnFootChange: +(e === `Sim`)
+                        resetOnFootChange: +(e === `SIM` || e === `Sim`)
                     })
                 }), (0, P.jsx)(L, {
-                    label: `Reset HOLD ao trocar`,
-                    options: [`Não`, `Sim`],
-                    value: Number(e?.resetOnHoldChange || 0) ? `Sim` : `Não`,
+                    label: `RESET HOLD AO TROCAR`,
+                    options: [`NÃO`, `SIM`],
+                    value: Number(e?.resetOnHoldChange || 0) ? `SIM` : `NÃO`,
                     onChange: e => t({
-                        resetOnHoldChange: +(e === `Sim`)
+                        resetOnHoldChange: +(e === `SIM` || e === `Sim`)
                     })
                 }), (0, P.jsx)(L, {
-                    label: `Fonte LED Custom`,
-                    options: [`USB`, `Bluetooth`],
-                    value: Number(e?.ledCustomSource || 0) ? `Bluetooth` : `USB`,
+                    label: `FONTE LED CUSTOM`,
+                    options: [`USB`, `BLUETOOTH`],
+                    value: Number(e?.ledCustomSource || 0) ? `BLUETOOTH` : `USB`,
                     onChange: e => t({
-                        ledCustomSource: +(e === `Bluetooth`)
+                        ledCustomSource: +(e === `BLUETOOTH` || e === `Bluetooth`)
                     })
                 }), (0, P.jsx)(L, {
-                    label: `Iniciar Custom em`,
+                    label: `INICIAR CUSTOM EM`,
                     options: o.map(e => e.label),
                     value: s.label,
                     onChange: e => t({
@@ -19767,43 +20020,90 @@ function $r({
                 })]
             })
         }), (0, P.jsxs)(I, {
-            title: `Modo Custom · Bancos`,
-            subtitle: `Loop e navegação por HOLD`,
+            title: `MODO CUSTOM · BANCOS`,
+            subtitle: `LOOP E NAVEGAÇÃO POR HOLD`,
             children: [(0, P.jsx)(L, {
-                label: `Bancos no Custom`,
+                label: `BANCOS NO CUSTOM`,
                 options: a,
                 value: a[Math.max(0, Math.min(8, Number(e?.customBankLimit || 9) - 1))],
                 onChange: e => t({
                     customBankLimit: a.indexOf(e) + 1
                 })
             }), (0, P.jsx)(L, {
-                label: `Banco interno via HOLD`,
-                options: [`Desativado`, `Ativado`],
-                value: Number(e?.customBankHoldNavEnabled || 0) ? `Ativado` : `Desativado`,
+                label: `BANCO INTERNO VIA HOLD`,
+                options: [`DESATIVADO`, `ATIVADO`],
+                value: Number(e?.customBankHoldNavEnabled || 0) ? `ATIVADO` : `DESATIVADO`,
                 onChange: e => t({
-                    customBankHoldNavEnabled: +(e === `Ativado`)
+                    customBankHoldNavEnabled: +(e === `ATIVADO` || e === `Ativado`)
                 })
             }), (0, P.jsxs)(`div`, {
                 className: `grid grid-cols-1 gap-2 sm:grid-cols-2`,
                 children: [(0, P.jsx)(L, {
-                    label: `FS Banco +`,
+                    label: `FS BANCO +`,
                     options: [`1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`],
                     value: String(Math.max(1, Math.min(8, Number(e?.customBankUpHoldFs || 1)))),
                     onChange: e => t({
                         customBankUpHoldFs: parseInt(e, 10) || 1
                     })
                 }), (0, P.jsx)(L, {
-                    label: `FS Banco −`,
+                    label: `FS BANCO −`,
                     options: [`1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`],
                     value: String(Math.max(1, Math.min(8, Number(e?.customBankDownHoldFs || 2)))),
                     onChange: e => t({
                         customBankDownHoldFs: parseInt(e, 10) || 2
                     })
                 })]
-            })]
-        }), (0, P.jsx)(`div`, {
-            className: `lg:col-span-2`,
-            children: (0, P.jsx)(ei, {})
+            }), (0, P.jsx)(L, {
+                label: `ENVIAR CC AO TROCAR BANCO`,
+                options: [`DESATIVADO`, `ATIVADO`],
+                value: Number(e?.customBankCcEnabled || 0) ? `ATIVADO` : `DESATIVADO`,
+                onChange: val => t({
+                    customBankCcEnabled: +(val === `ATIVADO` || val === `Ativado`)
+                })
+            }), Number(e?.customBankCcEnabled || 0) ? (0, P.jsxs)(`div`, {
+                className: `grid grid-cols-2 gap-2 sm:grid-cols-5`,
+                children: [(0, P.jsx)(R, {
+                    label: `CC BANK UP`,
+                    value: Number.isFinite(Number(e?.customBankCcUp)) ? Number(e.customBankCcUp) : 0,
+                    min: 0,
+                    max: 127,
+                    onChange: val => t({
+                        customBankCcUp: Math.max(0, Math.min(127, parseInt(val, 10) || 0))
+                    })
+                }), (0, P.jsx)(R, {
+                    label: `CC BANK DOWN`,
+                    value: Number.isFinite(Number(e?.customBankCcDown)) ? Number(e.customBankCcDown) : 0,
+                    min: 0,
+                    max: 127,
+                    onChange: val => t({
+                        customBankCcDown: Math.max(0, Math.min(127, parseInt(val, 10) || 0))
+                    })
+                }), (0, P.jsx)(R, {
+                    label: `CANAL MIDI`,
+                    value: Number.isFinite(Number(e?.customBankCcChannel)) ? Number(e.customBankCcChannel) : 1,
+                    min: 1,
+                    max: 16,
+                    onChange: val => t({
+                        customBankCcChannel: Math.max(1, Math.min(16, parseInt(val, 10) || 1))
+                    })
+                }), (0, P.jsx)(R, {
+                    label: `VALOR CC`,
+                    value: Number.isFinite(Number(e?.customBankCcValue)) ? Number(e.customBankCcValue) : 127,
+                    min: 0,
+                    max: 127,
+                    onChange: val => t({
+                        customBankCcValue: Math.max(0, Math.min(127, parseInt(val, 10) || 0))
+                    })
+                }), (0, P.jsx)(L, {
+                    label: `SAÍDA MIDI`,
+                    options: [`USB`, `BT`, `USB+BT`, `MIDI`, `USB+MIDI`, `BT+MIDI`, `USB+BT+MIDI`],
+                    value: [`USB`, `BT`, `USB+BT`, `MIDI`, `USB+MIDI`, `BT+MIDI`, `USB+BT+MIDI`][Number(e?.customBankCcOutput || 0)] || `USB`,
+                    onChange: val => {
+                        let idx = [`USB`, `BT`, `USB+BT`, `MIDI`, `USB+MIDI`, `BT+MIDI`, `USB+BT+MIDI`].indexOf(val);
+                        t({ customBankCcOutput: idx >= 0 ? idx : 0 });
+                    }
+                })]
+            }) : null]
         })]
     })
 }
@@ -20079,7 +20379,32 @@ function ti({
 
 function expNormalize10Bit(e) {
     let t = Number(e);
-    return Number.isFinite(t) ? (t < 0 && (t = 0), t > 4095 && (t = 4095), t > 1023 && (t >>= 2), t) : 0
+    return Number.isFinite(t) ? (t < 0 && (t = 0), t > 4095 && (t = 4095), t > 1023 && (t >>= 2), Math.round(t)) : 0
+}
+
+/** 0/0 ou span inválido = ainda sem calibração (defaults de fábrica). */
+function expCalPairFromCfg(e) {
+    let min = Number(e?.expCalMinRaw),
+        max = Number(e?.expCalMaxRaw),
+        hasMin = Number.isFinite(min),
+        hasMax = Number.isFinite(max);
+    if (!hasMin && !hasMax) return {
+        min: 0,
+        max: 1023,
+        uncalibrated: !0
+    };
+    min = expNormalize10Bit(hasMin ? min : 0);
+    max = expNormalize10Bit(hasMax ? max : 1023);
+    if (max <= min + 2) return {
+        min: 0,
+        max: 1023,
+        uncalibrated: !0
+    };
+    return {
+        min,
+        max,
+        uncalibrated: !1
+    }
 }
 var expOutputOptions = [{
         value: 0,
@@ -20181,6 +20506,237 @@ function expSerializeBank(e) {
     }
 }
 
+function StompFsPickerControl({
+    value: val,
+    onChange: onChg,
+    className = ``
+}) {
+    let [open, setOpen] = (0, N.useState)(!1);
+    let curFs = Math.max(0, Math.min(8, Number(val) || 0));
+
+    return (0, P.jsxs)(P.Fragment, {
+        children: [
+            (0, P.jsxs)(`button`, {
+                type: `button`,
+                onClick: () => setOpen(!0),
+                className: `group relative flex h-9 w-full items-center justify-between gap-2 rounded-xl border border-border bg-panel px-3 text-left transition-all hover:border-accent/50 hover:bg-panel/80 active:scale-[0.98] cursor-pointer ${className}`,
+                title: curFs === 0 ? `Sem vínculo físico (FS 0)` : `Vinculado ao Footswitch FS ${curFs}`,
+                children: [
+                    (0, P.jsxs)(`div`, {
+                        className: `flex items-center gap-1.5 min-w-0`,
+                        children: [
+                            (0, P.jsx)(`span`, {
+                                className: `font-display text-[9.5px] uppercase tracking-wider text-muted-foreground font-black shrink-0`,
+                                children: `FS`
+                            }),
+                            curFs === 0 ? (0, P.jsx)(`span`, {
+                                className: `font-mono text-xs font-bold text-muted-foreground/70 truncate`,
+                                children: `--`
+                            }) : (0, P.jsx)(`span`, {
+                                className: `grid size-5 place-items-center rounded-md font-mono text-xs font-black bg-accent text-white shadow-[0_0_8px_rgba(239,68,68,0.5)] shrink-0`,
+                                children: curFs
+                            })
+                        ]
+                    }),
+                    (0, P.jsx)(`svg`, {
+                        xmlns: `http://www.w3.org/2000/svg`,
+                        viewBox: `0 0 24 24`,
+                        fill: `none`,
+                        stroke: `currentColor`,
+                        strokeWidth: `2.5`,
+                        strokeLinecap: `round`,
+                        strokeLinejoin: `round`,
+                        className: `size-3 text-muted-foreground/60 group-hover:text-accent transition-colors shrink-0`,
+                        children: (0, P.jsx)(`path`, { d: `m6 9 6 6 6-6` })
+                    })
+                ]
+            }),
+            (0, P.jsx)(popupShell, {
+                open: open,
+                onOpenChange: setOpen,
+                title: `Vínculo de Footswitch`,
+                subtitle: `Escolha a chave física para acionar este FX`,
+                children: (0, P.jsxs)(`div`, {
+                    className: `space-y-4 p-1 max-h-[70vh] overflow-y-auto`,
+                    children: [
+                        (0, P.jsxs)(`button`, {
+                            type: `button`,
+                            onClick: () => {
+                                onChg?.(0);
+                                setOpen(!1);
+                            },
+                            className: `w-full flex items-center justify-between gap-3 p-3 rounded-xl border text-left transition-all cursor-pointer ${
+                                curFs === 0 
+                                    ? `border-accent bg-accent/15 shadow-[0_0_14px_rgba(239,68,68,0.35)]` 
+                                    : `border-border/80 bg-panel/40 hover:border-accent/40 hover:bg-panel`
+                            }`,
+                            children: [
+                                (0, P.jsxs)(`div`, {
+                                    className: `flex items-center gap-3`,
+                                    children: [
+                                        (0, P.jsx)(`div`, {
+                                            className: `grid size-9 shrink-0 place-items-center rounded-lg border font-mono text-xs font-black ${
+                                                curFs === 0 
+                                                    ? `border-accent bg-accent text-accent-foreground` 
+                                                    : `border-border bg-canvas text-muted-foreground`
+                                            }`,
+                                            children: `0`
+                                        }),
+                                        (0, P.jsxs)(`div`, {
+                                            className: `min-w-0`,
+                                            children: [
+                                                (0, P.jsx)(`div`, {
+                                                    className: `font-display text-xs font-black uppercase tracking-wider ${
+                                                        curFs === 0 ? `text-accent` : `text-foreground`
+                                                    }`,
+                                                    children: `Sem Vínculo Físico (FS 0)`
+                                                }),
+                                                (0, P.jsx)(`div`, {
+                                                    className: `font-mono text-[10px] text-muted-foreground`,
+                                                    children: `Efeito não ocupa footswitch (acionável via Cenas / MIDI)`
+                                                })
+                                            ]
+                                        })
+                                    ]
+                                }),
+                                curFs === 0 ? (0, P.jsx)(`span`, {
+                                    className: `rounded-lg border border-accent/40 bg-accent/20 px-2.5 py-1 font-mono text-[10px] font-bold text-accent shrink-0`,
+                                    children: `OK`
+                                }) : null
+                            ]
+                        }),
+                        (0, P.jsxs)(`div`, {
+                            className: `space-y-2`,
+                            children: [
+                                (0, P.jsx)(`div`, {
+                                    className: `font-display text-[9.5px] uppercase tracking-[0.2em] text-muted-foreground font-black px-1`,
+                                    children: `Chaves Físicas (FS 1 a FS 8)`
+                                }),
+                                (0, P.jsxs)(`div`, {
+                                    className: `space-y-1.5`,
+                                    children: [
+                                        (0, P.jsx)(`span`, {
+                                            className: `font-mono text-[9px] uppercase tracking-wider text-muted-foreground/70 px-1`,
+                                            children: `Linha Superior (FS 5 - FS 8)`
+                                        }),
+                                        (0, P.jsx)(`div`, {
+                                            className: `grid grid-cols-2 sm:grid-cols-4 gap-2`,
+                                            children: [5, 6, 7, 8].map(fsNum => {
+                                                let isSel = curFs === fsNum;
+                                                return (0, P.jsxs)(`button`, {
+                                                    key: fsNum,
+                                                    type: `button`,
+                                                    onClick: () => {
+                                                        onChg?.(fsNum);
+                                                        setOpen(!1);
+                                                    },
+                                                    className: `relative flex flex-col items-center justify-center p-3 rounded-xl border transition-all cursor-pointer ${
+                                                        isSel
+                                                            ? `border-accent bg-accent/20 shadow-[0_0_16px_rgba(239,68,68,0.4)]`
+                                                            : `border-border/80 bg-panel/50 hover:border-accent/40 hover:bg-panel hover:scale-[1.02]`
+                                                    }`,
+                                                    children: [
+                                                        (0, P.jsx)(`div`, {
+                                                            className: `grid size-11 place-items-center rounded-full border-2 transition-all shadow-inner relative mb-1.5 ${
+                                                                isSel
+                                                                    ? `border-accent bg-accent/30 shadow-[0_0_12px_rgba(239,68,68,0.6)]`
+                                                                    : `border-zinc-600 bg-zinc-800/90`
+                                                            }`,
+                                                            children: (0, P.jsx)(`div`, {
+                                                                className: `size-6 rounded-full border border-black/40 shadow-xs flex items-center justify-center ${
+                                                                    isSel
+                                                                        ? `bg-accent text-white shadow-[0_0_8px_rgba(239,68,68,0.8)]`
+                                                                        : `bg-zinc-700 text-zinc-300`
+                                                                }`,
+                                                                children: (0, P.jsx)(`span`, {
+                                                                    className: `font-mono text-[10px] font-black`,
+                                                                    children: fsNum
+                                                                })
+                                                            })
+                                                        }),
+                                                        (0, P.jsx)(`span`, {
+                                                            className: `font-display text-xs font-black uppercase tracking-wider ${
+                                                                isSel ? `text-accent` : `text-foreground`
+                                                            }`,
+                                                            children: `FS ${fsNum}`
+                                                        }),
+                                                        isSel ? (0, P.jsx)(`span`, {
+                                                            className: `mt-1 rounded bg-accent/20 px-1.5 py-0.5 font-mono text-[9px] font-bold text-accent`,
+                                                            children: `OK`
+                                                        }) : null
+                                                    ]
+                                                });
+                                            })
+                                        })
+                                    ]
+                                }),
+                                (0, P.jsxs)(`div`, {
+                                    className: `space-y-1.5 pt-1`,
+                                    children: [
+                                        (0, P.jsx)(`span`, {
+                                            className: `font-mono text-[9px] uppercase tracking-wider text-muted-foreground/70 px-1`,
+                                            children: `Linha Inferior (FS 1 - FS 4)`
+                                        }),
+                                        (0, P.jsx)(`div`, {
+                                            className: `grid grid-cols-2 sm:grid-cols-4 gap-2`,
+                                            children: [1, 2, 3, 4].map(fsNum => {
+                                                let isSel = curFs === fsNum;
+                                                return (0, P.jsxs)(`button`, {
+                                                    key: fsNum,
+                                                    type: `button`,
+                                                    onClick: () => {
+                                                        onChg?.(fsNum);
+                                                        setOpen(!1);
+                                                    },
+                                                    className: `relative flex flex-col items-center justify-center p-3 rounded-xl border transition-all cursor-pointer ${
+                                                        isSel
+                                                            ? `border-accent bg-accent/20 shadow-[0_0_16px_rgba(239,68,68,0.4)]`
+                                                            : `border-border/80 bg-panel/50 hover:border-accent/40 hover:bg-panel hover:scale-[1.02]`
+                                                    }`,
+                                                    children: [
+                                                        (0, P.jsx)(`div`, {
+                                                            className: `grid size-11 place-items-center rounded-full border-2 transition-all shadow-inner relative mb-1.5 ${
+                                                                isSel
+                                                                    ? `border-accent bg-accent/30 shadow-[0_0_12px_rgba(239,68,68,0.6)]`
+                                                                    : `border-zinc-600 bg-zinc-800/90`
+                                                            }`,
+                                                            children: (0, P.jsx)(`div`, {
+                                                                className: `size-6 rounded-full border border-black/40 shadow-xs flex items-center justify-center ${
+                                                                    isSel
+                                                                        ? `bg-accent text-white shadow-[0_0_8px_rgba(239,68,68,0.8)]`
+                                                                        : `bg-zinc-700 text-zinc-300`
+                                                                }`,
+                                                                children: (0, P.jsx)(`span`, {
+                                                                    className: `font-mono text-[10px] font-black`,
+                                                                    children: fsNum
+                                                                })
+                                                            })
+                                                        }),
+                                                        (0, P.jsx)(`span`, {
+                                                            className: `font-display text-xs font-black uppercase tracking-wider ${
+                                                                isSel ? `text-accent` : `text-foreground`
+                                                            }`,
+                                                            children: `FS ${fsNum}`
+                                                        }),
+                                                        isSel ? (0, P.jsx)(`span`, {
+                                                            className: `mt-1 rounded bg-accent/20 px-1.5 py-0.5 font-mono text-[9px] font-bold text-accent`,
+                                                            children: `OK`
+                                                        }) : null
+                                                    ]
+                                                });
+                                            })
+                                        })
+                                    ]
+                                })
+                            ]
+                        })
+                    ]
+                })
+            })
+        ]
+    });
+}
+
 function stompFxCard({
     index: e,
     cfg: t,
@@ -20246,16 +20802,16 @@ function stompFxCard({
     };
 
     return (0, P.jsxs)(`div`, {
-        className: `rounded-xl border border-border bg-canvas p-2.5 sm:p-3 space-y-2.5 sm:space-y-3 min-w-0 w-full overflow-hidden`,
+        className: `rounded-2xl border border-border bg-canvas p-4 sm:p-5 space-y-3.5 min-w-0 w-full overflow-hidden shadow-sm`,
         children: [
             (0, P.jsxs)(`div`, {
-                className: `flex flex-wrap sm:flex-nowrap items-center gap-2 min-w-0 w-full`,
+                className: `flex items-center gap-3 min-w-0 w-full`,
                 children: [
                     (0, P.jsx)(`span`, {
-                        className: `grid size-8 shrink-0 place-items-center rounded-md border border-border font-display text-[10px] font-black text-foreground`,
+                        className: `grid size-9 shrink-0 place-items-center rounded-xl border border-border font-display text-xs font-black text-foreground shadow-sm`,
                         style: {
                             background: r,
-                            boxShadow: `0 0 10px ${r}73`
+                            boxShadow: `0 0 12px ${r}73`
                         },
                         children: e
                     }),
@@ -20268,92 +20824,66 @@ function stompFxCard({
                             }
                         },
                         maxLength: 15,
-                        className: `min-w-0 flex-1 rounded-md border border-border bg-panel px-2 py-1.5 font-mono text-xs font-bold text-foreground focus:border-accent/50 focus:outline-none`,
+                        className: `min-w-0 flex-1 h-9 rounded-xl border border-border bg-panel px-3 py-2 font-mono text-xs font-bold text-foreground focus:border-accent/50 focus:outline-none transition-colors`,
                         placeholder: `FX ${e}`
                     }),
-                    (0, P.jsx)(`input`, {
-                        type: `color`,
-                        value: r === `#0b0c0e` ? `#000000` : r,
-                        onChange: ev => {
-                            let clr = Nr(ev.target.value);
-                            n({ colorR: clr.r, colorG: clr.g, colorB: clr.b });
-                        },
-                        className: `size-8 shrink-0 cursor-pointer rounded-md border border-border bg-panel`
-                    }),
                     (0, P.jsx)(`div`, {
-                        className: `w-16 sm:w-20 shrink-0`,
-                        children: (0, P.jsx)(L, {
-                            label: `FS`,
-                            value: String(Number(cur.assignedFs) || 0),
-                            options: [`0`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`],
+                        className: `w-24 sm:w-28 shrink-0 h-9 flex`,
+                        children: (0, P.jsx)(StompFsPickerControl, {
+                            value: Number(cur.assignedFs) || 0,
                             onChange: val => n({ assignedFs: Number(val) || 0 })
                         })
                     })
                 ]
             }),
-            (0, P.jsx)(`input`, {
-                value: cur.icon || ``,
-                onChange: ev => n({ icon: ev.target.value.slice(0, 23) }),
-                maxLength: 23,
-                placeholder: `Ícone (opcional, max 23)`,
-                className: `w-full min-w-0 rounded-md border border-border bg-panel px-2 py-1.5 font-mono text-[11px] text-foreground focus:border-accent/50 focus:outline-none`
+            (0, P.jsx)(DisplayColorSwatchField, {
+                label: `Cor do FX`,
+                valueHex: r,
+                onChangeHex: newHex => {
+                    let clr = Nr(newHex);
+                    n({ colorR: clr.r, colorG: clr.g, colorB: clr.b });
+                }
             }),
             (0, P.jsxs)(`div`, {
-                className: `space-y-2 pt-1 border-t border-border/50 min-w-0 w-full`,
+                className: `space-y-3 pt-2.5 border-t border-border/60 min-w-0 w-full`,
                 children: [
                     (0, P.jsxs)(`div`, {
                         className: `flex items-center justify-between text-[10px] font-bold text-muted-foreground uppercase tracking-wider`,
                         children: [
-                            (0, P.jsxs)(`span`, {
-                                children: [`Comandos MIDI (`, commands.length, `/4)`]
+                            (0, P.jsx)(`span`, {
+                                className: `font-display text-[9.5px] uppercase tracking-[0.14em] text-muted-foreground font-black`,
+                                children: `Comandos`
                             }),
                             commands.length < 4 && (0, P.jsx)(`button`, {
                                 type: `button`,
                                 onClick: addCmd,
-                                className: `rounded px-2 py-0.5 font-mono text-[10px] font-bold text-accent bg-accent/10 hover:bg-accent/20 border border-accent/30 transition-colors`,
+                                className: `rounded-lg px-2.5 py-1 font-mono text-[10px] font-bold text-accent bg-accent/10 hover:bg-accent/20 border border-accent/30 transition-colors ml-auto cursor-pointer`,
                                 children: `+ Adicionar comando`
                             })
                         ]
                     }),
                     commands.map((cmd, cidx) => (0, P.jsxs)(`div`, {
                         key: cidx,
-                        className: `rounded-lg border border-border/60 bg-panel/40 p-2 space-y-1.5 min-w-0 w-full overflow-hidden`,
+                        className: `rounded-xl border border-border/70 bg-panel/40 p-3 sm:p-3.5 space-y-2.5 min-w-0 w-full overflow-hidden shadow-xs`,
                         children: [
                             (0, P.jsxs)(`div`, {
-                                className: `flex flex-wrap sm:flex-nowrap items-center justify-between gap-1`,
+                                className: `flex items-center justify-between pb-0.5`,
                                 children: [
-                                    (0, P.jsxs)(`div`, {
-                                        className: `flex flex-wrap items-center gap-1.5 min-w-0`,
-                                        children: [
-                                            (0, P.jsx)(`span`, {
-                                                className: `grid size-4 place-items-center rounded-full bg-accent/20 font-mono text-[9px] font-bold text-accent shrink-0`,
-                                                children: cidx + 1
-                                            }),
-                                            (0, P.jsx)(`span`, {
-                                                className: `font-mono text-[10px] font-bold text-muted-foreground shrink-0`,
-                                                children: `CMD ${cidx + 1}`
-                                            }),
-                                            (0, P.jsx)(`span`, {
-                                                className: `rounded px-1 font-mono text-[9px] shrink-0 ${cmd.type === `PC` ? `bg-purple-500/20 text-purple-300 border border-purple-500/30` : `bg-blue-500/20 text-blue-300 border border-blue-500/30`}`,
-                                                children: cmd.type
-                                            }),
-                                            (0, P.jsx)(`span`, {
-                                                className: `rounded px-1 font-mono text-[9px] bg-canvas text-muted-foreground border border-border/50 truncate max-w-[120px] sm:max-w-none`,
-                                                children: cmd.output || `USB+MIDI`
-                                            })
-                                        ]
+                                    (0, P.jsx)(`span`, {
+                                        className: `grid size-5 place-items-center rounded-full bg-accent/20 font-mono text-[10px] font-bold text-accent shrink-0`,
+                                        children: cidx + 1
                                     }),
                                     commands.length > 1 && (0, P.jsx)(`button`, {
                                         type: `button`,
                                         onClick: () => removeCmd(cidx),
                                         title: `Remover comando`,
-                                        className: `grid size-5 place-items-center rounded text-muted-foreground hover:bg-destructive/20 hover:text-destructive transition-colors shrink-0 ml-auto`,
-                                        children: (0, P.jsx)(dr, { className: `size-3` })
+                                        className: `grid size-6 place-items-center rounded-lg text-muted-foreground hover:bg-destructive/20 hover:text-destructive transition-colors shrink-0 ml-auto cursor-pointer`,
+                                        children: (0, P.jsx)(dr, { className: `size-3.5` })
                                     })
                                 ]
                             }),
                             (0, P.jsxs)(`div`, {
-                                className: `grid grid-cols-2 gap-1.5 sm:grid-cols-6 min-w-0 w-full`,
+                                className: `grid grid-cols-2 gap-2 sm:grid-cols-6 min-w-0 w-full`,
                                 children: [
                                     (0, P.jsx)(`div`, { className: `min-w-0 w-full`, children: (0, P.jsx)(L, {
                                         label: `Tipo`,
@@ -20367,11 +20897,10 @@ function stompFxCard({
                                         options: xr,
                                         onChange: val => patchCmd(cidx, { output: val })
                                     }) }),
-                                    (0, P.jsx)(`div`, { className: `min-w-0 w-full`, children: (0, P.jsx)(R, {
+                                    (0, P.jsx)(`div`, { className: `min-w-0 w-full`, children: (0, P.jsx)(popupChannelFieldControl, {
                                         label: `Canal`,
                                         value: Number(cmd.channel) || 1,
-                                        min: 1,
-                                        max: 16,
+                                        output: cmd.output || `USB+MIDI`,
                                         onChange: val => patchCmd(cidx, { channel: val })
                                     }) }),
                                     (0, P.jsx)(`div`, { className: `min-w-0 w-full`, children: cmd.type === `PC` ? (0, P.jsx)(R, {
@@ -20430,42 +20959,92 @@ function expPanelView({
     onPatchExpBank: i
 }) {
     let [a, o] = (0, N.useState)(null),
-        [s, c] = (0, N.useState)(null);
+        [s, c] = (0, N.useState)(null),
+        [diag, setDiag] = (0, N.useState)(null),
+        calPair0 = expCalPairFromCfg(e),
+        [draftMin, setDraftMin] = (0, N.useState)(calPair0.min),
+        [draftMax, setDraftMax] = (0, N.useState)(calPair0.max);
     (0, N.useEffect)(() => {
-        let e = !1,
-            t = async () => {
-                if (gboxSoftApIsQuiet()) return;
+        let pair = expCalPairFromCfg(e);
+        setDraftMin(pair.min);
+        setDraftMax(pair.max);
+    }, [e?.expCalMinRaw, e?.expCalMaxRaw]);
+    (0, N.useEffect)(() => {
+        let gone = !1,
+            inFlight = !1,
+            reapplyOnce = !1,
+            poll = async () => {
+                if (inFlight) return;
+                if (Number(e?.expMode) !== 1) return;
+                inFlight = !0;
                 try {
-                    let t;
+                    let res;
                     try {
-                        t = await zr(`/api/exp-status`, {
+                        res = await zr(`/api/exp-status`, {
                             method: `GET`
-                        }, 5e3)
+                        }, 8e3)
                     } catch {
-                        t = await zr(`/api/system-status`, {
+                        res = await zr(`/api/system-status`, {
                             method: `GET`
-                        }, 5e3)
+                        }, 8e3)
                     }
-                    e || (o(Number.isFinite(Number(t?.expValue7)) ? Number(t.expValue7) : null), c(Number.isFinite(Number(t?.expRaw)) ? Number(t.expRaw) : null))
-                } catch {}
+                    let val7 = res?.expValue7 !== undefined ? res?.expValue7 : res?.value7;
+                    let rawVal = res?.expRaw !== undefined ? res?.expRaw : res?.raw;
+                    let ready = !!(res?.expAdcReady ?? res?.adcReady);
+                    let modeN = Number(res?.expMode);
+                    if (!gone) {
+                        o(Number.isFinite(Number(val7)) ? Number(val7) : null);
+                        if (rawVal !== undefined && rawVal !== null && Number.isFinite(Number(rawVal))) {
+                            c(expNormalize10Bit(rawVal));
+                        }
+                        setDiag({
+                            gpio: res?.expAdcGpio ?? res?.adcGpio ?? 13,
+                            vcc: res?.expVccGpio ?? res?.vccGpio ?? 17,
+                            ready,
+                            err: res?.expAdcLastErr ?? res?.lastAdcErr ?? 0,
+                            calibrated: !!(res?.expCalibrated ?? res?.calibrated),
+                            pollOk: !0
+                        });
+                        if (!ready && !reapplyOnce && modeN === 1) {
+                            reapplyOnce = !0;
+                            Br(`/api/usb-config`, {
+                                expMode: 1
+                            }, 8e3).catch(() => {});
+                        }
+                    }
+                } catch (err) {
+                    if (!gone) setDiag(d => ({
+                        ...(d || {
+                            gpio: 13,
+                            vcc: 17,
+                            ready: !1,
+                            err: -1
+                        }),
+                        pollOk: !1,
+                        pollErr: String(err?.message || err || `poll fail`)
+                    }));
+                } finally {
+                    inFlight = !1;
+                }
             };
-        t();
-        let n = setInterval(t, 1e3);
+        poll();
+        let n = setInterval(poll, 400);
         return () => {
-            e = !0, clearInterval(n)
+            gone = !0, clearInterval(n)
         }
-    }, []);
+    }, [e?.expMode]);
     let l = Number(e?.expMode || 0) === 3 ? `One Footswitch` : Number(e?.expMode || 0) === 2 ? `Dual Footswitch` : Number(e?.expMode || 0) === 1 ? `Expressão` : `Desligado`,
         u = Number.isFinite(Number(e?.expSendHz)) ? Number(e?.expSendHz) : 50,
         d = Number.isFinite(Number(e?.expMinDelta)) ? Number(e?.expMinDelta) : 2,
         m = Number.isFinite(Number(e?.expSmoothing)) ? Number(e?.expSmoothing) : 4,
         f = !!Number(e?.expInvert || 0),
-        p = expNormalize10Bit(Number.isFinite(Number(e?.expCalMinRaw)) ? Number(e?.expCalMinRaw) : 130),
-        g = expNormalize10Bit(Number.isFinite(Number(e?.expCalMaxRaw)) ? Number(e?.expCalMaxRaw) : 1023),
+        p = expNormalize10Bit(draftMin),
+        g = expNormalize10Bit(draftMax),
         _ = Number.isFinite(Number(a)) ? Number(a) : Number.isFinite(Number(e?.expValue7)) ? Number(e?.expValue7) : 0,
-        v = expNormalize10Bit(Number.isFinite(Number(s)) ? Number(s) : _),
+        v = Number.isFinite(Number(s)) ? expNormalize10Bit(s) : null,
         y = expNormalizeBank(n),
         expIsExpression = l === `Expressão`,
+        expCanCalibrate = expIsExpression,
         b = e => i?.(t => {
             let n = expNormalizeBank(t);
             return {
@@ -20530,14 +21109,16 @@ function expPanelView({
         className: `grid gap-4 lg:grid-cols-2`,
         children: [(0, P.jsxs)(I, {
             title: `EXP · Globais`,
-            subtitle: `Modo · Taxa · Filtro`,
+            
             children: [(0, P.jsx)(L, {
                 label: `Modo`,
                 options: [`Desligado`, `Expressão`, `Dual Footswitch`, `One Footswitch`],
                 value: l,
-                onChange: e => t?.({
-                    expMode: e === `One Footswitch` ? 3 : e === `Dual Footswitch` ? 2 : e === `Expressão` ? 1 : 0
-                })
+                onChange: e => {
+                    let newMode = e === `One Footswitch` ? 3 : e === `Dual Footswitch` ? 2 : e === `Expressão` ? 1 : 0;
+                    t?.({ expMode: newMode });
+                    Br(`/api/usb-config`, { expMode: newMode }, 8e3).catch(() => {});
+                }
             }), expIsExpression && (0, P.jsxs)(`div`, {
                 className: `grid grid-cols-3 gap-2`,
                 children: [(0, P.jsx)(R, {
@@ -20575,27 +21156,53 @@ function expPanelView({
                 className: `font-mono text-[10px] uppercase tracking-widest text-muted-foreground`,
                 children: l === `One Footswitch` ? `GPIO11 como EXTFS · GPIO12 em LOW · sem LED · após o modelo` : `GPIO11/12 como EXTFS · sem LED · após o modelo`
             })]
-        }), expIsExpression && (0, P.jsxs)(I, {
+        }), expCanCalibrate && (0, P.jsxs)(I, {
             title: `EXP · Calibração`,
-            subtitle: `Leitura RAW 0–1023 (10 bits)`,
+            
             children: [(0, P.jsxs)(`div`, {
                 className: `grid grid-cols-2 gap-2`,
-                children: [(0, P.jsx)(R, {
-                    label: `MIN raw`,
-                    value: p,
-                    min: 0,
-                    max: 1023,
-                    onChange: e => t?.({
-                        expCalMinRaw: expNormalize10Bit(e)
-                    })
-                }), (0, P.jsx)(R, {
-                    label: `MAX raw`,
-                    value: g,
-                    min: 0,
-                    max: 1023,
-                    onChange: e => t?.({
-                        expCalMaxRaw: expNormalize10Bit(e)
-                    })
+                children: [(0, P.jsxs)(`div`, {
+                    className: `space-y-1`,
+                    children: [
+                        (0, P.jsx)(R, {
+                            label: `MIN raw`,
+                            value: p,
+                            min: 0,
+                            max: 1023,
+                            onChange: e => setDraftMin(expNormalize10Bit(e))
+                        }),
+                        (0, P.jsx)(`button`, {
+                            type: `button`,
+                            disabled: v === null,
+                            onClick: () => {
+                                if (v === null) return;
+                                setDraftMin(expNormalize10Bit(v));
+                            },
+                            className: `w-full rounded border border-border bg-panel/80 py-1 font-mono text-[9px] uppercase tracking-wider text-muted-foreground hover:text-foreground hover:border-accent/40 disabled:opacity-40`,
+                            children: `Ler Mínimo (RAW: ` + (v === null ? `—` : v) + `)`
+                        })
+                    ]
+                }), (0, P.jsxs)(`div`, {
+                    className: `space-y-1`,
+                    children: [
+                        (0, P.jsx)(R, {
+                            label: `MAX raw`,
+                            value: g,
+                            min: 0,
+                            max: 1023,
+                            onChange: e => setDraftMax(expNormalize10Bit(e))
+                        }),
+                        (0, P.jsx)(`button`, {
+                            type: `button`,
+                            disabled: v === null,
+                            onClick: () => {
+                                if (v === null) return;
+                                setDraftMax(expNormalize10Bit(v));
+                            },
+                            className: `w-full rounded border border-border bg-panel/80 py-1 font-mono text-[9px] uppercase tracking-wider text-muted-foreground hover:text-foreground hover:border-accent/40 disabled:opacity-40`,
+                            children: `Ler Máximo (RAW: ` + (v === null ? `—` : v) + `)`
+                        })
+                    ]
                 })]
             }), (0, P.jsxs)(`div`, {
                 className: `rounded-lg border border-border bg-canvas p-3`,
@@ -20604,8 +21211,8 @@ function expPanelView({
                     children: [(0, P.jsx)(`span`, {
                         children: `0`
                     }), (0, P.jsx)(`span`, {
-                        className: `text-accent`,
-                        children: [`RAW `, v, ` · MIDI `, _]
+                        className: `text-accent font-bold`,
+                        children: [`RAW `, v === null ? `—` : v, ` · MIDI `, _, diag ? ` · ADC GPIO${diag.gpio}/VCC${diag.vcc} (${!diag.pollOk ? 'POLL FAIL' : (diag.ready && !diag.err ? 'OK' : 'ERR ' + diag.err)})` : ``]
                     }), (0, P.jsx)(`span`, {
                         children: `1023`
                     })]
@@ -20614,30 +21221,30 @@ function expPanelView({
                     children: (0, P.jsx)(`div`, {
                         className: `absolute inset-y-0 left-0 bg-accent`,
                         style: {
-                            width: `${Math.max(0, Math.min(100, Math.round(v / 1023 * 100)))}%`
+                            width: `${v === null ? 0 : Math.max(0, Math.min(100, Math.round(v / 1023 * 100)))}%`
                         }
                     })
                 }), (0, P.jsxs)(`div`, {
                     className: `mt-3 flex justify-end gap-2`,
                     children: [(0, P.jsx)(`button`, {
                         type: `button`,
-                        onClick: () => t?.({
-                            expCalMinRaw: 130,
-                            expCalMaxRaw: 1023
-                        }),
+                        onClick: () => {
+                            setDraftMin(0);
+                            setDraftMax(1023);
+                        },
                         className: `rounded-md border border-border bg-panel px-3 py-1.5 font-display text-[10px] uppercase tracking-widest text-foreground hover:border-accent/40`,
                         children: `Reset`
                     }), (0, P.jsx)(`button`, {
                         type: `button`,
                         onClick: w,
                         className: `rounded-md bg-gradient-to-b from-[#ef4444] to-[#b91c1c] px-3 py-1.5 font-display text-[10px] font-black uppercase tracking-[0.2em] text-accent-foreground shadow-[0_2px_10px_rgba(220,38,38,0.45)] hover:opacity-95`,
-                        children: `Calibrar`
+                        children: `Gravar Calibração`
                     })]
                 })]
             })]
         }), expIsExpression && (0, P.jsxs)(I, {
             title: `EXP · Mensagens`,
-            subtitle: `dispositivo · mensagens CC/SysEx fixas`,
+            
             children: [(0, P.jsx)(`div`, {
                 className: `rounded-lg border border-border bg-canvas/60 px-3 py-2 font-mono text-[10px] uppercase tracking-widest text-muted-foreground`,
                 children: y.messages.length > 0 ? `EXP ativo no dispositivo pelas mensagens configuradas` : `Sem mensagens: EXP não envia MIDI`
@@ -20725,11 +21332,10 @@ function expMessageEditorRow({
             })]
         }), i.type === 0 ? (0, P.jsxs)(`div`, {
             className: `grid grid-cols-2 gap-2`,
-            children: [(0, P.jsx)(R, {
+            children: [(0, P.jsx)(popupChannelFieldControl, {
                 label: `Canal`,
                 value: i.channel,
-                min: 1,
-                max: 16,
+                output: o,
                 onChange: e => n?.({
                     channel: Math.max(1, Math.min(16, Number(e) || 1))
                 })
@@ -20833,9 +21439,9 @@ function telaBgTextureField({
             fsCount: fsCount,
             asMaskDefault: !1,
             onClose: () => setEd(!1),
-            onSaved: () => {
+            onSaved: (k, instantThumb) => {
                 setEd(!1);
-                displayIconInvalidateThumb(DISPLAY_BG_KEY);
+                displayIconInvalidateThumb(DISPLAY_BG_KEY, instantThumb);
                 typeof onChangeMode == `function` && onChangeMode(3)
             }
         }) : null, (0, P.jsx)(`div`, {
@@ -20879,34 +21485,139 @@ function telaBgTextureField({
     })
 }
 
+
+function getColorName(hex) {
+    if (!hex) return ``;
+    let clean = String(hex).toLowerCase().trim();
+    if (clean === `#000000` || clean === `#0b0c0e`) return `Off`;
+    let found = vr.find(c => c.value.toLowerCase() === clean);
+    if (found) return found.name;
+    if (clean === `#ffffff` || clean === `#fafafa`) return `Branco`;
+    if (clean === `#ef4444`) return `Vermelho Vivo`;
+    if (clean === `#2563eb`) return `Azul`;
+    return `Personalizada`;
+}
+
+function DisplayColorSwatchField({
+    label,
+    valueHex,
+    onChangeHex,
+    className = ``
+}) {
+    let [open, setOpen] = (0, N.useState)(!1);
+    let isOff = valueHex === `#000000` || valueHex === `#0b0c0e`;
+
+    return (0, P.jsxs)(`div`, {
+        className: `flex min-w-0 flex-col justify-center rounded-xl border border-border bg-panel px-3 py-2 cursor-pointer hover:border-accent/50 hover:bg-panel/90 transition-all shadow-sm ${className}`,
+        onClick: () => setOpen(!0),
+        children: [
+            (0, P.jsx)(`span`, {
+                className: `truncate font-display text-[9.5px] uppercase tracking-[0.14em] text-muted-foreground font-black mb-1.5 text-center`,
+                children: label
+            }),
+            (0, P.jsx)(`div`, {
+                className: `w-full h-7 sm:h-8 rounded-lg border border-black/70 shadow-sm transition-transform active:scale-95 flex items-center justify-center relative overflow-hidden`,
+                style: {
+                    backgroundColor: isOff ? `#000000` : valueHex,
+                    boxShadow: isOff ? `inset 0 0 6px rgba(255,255,255,0.1)` : `0 0 12px ${valueHex}55, inset 0 1px 0 rgba(255,255,255,0.35)`
+                },
+                children: isOff ? (0, P.jsx)(`span`, {
+                    className: `font-mono text-[9px] uppercase tracking-widest text-zinc-500 font-bold`,
+                    children: `OFF`
+                }) : null
+            }),
+            (0, P.jsx)(popupShell, {
+                open: open,
+                onOpenChange: setOpen,
+                title: `Escolher ${label}`,
+                subtitle: `Toque na cor predefinida ou use personalizada`,
+                children: (0, P.jsxs)(`div`, {
+                    className: `space-y-3.5 p-1 max-h-[65vh] overflow-y-auto`,
+                    children: [
+                        (0, P.jsx)(`div`, {
+                            className: `font-display text-[9.5px] uppercase tracking-[0.2em] text-muted-foreground font-bold px-1`,
+                            children: `Predefinidas`
+                        }),
+                        (0, P.jsx)(`div`, {
+                            style: {
+                                display: `grid`,
+                                gridTemplateColumns: `repeat(6, 1fr)`,
+                                gap: `8px`,
+                                width: `100%`
+                            },
+                            children: vr.map(c => {
+                                let isSel = c.value.toLowerCase() === String(valueHex).toLowerCase();
+                                let isItemOff = c.value === `#0b0c0e` || c.value === `#000000`;
+                                return (0, P.jsx)(`button`, {
+                                    key: c.value,
+                                    type: `button`,
+                                    onClick: (ev) => {
+                                        ev.stopPropagation();
+                                        onChangeHex(c.value);
+                                        setOpen(!1);
+                                    },
+                                    title: c.name,
+                                    className: `group relative w-full h-10 sm:h-11 rounded-lg border transition-all hover:scale-105 active:scale-95 cursor-pointer flex items-center justify-center ${isSel ? `border-white ring-2 ring-accent scale-102 z-10 shadow-lg` : `border-black/50 hover:border-white/60`}`,
+                                    style: {
+                                        backgroundColor: isItemOff ? `#000000` : c.value,
+                                        boxShadow: isItemOff ? `none` : `0 0 8px ${c.value}55`
+                                    },
+                                    children: isSel ? (0, P.jsx)(`svg`, {
+                                        xmlns: `http://www.w3.org/2000/svg`,
+                                        viewBox: `0 0 24 24`,
+                                        fill: `none`,
+                                        stroke: `currentColor`,
+                                        strokeWidth: `3.5`,
+                                        className: `size-4 text-white mix-blend-difference`,
+                                        children: (0, P.jsx)(`path`, { d: `M20 6 9 17l-5-5` })
+                                    }) : null
+                                });
+                            })
+                        }),
+                        (0, P.jsxs)(`div`, {
+                            className: `mt-3 flex items-center justify-between gap-3 border-t border-border pt-3 px-1`,
+                            children: [
+                                (0, P.jsx)(`span`, {
+                                    className: `font-display text-[10px] uppercase tracking-widest text-muted-foreground font-bold`,
+                                    children: `Personalizada`
+                                }),
+                                (0, P.jsxs)(`div`, {
+                                    className: `flex items-center gap-2`,
+                                    children: [
+                                        (0, P.jsx)(`input`, {
+                                            type: `color`,
+                                            value: valueHex === `#0b0c0e` ? `#000000` : valueHex,
+                                            onChange: ev => onChangeHex(ev.target.value),
+                                            className: `size-9 cursor-pointer rounded-lg border border-border bg-transparent p-0.5`
+                                        }),
+                                        (0, P.jsx)(`button`, {
+                                            type: `button`,
+                                            onClick: () => setOpen(!1),
+                                            className: `rounded-lg bg-accent px-3 py-1.5 font-display text-[10px] font-black uppercase text-accent-foreground cursor-pointer`,
+                                            children: `OK`
+                                        })
+                                    ]
+                                })
+                            ]
+                        })
+                    ]
+                })
+            })
+        ]
+    });
+}
+
 function telaBgColorField({
     label: e,
     rgb: t,
     onChange: n
 }) {
     let hex = Mr(Number(t?.r) || 0, Number(t?.g) || 0, Number(t?.b) || 0);
-    return (0, P.jsxs)(`label`, {
-        className: `flex min-w-0 flex-col rounded-xl border border-border bg-canvas px-2.5 py-1.5`,
-        children: [(0, P.jsx)(`span`, {
-            className: `truncate font-display text-[9px] uppercase tracking-[0.14em] text-muted-foreground`,
-            children: e
-        }), (0, P.jsxs)(`div`, {
-            className: `mt-1 flex items-center gap-1.5`,
-            children: [(0, P.jsx)(`input`, {
-                type: `color`,
-                value: hex,
-                onChange: ev => n(Nr(ev.target.value)),
-                className: `shrink-0 cursor-pointer rounded border border-border bg-panel`,
-                style: {
-                    width: 24,
-                    height: 24
-                }
-            }), (0, P.jsx)(`span`, {
-                className: `truncate font-mono text-[10px] font-bold text-foreground`,
-                children: hex.toUpperCase()
-            })]
-        })]
-    })
+    return (0, P.jsx)(DisplayColorSwatchField, {
+        label: e,
+        valueHex: hex,
+        onChangeHex: newHex => n(Nr(newHex))
+    });
 }
 function BgSlotCard({ slot, prefix = 'bg', onEdit, onDelete, onClickUpload, onClickDelete }) {
     let key = (prefix || 'bg') + slot;
@@ -20962,9 +21673,9 @@ function BgSlotCard({ slot, prefix = 'bg', onEdit, onDelete, onClickUpload, onCl
                             flex: 1,
                             padding: '4px 0',
                             borderRadius: '4px',
-                            border: '1px solid #ef4444',
-                            background: 'rgba(239, 68, 68, 0.15)',
-                            color: '#f87171',
+                            border: '1px solid #27272a',
+                            background: '#18191e',
+                            color: '#a1a1aa',
                             fontFamily: 'inherit',
                             fontSize: '9px',
                             fontWeight: 900,
@@ -21039,51 +21750,98 @@ function TransBgConfigCard() {
                 children: 'Ao importar fotos PNG sem fundo nos slots (bg1..bg16), esta base é aplicada automaticamente por baixo. Imagens que não forem transparentes permanecem intactas.'
             }),
             (0, P.jsx)('div', {
-                style: { display: 'flex', gap: '6px', marginBottom: '8px' },
+                className: 'grid grid-cols-4 gap-1 rounded-xl border border-zinc-800 bg-zinc-900/60 p-1 mb-2.5',
                 children: [
                     { id: 'main_bg', lbl: 'Fundo Principal (bg)' },
                     { id: 'transparent', lbl: 'Transparente Puro' },
                     { id: 'color', lbl: 'Cor Sólida' },
                     { id: 'custom_img', lbl: 'Imagem Base Fixa' }
-                ].map(m => (0, P.jsx)('button', {
-                    key: m.id,
-                    type: 'button',
-                    onClick: () => update({ mode: m.id }),
-                    style: {
-                        flex: 1,
-                        padding: '6px 4px',
-                        borderRadius: '6px',
-                        fontFamily: 'monospace',
-                        fontSize: '9px',
-                        fontWeight: 900,
-                        cursor: 'pointer',
-                        border: (cfg.mode || 'transparent') === m.id ? '1px solid #ef4444' : '1px solid #27272a',
-                        background: (cfg.mode || 'transparent') === m.id ? 'rgba(239, 68, 68, 0.2)' : '#141519',
-                        color: (cfg.mode || 'transparent') === m.id ? '#f87171' : '#a1a1aa'
-                    },
-                    children: m.lbl
-                }))
+                ].map(m => {
+                    let isSel = (cfg.mode || 'transparent') === m.id;
+                    return (0, P.jsx)('button', {
+                        key: m.id,
+                        type: 'button',
+                        onClick: () => update({ mode: m.id }),
+                        style: isSel ? {
+                            background: 'linear-gradient(180deg, #ef4444 0%, #b91c1c 100%)',
+                            backgroundColor: '#ef4444',
+                            color: '#ffffff',
+                            boxShadow: '0 0 12px rgba(220, 38, 38, 0.55)'
+                        } : {},
+                        className: `rounded-lg py-2 text-center font-display text-[9.5px] uppercase tracking-wider transition-all duration-150 ${
+                            isSel
+                                ? 'border border-red-500/40 font-black text-white'
+                                : 'border border-transparent font-bold text-zinc-400 hover:bg-zinc-800/80 hover:text-zinc-100'
+                        }`,
+                        children: m.lbl
+                    });
+                })
             }),
             (!cfg.mode || cfg.mode === 'transparent') ? (0, P.jsx)('div', {
-                style: { fontFamily: 'monospace', fontSize: '9px', color: '#10b981', lineHeight: 1.3 },
+                className: 'rounded-lg border border-emerald-500/20 bg-emerald-500/5 p-2 font-mono text-[9.5px] leading-relaxed text-emerald-400/90 mb-2',
                 children: 'Transparência pura: o PNG será gravado sem fundo por baixo. Para sobrepor ao wallpaper, selecione "Fundo Principal (bg)".'
             }) : null,
             cfg.mode === 'color' ? (0, P.jsxs)('div', {
-                style: { display: 'flex', alignItems: 'center', gap: '10px' },
+                className: 'space-y-2 rounded-xl border border-zinc-800/80 bg-zinc-900/50 p-2.5 mb-2',
                 children: [
-                    (0, P.jsx)('input', {
-                        type: 'color',
-                        value: cfg.color || '#000000',
-                        onChange: ev => update({ color: ev.target.value }),
-                        style: { width: '32px', height: '28px', borderRadius: '4px', border: '1px solid #3f3f46', cursor: 'pointer', background: '#000' }
+                    (0, P.jsxs)('div', {
+                        className: 'flex items-center justify-between gap-1.5',
+                        children: [
+                            (0, P.jsx)('span', {
+                                className: 'font-display text-[9px] font-bold uppercase tracking-wider text-zinc-400',
+                                children: 'Predefinições:'
+                            }),
+                            (0, P.jsx)('div', {
+                                className: 'flex items-center gap-1.5',
+                                children: [
+                                    { name: 'Preto', hex: '#000000' },
+                                    { name: 'Grafite', hex: '#1e1e1e' },
+                                    { name: 'Branco', hex: '#ffffff' },
+                                    { name: 'Vermelho', hex: '#970202' },
+                                    { name: 'Amarelo', hex: '#ffcc00' },
+                                    { name: 'Azul', hex: '#0044cc' }
+                                ].map(c => {
+                                    let isCur = (cfg.color || '#000000').toLowerCase() === c.hex.toLowerCase();
+                                    return (0, P.jsx)('button', {
+                                        key: c.hex,
+                                        type: 'button',
+                                        title: c.name,
+                                        onClick: () => update({ color: c.hex }),
+                                        className: `relative size-5.5 rounded-full border transition-transform hover:scale-110 ${
+                                            isCur ? 'border-white ring-2 ring-red-500' : 'border-zinc-700/80'
+                                        }`,
+                                        style: { background: c.hex },
+                                        children: isCur && (0, P.jsx)('span', { className: `absolute inset-0 m-auto size-1.5 rounded-full ${c.hex === '#ffffff' ? 'bg-black' : 'bg-white'}` })
+                                    });
+                                })
+                            })
+                        ]
                     }),
-                    (0, P.jsx)('span', {
-                        style: { fontFamily: 'monospace', fontSize: '11px', color: '#ffffff', fontWeight: 'bold' },
-                        children: (cfg.color || '#000000').toUpperCase()
-                    }),
-                    (0, P.jsx)('span', {
-                        style: { fontFamily: 'monospace', fontSize: '9px', color: '#71717a', marginLeft: 'auto' },
-                        children: 'Cor de preenchimento'
+                    (0, P.jsxs)('div', {
+                        className: 'flex items-center gap-2.5 pt-1.5 border-t border-zinc-800/60',
+                        children: [
+                            (0, P.jsxs)('label', {
+                                className: 'relative flex size-7 cursor-pointer items-center justify-center rounded-lg border border-zinc-700 bg-zinc-800 shadow-inner transition-transform hover:scale-105 overflow-hidden',
+                                style: { background: cfg.color || '#000000' },
+                                title: 'Escolher cor personalizada',
+                                children: [
+                                    (0, P.jsx)('input', {
+                                        type: 'color',
+                                        value: cfg.color || '#000000',
+                                        onChange: ev => update({ color: ev.target.value }),
+                                        className: 'absolute inset-0 opacity-0 cursor-pointer'
+                                    })
+                                ]
+                            }),
+                            (0, P.jsx)('span', {
+                                className: 'rounded-md border border-zinc-800 bg-zinc-950 px-2.5 py-1 font-mono text-xs font-bold text-zinc-200 tracking-wider',
+                                children: (cfg.color || '#000000').toUpperCase()
+                            }),
+                            (0, P.jsx)('span', {
+                                className: 'ml-auto font-display text-[9.5px] font-bold uppercase tracking-wider text-zinc-500',
+                                children: 'Cor de preenchimento'
+                            })
+                        ]
                     })
                 ]
             }) : null,
@@ -21143,9 +21901,9 @@ function TransBgConfigCard() {
                             flex: 1,
                             padding: '6px 12px',
                             borderRadius: '6px',
-                            border: '1px solid #ef4444',
-                            background: 'rgba(239, 68, 68, 0.15)',
-                            color: '#f87171',
+                            border: '1px solid #27272a',
+                            background: '#18191e',
+                            color: '#a1a1aa',
                             fontFamily: 'monospace',
                             fontSize: '10px',
                             fontWeight: 900,
@@ -21181,7 +21939,6 @@ function TelaLayoutsVisualPanel({ usbConfig: e, onChange: t }) {
     let maxBgSlots = 16;
     let maxAmpSlots = isMt8 ? 16 : 12;
     let displayStyle = Number(e?.displayStyle ?? (isMt8 ? 4 : 0));
-    if (isMt8 && isGlobalStompOn && displayStyle === 2) displayStyle = 4;
     /* MT-8 permite Estilo 0 (Simples) */
     if (!isMt8 && displayStyle !== 0 && displayStyle !== 1 && displayStyle !== 6 && displayStyle !== 7) displayStyle = 0;
 
@@ -21194,12 +21951,6 @@ function TelaLayoutsVisualPanel({ usbConfig: e, onChange: t }) {
     let [ampModalSlot, setAmpModalSlot] = (0, N.useState)(null);
     let bgThumb = useDisplayIconThumb(typeof DISPLAY_BG_KEY !== 'undefined' ? DISPLAY_BG_KEY : 'bg');
     let lastDragTimeRef = (0, N.useRef)(0);
-
-    (0, N.useEffect)(() => {
-        if (isMt8 && isGlobalStompOn && Number(e?.displayStyle) === 2) {
-            t({ displayStyle: 4 });
-        }
-    }, [isMt8, isGlobalStompOn, e?.displayStyle]);
 
 function CustomScreenBlockTile({ idx, isSel, isEnabled, isBorderless, usbCfg }) {
     let iconKey = Array.isArray(usbCfg?.fsIconKey) ? usbCfg.fsIconKey[idx] : ``;
@@ -21598,7 +22349,7 @@ function CustomScreenBlockTile({ idx, isSel, isEnabled, isBorderless, usbCfg }) 
                                         if (isLive) handleLivePosChange(selectedSw, { x: val });
                                         else handlePresetPosChange(selectedSw, { x: val });
                                     },
-                                    style: { width: '100%', accentColor: '#ef4444', cursor: 'pointer' }
+                                    style: { width: '100%', height: '6px', borderRadius: '3px', background: '#27272a', border: '1px solid #3f3f46', accentColor: '#ef4444', cursor: 'pointer', outline: 'none' }
                                 })
                             ]
                         }),
@@ -21620,7 +22371,7 @@ function CustomScreenBlockTile({ idx, isSel, isEnabled, isBorderless, usbCfg }) 
                                         if (isLive) handleLivePosChange(selectedSw, { y: val });
                                         else handlePresetPosChange(selectedSw, { y: val });
                                     },
-                                    style: { width: '100%', accentColor: '#ef4444', cursor: 'pointer' }
+                                    style: { width: '100%', height: '6px', borderRadius: '3px', background: '#27272a', border: '1px solid #3f3f46', accentColor: '#ef4444', cursor: 'pointer', outline: 'none' }
                                 })
                             ]
                         }),
@@ -21642,7 +22393,7 @@ function CustomScreenBlockTile({ idx, isSel, isEnabled, isBorderless, usbCfg }) 
                                         if (isLive) handleLivePosChange(selectedSw, { size: val });
                                         else handlePresetPosChange(selectedSw, { size: val });
                                     },
-                                    style: { width: '100%', accentColor: '#ef4444', cursor: 'pointer' }
+                                    style: { width: '100%', height: '6px', borderRadius: '3px', background: '#27272a', border: '1px solid #3f3f46', accentColor: '#ef4444', cursor: 'pointer', outline: 'none' }
                                 })
                             ]
                         })
@@ -21848,14 +22599,14 @@ function CustomScreenBlockTile({ idx, isSel, isEnabled, isBorderless, usbCfg }) 
 
     let styles = isMt8 ? [
         { id: 4, lbl: 'PRESET / STOMP', desc: 'Anel clássico de presets' },
-        ...(isGlobalStompOn ? [] : [{ id: 2, lbl: 'ÍCONES', desc: 'Nome no meio dos blocos' }]),
-        { id: 7, lbl: 'AMP', desc: 'Cabeçote + 8 Footswitches' },
-        { id: 6, lbl: 'CUSTOM', desc: 'Foto com barra ou blocos' }
+        { id: 2, lbl: 'ÍCONES', desc: 'Grade de blocos / ícones' },
+        { id: 7, lbl: 'AMP', desc: 'Cabeçote + 8 Footswitches' }
+        /* { id: 6, lbl: 'CUSTOM', desc: 'Foto com barra ou blocos' } */
     ] : [
         { id: 0, lbl: 'CLÁSSICO', desc: 'Preset: Clássico · Stomp: Ícones' },
         { id: 1, lbl: 'ÍCONES', desc: fsCount === 6 ? 'Grade 2×3 ou 1 por tela' : 'Grade 2×2 ou 1 por tela' },
-        { id: 7, lbl: 'AMP', desc: 'Head de amp + footswitches' },
-        { id: 6, lbl: 'CUSTOM', desc: 'Modo Clássico (Fundo Puro)' }
+        { id: 7, lbl: 'AMP', desc: 'Head de amp + footswitches' }
+        /* { id: 6, lbl: 'CUSTOM', desc: 'Modo Clássico (Fundo Puro)' } */
     ];
 
     let subTitle = (isMt8 ? 'MX-8' : (fsCount === 6 ? 'MX-6' : 'MX-4')) + ' · ' + (styleLabels[displayStyle] || (isMt8 ? 'PRESET / STOMP' : 'CLÁSSICO'));
@@ -21863,10 +22614,11 @@ function CustomScreenBlockTile({ idx, isSel, isEnabled, isBorderless, usbCfg }) 
     return (0, P.jsxs)('div', {
         style: { display: 'contents' },
         children: [
-            /* Card 0: Seletor Estilo do Display */
-            (0, P.jsxs)(I, {
-                title: 'Estilo do Display',
-                subtitle: subTitle,
+            /* Coluna 1 (Esquerda): Estilo do Display */
+            (0, P.jsx)('div', {
+                className: 'flex flex-col gap-4',
+                children: (0, P.jsxs)(I, {
+                    title: 'Estilo do Display',
                 children: [
                     (0, P.jsx)('div', {
                         style: { display: 'flex', flexWrap: 'wrap', gap: '8px' },
@@ -21904,10 +22656,7 @@ function CustomScreenBlockTile({ idx, isSel, isEnabled, isBorderless, usbCfg }) 
                                         style: { fontFamily: 'inherit', fontSize: '12px', fontWeight: 900, letterSpacing: '0.05em', color: isSel ? '#f87171' : '#e4e4e7' },
                                         children: st.lbl
                                     }),
-                                    (0, P.jsx)('span', {
-                                        style: { marginTop: '4px', fontFamily: 'monospace', fontSize: '9px', color: isSel ? '#fca5a5' : '#71717a', textAlign: 'center', lineHeight: 1.2 },
-                                        children: st.desc
-                                    })
+                                    null
                                 ]
                             });
                         })
@@ -21929,13 +22678,13 @@ function CustomScreenBlockTile({ idx, isSel, isEnabled, isBorderless, usbCfg }) 
                     /* Opção MT-4 e MT-6: Exibição no Modo Preset quando Ícones ativo */
                     (!isMt8 && displayStyle === 1) ? (0, P.jsxs)('div', {
                         className: 'mt-3.5 flex flex-col gap-2 rounded-xl border p-3',
-                        style: { border: '1px solid rgba(239, 68, 68, 0.25)', background: '#121316' },
+                        style: { border: '1px solid #27272a', background: '#101114' },
                         children: [
                             (0, P.jsxs)('div', {
                                 style: { display: 'flex', alignItems: 'center', justifyContent: 'space-between' },
                                 children: [
                                     (0, P.jsx)('span', {
-                                        style: { fontFamily: 'inherit', fontSize: '10px', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#f87171' },
+                                        style: { fontFamily: 'inherit', fontSize: '10px', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#e4e4e7' },
                                         children: 'MODO PRESET: EXIBIÇÃO DOS ÍCONES'
                                     }),
                                     (0, P.jsx)('span', {
@@ -21987,16 +22736,16 @@ function CustomScreenBlockTile({ idx, isSel, isEnabled, isBorderless, usbCfg }) 
                         ]
                     }) : null,
 
-                    /* Opção Geral: Exibição no Modo Stomp (Quando Modo Stomp Global ativo) */
-                    (isGlobalStompOn) ? (0, P.jsxs)('div', {
+                    /* Opção MT-4 e MT-6: Exibição no Modo Stomp (Quando Modo Stomp Global ativo) */
+                    (!isMt8 && isGlobalStompOn) ? (0, P.jsxs)('div', {
                         className: 'mt-3.5 flex flex-col gap-2 rounded-xl border p-3',
-                        style: { border: '1px solid rgba(239, 68, 68, 0.25)', background: '#121316' },
+                        style: { border: '1px solid #27272a', background: '#101114' },
                         children: [
                             (0, P.jsxs)('div', {
                                 style: { display: 'flex', alignItems: 'center', justifyContent: 'space-between' },
                                 children: [
                                     (0, P.jsx)('span', {
-                                        style: { fontFamily: 'inherit', fontSize: '10px', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#f87171' },
+                                        style: { fontFamily: 'inherit', fontSize: '10px', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#e4e4e7' },
                                         children: 'MODO STOMP: EXIBIÇÃO DOS ÍCONES'
                                     }),
                                     (0, P.jsx)('span', {
@@ -22008,7 +22757,7 @@ function CustomScreenBlockTile({ idx, isSel, isEnabled, isBorderless, usbCfg }) 
                             (0, P.jsx)('div', {
                                 style: { display: 'flex', gap: '8px' },
                                 children: [
-                                    { id: 0, lbl: 'NA GRADE', desc: isMt8 ? 'Exibe grade completa de blocos' : (fsCount === 6 ? 'Grade 2×3 com todos os blocos' : 'Grade 2×2 com todos os blocos') },
+                                    { id: 0, lbl: 'NA GRADE', desc: fsCount === 6 ? 'Grade 2×3 com todos os blocos' : 'Grade 2×2 com todos os blocos' },
                                     { id: 3, lbl: 'POR CHAVE', desc: 'Ícone único em destaque da chave ativa' }
                                 ].map(opt => {
                                     let isSel = (Number(e?.displayLiveLayout ?? 0) === opt.id) || (opt.id === 0 && Number(e?.displayLiveLayout ?? 0) !== 3);
@@ -22048,9 +22797,9 @@ function CustomScreenBlockTile({ idx, isSel, isEnabled, isBorderless, usbCfg }) 
                     }) : null,
 
                     /* Bloco de Cores e Fundo (Modo SIMPLES no ST7789 ou PRESET/STOMP no MT-8 ou Modo AMP) */
-                    ((!isMt8 && (displayStyle === 0 || displayStyle === 7)) || (isMt8 && (displayStyle === 4 || displayStyle === 7))) ? (0, P.jsxs)('div', {
+                    ((!isMt8 && (displayStyle === 0 || displayStyle === 7)) || (isMt8 && (displayStyle === 4 || displayStyle === 7 || displayStyle === 2))) ? (0, P.jsxs)('div', {
                         className: 'mt-4 flex flex-col gap-3 rounded-xl border p-3.5',
-                        style: { border: '1px solid rgba(239, 68, 68, 0.35)', background: '#160d0d' },
+                        style: { border: '1px solid #27272a', background: '#101114' },
                         children: [
                             (0, P.jsx)(L, {
                                 label: `Fundo do display`,
@@ -22150,10 +22899,7 @@ function CustomScreenBlockTile({ idx, isSel, isEnabled, isBorderless, usbCfg }) 
                                     })
                                 ]
                             }) : null,
-                            (0, P.jsx)(`p`, {
-                                className: `rounded-lg border border-border/60 bg-surface/40 px-3 py-2 text-[10px] leading-relaxed text-muted-foreground`,
-                                children: displayStyle === 7 ? 'Modo Amp: exibe o cabeçote com fundo transparente e o nome do preset centralizados sobre o fundo configurado.' : (isMt8 ? 'Modo Preset / Stomp: exibe o anel de presets clássico com a cor de fundo e cores do Banco e Foot configuradas acima.' : 'Modo Preset: exibe Banco, Footswitch e Nome do preset. Modo Stomp: exibe os ícones configurados por footswitch.')
-                            })
+                            null
                         ]
                     }) : null,
 
@@ -22165,8 +22911,8 @@ function CustomScreenBlockTile({ idx, isSel, isEnabled, isBorderless, usbCfg }) 
                             marginTop: '16px',
                             padding: '16px 18px',
                             borderRadius: '12px',
-                            border: '1px solid rgba(239, 68, 68, 0.45)',
-                            background: '#160d0d',
+                            border: '1px solid #27272a',
+                            background: '#101114',
                             boxSizing: 'border-box',
                             display: 'flex',
                             flexDirection: 'column',
@@ -22180,9 +22926,9 @@ function CustomScreenBlockTile({ idx, isSel, isEnabled, isBorderless, usbCfg }) 
                                 hideMask: true,
                                 fsCount: fsCount,
                                 onClose: () => setBgModalSlot(null),
-                                onSaved: () => {
+                                onSaved: (k, instantThumb) => {
                                     setBgModalSlot(null);
-                                    displayIconInvalidateThumb(bgModalSlot === 0 ? DISPLAY_BG_KEY : 'bg' + bgModalSlot);
+                                    displayIconInvalidateThumb(k || (bgModalSlot === 0 ? DISPLAY_BG_KEY : 'bg' + bgModalSlot), instantThumb);
                                 }
                             }) : null,
 
@@ -22194,12 +22940,12 @@ function CustomScreenBlockTile({ idx, isSel, isEnabled, isBorderless, usbCfg }) 
                                         style: { display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '4px' },
                                         children: [
                                             (0, P.jsx)('span', {
-                                                style: { fontFamily: 'inherit', fontSize: '11px', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#f87171' },
+                                                style: { fontFamily: 'inherit', fontSize: '11px', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#e4e4e7' },
                                                 children: isMt8 ? 'FOTOS DE FUNDO / WALLPAPERS (480×320 FULL-RES)' : 'FOTOS DE FUNDO / WALLPAPERS (240×240 FULL-RES)'
                                             }),
                                             (0, P.jsx)('span', {
                                                 style: { fontFamily: 'monospace', fontSize: '9px', fontWeight: 700, color: '#71717a' },
-                                                children: isMt8 ? 'TFT ST7796' : 'TFT ST7789'
+                                                children: ''
                                             })
                                         ]
                                     }),
@@ -22247,16 +22993,16 @@ function CustomScreenBlockTile({ idx, isSel, isEnabled, isBorderless, usbCfg }) 
                                                     width: '100%',
                                                     padding: '10px 16px',
                                                     borderRadius: '8px',
-                                                    border: '1px solid #ef4444',
-                                                    background: '#240a0a',
-                                                    color: '#f87171',
+                                                    border: '1px solid #3f3f46',
+                                                    background: '#18191e',
+                                                    color: '#e4e4e7',
                                                     fontFamily: 'inherit',
                                                     fontSize: '11px',
                                                     fontWeight: 900,
                                                     letterSpacing: '0.08em',
                                                     textTransform: 'uppercase',
                                                     cursor: 'pointer',
-                                                    boxShadow: '0 0 10px rgba(239, 68, 68, 0.25)',
+                                                    boxShadow: 'none',
                                                     transition: 'all .15s'
                                                 },
                                                 children: bgThumb ? 'TROCAR FUNDO PRINCIPAL (BG)' : 'CARREGAR FUNDO PRINCIPAL (BG)'
@@ -22286,7 +23032,7 @@ function CustomScreenBlockTile({ idx, isSel, isEnabled, isBorderless, usbCfg }) 
                                     }),
                                     (0, P.jsx)('span', {
                                         style: { fontFamily: 'monospace', fontSize: '9px', color: '#71717a' },
-                                        children: 'Clique na miniatura para importar'
+                                        children: ''
                                     })
                                 ]
                             }),
@@ -22360,8 +23106,8 @@ function CustomScreenBlockTile({ idx, isSel, isEnabled, isBorderless, usbCfg }) 
                             marginTop: '16px',
                             padding: '16px 18px',
                             borderRadius: '12px',
-                            border: '1px solid rgba(239, 68, 68, 0.45)',
-                            background: '#160d0d',
+                            border: '1px solid #27272a',
+                            background: '#101114',
                             boxSizing: 'border-box',
                             display: 'flex',
                             flexDirection: 'column',
@@ -22375,9 +23121,9 @@ function CustomScreenBlockTile({ idx, isSel, isEnabled, isBorderless, usbCfg }) 
                                 hideMask: true,
                                 fsCount: fsCount,
                                 onClose: () => setAmpModalSlot(null),
-                                onSaved: () => {
+                                onSaved: (k, instantThumb) => {
                                     setAmpModalSlot(null);
-                                    displayIconInvalidateThumb('amp' + ampModalSlot);
+                                    displayIconInvalidateThumb(k || ('amp' + ampModalSlot), instantThumb);
                                 }
                             }) : null,
 
@@ -22389,18 +23135,14 @@ function CustomScreenBlockTile({ idx, isSel, isEnabled, isBorderless, usbCfg }) 
                                         style: { display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '4px' },
                                         children: [
                                             (0, P.jsx)('span', {
-                                                style: { fontFamily: 'inherit', fontSize: '11px', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#f87171' },
-                                                children: isMt8 ? 'CABEÇOTES DE AMPLIFICADOR (16 SLOTS — 480×146)' : ('CABEÇOTES DE AMPLIFICADOR (' + maxAmpSlots + ' SLOTS — 232×100)')
+                                                style: { fontFamily: 'inherit', fontSize: '11px', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#e4e4e7' },
+                                                children: 'CABEÇOTES DE AMPLIFICADOR'
                                             }),
                                             (0, P.jsx)('span', {
                                                 style: { fontFamily: 'monospace', fontSize: '9px', fontWeight: 700, color: '#71717a' },
-                                                children: isMt8 ? 'TFT ST7796' : 'TFT ST7789'
+                                                children: ''
                                             })
                                         ]
-                                    }),
-                                    (0, P.jsx)('p', {
-                                        style: { margin: 0, fontFamily: 'monospace', fontSize: '9px', color: '#a1a1aa', lineHeight: 1.4 },
-                                        children: isMt8 ? 'Carregue até 16 fotos de cabeçotes (amp1..amp16) cortadas na proporção do head de amplificador (480×146 pixels). Na aba Preset, utilize o botão Cabeçote Amp em cada chave para escolher o cabeçote do preset ativo.' : ('Carregue até ' + maxAmpSlots + ' fotos de cabeçotes (amp1..amp' + maxAmpSlots + ') cortadas na proporção do head de amplificador (232×100 pixels). Na aba Preset, utilize o botão Cabeçote Amp em cada chave para escolher o cabeçote do preset ativo.')
                                     })
                                 ]
                             }),
@@ -22411,11 +23153,11 @@ function CustomScreenBlockTile({ idx, isSel, isEnabled, isBorderless, usbCfg }) 
                                 children: [
                                     (0, P.jsx)('span', {
                                         style: { fontFamily: 'inherit', fontSize: '10px', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '0.06em', color: '#d4d4d8' },
-                                        children: 'SLOTS DE CABEÇOTES DISPONÍVEIS (AMP1..AMP' + maxAmpSlots + '):'
+                                        children: 'SLOTS DISPONÍVEIS:'
                                     }),
                                     (0, P.jsx)('span', {
                                         style: { fontFamily: 'monospace', fontSize: '9px', color: '#71717a' },
-                                        children: 'Clique na miniatura para importar'
+                                        children: ''
                                     })
                                 ]
                             }),
@@ -22448,7 +23190,7 @@ function CustomScreenBlockTile({ idx, isSel, isEnabled, isBorderless, usbCfg }) 
                     /* Bloco informativo para Modo BLOCOS no MT-8 */
                     (isMt8 && displayStyle === 2) ? (0, P.jsxs)('div', {
                         className: 'mt-4 rounded-xl border p-3.5',
-                        style: { border: '1px solid rgba(239, 68, 68, 0.35)', background: '#160d0d' },
+                        style: { border: '1px solid #27272a', background: '#101114' },
                         children: [
                             (0, P.jsxs)('div', {
                                 style: { display: 'flex', alignItems: 'center', justifyContent: 'space-between' },
@@ -22456,7 +23198,7 @@ function CustomScreenBlockTile({ idx, isSel, isEnabled, isBorderless, usbCfg }) 
                                     (0, P.jsxs)('div', {
                                         children: [
                                             (0, P.jsx)('span', {
-                                                style: { fontFamily: 'inherit', fontSize: '11px', fontWeight: 900, textTransform: 'uppercase', color: '#f87171' },
+                                                style: { fontFamily: 'inherit', fontSize: '11px', fontWeight: 900, textTransform: 'uppercase', color: '#e4e4e7' },
                                                 children: 'NOME DA FS NO MEIO DOS BLOCOS'
                                             }),
                                             (0, P.jsx)('p', {
@@ -22483,39 +23225,237 @@ function CustomScreenBlockTile({ idx, isSel, isEnabled, isBorderless, usbCfg }) 
                         ]
                     }) : null
                 ]
-            }),
+            }) }),
 
-            /* Card 1: Layout - Custom (Quando estilo for 6) */
-            (displayStyle === 6) ? (0, P.jsx)('div', {
-                style: isMt8 && presetLayout === 6 ? { gridColumn: '1 / -1' } : {},
-                children: (0, P.jsxs)(I, {
-                    title: 'Layout - Custom',
-                    subtitle: isMt8
-                        ? (presetLayout === 0 ? 'CLÁSSICO' : presetLayout === 1 ? 'SPLIT' : presetLayout === 2 ? 'PEDALBOARD' : presetLayout === 4 ? 'COMPACTO' : 'CUSTOM')
-                        : 'CLÁSSICO (FUNDO PURO)',
-                    children: [
-                    isMt8 ? (0, P.jsxs)(P.Fragment, {
-                        children: [
+            /* Coluna 2 (Direita): Layout dos Footswitches + Ícones */
+            (0, P.jsxs)('div', {
+                className: 'flex flex-col gap-4',
+                children: [
+                    /* Card 1: Layout - Custom (Quando estilo for 6) */
+                    (displayStyle === 6) ? (0, P.jsx)('div', {
+                        style: isMt8 && presetLayout === 6 ? { gridColumn: '1 / -1' } : {},
+                        children: (0, P.jsxs)(I, {
+                            title: 'Layout - Custom',
+                            subtitle: isMt8
+                                ? (presetLayout === 0 ? 'CLÁSSICO' : presetLayout === 1 ? 'SPLIT' : presetLayout === 2 ? 'PEDALBOARD' : presetLayout === 4 ? 'COMPACTO' : 'CUSTOM')
+                                : 'CLÁSSICO (FUNDO PURO)',
+                            children: [
+                            isMt8 ? (0, P.jsxs)(P.Fragment, {
+                                children: [
+                                    (0, P.jsx)('div', {
+                                        style: { display: 'flex', flexWrap: 'wrap', gap: '8px' },
+                                        children: [
+                                            { id: 0, code: 'NENHUM', lbl: 'CLÁSSICO' },
+                                            { id: 1, code: 'L1', lbl: 'SPLIT' },
+                                            { id: 2, code: 'L2', lbl: 'PEDALBOARD' },
+                                            { id: 4, code: 'L4', lbl: 'COMPACTO' }/*,
+                                            { id: 6, code: 'CUSTOM', lbl: 'CUSTOM' }*/
+                                        ].map(item => {
+                                            let isSel = presetLayout === item.id;
+                                            return (0, P.jsxs)('button', {
+                                                key: item.code,
+                                                type: 'button',
+                                                onClick: () => {
+                                                    t({ displayPresetLayout: item.id });
+                                                },
+                                                style: {
+                                                    width: '84px',
+                                                    height: '64px',
+                                                    minWidth: '78px',
+                                                    display: 'flex',
+                                                    flexDirection: 'column',
+                                                    alignItems: 'center',
+                                                    justifyContent: 'space-between',
+                                                    padding: '6px',
+                                                    borderRadius: '10px',
+                                                    border: isSel ? '2px solid #ef4444' : '1px solid #27272a',
+                                                    background: isSel ? '#240a0a' : '#141519',
+                                                    boxShadow: isSel ? '0 0 14px rgba(239, 68, 68, 0.45), inset 0 0 8px rgba(239, 68, 68, 0.2)' : 'none',
+                                                    cursor: 'pointer',
+                                                    transition: 'all .15s'
+                                                },
+                                                children: [
+                                                    renderWireframe(item.code, isSel),
+                                                    (0, P.jsx)('span', {
+                                                        style: { fontSize: '9px', fontWeight: 900, letterSpacing: '0.04em', color: isSel ? '#f87171' : '#71717a' },
+                                                        children: item.lbl
+                                                    })
+                                                ]
+                                            });
+                                        })
+                                    }),
+                                    (0, P.jsx)('p', {
+                                        className: 'mt-3 font-mono text-[9px] uppercase tracking-wider text-zinc-500',
+                                        children: 'CLÁSSICO = MODO FUNDO PURO (FOTO COMPLETA COM BARRA). SPLIT/PEDALBOARD/COMPACTO/CUSTOM EXIBEM OS ÍCONES EM CIMA DA IMAGEM DE FUNDO.'
+                                    }),
+
+                                    /* Toggle Mostrar nomes */
+                                    (0, P.jsxs)('div', {
+                                        className: 'mt-4 flex items-center justify-between border-t border-zinc-800 pt-3',
+                                        children: [
+                                            (0, P.jsxs)('div', {
+                                                children: [
+                                                    (0, P.jsx)('span', {
+                                                        className: 'font-mono text-[9px] font-black uppercase tracking-[0.2em] text-zinc-400',
+                                                        children: presetLayout === 6 ? 'BARRA INFERIOR (NOME DO PRESET)' : 'MOSTRAR NOMES DOS PRESETS'
+                                                    }),
+                                                    (0, P.jsx)('p', {
+                                                        className: 'font-mono text-[9px] text-zinc-500',
+                                                        children: presetLayout === 6 ? 'Exibe a barra de status inferior (banco e nome do preset ativo) sobre a imagem de fundo' : 'Exibe o nome do preset abaixo de cada bloco no display'
+                                                    })
+                                                ]
+                                            }),
+                                            (0, P.jsxs)('div', {
+                                                style: { display: 'flex', alignItems: 'center', gap: '8px' },
+                                                children: [
+                                                    (0, P.jsx)('span', {
+                                                        style: {
+                                                            padding: '2px 8px',
+                                                            borderRadius: '4px',
+                                                            background: showNames ? '#ef4444' : '#27272a',
+                                                            color: showNames ? '#ffffff' : '#71717a',
+                                                            fontSize: '10px',
+                                                            fontWeight: 900,
+                                                            fontFamily: 'monospace',
+                                                            letterSpacing: '0.08em',
+                                                            boxShadow: showNames ? '0 0 8px rgba(239, 68, 68, 0.4)' : 'none'
+                                                        },
+                                                        children: showNames ? 'ATIVO' : 'INATIVO'
+                                                    }),
+                                                    (0, P.jsx)('button', {
+                                                        type: 'button',
+                                                        onClick: () => t({ displayPresetShowNames: showNames ? 0 : 1 }),
+                                                        style: {
+                                                            position: 'relative',
+                                                            width: '44px',
+                                                            height: '24px',
+                                                            borderRadius: '9999px',
+                                                            border: showNames ? '1px solid #ef4444' : '1px solid #3f3f46',
+                                                            background: showNames ? '#ef4444' : '#27272a',
+                                                            cursor: 'pointer',
+                                                            transition: 'all .2s'
+                                                        },
+                                                        children: (0, P.jsx)('span', {
+                                                            style: {
+                                                                position: 'absolute',
+                                                                top: '2px',
+                                                                left: showNames ? '22px' : '2px',
+                                                                width: '18px',
+                                                                height: '18px',
+                                                                borderRadius: '9999px',
+                                                                background: '#ffffff',
+                                                                boxShadow: '0 2px 4px rgba(0,0,0,0.4)',
+                                                                transition: 'left .2s'
+                                                            }
+                                                        })
+                                                    })
+                                                ]
+                                            })
+                                        ]
+                                    }),
+
+                                    /* Formato do Ícone */
+                                    (0, P.jsxs)('div', {
+                                        className: 'mt-4',
+                                        children: [
+                                            (0, P.jsx)('span', {
+                                                className: 'font-mono text-[9px] font-black uppercase tracking-[0.2em] text-zinc-400',
+                                                children: 'FORMATO DO ÍCONE'
+                                            }),
+                                            (0, P.jsx)('div', {
+                                                className: 'mt-1.5 flex rounded-xl border border-zinc-800 bg-[#0d0e11] p-1',
+                                                children: [
+                                                    { id: 0, lbl: 'PADRÃO' },
+                                                    { id: 1, lbl: 'SEM CONTORNO' }
+                                                ].map(sh => {
+                                                    let isSel = iconShape === sh.id;
+                                                    return (0, P.jsx)('button', {
+                                                        key: sh.id,
+                                                        type: 'button',
+                                                        onClick: () => t({ displayIconShape: sh.id }),
+                                                        style: {
+                                                            flex: 1,
+                                                            borderRadius: '8px',
+                                                            padding: '8px 4px',
+                                                            fontFamily: 'inherit',
+                                                            fontSize: '11px',
+                                                            fontWeight: 900,
+                                                            textTransform: 'uppercase',
+                                                            letterSpacing: '0.06em',
+                                                            border: 'none',
+                                                            background: isSel ? '#ef4444' : 'transparent',
+                                                            color: isSel ? '#000000' : '#a1a1aa',
+                                                            boxShadow: isSel ? '0 0 10px rgba(239, 68, 68, 0.45)' : 'none',
+                                                            cursor: 'pointer',
+                                                            transition: 'all .15s'
+                                                        },
+                                                        children: sh.lbl
+                                                    }, sh.id);
+                                                })
+                                            })
+                                        ]
+                                    }),
+
+                                    /* Seletor Custom se ativo */
+                                    presetLayout === 6 ? renderCustomEditor(false) : null
+                                ]
+                            }) : (0, P.jsxs)(P.Fragment, {
+                                children: [
+                                    (0, P.jsx)('div', {
+                                        style: { display: 'flex', justifyContent: 'center' },
+                                        children: (0, P.jsxs)('div', {
+                                            style: {
+                                                width: '120px',
+                                                height: '100px',
+                                                display: 'flex',
+                                                flexDirection: 'column',
+                                                alignItems: 'center',
+                                                justifyContent: 'space-between',
+                                                padding: '10px 8px',
+                                                borderRadius: '12px',
+                                                border: '2px solid #ef4444',
+                                                background: '#240a0a',
+                                                boxShadow: '0 0 14px rgba(239, 68, 68, 0.45), inset 0 0 8px rgba(239, 68, 68, 0.2)'
+                                            },
+                                            children: [
+                                                renderWireframe('CLASSICO', true),
+                                                (0, P.jsx)('span', {
+                                                    style: { fontSize: '10px', fontWeight: 900, letterSpacing: '0.04em', color: '#f87171' },
+                                                    children: 'CLÁSSICO'
+                                                })
+                                            ]
+                                        })
+                                    }),
+                                    (0, P.jsx)('p', {
+                                        className: 'mt-3 font-mono text-[9px] uppercase tracking-wider text-zinc-400 text-center',
+                                        children: 'MODO CLÁSSICO: A FOTO DE FUNDO PREENCHE O DISPLAY (240×240) COM UMA BARRA INFERIOR SEMI-TRANSPARENTE CONTENDO O BANCO E O NOME DO PRESET ATIVO.'
+                                    })
+                                ]
+                            })
+                        ]
+                    }) }) : null,
+
+                    /* Card 2: Layout dos Footswitches (Modo AMP no MT-8) */
+                    (isMt8 && displayStyle === 7) ? (0, P.jsx)('div', {
+                        children: (0, P.jsxs)(I, {
+                            title: 'Layout dos Footswitches (Modo AMP)',
+                            
+                            children: [
                             (0, P.jsx)('div', {
                                 style: { display: 'flex', flexWrap: 'wrap', gap: '8px' },
                                 children: [
-                                    { id: 0, code: 'NENHUM', lbl: 'CLÁSSICO' },
-                                    { id: 1, code: 'L1', lbl: 'SPLIT' },
-                                    { id: 2, code: 'L2', lbl: 'PEDALBOARD' },
-                                    { id: 4, code: 'L4', lbl: 'COMPACTO' },
-                                    { id: 6, code: 'CUSTOM', lbl: 'CUSTOM' }
+                                    { id: 0, code: 'L4', lbl: 'AMP NO TOPO' },
+                                    { id: 1, code: 'L1', lbl: 'AMP NO CENTRO' }
                                 ].map(item => {
-                                    let isSel = presetLayout === item.id;
+                                    let isSel = liveLayout === item.id;
                                     return (0, P.jsxs)('button', {
                                         key: item.code,
                                         type: 'button',
-                                        onClick: () => {
-                                            t({ displayPresetLayout: item.id });
-                                        },
+                                        onClick: () => t({ displayLiveLayout: item.id, displayPresetLayout: item.id }),
                                         style: {
-                                            width: '84px',
-                                            height: '64px',
-                                            minWidth: '78px',
+                                            width: '100px',
+                                            height: '68px',
+                                            minWidth: '90px',
                                             display: 'flex',
                                             flexDirection: 'column',
                                             alignItems: 'center',
@@ -22540,204 +23480,17 @@ function CustomScreenBlockTile({ idx, isSel, isEnabled, isBorderless, usbCfg }) 
                             }),
                             (0, P.jsx)('p', {
                                 className: 'mt-3 font-mono text-[9px] uppercase tracking-wider text-zinc-500',
-                                children: 'CLÁSSICO = MODO FUNDO PURO (FOTO COMPLETA COM BARRA). SPLIT/PEDALBOARD/COMPACTO/CUSTOM EXIBEM OS ÍCONES EM CIMA DA IMAGEM DE FUNDO.'
-                            }),
-
-                            /* Toggle Mostrar nomes */
-                            (0, P.jsxs)('div', {
-                                className: 'mt-4 flex items-center justify-between border-t border-zinc-800 pt-3',
-                                children: [
-                                    (0, P.jsxs)('div', {
-                                        children: [
-                                            (0, P.jsx)('span', {
-                                                className: 'font-mono text-[9px] font-black uppercase tracking-[0.2em] text-zinc-400',
-                                                children: presetLayout === 6 ? 'BARRA INFERIOR (NOME DO PRESET)' : 'MOSTRAR NOMES DOS PRESETS'
-                                            }),
-                                            (0, P.jsx)('p', {
-                                                className: 'font-mono text-[9px] text-zinc-500',
-                                                children: presetLayout === 6 ? 'Exibe a barra de status inferior (banco e nome do preset ativo) sobre a imagem de fundo' : 'Exibe o nome do preset abaixo de cada bloco no display'
-                                            })
-                                        ]
-                                    }),
-                                    (0, P.jsxs)('div', {
-                                        style: { display: 'flex', alignItems: 'center', gap: '8px' },
-                                        children: [
-                                            (0, P.jsx)('span', {
-                                                style: {
-                                                    padding: '2px 8px',
-                                                    borderRadius: '4px',
-                                                    background: showNames ? '#ef4444' : '#27272a',
-                                                    color: showNames ? '#ffffff' : '#71717a',
-                                                    fontSize: '10px',
-                                                    fontWeight: 900,
-                                                    fontFamily: 'monospace',
-                                                    letterSpacing: '0.08em',
-                                                    boxShadow: showNames ? '0 0 8px rgba(239, 68, 68, 0.4)' : 'none'
-                                                },
-                                                children: showNames ? 'ATIVO' : 'INATIVO'
-                                            }),
-                                            (0, P.jsx)('button', {
-                                                type: 'button',
-                                                onClick: () => t({ displayPresetShowNames: showNames ? 0 : 1 }),
-                                                style: {
-                                                    position: 'relative',
-                                                    width: '44px',
-                                                    height: '24px',
-                                                    borderRadius: '9999px',
-                                                    border: showNames ? '1px solid #ef4444' : '1px solid #3f3f46',
-                                                    background: showNames ? '#ef4444' : '#27272a',
-                                                    cursor: 'pointer',
-                                                    transition: 'all .2s'
-                                                },
-                                                children: (0, P.jsx)('span', {
-                                                    style: {
-                                                        position: 'absolute',
-                                                        top: '2px',
-                                                        left: showNames ? '22px' : '2px',
-                                                        width: '18px',
-                                                        height: '18px',
-                                                        borderRadius: '9999px',
-                                                        background: '#ffffff',
-                                                        boxShadow: '0 2px 4px rgba(0,0,0,0.4)',
-                                                        transition: 'left .2s'
-                                                    }
-                                                })
-                                            })
-                                        ]
-                                    })
-                                ]
-                            }),
-
-                            /* Formato do Ícone */
-                            (0, P.jsxs)('div', {
-                                className: 'mt-4',
-                                children: [
-                                    (0, P.jsx)('span', {
-                                        className: 'font-mono text-[9px] font-black uppercase tracking-[0.2em] text-zinc-400',
-                                        children: 'FORMATO DO ÍCONE'
-                                    }),
-                                    (0, P.jsx)('div', {
-                                        className: 'mt-1.5 flex rounded-xl border border-zinc-800 bg-[#0d0e11] p-1',
-                                        children: [
-                                            { id: 0, lbl: 'PADRÃO' },
-                                            { id: 1, lbl: 'SEM CONTORNO' }
-                                        ].map(sh => {
-                                            let isSel = iconShape === sh.id;
-                                            return (0, P.jsx)('button', {
-                                                key: sh.id,
-                                                type: 'button',
-                                                onClick: () => t({ displayIconShape: sh.id }),
-                                                style: {
-                                                    flex: 1,
-                                                    borderRadius: '8px',
-                                                    padding: '8px 4px',
-                                                    fontFamily: 'inherit',
-                                                    fontSize: '11px',
-                                                    fontWeight: 900,
-                                                    textTransform: 'uppercase',
-                                                    letterSpacing: '0.06em',
-                                                    border: 'none',
-                                                    background: isSel ? '#ef4444' : 'transparent',
-                                                    color: isSel ? '#000000' : '#a1a1aa',
-                                                    boxShadow: isSel ? '0 0 10px rgba(239, 68, 68, 0.45)' : 'none',
-                                                    cursor: 'pointer',
-                                                    transition: 'all .15s'
-                                                },
-                                                children: sh.lbl
-                                            }, sh.id);
-                                        })
-                                    })
-                                ]
-                            }),
-
-                            /* Seletor Custom se ativo */
-                            presetLayout === 6 ? renderCustomEditor(false) : null
-                        ]
-                    }) : (0, P.jsxs)(P.Fragment, {
-                        children: [
-                            (0, P.jsx)('div', {
-                                style: { display: 'flex', justifyContent: 'center' },
-                                children: (0, P.jsxs)('div', {
-                                    style: {
-                                        width: '120px',
-                                        height: '100px',
-                                        display: 'flex',
-                                        flexDirection: 'column',
-                                        alignItems: 'center',
-                                        justifyContent: 'space-between',
-                                        padding: '10px 8px',
-                                        borderRadius: '12px',
-                                        border: '2px solid #ef4444',
-                                        background: '#240a0a',
-                                        boxShadow: '0 0 14px rgba(239, 68, 68, 0.45), inset 0 0 8px rgba(239, 68, 68, 0.2)'
-                                    },
-                                    children: [
-                                        renderWireframe('CLASSICO', true),
-                                        (0, P.jsx)('span', {
-                                            style: { fontSize: '10px', fontWeight: 900, letterSpacing: '0.04em', color: '#f87171' },
-                                            children: 'CLÁSSICO'
-                                        })
-                                    ]
-                                })
-                            }),
-                            (0, P.jsx)('p', {
-                                className: 'mt-3 font-mono text-[9px] uppercase tracking-wider text-zinc-400 text-center',
-                                children: 'MODO CLÁSSICO: A FOTO DE FUNDO PREENCHE O DISPLAY (240×240) COM UMA BARRA INFERIOR SEMI-TRANSPARENTE CONTENDO O BANCO E O NOME DO PRESET ATIVO.'
+                                children: 'MODO AMP: ESCOLHA ENTRE CABEÇOTE NO TOPO (COM 8 FOOTSWITCHES 2×4 NA BASE) OU CABEÇOTE NO CENTRO (4 CHAVES EM CIMA E 4 EM BAIXO).'
                             })
                         ]
-                    })
-                ]
-            }) }) : null,
+                    }) }) : null,
 
-            /* Card 2: Layout dos Footswitches (Modo AMP no MT-8) */
-            (isMt8 && displayStyle === 7) ? (0, P.jsx)('div', {
-                children: (0, P.jsxs)(I, {
-                    title: 'Layout dos Footswitches (Modo AMP)',
-                    subtitle: (liveLayout === 1) ? 'AMP NO CENTRO (2×4)' : 'AMP NO TOPO (2×4)',
-                    children: [
-                    (0, P.jsx)('div', {
-                        style: { display: 'flex', flexWrap: 'wrap', gap: '8px' },
-                        children: [
-                            { id: 0, code: 'L4', lbl: 'AMP NO TOPO' },
-                            { id: 1, code: 'L1', lbl: 'AMP NO CENTRO' }
-                        ].map(item => {
-                            let isSel = liveLayout === item.id;
-                            return (0, P.jsxs)('button', {
-                                key: item.code,
-                                type: 'button',
-                                onClick: () => t({ displayLiveLayout: item.id, displayPresetLayout: item.id }),
-                                style: {
-                                    width: '100px',
-                                    height: '68px',
-                                    minWidth: '90px',
-                                    display: 'flex',
-                                    flexDirection: 'column',
-                                    alignItems: 'center',
-                                    justifyContent: 'space-between',
-                                    padding: '6px',
-                                    borderRadius: '10px',
-                                    border: isSel ? '2px solid #ef4444' : '1px solid #27272a',
-                                    background: isSel ? '#240a0a' : '#141519',
-                                    boxShadow: isSel ? '0 0 14px rgba(239, 68, 68, 0.45), inset 0 0 8px rgba(239, 68, 68, 0.2)' : 'none',
-                                    cursor: 'pointer',
-                                    transition: 'all .15s'
-                                },
-                                children: [
-                                    renderWireframe(item.code, isSel),
-                                    (0, P.jsx)('span', {
-                                        style: { fontSize: '9px', fontWeight: 900, letterSpacing: '0.04em', color: isSel ? '#f87171' : '#71717a' },
-                                        children: item.lbl
-                                    })
-                                ]
-                            });
-                        })
-                    }),
-                    (0, P.jsx)('p', {
-                        className: 'mt-3 font-mono text-[9px] uppercase tracking-wider text-zinc-500',
-                        children: 'MODO AMP: ESCOLHA ENTRE CABEÇOTE NO TOPO (COM 8 FOOTSWITCHES 2×4 NA BASE) OU CABEÇOTE NO CENTRO (4 CHAVES EM CIMA E 4 EM BAIXO).'
+                    /* Card 3: Ícones do Pedal */
+                    (0, P.jsx)(displayIconsLibraryPanel, {
+                        fsCount: e?.fsCount
                     })
                 ]
-            }) }) : null
+            })
         ]
     });
 }
@@ -23427,7 +24180,7 @@ function midiDictSlotsPanel({
     }, [routeOptions, addRoute]);
     return (0, P.jsxs)(I, {
         title: `Dicionário MIDI por dispositivo e canal`,
-        subtitle: `Adicione só os mapas que precisa`,
+        
         children: [(0, P.jsx)(`p`, {
             className: `font-mono text-[10px] leading-relaxed text-muted-foreground`,
             children: hubMode ? `Escolha saída (porta HUB), canal e modelo. Porta HUB no comando só afecta nomes CC; a rotação MIDI é do firmware.` : `Escolha saída, canal MIDI e o modelo do dicionário — só entram as linhas que adicionar.`
@@ -23650,7 +24403,7 @@ function systemSettingsPanel({
     return (0, P.jsxs)(`div`, {
         className: `space-y-4`,
         children: [(0, P.jsx)(`div`, {
-            className: `grid grid-cols-2 gap-2 rounded-2xl border border-border bg-panel/60 p-1.5`,
+            className: `grid grid-cols-3 gap-2 rounded-2xl border border-border bg-panel/60 p-1.5`,
             children: [{
                 id: `conexoes`,
                 label: `Conexões`,
@@ -23659,6 +24412,10 @@ function systemSettingsPanel({
                 id: `tela`,
                 label: `Tela`,
                 hint: `Estilo · Ícones`
+            }, {
+                id: `utilitario`,
+                label: `Utilitário`,
+                hint: `Dicionário · Backup · Status`
             }].map(tab => {
                 let on = sysTab === tab.id;
                 return (0, P.jsxs)(`button`, {
@@ -23678,20 +24435,20 @@ function systemSettingsPanel({
         className: `grid gap-4 lg:grid-cols-2`,
         children: [(0, P.jsxs)(I, {
             title: `USB`,
-            subtitle: `MIDI USB Host/Device`,
+            
             children: [(0, P.jsx)(L, {
                 label: `Caminho`,
                 options: pathOpts,
                 value: pathCustom ? `Custom` : `Preset`,
-                onChange: e => {
-                    let next = e === `Custom` ? 1 : 0,
+                onChange: opt => {
+                    let next = opt === `Custom` ? 1 : 0,
                         patch = {
-                            controllerPath: next
+                            controllerPath: next,
+                            midiEnable: 1,
+                            midiPreset: next === 1 ? 2 : 1
                         };
                     if (next === 1) {
-                        /* Custom: MIDI serial passa para Custom (não fica em Padrão). */
-                        patch.midiPreset = 2;
-                        patch.midiEnable = 1;
+                        /* Custom: MIDI serial passa para Custom */
                         if (s === 2) {
                             /* Device: subtipo PC(8) ou Kemper(28). */
                             let cur = Number(l);
@@ -23701,9 +24458,7 @@ function systemSettingsPanel({
                             if (fallback !== void 0) patch.usbpreset = fallback
                         }
                     } else {
-                        /* Preset: reverte MIDI serial / BT se estavam em Custom */
-                        let curMidi = Number(e?.midiPreset ?? e?.MIDI_PRESET ?? 0);
-                        if (curMidi === 2) patch.midiPreset = 0;
+                        /* Preset: MIDI serial passa para Padrão; reverte BT se estava em Custom */
                         let curBt = Number(e?.btPreset ?? e?.BT_PRESET ?? 0);
                         if (curBt === 3) patch.btPreset = 0;
                     }
@@ -23740,15 +24495,12 @@ function systemSettingsPanel({
                     if (Number(nextPreset) === 3) patch.usbmode = 0;
                     t(patch)
                 }
-            }), pathCustom && (0, P.jsx)(`p`, {
-                className: `font-mono text-[10px] uppercase tracking-widest text-muted-foreground`,
-                children: s === 2 ? `Custom Device: PC = MIDI genérico; Kemper = protocolo Player (afinador).` : `Custom: comandos saem pelo output (USB/BT/MIDI). GP5: use Modo USB “TONEX / MODELLER”. Boss/Ampero: Host.`
-            })]
+            }), null]
         }), s === 2 && Number(l) === 28 && (0, P.jsx)(kemperTunerCard, {
             usbCfg: e
         }), (0, P.jsxs)(I, {
             title: `Bluetooth`,
-            subtitle: `BLE MIDI`,
+            
             children: [(0, P.jsx)(L, {
                 label: `Modo`,
                 options: liBtModes,
@@ -23788,7 +24540,7 @@ function systemSettingsPanel({
             })]
         }), (0, P.jsxs)(I, {
             title: `MIDI Serial (DIN/UART)`,
-            subtitle: `GPIO43 TX · GPIO44 RX · 31250 bps`,
+            
             children: [(0, P.jsx)(L, {
                 label: `MIDI Serial`,
                 options: liMidiEnable,
@@ -23822,7 +24574,7 @@ function systemSettingsPanel({
             })]
         }), (0, P.jsxs)(I, {
             title: `Wi-Fi`,
-            subtitle: `Access Point do controlador`,
+            
             children: [(0, P.jsx)(popupTextFieldBridge, {
                 label: `SSID`,
                 value: x
@@ -23830,15 +24582,23 @@ function systemSettingsPanel({
                 label: `Senha`,
                 value: S
             })]
-        }), (0, P.jsx)(`div`, {
-            className: `lg:col-span-2`,
-            children: (0, P.jsx)(midiDictSlotsPanel, {
-                usbmode: s,
-                midiEnable: v
-            })
-        }), (0, P.jsxs)(I, {
+        })]
+    }), sysTab === `tela` && (0, P.jsx)(`div`, {
+        className: `grid gap-4 lg:grid-cols-2`,
+        children: (0, P.jsx)(TelaLayoutsVisualPanel, {
+            usbConfig: e,
+            onChange: t
+        })
+    }), sysTab === `utilitario` && (0, P.jsxs)(`div`, {
+        className: `grid gap-4 lg:grid-cols-2`,
+        children: [(0, P.jsx)(midiDictSlotsPanel, {
+            usbmode: s,
+            midiEnable: v
+        }), (0, P.jsxs)(`div`, {
+            className: `flex flex-col gap-4`,
+            children: [(0, P.jsxs)(I, {
             title: `Backup`,
-            subtitle: `Formato v3 · completo ou seletivo`,
+            
             children: [(0, P.jsx)(`input`, {
                 ref: o,
                 type: `file`,
@@ -23917,7 +24677,7 @@ function systemSettingsPanel({
                 })]
             }), (0, P.jsx)(`div`, {
                 className: `rounded-xl border border-border bg-canvas px-3 py-2 font-mono text-[11px] text-muted-foreground`,
-                children: a ? `Processando backup/restauração...` : `Completo = 5 presets + USB + LEDs (v3). Leve = escolhe presets e opções. Preferir Wi‑Fi estável e BLE desligado.`
+                children: a ? `Processando backup/restauração...` : ``
             })]
         }), (0, P.jsxs)(I, {
             title: `Status`,
@@ -23967,23 +24727,7 @@ function systemSettingsPanel({
                     size: 14
                 }), ` Apagar tudo (master reset)`]
             })]
-        }), onSaveProp ? (0, P.jsx)(`div`, {
-            style: { gridColumn: `1 / -1` },
-            className: `flex justify-end pt-2`,
-            children: (0, P.jsxs)(`button`, {
-                type: `button`,
-                onClick: onSaveProp,
-                className: `flex items-center gap-2 rounded-full bg-gradient-to-b from-[#ef4444] to-[#b91c1c] px-6 py-2.5 font-display text-[10px] font-black uppercase tracking-[0.2em] text-accent-foreground shadow-[0_2px_10px_rgba(220,38,38,0.5)] hover:opacity-95`,
-                children: [(0, P.jsx)(cr, { className: `size-3.5` }), `Salvar Conexões`]
-            })
-        }) : null]
-    }), sysTab === `tela` && (0, P.jsxs)(`div`, {
-        className: `grid gap-4 lg:grid-cols-2`,
-        children: [(0, P.jsx)(TelaLayoutsVisualPanel, {
-            usbConfig: e,
-            onChange: t
-        }), (0, P.jsx)(displayIconsLibraryPanel, {
-            fsCount: e?.fsCount
+        })]
         })]
     })]
     })
@@ -24149,9 +24893,9 @@ function I({
 }) {
     return (0, P.jsxs)(`section`, {
         className: `rounded-2xl border border-border bg-panel/70 p-3 shadow-2xl shadow-black/20 sm:p-4 ${r || ``}`,
-        children: [(0, P.jsxs)(`header`, {
+        children: [(0, P.jsx)(`header`, {
             className: `mb-4 flex items-end justify-between gap-3`,
-            children: [(0, P.jsxs)(`div`, {
+            children: (0, P.jsxs)(`div`, {
                 className: `min-w-0`,
                 children: [(0, P.jsx)(`h2`, {
                     className: `font-display text-sm font-black uppercase tracking-[0.2em] text-foreground`,
@@ -24160,9 +24904,7 @@ function I({
                     className: `mt-0.5 truncate font-mono text-[10px] uppercase tracking-widest text-muted-foreground`,
                     children: t
                 })]
-            }), (0, P.jsx)(`div`, {
-                className: `size-1.5 shrink-0 rounded-full bg-accent led-glow`
-            })]
+            })
         }), (0, P.jsx)(`div`, {
             className: `space-y-3`,
             children: n
@@ -24219,7 +24961,7 @@ function popupFieldTrigger({
         }), (0, P.jsxs)(`div`, {
             className: `mt-1 flex w-full items-center justify-between gap-1.5 min-w-0`,
             children: [(0, P.jsx)(`span`, {
-                className: `truncate font-mono text-xs sm:text-sm font-bold ${n?`text-accent`:`text-foreground`}`,
+                className: `truncate font-mono text-xs sm:text-sm font-bold uppercase ${n?`text-accent`:`text-foreground`}`,
                 children: t ?? `--`
             }), (0, P.jsx)(tr, {
                 className: `size-3.5 sm:size-4 shrink-0 text-muted-foreground`
@@ -24563,16 +25305,29 @@ function popupNumberFieldControl({
                         className: `rounded-lg border border-border bg-panel px-2 py-3 font-mono text-xs text-muted-foreground hover:border-accent/40 hover:text-accent`,
                         children: `+10`
                     })]
-                }), (0, P.jsx)(`input`, {
-                    type: `range`,
-                    min: n,
-                    max: r,
-                    value: u(c),
-                    onChange: e => l(Number(e.target.value)),
-                    style: {
-                        width: `100%`
-                    }
-                }), (0, P.jsxs)(`div`, {
+                }), (() => {
+                    let curVal = u(c);
+                    let pct = r > n ? Math.max(0, Math.min(100, ((curVal - n) / (r - n)) * 100)) : 0;
+                    return (0, P.jsx)(`input`, {
+                        type: `range`,
+                        min: n,
+                        max: r,
+                        value: curVal,
+                        onChange: e => l(Number(e.target.value)),
+                        onInput: e => l(Number(e.target.value)),
+                        className: `w-full cursor-pointer`,
+                        style: {
+                            width: `100%`,
+                            height: `6px`,
+                            borderRadius: `4px`,
+                            outline: `none`,
+                            WebkitAppearance: `none`,
+                            appearance: `none`,
+                            background: `linear-gradient(to right, #38bdf8 0%, #38bdf8 ${pct}%, #27272a ${pct}%, #27272a 100%)`,
+                            border: `1px solid #3f3f46`
+                        }
+                    });
+                })(), (0, P.jsxs)(`div`, {
                     className: `flex justify-between font-mono text-[10px] text-muted-foreground`,
                     children: [(0, P.jsx)(`span`, {
                         children: n
@@ -24741,6 +25496,305 @@ function popupCcFieldControl({
     })
 }
 
+
+var MIDI_CHANNEL_NAMES_KEY = `midi_channel_custom_names`;
+var MIDI_CHANNEL_NAMES_EVT = `midi-channel-names-updated`;
+
+function getPrimaryMidiBus(outputProp) {
+    let o = String(outputProp ?? ``).trim().toUpperCase();
+    if (o === `0` || o === `USB`) return `usb`;
+    if (o === `1` || o === `BT` || o === `BLE` || o === `BLUETOOTH`) return `bt`;
+    if (o === `3` || o === `MIDI` || o === `DIN` || o === `SERIAL`) return `serial`;
+    if (o === `USB+BT`) return `usb`;
+    if (o === `USB+MIDI`) return `usb`;
+    if (o === `BT+MIDI`) return `bt`;
+    if (o === `USB+BT+MIDI`) return `usb`;
+    return `usb`;
+}
+
+function getMidiBusDisplay(bus) {
+    if (bus === `usb`) return `USB`;
+    if (bus === `serial`) return `MIDI Serial`;
+    if (bus === `bt`) return `Bluetooth`;
+    return `USB`;
+}
+
+function loadChannelCustomNames() {
+    if (typeof window > `u`) return {};
+    try {
+        let raw = window.localStorage.getItem(MIDI_CHANNEL_NAMES_KEY);
+        if (!raw) return {};
+        let parsed = JSON.parse(raw);
+        let migrated = !1;
+        // Migrar chaves legadas puramente numéricas para serial (MIDI) para não contaminar o barramento USB
+        for (let k of Object.keys(parsed)) {
+            if (/^\d+$/.test(k)) {
+                let sKey = `serial:${k}`;
+                if (!parsed[sKey]) {
+                    parsed[sKey] = parsed[k];
+                }
+                delete parsed[k];
+                migrated = !0;
+            }
+        }
+        if (migrated) {
+            window.localStorage.setItem(MIDI_CHANNEL_NAMES_KEY, JSON.stringify(parsed));
+        }
+        return parsed;
+    } catch {
+        return {};
+    }
+}
+
+function getChannelCustomName(names, ch, bus) {
+    if (!names) return ``;
+    let keyWithBus = `${bus}:${ch}`;
+    if (names[keyWithBus]) return names[keyWithBus];
+    return ``;
+}
+
+function saveChannelCustomName(ch, name, bus = `usb`) {
+    if (typeof window > `u`) return;
+    try {
+        let names = loadChannelCustomNames();
+        let b = bus || `usb`;
+        let key = `${b}:${ch}`;
+        let trimmed = String(name || ``).trim();
+        if (trimmed) {
+            names[key] = trimmed;
+        } else {
+            delete names[key];
+        }
+        delete names[String(ch)];
+        window.localStorage.setItem(MIDI_CHANNEL_NAMES_KEY, JSON.stringify(names));
+        window.dispatchEvent(new CustomEvent(MIDI_CHANNEL_NAMES_EVT));
+    } catch (e) {
+        console.warn(`Erro ao salvar nome de canal:`, e);
+    }
+}
+
+function getExplicitDictPedalForCh(ch, outputProp, hubDeviceProp) {
+    let cfg = loadMidiDictSlots();
+    if (!cfg || !cfg.slots) return null;
+    let buses = outputProp ? outputToMidiDictBuses(outputProp) : [`usb`, `bt`, `serial`];
+    for (let bus of buses) {
+        let devIdx = bus === `usb` ? Math.max(0, Math.min(3, Number(hubDeviceProp) || 0)) : 0,
+            key = midiDictSlotKey(bus, devIdx, ch),
+            id = cfg.slots[key];
+        if (id) {
+            let p = Vn(id);
+            if (p) return midiDictPedalLabel(p);
+        }
+    }
+    return null;
+}
+
+function popupChannelFieldControl({
+    label = `Canal`,
+    value,
+    onChange,
+    output: outputProp,
+    hubDevice: hubDeviceProp
+}) {
+    let {
+        pedalId: fallbackPedalId,
+        resolvePedalId: resolvePedal
+    } = (0, N.useContext)(pr);
+
+    let [open, setOpen] = (0, N.useState)(!1),
+        [customNames, setCustomNames] = (0, N.useState)(() => loadChannelCustomNames()),
+        [editingCh, setEditingCh] = (0, N.useState)(null),
+        [editVal, setEditVal] = (0, N.useState)(``);
+
+    (0, N.useEffect)(() => {
+        let onUpdate = () => setCustomNames(loadChannelCustomNames());
+        window.addEventListener(MIDI_CHANNEL_NAMES_EVT, onUpdate);
+        return () => window.removeEventListener(MIDI_CHANNEL_NAMES_EVT, onUpdate);
+    }, []);
+
+    let currentCh = Math.max(1, Math.min(16, Number(value) || 1));
+    let currentBus = getPrimaryMidiBus(outputProp);
+
+    let getPedalForCh = (ch) => {
+        let explicit = getExplicitDictPedalForCh(ch, outputProp, hubDeviceProp);
+        if (explicit) return explicit;
+        let resolvedId = resolvePedal?.(outputProp, ch, hubDeviceProp) ?? resolvePedalIdForCommand(outputProp, ch, hubDeviceProp, fallbackPedalId);
+        if (resolvedId) {
+            let p = Vn(resolvedId);
+            if (p) return midiDictPedalLabel(p);
+        }
+        return null;
+    };
+
+    let currentDict = getPedalForCh(currentCh);
+    let currentCustom = getChannelCustomName(customNames, currentCh, currentBus);
+    let display = currentCustom ? `CH ${currentCh} · ${currentCustom}` : (currentDict ? `CH ${currentCh} · ${currentDict}` : `Canal ${currentCh}`);
+
+    let handleSaveEdit = (ch) => {
+        saveChannelCustomName(ch, editVal, currentBus);
+        setCustomNames(loadChannelCustomNames());
+        setEditingCh(null);
+    };
+
+    return (0, P.jsxs)(P.Fragment, {
+        children: [
+            (0, P.jsx)(popupFieldTrigger, {
+                label: label,
+                display: display,
+                onClick: () => {
+                    setEditingCh(null);
+                    setOpen(!0);
+                }
+            }),
+            (0, P.jsx)(popupShell, {
+                open: open,
+                onOpenChange: (val) => {
+                    if (!val) setEditingCh(null);
+                    setOpen(val);
+                },
+                title: `Selecionar Canal MIDI`,
+                subtitle: `Saída: ${getMidiBusDisplay(currentBus)}`,
+                children: (0, P.jsx)(`div`, {
+                    className: `grid grid-cols-1 sm:grid-cols-2 gap-2 p-1 max-h-[60vh] overflow-y-auto`,
+                    children: Array.from({ length: 16 }, (_, i) => i + 1).map(ch => {
+                        let dictPedal = getPedalForCh(ch);
+                        let customName = getChannelCustomName(customNames, ch, currentBus);
+                        let isSelected = ch === currentCh;
+                        let isEditingThis = editingCh === ch;
+
+                        if (isEditingThis) {
+                            return (0, P.jsxs)(`div`, {
+                                key: ch,
+                                className: `flex items-center gap-2 rounded-xl border border-accent bg-accent/10 p-2 text-left`,
+                                onClick: (e) => e.stopPropagation(),
+                                children: [
+                                    (0, P.jsx)(`span`, {
+                                        className: `grid size-6 shrink-0 place-items-center rounded-md font-mono text-xs font-black bg-accent text-white`,
+                                        children: ch
+                                    }),
+                                    (0, P.jsx)(`input`, {
+                                        type: `text`,
+                                        autoFocus: !0,
+                                        value: editVal,
+                                        placeholder: `Nome do canal ${ch} (${getMidiBusDisplay(currentBus)})...`,
+                                        maxLength: 24,
+                                        onChange: (e) => setEditVal(e.target.value),
+                                        onKeyDown: (e) => {
+                                            if (e.key === `Enter`) {
+                                                e.preventDefault();
+                                                handleSaveEdit(ch);
+                                            } else if (e.key === `Escape`) {
+                                                e.preventDefault();
+                                                setEditingCh(null);
+                                            }
+                                        },
+                                        className: `flex-1 min-w-0 bg-black/60 border border-white/20 rounded-lg px-2 py-1 text-xs text-white focus:outline-none focus:border-accent`
+                                    }),
+                                    (0, P.jsx)(`button`, {
+                                        type: `button`,
+                                        onClick: () => handleSaveEdit(ch),
+                                        title: `Salvar nome`,
+                                        className: `size-7 shrink-0 rounded-lg bg-accent text-white flex items-center justify-center hover:brightness-110 active:scale-95 transition-transform`,
+                                        children: (0, P.jsx)(`svg`, {
+                                            xmlns: `http://www.w3.org/2000/svg`,
+                                            viewBox: `0 0 24 24`,
+                                            fill: `none`,
+                                            stroke: `currentColor`,
+                                            strokeWidth: `3`,
+                                            className: `size-3.5`,
+                                            children: (0, P.jsx)(`path`, { d: `M20 6 9 17l-5-5` })
+                                        })
+                                    }),
+                                    (0, P.jsx)(`button`, {
+                                        type: `button`,
+                                        onClick: () => setEditingCh(null),
+                                        title: `Cancelar`,
+                                        className: `size-7 shrink-0 rounded-lg bg-white/10 text-white/70 flex items-center justify-center hover:bg-white/20 active:scale-95 transition-transform`,
+                                        children: (0, P.jsx)(`svg`, {
+                                            xmlns: `http://www.w3.org/2000/svg`,
+                                            viewBox: `0 0 24 24`,
+                                            fill: `none`,
+                                            stroke: `currentColor`,
+                                            strokeWidth: `3`,
+                                            className: `size-3.5`,
+                                            children: [(0, P.jsx)(`path`, { d: `M18 6 6 18` }), (0, P.jsx)(`path`, { d: `m6 6 12 12` })]
+                                        })
+                                    })
+                                ]
+                            });
+                        }
+
+                        return (0, P.jsxs)(`div`, {
+                            key: ch,
+                            onClick: () => {
+                                onChange(ch);
+                                setOpen(!1);
+                            },
+                            className: `group flex items-center justify-between rounded-xl border p-2.5 text-left transition-all cursor-pointer ${isSelected ? `border-accent bg-accent/20 text-accent font-bold ring-1 ring-accent` : `border-border/80 bg-canvas/60 hover:border-white/30 hover:bg-canvas text-foreground`}`,
+                            children: [
+                                (0, P.jsxs)(`div`, {
+                                    className: `flex items-center gap-2.5 min-w-0 flex-1`,
+                                    children: [
+                                        (0, P.jsx)(`span`, {
+                                            className: `grid size-6 shrink-0 place-items-center rounded-md font-mono text-xs font-black bg-panel border ${isSelected ? `border-accent text-white` : `border-border text-muted-foreground`}`,
+                                            style: { color: isSelected ? '#ffffff' : undefined, background: '#18181b' },
+                                            children: ch
+                                        }),
+                                        (0, P.jsxs)(`div`, {
+                                            className: `min-w-0 flex-1 truncate`,
+                                            children: [
+                                                (0, P.jsxs)(`span`, {
+                                                    className: `font-display text-[11px] font-bold uppercase tracking-wider block`,
+                                                    children: [`Canal `, ch]
+                                                }),
+                                                dictPedal ? (0, P.jsx)(`span`, {
+                                                    className: `font-mono text-[9.5px] text-accent truncate block`,
+                                                    children: dictPedal
+                                                }) : customName ? (0, P.jsx)(`span`, {
+                                                    className: `font-mono text-[9.5px] text-white/90 truncate block font-medium`,
+                                                    children: customName
+                                                }) : null
+                                            ]
+                                        })
+                                    ]
+                                }),
+                                (0, P.jsxs)(`div`, {
+                                    className: `flex items-center gap-1.5 shrink-0 ml-2`,
+                                    children: [
+                                        !dictPedal && (0, P.jsx)(`button`, {
+                                            type: `button`,
+                                            onClick: (e) => {
+                                                e.stopPropagation();
+                                                setEditingCh(ch);
+                                                setEditVal(customName);
+                                            },
+                                            title: `Editar nome do canal`,
+                                            className: `size-7 rounded-lg border border-transparent hover:border-white/20 hover:bg-white/10 text-muted-foreground/70 hover:text-white flex items-center justify-center transition-colors`,
+                                            children: (0, P.jsx)(`svg`, {
+                                                xmlns: `http://www.w3.org/2000/svg`,
+                                                viewBox: `0 0 24 24`,
+                                                fill: `none`,
+                                                stroke: `currentColor`,
+                                                strokeWidth: `2`,
+                                                strokeLinecap: `round`,
+                                                strokeLinejoin: `round`,
+                                                className: `size-3.5`,
+                                                children: [(0, P.jsx)(`path`, { d: `M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z` }), (0, P.jsx)(`path`, { d: `m15 5 4 4` })]
+                                            })
+                                        })
+                                    ]
+                                })
+                            ]
+                        });
+                    })
+                })
+            })
+        ]
+    });
+}
+
+
+
 function L({
     label: e,
     options: t,
@@ -24834,14 +25888,46 @@ function _i({
     model: e,
     onChange: t
 }) {
-    return (0, P.jsx)(`div`, {
-        className: `flex items-center gap-1 rounded-full border border-border bg-canvas p-1`,
-        children: Object.keys(gr).map(n => (0, P.jsx)(`button`, {
-            onClick: () => t(n),
-            className: `rounded-full px-3 py-1.5 font-display text-[10px] uppercase tracking-[0.2em] transition-colors ${e===n?`bg-gradient-to-b from-[#ef4444] to-[#b91c1c] text-accent-foreground shadow-[0_2px_10px_rgba(220,38,38,0.5)]`:`text-muted-foreground hover:text-foreground`}`,
-            children: n
-        }, n))
-    })
+    let norm = val => {
+        let s = String(val || '').toUpperCase().trim();
+        if (s.includes('4')) return 'MX-4';
+        if (s.includes('8')) return 'MX-8';
+        return 'MX-6';
+    };
+    let activeModel = norm(e);
+    return (0, P.jsxs)(`div`, {
+        className: `flex items-center gap-1.5 rounded-full border border-border bg-panel/90 p-1 shadow-md shadow-black/30 backdrop-blur-md`,
+        children: [
+            (0, P.jsx)(`div`, {
+                className: `flex items-center pl-2.5 pr-1 select-none`,
+                children: (0, P.jsx)(`span`, {
+                    className: `font-display text-[9.5px] font-black uppercase tracking-[0.25em] text-muted-foreground`,
+                    children: `Modelo`
+                })
+            }),
+            (0, P.jsx)(`div`, {
+                className: `flex items-center gap-1 rounded-full bg-muted/60 p-0.5`,
+                children: Object.keys(gr).map(n => {
+                    let isSel = activeModel === n;
+                    return (0, P.jsx)(`button`, {
+                        key: n,
+                        type: `button`,
+                        onClick: () => t(n),
+                        style: isSel ? {
+                            background: 'linear-gradient(180deg, #ef4444 0%, #b91c1c 100%)',
+                            boxShadow: '0 2px 8px rgba(220, 38, 38, 0.45)'
+                        } : {},
+                        className: `flex h-6 min-w-[52px] items-center justify-center rounded-full px-3 font-display text-[10.5px] font-black uppercase tracking-wider transition-all duration-200 select-none ${
+                            isSel
+                                ? `text-white border border-red-400/40`
+                                : `text-muted-foreground hover:text-foreground hover:bg-white/5`
+                        }`,
+                        children: n
+                    });
+                })
+            })
+        ]
+    });
 }
 
 function vi({
@@ -25009,48 +26095,49 @@ function xi({
     let s = t.stompCommands.length + t.presetCommands.length > 0 || t.mode === `Ricochet` || t.mode === `STG` || t.mode === `STG Auto`,
         c = n === `Stomp` ? t.stompLed : t.presetLed,
         l = i && i !== `FS${e}` ? i : ``;
+    let isDesktop = typeof window !== 'undefined' && window.innerWidth >= 640;
     return (0, P.jsxs)(`button`, {
         onClick: a,
         title: l ? `${l} - clique para renomear` : `Clique novamente para renomear`,
-        className: `relative flex aspect-square flex-col items-center justify-center rounded-2xl border p-2 transition-all active:scale-95 ${r?`border-accent/60 bg-panel shadow-[0_0_24px_-6px_rgba(220,38,38,0.7)] ring-1 ring-accent/40`:s?`border-border bg-canvas hover:border-white/20`:`border-border bg-canvas opacity-60`}`,
+        className: `relative flex aspect-square w-full flex-col items-center justify-center rounded-xl sm:rounded-2xl border p-1 sm:p-2 transition-all active:scale-95 ${r?`border-accent/60 bg-panel shadow-[0_0_24px_-6px_rgba(220,38,38,0.7)] ring-1 ring-accent/40`:s?`border-border bg-canvas hover:border-white/20`:`border-border bg-canvas opacity-60`}`,
         children: [r && o && (0, P.jsx)(`span`, {
             role: `button`,
             onClick: e => {
                 e.stopPropagation(), o()
             },
-            className: `absolute right-1 top-1 z-10 flex h-6 w-6 items-center justify-center rounded-md border border-accent/50 bg-canvas/80 text-accent opacity-85 transition-opacity hover:opacity-100`,
+            className: `absolute right-1 top-1 z-10 flex h-6 w-6 sm:h-7 sm:w-7 items-center justify-center rounded-lg border border-accent/60 bg-canvas/90 text-accent shadow-sm transition-all hover:bg-accent/20 active:scale-90`,
             children: (0, P.jsx)(`svg`, {
                 xmlns: `http://www.w3.org/2000/svg`,
                 viewBox: `0 0 24 24`,
                 fill: `none`,
                 stroke: `currentColor`,
-                strokeWidth: `2.2`,
+                strokeWidth: `2.4`,
                 strokeLinecap: `round`,
                 strokeLinejoin: `round`,
-                className: `h-3.5 w-3.5`,
+                className: `h-3.5 w-3.5 sm:h-4 sm:w-4`,
                 children: (0, P.jsxs)(P.Fragment, {
                     children: [(0, P.jsx)(`path`, {
-                        d: `M12 20h9`
+                        d: `M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z`
                     }), (0, P.jsx)(`path`, {
-                        d: `M16.5 3.5a2.12 2.12 0 1 1 3 3L7 19l-4 1 1-4Z`
+                        d: `m15 5 4 4`
                     })]
                 })
             })
         }), (0, P.jsxs)(`span`, {
-            className: `absolute left-1.5 top-1.5 font-display text-[10px] font-black uppercase tracking-widest text-muted-foreground`,
+            className: `absolute left-2 top-1.5 font-display text-[11px] sm:text-xs font-black uppercase tracking-wider ${r ? `text-white` : `text-zinc-400`}`,
             children: [isExtFs ? `EXT` : `FS`, e]
         }), !isExtFs && (0, P.jsx)(Si, {
             colors: c,
-            size: 54,
-            className: `mb-1`,
+            size: isDesktop ? 54 : 44,
+            className: `shrink-0 mb-0.5 sm:mb-1`,
             isIndividualRing: Number(clickMode) === 3,
             isActive: r,
             activePhase: 0
         }), l ? (0, P.jsx)(`span`, {
-            className: `line-clamp-1 max-w-full px-1 text-center font-display text-sm font-black uppercase tracking-wider text-accent`,
+            className: `line-clamp-1 max-w-full px-1 text-center font-display text-xs sm:text-sm font-black uppercase tracking-wider text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]`,
             children: String(l).toUpperCase()
         }) : (0, P.jsx)(`span`, {
-            className: `line-clamp-1 font-mono text-[8px] uppercase tracking-widest text-muted-foreground`,
+            className: `line-clamp-1 font-mono text-[8.5px] sm:text-[9.5px] uppercase tracking-widest text-zinc-400 font-bold`,
             children: isExtFs ? `EXTFS` : t.mode
         })]
     })
@@ -25104,10 +26191,10 @@ function Si({
         p = d(30, 150);
     return (0, P.jsxs)(`div`, {
         className: `relative ${n}`,
-        style: {
+        style: (t && typeof t === `number`) ? {
             width: t,
             height: t
-        },
+        } : undefined,
         children: [(0, P.jsxs)(`svg`, {
             viewBox: `0 0 100 100`,
             className: `absolute inset-0 h-full w-full overflow-visible`,
@@ -25190,10 +26277,7 @@ function Ci({
                     className: `size-3.5 text-accent`
                 }), (0, P.jsxs)(`span`, {
                     className: `font-display text-[10px] uppercase tracking-[0.3em] text-muted-foreground`,
-                    children: [`LED · FS`, e]
-                }), (0, P.jsxs)(`span`, {
-                    className: `font-display text-[9px] uppercase tracking-[0.3em] text-accent/70`,
-                    children: [`· `, h]
+                    children: [`FS`, e]
                 })]
             }), (u || d || c) && (0, P.jsxs)(`div`, {
                 className: `flex items-center gap-1 rounded-full border border-border bg-canvas p-1`,
@@ -25391,8 +26475,8 @@ function wi({
                     className: `font-display text-[11px] font-bold uppercase tracking-[0.2em] text-foreground`,
                     children: e
                 }), (0, P.jsx)(`div`, {
-                    className: `truncate font-mono text-[10px] text-muted-foreground`,
-                    children: o ? o.name : n.toUpperCase()
+                    className: `truncate font-display text-[10.5px] font-bold text-accent uppercase tracking-wider`,
+                    children: o ? o.name : (getColorName ? getColorName(n) : `Personalizada`)
                 }), (0, P.jsx)(`div`, {
                     className: `truncate font-mono text-[9px] text-muted-foreground/70`,
                     children: t
@@ -25409,6 +26493,7 @@ function StompPedalThumb({ iconKey, alt }) {
         return (0, P.jsx)(`img`, {
             src: url,
             alt: alt || `Pedal`,
+            style: { maxWidth: '100%', maxHeight: '100%', width: 'auto', height: 'auto', objectFit: 'contain', display: 'block' },
             className: `max-h-full max-w-full object-contain filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]`
         });
     }
@@ -25450,10 +26535,10 @@ function StompFootswitchTile({
     onOpenIcon,
     onRename
 }) {
-    let sName = typeof slot?.name === `string` ? slot.name : (cfg?.stompName || ``),
+    let sName = (typeof slot?.name === `string` && slot.name.trim()) ? slot.name.trim() : ``,
         stompName = (sName || (linkedFx?.name || `STOMP ${fsIndex}`)).trim(),
-        iconKey = typeof slot?.icon === `string` ? slot.icon : (cfg?.stompIcon || ``),
-        stompColor = (slot?.color && slot.color !== `#000000`) ? slot.color : (linkedFx ? customFxHex(linkedFx) : (cfg?.stompLed?.on || `#ff8800`)),
+        iconKey = (typeof slot?.icon === `string` && slot.icon.trim()) ? slot.icon.trim() : ``,
+        stompColor = (slot?.color && slot.color !== `#000000`) ? slot.color : (cfg?.stompLed?.on || `#ff8800`),
         stompLedColors = {
             on: stompColor,
             off: cfg?.stompLed?.off || `#000000`
@@ -25515,7 +26600,8 @@ function StompFootswitchTile({
                     onOpenIcon && onOpenIcon();
                 },
                 title: `Clique para configurar ícone/foto`,
-                className: `group/icon mt-1 flex h-14 w-14 sm:w-16 items-center justify-center rounded-xl p-1 transition hover:scale-105 hover:bg-white/5 active:scale-95`,
+                style: { width: '56px', height: '56px', maxWidth: '56px', maxHeight: '56px', overflow: 'hidden' },
+                className: `group/icon mt-1 flex h-14 w-14 items-center justify-center rounded-xl p-1 overflow-hidden transition hover:scale-105 hover:bg-white/5 active:scale-95`,
                 children: (0, P.jsx)(StompPedalThumb, {
                     iconKey: iconKey,
                     alt: stompName
@@ -25574,14 +26660,9 @@ function sceneMaskPicker({
         className: `mb-3 rounded-xl border border-accent/30 bg-canvas/60 p-3`,
         children: [(0, P.jsxs)(`div`, {
             className: `mb-2 flex items-center justify-between gap-2`,
-            children: [(0, P.jsxs)(`div`, {
-                className: `flex items-center gap-2`,
-                children: [(0, P.jsx)(`span`, {
-                    className: `size-1.5 rounded-full bg-accent led-glow`
-                }), (0, P.jsxs)(`span`, {
-                    className: `font-display text-[10px] uppercase tracking-[0.25em] text-muted-foreground`,
-                    children: [`Scenes no clique - `, c, `/`, r]
-                })]
+            children: [(0, P.jsxs)(`span`, {
+                className: `font-display text-[10px] uppercase tracking-[0.25em] text-muted-foreground`,
+                children: [`Scenes no clique - `, c, `/`, r]
             }), (0, P.jsxs)(`div`, {
                 className: `flex gap-1`,
                 children: [(0, P.jsx)(`button`, {
@@ -25702,22 +26783,41 @@ function Ei({
                     className: `grid ${stompCols} gap-2.5 sm:gap-3`,
                     children: Array.from({
                         length: Number(effectiveFs || 8)
-                    }, (_, i) => i + 1).map(fsIdx => {
-                        let slotData = (Array.isArray(o?.stompSlots) && o.stompSlots[fsIdx - 1]) ? o.stompSlots[fsIdx - 1] : { icon: ``, name: ``, color: `#ff8800` },
-                            fsCfg = allFsConfigs?.[fsIdx] || (fsIdx === r ? o : kr(fsIdx)),
-                            fxItem = allAssignedFx.find(item => Number(item?.assignedFs) === fsIdx),
-                            gIcon = Array.isArray(globalConfig?.fsIconKey) ? globalConfig.fsIconKey[fsIdx - 1] : ``;
+                    }, (_, i) => i + 1).map(slotIdx => {
+                        let fxItem = allAssignedFx.find(item => Number(item?.assignedFs) === slotIdx);
+                        let slotObj = o?.stompSlots?.[slotIdx - 1];
+                        let slotIcon = (typeof slotObj?.icon === 'string' && slotObj.icon.trim())
+                            ? slotObj.icon.trim()
+                            : (slotIdx === r && typeof o?.stompIcon === 'string' && o.stompIcon.trim()
+                                ? o.stompIcon.trim()
+                                : (fxItem?.icon || ''));
+                        let slotName = (typeof slotObj?.name === 'string' && slotObj.name.trim())
+                            ? slotObj.name.trim()
+                            : (slotIdx === r && typeof o?.stompName === 'string' && o.stompName.trim()
+                                ? o.stompName.trim()
+                                : (fxItem?.name || (`FS` + slotIdx)));
+                        let slotColor = (slotObj?.color && slotObj.color !== `#000000`)
+                            ? slotObj.color
+                            : (slotIdx === r && o?.stompLed?.on && o.stompLed.on !== `#000000`
+                                ? o.stompLed.on
+                                : (fxItem?.color || o?.stompLed?.on || `#ff8800`));
+                        let slotData = {
+                            icon: slotIcon,
+                            name: slotName,
+                            color: slotColor
+                        };
+                        let isSlotActive = slotIdx === (Number(activeStompSlot) || 1);
                         return (0, P.jsx)(StompFootswitchTile, {
-                            fsIndex: fsIdx,
+                            fsIndex: slotIdx,
                             slot: slotData,
-                            cfg: fsCfg,
-                            isActive: fsIdx === (activeStompSlot || 1),
+                            cfg: o,
+                            isActive: isSlotActive,
                             linkedFx: fxItem,
-                            globalFsIcon: gIcon,
-                            onSelect: () => onSelectStompSlot ? onSelectStompSlot(fsIdx) : onSelectFs?.(fsIdx),
-                            onOpenIcon: () => onOpenStompIcon ? onOpenStompIcon(fsIdx) : onOpenIconModal?.(fsIdx),
-                            onRename: () => onRenameStompSlot ? onRenameStompSlot(fsIdx) : onRenameFsIndex?.(fsIdx)
-                        }, `stomp-fs-${fsIdx}`);
+                            globalFsIcon: ``,
+                            onSelect: () => onSelectStompSlot ? onSelectStompSlot(slotIdx) : null,
+                            onOpenIcon: () => onOpenStompIcon ? onOpenStompIcon(slotIdx) : null,
+                            onRename: () => onRenameStompSlot ? onRenameStompSlot(slotIdx) : null
+                        }, `stomp-slot-${slotIdx}`);
                     })
                 }),
                 (0, P.jsx)(`div`, {
@@ -25728,16 +26828,13 @@ function Ei({
         }),
         presetBody = showPresetCmds ? (0, P.jsxs)(`div`, {
             className: `space-y-3`,
-            children: [o.commands.length === 0 && (0, P.jsxs)(`div`, {
-                className: `rounded-xl border border-dashed border-border px-4 py-8 text-center`,
-                children: [(0, P.jsx)(`div`, {
-                    className: `font-display text-[10px] uppercase tracking-[0.3em] text-muted-foreground`,
-                    children: `Nenhum comando`
-                }), (0, P.jsx)(`button`, {
+            children: [o.commands.length === 0 && (0, P.jsx)(`div`, {
+                className: `rounded-xl border border-dashed border-border px-4 py-6 text-center`,
+                children: (0, P.jsx)(`button`, {
                     onClick: u,
-                    className: `mt-3 font-mono text-xs text-accent hover:underline`,
-                    children: `+ Adicionar primeiro comando`
-                })]
+                    className: `font-mono text-xs text-accent hover:underline cursor-pointer`,
+                    children: `+ Adicionar comando`
+                })
             }), o.commands.map((cmd, t) => (0, P.jsx)(ji, {
                 index: t + 1,
                 cmd: cmd,
@@ -25771,179 +26868,176 @@ function Ei({
             })
         });
     return (0, P.jsxs)(`div`, {
-        className: `rounded-2xl border border-border bg-panel/70 p-5 shadow-2xl shadow-black/40`,
+        className: `rounded-2xl border border-border bg-panel/70 p-3 sm:p-5 shadow-2xl shadow-black/40`,
         children: [(0, P.jsxs)(`div`, {
-            className: `mb-4 flex items-center justify-between`,
-            children: [(0, P.jsxs)(`div`, {
-                className: `flex items-center gap-2`,
-                children: [(0, P.jsx)(`div`, {
-                    className: `size-1.5 rounded-full bg-accent led-glow`
-                }), (0, P.jsxs)(`span`, {
-                    className: `font-display text-[10px] uppercase tracking-[0.3em] text-muted-foreground`,
-                    children: [e, ` · `, t, r, ` · Editando`]
-                })]
-            }), (0, P.jsxs)(`div`, {
-                className: `flex items-center gap-2`,
+            className: `mb-3 sm:mb-4 flex flex-wrap items-center justify-between gap-2`,
+            children: [(0, P.jsx)(`div`, { className: `flex items-center gap-1.5` }), (0, P.jsxs)(`div`, {
+                className: `flex flex-wrap items-center gap-1.5 sm:gap-2`,
                 children: [
-                    (0, P.jsxs)(`button`, {
+                    (0, P.jsx)(`button`, {
                         type: `button`,
                         onClick: onCopyFs,
                         title: `Copiar todas as configurações da FS${r}`,
-                        className: `flex items-center gap-1.5 rounded-lg border border-border bg-canvas px-2.5 py-1.5 font-display text-[9.5px] font-bold uppercase tracking-wider text-muted-foreground hover:border-accent/50 hover:bg-accent/10 hover:text-accent transition-all cursor-pointer shadow-sm active:scale-95`,
-                        children: [
-                            (0, P.jsx)(`svg`, {
-                                xmlns: `http://www.w3.org/2000/svg`,
-                                viewBox: `0 0 24 24`,
-                                fill: `none`,
-                                stroke: `currentColor`,
-                                strokeWidth: `2`,
-                                strokeLinecap: `round`,
-                                strokeLinejoin: `round`,
-                                className: `size-3.5`,
-                                children: (0, P.jsxs)(P.Fragment, {
-                                    children: [
-                                        (0, P.jsx)(`rect`, { width: `14`, height: `14`, x: `8`, y: `8`, rx: `2`, ry: `2` }),
-                                        (0, P.jsx)(`path`, { d: `M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2` })
-                                    ]
-                                })
-                            }),
-                            `Copiar FS`
-                        ]
+                        className: `inline-flex items-center justify-center rounded-2xl border border-border bg-canvas/80 p-3 min-h-[46px] min-w-[46px] sm:min-h-[44px] sm:min-w-[44px] w-12 h-12 font-display text-muted-foreground hover:border-accent/60 hover:bg-accent/15 hover:text-accent transition-all cursor-pointer shadow-md active:scale-90 shrink-0`,
+                        children: (0, P.jsx)(`svg`, {
+                            xmlns: `http://www.w3.org/2000/svg`,
+                            viewBox: `0 0 24 24`,
+                            fill: `none`,
+                            stroke: `currentColor`,
+                            strokeWidth: `2.2`,
+                            strokeLinecap: `round`,
+                            strokeLinejoin: `round`,
+                            width: `26`,
+                            height: `26`,
+                            style: { width: 26, height: 26, minWidth: 26, minHeight: 26 },
+                            className: `w-6 h-6 shrink-0 text-current`,
+                            children: (0, P.jsxs)(P.Fragment, {
+                                children: [
+                                    (0, P.jsx)(`rect`, { width: `14`, height: `14`, x: `8`, y: `8`, rx: `2`, ry: `2` }),
+                                    (0, P.jsx)(`path`, { d: `M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2` })
+                                ]
+                            })
+                        })
                     }),
-                    (0, P.jsxs)(`button`, {
+                    (0, P.jsx)(`button`, {
                         type: `button`,
                         onClick: onPasteFs,
                         disabled: !hasCopiedFs,
                         title: hasCopiedFs ? `Colar configurações da FS${copiedFsNumber} nesta FS${r}` : `Copie uma chave primeiro para colar`,
-                        className: `flex items-center gap-1.5 rounded-lg border px-2.5 py-1.5 font-display text-[9.5px] font-bold uppercase tracking-wider transition-all shadow-sm ${hasCopiedFs ? `border-accent/60 bg-accent/15 text-accent hover:bg-accent/25 hover:border-accent cursor-pointer active:scale-95` : `border-border/50 bg-canvas/40 text-muted-foreground/40 cursor-not-allowed`}`,
-                        children: [
-                            (0, P.jsx)(`svg`, {
-                                xmlns: `http://www.w3.org/2000/svg`,
-                                viewBox: `0 0 24 24`,
-                                fill: `none`,
-                                stroke: `currentColor`,
-                                strokeWidth: `2`,
-                                strokeLinecap: `round`,
-                                strokeLinejoin: `round`,
-                                className: `size-3.5`,
-                                children: (0, P.jsxs)(P.Fragment, {
-                                    children: [
-                                        (0, P.jsx)(`rect`, { width: `8`, height: `4`, x: `8`, y: `2`, rx: `1`, ry: `1` }),
-                                        (0, P.jsx)(`path`, { d: `M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2` })
-                                    ]
-                                })
-                            }),
-                            hasCopiedFs ? `Colar FS${copiedFsNumber}` : `Colar FS`
-                        ]
-                    }),
-                    (0, P.jsx)(`button`, {
-                        className: `grid size-8 place-items-center rounded-lg border border-border bg-canvas text-muted-foreground hover:text-foreground`,
-                        children: (0, P.jsx)(lr, {
-                            className: `size-4`
+                        className: `inline-flex items-center justify-center rounded-2xl border p-3 min-h-[46px] min-w-[46px] sm:min-h-[44px] sm:min-w-[44px] w-12 h-12 transition-all shadow-md shrink-0 ${hasCopiedFs ? `border-accent/70 bg-accent/20 text-accent hover:bg-accent/30 hover:border-accent cursor-pointer active:scale-90` : `border-border/50 bg-canvas/40 text-muted-foreground/40 cursor-not-allowed`}`,
+                        children: (0, P.jsx)(`svg`, {
+                            xmlns: `http://www.w3.org/2000/svg`,
+                            viewBox: `0 0 24 24`,
+                            fill: `none`,
+                            stroke: `currentColor`,
+                            strokeWidth: `2.2`,
+                            strokeLinecap: `round`,
+                            strokeLinejoin: `round`,
+                            width: `26`,
+                            height: `26`,
+                            style: { width: 26, height: 26, minWidth: 26, minHeight: 26 },
+                            className: `w-6 h-6 shrink-0 text-current`,
+                            children: (0, P.jsxs)(P.Fragment, {
+                                children: [
+                                    (0, P.jsx)(`rect`, { width: `8`, height: `4`, x: `8`, y: `2`, rx: `1`, ry: `1` }),
+                                    (0, P.jsx)(`path`, { d: `M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2` })
+                                ]
+                            })
                         })
-                    }), (0, P.jsxs)(`button`, {
-                    onClick: u,
-                    disabled: stompFxBound ? !1 : isStompLayer ? !showStompFreeCmds && !showStg : !showPresetCmds && !showStg || showStg && b,
-                    title: showStg && b ? `Maximo de 4 comandos por estagio` : void 0,
-                    className: `flex items-center gap-1.5 rounded-lg border border-accent/40 bg-accent/10 px-3 py-1.5 font-display text-[10px] font-bold uppercase tracking-widest text-accent hover:bg-accent/20 disabled:cursor-not-allowed disabled:opacity-40`,
-                    children: [(0, P.jsx)(sr, {
-                        className: `size-3.5`
-                    }), !stompFxBound && showStg && y ? `Estagio ${y.activeStage+1}` : `Adicionar`]
-                })]
+                    }),
+                    (0, P.jsxs)(`button`, {
+                        onClick: u,
+                        disabled: stompFxBound ? !1 : isStompLayer ? !showStompFreeCmds && !showStg : !showPresetCmds && !showStg || showStg && b,
+                        title: showStg && b ? `Maximo de 4 comandos por estagio` : void 0,
+                        className: `inline-flex items-center justify-center gap-1.5 sm:gap-2 rounded-xl border border-accent/60 bg-accent/15 px-3.5 sm:px-4 py-2 min-h-[38px] font-display text-[11px] sm:text-xs font-black uppercase tracking-wider text-accent hover:bg-accent/25 hover:border-accent shadow-sm transition-all active:scale-95 whitespace-nowrap shrink-0 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-accent/15`,
+                        children: [
+                            (0, P.jsx)(sr, {
+                                className: `w-4 h-4 shrink-0 text-current`,
+                                style: { width: 16, height: 16, minWidth: 16, minHeight: 16 }
+                            }),
+                            (0, P.jsx)(`span`, {
+                                children: !stompFxBound && showStg && y ? `Estagio ${y.activeStage+1}` : `Adicionar`
+                            })
+                        ]
+                    })
+                ]
             })]
         }), (0, P.jsxs)(`div`, {
-            className: `mb-5 flex items-end justify-between gap-4`,
+            className: `mb-4 sm:mb-5 flex flex-wrap items-center justify-between gap-3 sm:gap-4`,
             children: [(0, P.jsxs)(`div`, {
-                className: `flex flex-col items-start gap-1 text-left`,
-                children: [(0, P.jsxs)(`div`, {
-                    className: `flex items-center gap-2.5`,
-                    children: [
-                        (0, P.jsx)(`button`, {
-                            type: `button`,
-                            onClick: () => {
-                                let total = Number(effectiveFs || 8);
-                                let prev = r > 1 ? r - 1 : total;
-                                onSelectFs?.(prev);
-                            },
-                            title: `FS Anterior`,
-                            className: `sm:hidden flex size-9 items-center justify-center rounded-lg border border-accent/50 bg-accent/10 text-accent hover:bg-accent/20 active:scale-95 transition-all shadow-[0_0_10px_rgba(220,38,38,0.25)] shrink-0`,
-                            children: (0, P.jsx)(`svg`, {
-                                xmlns: `http://www.w3.org/2000/svg`,
-                                viewBox: `0 0 24 24`,
-                                fill: `none`,
-                                stroke: `currentColor`,
-                                strokeWidth: `3`,
-                                strokeLinecap: `round`,
-                                strokeLinejoin: `round`,
-                                className: `size-5`,
-                                children: (0, P.jsx)(`path`, {
-                                    d: `m15 18-6-6 6-6`
-                                })
-                            })
-                        }),
-                        (0, P.jsxs)(`button`, {
-                            type: `button`,
-                            onClick: a,
-                            title: `Renomear FS`,
-                            className: `group flex items-center gap-2 cursor-pointer`,
-                            children: [(0, P.jsxs)(`div`, {
-                                className: `font-display text-4xl font-black tracking-tight text-foreground group-hover:text-accent transition-colors`,
-                                children: [`FS`, r]
-                            }), (0, P.jsx)(`span`, {
-                                className: `flex h-6 w-6 items-center justify-center rounded-md border border-accent/50 bg-canvas/80 text-accent opacity-85 transition-opacity group-hover:opacity-100`,
-                                children: (0, P.jsx)(`svg`, {
-                                    xmlns: `http://www.w3.org/2000/svg`,
-                                    viewBox: `0 0 24 24`,
-                                    fill: `none`,
-                                    stroke: `currentColor`,
-                                    strokeWidth: `2.2`,
-                                    strokeLinecap: `round`,
-                                    strokeLinejoin: `round`,
-                                    className: `h-3.5 w-3.5`,
-                                    children: (0, P.jsxs)(P.Fragment, {
-                                        children: [(0, P.jsx)(`path`, {
-                                            d: `M12 20h9`
-                                        }), (0, P.jsx)(`path`, {
-                                            d: `M16.5 3.5a2.12 2.12 0 1 1 3 3L7 19l-4 1 1-4Z`
-                                        })]
-                                    })
-                                })
-                            })]
-                        }),
-                        (0, P.jsx)(`button`, {
-                            type: `button`,
-                            onClick: () => {
-                                let total = Number(effectiveFs || 8);
-                                let next = r < total ? r + 1 : 1;
-                                onSelectFs?.(next);
-                            },
-                            title: `Próxima FS`,
-                            className: `sm:hidden flex size-9 items-center justify-center rounded-lg border border-accent/50 bg-accent/10 text-accent hover:bg-accent/20 active:scale-95 transition-all shadow-[0_0_10px_rgba(220,38,38,0.25)] shrink-0`,
-                            children: (0, P.jsx)(`svg`, {
-                                xmlns: `http://www.w3.org/2000/svg`,
-                                viewBox: `0 0 24 24`,
-                                fill: `none`,
-                                stroke: `currentColor`,
-                                strokeWidth: `3`,
-                                strokeLinecap: `round`,
-                                strokeLinejoin: `round`,
-                                className: `size-5`,
-                                children: (0, P.jsx)(`path`, {
-                                    d: `m9 18 6-6-6-6`
-                                })
+                className: `flex items-center gap-2.5 sm:gap-3 flex-wrap`,
+                children: [
+                    (0, P.jsx)(`button`, {
+                        type: `button`,
+                        onClick: () => {
+                            let total = Number(effectiveFs || 8);
+                            let prev = r > 1 ? r - 1 : total;
+                            onSelectFs?.(prev);
+                        },
+                        title: `FS Anterior`,
+                        className: `sm:hidden flex size-9 items-center justify-center rounded-lg border border-accent/50 bg-accent/10 text-accent hover:bg-accent/20 active:scale-95 transition-all shadow-[0_0_10px_rgba(220,38,38,0.25)] shrink-0`,
+                        children: (0, P.jsx)(`svg`, {
+                            xmlns: `http://www.w3.org/2000/svg`,
+                            viewBox: `0 0 24 24`,
+                            fill: `none`,
+                            stroke: `currentColor`,
+                            strokeWidth: `3`,
+                            strokeLinecap: `round`,
+                            strokeLinejoin: `round`,
+                            className: `size-5`,
+                            children: (0, P.jsx)(`path`, {
+                                d: `m15 18-6-6 6-6`
                             })
                         })
-                    ]
-                }), (isStompLayer ? (linkedFxName || stompNameDisp || x) : x) && (0, P.jsx)(`button`, {
-                    type: `button`,
-                    onClick: a,
-                    className: `text-left truncate font-display text-xl font-black uppercase tracking-wider text-accent hover:underline cursor-pointer`,
-                    style: {
-                        maxWidth: 280
-                    },
-                    children: String(isStompLayer ? (linkedFxName || stompNameDisp || x) : x).toUpperCase()
-                })]
-            }), (!isStompLayer || stompFree) && (0, P.jsx)(Mi, {
+                    }),
+                    (0, P.jsxs)(`button`, {
+                        type: `button`,
+                        onClick: a,
+                        title: `Renomear FS`,
+                        className: `group flex items-center gap-2 sm:gap-2.5 cursor-pointer`,
+                        children: [(0, P.jsxs)(`div`, {
+                            className: `font-display text-3xl sm:text-4xl font-black tracking-tight text-foreground group-hover:text-accent transition-colors`,
+                            children: [`FS`, r]
+                        }), (0, P.jsx)(`span`, {
+                            className: `flex size-8 sm:size-9 items-center justify-center rounded-xl border border-accent/60 bg-accent/15 text-accent shadow-[0_0_10px_rgba(220,38,38,0.25)] transition-all group-hover:scale-105 group-hover:bg-accent/25 group-hover:border-accent active:scale-90`,
+                            children: (0, P.jsx)(`svg`, {
+                                xmlns: `http://www.w3.org/2000/svg`,
+                                viewBox: `0 0 24 24`,
+                                fill: `none`,
+                                stroke: `currentColor`,
+                                strokeWidth: `2.4`,
+                                strokeLinecap: `round`,
+                                strokeLinejoin: `round`,
+                                className: `size-4 sm:size-4.5`,
+                                children: (0, P.jsxs)(P.Fragment, {
+                                    children: [(0, P.jsx)(`path`, {
+                                        d: `M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z`
+                                    }), (0, P.jsx)(`path`, {
+                                        d: `m15 5 4 4`
+                                    })]
+                                })
+                            })
+                        })]
+                    }),
+                    (0, P.jsx)(`button`, {
+                        type: `button`,
+                        onClick: () => {
+                            let total = Number(effectiveFs || 8);
+                            let next = r < total ? r + 1 : 1;
+                            onSelectFs?.(next);
+                        },
+                        title: `Próxima FS`,
+                        className: `sm:hidden flex size-9 items-center justify-center rounded-lg border border-accent/50 bg-accent/10 text-accent hover:bg-accent/20 active:scale-95 transition-all shadow-[0_0_10px_rgba(220,38,38,0.25)] shrink-0`,
+                        children: (0, P.jsx)(`svg`, {
+                            xmlns: `http://www.w3.org/2000/svg`,
+                            viewBox: `0 0 24 24`,
+                            fill: `none`,
+                            stroke: `currentColor`,
+                            strokeWidth: `3`,
+                            strokeLinecap: `round`,
+                            strokeLinejoin: `round`,
+                            className: `size-5`,
+                            children: (0, P.jsx)(`path`, {
+                                d: `m9 18 6-6-6-6`
+                            })
+                        })
+                    }),
+                    (isStompLayer ? (linkedFxName || stompNameDisp || x) : x) && (0, P.jsx)(`button`, {
+                        type: `button`,
+                        onClick: a,
+                        title: `Clique para renomear`,
+                        className: `group flex items-center text-left truncate shrink-0 cursor-pointer active:scale-95 transition-transform`,
+                        style: {
+                            maxWidth: 'min(320px, 100%)'
+                        },
+                        children: (0, P.jsx)(`span`, {
+                            className: `truncate font-display text-3xl sm:text-4xl font-black tracking-tight uppercase text-accent group-hover:brightness-125 transition-all drop-shadow-[0_0_12px_rgba(220,38,38,0.4)]`,
+                            children: String(isStompLayer ? (linkedFxName || stompNameDisp || x) : x).toUpperCase()
+                        })
+                    })
+                ]
+            }),
+            (!isStompLayer || stompFree) && (0, P.jsx)(Mi, {
                 label: `Modo`,
                 value: o.mode,
                 options: br,
@@ -26664,6 +27758,8 @@ function ji({
                 value: t.channel,
                 min: 1,
                 max: 16,
+                output: t.output,
+                hubDevice: t.hubDevice,
                 onChange: e => i({
                     channel: e
                 })
@@ -26828,8 +27924,19 @@ function z({
     value: t,
     min: n,
     max: r,
-    onChange: i
+    onChange: i,
+    output: outProp,
+    hubDevice: hubProp
 }) {
+    if (e === `Canal` || (Number(n) === 1 && Number(r) === 16)) {
+        return (0, P.jsx)(popupChannelFieldControl, {
+            label: e,
+            value: t,
+            onChange: i,
+            output: outProp,
+            hubDevice: hubProp
+        });
+    }
     return (0, P.jsx)(popupNumberFieldControl, {
         label: e,
         value: t,
@@ -26991,10 +28098,8 @@ function ni({
                 onChange: e => n({
                     valueOff: e
                 })
-            }), (0, P.jsx)(L, {
-                label: `FS`,
-                value: String(Number(t?.assignedFs) || 0),
-                options: [`0`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`],
+            }), (0, P.jsx)(StompFsPickerControl, {
+                value: Number(t?.assignedFs) || 0,
                 onChange: e => n({
                     assignedFs: Number(e) || 0
                 })
@@ -27063,8 +28168,8 @@ function appShellView({
     children: e
 }) {
     return (0, P.jsxs)(`div`, {
-        className: `min-h-screen bg-canvas text-foreground selection:bg-accent/30`,
-        children: [(0, P.jsx)(appHeaderBar, {}), (0, P.jsx)(`main`, {
+        className: `min-h-screen bg-transparent text-foreground selection:bg-accent/30`,
+        children: [(0, P.jsx)(`main`, {
             className: `mx-auto max-w-[1400px] px-3 pt-4 pb-32 sm:px-6 lg:px-8`,
             children: e
         })]
@@ -27072,79 +28177,7 @@ function appShellView({
 }
 
 function appHeaderBar() {
-    let {
-        theme: e,
-        toggle: t
-    } = useThemeMode(), {
-        isFull: n,
-        toggle: r
-    } = useFullscreenState();
-    let [transportState, setTransportState] = (0, N.useState)(() => getTransportSnapshot());
-    (0, N.useEffect)(() => {
-        return setTransportState(getTransportSnapshot()), subscribeTransportState(e => {
-            setTransportState(e)
-        })
-    }, []);
-    return (0, P.jsxs)(`header`, {
-        className: `sticky top-0 z-30 flex h-14 items-center justify-between border-b border-border bg-canvas/85 px-4 backdrop-blur-md`,
-        children: [(0, P.jsxs)(`a`, {
-            href: `/`,
-            className: `flex items-center gap-3`,
-            children: [(0, P.jsx)(`div`, {
-                className: `grid size-8 place-items-center rounded bg-accent font-bold italic tracking-tighter text-accent-foreground`,
-                children: `G`
-            }), (0, P.jsxs)(`h1`, {
-                className: `hidden font-display text-sm font-bold uppercase tracking-widest text-foreground sm:block`,
-                children: [`Guerrilha `, (0, P.jsx)(`span`, {
-                    className: `text-accent`,
-                    children: `PRO`
-                })]
-            })]
-        }), (0, P.jsxs)(`div`, {
-            className: `flex items-center gap-2 sm:gap-3`,
-            children: [(0, P.jsx)(`div`, {
-                className: `hidden sm:block`,
-                children: (0, P.jsx)(vi, {
-                    label: transportState.connecting ? `A ligar…` : transportState.connected ? `USB` : `Ligar USB`,
-                    active: transportState.mode === `usb` && transportState.connected,
-                    selected: transportState.mode === `usb` && !transportState.connected,
-                    disabled: transportState.connecting || !transportState.supported,
-                    title: transportState.supported ? transportState.connected ? `USB conectado` : `Clique para conectar via USB CDC` : `Web Serial não disponível neste navegador`,
-                    onClick: async () => {
-                        if (!transportState.supported || transportState.connecting) return;
-                        try {
-                            await usbConnectFromUi(), rt.success(`USB CDC conectado.`)
-                        } catch (e) {
-                            rt.error(`Falha ao conectar USB.`)
-                        }
-                    }
-                })
-            }), (0, P.jsx)(`div`, {
-                className: `hidden font-mono text-[10px] uppercase tracking-tight text-muted-foreground sm:block`,
-                children: `FW v2.4.1`
-            }), (0, P.jsx)(`button`, {
-                onClick: t,
-                "aria-label": e === `dark` ? `Ativar tema claro` : `Ativar tema escuro`,
-                title: e === `dark` ? `Tema claro` : `Tema escuro`,
-                className: `grid size-8 place-items-center rounded-md border border-border bg-panel text-muted-foreground transition-colors hover:text-foreground hover:border-accent/40`,
-                children: e === `dark` ? (0, P.jsx)(ur, {
-                    className: `size-4`
-                }) : (0, P.jsx)(ir, {
-                    className: `size-4`
-                })
-            }), (0, P.jsx)(`button`, {
-                onClick: r,
-                "aria-label": n ? `Sair da tela cheia` : `Entrar em tela cheia`,
-                title: n ? `Sair da tela cheia` : `Tela cheia`,
-                className: `grid size-8 place-items-center rounded-md border border-border bg-panel text-muted-foreground transition-colors hover:text-foreground hover:border-accent/40`,
-                children: n ? (0, P.jsx)(rr, {
-                    className: `size-4`
-                }) : (0, P.jsx)(nr, {
-                    className: `size-4`
-                })
-            })]
-        })]
-    })
+    return null;
 }
 var Vi = new Ie({
     defaultOptions: {

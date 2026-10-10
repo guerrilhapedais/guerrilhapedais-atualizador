@@ -503,8 +503,11 @@
     body {
         font-family: var(--font-sans);
         background-color: var(--canvas);
-        background-image: linear-gradient(115deg, var(--bg-sweep-1) 0%, transparent 35%), radial-gradient(ellipse at 85% 0%, var(--bg-sweep-2), transparent 55%), radial-gradient(ellipse at 50% 120%, var(--bg-vignette), transparent 60%), linear-gradient(to right, var(--bg-grid) 1px, transparent 1px), linear-gradient(to bottom, var(--bg-grid) 1px, transparent 1px);
-        background-size: auto, auto, auto, 44px 44px, 44px 44px
+        background-image: linear-gradient(rgba(10, 10, 12, 0.45), rgba(10, 10, 12, 0.65)), url('./bg-texture.jpg');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
     }
 
     .font-mono {
@@ -5273,4 +5276,56 @@
     50% {
         opacity: 0
     }
+}
+
+/* Sliders com linha/trilho traçado visível e bolinha perfeitamente centralizada */
+input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    background: #27272a;
+    border: 1px solid #3f3f46;
+    border-radius: 4px;
+    height: 6px;
+    outline: none;
+    cursor: pointer;
+}
+input[type="range"]::-webkit-slider-runnable-track {
+    background: transparent;
+    border: none;
+    height: 6px;
+}
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #ef4444;
+    border: 2px solid rgba(255, 255, 255, 0.95);
+    box-shadow: 0 0 10px rgba(239, 68, 68, 0.75);
+    cursor: pointer;
+    margin-top: -7px;
+    transition: transform 0.1s ease;
+}
+input[type="range"]::-webkit-slider-thumb:hover {
+    transform: scale(1.15);
+}
+input[type="range"]::-moz-range-track {
+    background: transparent;
+    border: none;
+    height: 6px;
+}
+input[type="range"]::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #ef4444;
+    border: 2px solid rgba(255, 255, 255, 0.95);
+    box-shadow: 0 0 10px rgba(239, 68, 68, 0.75);
+    cursor: pointer;
+}
+input[type="range"]::-moz-range-progress {
+    height: 6px;
+    border-radius: 4px;
+    background: #38bdf8;
 }
