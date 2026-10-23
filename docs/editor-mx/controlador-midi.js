@@ -13483,7 +13483,7 @@ async function usbTransportConnect(e = !0) {
         try {
             t = await navigator.serial.getPorts()
         } catch {}
-        let n = t[0] || null;
+        let n = e ? null : (t[0] || null);
         if (!n && e && (n = await navigator.serial.requestPort()), !n) throw Error(`Nenhuma porta USB autorizada`);
         if (!n.readable) await n.open({
             baudRate: 115200,
@@ -13820,6 +13820,35 @@ async function usbRouteJson(e, t = {}, n = 15e3) {
 
 async function usbConnectFromUi() {
     await usbTransportConnect(!0)
+}
+
+/* Icone branco da ligacao atual (USB ou Bluetooth) para o loading. */
+function gmxTransportIsBle() {
+    return !!(window.gmxEditorTransportLabel && window.gmxEditorTransportLabel() === `Bluetooth`)
+}
+
+function gmxTransportIcon(size = 14) {
+    let ble = gmxTransportIsBle();
+    return (0, P.jsx)(`svg`, {
+        xmlns: `http://www.w3.org/2000/svg`,
+        viewBox: `0 0 24 24`,
+        width: size,
+        height: size,
+        fill: `none`,
+        stroke: `#ffffff`,
+        strokeWidth: `2`,
+        strokeLinecap: `round`,
+        strokeLinejoin: `round`,
+        children: ble ? (0, P.jsx)(`path`, { d: `m7 7 10 10-5 5V2l5 5L7 17` }) : [
+            (0, P.jsx)(`circle`, { cx: `10`, cy: `7`, r: `1` }, `a`),
+            (0, P.jsx)(`circle`, { cx: `4`, cy: `20`, r: `1` }, `b`),
+            (0, P.jsx)(`path`, { d: `M4.7 19.3 19 5` }, `c`),
+            (0, P.jsx)(`path`, { d: `m21 3-3 1 2 2Z` }, `d`),
+            (0, P.jsx)(`path`, { d: `M9.26 7.68 5 12l2 5` }, `e`),
+            (0, P.jsx)(`path`, { d: `m10 14 5 2 3.5-3.5` }, `f`),
+            (0, P.jsx)(`path`, { d: `m18 12 1-1 1 1-1 1Z` }, `g`)
+        ]
+    })
 }
 
 async function zr(e, t = {}, n = 15e3) {
@@ -15118,6 +15147,33 @@ async function displayIconEnsurePackOnDevice(key) {
     return k
 }
 
+async function displayIconEnsureAmpThumbOnDevice(key, fsCount) {
+    let k = displayIconSanitizeKey(key);
+    if (!k || !/^amp[0-9]+$/i.test(k)) return k;
+    if (displayIconsKnownOnDevice.size === 0) {
+        try { await displayIconFetchCatalog(); } catch {}
+    }
+    if (displayIconsKnownOnDevice.has(k)) return k;
+    let cachedUrl = DISPLAY_ICON_THUMB_CACHE[k];
+    if (!cachedUrl) {
+        try { if (typeof localStorage !== 'undefined') cachedUrl = localStorage.getItem('gmx_thumb_' + k) || ''; } catch {}
+    }
+    if (!cachedUrl) return k;
+    try {
+        let im = await displayIconImageFromUrl(cachedUrl);
+        let isMt8 = Number(fsCount || 8) === 8;
+        let w = isMt8 ? 480 : 232;
+        let h = isMt8 ? 146 : 100;
+        let id = displayIconRenderCrop(im, 1, 0, 0, !1, w, h, { mode: 'color', color: '#000000' }, null, null);
+        let rgb = displayIconRgb565FromImageData(id, !1, !0);
+        await displayIconUploadRgb(k, rgb, w, h);
+        displayIconsKnownOnDevice.add(k);
+    } catch (e) {
+        console.warn('Falha ao sincronizar miniatura de amp com o controlador:', k, e);
+    }
+    return k;
+}
+
 async function displayIconSyncAllPackToDevice() {
     for (let [key] of DISPLAY_WHITE_PACK) {
         try {
@@ -16307,6 +16363,14 @@ function FsBoxVisualCustomizer({
     let handleSaveScreenColors = async () => {
         try {
             setSavingColors(true);
+            try {
+                window.dispatchEvent(new CustomEvent('gmx-save-status', {
+                    detail: {
+                        title: 'Salvando no Controlador...',
+                        subtitle: 'Gravando cores e fundo da tela...'
+                    }
+                }));
+            } catch {}
             let parts = buildTelaUsbParts(globalConfig);
             if (!parts || !parts.length) {
                 parts = [scrubUsbPart({
@@ -16331,6 +16395,9 @@ function FsBoxVisualCustomizer({
             rt.error(`Erro ao salvar cores e fundo: ${String(err?.message || err)}`);
         } finally {
             setSavingColors(false);
+            try {
+                window.dispatchEvent(new CustomEvent('gmx-save-status', { detail: null }));
+            } catch {}
         }
     };
 
@@ -17355,10 +17422,32 @@ function Yr(e, t, n, usbCfg) {
 }
 
 function Xr() {
-    let [e, t] = (0, N.useState)(`MX-6`), [n, r] = (0, N.useState)(0), [i, a] = (0, N.useState)(1), [o, s] = (0, N.useState)(`preset`), [c, l] = (0, N.useState)({}), [expBankState, setExpBankState] = (0, N.useState)(() => expCreateEmptyBank()), [globalSubTab, setGlobalSubTab] = (0, N.useState)(`gb`), [sysSubTab, setSysSubTab] = (0, N.useState)(`conexoes`), u = (0, N.useRef)(!1), modelSaveBusyRef = (0, N.useRef)(!1), modelRebootUntilRef = (0, N.useRef)(0), iconKeyPendingRef = (0, N.useRef)(null), ampKeyPendingRef = (0, N.useRef)(null), activeStompSlotRef = (0, N.useRef)(1), [activeStompSlot, setActiveStompSlot] = (0, N.useState)(1), d = gr[e].fs, [f, pFs] = (0, N.useState)(1), [m, h] = (0, N.useState)(`Preset`), [g, _] = (0, N.useState)(!0), [v, y] = (0, N.useState)(null), [R, I] = (0, N.useState)(null), [B, L] = (0, N.useState)(``),     [backupBusy, setBackupBusy] = (0, N.useState)(!1), [backupProgress, setBackupProgress] = (0, N.useState)({
+    let [e, t] = (0, N.useState)(`MX-6`), [n, r] = (0, N.useState)(0), [i, a] = (0, N.useState)(1), [o, s] = (0, N.useState)(`preset`), [c, l] = (0, N.useState)({}), [expBankState, setExpBankState] = (0, N.useState)(() => expCreateEmptyBank()), [globalSubTab, setGlobalSubTab] = (0, N.useState)(`gb`), [sysSubTab, setSysSubTab] = (0, N.useState)(`conexoes`), u = (0, N.useRef)(!1), modelSaveBusyRef = (0, N.useRef)(!1), modelRebootUntilRef = (0, N.useRef)(0), iconKeyPendingRef = (0, N.useRef)(null), ampKeyPendingRef = (0, N.useRef)(null), activeStompSlotRef = (0, N.useRef)(1), [activeStompSlot, setActiveStompSlot] = (0, N.useState)(1), d = gr[e].fs, [f, pFs] = (0, N.useState)(1), [m, h] = (0, N.useState)(`Preset`), [g, _] = (0, N.useState)(!0), [v, y] = (0, N.useState)(null), [R, I] = (0, N.useState)(null), [B, L] = (0, N.useState)(``), [backupBusy, setBackupBusy] = (0, N.useState)(!1), [backupProgress, setBackupProgress] = (0, N.useState)({
         pct: 0,
         label: ``
-    }), [fsSwitchPrompt, setFsSwitchPrompt] = (0, N.useState)(null), [bankSwitchPrompt, setBankSwitchPrompt] = (0, N.useState)(null), fsSavedSnapshotRef = (0, N.useRef)({}), fsFullSnapshotRef = (0, N.useRef)({}), pendingFsBgSlotsRef = (0, N.useRef)(null), [transportState, setTransportState] = (0, N.useState)(() => getTransportSnapshot()), [iconScreenOpen, setIconScreenOpen] = (0, N.useState)(!1), [ampScreenOpen, setAmpScreenOpen] = (0, N.useState)(!1);
+    }), [fsSwitchPrompt, setFsSwitchPrompt] = (0, N.useState)(null), [bankSwitchPrompt, setBankSwitchPrompt] = (0, N.useState)(null), fsSavedSnapshotRef = (0, N.useRef)({}), fsFullSnapshotRef = (0, N.useRef)({}), pendingFsBgSlotsRef = (0, N.useRef)(null), [transportState, setTransportState] = (0, N.useState)(() => getTransportSnapshot()), [iconScreenOpen, setIconScreenOpen] = (0, N.useState)(!1), [ampScreenOpen, setAmpScreenOpen] = (0, N.useState)(!1), [syncStatus, setSyncStatus] = (0, N.useState)(null), [saveStatus, setSaveStatus] = (0, N.useState)(null), [usbSyncDone, setUsbSyncDone] = (0, N.useState)(!1);
+    (0, N.useEffect)(() => {
+        let onSaveStatus = ev => {
+            setSaveStatus(ev?.detail || null);
+        };
+        window.addEventListener('gmx-save-status', onSaveStatus);
+        return () => {
+            window.removeEventListener('gmx-save-status', onSaveStatus);
+        };
+    }, []);
+    (0, N.useEffect)(() => {
+        if (transportState.connecting) {
+            setSyncStatus({
+                title: `Sincronizando Controlador...`,
+                subtitle: `Conectando via ${gmxTransportIsBle() ? `Bluetooth` : `USB`} ao controlador...`,
+                step: 1,
+                total: 3
+            });
+        } else if (!transportState.connected && transportUsesUsb()) {
+            setUsbSyncDone(!1);
+            setSyncStatus(null);
+        }
+    }, [transportState.connecting, transportState.connected]);
     let {
         theme: appTheme,
         toggle: toggleAppTheme
@@ -17599,12 +17688,18 @@ function Xr() {
                     presetNames: e
                 })), closeRename();
                 (async () => {
+                    setSaveStatus({
+                        title: `Salvando no Controlador...`,
+                        subtitle: `Gravando nome do Preset ${R.index}...`
+                    });
                     try {
                         await Br(`/api/usb-config`, {
                             presetNames: e.map(e => String(e || ``).slice(0, 24))
                         }, 2e4), rt.success(`Nome do preset salvo`)
                     } catch (err) {
                         rt.error(`Falha ao salvar nome do preset: ${String(err?.message || err)}`)
+                    } finally {
+                        setSaveStatus(null);
                     }
                 })();
                 return
@@ -17635,6 +17730,10 @@ function Xr() {
                 (async () => {
                     if (u.current) return;
                     u.current = !0;
+                    setSaveStatus({
+                        title: `Salvando no Controlador...`,
+                        subtitle: `Gravando Stomp Slot ${sIdx} na FS${pFsNum}...`
+                    });
                     try {
                         let payload = compactFsForSave(Jr(updatedFs, c));
                         await postMidiConfigRetry({
@@ -17650,13 +17749,30 @@ function Xr() {
                         rt.error(`Erro ao salvar nome Stomp: ${err?.message || err}`);
                     } finally {
                         u.current = !1;
+                        setSaveStatus(null);
                     }
                 })();
                 return;
             }
+            let fsToSave = R.index;
+            let labelToSave = String(B || ``).trim().toUpperCase().slice(0, 16) || `FS${fsToSave}`;
+            let pendingIcon = iconKeyPendingRef.current;
+            closeRename();
+            x(e => ({
+                ...e,
+                [fsToSave]: {
+                    ...e[fsToSave] || kr(fsToSave),
+                    label: labelToSave,
+                    ...(pendingIcon !== null ? { iconKey: displayIconSanitizeKey(pendingIcon || ``) } : {})
+                }
+            }));
             (async () => {
                 if (u.current) return;
                 u.current = !0;
+                setSaveStatus({
+                    title: `Salvando no Controlador...`,
+                    subtitle: `Gravando nome e ícone da FS${fsToSave} (${hr[n]})...`
+                });
                 try {
                     let cfg = {
                         ...(b[fsToSave] || kr(fsToSave)),
@@ -17687,7 +17803,8 @@ function Xr() {
                 } catch (err) {
                     rt.error(`Erro ao salvar FS: ${softApFetchErrorMessage(err)}`)
                 } finally {
-                    u.current = !1
+                    u.current = !1;
+                    setSaveStatus(null);
                 }
             })()
         },
@@ -17758,6 +17875,10 @@ function Xr() {
         let previousModel = e,
             previousFsCount = Number.isFinite(Number(c?.fsCount)) ? Number(c.fsCount) : gr[e]?.fs;
         modelSaveBusyRef.current = !0;
+        setSaveStatus({
+            title: `Salvando no Controlador...`,
+            subtitle: `Alterando modelo de hardware para ${nextModel}...`
+        });
         try {
             F(`B`, `model.save.start`, {
                 from: previousModel,
@@ -17814,58 +17935,70 @@ function Xr() {
                 message: String(saveModelError?.message || saveModelError)
             })
         } finally {
-            modelSaveBusyRef.current = !1
+            modelSaveBusyRef.current = !1;
+            setSaveStatus(null);
         }
     };
     (0, N.useEffect)(() => {
         let e = !1;
         return (async () => {
             if (transportUsesUsb() && !transportState.connected) return;
-            let lastErr = null;
-            for (let attempt = 0; attempt < 5 && !e; attempt++) {
-                try {
-                    F(`A`, `model.usb.load.start`, {
-                        tab: o,
-                        attempt: attempt + 1
-                    });
-                    let n = await zr(`/api/usb-config`, {
-                        method: `GET`
-                    }, 12e3);
-                    if (e) return;
-                    F(`A`, `model.usb.load.ok`, {
-                        fsCount: n?.fsCount,
-                        activePreset: n?.activePreset,
-                        attempt: attempt + 1
-                    }), l(e => ({
-                        ...e || {},
-                        ...n || {},
-                        controllerPath: Number.isFinite(Number(n?.controllerPath))
-                            ? Number(n.controllerPath)
-                            : Number(e?.controllerPath || 0),
-                        midiEnable: Number.isFinite(Number(n?.midiEnable ?? n?.S_MIDI_EN)) ? Number(n?.midiEnable ?? n?.S_MIDI_EN) : Number(e?.midiEnable || 0),
-                        midiChannel: Number.isFinite(Number(n?.midiChannel ?? n?.S_MIDI_CH)) ? Number(n?.midiChannel ?? n?.S_MIDI_CH) : Number(e?.midiChannel || 1),
-                        midiPreset: Number.isFinite(Number(n?.midiPreset ?? n?.MIDI_PRESET)) ? Number(n?.midiPreset ?? n?.MIDI_PRESET) : Number(e?.midiPreset || 0),
-                        midiInRoute: Number.isFinite(Number(n?.midiInRoute ?? n?.S_MIDI_IN_ROUTE)) ? Number(n?.midiInRoute ?? n?.S_MIDI_IN_ROUTE) : Number(e?.midiInRoute || 0),
-                        btMode: Number.isFinite(Number(n?.btMode ?? n?.BT_MODE)) ? Number(n?.btMode ?? n?.BT_MODE) : Number(e?.btMode || 0),
-                        btPreset: Number.isFinite(Number(n?.btPreset ?? n?.BT_PRESET)) ? Number(n?.btPreset ?? n?.BT_PRESET) : Number(e?.btPreset || 0),
-                        btMidiCc: Number.isFinite(Number(n?.btMidiCc ?? n?.BT_MIDI_CC)) ? Number(n?.btMidiCc ?? n?.BT_MIDI_CC) : Number(e?.btMidiCc || 0),
-                        btCustomEnable: Number.isFinite(Number(n?.btCustomEnable ?? n?.BT_CUST_EN)) ? Number(n?.btCustomEnable ?? n?.BT_CUST_EN) : Number(e?.btCustomEnable || 0),
-                        btCustomName: typeof(n?.btCustomName ?? n?.BT_CUST_NAME) == `string` ? (n?.btCustomName ?? n?.BT_CUST_NAME) : String(e?.btCustomName || ``),
-                        exp: expNormalizeBank(n?.exp ?? e?.exp)
-                    })), setExpBankState(expNormalizeBank(n?.exp)), typeof n?.fsCount == `number` && (n.fsCount === 4 ? t(`MX-4`) : n.fsCount === 6 ? t(`MX-6`) : n.fsCount === 8 && t(`MX-8`)), typeof n?.activePreset == `number` && a(Math.max(1, Math.min(5, n.activePreset + 1)));
-                    return
-                } catch (n) {
-                    lastErr = n;
-                    F(`A`, `model.usb.load.error`, {
-                        attempt: attempt + 1,
-                        message: String(n?.message || n)
-                    });
-                    if (attempt < 4) await new Promise(r => setTimeout(r, 1500 * (attempt + 1)))
+            setUsbSyncDone(!1);
+            setSyncStatus({
+                title: `Sincronizando Controlador...`,
+                subtitle: `Lendo configurações globais e do sistema...`,
+                step: 2,
+                total: 3
+            });
+            try {
+                let lastErr = null;
+                for (let attempt = 0; attempt < 5 && !e; attempt++) {
+                    try {
+                        F(`A`, `model.usb.load.start`, {
+                            tab: o,
+                            attempt: attempt + 1
+                        });
+                        let n = await zr(`/api/usb-config`, {
+                            method: `GET`
+                        }, 12e3);
+                        if (e) return;
+                        F(`A`, `model.usb.load.ok`, {
+                            fsCount: n?.fsCount,
+                            activePreset: n?.activePreset,
+                            attempt: attempt + 1
+                        }), l(e => ({
+                            ...e || {},
+                            ...n || {},
+                            controllerPath: Number.isFinite(Number(n?.controllerPath))
+                                ? Number(n.controllerPath)
+                                : Number(e?.controllerPath || 0),
+                            midiEnable: Number.isFinite(Number(n?.midiEnable ?? n?.S_MIDI_EN)) ? Number(n?.midiEnable ?? n?.S_MIDI_EN) : Number(e?.midiEnable || 0),
+                            midiChannel: Number.isFinite(Number(n?.midiChannel ?? n?.S_MIDI_CH)) ? Number(n?.midiChannel ?? n?.S_MIDI_CH) : Number(e?.midiChannel || 1),
+                            midiPreset: Number.isFinite(Number(n?.midiPreset ?? n?.MIDI_PRESET)) ? Number(n?.midiPreset ?? n?.MIDI_PRESET) : Number(e?.midiPreset || 0),
+                            midiInRoute: Number.isFinite(Number(n?.midiInRoute ?? n?.S_MIDI_IN_ROUTE)) ? Number(n?.midiInRoute ?? n?.S_MIDI_IN_ROUTE) : Number(e?.midiInRoute || 0),
+                            btMode: Number.isFinite(Number(n?.btMode ?? n?.BT_MODE)) ? Number(n?.btMode ?? n?.BT_MODE) : Number(e?.btMode || 0),
+                            btPreset: Number.isFinite(Number(n?.btPreset ?? n?.BT_PRESET)) ? Number(n?.btPreset ?? n?.BT_PRESET) : Number(e?.btPreset || 0),
+                            btMidiCc: Number.isFinite(Number(n?.btMidiCc ?? n?.BT_MIDI_CC)) ? Number(n?.btMidiCc ?? n?.BT_MIDI_CC) : Number(e?.btMidiCc || 0),
+                            btCustomEnable: Number.isFinite(Number(n?.btCustomEnable ?? n?.BT_CUST_EN)) ? Number(n?.btCustomEnable ?? n?.BT_CUST_EN) : Number(e?.btCustomEnable || 0),
+                            btCustomName: typeof(n?.btCustomName ?? n?.BT_CUST_NAME) == `string` ? (n?.btCustomName ?? n?.BT_CUST_NAME) : String(e?.btCustomName || ``),
+                            exp: expNormalizeBank(n?.exp ?? e?.exp)
+                        })), setExpBankState(expNormalizeBank(n?.exp)), typeof n?.fsCount == `number` && (n.fsCount === 4 ? t(`MX-4`) : n.fsCount === 6 ? t(`MX-6`) : n.fsCount === 8 && t(`MX-8`)), typeof n?.activePreset == `number` && a(Math.max(1, Math.min(5, n.activePreset + 1)));
+                        return
+                    } catch (n) {
+                        lastErr = n;
+                        F(`A`, `model.usb.load.error`, {
+                            attempt: attempt + 1,
+                            message: String(n?.message || n)
+                        });
+                        if (attempt < 4) await new Promise(r => setTimeout(r, 1500 * (attempt + 1)))
+                    }
                 }
+                if (!e && lastErr) F(`A`, `model.usb.load.giveup`, {
+                    message: String(lastErr?.message || lastErr)
+                })
+            } finally {
+                if (!e) setUsbSyncDone(!0);
             }
-            if (!e && lastErr) F(`A`, `model.usb.load.giveup`, {
-                message: String(lastErr?.message || lastErr)
-            })
         })(), () => {
             e = !0
         }
@@ -17962,6 +18095,13 @@ function Xr() {
         return (async () => {
             if (Date.now() < modelRebootUntilRef.current) return;
             if (transportUsesUsb() && !transportState.connected) return;
+            if (!usbSyncDone) return;
+            setSyncStatus({
+                title: `Sincronizando Controlador...`,
+                subtitle: `Carregando Banco ${hr[n]} · Preset ${T + 1}...`,
+                step: 3,
+                total: 3
+            });
             try {
                 let t = await zr(`/api/midi-config?bank=${n}&activePreset=${T}`, {
                     method: `GET`
@@ -18004,11 +18144,13 @@ function Xr() {
                     usb: transportState.connected,
                     message: String(err?.message || err)
                 })
+            } finally {
+                if (!e) setSyncStatus(null);
             }
         })(), () => {
             e = !0
         }
-    }, [n, T, c?.expMode, c?.fsCount, d, transportState.connected]);
+    }, [n, T, c?.expMode, c?.fsCount, d, transportState.connected, usbSyncDone]);
     /* LEDs já vêm em fs.ledColors no GET /api/midi-config (Yr) — sem N GETs extra. */
     let D = e => {
             l(t => ({
@@ -18413,6 +18555,10 @@ function Xr() {
         te = async () => {
             if (!u.current) {
                 u.current = !0;
+                setSaveStatus({
+                    title: `Salvando no Controlador...`,
+                    subtitle: `Gravando ${hr[n]} · FS${f} · Preset ${T + 1}...`
+                });
                 try {
                     let e = f,
                         t = {
@@ -18468,6 +18614,10 @@ function Xr() {
                      * por defeito do banco e pinta o editor por cima da cor gravada. */
                     if (m !== "Stomp") {
                         try {
+                            setSaveStatus({
+                                title: `Salvando no Controlador...`,
+                                subtitle: `Gravando cores LED da FS${e}...`
+                            });
                             let ledCfg = (t.presetLed || yr),
                                 ledPayload = {
                                     activePreset: T,
@@ -18492,6 +18642,10 @@ function Xr() {
                             rt.error(`Comandos gravados, mas as cores LED falharam: ${String(ledErr?.message || ledErr)}`)
                         }
                     }
+                    setSaveStatus({
+                        title: `Salvando no Controlador...`,
+                        subtitle: `Confirmando gravação na memória...`
+                    });
                     let savedSnap = {
                         ...t,
                         presetLed: t.presetLed ? {
@@ -18583,13 +18737,18 @@ function Xr() {
                         message: String(err?.message || err)
                     })
                 } finally {
-                    u.current = !1
+                    u.current = !1;
+                    setSaveStatus(null);
                 }
             }
         },
         saveEntireBank = async (bankToSave = n) => {
             if (u.current) return false;
             u.current = !0;
+            setSaveStatus({
+                title: `Salvando no Controlador...`,
+                subtitle: `Gravando Banco ${hr[bankToSave]} · Preset ${T + 1}...`
+            });
             try {
                 let maxFs = effectiveFs,
                     bankPayload = {},
@@ -18609,6 +18768,7 @@ function Xr() {
                                       (fsCopy.pc !== undefined && fsCopy.pc !== 0) ||
                                       (fsCopy.label && fsCopy.label !== `FS${fsNum}`) ||
                                       (fsCopy.iconKey && fsCopy.iconKey.trim() !== '') ||
+                                      (fsCopy.ampKey && fsCopy.ampKey.trim() !== '') ||
                                       (fsCopy.stompIcon && fsCopy.stompIcon.trim() !== '') ||
                                       (Number(fsCopy.gridFill || 0) > 0) ||
                                       isFsDirty(fsNum);
@@ -18656,6 +18816,10 @@ function Xr() {
                 if (m !== 'Stomp') {
                     for (let item of fsDataList) {
                         if (item.fs === f || isFsDirty(item.fs)) {
+                            setSaveStatus({
+                                title: `Salvando no Controlador...`,
+                                subtitle: `Gravando cores LED da FS${item.fs}...`
+                            });
                             let ledCfg = item.data.presetLed || yr;
                             try {
                                 let ledPayload = {
@@ -18685,6 +18849,7 @@ function Xr() {
                 return false;
             } finally {
                 u.current = !1;
+                setSaveStatus(null);
             }
         },
         ne = async () => {
@@ -18705,6 +18870,10 @@ function Xr() {
                 if (!(c && Object.keys(c).length > 0)) return;
                 let section = globalSubTab === `stomp` || globalSubTab === `exp` ? globalSubTab : `gb`,
                     label = section === `stomp` ? `Stomp` : section === `exp` ? `EXP` : `GB`;
+                setSaveStatus({
+                    title: `Salvando no Controlador...`,
+                    subtitle: `Gravando configurações de ${label}...`
+                });
                 try {
                     gboxSoftApQuiet(45e3);
                     let parts = section === `stomp` ? buildStompUsbParts(c, {
@@ -18737,18 +18906,24 @@ function Xr() {
                         section,
                         message: String(err?.message || err)
                     })
+                } finally {
+                    setSaveStatus(null);
                 }
                 return
             }
             if (o === `sistema`) {
                 if (!(c && Object.keys(c).length > 0)) return;
+                let saveLabel = sysSubTab === `tela` ? `Tela` : (sysSubTab === `utilitario` ? `Sistema` : `Conexões`);
+                setSaveStatus({
+                    title: `Salvando no Controlador...`,
+                    subtitle: `Gravando configurações de ${saveLabel}...`
+                });
                 try {
                     gboxSoftApQuiet(45e3);
                     let parts = sysSubTab === `tela` ? buildTelaUsbParts(c) : buildConexoesUsbParts(c);
                     if (!parts || !parts.length) {
                         parts = buildSistemaUsbParts(c);
                     }
-                    let saveLabel = sysSubTab === `tela` ? `Tela` : (sysSubTab === `utilitario` ? `Sistema` : `Conexões`);
                     F(`E`, `usb.save.sistema.start`, {
                         parts: parts.length,
                         subTab: sysSubTab
@@ -18765,6 +18940,8 @@ function Xr() {
                         tab: o,
                         message: String(err?.message || err)
                     })
+                } finally {
+                    setSaveStatus(null);
                 }
                 return
             }
@@ -18837,14 +19014,14 @@ function Xr() {
                                     onClick: async () => {
                                         if (!transportState.supported || transportState.connecting) return;
                                         try {
-                                            await usbConnectFromUi(), rt.success(`USB CDC conectado.`)
+                                            await usbConnectFromUi(), rt.success(`${window.gmxEditorTransportLabel ? window.gmxEditorTransportLabel() : `USB`} conectado.`)
                                         } catch (e) {
-                                            rt.error(`Falha ao conectar USB.`)
+                                            (String(e?.message || e) !== `Cancelado` && rt.error(`Falha ao conectar: ${String(e?.message || e)}`))
                                         }
                                     },
                                     disabled: transportState.connecting || !transportState.supported,
-                                    "aria-label": transportState.connected ? `USB Conectado` : `Conectar USB`,
-                                    title: transportState.supported ? (transportState.connected ? `USB conectado (Web Serial)` : `Conectar USB (Web Serial)`) : `Web Serial não disponível neste navegador`,
+                                    "aria-label": transportState.connected ? `Conectado` : `Conectar (USB ou Bluetooth)`,
+                                    title: transportState.supported ? (transportState.connected ? `Conectado (${window.gmxEditorTransportLabel ? window.gmxEditorTransportLabel() : `USB`})` : `Conectar (USB ou Bluetooth)`) : `USB/Bluetooth não disponível neste navegador`,
                                     className: `grid size-8 place-items-center rounded-md border transition-all ${
                                         transportState.connected
                                             ? `border-emerald-500/70 bg-emerald-950/40 text-emerald-400 shadow-[0_0_12px_rgba(16,185,129,0.45)]`
@@ -18929,16 +19106,16 @@ function Xr() {
                                 onClick: async () => {
                                     if (!transportState.supported || transportState.connecting) return;
                                     try {
-                                        await usbConnectFromUi(), rt.success(`USB CDC conectado.`)
+                                        await usbConnectFromUi(), rt.success(`${window.gmxEditorTransportLabel ? window.gmxEditorTransportLabel() : `USB`} conectado.`)
                                     } catch (e) {
-                                        rt.error(`Falha ao conectar USB.`), F(`U`, `usb.transport.connect.error`, {
+                                        (String(e?.message || e) !== `Cancelado` && rt.error(`Falha ao conectar: ${String(e?.message || e)}`)), F(`U`, `usb.transport.connect.error`, {
                                             message: String(e?.message || e)
                                         })
                                     }
                                 },
                                 disabled: transportState.connecting || !transportState.supported,
-                                "aria-label": transportState.connected ? `USB Conectado` : `Conectar USB`,
-                                title: transportState.supported ? (transportState.connected ? `USB conectado (Web Serial)` : `Conectar USB (Web Serial)`) : `Web Serial não disponível neste navegador`,
+                                "aria-label": transportState.connected ? `Conectado` : `Conectar (USB ou Bluetooth)`,
+                                title: transportState.supported ? (transportState.connected ? `Conectado (${window.gmxEditorTransportLabel ? window.gmxEditorTransportLabel() : `USB`})` : `Conectar (USB ou Bluetooth)`) : `USB/Bluetooth não disponível neste navegador`,
                                 className: `grid size-8 place-items-center rounded-md border transition-all ${
                                     transportState.connected
                                         ? `border-emerald-500/70 bg-emerald-950/40 text-emerald-400 shadow-[0_0_12px_rgba(16,185,129,0.45)]`
@@ -19366,6 +19543,10 @@ function Xr() {
                                         stompSlots: slots
                                     });
                                     (async () => {
+                                        setSaveStatus({
+                                            title: `Salvando no Controlador...`,
+                                            subtitle: `Gravando cor Stomp Slot ${targetSlot} na FS${f}...`
+                                        });
                                         try {
                                             let savePayload = compactFsForSave(Jr(updatedFs, c));
                                             gboxSoftApQuiet(2e4);
@@ -19380,6 +19561,8 @@ function Xr() {
                                             rt.success(`Cor Stomp Slot ${targetSlot} salva na FS${f}`);
                                         } catch (err) {
                                             rt.error(`Erro ao salvar cor Stomp: ${softApFetchErrorMessage(err)}`);
+                                        } finally {
+                                            setSaveStatus(null);
                                         }
                                     })();
                                 } else {
@@ -19470,6 +19653,10 @@ function Xr() {
                                                             stompIcon: ''
                                                         });
                                                     }
+                                                    setSaveStatus({
+                                                        title: `Salvando no Controlador...`,
+                                                        subtitle: `Gravando ícone Stomp Slot ${targetSlot} na FS${targetPreset}...`
+                                                    });
                                                     try {
                                                         let savePayload = compactFsForSave(Jr(updatedFs, c));
                                                         gboxSoftApQuiet(2e4);
@@ -19480,6 +19667,8 @@ function Xr() {
                                                         rt.success(`Ícone Stomp Slot ${targetSlot} salvo na FS${targetPreset}`);
                                                     } catch (err) {
                                                         rt.error(`Erro ao salvar ícone Stomp: ${String(err?.message || err)}`);
+                                                    } finally {
+                                                        setSaveStatus(null);
                                                     }
                                                 } else {
                                                     let updatedFs = {
@@ -19489,6 +19678,10 @@ function Xr() {
                                                     if (targetPreset === f) {
                                                         E({ iconKey: finalKey });
                                                     }
+                                                    setSaveStatus({
+                                                        title: `Salvando no Controlador...`,
+                                                        subtitle: `Gravando ícone na FS${targetPreset}...`
+                                                    });
                                                     try {
                                                         let savePayload = compactFsForSave(Jr(updatedFs, c));
                                                         await postMidiConfigRetry({
@@ -19505,6 +19698,8 @@ function Xr() {
                                                         rt.success(`Ícone salvo na FS${targetPreset}`);
                                                     } catch (err) {
                                                         rt.error(`Erro ao salvar ícone: ${String(err?.message || err)}`);
+                                                    } finally {
+                                                        setSaveStatus(null);
                                                     }
                                                 }
                                             },
@@ -19546,7 +19741,34 @@ function Xr() {
                                             let finalKey = ampKeyPendingRef.current !== null ? ampKeyPendingRef.current : (b[f]?.ampKey || ``);
                                             E({ ampKey: finalKey });
                                             ampKeyPendingRef.current = finalKey;
-                                            await ne();
+                                            let curFs = b[f] || kr(f);
+                                            let updatedFs = { ...curFs, ampKey: finalKey };
+                                            setSaveStatus({
+                                                title: `Salvando no Controlador...`,
+                                                subtitle: `Gravando cabeçote Amp na FS${f}...`
+                                            });
+                                            try {
+                                                if (finalKey) {
+                                                    await displayIconEnsureAmpThumbOnDevice(finalKey, gr[e]?.fs || c?.fsCount || 8);
+                                                }
+                                                let savePayload = compactFsForSave(Jr(updatedFs, c));
+                                                await postMidiConfigRetry({
+                                                    activePreset: T,
+                                                    banks: { [n]: { [`fs${f}`]: savePayload } }
+                                                }, 4);
+                                                x(prev => ({
+                                                    ...prev,
+                                                    [f]: {
+                                                        ...prev[f] || kr(f),
+                                                        ampKey: finalKey
+                                                    }
+                                                }));
+                                                rt.success(`Cabeçote salvo na FS${f}`);
+                                            } catch (err) {
+                                                rt.error(`Erro ao salvar cabeçote: ${String(err?.message || err)}`);
+                                            } finally {
+                                                setSaveStatus(null);
+                                            }
                                         },
                                         className: `w-full rounded-md border border-accent/60 bg-accent/20 px-4 py-2 font-display text-[10px] uppercase tracking-[0.16em] text-accent shadow-[0_0_18px_-4px_rgba(220,38,38,0.7)] transition hover:bg-accent/30 sm:w-auto`,
                                         children: `Salvar`
@@ -19582,22 +19804,49 @@ function Xr() {
                     onSysTabChange: setSysSubTab,
                     onSave: ne
                 }), fsSwitchPrompt && (0, P.jsx)(`div`, {
-                    className: `fixed inset-0 z-[120] flex items-center justify-center bg-black/85 backdrop-blur-md p-4`,
+                    className: `fixed inset-0 z-[120] flex items-center justify-center bg-black/80 backdrop-blur-md p-4 sm:p-6`,
                     onClick: () => setFsSwitchPrompt(null),
                     children: (0, P.jsxs)(`div`, {
-                        className: `relative w-full overflow-hidden rounded-2xl border border-white/[0.12] bg-[#151518] shadow-[0_30px_70px_rgba(0,0,0,0.9)]`,
+                        className: `relative w-full overflow-hidden rounded-[22px] border border-white/10 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9),0_0_40px_-10px_rgba(220,38,38,0.25)]`,
                         onClick: e => e.stopPropagation(),
                         style: {
-                            width: `calc(100vw - 2rem)`,
-                            maxWidth: `28rem`,
-                            background: `#151518`
+                            width: `min(calc(100vw - 2.5rem), 420px)`,
+                            background: `radial-gradient(120% 120% at 50% 0%, rgba(220,38,38,0.12), transparent 70%), #151518`
                         },
                         children: [(0, P.jsxs)(`div`, {
-                            className: `flex items-center gap-3.5 border-b border-white/[0.08] bg-white/[0.02] px-6 py-4.5`,
-                            children: [(0, P.jsx)(`div`, {
-                                className: `flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-accent/40 bg-accent/15 text-accent shadow-[0_0_15px_rgba(255,40,40,0.25)]`,
+                            className: `flex items-center justify-between gap-3 border-b border-white/[0.08] bg-white/[0.02] px-5 py-4`,
+                            children: [(0, P.jsxs)(`div`, {
+                                className: `flex items-center gap-3.5 min-w-0`,
+                                children: [(0, P.jsx)(`div`, {
+                                    className: `flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-accent/40 bg-accent/15 text-accent shadow-[0_0_15px_rgba(255,40,40,0.25)]`,
+                                    children: (0, P.jsx)(`svg`, {
+                                        className: `h-5 w-5`,
+                                        fill: `none`,
+                                        stroke: `currentColor`,
+                                        viewBox: `0 0 24 24`,
+                                        strokeWidth: 2,
+                                        children: (0, P.jsx)(`path`, {
+                                            strokeLinecap: `round`,
+                                            strokeLinejoin: `round`,
+                                            d: `M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z`
+                                        })
+                                    })
+                                }), (0, P.jsxs)(`div`, {
+                                    className: `flex flex-col text-left min-w-0`,
+                                    children: [(0, P.jsx)(`span`, {
+                                        className: `font-display text-[12px] sm:text-[13px] font-bold uppercase tracking-[0.14em] text-accent leading-snug truncate`,
+                                        children: `Alterações não salvas`
+                                    }), (0, P.jsx)(`span`, {
+                                        className: `font-mono text-[9px] uppercase tracking-[0.14em] text-zinc-400 mt-0.5`,
+                                        children: `Aviso de navegação`
+                                    })]
+                                })]
+                            }), (0, P.jsx)(`button`, {
+                                type: `button`,
+                                onClick: () => setFsSwitchPrompt(null),
+                                className: `flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-white/[0.03] text-zinc-400 hover:bg-white/10 hover:text-white transition-colors`,
                                 children: (0, P.jsx)(`svg`, {
-                                    className: `h-5 w-5`,
+                                    className: `h-4 w-4`,
                                     fill: `none`,
                                     stroke: `currentColor`,
                                     viewBox: `0 0 24 24`,
@@ -19605,83 +19854,110 @@ function Xr() {
                                     children: (0, P.jsx)(`path`, {
                                         strokeLinecap: `round`,
                                         strokeLinejoin: `round`,
-                                        d: `M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z`
+                                        d: `M6 18L18 6M6 6l12 12`
                                     })
                                 })
-                            }), (0, P.jsxs)(`div`, {
-                                className: `flex flex-col text-left`,
-                                children: [(0, P.jsx)(`span`, {
-                                    className: `font-display text-[12px] font-bold uppercase tracking-[0.2em] text-accent`,
-                                    children: `Alterações não salvas`
-                                }), (0, P.jsx)(`span`, {
-                                    className: `font-mono text-[9px] uppercase tracking-[0.12em] text-zinc-400 mt-0.5`,
-                                    children: `Aviso de navegação`
-                                })]
                             })]
                         }), (0, P.jsx)(`div`, {
-                            className: `px-6 py-5 text-left`,
+                            className: `px-5 py-5 text-left`,
                             children: (0, P.jsxs)(`p`, {
-                                className: `text-[12px] leading-relaxed text-zinc-300`,
+                                className: `text-[13px] leading-relaxed text-zinc-300`,
                                 children: [
                                     `A chave `,
                                     (0, P.jsx)(`span`, {
-                                        className: `inline-flex items-center px-1.5 py-0.5 rounded font-mono text-[11px] font-bold text-white bg-white/10 border border-white/15`,
+                                        className: `inline-flex items-center px-2 py-0.5 mx-0.5 rounded-md font-mono text-[11px] font-bold text-accent bg-accent/15 border border-accent/30 shadow-[0_0_8px_rgba(220,38,38,0.2)]`,
                                         children: `FS` + f
                                     }),
                                     ` possui mudanças pendentes. Deseja salvar antes de navegar para a `,
                                     (0, P.jsx)(`span`, {
-                                        className: `inline-flex items-center px-1.5 py-0.5 rounded font-mono text-[11px] font-bold text-white bg-white/10 border border-white/15`,
+                                        className: `inline-flex items-center px-2 py-0.5 mx-0.5 rounded-md font-mono text-[11px] font-bold text-accent bg-accent/15 border border-accent/30 shadow-[0_0_8px_rgba(220,38,38,0.2)]`,
                                         children: `FS` + fsSwitchPrompt.targetFs
                                     }),
                                     `?`
                                 ]
                             })
                         }), (0, P.jsxs)(`div`, {
-                            className: `flex flex-col-reverse sm:flex-row sm:items-center sm:justify-end gap-2.5 border-t border-white/[0.06] bg-black/20 px-6 py-4`,
-                            children: [(0, P.jsx)(`button`, {
-                                type: `button`,
-                                onClick: () => setFsSwitchPrompt(null),
-                                className: `h-10 px-4 rounded-xl border border-white/10 bg-white/[0.03] font-display text-[10px] font-medium uppercase tracking-[0.14em] text-zinc-400 hover:bg-white/[0.08] hover:text-white transition-all flex items-center justify-center`,
-                                children: `Cancelar`
-                            }), (0, P.jsx)(`button`, {
-                                type: `button`,
-                                onClick: () => {
-                                    discardCurrentFsEdits();
-                                    p(fsSwitchPrompt.targetFs);
-                                    setFsSwitchPrompt(null)
-                                },
-                                className: `h-10 px-4 rounded-xl border border-white/10 bg-white/[0.03] font-display text-[10px] font-medium uppercase tracking-[0.14em] text-zinc-300 hover:border-red-500/40 hover:bg-red-500/10 hover:text-red-400 transition-all flex items-center justify-center`,
-                                children: `Descartar`
-                            }), (0, P.jsx)(`button`, {
-                                type: `button`,
-                                onClick: async () => {
-                                    let target = fsSwitchPrompt.targetFs;
-                                    setFsSwitchPrompt(null);
-                                    await te();
-                                    p(target)
-                                },
-                                className: `h-10 px-5 rounded-xl border border-accent/80 bg-accent/20 font-display text-[10px] font-bold uppercase tracking-[0.16em] text-accent hover:bg-accent/30 hover:shadow-[0_0_18px_rgba(255,30,30,0.3)] transition-all flex items-center justify-center`,
-                                children: `Salvar`
-                            })]
+                            className: `flex flex-col sm:flex-row sm:items-center sm:justify-end gap-2.5 border-t border-white/[0.08] bg-black/30 px-5 py-4`,
+                            children: [
+                                (0, P.jsx)(`button`, {
+                                    type: `button`,
+                                    onClick: async () => {
+                                        let target = fsSwitchPrompt.targetFs;
+                                        setFsSwitchPrompt(null);
+                                        await te();
+                                        p(target)
+                                    },
+                                    className: `h-11 sm:h-10 w-full sm:w-auto px-5 rounded-xl border border-accent/80 bg-accent/20 font-display text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.16em] text-accent shadow-[0_0_18px_rgba(255,30,30,0.3)] hover:bg-accent/30 transition-all flex items-center justify-center sm:order-3`,
+                                    children: `Salvar`
+                                }),
+                                (0, P.jsxs)(`div`, {
+                                    className: `grid grid-cols-2 gap-2 w-full sm:w-auto sm:flex sm:items-center sm:gap-2 sm:order-1`,
+                                    children: [
+                                        (0, P.jsx)(`button`, {
+                                            type: `button`,
+                                            onClick: () => setFsSwitchPrompt(null),
+                                            className: `h-10 px-4 rounded-xl border border-white/10 bg-white/[0.03] font-display text-[10px] font-medium uppercase tracking-[0.14em] text-zinc-400 hover:bg-white/[0.08] hover:text-white transition-all flex items-center justify-center`,
+                                            children: `Cancelar`
+                                        }),
+                                        (0, P.jsx)(`button`, {
+                                            type: `button`,
+                                            onClick: () => {
+                                                discardCurrentFsEdits();
+                                                p(fsSwitchPrompt.targetFs);
+                                                setFsSwitchPrompt(null)
+                                            },
+                                            className: `h-10 px-4 rounded-xl border border-white/10 bg-white/[0.03] font-display text-[10px] font-medium uppercase tracking-[0.14em] text-zinc-300 hover:border-red-500/40 hover:bg-red-500/10 hover:text-red-400 transition-all flex items-center justify-center`,
+                                            children: `Descartar`
+                                        })
+                                    ]
+                                })
+                            ]
                         })]
                     })
                 }), bankSwitchPrompt && (0, P.jsx)(`div`, {
-                    className: `fixed inset-0 z-[120] flex items-center justify-center bg-black/85 backdrop-blur-md p-4`,
+                    className: `fixed inset-0 z-[120] flex items-center justify-center bg-black/80 backdrop-blur-md p-4 sm:p-6`,
                     onClick: () => setBankSwitchPrompt(null),
                     children: (0, P.jsxs)(`div`, {
-                        className: `relative w-full overflow-hidden rounded-2xl border border-white/[0.12] bg-[#151518] shadow-[0_30px_70px_rgba(0,0,0,0.9)]`,
+                        className: `relative w-full overflow-hidden rounded-[22px] border border-white/10 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9),0_0_40px_-10px_rgba(220,38,38,0.25)]`,
                         onClick: e => e.stopPropagation(),
                         style: {
-                            width: `calc(100vw - 2rem)`,
-                            maxWidth: `29rem`,
-                            background: `#151518`
+                            width: `min(calc(100vw - 2.5rem), 420px)`,
+                            background: `radial-gradient(120% 120% at 50% 0%, rgba(220,38,38,0.12), transparent 70%), #151518`
                         },
                         children: [(0, P.jsxs)(`div`, {
-                            className: `flex items-center gap-3.5 border-b border-white/[0.08] bg-white/[0.02] px-6 py-4.5`,
-                            children: [(0, P.jsx)(`div`, {
-                                className: `flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-accent/40 bg-accent/15 text-accent shadow-[0_0_15px_rgba(255,40,40,0.25)]`,
+                            className: `flex items-center justify-between gap-3 border-b border-white/[0.08] bg-white/[0.02] px-5 py-4`,
+                            children: [(0, P.jsxs)(`div`, {
+                                className: `flex items-center gap-3.5 min-w-0`,
+                                children: [(0, P.jsx)(`div`, {
+                                    className: `flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-accent/40 bg-accent/15 text-accent shadow-[0_0_15px_rgba(255,40,40,0.25)]`,
+                                    children: (0, P.jsx)(`svg`, {
+                                        className: `h-5 w-5`,
+                                        fill: `none`,
+                                        stroke: `currentColor`,
+                                        viewBox: `0 0 24 24`,
+                                        strokeWidth: 2,
+                                        children: (0, P.jsx)(`path`, {
+                                            strokeLinecap: `round`,
+                                            strokeLinejoin: `round`,
+                                            d: `M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z`
+                                        })
+                                    })
+                                }), (0, P.jsxs)(`div`, {
+                                    className: `flex flex-col text-left min-w-0`,
+                                    children: [(0, P.jsx)(`span`, {
+                                        className: `font-display text-[12px] sm:text-[13px] font-bold uppercase tracking-[0.14em] text-accent leading-snug truncate`,
+                                        children: `Alterações não salvas`
+                                    }), (0, P.jsx)(`span`, {
+                                        className: `font-mono text-[9px] uppercase tracking-[0.14em] text-zinc-400 mt-0.5`,
+                                        children: `Aviso de navegação`
+                                    })]
+                                })]
+                            }), (0, P.jsx)(`button`, {
+                                type: `button`,
+                                onClick: () => setBankSwitchPrompt(null),
+                                className: `flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-white/[0.03] text-zinc-400 hover:bg-white/10 hover:text-white transition-colors`,
                                 children: (0, P.jsx)(`svg`, {
-                                    className: `h-5 w-5`,
+                                    className: `h-4 w-4`,
                                     fill: `none`,
                                     stroke: `currentColor`,
                                     viewBox: `0 0 24 24`,
@@ -19689,67 +19965,67 @@ function Xr() {
                                     children: (0, P.jsx)(`path`, {
                                         strokeLinecap: `round`,
                                         strokeLinejoin: `round`,
-                                        d: `M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z`
+                                        d: `M6 18L18 6M6 6l12 12`
                                     })
                                 })
-                            }), (0, P.jsxs)(`div`, {
-                                className: `flex flex-col text-left`,
-                                children: [(0, P.jsx)(`span`, {
-                                    className: `font-display text-[12px] font-bold uppercase tracking-[0.2em] text-accent`,
-                                    children: `Alterações não salvas`
-                                }), (0, P.jsx)(`span`, {
-                                    className: `font-mono text-[9px] uppercase tracking-[0.12em] text-zinc-400 mt-0.5`,
-                                    children: `Aviso de navegação`
-                                })]
                             })]
                         }), (0, P.jsx)(`div`, {
-                            className: `px-6 py-5 text-left`,
+                            className: `px-5 py-5 text-left`,
                             children: (0, P.jsxs)(`p`, {
-                                className: `text-[12px] leading-relaxed text-zinc-300`,
+                                className: `text-[13px] leading-relaxed text-zinc-300`,
                                 children: [
                                     `Há chaves com mudanças não salvas no banco `,
                                     (0, P.jsx)(`span`, {
-                                        className: `inline-flex items-center px-1.5 py-0.5 rounded font-mono text-[11px] font-bold text-white bg-white/10 border border-white/15`,
+                                        className: `inline-flex items-center px-2 py-0.5 mx-0.5 rounded-md font-mono text-[11px] font-bold text-accent bg-accent/15 border border-accent/30 shadow-[0_0_8px_rgba(220,38,38,0.2)]`,
                                         children: hr[n]
                                     }),
                                     `. Ir para o banco `,
                                     (0, P.jsx)(`span`, {
-                                        className: `inline-flex items-center px-1.5 py-0.5 rounded font-mono text-[11px] font-bold text-white bg-white/10 border border-white/15`,
+                                        className: `inline-flex items-center px-2 py-0.5 mx-0.5 rounded-md font-mono text-[11px] font-bold text-accent bg-accent/15 border border-accent/30 shadow-[0_0_8px_rgba(220,38,38,0.2)]`,
                                         children: hr[bankSwitchPrompt.targetBankIdx]
                                     }),
                                     ` vai descartar essas edições pendentes.`
                                 ]
                             })
                         }), (0, P.jsxs)(`div`, {
-                            className: `flex flex-col-reverse sm:flex-row sm:items-center sm:justify-end gap-2.5 border-t border-white/[0.06] bg-black/20 px-6 py-4`,
-                            children: [(0, P.jsx)(`button`, {
-                                type: `button`,
-                                onClick: () => setBankSwitchPrompt(null),
-                                className: `h-10 px-4 rounded-xl border border-white/10 bg-white/[0.03] font-display text-[10px] font-medium uppercase tracking-[0.14em] text-zinc-400 hover:bg-white/[0.08] hover:text-white transition-all flex items-center justify-center`,
-                                children: `Cancelar`
-                            }), (0, P.jsx)(`button`, {
-                                type: `button`,
-                                onClick: () => {
-                                    let fn = bankSwitchPrompt.doChangeFn;
-                                    setBankSwitchPrompt(null);
-                                    if (fn) fn()
-                                },
-                                className: `h-10 px-4 rounded-xl border border-white/10 bg-white/[0.03] font-display text-[10px] font-medium uppercase tracking-[0.14em] text-zinc-300 hover:border-red-500/40 hover:bg-red-500/10 hover:text-red-400 transition-all flex items-center justify-center`,
-                                children: `Descartar e Ir`
-                            }), (0, P.jsx)(`button`, {
-                                type: `button`,
-                                onClick: async () => {
-                                    let fn = bankSwitchPrompt.doChangeFn;
-                                    setBankSwitchPrompt(null);
-                                    let ok = await saveEntireBank(n);
-                                    if (ok !== false) {
-                                        await new Promise(res => setTimeout(res, 500));
-                                        if (fn) fn();
-                                    }
-                                },
-                                className: `h-10 px-5 rounded-xl border border-accent/80 bg-accent/20 font-display text-[10px] font-bold uppercase tracking-[0.16em] text-accent hover:bg-accent/30 hover:shadow-[0_0_18px_rgba(255,30,30,0.3)] transition-all flex items-center justify-center`,
-                                children: `Salvar e Ir`
-                            })]
+                            className: `flex flex-col sm:flex-row sm:items-center sm:justify-end gap-2.5 border-t border-white/[0.08] bg-black/30 px-5 py-4`,
+                            children: [
+                                (0, P.jsx)(`button`, {
+                                    type: `button`,
+                                    onClick: async () => {
+                                        let fn = bankSwitchPrompt.doChangeFn;
+                                        setBankSwitchPrompt(null);
+                                        let ok = await saveEntireBank(n);
+                                        if (ok !== false) {
+                                            await new Promise(res => setTimeout(res, 500));
+                                            if (fn) fn();
+                                        }
+                                    },
+                                    className: `h-11 sm:h-10 w-full sm:w-auto px-5 rounded-xl border border-accent/80 bg-accent/20 font-display text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.16em] text-accent shadow-[0_0_18px_rgba(255,30,30,0.3)] hover:bg-accent/30 transition-all flex items-center justify-center sm:order-3`,
+                                    children: `Salvar e Ir`
+                                }),
+                                (0, P.jsxs)(`div`, {
+                                    className: `grid grid-cols-2 gap-2 w-full sm:w-auto sm:flex sm:items-center sm:gap-2 sm:order-1`,
+                                    children: [
+                                        (0, P.jsx)(`button`, {
+                                            type: `button`,
+                                            onClick: () => setBankSwitchPrompt(null),
+                                            className: `h-10 px-4 rounded-xl border border-white/10 bg-white/[0.03] font-display text-[10px] font-medium uppercase tracking-[0.14em] text-zinc-400 hover:bg-white/[0.08] hover:text-white transition-all flex items-center justify-center`,
+                                            children: `Cancelar`
+                                        }),
+                                        (0, P.jsx)(`button`, {
+                                            type: `button`,
+                                            onClick: () => {
+                                                let fn = bankSwitchPrompt.doChangeFn;
+                                                setBankSwitchPrompt(null);
+                                                if (fn) fn()
+                                            },
+                                            className: `h-10 px-4 rounded-xl border border-white/10 bg-white/[0.03] font-display text-[10px] font-medium uppercase tracking-[0.14em] text-zinc-300 hover:border-red-500/40 hover:bg-red-500/10 hover:text-red-400 transition-all flex items-center justify-center`,
+                                            children: `Descartar`
+                                        })
+                                    ]
+                                })
+                            ]
                         })]
                     })
                 }), (() => {
@@ -19872,6 +20148,77 @@ function Xr() {
                     })
                 });
                     return typeof document < `u` && He && typeof He.createPortal == `function` ? He.createPortal(overlay, document.body) : overlay
+                })(), (() => {
+                    let activeModal = saveStatus || syncStatus;
+                    if (!activeModal) return null;
+                    let isSaving = !!saveStatus;
+                    let mTotal = Number(activeModal.total) || 3,
+                        mStep = Number(activeModal.step) || 0,
+                        mPct = mStep > 0 ? Math.round(Math.min(1, mStep / mTotal) * 100) : 0,
+                        mBle = gmxTransportIsBle(),
+                        mCol = isSaving ? `#ef4444` : (mBle ? `#3b82f6` : `#22d3ee`);
+                    let blockingOverlay = (0, P.jsx)(`div`, {
+                        style: { position: `fixed`, inset: 0, zIndex: 999990, display: `flex`, alignItems: `center`, justifyContent: `center`, padding: `16px`, background: `rgba(0,0,0,0.72)`, backdropFilter: `blur(6px)`, WebkitBackdropFilter: `blur(6px)`, userSelect: `none` },
+                        onClick: e => e.stopPropagation(),
+                        children: (0, P.jsxs)(`div`, {
+                            style: { width: `100%`, maxWidth: `380px`, display: `flex`, flexDirection: `column`, alignItems: `center`, gap: `16px`, padding: `28px 24px 22px`, borderRadius: `20px`, background: `linear-gradient(180deg,#17181c,#0f1013)`, border: `1px solid rgba(255,255,255,0.10)`, boxShadow: `0 25px 70px rgba(0,0,0,0.85), 0 0 46px -10px ${mCol}66`, textAlign: `center`, fontFamily: `system-ui,-apple-system,Segoe UI,Roboto,sans-serif` },
+                            children: [
+                                (0, P.jsxs)(`div`, {
+                                    style: { position: `relative`, width: `64px`, height: `64px`, display: `grid`, placeItems: `center` },
+                                    children: [
+                                        (0, P.jsx)(`div`, { style: { position: `absolute`, inset: 0, borderRadius: `50%`, border: `3px solid rgba(255,255,255,0.08)` } }),
+                                        (0, P.jsx)(`div`, { style: { position: `absolute`, inset: 0, borderRadius: `50%`, border: `3px solid transparent`, borderTopColor: mCol, borderRightColor: mCol, animation: `gmxSpin .9s linear infinite`, filter: `drop-shadow(0 0 6px ${mCol})` } }),
+                                        (0, P.jsx)(`div`, {
+                                            style: { width: `38px`, height: `38px`, borderRadius: `12px`, display: `grid`, placeItems: `center`, background: mBle && !isSaving ? `#1d4ed8` : `#26262c`, border: `1px solid ${mBle && !isSaving ? `#3b82f6` : `#3f3f46`}` },
+                                            children: gmxTransportIcon(20)
+                                        })
+                                    ]
+                                }),
+                                (0, P.jsxs)(`div`, {
+                                    style: { display: `flex`, flexDirection: `column`, gap: `6px` },
+                                    children: [
+                                        (0, P.jsx)(`div`, {
+                                            style: { color: mCol, fontSize: `14px`, fontWeight: 900, letterSpacing: `0.18em`, textTransform: `uppercase` },
+                                            children: activeModal.title || (isSaving ? `Salvando...` : `Sincronizando...`)
+                                        }),
+                                        (0, P.jsx)(`div`, {
+                                            style: { color: `#e4e4e7`, fontSize: `13px` },
+                                            children: activeModal.subtitle || `Aguarde um instante...`
+                                        })
+                                    ]
+                                }),
+                                (0, P.jsxs)(`div`, {
+                                    style: { width: `100%`, display: `flex`, flexDirection: `column`, gap: `8px` },
+                                    children: [
+                                        (0, P.jsx)(`div`, {
+                                            style: { height: `6px`, width: `100%`, borderRadius: `999px`, background: `rgba(255,255,255,0.08)`, overflow: `hidden` },
+                                            children: (0, P.jsx)(`div`, {
+                                                style: mStep > 0 ? { height: `100%`, width: `${mPct}%`, borderRadius: `999px`, background: `linear-gradient(90deg, ${mCol}99, ${mCol})`, boxShadow: `0 0 10px ${mCol}88`, transition: `width .45s ease` }
+                                                    : { height: `100%`, width: `35%`, borderRadius: `999px`, background: `linear-gradient(90deg, transparent, ${mCol}, transparent)`, animation: `gmxIndet 1.2s ease-in-out infinite` }
+                                            })
+                                        }),
+                                        (0, P.jsxs)(`div`, {
+                                            style: { display: `flex`, alignItems: `center`, justifyContent: `space-between`, fontSize: `11px`, color: `#a1a1aa` },
+                                            children: [
+                                                (0, P.jsxs)(`span`, {
+                                                    style: { display: `inline-flex`, alignItems: `center`, gap: `6px`, padding: `3px 9px`, borderRadius: `999px`, background: mBle ? `rgba(59,130,246,0.18)` : `rgba(255,255,255,0.08)`, border: `1px solid ${mBle ? `rgba(59,130,246,0.5)` : `rgba(255,255,255,0.15)`}`, color: `#ffffff` },
+                                                    children: [gmxTransportIcon(12), mBle ? `Bluetooth` : `USB`]
+                                                }),
+                                                (0, P.jsx)(`span`, { children: mStep > 0 ? `Etapa ${mStep} de ${mTotal}` : `` })
+                                            ]
+                                        })
+                                    ]
+                                }),
+                                (0, P.jsx)(`div`, {
+                                    style: { color: `#71717a`, fontSize: `11px` },
+                                    children: isSaving
+                                        ? `Não desconecte nem feche o editor durante a gravação.`
+                                        : `O uso será liberado assim que a leitura terminar.`
+                                })
+                            ]
+                        })
+                    });
+                    return typeof document < `u` && He && typeof He.createPortal == `function` ? He.createPortal(blockingOverlay, document.body) : blockingOverlay;
                 })(), (0, P.jsx)(responsiveBottomDock, {
                     tab: o,
                     globalSubTab,
