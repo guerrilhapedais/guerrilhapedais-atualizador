@@ -12984,7 +12984,7 @@ var hr = [`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`],
     xr = [`USB`, `BT`, `USB+BT`, `MIDI`, `USB+MIDI`, `BT+MIDI`, `USB+BT+MIDI`],
     usbHubTargetLabels = [`ToneX + MIDI`, `Apenas ToneX`, `Apenas MIDI`],
     usbDualTargetLabels = [`Ambos`, `ToneX 1`, `ToneX 2`],
-    Sr = [`CC`, `CC Up`, `CC Down`, `PC`, `PC Up`, `PC Down`, `SysEx`, `FS Sync`, `Banco+ (interno)`, `Banco− (interno)`],
+    Sr = [`CC`, `CC Up`, `CC Down`, `PC`, `PC Up`, `PC Down`, `SysEx`, `FS Sync`, `Banco+ (interno)`, `Banco− (interno)`, `Tap`],
     Cr = [`CC`, `PC`, `SysEx`],
     wr = [`CC`, `MIDI Clock (BPM)`, `MIDI Clock Tap`, `Tap Tempo Ampero (Serial)`],
     Tr = () => ({
@@ -13656,6 +13656,13 @@ async function usbRouteJson(e, t = {}, n = 15e3) {
     if (i === `/api/system-status`) return usbRouteNormalizeResponse(await usbTransportRequest(`system_status`, {}, n), `system_status`);
     if (i === `/api/active-key`) return usbRouteNormalizeResponse(await usbTransportRequest(`active_key`, {}, n), `active_key`);
     if (i === `/api/exp-status`) return usbRouteNormalizeResponse(await usbTransportRequest(`exp_status`, {}, n), `exp_status`);
+    if (i === `/api/valeton-chain`) {
+        if (a === `POST`) return usbRouteNormalizeResponse(await usbTransportRequest(`valeton_chain`, {
+            __method: `POST`,
+            ...o || {}
+        }, n), `valeton_chain`);
+        return usbRouteNormalizeResponse(await usbTransportRequest(`valeton_chain`, {}, n), `valeton_chain`);
+    }
     if (i === `/api/midi-config`) {
         if (a === `POST`) return usbRouteNormalizeResponse(await usbTransportRequest(`midi_config`, {
             __method: `POST`,
@@ -14124,7 +14131,9 @@ function buildConexoesUsbParts(e) {
             n = Number(e?.btPreset ?? e?.BT_PRESET ?? 0),
             r = Number(e?.btMidiCc ?? e?.BT_MIDI_CC ?? 0),
             i = Number(e?.btCustomEnable ?? e?.BT_CUST_EN ?? 0),
-            a = String(e?.btCustomName ?? e?.BT_CUST_NAME ?? ``).trim().slice(0, 24);
+            a = String(e?.btCustomName ?? e?.BT_CUST_NAME ?? ``).trim().slice(0, 120);
+        if (a) i = 1;
+        if (a && t === 0) t = 1;
         parts.push(scrubUsbPart({
             BT_MODE: t,
             BT_PRESET: n,
@@ -14356,7 +14365,7 @@ function isHubTonexUsbMode(usbmode) {
 function outputIncludesUsb(outStr) {
     return typeof outStr === `string` && outStr.indexOf(`USB`) >= 0
 }
-var Ur = [`CC`, `PC`, `SysEx`, `PC Up`, `PC Down`, `MIDI Clock (BPM)`, `MIDI Clock Tap`, `CC Up`, `CC Down`, `FS Sync`, `Banco+ (interno)`, `Banco− (interno)`, `Tap Tempo Ampero (Serial)`];
+var Ur = [`CC`, `PC`, `SysEx`, `PC Up`, `PC Down`, `MIDI Clock (BPM)`, `MIDI Clock Tap`, `CC Up`, `CC Down`, `FS Sync`, `Banco+ (interno)`, `Banco− (interno)`, `Tap Tempo Ampero (Serial)`, `Tap`];
 
 function Wr(e) {
     let t = Ur.indexOf(e);
@@ -15039,8 +15048,9 @@ function displayBgRasterColor(img, w, h, zoom, panX, panY, baseBg) {
 async function displayIconUploadRgb(key, rgb, w, h) {
     let k = displayIconSanitizeKey(key);
     if (!k || !rgb) throw Error(`ícone inválido`);
+    if (typeof gboxSoftApQuiet === 'function') gboxSoftApQuiet(35e3);
     let total = rgb.length,
-        chunk = 8192;
+        chunk = 2048;
     for (let offset = 0; offset < total; offset += chunk) {
         let slice = rgb.subarray(offset, Math.min(offset + chunk, total)),
             lastErr = null;
@@ -15061,7 +15071,8 @@ async function displayIconUploadRgb(key, rgb, w, h) {
                 lastErr = err
             }
         }
-        if (lastErr) throw lastErr
+        if (lastErr) throw lastErr;
+        await new Promise(ok => setTimeout(ok, 80));
     }
     return k
 }
@@ -16072,7 +16083,11 @@ function FsScreenIconPicker({
             setBusyKey(key || `_clear`);
             n(key);
             if (key && displayIconIsPack(key)) {
-                await displayIconEnsurePackOnDevice(key);
+                try {
+                    await displayIconEnsurePackOnDevice(key);
+                } catch (packErr) {
+                    console.warn(`[pickKey] Pack sync ignorado/falhou:`, packErr);
+                }
             }
         } catch (err) {
             rt.error(`Falha a gravar ícone: ${String(err?.message || err)}`);
@@ -16329,9 +16344,8 @@ function FsBoxVisualCustomizer({
     let ampKey = ampSlot > 0 ? (`amp` + ampSlot) : ``;
     let ampThumb = useDisplayIconThumb(ampKey);
     let activeSlotIdx = isStomp ? (Number(activeStompSlot || 1)) : Number(fsNumber || 1);
-    let curSlot = (isStomp && Array.isArray(w?.stompSlots)) ? w.stompSlots[activeSlotIdx - 1] : null;
     let iconKey = isStomp 
-        ? ((curSlot?.icon && curSlot.icon.trim()) || (activeSlotIdx === fsNumber && w?.stompIcon ? w.stompIcon.trim() : '') || (w?.stompSlots?.[fsNumber - 1]?.icon) || ``) 
+        ? (w?.stompSlots?.[activeSlotIdx - 1]?.icon ? w.stompSlots[activeSlotIdx - 1].icon.trim() : ``) 
         : (w?.iconKey || ``);
     let iconThumb = useDisplayIconThumb(iconKey);
 
@@ -16406,7 +16420,7 @@ function FsBoxVisualCustomizer({
     let ledColorOn = `#3b82f6`;
     let ledColorOff = `#1e293b`;
     if (isStomp) {
-        let slotColor = curSlot?.color;
+        let slotColor = (w?.stompLed?.on && w.stompLed.on !== `#000000`) ? w.stompLed.on : null;
         ledColorOn = toHexColor(slotColor || (activeSlotIdx === fsNumber ? w.stompLed?.on : null) || w.stompLed?.on || w.led?.on || w.stompLed, `#ff8800`);
         ledColorOff = toHexColor(w.stompLed?.off || w.led?.off, `#27272a`);
     } else {
@@ -16457,7 +16471,7 @@ function FsBoxVisualCustomizer({
     let boxGlow = (previewOn && currentFill === 0) ? `0 0 16px -2px ` + curLedColor + `88` : `none`;
 
     let labelText = isStomp
-        ? ((curSlot?.name && curSlot.name.trim()) || (activeSlotIdx === fsNumber && w?.stompName ? w.stompName.trim() : '') || (w?.stompSlots?.[fsNumber - 1]?.name) || w?.label || (`FS` + activeSlotIdx))
+        ? (w?.stompName && w.stompName.trim() ? w.stompName.trim() : (w?.label || (`FS` + fsNumber)))
         : (w?.label || (`FS` + fsNumber));
 
     return (0, P.jsxs)(`div`, {
@@ -17026,8 +17040,8 @@ function FsBoxVisualCustomizer({
 
 function Jr(e, usbCfg) {
     let t = Array.isArray(e.presetCommands) ? e.presetCommands : [],
-        n = t.filter(e => (e.trigger ?? `Click`) === `Click`),
-        r = t.filter(e => (e.trigger ?? `Click`) === `Hold`),
+        n = t.filter(e => e.type !== `Tap` && (e.trigger ?? `Click`) === `Click`),
+        r = t.filter(e => e.type === `Tap` || (e.trigger ?? `Click`) === `Hold`),
         i = n.some(e => e.state === `Off`),
         a = t.find(e => e.type === `PC Up` || e.type === `PC Down`),
         o = t.find(e => e.type === `CC Up` || e.type === `CC Down`),
@@ -17062,8 +17076,9 @@ function Jr(e, usbCfg) {
             extraClick: toggleClickCommands.map(e => Kr(e, usbCfg)),
             clickStartPhase: 0
         };
-    f.extraHold = toggleHoldCommands.map(e => Kr(e, usbCfg));
-    f.extraStompClick = l.filter(e => (e.trigger ?? `Click`) === `Click`).map(e => Kr(e, usbCfg));
+    let stompTap = l.filter(e => e.type === `Tap`);
+    f.extraHold = [...toggleHoldCommands, ...stompTap].map(e => Kr(e, usbCfg));
+    f.extraStompClick = l.filter(e => e.type !== `Tap` && (e.trigger ?? `Click`) === `Click`).map(e => Kr(e, usbCfg));
     f.stompLed = [u.r, u.g, u.b, d.r, d.g, d.b];
     if (!f.scene || !f.scene.some(e => e)) delete f.scene;
     /* Sempre enviar arrays (mesmo vazios) para limpar extras antigos no ESP */
@@ -17476,8 +17491,8 @@ function Xr() {
         effectiveFs = modelFs + extFsCount,
         activeUsbmode = (() => {
             let mode = Math.max(0, Math.min(si.length - 1, Number(c?.usbmode || 0)));
-            /* preset 3 → UI “TONEX modeller”; não aplicar no HUB+TONEX (modo 5). */
-            if (mode !== 5 && Number(c?.usbpreset ?? 0) === 3) mode = 0;
+            /* GP5 (preset 3) = USB Host (modo 1). */
+            if (Number(c?.usbpreset ?? 0) === 3) mode = 1;
             return mode
         })(),
         snapshotFsCompact = cfg => {
@@ -17550,13 +17565,29 @@ function Xr() {
                 index: e
             }), L(presetLabel(e))
         },
+        openStompSlotRename = (slotIdx) => {
+            let sIdx = Number(slotIdx || activeStompSlot || 1);
+            let pFsNum = Number(f || 1);
+            let curFs = b[pFsNum] || kr(pFsNum);
+            let currentName = curFs?.stompSlots?.[sIdx - 1]?.name || '';
+            I({
+                kind: `stompSlot`,
+                presetFs: pFsNum,
+                slotIndex: sIdx
+            });
+            L(currentName);
+        },
         openFsRename = (e, stompSlotIdx = null) => {
-            let t = b[e] || kr(e);
-            p(e), I({
+            if (m === `Stomp`) {
+                openStompSlotRename(stompSlotIdx || e || activeStompSlot);
+                return;
+            }
+            let target = Number(e || 1);
+            let t = b[target] || kr(target);
+            p(target), I({
                 kind: `fs`,
-                index: e,
-                stompSlotIndex: stompSlotIdx
-            }), L(m === `Stomp` ? (stompSlotIdx ? (t?.stompSlots?.[stompSlotIdx - 1]?.name || ``) : (t?.stompName || ``)) : (t?.label === `FS${e}` ? `` : String(t?.label || ``)))
+                index: target
+            }), L(t?.label === `FS${target}` ? `` : String(t?.label || ``))
         },
         commitRename = () => {
             if (!R) return;
@@ -17578,94 +17609,45 @@ function Xr() {
                 })();
                 return
             }
-            x(e => ({
-                ...e,
-                [R.index]: {
-                    ...e[R.index] || kr(R.index),
-                    label: String(B || ``).trim().toUpperCase().slice(0, 16)
+            if (R.kind === `stompSlot`) {
+                let pFsNum = Number(R.presetFs || f || 1);
+                let sIdx = Number(R.slotIndex || activeStompSlot || 1);
+                let nameToSave = String(B || ``).trim().toUpperCase().slice(0, 16);
+                closeRename();
+                let curFs = b[pFsNum] || kr(pFsNum);
+                let slots = Array.isArray(curFs.stompSlots) ? [...curFs.stompSlots] : Array.from({ length: 8 }, () => ({ icon: '', name: '', color: '#ff8800' }));
+                while (slots.length < 8) slots.push({ icon: '', name: '', color: '#ff8800' });
+                slots[sIdx - 1] = {
+                    ...slots[sIdx - 1],
+                    name: nameToSave
+                };
+                let updatedFs = {
+                    ...curFs,
+                    stompSlots: slots
+                };
+                x(prev => ({
+                    ...prev,
+                    [pFsNum]: updatedFs
+                }));
+                if (pFsNum === f) {
+                    E({ stompSlots: slots });
                 }
-            }));
-            let fsToSave = R.index;
-            let labelToSave = String(B || ``).trim().toUpperCase().slice(0, 16);
-            let pendingIcon = iconKeyPendingRef.current;
-            let stompSlotIdx = R.stompSlotIndex || activeStompSlotRef.current || 1;
-            closeRename();
-            if (m === `Stomp`) {
-                x(e => {
-                    let curFs = e[fsToSave] || kr(fsToSave);
-                    let slots = Array.isArray(curFs.stompSlots) ? [...curFs.stompSlots] : Array.from({ length: 8 }, () => ({ icon: ``, name: ``, color: `#ff8800` }));
-                    while (slots.length < 8) slots.push({ icon: ``, name: ``, color: `#ff8800` });
-                    if (stompSlotIdx >= 1 && stompSlotIdx <= 8) {
-                        slots[stompSlotIdx - 1] = {
-                            ...slots[stompSlotIdx - 1],
-                            name: labelToSave,
-                            ...(pendingIcon !== null ? { icon: displayIconSanitizeKey(pendingIcon || ``) } : {})
-                        };
-                    }
-                    return {
-                        ...e,
-                        [fsToSave]: {
-                            ...curFs,
-                            stompName: (!R.stompSlotIndex || R.stompSlotIndex === fsToSave) ? labelToSave : curFs.stompName,
-                            stompSlots: slots,
-                            ...(pendingIcon !== null && (!R.stompSlotIndex || R.stompSlotIndex === fsToSave) ? { stompIcon: displayIconSanitizeKey(pendingIcon || ``) } : {})
-                        }
-                    };
-                });
                 (async () => {
                     if (u.current) return;
                     u.current = !0;
                     try {
-                        let curFs = b[fsToSave] || kr(fsToSave);
-                        let slots = Array.isArray(curFs.stompSlots) ? [...curFs.stompSlots] : Array.from({ length: 8 }, () => ({ icon: ``, name: ``, color: `#ff8800` }));
-                        while (slots.length < 8) slots.push({ icon: ``, name: ``, color: `#ff8800` });
-                        if (stompSlotIdx >= 1 && stompSlotIdx <= 8) {
-                            slots[stompSlotIdx - 1] = {
-                                ...slots[stompSlotIdx - 1],
-                                name: labelToSave,
-                                ...(pendingIcon !== null ? { icon: displayIconSanitizeKey(pendingIcon || ``) } : {})
-                            };
-                        }
-                        let cfg = {
-                            ...curFs,
-                            stompName: (!R.stompSlotIndex || R.stompSlotIndex === fsToSave) ? labelToSave : curFs.stompName,
-                            stompSlots: slots
-                        };
-                        if (pendingIcon !== null) {
-                            if (!R.stompSlotIndex || R.stompSlotIndex === fsToSave) {
-                                cfg.stompIcon = displayIconSanitizeKey(pendingIcon || ``);
-                            }
-                            iconKeyPendingRef.current = null;
-                        }
-                        let payload = compactFsForSave(Jr(cfg, c));
+                        let payload = compactFsForSave(Jr(updatedFs, c));
                         await postMidiConfigRetry({
                             activePreset: T,
                             banks: {
                                 [n]: {
-                                    [`fs${fsToSave}`]: payload
+                                    [`fs${pFsNum}`]: payload
                                 }
                             }
                         }, 8);
-                        x(prev => {
-                            let pFs = prev[fsToSave] || kr(fsToSave);
-                            return {
-                                ...prev,
-                                [fsToSave]: {
-                                    ...pFs,
-                                    stompName: cfg.stompName,
-                                    stompSlots: slots,
-                                    stompIcon: cfg.stompIcon
-                                }
-                            };
-                        });
-                        if (fsToSave === f) {
-                            E({
-                                stompSlots: slots
-                            });
-                        }
-                        rt.success(`Salvo Stomp: ${hr[n]} · Preset FS${fsToSave} · Slot ${stompSlotIdx}`);
+                        rt.success(`Salvo Stomp: ${hr[n]} · FS${pFsNum} Slot ${sIdx}`);
                     } catch (err) {
-                        rt.error(`Erro ao salvar Stomp FS: ${err?.message || err}`);
+                        rt.error(`Erro ao salvar nome Stomp: ${err?.message || err}`);
                     } finally {
                         u.current = !1;
                     }
@@ -18106,7 +18088,7 @@ function Xr() {
                 btPreset: src.btPreset ?? src.BT_PRESET,
                 btMidiCc: src.btMidiCc ?? src.BT_MIDI_CC,
                 btCustomEnable: src.btCustomEnable ?? src.BT_CUST_EN,
-                btCustomName: typeof(src.btCustomName ?? src.BT_CUST_NAME) == `string` ? String(src.btCustomName ?? src.BT_CUST_NAME).slice(0, 24) : void 0,
+                btCustomName: typeof(src.btCustomName ?? src.BT_CUST_NAME) == `string` ? String(src.btCustomName ?? src.BT_CUST_NAME).slice(0, 120) : void 0,
                 midiEnable: src.midiEnable ?? src.S_MIDI_EN,
                 midiChannel: src.midiChannel ?? src.S_MIDI_CH,
                 midiPreset: src.midiPreset ?? src.MIDI_PRESET,
@@ -18437,7 +18419,19 @@ function Xr() {
                             ...(b[e] || kr(e))
                         };
                     if (iconKeyPendingRef.current !== null) {
-                        t.iconKey = displayIconSanitizeKey(iconKeyPendingRef.current || ``);
+                        if (m === `Stomp`) {
+                            /* ATENÇÃO: NÃO ALTERAR ESTA FORMA DE SALVAR (stompSlots por footswitch de preset e por banco). MODIFICAÇÕES NESTE FLUXO SOMENTE SOB AUTORIZAÇÃO EXPLÍCITA DO USUÁRIO. */
+                            let slots = Array.isArray(t.stompSlots) ? [...t.stompSlots] : Array.from({ length: 8 }, () => ({ icon: '', name: '', color: '#ff8800' }));
+                            while (slots.length < 8) slots.push({ icon: '', name: '', color: '#ff8800' });
+                            let targetSlot = Number(activeStompSlot || 1);
+                            slots[targetSlot - 1] = {
+                                ...slots[targetSlot - 1],
+                                icon: displayIconSanitizeKey(iconKeyPendingRef.current || ``)
+                            };
+                            t.stompSlots = slots;
+                        } else {
+                            t.iconKey = displayIconSanitizeKey(iconKeyPendingRef.current || ``);
+                        }
                         iconKeyPendingRef.current = null
                     }
                     if (ampKeyPendingRef.current !== null) {
@@ -18623,7 +18617,15 @@ function Xr() {
 
                     if (fsNum === f && iconKeyPendingRef.current !== null) {
                         if (m === 'Stomp') {
-                            fsCopy.stompIcon = displayIconSanitizeKey(iconKeyPendingRef.current || '');
+                            /* ATENÇÃO: NÃO ALTERAR ESTA FORMA DE SALVAR (stompSlots por footswitch de preset e por banco). MODIFICAÇÕES NESTE FLUXO SOMENTE SOB AUTORIZAÇÃO EXPLÍCITA DO USUÁRIO. */
+                            let slots = Array.isArray(fsCopy.stompSlots) ? [...fsCopy.stompSlots] : Array.from({ length: 8 }, () => ({ icon: '', name: '', color: '#ff8800' }));
+                            while (slots.length < 8) slots.push({ icon: '', name: '', color: '#ff8800' });
+                            let targetSlot = Number(activeStompSlot || 1);
+                            slots[targetSlot - 1] = {
+                                ...slots[targetSlot - 1],
+                                icon: displayIconSanitizeKey(iconKeyPendingRef.current || '')
+                            };
+                            fsCopy.stompSlots = slots;
                         } else {
                             fsCopy.iconKey = displayIconSanitizeKey(iconKeyPendingRef.current || '');
                         }
@@ -19112,7 +19114,7 @@ function Xr() {
                                 }, 4);
                             }
                         })
-                    }), (0, P.jsx)(`section`, {
+                    }), m !== `Stomp` && (0, P.jsx)(`section`, {
                         className: `order-2 lg:order-none lg:col-start-1 lg:row-start-2 lg:sticky lg:top-4 lg:self-start`,
                         children: (0, P.jsxs)(`div`, {
                             className: `rounded-2xl border border-border bg-panel/70 p-2.5 sm:p-4 shadow-2xl shadow-black/40`,
@@ -19184,7 +19186,7 @@ function Xr() {
                                 let num = Number(slotIdx) || 1;
                                 setActiveStompSlot(num);
                                 activeStompSlotRef.current = num;
-                                openFsRename(f, num);
+                                openStompSlotRename(num);
                             },
                             onCopyFs: () => handleCopyFs(f),
                             onPasteFs: () => handlePasteFs(f),
@@ -19375,7 +19377,7 @@ function Xr() {
                                                 ...prev,
                                                 [f]: updatedFs
                                             }));
-                                            rt.success(`Cor Stomp ${targetSlot} salva na FS${f}`);
+                                            rt.success(`Cor Stomp Slot ${targetSlot} salva na FS${f}`);
                                         } catch (err) {
                                             rt.error(`Erro ao salvar cor Stomp: ${softApFetchErrorMessage(err)}`);
                                         }
@@ -19404,12 +19406,12 @@ function Xr() {
                                 children: `Ícones`
                             }), (() => {
                                 let isStomp = m === `Stomp`,
-                                    targetFs = Number(iconModalFs || f || 1),
-                                    modalTargetCfg = b[targetFs] || kr(targetFs),
-                                    targetSlot = isStomp ? Number(activeStompSlot || 1) : targetFs,
+                                    targetPreset = Number(f || 1),
+                                    curPresetCfg = b[targetPreset] || kr(targetPreset),
+                                    targetSlot = isStomp ? Number(activeStompSlot || 1) : targetPreset,
                                     modalIconInitial = isStomp
-                                        ? (modalTargetCfg.stompSlots?.[targetSlot - 1]?.icon || (targetSlot === targetFs ? modalTargetCfg.stompIcon : '') || modalTargetCfg.iconKey || ``)
-                                        : (modalTargetCfg.iconKey || ``);
+                                        ? (curPresetCfg?.stompSlots?.[targetSlot - 1]?.icon || '')
+                                        : (curPresetCfg?.iconKey || ``);
                                 return (0, P.jsx)(popupShell, {
                                     open: iconScreenOpen,
                                     onOpenChange: open => {
@@ -19417,10 +19419,10 @@ function Xr() {
                                         if (!open) iconKeyPendingRef.current = null;
                                     },
                                     title: `Ícones`,
-                                    subtitle: isStomp ? `FS${targetFs} · Stomp Slot ${targetSlot}` : `FS${targetFs}`,
+                                    subtitle: isStomp ? `FS${targetPreset} · Stomp Slot ${targetSlot}` : `FS${targetPreset}`,
                                     children: (0, P.jsx)(FsScreenIconPicker, {
                                         iconKey: modalIconInitial,
-                                        fsIndex: targetFs,
+                                        fsIndex: isStomp ? targetSlot : targetPreset,
                                         fsCount: gr[e]?.fs,
                                         embedded: !0,
                                         onSetKey: key => {
@@ -19443,36 +19445,39 @@ function Xr() {
                                                 let chosenKey = iconKeyPendingRef.current;
                                                 setIconScreenOpen(!1);
                                                 iconKeyPendingRef.current = null;
-                                                let curFs = b[targetFs] || kr(targetFs);
+                                                let curFs = b[targetPreset] || kr(targetPreset);
                                                 let finalKey = displayIconSanitizeKey(chosenKey !== null ? chosenKey : modalIconInitial);
                                                 if (isStomp) {
-                                                    let slots = Array.isArray(curFs.stompSlots) ? [...curFs.stompSlots] : Array.from({ length: 8 }, () => ({ icon: ``, name: ``, color: `#ff8800` }));
-                                                    while (slots.length < 8) slots.push({ icon: ``, name: ``, color: `#ff8800` });
-                                                    if (targetSlot >= 1 && targetSlot <= 8) {
-                                                        slots[targetSlot - 1] = {
-                                                            ...slots[targetSlot - 1],
-                                                            icon: finalKey
-                                                        };
-                                                    }
+                                                    /* ATENÇÃO: NÃO ALTERAR ESTA FORMA DE SALVAR (stompSlots por footswitch de preset e por banco). MODIFICAÇÕES NESTE FLUXO SOMENTE SOB AUTORIZAÇÃO EXPLÍCITA DO USUÁRIO. */
+                                                    let slots = Array.isArray(curFs.stompSlots) ? [...curFs.stompSlots] : Array.from({ length: 8 }, () => ({ icon: '', name: '', color: '#ff8800' }));
+                                                    while (slots.length < 8) slots.push({ icon: '', name: '', color: '#ff8800' });
+                                                    slots[targetSlot - 1] = {
+                                                        ...slots[targetSlot - 1],
+                                                        icon: finalKey
+                                                    };
                                                     let updatedFs = {
                                                         ...curFs,
-                                                        stompIcon: (targetSlot === targetFs ? finalKey : (curFs.stompIcon || ``)),
-                                                        stompSlots: slots
+                                                        stompSlots: slots,
+                                                        stompIcon: '' /* Limpa stompIcon legado para que não vaze em todas as chaves */
                                                     };
                                                     x(prev => ({
                                                         ...prev,
-                                                        [targetFs]: updatedFs
+                                                        [targetPreset]: updatedFs
                                                     }));
-                                                    E({
-                                                        ...updatedFs
-                                                    });
+                                                    if (targetPreset === f) {
+                                                        E({
+                                                            stompSlots: slots,
+                                                            stompIcon: ''
+                                                        });
+                                                    }
                                                     try {
                                                         let savePayload = compactFsForSave(Jr(updatedFs, c));
+                                                        gboxSoftApQuiet(2e4);
                                                         await postMidiConfigRetry({
                                                             activePreset: T,
-                                                            banks: { [n]: { [`fs${targetFs}`]: savePayload } }
+                                                            banks: { [n]: { [`fs${targetPreset}`]: savePayload } }
                                                         }, 4);
-                                                        rt.success(`Ícone Stomp salvo no Slot ${targetSlot} (FS${targetFs})`);
+                                                        rt.success(`Ícone Stomp Slot ${targetSlot} salvo na FS${targetPreset}`);
                                                     } catch (err) {
                                                         rt.error(`Erro ao salvar ícone Stomp: ${String(err?.message || err)}`);
                                                     }
@@ -19481,23 +19486,23 @@ function Xr() {
                                                         ...curFs,
                                                         iconKey: finalKey
                                                     };
-                                                    if (targetFs === f) {
+                                                    if (targetPreset === f) {
                                                         E({ iconKey: finalKey });
                                                     }
                                                     try {
                                                         let savePayload = compactFsForSave(Jr(updatedFs, c));
                                                         await postMidiConfigRetry({
                                                             activePreset: T,
-                                                            banks: { [n]: { [`fs${targetFs}`]: savePayload } }
+                                                            banks: { [n]: { [`fs${targetPreset}`]: savePayload } }
                                                         }, 4);
                                                         x(prev => ({
                                                             ...prev,
-                                                            [targetFs]: {
-                                                                ...prev[targetFs] || kr(targetFs),
+                                                            [targetPreset]: {
+                                                                ...prev[targetPreset] || kr(targetPreset),
                                                                 iconKey: finalKey
                                                             }
                                                         }));
-                                                        rt.success(`Ícone salvo na FS${targetFs}`);
+                                                        rt.success(`Ícone salvo na FS${targetPreset}`);
                                                     } catch (err) {
                                                         rt.error(`Erro ao salvar ícone: ${String(err?.message || err)}`);
                                                     }
@@ -19580,30 +19585,63 @@ function Xr() {
                     className: `fixed inset-0 z-[120] flex items-center justify-center bg-black/85 backdrop-blur-md p-4`,
                     onClick: () => setFsSwitchPrompt(null),
                     children: (0, P.jsxs)(`div`, {
-                        className: `relative w-full overflow-hidden rounded-[20px] border border-border bg-[#141416] shadow-2xl`,
+                        className: `relative w-full overflow-hidden rounded-2xl border border-white/[0.12] bg-[#151518] shadow-[0_30px_70px_rgba(0,0,0,0.9)]`,
                         onClick: e => e.stopPropagation(),
                         style: {
                             width: `calc(100vw - 2rem)`,
-                            maxWidth: `24rem`,
-                            borderRadius: `20px`,
-                            background: `#141416`,
-                            boxShadow: `0 40px 80px -20px rgba(0, 0, 0, 0.95)`
+                            maxWidth: `28rem`,
+                            background: `#151518`
                         },
                         children: [(0, P.jsxs)(`div`, {
-                            className: `border-b border-border/80 bg-[#1a1a1e] px-5 py-4`,
+                            className: `flex items-center gap-3.5 border-b border-white/[0.08] bg-white/[0.02] px-6 py-4.5`,
                             children: [(0, P.jsx)(`div`, {
-                                className: `font-display text-[11px] uppercase tracking-[0.24em] text-accent`,
-                                children: `Alterações não salvas`
+                                className: `flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-accent/40 bg-accent/15 text-accent shadow-[0_0_15px_rgba(255,40,40,0.25)]`,
+                                children: (0, P.jsx)(`svg`, {
+                                    className: `h-5 w-5`,
+                                    fill: `none`,
+                                    stroke: `currentColor`,
+                                    viewBox: `0 0 24 24`,
+                                    strokeWidth: 2,
+                                    children: (0, P.jsx)(`path`, {
+                                        strokeLinecap: `round`,
+                                        strokeLinejoin: `round`,
+                                        d: `M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z`
+                                    })
+                                })
                             }), (0, P.jsxs)(`div`, {
-                                className: `mt-1 font-mono text-[10px] text-muted-foreground`,
-                                children: [`FS`, f, ` tem mudanças. Salvar antes de ir a FS`, fsSwitchPrompt.targetFs, `?`]
+                                className: `flex flex-col text-left`,
+                                children: [(0, P.jsx)(`span`, {
+                                    className: `font-display text-[12px] font-bold uppercase tracking-[0.2em] text-accent`,
+                                    children: `Alterações não salvas`
+                                }), (0, P.jsx)(`span`, {
+                                    className: `font-mono text-[9px] uppercase tracking-[0.12em] text-zinc-400 mt-0.5`,
+                                    children: `Aviso de navegação`
+                                })]
                             })]
+                        }), (0, P.jsx)(`div`, {
+                            className: `px-6 py-5 text-left`,
+                            children: (0, P.jsxs)(`p`, {
+                                className: `text-[12px] leading-relaxed text-zinc-300`,
+                                children: [
+                                    `A chave `,
+                                    (0, P.jsx)(`span`, {
+                                        className: `inline-flex items-center px-1.5 py-0.5 rounded font-mono text-[11px] font-bold text-white bg-white/10 border border-white/15`,
+                                        children: `FS` + f
+                                    }),
+                                    ` possui mudanças pendentes. Deseja salvar antes de navegar para a `,
+                                    (0, P.jsx)(`span`, {
+                                        className: `inline-flex items-center px-1.5 py-0.5 rounded font-mono text-[11px] font-bold text-white bg-white/10 border border-white/15`,
+                                        children: `FS` + fsSwitchPrompt.targetFs
+                                    }),
+                                    `?`
+                                ]
+                            })
                         }), (0, P.jsxs)(`div`, {
-                            className: `flex flex-col gap-2 bg-[#141416] px-5 py-4 sm:flex-row sm:justify-end`,
+                            className: `flex flex-col-reverse sm:flex-row sm:items-center sm:justify-end gap-2.5 border-t border-white/[0.06] bg-black/20 px-6 py-4`,
                             children: [(0, P.jsx)(`button`, {
                                 type: `button`,
                                 onClick: () => setFsSwitchPrompt(null),
-                                className: `rounded-md border border-border px-4 py-2 font-display text-[10px] uppercase tracking-[0.16em] text-muted-foreground hover:text-foreground`,
+                                className: `h-10 px-4 rounded-xl border border-white/10 bg-white/[0.03] font-display text-[10px] font-medium uppercase tracking-[0.14em] text-zinc-400 hover:bg-white/[0.08] hover:text-white transition-all flex items-center justify-center`,
                                 children: `Cancelar`
                             }), (0, P.jsx)(`button`, {
                                 type: `button`,
@@ -19612,7 +19650,7 @@ function Xr() {
                                     p(fsSwitchPrompt.targetFs);
                                     setFsSwitchPrompt(null)
                                 },
-                                className: `rounded-md border border-border px-4 py-2 font-display text-[10px] uppercase tracking-[0.16em] text-muted-foreground hover:text-foreground`,
+                                className: `h-10 px-4 rounded-xl border border-white/10 bg-white/[0.03] font-display text-[10px] font-medium uppercase tracking-[0.14em] text-zinc-300 hover:border-red-500/40 hover:bg-red-500/10 hover:text-red-400 transition-all flex items-center justify-center`,
                                 children: `Descartar`
                             }), (0, P.jsx)(`button`, {
                                 type: `button`,
@@ -19622,7 +19660,7 @@ function Xr() {
                                     await te();
                                     p(target)
                                 },
-                                className: `rounded-md border border-accent/60 bg-accent/20 px-4 py-2 font-display text-[10px] uppercase tracking-[0.16em] text-accent hover:bg-accent/30`,
+                                className: `h-10 px-5 rounded-xl border border-accent/80 bg-accent/20 font-display text-[10px] font-bold uppercase tracking-[0.16em] text-accent hover:bg-accent/30 hover:shadow-[0_0_18px_rgba(255,30,30,0.3)] transition-all flex items-center justify-center`,
                                 children: `Salvar`
                             })]
                         })]
@@ -19631,39 +19669,72 @@ function Xr() {
                     className: `fixed inset-0 z-[120] flex items-center justify-center bg-black/85 backdrop-blur-md p-4`,
                     onClick: () => setBankSwitchPrompt(null),
                     children: (0, P.jsxs)(`div`, {
-                        className: `relative w-full overflow-hidden rounded-[20px] border border-border bg-[#141416] shadow-2xl`,
+                        className: `relative w-full overflow-hidden rounded-2xl border border-white/[0.12] bg-[#151518] shadow-[0_30px_70px_rgba(0,0,0,0.9)]`,
                         onClick: e => e.stopPropagation(),
                         style: {
                             width: `calc(100vw - 2rem)`,
-                            maxWidth: `24rem`,
-                            borderRadius: `20px`,
-                            background: `#141416`,
-                            boxShadow: `0 40px 80px -20px rgba(0, 0, 0, 0.95)`
+                            maxWidth: `29rem`,
+                            background: `#151518`
                         },
                         children: [(0, P.jsxs)(`div`, {
-                            className: `border-b border-border/80 bg-[#1a1a1e] px-5 py-4`,
+                            className: `flex items-center gap-3.5 border-b border-white/[0.08] bg-white/[0.02] px-6 py-4.5`,
                             children: [(0, P.jsx)(`div`, {
-                                className: `font-display text-[11px] uppercase tracking-[0.24em] text-accent`,
-                                children: `Alterações não salvas`
+                                className: `flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-accent/40 bg-accent/15 text-accent shadow-[0_0_15px_rgba(255,40,40,0.25)]`,
+                                children: (0, P.jsx)(`svg`, {
+                                    className: `h-5 w-5`,
+                                    fill: `none`,
+                                    stroke: `currentColor`,
+                                    viewBox: `0 0 24 24`,
+                                    strokeWidth: 2,
+                                    children: (0, P.jsx)(`path`, {
+                                        strokeLinecap: `round`,
+                                        strokeLinejoin: `round`,
+                                        d: `M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z`
+                                    })
+                                })
                             }), (0, P.jsxs)(`div`, {
-                                className: `mt-1 font-mono text-[10px] text-muted-foreground`,
-                                children: [`Há chaves com mudanças não salvas no banco `, hr[n], `. Ir para banco `, hr[bankSwitchPrompt.targetBankIdx], ` vai descartar essas edições.`]
+                                className: `flex flex-col text-left`,
+                                children: [(0, P.jsx)(`span`, {
+                                    className: `font-display text-[12px] font-bold uppercase tracking-[0.2em] text-accent`,
+                                    children: `Alterações não salvas`
+                                }), (0, P.jsx)(`span`, {
+                                    className: `font-mono text-[9px] uppercase tracking-[0.12em] text-zinc-400 mt-0.5`,
+                                    children: `Aviso de navegação`
+                                })]
                             })]
+                        }), (0, P.jsx)(`div`, {
+                            className: `px-6 py-5 text-left`,
+                            children: (0, P.jsxs)(`p`, {
+                                className: `text-[12px] leading-relaxed text-zinc-300`,
+                                children: [
+                                    `Há chaves com mudanças não salvas no banco `,
+                                    (0, P.jsx)(`span`, {
+                                        className: `inline-flex items-center px-1.5 py-0.5 rounded font-mono text-[11px] font-bold text-white bg-white/10 border border-white/15`,
+                                        children: hr[n]
+                                    }),
+                                    `. Ir para o banco `,
+                                    (0, P.jsx)(`span`, {
+                                        className: `inline-flex items-center px-1.5 py-0.5 rounded font-mono text-[11px] font-bold text-white bg-white/10 border border-white/15`,
+                                        children: hr[bankSwitchPrompt.targetBankIdx]
+                                    }),
+                                    ` vai descartar essas edições pendentes.`
+                                ]
+                            })
                         }), (0, P.jsxs)(`div`, {
-                            className: `flex flex-col gap-2 bg-[#141416] px-5 py-4 sm:flex-row sm:justify-end`,
+                            className: `flex flex-col-reverse sm:flex-row sm:items-center sm:justify-end gap-2.5 border-t border-white/[0.06] bg-black/20 px-6 py-4`,
                             children: [(0, P.jsx)(`button`, {
                                 type: `button`,
                                 onClick: () => setBankSwitchPrompt(null),
-                                className: `rounded-md border border-border px-4 py-2 font-display text-[10px] uppercase tracking-[0.16em] text-muted-foreground hover:text-foreground`,
+                                className: `h-10 px-4 rounded-xl border border-white/10 bg-white/[0.03] font-display text-[10px] font-medium uppercase tracking-[0.14em] text-zinc-400 hover:bg-white/[0.08] hover:text-white transition-all flex items-center justify-center`,
                                 children: `Cancelar`
                             }), (0, P.jsx)(`button`, {
                                 type: `button`,
                                 onClick: () => {
                                     let fn = bankSwitchPrompt.doChangeFn;
                                     setBankSwitchPrompt(null);
-                                    fn()
+                                    if (fn) fn()
                                 },
-                                className: `rounded-md border border-border px-4 py-2 font-display text-[10px] uppercase tracking-[0.16em] text-muted-foreground hover:text-foreground`,
+                                className: `h-10 px-4 rounded-xl border border-white/10 bg-white/[0.03] font-display text-[10px] font-medium uppercase tracking-[0.14em] text-zinc-300 hover:border-red-500/40 hover:bg-red-500/10 hover:text-red-400 transition-all flex items-center justify-center`,
                                 children: `Descartar e Ir`
                             }), (0, P.jsx)(`button`, {
                                 type: `button`,
@@ -19676,7 +19747,7 @@ function Xr() {
                                         if (fn) fn();
                                     }
                                 },
-                                className: `rounded-md border border-accent/60 bg-accent/20 px-4 py-2 font-display text-[10px] uppercase tracking-[0.16em] text-accent hover:bg-accent/30`,
+                                className: `h-10 px-5 rounded-xl border border-accent/80 bg-accent/20 font-display text-[10px] font-bold uppercase tracking-[0.16em] text-accent hover:bg-accent/30 hover:shadow-[0_0_18px_rgba(255,30,30,0.3)] transition-all flex items-center justify-center`,
                                 children: `Salvar e Ir`
                             })]
                         })]
@@ -19745,19 +19816,38 @@ function Xr() {
                                     children: [B.length, `/`, R.kind === `preset` ? 24 : 16]
                                 })]
                             }), (0, P.jsx)(FsScreenIconPicker, {
-                                iconKey: b[R.index]?.iconKey,
-                                fsIndex: R.index,
+                                iconKey: (R.kind === `stompSlot` || m === `Stomp`) ? (b[R.presetFs || f]?.stompSlots?.[(R.slotIndex || activeStompSlot) - 1]?.icon || ``) : (b[R.index]?.iconKey || ``),
+                                fsIndex: (R.kind === `stompSlot` || m === `Stomp`) ? (R.slotIndex || activeStompSlot) : R.index,
                                 fsCount: d,
                                 embedded: !0,
                                 onSetKey: key => {
                                     iconKeyPendingRef.current = key;
-                                    x(prev => ({
-                                        ...prev,
-                                        [R.index]: {
-                                            ...prev[R.index] || kr(R.index),
-                                            iconKey: key
-                                        }
-                                    }))
+                                    if (R.kind === `stompSlot` || m === `Stomp`) {
+                                        let pFs = Number(R.presetFs || f || 1);
+                                        let sIdx = Number(R.slotIndex || activeStompSlot || 1);
+                                        let curFs = b[pFs] || kr(pFs);
+                                        let slots = Array.isArray(curFs.stompSlots) ? [...curFs.stompSlots] : Array.from({ length: 8 }, () => ({ icon: '', name: '', color: '#ff8800' }));
+                                        while (slots.length < 8) slots.push({ icon: '', name: '', color: '#ff8800' });
+                                        slots[sIdx - 1] = {
+                                            ...slots[sIdx - 1],
+                                            icon: key
+                                        };
+                                        x(prev => ({
+                                            ...prev,
+                                            [pFs]: {
+                                                ...prev[pFs] || kr(pFs),
+                                                stompSlots: slots
+                                            }
+                                        }));
+                                    } else {
+                                        x(prev => ({
+                                            ...prev,
+                                            [R.index]: {
+                                                ...prev[R.index] || kr(R.index),
+                                                iconKey: key
+                                            }
+                                        }));
+                                    }
                                 }
                             })]
                         }), (0, P.jsxs)(`div`, {
@@ -22550,11 +22640,15 @@ function CustomScreenBlockTile({ idx, isSel, isEnabled, isBorderless, usbCfg }) 
                 style: { width: '100%', height: '28px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', padding: '1px 0' },
                 children: [
                     (0, P.jsx)('div', {
-                        style: { height: '3px', width: '100%', borderRadius: '2px', background: isSelected ? '#ef4444' : '#71717a' }
+                        style: { height: '3px', width: '100%', borderRadius: '2px', background: isSelected ? '#ef4444' : '#71717a', boxShadow: isSelected ? '0 0 6px rgba(239, 68, 68, 0.9)' : 'none' }
                     }),
                     (0, P.jsx)('div', {
-                        style: { display: 'flex', justifyContent: 'center', gap: '1px' },
-                        children: [0, 1, 2, 3, 4, 5, 6, 7].map(i => (0, P.jsx)('div', { key: i, style: { ...bStyle, width: '7px', height: '18px', borderRadius: '2px' } }, i))
+                        style: { display: 'flex', justifyContent: 'center', gap: '2px' },
+                        children: [0, 1, 2, 3].map(i => (0, P.jsx)('div', { key: i, style: { ...bStyle, width: '14px', height: '9px', borderRadius: '3px' } }, i))
+                    }),
+                    (0, P.jsx)('div', {
+                        style: { display: 'flex', justifyContent: 'center', gap: '2px' },
+                        children: [0, 1, 2, 3].map(i => (0, P.jsx)('div', { key: i, style: { ...bStyle, width: '14px', height: '9px', borderRadius: '3px' } }, i))
                     })
                 ]
             });
@@ -23512,13 +23606,13 @@ var si = [`TONEX / MODELLER`, `MIDI USB HOST`, `MIDI USB PC`, `HUB MIDI`, `MIDI 
         }, {
             value: 17,
             label: `TONEX PEDAL B`
-        }, {
-            value: 3,
-            label: `GP5`
         }],
         1: [
         /* { value: 1, label: `MIDI USB CUSTOM` }, — usar controllerPath=Custom */
         {
+            value: 3,
+            label: `GP5`
+        }, {
             value: 9,
             label: `AMPERO MINI`
         }, {
@@ -24350,12 +24444,12 @@ function systemSettingsPanel({
         setSysTab = onSysTabChangeProp || setInternalSysTab,
         s = (() => {
             let mode = Math.max(0, Math.min(si.length - 1, Number(e?.usbmode || 0)));
-            /* GP5 legado em Host → tratar como TONEX/MODELLER; não no HUB+TONEX. */
-            if (mode !== 5 && Number(e?.usbpreset ?? 0) === 3) mode = 0;
+            /* GP5 (preset 3) = USB Host (modo 1). */
+            if (Number(e?.usbpreset ?? 0) === 3) mode = 1;
             return mode;
         })(),
         pathCustom = Number(e?.controllerPath || 0) === 1,
-        pathOpts = [`Preset`, `Custom`],
+        pathOpts = [`Profile`, `Custom`],
         cRaw = ci[s] ?? [],
         c = cRaw.length ? cRaw : [{
             value: Number(e?.usbpreset ?? 0),
@@ -24369,7 +24463,7 @@ function systemSettingsPanel({
         btPresetLabel = f === 3 ? `Custom MIDI` : (liBtPresetsUi.includes(liBtPresets[f]) ? liBtPresets[f] : liBtPresetsUi[0]),
         p = Number(e?.btMidiCc || 0) === 1,
         g = Number(e?.btCustomEnable || 0) === 1,
-        _ = String(e?.btCustomName || `Guerrilha-BLE`),
+        _ = String(e?.btCustomName || ``),
         v = Math.max(0, Math.min(1, Number(e?.midiEnable || 0))),
         y = Math.max(1, Math.min(16, Number(e?.midiChannel || 1))),
         b = Math.max(0, Math.min(2, Number(e?.midiPreset || 0))),
@@ -24439,7 +24533,7 @@ function systemSettingsPanel({
             children: [(0, P.jsx)(L, {
                 label: `Caminho`,
                 options: pathOpts,
-                value: pathCustom ? `Custom` : `Preset`,
+                value: pathCustom ? `Custom` : `Profile`,
                 onChange: opt => {
                     let next = opt === `Custom` ? 1 : 0,
                         patch = {
@@ -24482,8 +24576,8 @@ function systemSettingsPanel({
                     }
                     t(patch)
                 }
-            }), (!pathCustom || s === 2) && (0, P.jsx)(L, {
-                label: pathCustom && s === 2 ? `Device` : `Preset USB`,
+            }), !pathCustom && (0, P.jsx)(L, {
+                label: `Profile`,
                 options: c.map(e => e.label),
                 value: d,
                 onChange: e => {
@@ -24491,8 +24585,8 @@ function systemSettingsPanel({
                         patch = {
                             usbpreset: nextPreset
                         };
-                    /* GP5 usa o stack Tonex/modeller (usbMode 0), não Host genérico. */
-                    if (Number(nextPreset) === 3) patch.usbmode = 0;
+                    /* GP5 = USB Host + bridge Valeton (usbMode 1). */
+                    if (Number(nextPreset) === 3) patch.usbmode = 1;
                     t(patch)
                 }
             }), null]
@@ -24525,18 +24619,20 @@ function systemSettingsPanel({
                 onCheckedChange: e => t({
                     btMidiCc: e ? 1 : 0
                 })
-            }), (0, P.jsx)(toggleFieldControl, {
-                label: `Custom device`,
-                checked: g,
-                onCheckedChange: e => t({
-                    btCustomEnable: e ? 1 : 0
-                })
             }), (0, P.jsx)(popupTextFieldBridge, {
-                label: `Nome custom`,
+                label: `Ligar só a estes nomes`,
                 value: _,
-                onChange: e => t({
-                    btCustomName: String(e || ``).slice(0, 24)
-                })
+                onChange: e => {
+                    let names = String(e || ``).replace(/\n+/g, `;`).slice(0, 120);
+                    t({
+                        btCustomName: names,
+                        btCustomEnable: names.trim() ? 1 : 0,
+                        btMode: names.trim() && m === 0 ? 1 : m
+                    })
+                }
+            }), (0, P.jsx)(`p`, {
+                className: `font-mono text-[10px] text-muted-foreground`,
+                children: `Ex.: MeuPedal;GP-5 BLE — ou *. Modo Central + Salvar. Se o BT estava Desligado, desliga e liga a alimentação 1x.`
             })]
         }), (0, P.jsxs)(I, {
             title: `MIDI Serial (DIN/UART)`,
@@ -24961,7 +25057,7 @@ function popupFieldTrigger({
         }), (0, P.jsxs)(`div`, {
             className: `mt-1 flex w-full items-center justify-between gap-1.5 min-w-0`,
             children: [(0, P.jsx)(`span`, {
-                className: `truncate font-mono text-xs sm:text-sm font-bold uppercase ${n?`text-accent`:`text-foreground`}`,
+                className: `truncate font-mono text-xs sm:text-sm font-bold uppercase ${t===`Tap`?`text-amber-400`:n?`text-accent`:`text-foreground`}`,
                 children: t ?? `--`
             }), (0, P.jsx)(tr, {
                 className: `size-3.5 sm:size-4 shrink-0 text-muted-foreground`
@@ -26785,22 +26881,16 @@ function Ei({
                         length: Number(effectiveFs || 8)
                     }, (_, i) => i + 1).map(slotIdx => {
                         let fxItem = allAssignedFx.find(item => Number(item?.assignedFs) === slotIdx);
-                        let slotObj = o?.stompSlots?.[slotIdx - 1];
-                        let slotIcon = (typeof slotObj?.icon === 'string' && slotObj.icon.trim())
-                            ? slotObj.icon.trim()
-                            : (slotIdx === r && typeof o?.stompIcon === 'string' && o.stompIcon.trim()
-                                ? o.stompIcon.trim()
-                                : (fxItem?.icon || ''));
-                        let slotName = (typeof slotObj?.name === 'string' && slotObj.name.trim())
-                            ? slotObj.name.trim()
-                            : (slotIdx === r && typeof o?.stompName === 'string' && o.stompName.trim()
-                                ? o.stompName.trim()
-                                : (fxItem?.name || (`FS` + slotIdx)));
-                        let slotColor = (slotObj?.color && slotObj.color !== `#000000`)
-                            ? slotObj.color
-                            : (slotIdx === r && o?.stompLed?.on && o.stompLed.on !== `#000000`
-                                ? o.stompLed.on
-                                : (fxItem?.color || o?.stompLed?.on || `#ff8800`));
+                        let curSlotData = o?.stompSlots?.[slotIdx - 1];
+                        let slotIcon = (typeof curSlotData?.icon === 'string' && curSlotData.icon.trim())
+                            ? curSlotData.icon.trim()
+                            : (fxItem?.icon || '');
+                        let slotName = (typeof curSlotData?.name === 'string' && curSlotData.name.trim())
+                            ? curSlotData.name.trim()
+                            : (fxItem?.name || (`FS` + slotIdx));
+                        let slotColor = (typeof curSlotData?.color === 'string' && curSlotData.color.trim())
+                            ? curSlotData.color.trim()
+                            : (fxItem?.color || `#ff8800`);
                         let slotData = {
                             icon: slotIcon,
                             name: slotName,
@@ -27705,7 +27795,8 @@ function ji({
         isHold = (t.trigger ?? `Click`) === `Hold`,
         isOff = (t.state ?? `On`) === `Off`,
         isPhaseBoth = (t.state ?? `On`) === `On/Off`,
-        normalRing = isNormal ? isHold ? ` cmd-ring-hold` : ` cmd-ring-click` : ``,
+        isTap = t.type === `Tap`,
+        normalRing = isTap ? ` cmd-ring-tap` : isNormal ? isHold ? ` cmd-ring-hold` : ` cmd-ring-click` : ``,
         showUsbDest = hubTonexMode && !s,
         usbDestOpts = usbHubTargetLabelsForMode(usbmodeCtx),
         usbDestLabel = usbHubTargetLabel(t.usbTarget, usbmodeCtx);
@@ -27716,17 +27807,25 @@ function ji({
             children: [(0, P.jsxs)(`div`, {
                 className: `flex items-center gap-2`,
                 children: [(0, P.jsx)(`span`, {
-                    className: `grid size-6 place-items-center rounded-full font-mono text-[10px] font-bold ${isNormal&&isHold?`cmd-idx-hold`:`bg-accent/20 text-accent`}`,
+                    className: `grid size-6 place-items-center rounded-full font-mono text-[10px] font-bold ${isTap?`cmd-idx-tap`:isNormal&&isHold?`cmd-idx-hold`:`bg-accent/20 text-accent`}`,
                     children: e
                 }), (0, P.jsx)(`span`, {
                     className: `font-display text-[10px] uppercase tracking-[0.3em] text-muted-foreground`,
                     children: `Comando`
-                }), isNormal && (0, P.jsx)(`span`, {
-                    className: `ml-1 rounded-md px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-wider ${isHold?`cmd-badge-hold`:`cmd-badge-click`}`,
-                    children: isHold ? `Hold` : `Click`
-                }), isNormal && (0, P.jsx)(`span`, {
-                    className: `rounded-md px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-wider ${isPhaseBoth?`cmd-badge-click`:isOff?`cmd-badge-off`:`cmd-badge-on`}`,
-                    children: isPhaseBoth ? `On/Off` : isOff ? `Off` : `On`
+                }), isTap ? (0, P.jsx)(`span`, {
+                    className: `ml-1 rounded-md px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-wider cmd-badge-tap`,
+                    children: `TAP`
+                }) : (0, P.jsxs)(P.Fragment, {
+                    children: [
+                        isNormal && (0, P.jsx)(`span`, {
+                            className: `ml-1 rounded-md px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-wider ${isHold?`cmd-badge-hold`:`cmd-badge-click`}`,
+                            children: isHold ? `Hold` : `Click`
+                        }),
+                        isNormal && (0, P.jsx)(`span`, {
+                            className: `rounded-md px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-wider ${isPhaseBoth?`cmd-badge-click`:isOff?`cmd-badge-off`:`cmd-badge-on`}`,
+                            children: isPhaseBoth ? `On/Off` : isOff ? `Off` : `On`
+                        })
+                    ]
                 }), t.type === `FS Sync` && (0, P.jsx)(`span`, {
                     className: `rounded-md px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-wider ${(t.targetState??`On`)===`Off`?`cmd-badge-off`:`cmd-badge-on`}`,
                     children: `Alvo ${(t.targetState ?? `On`)}`
@@ -27746,6 +27845,7 @@ function ji({
                 options: r,
                 onChange: e => i({
                     type: e,
+                    ...(e === `Tap` ? { trigger: `Hold`, state: `On` } : {}),
                     ...(e === `FS Sync` ? {
                         targetState: t.targetState === `Off` ? `Off` : `On`,
                         cc: Math.max(1, Math.min(8, Number(t.cc) || 1)),
@@ -27861,14 +27961,14 @@ function ji({
                     value: `F0 ${t.value.toString(16).padStart(2,`0`)} F7`,
                     onChange: () => {}
                 })
-            }), l && !t.type.includes(`Up`) && !t.type.includes(`Down`) && !t.type.startsWith(`Banco`) && t.type !== `Tap Tempo Ampero (Serial)` && (0, P.jsx)(Mi, {
+            }), l && !t.type.includes(`Up`) && !t.type.includes(`Down`) && !t.type.startsWith(`Banco`) && t.type !== `Tap Tempo Ampero (Serial)` && !isTap && (0, P.jsx)(Mi, {
                 label: n === `Momentâneo` ? `Momento` : t.type === `FS Sync` ? `Fase` : `Estado`,
                 value: t.state ?? u[0],
                 options: u,
                 onChange: e => i({
                     state: e
                 })
-            }), n === `Normal` && (0, P.jsx)(Mi, {
+            }), n === `Normal` && !isTap && (0, P.jsx)(Mi, {
                 label: `Gatilho`,
                 value: t.trigger ?? `Click`,
                 options: [`Click`, `Hold`],
