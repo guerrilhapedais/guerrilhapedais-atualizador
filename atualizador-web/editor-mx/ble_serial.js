@@ -162,8 +162,20 @@
     function chooseTransport() {
         var knownUsb = null;
         if (nativeSerial) {
+            /* So liga direto quando ha UMA porta USB certa. Com varias autorizadas
+             * (outros aparelhos serie) abre a janela do navegador para escolher —
+             * antes pegava sempre a 1a e o editor falava com o aparelho errado. */
             nativeSerial.getPorts().then(function (ports) {
-                knownUsb = ports && ports[0] ? ports[0] : null;
+                ports = ports || [];
+                if (ports.length === 1) { knownUsb = ports[0]; return; }
+                var saved = null;
+                try { saved = JSON.parse(localStorage.getItem('gmxUsbPortInfo') || 'null'); } catch (e) {}
+                if (!saved) return;
+                var same = ports.filter(function (pt) {
+                    try { var i = pt.getInfo(); return i.usbVendorId === saved.v && i.usbProductId === saved.p; }
+                    catch (e) { return false; }
+                });
+                knownUsb = same.length === 1 ? same[0] : null;
             }).catch(function () {});
         }
         return new Promise(function (resolve, reject) {

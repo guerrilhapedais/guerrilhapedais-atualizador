@@ -13191,7 +13191,7 @@ function displayStyleClampForModel(fsCount, style, customStompEnabled) {
     let v = Math.max(0, Math.min(7, Number(style || 0)));
     if (!fs && (v === 2 || v === 4 || v === 7)) fs = 8;
     if (fs === 8) {
-        if (customStompEnabled && v === 2) return 4;
+        /* "Ícones" (2) vale tambem com o Stomp Custom ligado (antes era trocado para Preset/Stomp). */
         if (v === 2 || v === 4 || v === 6 || v === 7) return v;
         return 4;
     }
@@ -13474,6 +13474,73 @@ async function usbTransportReadLoop(e) {
     return serialTransportState.readLoop
 }
 
+/* ---- Escolha da porta USB ----
+ * Antes: a ligacao automatica usava SEMPRE a 1a porta autorizada (getPorts()[0]).
+ * Com mais aparelhos serie autorizados (outro controlador, Arduino, adaptador...)
+ * abria a porta errada e o Salvar falhava por timeout. Agora:
+ *  - usa a porta escolhida nesta sessao; senao a que tem o mesmo VID/PID guardado;
+ *  - se houver duvida (varias iguais), NAO adivinha: pede para escolher;
+ *  - depois de abrir confirma com "ping" que e mesmo o controlador. */
+var GMX_USB_PORT_INFO_KEY = `gmxUsbPortInfo`;
+
+function gmxUsbPortInfo(p) {
+    try {
+        let i = p && typeof p.getInfo == `function` ? p.getInfo() || {} : {};
+        return {
+            v: Number(i.usbVendorId) || 0,
+            p: Number(i.usbProductId) || 0
+        }
+    } catch {
+        return {
+            v: 0,
+            p: 0
+        }
+    }
+}
+
+function gmxUsbIsBlePort(p) {
+    return !!(p && p.device && typeof p.getInfo != `function`)
+}
+
+function gmxUsbSavedInfo() {
+    try {
+        let j = JSON.parse(window.localStorage.getItem(GMX_USB_PORT_INFO_KEY) || `null`);
+        return j && (j.v || j.p) ? j : null
+    } catch {
+        return null
+    }
+}
+
+function gmxUsbRememberPort(p) {
+    serialTransportState.lastPort = p;
+    if (gmxUsbIsBlePort(p)) return;
+    let i = gmxUsbPortInfo(p);
+    if (!i.v && !i.p) return;
+    try {
+        window.localStorage.setItem(GMX_USB_PORT_INFO_KEY, JSON.stringify(i))
+    } catch {}
+}
+
+function gmxUsbPickAuthorized(ports) {
+    ports = Array.isArray(ports) ? ports.filter(Boolean) : [];
+    if (!ports.length) return null;
+    let last = serialTransportState.lastPort;
+    if (last && ports.includes(last)) return last;
+    if (ports.length === 1) return ports[0];
+    let saved = gmxUsbSavedInfo();
+    if (saved) {
+        let same = ports.filter(p => {
+            let i = gmxUsbPortInfo(p);
+            return i.v === saved.v && i.p === saved.p
+        });
+        if (same.length === 1) return same[0];
+    }
+    /* Espressif (ESP32-S3 TinyUSB) = 0x303A */
+    let esp = ports.filter(p => gmxUsbPortInfo(p).v === 0x303A);
+    if (esp.length === 1) return esp[0];
+    return null
+}
+
 async function usbTransportConnect(e = !0) {
     if (!transportSupportsUsb()) throw Error(`Web Serial indisponivel neste navegador`);
     if (serialTransportState.port?.readable && serialTransportState.port?.writable) return setTransportMode(`usb`), serialTransportState.port;
@@ -13483,17 +13550,41 @@ async function usbTransportConnect(e = !0) {
         try {
             t = await navigator.serial.getPorts()
         } catch {}
-        let n = e ? null : (t[0] || null);
+        let n = e ? null : gmxUsbPickAuthorized(t);
+        if (!n && !e && t.length > 1) throw Error(`Mais de uma porta USB autorizada — clique em Conectar e escolha o controlador`);
         if (!n && e && (n = await navigator.serial.requestPort()), !n) throw Error(`Nenhuma porta USB autorizada`);
-        if (!n.readable) await n.open({
-            baudRate: 115200,
-            dataBits: 8,
-            stopBits: 1,
-            parity: `none`,
-            flowControl: `none`,
-            bufferSize: 16384
-        });
-        return serialTransportState.port = n, serialTransportState.buffer = ``, setTransportMode(`usb`), notifyTransportState(), usbTransportReadLoop(n), n
+        if (!n.readable) try {
+            await n.open({
+                baudRate: 115200,
+                dataBits: 8,
+                stopBits: 1,
+                parity: `none`,
+                flowControl: `none`,
+                bufferSize: 16384
+            })
+        } catch (err) {
+            let m = String(err?.message || err || ``);
+            if (/already open|InvalidState/i.test(m)) throw Error(`A porta USB ja esta aberta noutro programa/aba (feche e tente de novo)`);
+            throw Error(`Nao foi possivel abrir a porta USB: ${m}`)
+        }
+        serialTransportState.port = n, serialTransportState.buffer = ``, setTransportMode(`usb`), notifyTransportState(), usbTransportReadLoop(n);
+        if (!gmxUsbIsBlePort(n)) {
+            /* Confirma que e o controlador (outro aparelho serie nao responde ao ping). */
+            let okPing = !1;
+            for (let a = 0; a < 2 && !okPing; a++) {
+                try {
+                    let r = await usbTransportSend(`ping`, {}, 2500);
+                    okPing = !!r && r.ok !== !1
+                } catch {}
+            }
+            if (!okPing) {
+                if (serialTransportState.lastPort === n) serialTransportState.lastPort = null;
+                await usbTransportDisconnect(`A porta USB nao respondeu como controlador`);
+                throw Error(`Esta porta USB nao respondeu como controlador Guerrilha — clique em Conectar e escolha a porta certa`)
+            }
+        }
+        gmxUsbRememberPort(n);
+        return n
     })();
     try {
         return await serialTransportState.connectPromise
@@ -13519,6 +13610,11 @@ function usbTransportWriteLine(e) {
 
 async function usbTransportRequest(e, t = {}, n = 15e3) {
     await usbTransportConnect(!1);
+    return usbTransportSend(e, t, n)
+}
+
+/* Envia sem tentar ligar (usado tambem pelo ping de confirmacao da porta). */
+function usbTransportSend(e, t = {}, n = 15e3) {
     let r = String(serialTransportState.nextId++),
         i = {
             id: r,
@@ -14086,6 +14182,7 @@ function buildStompUsbParts(e, t = {}) {
             customStompSceneEnabled: t.scenesOn !== void 0 ? t.scenesOn ? 1 : 0 : e?.customStompSceneEnabled,
             customSceneOutput: e?.customSceneOutput,
             customSceneTriggerMode: e?.customSceneTriggerMode,
+            stompOffStyle: e?.stompOffStyle,
             customFxCount: n
         })].filter(Boolean);
     for (let e = 0; e < i.length; e += 3) {
@@ -14668,16 +14765,26 @@ function displayIconRgb565FromImageData(img, asWhite, plain) {
         h = img.height,
         d = img.data,
         out = new Uint8Array(w * h * 2),
-        chroma = DISPLAY_ICON_CHROMA_RGB565;
+        chroma = DISPLAY_ICON_CHROMA_RGB565,
+        /* Arredonda e pontilha (Bayer 4x4, +-0.5 passo) ao passar para 16 bits:
+         * cortar os bits escurecia e criava faixas nos degrades. */
+        bayer = [0, 8, 2, 10, 12, 4, 14, 6, 3, 11, 1, 9, 15, 7, 13, 5],
+        q565 = (r, g, b, pi) => {
+            let t = bayer[(((pi / w) | 0) & 3) * 4 + (pi % w & 3)] / 16 - .46875,
+                r5 = Math.min(31, Math.max(0, Math.round(r * 31 / 255 + t))),
+                g6 = Math.min(63, Math.max(0, Math.round(g * 63 / 255 + t))),
+                b5 = Math.min(31, Math.max(0, Math.round(b * 31 / 255 + t)));
+            return r5 << 11 | g6 << 5 | b5
+        };
     for (let i = 0, p = 0; i < d.length; i += 4, p += 2) {
         let a = d[i + 3],
             r, g, b, v;
         if (a < 16) v = plain ? 0 : chroma;
         else if (plain) {
-            r = Math.round(d[i] * a / 255);
-            g = Math.round(d[i + 1] * a / 255);
-            b = Math.round(d[i + 2] * a / 255);
-            v = (r >> 3 << 11) | (g >> 2 << 5) | (b >> 3)
+            r = d[i] * a / 255;
+            g = d[i + 1] * a / 255;
+            b = d[i + 2] * a / 255;
+            v = q565(r, g, b, p >> 1)
         } else {
             if (asWhite) {
                 let y = Math.round(((d[i] * 77 + d[i + 1] * 150 + d[i + 2] * 29) >> 8) * a / 255);
@@ -14690,10 +14797,10 @@ function displayIconRgb565FromImageData(img, asWhite, plain) {
                 }
             } else {
                 /* Foto a cores: transparência só por alpha — não apagar pixels escuros. */
-                r = Math.round(d[i] * a / 255);
-                g = Math.round(d[i + 1] * a / 255);
-                b = Math.round(d[i + 2] * a / 255);
-                v = (r >> 3 << 11) | (g >> 2 << 5) | (b >> 3);
+                r = d[i] * a / 255;
+                g = d[i + 1] * a / 255;
+                b = d[i + 2] * a / 255;
+                v = q565(r, g, b, p >> 1);
                 if (v === chroma) v = 0x07C0
             }
         }
@@ -14757,9 +14864,9 @@ var DISPLAY_ICON_PX = 144,
     DISPLAY_BG_W_MT8 = 480,
     DISPLAY_BG_H_MT8 = 320,
     DISPLAY_BG_KEY = `bg`,
-    DISPLAY_ICON_SLOT_N = 16,
+    DISPLAY_ICON_SLOT_N = 48,
     DISPLAY_ICON_CHROMA_RGB565 = 0x07E0,
-    DISPLAY_ICON_BUDGET = 8128 * 1024,
+    DISPLAY_ICON_BUDGET = 9728 * 1024,
     DISPLAY_WHITE_PACK_URLS = null,
     DISPLAY_ICON_THUMB_CACHE = (() => {
         let cache = {};
@@ -14784,8 +14891,8 @@ function displayIconSlotKey(i) {
 }
 
 function displayIconUiSlotN(fsCount) {
-    /* 16 slots de fotos/ícones para todos os modelos (MT-4, MT-6, MT-8) */
-    return 16;
+    /* 48 slots de ícones para todos os modelos (MT-4, MT-6, MT-8) — 144x144 RGB565 = ~44 KB cada */
+    return 48;
 }
 
 function displayIconGridCols(n) {
@@ -14839,9 +14946,9 @@ function displayIconRgb565ToUrl(u8, w, h) {
         if (v === chroma) {
             img.data[i] = 0, img.data[i + 1] = 0, img.data[i + 2] = 0, img.data[i + 3] = 0
         } else {
-            img.data[i] = (v >> 11 & 31) << 3;
-            img.data[i + 1] = (v >> 5 & 63) << 2;
-            img.data[i + 2] = (v & 31) << 3;
+            img.data[i] = (v >> 11 & 31) * 255 / 31 + .5 | 0;
+            img.data[i + 1] = (v >> 5 & 63) * 255 / 63 + .5 | 0;
+            img.data[i + 2] = (v & 31) * 255 / 31 + .5 | 0;
             img.data[i + 3] = 255
         }
     }
@@ -14862,6 +14969,50 @@ function displayIconWhitePackUrl(key) {
         })
     }
     return DISPLAY_WHITE_PACK_URLS[key]
+}
+
+/* Reducao em passos (metade de cada vez). Numa so passada o drawImage serrilha/borra
+ * (sobretudo no iPhone) quando a foto e muito maior que o destino. */
+var GMX_HQ_CACHE = typeof WeakMap !== `undefined` ? new WeakMap() : null;
+
+function gmxHqSource(img, dw, dh) {
+    try {
+        let sw = img.naturalWidth || img.width,
+            sh = img.naturalHeight || img.height;
+        dw = Math.max(1, Math.round(Math.abs(dw)));
+        dh = Math.max(1, Math.round(Math.abs(dh)));
+        if (!sw || !sh || (sw <= dw * 2 && sh <= dh * 2)) return img;
+        let cache = GMX_HQ_CACHE ? GMX_HQ_CACHE.get(img) : null;
+        if (!cache || Object.keys(cache).length > 8) {
+            cache = {};
+            if (GMX_HQ_CACHE) GMX_HQ_CACHE.set(img, cache)
+        }
+        let k = dw + `x` + dh;
+        if (cache[k]) return cache[k];
+        let cur = img,
+            cw = sw,
+            ch = sh;
+        while (cw > dw * 2 || ch > dh * 2) {
+            let nw = Math.max(dw, Math.round(cw / 2)),
+                nh = Math.max(dh, Math.round(ch / 2)),
+                c = document.createElement(`canvas`);
+            c.width = nw, c.height = nh;
+            let x = c.getContext(`2d`);
+            x.imageSmoothingEnabled = !0;
+            if (`imageSmoothingQuality` in x) x.imageSmoothingQuality = `high`;
+            x.drawImage(cur, 0, 0, nw, nh);
+            cur = c, cw = nw, ch = nh
+        }
+        cache[k] = cur;
+        return cur
+    } catch {
+        return img
+    }
+}
+
+function gmxDpr() {
+    let d = typeof window < `u` ? Number(window.devicePixelRatio) || 1 : 1;
+    return Math.min(3, Math.max(1, d))
 }
 
 function displayIconRasterColor(img, size, zoom, panX, panY, baseBg) {
@@ -14902,7 +15053,7 @@ function displayIconRasterColor(img, size, zoom, panX, panY, baseBg) {
         dy = (size - dh) / 2 + ((Number(panY) || 0) / 50) * travelY;
     ctx.imageSmoothingEnabled = true;
     if ('imageSmoothingQuality' in ctx) ctx.imageSmoothingQuality = 'high';
-    ctx.drawImage(img, dx, dy, dw, dh);
+    ctx.drawImage(gmxHqSource(img, dw, dh), dx, dy, dw, dh);
     return ctx.getImageData(0, 0, size, size)
 }
 
@@ -14942,7 +15093,7 @@ function displayAmpRasterColor(img, w, h, zoom, panX, panY, baseBg) {
         dy = (h - dh) / 2 + ((Number(panY) || 0) / 50) * travelY;
     ctx.imageSmoothingEnabled = true;
     if ('imageSmoothingQuality' in ctx) ctx.imageSmoothingQuality = 'high';
-    ctx.drawImage(img, dx, dy, dw, dh);
+    ctx.drawImage(gmxHqSource(img, dw, dh), dx, dy, dw, dh);
     return ctx.getImageData(0, 0, w, h)
 }
 
@@ -15070,7 +15221,7 @@ function displayBgRasterColor(img, w, h, zoom, panX, panY, baseBg) {
         travelY = Math.max(Math.abs(dh - h) / 2, h * 0.75),
         dx = (w - dw) / 2 + ((Number(panX) || 0) / 50) * travelX,
         dy = (h - dh) / 2 + ((Number(panY) || 0) / 50) * travelY;
-    ctx.drawImage(img, dx, dy, dw, dh);
+    ctx.drawImage(gmxHqSource(img, dw, dh), dx, dy, dw, dh);
     return ctx.getImageData(0, 0, w, h)
 }
 
@@ -15162,7 +15313,7 @@ async function displayIconEnsureAmpThumbOnDevice(key, fsCount) {
     try {
         let im = await displayIconImageFromUrl(cachedUrl);
         let isMt8 = Number(fsCount || 8) === 8;
-        let w = isMt8 ? 480 : 232;
+        let w = isMt8 ? 464 : 232;
         let h = isMt8 ? 146 : 100;
         let id = displayIconRenderCrop(im, 1, 0, 0, !1, w, h, { mode: 'color', color: '#000000' }, null, null);
         let rgb = displayIconRgb565FromImageData(id, !1, !0);
@@ -15191,7 +15342,7 @@ async function displayIconSyncAllPackToDeviceOnce() {
 }
 
 function displayIconIsMaskKey(key) {
-    return /^m([1-9]|1[0-6])$/.test(String(key || ``))
+    return /^m([1-9]|[1-4][0-9])$/.test(String(key || ``))
 }
 
 function notifyIconThumbUpdated(key, directUrl) {
@@ -15276,7 +15427,7 @@ async function displayIconFetchThumb(key, forceFresh) {
                 return;
             }
             let isAmpOrPhoto = k.startsWith(`amp`) || k.startsWith(`bg`) || k.startsWith(`s`);
-            let reqThumb = isAmpOrPhoto ? 64 : 48;
+            let reqThumb = /^s\d/.test(k) ? 144 : (isAmpOrPhoto ? 160 : 96);
             let query = `/api/display-icon?key=${encodeURIComponent(k)}&thumb=${reqThumb}` + (forceFresh ? `&_t=${Date.now()}` : ``);
             try {
                 let r = await zr(query),
@@ -15355,6 +15506,223 @@ function useDisplayIconThumb(key) {
     return url
 }
 
+/* Pre-visualizacao grande da tela (cabecote/icone): pede ao controlador uma
+ * versao maior (as miniaturas da lista sao de 48-64 px e ficavam minusculas). */
+var DISPLAY_ICON_PREVIEW_CACHE = {};
+/* Igual a displayIconRgb565ToUrl, mas corta as margens transparentes (chroma):
+ * cabecotes do ToneX vem num quadro grande com o amp pequeno no meio e na
+ * pre-visualizacao ficavam minusculos. */
+function displayIconTrimToUrl(u8, w, h) {
+    let chroma = DISPLAY_ICON_CHROMA_RGB565,
+        x0 = w, y0 = h, x1 = -1, y1 = -1;
+    for (let y = 0; y < h; y++) {
+        for (let x = 0; x < w; x++) {
+            let p = (y * w + x) * 2;
+            if (p + 1 >= u8.length) break;
+            let v = u8[p] | u8[p + 1] << 8;
+            if (v !== chroma && v !== 0) {
+                if (x < x0) x0 = x;
+                if (x > x1) x1 = x;
+                if (y < y0) y0 = y;
+                if (y > y1) y1 = y;
+            }
+        }
+    }
+    let full = displayIconRgb565ToUrl(u8, w, h);
+    if (x1 < 0 || ((x1 - x0 + 1) * (y1 - y0 + 1)) > w * h * 0.85) return full;
+    let pad = 2;
+    x0 = Math.max(0, x0 - pad), y0 = Math.max(0, y0 - pad);
+    x1 = Math.min(w - 1, x1 + pad), y1 = Math.min(h - 1, y1 + pad);
+    let cw = x1 - x0 + 1, chh = y1 - y0 + 1;
+    let src = document.createElement(`canvas`);
+    src.width = w, src.height = h;
+    let sctx = src.getContext(`2d`, { alpha: !0 }),
+        img = sctx.createImageData(w, h);
+    for (let i = 0, p = 0; p + 1 < u8.length && i + 3 < img.data.length; i += 4, p += 2) {
+        let v = u8[p] | u8[p + 1] << 8;
+        if (v === chroma) { img.data[i + 3] = 0; continue; }
+        img.data[i] = (v >> 11 & 31) << 3;
+        img.data[i + 1] = (v >> 5 & 63) << 2;
+        img.data[i + 2] = (v & 31) << 3;
+        img.data[i + 3] = 255;
+    }
+    sctx.putImageData(img, 0, 0);
+    let out = document.createElement(`canvas`);
+    out.width = cw, out.height = chh;
+    out.getContext(`2d`).drawImage(src, x0, y0, cw, chh, 0, 0, cw, chh);
+    return out.toDataURL(`image/png`);
+}
+function useDisplayIconPreview(key, px) {
+    let k = displayIconSanitizeKey(key || ``),
+        ck = k + `@` + px,
+        [rev, setRev] = (0, N.useState)(0),
+        [url, setUrl] = (0, N.useState)(() => (k && DISPLAY_ICON_PREVIEW_CACHE[ck]) || ``);
+    (0, N.useEffect)(() => {
+        let onUpd = updatedKey => {
+            if (updatedKey === k) {
+                Object.keys(DISPLAY_ICON_PREVIEW_CACHE).forEach(x => { if (x.startsWith(k + `@`)) delete DISPLAY_ICON_PREVIEW_CACHE[x]; });
+                setRev(r => r + 1);
+            }
+        };
+        DISPLAY_ICON_THUMB_LISTENERS.add(onUpd);
+        return () => { DISPLAY_ICON_THUMB_LISTENERS.delete(onUpd); };
+    }, [k]);
+    (0, N.useEffect)(() => {
+        if (!k || displayIconIsPack(k)) { setUrl(``); return; }
+        if (DISPLAY_ICON_PREVIEW_CACHE[ck]) { setUrl(DISPLAY_ICON_PREVIEW_CACHE[ck]); return; }
+        setUrl(``);
+        let cancelled = !1;
+        thumbFetchQueue = thumbFetchQueue.then(async () => {
+            if (cancelled) return;
+            try {
+                let r = await zr(`/api/display-icon?key=${encodeURIComponent(k)}&thumb=${px}`, {}, 20000),
+                    body = r?.data && r.data.data ? r.data : r;
+                if (!body?.data) return;
+                let u = displayIconTrimToUrl(displayIconB64ToU8(body.data), Number(body.w) || px, Number(body.h) || px);
+                if (u) {
+                    DISPLAY_ICON_PREVIEW_CACHE[ck] = u;
+                    if (!cancelled) setUrl(u);
+                }
+            } catch {}
+        });
+        return () => { cancelled = !0 };
+    }, [k, px, rev]);
+    return url
+}
+
+/* Biblioteca Guerrilha: imagens padrao que vao junto do app (biblioteca/biblioteca.js). */
+function GmxLibraryPicker({
+    initialTab: initialTab,
+    onPick: onPick,
+    onClose: onClose
+}) {
+    let [libData, setLibData] = (0, N.useState)(() => (typeof window < `u` && window.GMX_LIBRARY) || null),
+        [libErr, setLibErr] = (0, N.useState)(``),
+        lib = libData || { amps: [], pedais: [] },
+        base = (typeof window < `u` && window.GMX_LIBRARY_BASE) || `./biblioteca/`,
+        [tab, setTab] = (0, N.useState)(initialTab === `amps` ? `amps` : `pedais`),
+        [q, setQ] = (0, N.useState)(``),
+        [busy, setBusy] = (0, N.useState)(``);
+    (0, N.useEffect)(() => {
+        /* O ficheiro (~4 MB) so carrega quando a Biblioteca abre pela 1a vez. */
+        if (libData) return;
+        let src = (typeof window < `u` && window.GMX_LIBRARY_SRC) || `./biblioteca/biblioteca.js`,
+            el = document.createElement(`script`);
+        el.src = src;
+        el.onload = () => window.GMX_LIBRARY ? setLibData(window.GMX_LIBRARY) : setLibErr(`Biblioteca vazia`);
+        el.onerror = () => setLibErr(`Biblioteca não encontrada neste app`);
+        document.head.appendChild(el);
+    }, []);
+    let srcOf = it => it.d || (base + it.f);
+    let qq = q.trim().toLowerCase(),
+        list = (lib[tab] || []).filter(it => !qq || String(it.n || ``).toLowerCase().includes(qq)),
+        isAmps = tab === `amps`;
+    let tabBtn = (id, label, n) => (0, P.jsx)(`button`, {
+        type: `button`,
+        onClick: () => setTab(id),
+        style: {
+            flex: `1 1 0`, height: 36, borderRadius: 10, border: 0, fontSize: 12, fontWeight: 800,
+            letterSpacing: `0.06em`, textTransform: `uppercase`, cursor: `pointer`,
+            background: tab === id ? `linear-gradient(180deg,#ef4444,#b91c1c)` : `transparent`,
+            color: tab === id ? `#fff` : `#a1a1aa`
+        },
+        children: label + ` · ` + n
+    }, id);
+    return (0, P.jsx)(`div`, {
+        style: {
+            position: `fixed`, inset: 0, zIndex: 260, background: `rgba(0,0,0,0.72)`,
+            display: `flex`, alignItems: `center`, justifyContent: `center`, padding: 12
+        },
+        onClick: ev => {
+            ev.stopPropagation();
+            onClose()
+        },
+        children: (0, P.jsxs)(`div`, {
+            onClick: ev => ev.stopPropagation(),
+            style: {
+                width: `min(560px, calc(100vw - 24px))`, maxHeight: `86vh`, display: `flex`, flexDirection: `column`,
+                background: `#0c0d10`, border: `1px solid #27272a`, borderRadius: 16, overflow: `hidden`,
+                boxShadow: `0 25px 60px -15px rgba(0,0,0,0.9)`
+            },
+            children: [
+                (0, P.jsxs)(`div`, {
+                    style: { display: `flex`, alignItems: `center`, gap: 10, padding: `12px 14px`, borderBottom: `1px solid #1f1f23` },
+                    children: [
+                        (0, P.jsxs)(`div`, {
+                            style: { flex: 1, minWidth: 0 },
+                            children: [
+                                (0, P.jsx)(`div`, { style: { color: `#fff`, fontSize: 13, fontWeight: 900, letterSpacing: `0.12em`, textTransform: `uppercase` }, children: `Biblioteca Guerrilha` }),
+                                (0, P.jsx)(`div`, { style: { color: `#a1a1aa`, fontSize: 12, marginTop: 2 }, children: `Imagens que já vêm com o app — toque para usar` })
+                            ]
+                        }),
+                        (0, P.jsx)(`button`, {
+                            type: `button`,
+                            "aria-label": `Fechar`,
+                            onClick: onClose,
+                            style: { width: 36, height: 36, borderRadius: 10, border: `1px solid #27272a`, background: `#18181b`, color: `#d4d4d8`, fontSize: 16, cursor: `pointer` },
+                            children: `✕`
+                        })
+                    ]
+                }),
+                (0, P.jsxs)(`div`, {
+                    style: { display: `flex`, gap: 4, margin: `10px 14px 0`, padding: 3, borderRadius: 12, background: `#18181b` },
+                    children: [tabBtn(`pedais`, `Pedais`, (lib.pedais || []).length), tabBtn(`amps`, `Amps`, (lib.amps || []).length)]
+                }),
+                (0, P.jsx)(`input`, {
+                    type: `search`,
+                    value: q,
+                    placeholder: `Buscar (ex.: boss, strymon, marshall)`,
+                    onChange: ev => setQ(ev.target.value),
+                    style: {
+                        margin: `10px 14px 0`, height: 38, borderRadius: 10, border: `1px solid #27272a`, background: `#111114`,
+                        color: `#f4f4f5`, padding: `0 12px`, fontSize: 14, outline: `none`
+                    }
+                }),
+                (0, P.jsx)(`div`, {
+                    style: {
+                        flex: 1, minHeight: 0, overflowY: `auto`, WebkitOverflowScrolling: `touch`, padding: 14,
+                        display: `grid`, gap: 8, alignContent: `start`,
+                        gridTemplateColumns: isAmps ? `repeat(auto-fill, minmax(150px, 1fr))` : `repeat(auto-fill, minmax(92px, 1fr))`
+                    },
+                    children: list.length ? list.map(it => (0, P.jsxs)(`button`, {
+                        type: `button`,
+                        disabled: !!busy,
+                        onClick: async () => {
+                            setBusy(it.n);
+                            try {
+                                await onPick(srcOf(it), it)
+                            } finally {
+                                setBusy(``)
+                            }
+                        },
+                        style: {
+                            display: `flex`, flexDirection: `column`, alignItems: `center`, gap: 6, padding: 8, borderRadius: 12,
+                            border: busy === it.n ? `2px solid #ef4444` : `1px solid #27272a`, background: `#141418`,
+                            cursor: busy ? `wait` : `pointer`, opacity: busy && busy !== it.n ? .5 : 1
+                        },
+                        children: [
+                            (0, P.jsx)(`img`, {
+                                src: srcOf(it),
+                                alt: it.n,
+                                loading: `lazy`,
+                                decoding: `async`,
+                                style: { width: `100%`, height: isAmps ? 70 : 96, objectFit: `contain`, display: `block` }
+                            }),
+                            (0, P.jsx)(`span`, {
+                                style: { width: `100%`, color: `#d4d4d8`, fontSize: 11, fontWeight: 700, lineHeight: 1.2, textAlign: `center`, overflow: `hidden`, textOverflow: `ellipsis`, whiteSpace: `nowrap` },
+                                children: busy === it.n ? `Abrindo…` : it.n
+                            })
+                        ]
+                    }, tab + it.n)) : (0, P.jsx)(`div`, {
+                        style: { gridColumn: `1 / -1`, color: `#a1a1aa`, fontSize: 13, textAlign: `center`, padding: 24 },
+                        children: libErr ? libErr : (libData ? `Nada encontrado` : `Carregando biblioteca…`)
+                    })
+                })
+            ]
+        })
+    })
+}
+
 function FsScreenIconCropModal({
     slot: slot,
     file: file,
@@ -15370,9 +15738,9 @@ function FsScreenIconCropModal({
         isBg = !isAmp && !!(hideMask || targetKey === DISPLAY_BG_KEY || String(targetKey).startsWith('bg')),
         useRect = isBg || isAmp,
         isMt8 = Number(fsCount) === 8,
-        exportW = isAmp ? (isMt8 ? 480 : 232) : (isBg ? (isMt8 ? DISPLAY_BG_W_MT8 : 240) : DISPLAY_ICON_PX),
+        exportW = isAmp ? (isMt8 ? 464 : 232) : (isBg ? (isMt8 ? DISPLAY_BG_W_MT8 : 240) : DISPLAY_ICON_PX),
         exportH = isAmp ? (isMt8 ? 146 : 100) : (isBg ? (isMt8 ? DISPLAY_BG_H_MT8 : 240) : DISPLAY_ICON_PX),
-        previewW = isAmp ? (isMt8 ? 312 : 260) : (isBg ? (isMt8 ? 280 : 200) : 170),
+        previewW = isAmp ? (isMt8 ? 302 : 260) : (isBg ? (isMt8 ? 280 : 200) : 170),
         previewH = isAmp ? (isMt8 ? 95 : 112) : (isBg ? (isMt8 ? 187 : 200) : 170),
         pickRef = (0, N.useRef)(null),
         [img, setImg] = (0, N.useState)(null),
@@ -15387,7 +15755,9 @@ function FsScreenIconCropModal({
         [customImgObj, setCustomImgObj] = (0, N.useState)(null),
         customImgPickRef = (0, N.useRef)(null),
         canvasRef = (0, N.useRef)(null),
-        drag = (0, N.useRef)(null);
+        drag = (0, N.useRef)(null),
+        [libOpen, setLibOpen] = (0, N.useState)(!1),
+        libOk = typeof window < `u` && !!(window.GMX_LIBRARY || window.GMX_LIBRARY_SRC);
     (0, N.useEffect)(() => {
         if (transCfg.mode === 'main_bg') {
             getMainBgImage().then(im => { if (im) setMainBgImg(im); });
@@ -15408,6 +15778,27 @@ function FsScreenIconCropModal({
         };
         im.src = url
     }, []);
+    let pickFromLibrary = async url => {
+        try {
+            let blob;
+            if (String(url).startsWith(`data:`)) {
+                let [head, b64] = String(url).split(`,`),
+                    bin = atob(b64),
+                    u8 = new Uint8Array(bin.length);
+                for (let i = 0; i < bin.length; i++) u8[i] = bin.charCodeAt(i);
+                blob = new Blob([u8], { type: (head.match(/data:([^;]+)/) || [])[1] || `image/webp` })
+            } else {
+                let r = await fetch(url);
+                if (!r.ok) throw Error(`HTTP ` + r.status);
+                blob = await r.blob()
+            }
+            loadBlob(blob);
+            setLibOpen(!1)
+        } catch {
+            setLibOpen(!1);
+            setLoadErr(`Não foi possível abrir a imagem da biblioteca`)
+        }
+    };
     (0, N.useEffect)(() => {
         if (file) {
             loadBlob(file);
@@ -15501,6 +15892,7 @@ function FsScreenIconCropModal({
                 className: `flex max-h-[92vh] flex-col overflow-hidden rounded-2xl border border-zinc-800 bg-[#0c0d10] shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9),0_0_0_1px_rgba(255,255,255,0.06)]`,
                 onClick: ev => ev.stopPropagation(),
                 style: {
+                    background: `#0c0d10`,
                     width: isAmp ? `380px` : (isBg ? (isMt8 ? `380px` : `350px`) : `330px`),
                     maxWidth: `calc(100vw - 1.5rem)`
                 },
@@ -15546,6 +15938,11 @@ function FsScreenIconCropModal({
                     (0, P.jsxs)(`div`, {
                         className: `flex-1 overflow-y-auto px-4 py-3.5 space-y-3`,
                         children: [
+                            libOpen ? (0, P.jsx)(GmxLibraryPicker, {
+                                initialTab: isAmp ? `amps` : `pedais`,
+                                onPick: pickFromLibrary,
+                                onClose: () => setLibOpen(!1)
+                            }) : null,
                             (0, P.jsx)(`input`, {
                                 ref: pickRef,
                                 type: `file`,
@@ -15597,8 +15994,8 @@ function FsScreenIconCropModal({
                                 children: [
                                     (0, P.jsx)(`canvas`, {
                                         ref: canvasRef,
-                                        width: previewW,
-                                        height: previewH,
+                                        width: Math.round(previewW * gmxDpr()),
+                                        height: Math.round(previewH * gmxDpr()),
                                         className: `block cursor-grab active:cursor-grabbing`,
                                         style: {
                                             width: previewW,
@@ -15606,11 +16003,30 @@ function FsScreenIconCropModal({
                                             background: `transparent`
                                         }
                                     }),
-                                    !img && (0, P.jsx)(`button`, {
-                                        type: `button`,
-                                        onClick: () => pickRef.current && pickRef.current.click(),
-                                        className: `absolute inset-0 grid place-items-center font-display text-[11px] font-black uppercase tracking-[0.18em] text-zinc-400 hover:text-white transition-colors`,
-                                        children: `+ Escolher imagem`
+                                    !img && (0, P.jsxs)(`div`, {
+                                        style: { position: `absolute`, inset: 0, display: `flex`, flexDirection: `column`, alignItems: `center`, justifyContent: `center`, gap: 8, padding: 10 },
+                                        children: [libOk ? (0, P.jsx)(`button`, {
+                                            type: `button`,
+                                            onClick: () => setLibOpen(!0),
+                                            className: `font-display`,
+                                            style: {
+                                            display: `flex`, alignItems: `center`, justifyContent: `center`, gap: 6, width: `100%`, maxWidth: 220, height: 38,
+                                            borderRadius: 10, fontSize: 11, fontWeight: 900, letterSpacing: `0.06em`, whiteSpace: `nowrap`, textTransform: `uppercase`, cursor: `pointer`,
+                                                border: `1px solid rgba(248,113,113,0.5)`, color: `#fff`,
+                                                background: `linear-gradient(180deg,#ef4444 0%,#b91c1c 100%)`
+                                            },
+                                            children: `Biblioteca`
+                                        }) : null, (0, P.jsx)(`button`, {
+                                            type: `button`,
+                                            onClick: () => pickRef.current && pickRef.current.click(),
+                                            className: `font-display`,
+                                            style: {
+                                            display: `flex`, alignItems: `center`, justifyContent: `center`, gap: 6, width: `100%`, maxWidth: 220, height: 38,
+                                            borderRadius: 10, fontSize: 11, fontWeight: 900, letterSpacing: `0.06em`, whiteSpace: `nowrap`, textTransform: `uppercase`, cursor: `pointer`,
+                                                border: `1px solid #3f3f46`, color: `#e4e4e7`, background: `rgba(24,24,27,0.92)`
+                                            },
+                                            children: `Carregar arquivo`
+                                        })]
                                     })
                                 ]
                             }),
@@ -15679,10 +16095,18 @@ function FsScreenIconCropModal({
                                     }, lab))
                                 ]
                             }) : null,
+                            libOk ? (0, P.jsx)(`button`, {
+                                type: `button`,
+                                onClick: () => setLibOpen(!0),
+                                className: `flex w-full items-center justify-center gap-2 rounded-xl py-2.5 font-display uppercase transition-all`,
+                                style: { border: `1px solid rgba(248,113,113,0.45)`, background: `rgba(239,68,68,0.12)`, color: `#fecaca`, fontSize: 11, fontWeight: 900, letterSpacing: `0.14em` },
+                                children: img ? `Trocar pela Biblioteca` : `Abrir Biblioteca`
+                            }) : null,
                             (0, P.jsxs)(`button`, {
                                 type: `button`,
                                 onClick: () => pickRef.current && pickRef.current.click(),
                                 className: `flex w-full items-center justify-center gap-2 rounded-xl border border-zinc-800 bg-zinc-900/90 py-2.5 font-display text-[10.5px] font-black uppercase tracking-[0.16em] text-zinc-200 shadow-sm transition-all hover:border-zinc-700 hover:bg-zinc-800 hover:text-white`,
+                                style: { fontSize: 11, letterSpacing: `0.08em`, color: `#e4e4e7` },
                                 children: [
                                     (0, P.jsx)(`svg`, {
                                         xmlns: `http://www.w3.org/2000/svg`,
@@ -15699,7 +16123,7 @@ function FsScreenIconCropModal({
                                             (0, P.jsx)(`line`, { x1: `12`, y1: `3`, x2: `12`, y2: `15` })
                                         ]
                                     }),
-                                    img ? `Trocar ficheiro` : `Escolher PNG / JPEG`
+                                    img ? `Carregar outro arquivo` : `Carregar arquivo (PNG / JPEG)`
                                 ]
                             }),
                             (hasAlpha && isAmp) ? (0, P.jsxs)(`div`, {
@@ -15915,7 +16339,8 @@ function displayIconSlotButtons({
                     children: filled && thumbs[key] ? (0, P.jsx)(`img`, {
                         src: thumbs[key],
                         alt: key,
-                        className: `max-h-9 max-w-full object-contain`
+                        draggable: !1,
+                        style: { display: `block`, maxWidth: `100%`, maxHeight: 44, width: `auto`, height: `auto`, objectFit: `contain` }
                     }) : (0, P.jsx)(`span`, {
                         className: `font-display text-lg text-muted-foreground/40`,
                         children: `+`
@@ -16039,12 +16464,22 @@ function displayIconAssignTile({
                 className: `grid flex-1 place-items-center overflow-hidden rounded-md`,
                 style: {
                     width: `100%`,
-                    height: 48
+                    height: 56
                 },
                 children: src ? (0, P.jsx)(`img`, {
                     src,
                     alt: label || key,
-                    className: `w-full h-12 object-cover rounded-md shadow-sm transition-transform duration-200 ${selected ? `scale-105` : ``}`
+                    draggable: !1,
+                    style: {
+                        display: `block`,
+                        maxWidth: `100%`,
+                        maxHeight: 48,
+                        width: `auto`,
+                        height: `auto`,
+                        objectFit: `contain`,
+                        transform: selected ? `scale(1.05)` : `none`,
+                        transition: `transform .2s`
+                    }
                 }) : (0, P.jsx)(`span`, {
                     className: `font-display text-lg ${selected ? `text-accent font-bold` : `text-muted-foreground/40`}`,
                     children: `+`
@@ -16119,7 +16554,7 @@ function FsScreenIconPicker({
             setCatalog(cat);
             let next = {};
             for (let it of (cat?.items || [])) {
-                if (/^s([1-9]|1[0-6])$/.test(it.key)) {
+                if (/^s([1-9]|[1-4][0-9])$/.test(it.key)) {
                     try {
                         next[it.key] = await displayIconFetchThumb(it.key)
                     } catch {}
@@ -16264,7 +16699,7 @@ function FsScreenAmpPicker({ ampKey: e, fsIndex: t, fsCount: fc, onSetKey: n, em
     let currentKey = String(e || ``).trim(),
         [busyKey, setBusyKey] = (0, N.useState)(``);
     let effCount = Number(fc || (typeof fsCount !== 'undefined' ? fsCount : 8));
-    let maxSlots = effCount === 8 ? 16 : 12;
+    let maxSlots = 32;
 
     let pickKey = async key => {
         if (busyKey) return;
@@ -16410,11 +16845,13 @@ function FsBoxVisualCustomizer({
     })();
     let ampKey = ampSlot > 0 ? (`amp` + ampSlot) : ``;
     let ampThumb = useDisplayIconThumb(ampKey);
+    let ampPreview = useDisplayIconPreview(ampKey, 240);
     let activeSlotIdx = isStomp ? (Number(activeStompSlot || 1)) : Number(fsNumber || 1);
     let iconKey = isStomp 
         ? (w?.stompSlots?.[activeSlotIdx - 1]?.icon ? w.stompSlots[activeSlotIdx - 1].icon.trim() : ``) 
         : (w?.iconKey || ``);
     let iconThumb = useDisplayIconThumb(iconKey);
+    let iconPreview = useDisplayIconPreview(iconKey, 128);
 
     let hasAmp = ampSlot > 0;
     let hasIcon = !!(iconKey && String(iconKey).trim());
@@ -16625,8 +17062,8 @@ function FsBoxVisualCustomizer({
                     background: boxBackground,
                     border: boxBorder,
                     boxShadow: boxGlow,
-                    minHeight: isAmpMode ? `190px` : `175px`,
-                    maxHeight: isAmpMode ? `230px` : `205px`
+                    minHeight: isAmpMode ? `230px` : `200px`,
+                    maxHeight: isAmpMode ? `290px` : `260px`
                 },
                 children: [
                     
@@ -16636,10 +17073,14 @@ function FsBoxVisualCustomizer({
                         children: effectiveVisual === `amp` ? (
                             ampThumb ? (
                                 (0, P.jsx)(`img`, {
-                                    src: ampThumb,
+                                    src: ampPreview || ampThumb,
                                     alt: ampKey,
-                                    className: `max-h-[125px] h-28 w-auto min-w-[120px] max-w-[90%] rounded object-contain drop-shadow-[0_8px_20px_rgba(0,0,0,0.95)] transition-all duration-200`,
-                                    style: { filter: previewOn ? `none` : `brightness(0.45) contrast(0.85)` }
+                                    className: `rounded drop-shadow-[0_8px_20px_rgba(0,0,0,0.95)] transition-all duration-200`,
+                                    style: {
+                                        width: `96%`, maxWidth: `440px`, height: `auto`, maxHeight: `190px`,
+                                        objectFit: `contain`,
+                                        filter: previewOn ? `none` : `brightness(0.45) contrast(0.85)`
+                                    }
                                 })
                             ) : (
                                 (0, P.jsxs)(`div`, {
@@ -16653,12 +17094,14 @@ function FsBoxVisualCustomizer({
                         ) : effectiveVisual === `icon` ? (
                             iconThumb ? (
                                 (0, P.jsx)(`img`, {
-                                    src: iconThumb,
+                                    src: iconPreview || iconThumb,
                                     alt: iconKey,
                                     className: (iconKey && String(iconKey).startsWith(`s`))
-                                        ? `max-h-[110px] h-24 w-auto max-w-[85%] rounded-lg object-contain drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)] transition-all duration-200`
-                                        : `size-20 rounded object-contain drop-shadow-[0_3px_10px_rgba(0,0,0,0.85)] transition-all duration-200`,
-                                    style: { filter: previewOn ? `none` : `grayscale(100%) opacity(0.55)` }
+                                        ? `rounded-lg drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)] transition-all duration-200`
+                                        : `rounded drop-shadow-[0_3px_10px_rgba(0,0,0,0.85)] transition-all duration-200`,
+                                    style: (iconKey && String(iconKey).startsWith(`s`))
+                                        ? { width: `92%`, maxWidth: `420px`, height: `auto`, maxHeight: `170px`, objectFit: `contain`, filter: previewOn ? `none` : `grayscale(100%) opacity(0.55)` }
+                                        : { width: `auto`, height: `140px`, maxWidth: `90%`, objectFit: `contain`, filter: previewOn ? `none` : `grayscale(100%) opacity(0.55)` }
                                 })
                             ) : (
                                 (0, P.jsx)(`div`, {
@@ -18196,6 +18639,7 @@ function Xr() {
                 customStompSceneEnabled: src.customStompSceneEnabled ?? (scenesOn ? 1 : 0),
                 customSceneOutput: src.customSceneOutput,
                 customSceneTriggerMode: src.customSceneTriggerMode,
+                stompOffStyle: src.stompOffStyle,
                 customFxCount: src.customFxCount ?? fxCount,
                 customFx: Array.isArray(src.customFx) ? src.customFx.slice(0, 12).map((e, t) => normalizeCustomFx(e, t + 1)) : fxList.slice(0, fxCount).map((e, t) => normalizeCustomFx(e, t + 1)),
                 expMode: src.expMode,
@@ -18343,7 +18787,7 @@ function Xr() {
                     presetNames: usb?.presetNames
                 };
             usbFieldPresent(usb, `customStompEnabled`) && (stompOpts.stompEnabled = Number(usb.customStompEnabled) === 1), usbFieldPresent(usb, `customStompSceneEnabled`) && (stompOpts.scenesOn = Number(usb.customStompSceneEnabled) === 1), (usbFieldPresent(usb, `customFxCount`) || Array.isArray(usb?.customFx)) && (stompOpts.fxCount = fxN, stompOpts.fxList = Array.isArray(usb?.customFx) ? usb.customFx : []);
-            let hasStomp = usbFieldPresent(usb, `customStompEnabled`) || usbFieldPresent(usb, `customStompSceneEnabled`) || usbFieldPresent(usb, `customSceneOutput`) || usbFieldPresent(usb, `customSceneTriggerMode`) || usbFieldPresent(usb, `customFxCount`) || Array.isArray(usb?.customFx) && usb.customFx.length > 0,
+            let hasStomp = usbFieldPresent(usb, `customStompEnabled`) || usbFieldPresent(usb, `customStompSceneEnabled`) || usbFieldPresent(usb, `customSceneOutput`) || usbFieldPresent(usb, `customSceneTriggerMode`) || usbFieldPresent(usb, `stompOffStyle`) || usbFieldPresent(usb, `customFxCount`) || Array.isArray(usb?.customFx) && usb.customFx.length > 0,
                 sistemaParts = buildSistemaUsbParts(usb),
                 globalParts = [...buildGbUsbParts(usb, stompOpts), ...(hasStomp ? buildStompUsbParts(usb, stompOpts) : []), ...buildExpUsbParts(usb)];
             /* Sistema (usbmode) primeiro — é por preset activo e não deve ficar para o fim. */
@@ -20721,6 +21165,10 @@ function ei() {
 var stompSceneOutputOptions = [`Auto (USB+BT+MIDI)`, `USB`, `Bluetooth (BLE)`, `MIDI`],
     stompSceneTriggerOptions = [`Só ON`, `Só OFF`, `ON + OFF`, `Desativado`];
 
+/* Global: como os icones do Stomp ficam quando a chave esta em Off.
+ * 0 = cinza e escuros (como era); 1 = icone com a cor normal, so sem contorno e sem destaque. */
+var stompOffStyleOptions = [`Cinza (escurece)`, `Colorido (sem contorno)`];
+
 function ti({
     usbCfg: usbCfg,
     onPatchUsbCfg: onPatchUsbCfg
@@ -20770,6 +21218,13 @@ function ti({
                 value: stompSceneTriggerOptions[u],
                 onChange: e => onPatchUsbCfg?.({
                     customSceneTriggerMode: Math.max(0, stompSceneTriggerOptions.indexOf(e))
+                })
+            }), (0, P.jsx)(L, {
+                label: `Ícone com Stomp desligado`,
+                options: stompOffStyleOptions,
+                value: stompOffStyleOptions[Number(usbCfg?.stompOffStyle) === 1 ? 1 : 0],
+                onChange: e => onPatchUsbCfg?.({
+                    stompOffStyle: Math.max(0, stompOffStyleOptions.indexOf(e))
                 })
             }), (0, P.jsx)(R, {
                 label: `Efeitos globais`,
@@ -21932,6 +22387,7 @@ function getColorName(hex) {
     if (clean === `#ffffff` || clean === `#fafafa`) return `Branco`;
     if (clean === `#ef4444`) return `Vermelho Vivo`;
     if (clean === `#2563eb`) return `Azul`;
+    if (clean === `#ff8800`) return `Laranja Padrão`;
     return `Personalizada`;
 }
 
@@ -21967,7 +22423,7 @@ function DisplayColorSwatchField({
                 open: open,
                 onOpenChange: setOpen,
                 title: `Escolher ${label}`,
-                subtitle: `Toque na cor predefinida ou use personalizada`,
+                subtitle: `Toque numa cor da paleta`,
                 children: (0, P.jsxs)(`div`, {
                     className: `space-y-3.5 p-1 max-h-[65vh] overflow-y-auto`,
                     children: [
@@ -22010,32 +22466,6 @@ function DisplayColorSwatchField({
                                     }) : null
                                 });
                             })
-                        }),
-                        (0, P.jsxs)(`div`, {
-                            className: `mt-3 flex items-center justify-between gap-3 border-t border-border pt-3 px-1`,
-                            children: [
-                                (0, P.jsx)(`span`, {
-                                    className: `font-display text-[10px] uppercase tracking-widest text-muted-foreground font-bold`,
-                                    children: `Personalizada`
-                                }),
-                                (0, P.jsxs)(`div`, {
-                                    className: `flex items-center gap-2`,
-                                    children: [
-                                        (0, P.jsx)(`input`, {
-                                            type: `color`,
-                                            value: valueHex === `#0b0c0e` ? `#000000` : valueHex,
-                                            onChange: ev => onChangeHex(ev.target.value),
-                                            className: `size-9 cursor-pointer rounded-lg border border-border bg-transparent p-0.5`
-                                        }),
-                                        (0, P.jsx)(`button`, {
-                                            type: `button`,
-                                            onClick: () => setOpen(!1),
-                                            className: `rounded-lg bg-accent px-3 py-1.5 font-display text-[10px] font-black uppercase text-accent-foreground cursor-pointer`,
-                                            children: `OK`
-                                        })
-                                    ]
-                                })
-                            ]
                         })
                     ]
                 })
@@ -22374,7 +22804,7 @@ function TelaLayoutsVisualPanel({ usbConfig: e, onChange: t }) {
     let isMt8 = fsCount === 8;
     let isGlobalStompOn = Boolean(Number(e?.customStompEnabled ?? 0) === 1);
     let maxBgSlots = 16;
-    let maxAmpSlots = isMt8 ? 16 : 12;
+    let maxAmpSlots = 32;
     let displayStyle = Number(e?.displayStyle ?? (isMt8 ? 4 : 0));
     /* MT-8 permite Estilo 0 (Simples) */
     if (!isMt8 && displayStyle !== 0 && displayStyle !== 1 && displayStyle !== 6 && displayStyle !== 7) displayStyle = 0;
@@ -26881,21 +27311,6 @@ function wi({
                     })
                 }, e.value)
             })
-        }), (0, P.jsxs)(`div`, {
-            className: `mt-3 flex items-center gap-2 border-t border-border pt-3`,
-            children: [(0, P.jsx)(`span`, {
-                className: `font-display text-[9px] uppercase tracking-widest text-muted-foreground`,
-                children: `Custom`
-            }), (0, P.jsx)(`input`, {
-                type: `color`,
-                value: n === `#0b0c0e` ? `#000000` : n,
-                onChange: e => r(e.target.value),
-                className: `h-7 w-10 cursor-pointer rounded border border-border bg-transparent`
-            }), (0, P.jsx)(`input`, {
-                value: n,
-                onChange: e => r(e.target.value),
-                className: `w-full rounded-md border border-border bg-muted px-2 py-1 font-mono text-xs text-foreground focus:border-accent/50 focus:outline-none`
-            })]
         })]
     }), document.body) : null;
     return (0, P.jsxs)(`div`, {
