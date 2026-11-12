@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#090a0c" />
+  <meta name="description" content="Política de privacidade do aplicativo Guerrilha APP (Guerrilha Pedais)." />
+  <title>Política de Privacidade — Guerrilha APP</title>
+  <link rel="icon" href="assets/logo_final.png" type="image/png" />
+  <style>
+    :root {
+      --bg: #0a0c10;
+      --card: #151924;
+      --border: #222736;
+      --text: #f1f5f9;
+      --muted: #94a3b8;
+      --accent: #ef4444;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.65;
+      font-size: 16px;
+    }
+    main { max-width: 760px; margin: 0 auto; padding: 40px 16px 64px; }
+    header { display: flex; align-items: center; gap: 14px; margin-bottom: 28px; }
+    header img { width: 56px; height: 56px; }
+    h1 { font-size: 1.7rem; line-height: 1.25; }
+    .sub { color: var(--muted); font-size: 0.95rem; }
+    section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 22px;
+      margin-bottom: 16px;
+    }
+    h2 { font-size: 1.1rem; margin-bottom: 8px; color: var(--accent); }
+    p + p, p + ul, ul + p { margin-top: 10px; }
+    ul { padding-left: 22px; }
+    li + li { margin-top: 6px; }
+    a { color: #fca5a5; }
+    footer { color: var(--muted); font-size: 0.9rem; text-align: center; margin-top: 28px; }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <img src="assets/logo_final.png" alt="" onerror="this.style.display='none'" />
+      <div>
+        <h1>Política de Privacidade — Guerrilha APP</h1>
+        <p class="sub">Aplicativo oficial dos controladores Guerrilha Pedais · Última atualização: 9 de novembro de 2026</p>
+      </div>
+    </header>
+
+    <section>
+      <h2>Resumo</h2>
+      <p>O aplicativo <strong>Guerrilha APP</strong> serve para configurar os controladores MIDI da Guerrilha Pedais pelo Bluetooth. Ele <strong>não coleta, não armazena em servidores e não compartilha dados pessoais</strong>. Não tem cadastro, login, anúncios nem ferramentas de análise ou rastreamento.</p>
+    </section>
+
+    <section>
+      <h2>Bluetooth</h2>
+      <p>O app usa o Bluetooth do aparelho só para encontrar e se comunicar com o seu controlador Guerrilha Pedais: ler e gravar bancos, presets, nomes, cores e demais configurações do pedal.</p>
+      <p>No Android 12 ou mais novo é pedida a permissão <strong>“Dispositivos por perto”</strong>. Ela é declarada de forma que <strong>não</strong> é usada para saber a sua localização.</p>
+    </section>
+
+    <section>
+      <h2>Localização (só Android 11 ou anterior)</h2>
+      <p>No Android 6 a 11, o próprio sistema exige a permissão de <strong>Localização</strong> (e a Localização ligada) para que um app consiga procurar aparelhos Bluetooth. Nessas versões o Guerrilha APP pede essa permissão <strong>apenas para encontrar o controlador</strong>.</p>
+      <p>O app <strong>não lê, não guarda e não envia</strong> a sua localização. Do Android 12 em diante essa permissão nem é pedida.</p>
+    </section>
+
+    <section>
+      <h2>Dados que ficam no aparelho</h2>
+      <ul>
+        <li>As configurações do controlador são lidas do pedal e enviadas de volta para ele pelo Bluetooth.</li>
+        <li>Preferências do app (ex.: último aparelho usado, opções da tela) ficam guardadas só no seu celular.</li>
+        <li>Quando você exporta um backup, o arquivo é salvo ou compartilhado <strong>por você</strong>, no destino que você escolher.</li>
+      </ul>
+      <p>Nada disso é enviado para a Guerrilha Pedais nem para terceiros.</p>
+    </section>
+
+    <section>
+      <h2>Internet</h2>
+      <p>O app não depende de internet para funcionar e não envia dados para servidores. A permissão de Internet faz parte da estrutura padrão do aplicativo. Se em alguma versão futura o app passar a usar a internet (por exemplo, para buscar atualizações), esta política será atualizada antes.</p>
+    </section>
+
+    <section>
+      <h2>Crianças</h2>
+      <p>O app é uma ferramenta de configuração de equipamento musical, não é direcionado a crianças e não coleta dados de nenhum usuário, de qualquer idade.</p>
+    </section>
+
+    <section>
+      <h2>Seus direitos (LGPD)</h2>
+      <p>Como o app não coleta dados pessoais, não há dados seus guardados pela Guerrilha Pedais por meio dele. Para apagar tudo o que o app guardou no seu aparelho, basta desinstalá-lo ou limpar os dados do app nas configurações do sistema.</p>
+    </section>
+
+    <section>
+      <h2>Alterações e contato</h2>
+      <p>Se esta política mudar, a nova versão será publicada nesta mesma página, com a data atualizada no topo.</p>
+      <p>Dúvidas: <a href="mailto:dev@guerrilhapedais.com.br">dev@guerrilhapedais.com.br</a></p>
+    </section>
+
+    <footer>
+      <p>Guerrilha Pedais · <a href="index.html">Voltar para o site</a></p>
+    </footer>
+  </main>
+</body>
+</html>
