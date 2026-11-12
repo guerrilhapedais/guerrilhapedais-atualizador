@@ -89,7 +89,7 @@ function sleepMs(ms) {
  * Fecha e volta a abrir a porta (evita «already open» se o close ainda não libertou no Chrome).
  */
 async function serialReopenClean(p, baud) {
-  if (!p) throw new Error("Sem porta série");
+  if (!p) throw new Error("Sem porta serial");
   try {
     await p.close();
   } catch (_) {
@@ -177,7 +177,7 @@ async function openRomPortAfterCdcKick(preferredRomHandle, logFn) {
       await sleepMs(gapMs);
       if (i >= 2) {
         logFn(
-          "A aguardar a porta USB JTAG/serial (0x1001) após o comando à app… " + i + "/" + (attempts - 1)
+          "Aguardando a porta USB JTAG/serial (0x1001) após o comando ao app… " + i + "/" + (attempts - 1)
         );
       }
     }
@@ -195,7 +195,7 @@ async function openRomPortAfterCdcKick(preferredRomHandle, logFn) {
     }
   }
   throw new Error(
-    "Não foi possível abrir a porta ROM (0x1001) a tempo. Desliga e liga o USB, confirma modo update (FS1) se precisares, volta a «Ligar» e repete «Gravar firmware»."
+    "Não foi possível abrir a porta ROM (0x1001) a tempo. Desconecte e reconecte o USB, confirme o modo de atualização (FS1) se precisar, clique de novo em «Conectar» e repita «Gravar firmware»."
   );
 }
 
@@ -250,7 +250,7 @@ function logRomFlashPortHintIfNeeded(p) {
   logLine(
     "Porta da **aplicação** (CDC, PID 0x" +
       pid.toString(16) +
-      "). O comando ao controlador envia-se ao **Ligar**; reinicia o USB se precisares da linha ROM (0x1001) para gravar."
+      "). O comando ao controlador é enviado ao **Conectar**; reconecte o USB se precisar da linha ROM (0x1001) para gravar."
   );
 }
 
@@ -260,8 +260,8 @@ function logSerialPortSummary(p) {
   const i = p.getInfo();
   const vid = i.usbVendorId != null ? "0x" + i.usbVendorId.toString(16) : "—";
   const pid = i.usbProductId != null ? "0x" + i.usbProductId.toString(16) : "—";
-  logLine("Porta (Web Serial): mesmo dispositivo que escolheste no Chrome — USB VID " + vid + " PID " + pid + ".");
-  logLine("(No .exe aparece «COM…»; no browser só há este identificador USB.)");
+  logLine("Porta (Web Serial): o mesmo dispositivo que você escolheu no Chrome — USB VID " + vid + " PID " + pid + ".");
+  logLine("(No .exe aparece «COM…»; no navegador só existe este identificador USB.)");
   logRomFlashPortHintIfNeeded(p);
 }
 
@@ -367,20 +367,20 @@ function hasFirmwareReady() {
 function getConnectedHint() {
   if (firmwareMode === "bundled") {
     if (bundledCache.ok) {
-      return "Ligado. Clica «Gravar firmware» para sincronizar e gravar.";
+      return "Conectado. Clique em «Gravar firmware» para sincronizar e gravar.";
     }
-    return "Ligado. A atualização pré-selecionada não carregou — recarrega ou escolhe «Ficheiros no computador».";
+    return "Conectado. A versão do site não carregou — recarregue ou escolha «Arquivos no computador».";
   }
   if (firmwareMode === "factory") {
     if (bundledCache.ok && bundledCache.boot) {
-      return "Ligado. Clica «Gravar firmware» para reposição de fábrica (apaga presets/calibrações).";
+      return "Conectado. Clique em «Gravar firmware» para restaurar o padrão de fábrica (apaga presets e calibrações).";
     }
-    return "Ligado. Reposição de fábrica indisponível — falta «bootloader.bin» no manifesto.";
+    return "Conectado. Restauração de fábrica indisponível — falta «bootloader.bin» no manifesto.";
   }
   const hasFw = !!(el("fileFw")?.files?.[0]);
   return hasFw
-    ? "Ligado. Clica «Gravar firmware» para sincronizar e gravar."
-    : "Ligado. Escolhe o ficheiro .bin e clica «Gravar firmware».";
+    ? "Conectado. Clique em «Gravar firmware» para sincronizar e gravar."
+    : "Conectado. Escolha o arquivo .bin e clique em «Gravar firmware».";
 }
 
 function updateFlashButtonState() {
@@ -390,7 +390,7 @@ function updateFlashButtonState() {
   flashBtn.disabled = !canTry;
   flashBtn.classList.toggle("btn-danger", firmwareMode === "factory");
   flashBtn.classList.toggle("btn-success", firmwareMode !== "factory");
-  flashBtn.textContent = firmwareMode === "factory" ? "Gravar firmware (reposição)" : "Gravar firmware";
+  flashBtn.textContent = firmwareMode === "factory" ? "Gravar firmware (restauração)" : "Gravar firmware";
   updateNotesButtonState();
 }
 
@@ -424,7 +424,7 @@ function downloadBundledReleaseNotes() {
   a.click();
   a.remove();
   setTimeout(() => URL.revokeObjectURL(url), 1500);
-  logLine("Notas da versão: descarregaste «" + bundledCache.notesDownloadName + "».");
+  logLine("Notas da versão: você baixou «" + bundledCache.notesDownloadName + "».");
 }
 
 function setFirmwareMode(mode) {
@@ -453,17 +453,17 @@ function updateFactoryPanel() {
   }
   if (statusEl) {
     if (!bundledCache.ok) {
-      statusEl.textContent = "Manifesto não disponível — não é possível repor de fábrica a partir do site.";
+      statusEl.textContent = "Manifesto não disponível — não é possível restaurar o padrão de fábrica pelo site.";
       statusEl.classList.add("firmware-bundled-status--err");
       statusEl.classList.remove("firmware-bundled-status--ok");
     } else if (!hasBoot) {
       statusEl.textContent =
-        "Falta «bootloader.bin» no manifesto — adiciona o campo «bootloader» para activar esta opção.";
+        "Falta «bootloader.bin» no manifesto — adicione o campo «bootloader» para ativar esta opção.";
       statusEl.classList.add("firmware-bundled-status--err");
       statusEl.classList.remove("firmware-bundled-status--ok");
     } else {
       const sizeKB = (bundledCache.boot.length / 1024).toFixed(0);
-      statusEl.textContent = "Bootloader pronto (" + sizeKB + " KB) — vai apagar a flash inteira.";
+      statusEl.textContent = "Bootloader pronto (" + sizeKB + " KB) — a flash inteira será apagada.";
       statusEl.classList.add("firmware-bundled-status--ok");
       statusEl.classList.remove("firmware-bundled-status--err");
     }
@@ -473,10 +473,10 @@ function updateFactoryPanel() {
 async function getFlashBinaries() {
   if (firmwareMode === "bundled" || firmwareMode === "factory") {
     if (!bundledCache.ok || !bundledCache.fw) {
-      throw new Error("Atualização pré-selecionada indisponível — recarrega a página ou usa ficheiros no computador.");
+      throw new Error("Versão do site indisponível — recarregue a página ou use arquivos do computador.");
     }
     if (firmwareMode === "factory" && !bundledCache.boot) {
-      throw new Error("Reposição de fábrica indisponível — falta «bootloader.bin» no manifesto.");
+      throw new Error("Restauração de fábrica indisponível — falta «bootloader.bin» no manifesto.");
     }
     return {
       fwData: bundledCache.fw,
@@ -488,7 +488,7 @@ async function getFlashBinaries() {
   const filePart = el("filePart");
   const fw = fileFw?.files?.[0];
   if (!fw) {
-    throw new Error("Escolhe o ficheiro de firmware .bin");
+    throw new Error("Escolha o arquivo de firmware .bin");
   }
   const fwData = new Uint8Array(await fw.arrayBuffer());
   const partFile = filePart?.files?.[0] || null;
@@ -511,14 +511,14 @@ function setBundledSourceSubline(text, variant) {
 async function loadBundledFirmware() {
   const statusEl = el("bundledStatus");
   if (statusEl) {
-    statusEl.textContent = "A carregar ficheiros…";
+    statusEl.textContent = "Carregando arquivos…";
     statusEl.classList.remove("firmware-bundled-status--err", "firmware-bundled-status--ok");
   }
-  setBundledSourceSubline("A carregar a versão…", null);
+  setBundledSourceSubline("Carregando a versão…", null);
   try {
     const r = await fetch(getManifestUrl(), { cache: "no-store" });
     if (!r.ok) {
-      throw new Error("manifest.json em falta (HTTP " + r.status + ").");
+      throw new Error("manifest.json não encontrado (HTTP " + r.status + ").");
     }
     const m = await r.json();
     const base = getFirmwareBaseUrl();
@@ -528,11 +528,11 @@ async function loadBundledFirmware() {
     }
     const fwRes = await fetch(new URL(fwName, base), { cache: "no-store" });
     if (!fwRes.ok) {
-      throw new Error("Ficheiro «" + fwName + "» não encontrado (HTTP " + fwRes.status + ").");
+      throw new Error("Arquivo «" + fwName + "» não encontrado (HTTP " + fwRes.status + ").");
     }
     const buf = await fwRes.arrayBuffer();
     if (!buf || buf.byteLength === 0) {
-      throw new Error("O ficheiro de firmware está vazio.");
+      throw new Error("O arquivo de firmware está vazio.");
     }
     const fw = new Uint8Array(buf);
     let part = null;
@@ -594,7 +594,7 @@ async function loadBundledFirmware() {
       const extra = m.partition ? " — com tabela de partições" : " — só app";
       const head = label ? label + " — " : "";
       statusEl.textContent =
-        head + (fw.length / 1024).toFixed(0) + " KB" + extra + " — pronto a gravar";
+        head + (fw.length / 1024).toFixed(0) + " KB" + extra + " — pronto para gravar";
       statusEl.classList.add("firmware-bundled-status--ok");
     }
   } catch (e) {
@@ -610,7 +610,7 @@ async function loadBundledFirmware() {
       notesBlob: null,
       notesDownloadName: null,
     };
-    setBundledSourceSubline("Não disponível — escolhe ficheiros no computador", "err");
+    setBundledSourceSubline("Não disponível — escolha arquivos no computador", "err");
     if (statusEl) {
       statusEl.textContent = "Não carregou: " + msg;
       statusEl.classList.add("firmware-bundled-status--err");
@@ -661,14 +661,14 @@ const ESP32_S3_SERIAL_FILTERS = [
 
 /** Fluxo padrão Web Serial: o browser mostra o diálogo e devolve o `SerialPort` (sem atalho `getPorts`). */
 async function pickSerialPort() {
-  logLine("A pedir acesso USB (escolhe a porta do dispositivo no diálogo)…");
+  logLine("Pedindo acesso USB (escolha a porta do dispositivo na janela)…");
   return await navigator.serial.requestPort({ filters: ESP32_S3_SERIAL_FILTERS });
 }
 
 function setConnectionStatus(connected) {
   const statusState = el("statusState");
   if (!statusState) return;
-  statusState.textContent = connected ? "Ligado" : "Desligado";
+  statusState.textContent = connected ? "Conectado" : "Desconectado";
   statusState.classList.toggle("status-pill--on", connected);
 }
 
@@ -714,18 +714,18 @@ function setupEventHandlers() {
 
   el("connect")?.addEventListener("click", async () => {
     if (!("serial" in navigator)) {
-      logLine("Usa Chrome ou Edge com Web Serial.");
+      logLine("Use Chrome ou Edge (com Web Serial).");
       return;
     }
     if (serialConnectBusy) {
-      logLine("Ligação já em curso — aguarda.");
+      logLine("Conexão já em andamento — aguarde.");
       return;
     }
     serialConnectBusy = true;
     try {
       await cleanupPort({ skipUi: true });
       port = await pickSerialPort();
-      logLine("A abrir a porta USB (Web Serial, " + ROM_BAUDRATE + " baud)…");
+      logLine("Abrindo a porta USB (Web Serial, " + ROM_BAUDRATE + " baud)…");
       await serialReopenClean(port, ROM_BAUDRATE);
       logLine("Porta USB aberta.");
       logSerialPortSummary(port);
@@ -738,11 +738,11 @@ function setupEventHandlers() {
       if (tinyusbAppOnlyPid(pidConn)) {
         try {
           await sendCdcUpdateKick(port);
-          logLine("Comando GUERRILHA_UPDATE enviado (pedido em NVS). Sem reinício automático no chip — reinicia o USB se precisares da ROM para gravar.");
+          logLine("Comando GUERRILHA_UPDATE enviado (pedido em NVS). Sem reinício automático no chip — reconecte o USB se precisar da ROM para gravar.");
         } catch (e) {
-          logLine("Aviso: não foi possível enviar o comando à CDC (" + ((e && e.message) || e) + ").");
+          logLine("Aviso: não foi possível enviar o comando pela CDC (" + ((e && e.message) || e) + ").");
         }
-        logLine("«Gravar firmware» sincroniza e grava; em modo app TinyUSB volta a enviar o comando antes do esptool.");
+        logLine("«Gravar firmware» sincroniza e grava; no modo app TinyUSB o comando é reenviado antes do esptool.");
       } else {
         logLine("«Gravar firmware» sincroniza e grava (porta já é ROM ou outra linha — sem comando CDC ao ligar).");
       }
@@ -750,12 +750,12 @@ function setupEventHandlers() {
       updateUiConnected(true);
     } catch (e) {
       if (isUserCancelledPortPick(e)) {
-        logLine("Cancelaste a escolha da porta — volta a clicar «Ligar dispositivo».");
+        logLine("Você cancelou a escolha da porta — clique de novo em «Conectar dispositivo».");
       } else {
         const em = (e && e.message) || String(e);
-        logLine("Erro: " + em + " — (Desligar nesta página, espera 1–2 s, fecha outra aba com o site ou outra app na COM; tenta de novo.)");
+        logLine("Erro: " + em + " — (clique em Desconectar nesta página, espere 1–2 s, feche outra aba com o site ou outro programa usando a COM e tente de novo.)");
         if (/already open/i.test(em)) {
-          logLine("Dica «already open»: o Chrome ainda não libertou a porta; «Desligar» + espera ou recarrega a página.");
+          logLine("Dica «already open»: o Chrome ainda não liberou a porta; clique em «Desconectar» e espere, ou recarregue a página.");
         }
       }
       await cleanupPort();
@@ -767,27 +767,27 @@ function setupEventHandlers() {
   });
 
   el("disconnect")?.addEventListener("click", async () => {
-    logLine("A desligar…");
+    logLine("Desconectando…");
     await cleanupPort();
   });
 
   el("flash")?.addEventListener("click", async () => {
     if (!port) {
-      logLine("Primeiro: «Ligar dispositivo» e escolhe a porta USB.");
+      logLine("Primeiro clique em «Conectar dispositivo» e escolha a porta USB.");
       return;
     }
     if (firmwareMode === "bundled") {
       if (!bundledCache.ok) {
-        logLine("A atualização pré-selecionada não está pronta — recarrega ou escolhe «Ficheiros no computador».");
+        logLine("A versão do site não está pronta — recarregue ou escolha «Arquivos no computador».");
         return;
       }
     } else if (firmwareMode === "factory") {
       if (!bundledCache.ok || !bundledCache.boot) {
-        logLine("Reposição de fábrica não está pronta — falta «bootloader.bin» no manifesto.");
+        logLine("Restauração de fábrica não está pronta — falta «bootloader.bin» no manifesto.");
         return;
       }
     } else if (!el("fileFw")?.files?.[0]) {
-      logLine("Escolhe o ficheiro de firmware .bin");
+      logLine("Escolha o arquivo de firmware .bin");
       return;
     }
 
@@ -819,10 +819,10 @@ function setupEventHandlers() {
 
     if (tinyusbAppOnlyPid(pidPrep)) {
       logLine(
-        "Segundo diálogo: aparecem todas as interfaces Espressif (VID 0x303a) — escolhe **USB JTAG/serial** (ROM, PID **0x1001**), não a linha da aplicação (0x4008/0x4009)."
+        "Segunda janela: aparecem todas as interfaces Espressif (VID 0x303a) — escolha **USB JTAG/serial** (ROM, PID **0x1001**), não a linha do aplicativo (0x4008/0x4009)."
       );
       logLine(
-        "Se **0x1001** não estiver na lista, cancela: arranca com FS1 (modo update) ou desliga/liga o USB e clica outra vez em «Gravar firmware» quando o Chrome listar a ROM."
+        "Se **0x1001** não estiver na lista, cancele: ligue o pedal segurando FS1 (modo de atualização) ou desconecte e reconecte o USB e clique de novo em «Gravar firmware» quando o Chrome listar a ROM."
       );
     }
 
@@ -837,28 +837,28 @@ function setupEventHandlers() {
       /* Reposição de fábrica sem 2.º diálogo ROM: confirm aqui (não invalida o gesture do requestPort). */
       if (!tinyusbAppOnlyPid(pidPrep) && firmwareMode === "factory") {
         const confirmed = window.confirm(
-          "Reposição de fábrica\n\n" +
+          "Restauração de fábrica\n\n" +
             "Vai apagar TODA a flash do dispositivo:\n" +
-            "  • Presets e configurações guardados\n" +
+            "  • Presets e configurações salvos\n" +
             "  • Calibrações\n" +
             "  • LittleFS / NVS\n\n" +
-            "A seguir grava bootloader + tabela + firmware do site.\n\n" +
+            "Depois grava o bootloader, a tabela de partições e o firmware do site.\n\n" +
             "Continuar?"
         );
         if (!confirmed) {
-          logLine("Reposição de fábrica cancelada.");
+          logLine("Restauração de fábrica cancelada.");
           return;
         }
       }
 
-      setProgress(0.02, "A preparar a porta USB…");
+      setProgress(0.02, "Preparando a porta USB…");
       if (tinyusbAppOnlyPid(pidPrep)) {
         let romHandle;
         try {
           romHandle = await romPortRequestPromise;
         } catch (e) {
           if (isUserCancelledPortPick(e)) {
-            logLine("Cancelaste a porta ROM — operação interrompida.");
+            logLine("Você cancelou a porta ROM — operação interrompida.");
           } else {
             logLine("ERRO: " + ((e && e.message) || e));
           }
@@ -875,11 +875,11 @@ function setupEventHandlers() {
         }
         if (tinyusbAppOnlyPid(romPidCheck)) {
           logLine(
-            "ERRO: No 2.º diálogo foi escolhida a porta da **applicação** (PID 0x" +
+            "ERRO: na 2.ª janela foi escolhida a porta do **aplicativo** (PID 0x" +
               romPidCheck.toString(16) +
               "), não a **USB JTAG/serial** (0x" +
               USB_PID_ESP32S3_ROM_JTAG.toString(16) +
-              "). Repete «Gravar firmware» e escolhe só a linha **USB JTAG/serial**."
+              "). Repita «Gravar firmware» e escolha só a linha **USB JTAG/serial**."
           );
           setProgress(0, "Falha na gravação.");
           return;
@@ -890,21 +890,21 @@ function setupEventHandlers() {
               romPidCheck.toString(16) +
               " (esperado 0x" +
               USB_PID_ESP32S3_ROM_JTAG.toString(16) +
-              " para ROM). Se falhar a sincronização, confirma o cabo e o modo bootloader."
+              " para ROM). Se a sincronização falhar, confira o cabo e o modo bootloader."
           );
         }
         if (firmwareMode === "factory") {
           const okFactory = window.confirm(
-            "Reposição de fábrica\n\n" +
+            "Restauração de fábrica\n\n" +
               "Vai apagar TODA a flash do dispositivo:\n" +
-              "  • Presets e configurações guardados\n" +
+              "  • Presets e configurações salvos\n" +
               "  • Calibrações\n" +
               "  • LittleFS / NVS\n\n" +
-              "A seguir grava bootloader + tabela + firmware do site.\n\n" +
+              "Depois grava o bootloader, a tabela de partições e o firmware do site.\n\n" +
               "Continuar?"
           );
           if (!okFactory) {
-            logLine("Reposição de fábrica cancelada.");
+            logLine("Restauração de fábrica cancelada.");
             try {
               await romHandle.close();
             } catch (_) {
@@ -914,15 +914,15 @@ function setupEventHandlers() {
             return;
           }
         }
-        logLine("CDC (TinyUSB): a reenviar comando de preparação…");
+        logLine("CDC (TinyUSB): reenviando o comando de preparação…");
         try {
           await sendCdcUpdateKick(port);
-          logLine("Comando enviado. **Reinicia o USB** (ou o chip) para a ROM (0x1001) aparecer, se ainda estiveres na app.");
+          logLine("Comando enviado. **Reconecte o USB** (ou reinicie o chip) para a ROM (0x1001) aparecer, se ainda estiver no app.");
           await sleepMs(CDC_UPDATE_GRAVAR_PAUSE_MS);
         } catch (e) {
-          logLine("Aviso: falha ao enviar à CDC (" + ((e && e.message) || e) + "). Continuação…");
+          logLine("Aviso: falha ao enviar pela CDC (" + ((e && e.message) || e) + "). Continuação…");
         }
-        logLine("A fechar a CDC da app; a seguir liga-se a linha ROM (0x1001) para o esptool…");
+        logLine("Fechando a CDC do app; em seguida conecta a linha ROM (0x1001) para o esptool…");
         try {
           await port.close();
         } catch (_) {
@@ -938,7 +938,7 @@ function setupEventHandlers() {
         logSerialPortSummary(port);
         logLine("Porta USB pronta para sincronizar (interface ROM).");
       } else {
-        logLine("A fechar/reabrir a porta (evita «already open» e limpa o estado antes do esptool)…");
+        logLine("Fechando e reabrindo a porta (evita «already open» e limpa o estado antes do esptool)…");
         await serialReopenClean(port, ROM_BAUDRATE);
         logLine("Porta USB pronta para sincronizar.");
       }
@@ -955,17 +955,17 @@ function setupEventHandlers() {
       };
       esploader = new ESPLoader(loaderOpts);
 
-      setProgress(0.06, "A sincronizar com o chip (esptool)…");
-      logLine("A sincronizar com o chip (esptool)…");
+      setProgress(0.06, "Sincronizando com o chip (esptool)…");
+      logLine("Sincronizando com o chip (esptool)…");
       await withTimeout(
         esploader.main("default_reset"),
         SYNC_TIMEOUT_MS,
         "Sincronização demorou mais de " +
           Math.round(SYNC_TIMEOUT_MS / 1000) +
-          " s. Fecha outras apps na porta ou tenta modo bootloader."
+          " s. Feche outros programas que usam a porta ou tente o modo bootloader."
       );
 
-      setProgress(0.12, "A ler ficheiros…");
+      setProgress(0.12, "Lendo arquivos…");
       try {
         const bins = await getFlashBinaries();
         fwData = bins.fwData;
@@ -973,11 +973,11 @@ function setupEventHandlers() {
         bootData = bins.bootData;
       } catch (err) {
         logLine((err && err.message) || String(err));
-        setProgress(0, "Falha ao ler ficheiros.");
+        setProgress(0, "Falha ao ler os arquivos.");
         return;
       }
       if (firmwareMode === "bundled" || firmwareMode === "factory") {
-        const tag = firmwareMode === "factory" ? "Reposição de fábrica" : "Atualização pré-selecionada";
+        const tag = firmwareMode === "factory" ? "Restauração de fábrica" : "Versão do site";
         logLine(
           tag + ": " +
             (bundledCache.label || "build") +
@@ -1001,20 +1001,20 @@ function setupEventHandlers() {
 
       const doEraseAll = firmwareMode === "factory";
       if (doEraseAll) {
-        logLine("Reposição de fábrica: vai apagar a flash inteira antes de gravar (presets/calibrações são perdidos).");
+        logLine("Restauração de fábrica: a flash inteira será apagada antes de gravar (presets e calibrações serão perdidos).");
       }
 
-      setProgress(0.18, "A gravar (não desligues o USB)…");
+      setProgress(0.18, "Gravando (não desconecte o USB)…");
 
       let calculateMD5Hash = undefined;
       try {
         calculateMD5Hash = makeFlashMd5Calculator(await loadSparkMd5());
-        logLine("Verificação MD5 na flash activa (confere cada região após gravar).");
+        logLine("Verificação MD5 ativa (confere cada região após gravar).");
       } catch (e) {
         logLine(
-          "Aviso: verificação MD5 desactivada (" +
+          "Aviso: verificação MD5 desativada (" +
             ((e && e.message) || e) +
-            "). Se «Pronto» aparecer sem alteração no chip, recarrega a página e tenta outra rede."
+            "). Se «Pronto» aparecer sem mudança no chip, recarregue a página e tente outra rede."
         );
       }
 
@@ -1036,30 +1036,30 @@ function setupEventHandlers() {
       });
 
       if (calculateMD5Hash) {
-        logLine("MD5 na flash confere com os ficheiros — gravação verificada.");
+        logLine("MD5 na flash confere com os arquivos — gravação verificada.");
       }
 
-      setProgress(0.98, "A concluir e reiniciar o chip…");
+      setProgress(0.98, "Concluindo e reiniciando o chip…");
       /* ESP32-S3 USB nativo: segundo argumento pede sequência de reset compatível com OTG. */
       await esploader.after("hard_reset", true);
       setProgress(1, "Concluído.");
       showFlashSuccessDialog();
       logLine(
-        "Pronto — gravação concluída. Reinicia o MT-Series desligando e voltando a ligar o USB do controlador se não arrancar sozinho; com **USB JTAG/serial** (0x1001) o reset automático **nem sempre** é visível."
+        "Pronto — gravação concluída. Se o controlador não reiniciar sozinho, desconecte e reconecte o USB; com **USB JTAG/serial** (0x1001) o reinício automático **nem sempre** é visível."
       );
       setConnectionStatus(true);
     } catch (e) {
       const msg = (e && e.message) || String(e);
       logLine("ERRO: " + msg);
       if (/md5/i.test(msg)) {
-        logLine("Dica: dados na flash não batem certo com o ficheiro — cabo, alimentação ou outra app a usar a porta.");
+        logLine("Dica: os dados na flash não conferem com o arquivo — verifique o cabo, a alimentação ou outro programa usando a porta.");
       }
       if (/flash ?size|size/i.test(msg) || /mode/i.test(msg)) {
-        logLine("Dica: confirma o ficheiro de firmware (mapeamento e formato).");
+        logLine("Dica: confira o arquivo de firmware (mapeamento e formato).");
       }
       if (/failed to connect/i.test(msg)) {
         logLine(
-          "Dica: confirma o reinício no firmware após o comando CDC. Verifica o cabo e se escolheste a linha **USB JTAG/serial** (0x1001), não a CDC (0x4009)."
+          "Dica: confira se o firmware reiniciou após o comando CDC. Verifique o cabo e se você escolheu a linha **USB JTAG/serial** (0x1001), não a CDC (0x4009)."
         );
       }
       setProgress(0, "Falha na gravação.");
@@ -1077,7 +1077,7 @@ function setupEventHandlers() {
           await serialReopenClean(port, ROM_BAUDRATE);
           logLine("Porta reaberta após gravação.");
         } catch (e) {
-          logLine("Aviso: não foi possível reabrir a série após gravação — «Desligar» e volta a «Ligar». " + ((e && e.message) || e));
+          logLine("Aviso: não foi possível reabrir a porta serial após gravar — clique em «Desconectar» e depois em «Conectar». " + ((e && e.message) || e));
         }
       }
       updateFlashButtonState();
@@ -1102,16 +1102,16 @@ function setupEventHandlers() {
         setFirmwareMode(radio.value);
         const label =
           radio.value === "factory"
-            ? "reposição de fábrica (apaga tudo)"
+            ? "restauração de fábrica (apaga tudo)"
             : radio.value === "manual"
-              ? "ficheiros no computador"
-              : "atualização pré-selecionada";
+              ? "arquivos no computador"
+              : "versão do site";
         logLine("Origem: " + label);
       }
     });
   });
   el("reloadBundled")?.addEventListener("click", () => {
-    logLine("A recarregar ficheiros da atualização pré-selecionada…");
+    logLine("Recarregando os arquivos da versão do site…");
     loadBundledFirmware();
   });
 
@@ -1132,7 +1132,7 @@ function setupEventHandlers() {
     setFirmwareMode("bundled");
   }
   updateUiConnected(false);
-  logLine("Ferramenta pronta. Podes ligar o dispositivo.");
+  logLine("Ferramenta pronta. Você já pode conectar o dispositivo.");
 }
 
 /** Arranque: sem import estático (evita página em branco se um CDN cair) */
@@ -1151,7 +1151,7 @@ async function start() {
     setupEventHandlers();
     await loadBundledFirmware();
     if (ok) {
-      ok.textContent = "Ferramenta pronta. Usa Chrome ou Edge, liga o cabo USB e clica «Ligar dispositivo».";
+      ok.textContent = "Ferramenta pronta. Use Chrome ou Edge, conecte o cabo USB e clique em «Conectar dispositivo».";
       ok.classList.add("is-ready");
       ok.style.display = "block";
       ok.removeAttribute("aria-hidden");

@@ -1,91 +1,115 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-BR">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#090a0c" />
-  <meta name="description" content="Atualizador de firmware Guerrilha Pedais por USB — escolhe a tua linha MT, MT-S ou MX." />
+  <meta name="description" content="Atualizador de firmware, editores e manual dos controladores Guerrilha Pedais (linhas MX, MT e MT-S)." />
   <title>Guerrilha Pedais — Atualizador de firmware</title>
-  <link rel="icon" href="assets/logo_final.png" type="image/png" />
+  <link rel="icon" href="assets/guerrilha-app-icone-180.png" type="image/png" />
+  <link rel="apple-touch-icon" href="assets/guerrilha-app-icone-180.png" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body class="home-page">
-  <a class="skip-link" href="#main">Saltar para o conteúdo</a>
+  <a class="skip-link" href="#main">Pular para o conteúdo</a>
   <div class="layout layout--home">
     <header class="home-hero" role="banner">
       <div class="home-hero__glow" aria-hidden="true"></div>
       <div class="home-hero__inner">
         <img
           class="home-hero__logo"
-          src="assets/logo_final.png"
+          src="assets/guerrilha-app-emblema.png"
           width="108"
           height="108"
           alt="Guerrilha Pedais"
+          style="width: clamp(7rem, 22vw, 9rem); border-radius: 0; box-shadow: none; filter: drop-shadow(0 0 22px rgba(40, 110, 255, 0.45)) drop-shadow(0 8px 18px rgba(0, 0, 0, 0.5));"
           decoding="async"
           fetchpriority="high"
           onerror="this.style.display='none'"
         />
         <p class="home-hero__eyebrow">Atualização por USB</p>
         <h1 class="home-hero__title">Guerrilha Pedais</h1>
-        <p class="home-hero__sub">Escolhe o modelo do teu controlador.</p>
+        <p class="home-hero__sub">Escolha o modelo do seu controlador.</p>
       </div>
     </header>
 
-    <main id="main" class="product-picker" tabindex="-1" aria-label="Escolher linha do controlador">
-      <a href="mt.html" class="product-card product-card--mt" aria-label="MT-Series — abrir atualizador">
-        <span class="product-card__kicker">Linha clássica</span>
-        <h2 class="product-card__title">MT <span class="product-card__badge product-card__badge--mt">Novo</span></h2>
-        <p class="product-card__desc">Firmware da série MT, gravado localmente por USB.</p>
-        <span class="product-card__cta">Abrir atualizador →</span>
-      </a>
+    <main id="main" tabindex="-1">
+      <section class="home-group" aria-labelledby="g-firmware">
+        <h2 class="home-group__title" id="g-firmware">Atualizar firmware</h2>
+        <div class="product-picker product-picker--three">
+          <a href="mx.html" class="product-card product-card--mx" aria-label="Linha MX — abrir atualizador">
+            <span class="product-card__kicker">Linha MX · atual</span>
+            <h3 class="product-card__title">MX</h3>
+            <p class="product-card__desc">MX-4, MX-6 e MX-8.</p>
+            <span class="product-card__version" data-manifest="firmware/latest-mx/manifest.json">Versão —</span>
+            <span class="product-card__cta">Abrir atualizador →</span>
+          </a>
 
-      <a href="mt-s.html" class="product-card product-card--mts" aria-label="MT-S Series — abrir atualizador">
-        <span class="product-card__kicker">Linha S</span>
-        <h2 class="product-card__title">MT-S</h2>
-        <p class="product-card__desc">Firmware da série MT-S, gravado localmente por USB.</p>
-        <span class="product-card__cta">Abrir atualizador →</span>
-      </a>
+          <a href="mt.html" class="product-card product-card--mt" aria-label="Linha MT — abrir atualizador">
+            <span class="product-card__kicker">Linha clássica</span>
+            <h3 class="product-card__title">MT</h3>
+            <p class="product-card__desc">Série MT.</p>
+            <span class="product-card__version" data-manifest="firmware/latest/manifest.json">Versão —</span>
+            <span class="product-card__cta">Abrir atualizador →</span>
+          </a>
 
-      <a href="mx.html" class="product-card product-card--mx" aria-label="MX Series — abrir atualizador">
-        <span class="product-card__kicker">Linha MX</span>
-        <h2 class="product-card__title">MX <span class="product-card__badge product-card__badge--mt">Novo</span></h2>
-        <p class="product-card__desc">Firmware da série MX, gravado localmente por USB.</p>
-        <span class="product-card__cta">Abrir atualizador →</span>
-      </a>
+          <a href="mt-s.html" class="product-card product-card--mts" aria-label="Linha MT-S — abrir atualizador">
+            <span class="product-card__kicker">Linha S</span>
+            <h3 class="product-card__title">MT-S</h3>
+            <p class="product-card__desc">Série MT-S.</p>
+            <span class="product-card__version" data-manifest="firmware/latest-s/manifest.json">Versão —</span>
+            <span class="product-card__cta">Abrir atualizador →</span>
+          </a>
+        </div>
+      </section>
 
-      <a href="editorpro/controlador-midi.html" class="product-card product-card--editor" aria-label="Editor MT-S — abrir editor">
-        <div class="product-card__copy">
-          <span class="product-card__kicker">Ferramenta</span>
-          <h2 class="product-card__title">Editor MT-S </h2>
-          <p class="product-card__desc">Configura o controlador MT-S no browser.</p>
+      <section class="home-group" aria-labelledby="g-tools">
+        <h2 class="home-group__title" id="g-tools">Configurar e aprender</h2>
+        <div class="product-picker product-picker--tools">
+          <a href="editor-mx/controlador-midi.html" class="product-card product-card--tool" aria-label="Editor MX — abrir no navegador">
+            <span class="product-card__kicker">Editor · Beta</span>
+            <h3 class="product-card__title">MX</h3>
+            <p class="product-card__desc">Configure o controlador MX no navegador.</p>
+            <span class="product-card__cta">Abrir editor →</span>
+          </a>
+          <a href="editor-mt/controlador-midi.html" class="product-card product-card--tool" aria-label="Editor MT — abrir no navegador">
+            <span class="product-card__kicker">Editor · Beta</span>
+            <h3 class="product-card__title">MT</h3>
+            <p class="product-card__desc">Configure o controlador MT no navegador.</p>
+            <span class="product-card__cta">Abrir editor →</span>
+          </a>
+          <a href="editorpro/controlador-midi.html" class="product-card product-card--tool" aria-label="Editor MT-S — abrir no navegador">
+            <span class="product-card__kicker">Editor</span>
+            <h3 class="product-card__title">MT-S</h3>
+            <p class="product-card__desc">Configure o controlador MT-S no navegador.</p>
+            <span class="product-card__cta">Abrir editor →</span>
+          </a>
+          <a href="manual.html" class="product-card product-card--tool product-card--manual" aria-label="Manual do usuário da linha MX">
+            <span class="product-card__kicker">Manual do usuário</span>
+            <h3 class="product-card__title">MX</h3>
+            <p class="product-card__desc">Ligações, modos das chaves, telas e conexões.</p>
+            <span class="product-card__cta">Ler manual →</span>
+          </a>
         </div>
-        <span class="product-card__cta">Abrir editor →</span>
-      </a>
-       <a href="editor-mt/controlador-midi.html" class="product-card product-card--editor" aria-label="Editor MT-S — abrir editor">
-        <div class="product-card__copy">
-          <span class="product-card__kicker">Ferramenta</span>
-          <h2 class="product-card__title">Editor MT <span class="product-card__badge">Beta</span></h2>
-          <p class="product-card__desc">Configura o controlador MT no browser.</p>
-        </div>
-        <span class="product-card__cta">Abrir editor →</span>
-      </a>
-       <a href="editor-mx/controlador-midi.html" class="product-card product-card--editor" aria-label="Editor MT-S — abrir editor">
-        <div class="product-card__copy">
-          <span class="product-card__kicker">Ferramenta</span>
-          <h2 class="product-card__title">Editor MX <span class="product-card__badge">Beta</span></h2>
-          <p class="product-card__desc">Configura o controlador MX no browser.</p>
-        </div>
-        <span class="product-card__cta">Abrir editor →</span>
-      </a>
+      </section>
     </main>
 
     <p class="home-hint">
-      Usa <strong>Google Chrome</strong> ou <strong>Microsoft Edge</strong>. Nada é enviado para a Internet — a gravação é local por USB.
+      Use <strong>Google Chrome</strong> ou <strong>Microsoft Edge</strong> no computador. Nada é enviado para a internet: a gravação acontece direto pelo cabo USB.
     </p>
 
     <footer>
       <p>Guerrilha Pedais — atualização de firmware por USB.</p>
     </footer>
   </div>
+  <script>
+    /* Versão de cada linha lida do manifest.json publicado (sem rede externa). */
+    document.querySelectorAll("[data-manifest]").forEach(function (el) {
+      fetch(el.getAttribute("data-manifest"), { cache: "no-store" })
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (m) { el.textContent = m && m.version ? "Versão " + m.version : ""; if (!el.textContent) el.hidden = true; })
+        .catch(function () { el.hidden = true; });
+    });
+  </script>
 </body>
 </html>
