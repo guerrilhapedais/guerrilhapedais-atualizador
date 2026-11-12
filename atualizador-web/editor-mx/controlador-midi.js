@@ -26034,7 +26034,14 @@ function systemSettingsPanel({
         })
     }), sysTab === `utilitario` && (0, P.jsxs)(`div`, {
         className: `grid gap-4 lg:grid-cols-2`,
-        children: [(0, P.jsx)(cmdMonitorPanel, {}), (0, P.jsx)(midiDictSlotsPanel, {
+        children: [(0, P.jsx)(`div`, {
+            /* Monitor de comandos: sempre o ULTIMO do Utilitario, largura total */
+            style: {
+                order: 99,
+                gridColumn: `1 / -1`
+            },
+            children: (0, P.jsx)(cmdMonitorPanel, {})
+        }), (0, P.jsx)(midiDictSlotsPanel, {
             usbmode: s,
             midiEnable: v
         }), (0, P.jsxs)(`div`, {
