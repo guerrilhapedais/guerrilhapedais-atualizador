@@ -1,4 +1,33 @@
-Notas da Versão — Guerrilha MX
+Notas da Versão — Guerrilha MX (rascunho da próxima versão)
+Renomeie para notas-da-versao.txt quando publicar o novo firmware.
 
-Atualização do APP web - ao abrir app web pela primeira, tem de limpar os caches do navegador CTRL + F5.
+IMPORTANTE ANTES DE ATUALIZAR
+- Faça um backup em Sistema › Utilitário › Backup.
+- Esta versão grava os bancos num formato novo (versão 19). Depois de atualizar,
+  um firmware antigo não consegue ler os bancos gravados por ela.
+- Na primeira vez que abrir o app web depois da atualização, limpe o cache do
+  navegador (CTRL + F5).
 
+TELA
+- Novo estilo QUAD (MX-8): cabeçalho com banco, nome do preset e BPM, e 8 quadrados
+  na cor do LED de cada chave. Em OFF o quadrado assume a cor de OFF.
+- Opção "Cor dos quadrados": cor do LED da chave ou uma cor escolhida.
+- Ícone de cada chave no estilo Quad: automático pelo nome ou escolhido no editor
+  (18 símbolos e 6 desenhos de onda).
+- Nomes por fase: cada chave pode mostrar um nome para ON, OFF, HOLD ON e HOLD OFF.
+  Nomes vindos do ToneX ou do Kemper continuam com prioridade.
+- Fundo do display: cores prontas e 16 gradientes no seletor de cor, e biblioteca
+  de fundos na opção Textura.
+- Afinador do ToneX One Plus / ToneX Plug na tela.
+
+USB E MIDI
+- Pedaleiras SysEx (Boss GT-1): os comandos CC e PC são traduzidos automaticamente.
+- Hub: retomada automática do ToneX quando ele é ligado depois do controlador.
+- Erros de comunicação USB aparecem no sniffer (Bluetooth).
+- Dicionário MIDI por destino do hub: mapas separados para ToneX e MIDI.
+
+CORREÇÕES
+- Modo Tap: não envia mais um PC "fantasma" com o número da chave.
+- Modo Tap e hub: comandos com estado On/Off passam a ser enviados.
+- Troca de modelo MX-4 → MX-6: o controlador não fica trocando de banco sozinho.
+- App: tela não dá mais zoom ao editar o nome de um estágio STG.

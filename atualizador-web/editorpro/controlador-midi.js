@@ -12984,16 +12984,10 @@ var hr = [`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`],
         presetLed: {
             ...yr
         },
-        stompCommands: [{
-            id: mr(),
-            type: `CC`,
-            channel: 1,
-            cc: 20 + e,
-            value: 127,
-            output: `USB+MIDI`,
-            trigger: `Click`,
-            state: `On`
-        }],
+        /* 11/2026: sem comando de Stomp por chave. Antes vinha CC (20+FS) USB+MIDI
+         * escondido — a tela Stomp nao mostra mais e o firmware enviava (CC21..24
+         * a mais no modo Stomp). Comandos de Stomp agora so em Global / Stomp. */
+        stompCommands: [],
         presetCommands: []
     }),
     buildCustomFxDefault = e => ({
@@ -14319,7 +14313,7 @@ function Jr(e) {
         c = r.filter(e => e.type !== `PC Up` && e.type !== `PC Down` && e.type !== `CC Up` && e.type !== `CC Down`),
         toggleClickCommands = e.mode === `Momentâneo` ? s : s,
         toggleHoldCommands = e.mode === `Momentâneo` ? [] : c,
-        l = Array.isArray(e.stompCommands) ? e.stompCommands : [],
+        l = [], /* comandos de Stomp por chave descontinuados: sempre grava vazio (limpa os escondidos) */
         u = Nr(e.stompLed?.on || yr.on),
         d = Nr(e.stompLed?.off || yr.off),
         f = {
@@ -14337,7 +14331,10 @@ function Jr(e) {
     f.extraHold = toggleHoldCommands.map(Kr);
     f.extraStompClick = l.filter(e => (e.trigger ?? `Click`) === `Click`).map(Kr);
     f.stompLed = [u.r, u.g, u.b, d.r, d.g, d.b];
-    if (!f.scene || !f.scene.some(e => e)) delete f.scene;
+    /* Scene: so omite se o editor nao carregou mascara (scenes desligadas). Antes
+     * omitia tambem quando todos os FX estavam desligados -> o ESP (modo patch)
+     * mantinha a scene antiga e desligar FX da scene nunca gravava. */
+    if (!f.scene || !f.scene.length) delete f.scene;
     /* Sempre enviar arrays (mesmo vazios) para limpar extras antigos no ESP */
     if (!Array.isArray(f.extraHold)) f.extraHold = [];
     if (!Array.isArray(f.extraStompClick)) f.extraStompClick = [];
@@ -15205,7 +15202,8 @@ function Xr() {
                     fsN = Math.max(1, Math.min(8, Number(usbCfg?.fsCount) || d)),
                     includeUsb = opts?.includeUsb !== !1,
                     includeLeds = opts?.includeLeds !== !1,
-                    presetList = Array.isArray(opts?.presets) ? opts.presets.map(e => Math.max(0, Math.min(4, Number(e)))).filter((e, t, n) => n.indexOf(e) === t) : mode === `full` ? [0, 1, 2, 3, 4] : [T],
+                    /* PRESET UNICO (11/2026): o controlador so usa o Preset 1 — backup so dele. */
+                    presetList = [0],
                     snap = {
                         version: 3,
                         createdAt: new Date().toISOString(),
@@ -15225,7 +15223,7 @@ function Xr() {
                     modeByPreset = Array(5).fill(null),
                     presetByPreset = Array(5).fill(null);
                 for (let pi of presetList) {
-                    rt.info?.(mode === `full` ? `A ler preset ${pi + 1}/5…` : `A ler preset ${pi + 1}…`);
+                    rt.info?.(`A ler bancos…`);
                     let entry = await collectPresetBackup(pi, fsN, mode === `full` || presetList.length > 1, includeLeds);
                     try {
                         let live = await zr(`/api/usb-config`, {
@@ -15398,7 +15396,8 @@ function Xr() {
                 if (!t?.config?.banks && !t?.presets) throw new Error(`Backup inválido (falta presets/config.banks)`);
                 gboxSoftApQuiet(12e4);
                 let r = Math.max(1, Math.min(8, Number(t?.fsCount) || Number(t?.usb?.fsCount) || Number(c?.fsCount) || d)),
-                    i = typeof t?.activePreset == `number` ? Math.max(0, Math.min(4, t.activePreset)) : T,
+                    bkActive = typeof t?.activePreset == `number` ? Math.max(0, Math.min(4, t.activePreset)) : 0,
+                    i = 0, /* PRESET UNICO: sempre grava no Preset 1 */
                     usb = {
                         ...(t.usb || {})
                     };
@@ -15436,16 +15435,18 @@ function Xr() {
                     await applyUsbBackupPayload(globalsOnly, r, null)
                 }
                 if (t?.presets && isPlainBackupObject(t.presets)) {
-                    for (let presetIdx = 0; presetIdx < 5; presetIdx++) {
-                        let n = t.presets[String(presetIdx)] || t.presets[presetIdx];
-                        if (!isPlainBackupObject(n)) continue;
-                        rt.info?.(`A restaurar preset ${presetIdx + 1}/5...`);
+                    /* PRESET UNICO: backup antigo pode trazer 5 presets. Usa o Preset 1
+                     * dele (se nao existir, o que estava ativo, ou o 1.o que existir)
+                     * e grava no Preset 1. Os outros presets do arquivo sao ignorados. */
+                    let srcIdx = [0, bkActive, 1, 2, 3, 4].find(k => isPlainBackupObject(t.presets[String(k)] || t.presets[k]));
+                    let n = srcIdx === void 0 ? null : (t.presets[String(srcIdx)] || t.presets[srcIdx]);
+                    if (n) {
+                        rt.info?.(`A restaurar bancos…`);
                         try {
-                            await restorePresetEntry(presetIdx, n, r, usb)
+                            await restorePresetEntry(0, n, r, usb)
                         } catch (err) {
-                            throw new Error(`Preset ${presetIdx}: ${String(err?.message || err)}`)
+                            throw new Error(`Preset 1: ${String(err?.message || err)}`)
                         }
-                        await new Promise(ok => setTimeout(ok, 250))
                     }
                 } else {
                     await restorePresetEntry(i, {
@@ -17608,7 +17609,7 @@ function compactFsForSave(e) {
     let t = compactFsForBackup(e) || {};
     t.extraClick = Array.isArray(e?.extraClick) ? e.extraClick : [];
     t.extraHold = Array.isArray(e?.extraHold) ? e.extraHold : [];
-    t.extraStompClick = Array.isArray(e?.extraStompClick) ? e.extraStompClick : [];
+    t.extraStompClick = []; /* sempre vazio: apaga comandos de Stomp por chave escondidos */
     /* Fonte de verdade do modo — nunca omitir (compact apagava holdToggle=false → Tap sticky). */
     let mode = typeof e?.fsMode == `string` && br.includes(e.fsMode) ? e.fsMode : typeof e?.mode == `string` && br.includes(e.mode) ? e.mode : void 0;
     if (mode) t.fsMode = mode;
@@ -17740,7 +17741,13 @@ function normalizeFsForRestore(e) {
         if (Number(t[k]) === 0) t[k] = 1
     });
     isZeroStompLed(t.stompLed) && delete t.stompLed;
-    return compactFsForBackup(t)
+    /* Comandos de Stomp por chave (CC 20+FS escondidos de backups antigos) nao
+     * voltam; e se havia, manda [] para o controlador apagar. */
+    let hadStomp = Array.isArray(t.extraStompClick) && t.extraStompClick.length > 0;
+    delete t.extraStompClick;
+    let out = compactFsForBackup(t) || {};
+    (hadStomp || Object.keys(out).length) && (out.extraStompClick = []);
+    return out
 }
 
 function isNoiseOnlyFs(e) {
@@ -18508,7 +18515,7 @@ function systemSettingsPanel({
                     children: `O que incluir`
                 }), (0, P.jsx)(`div`, {
                     className: `flex flex-wrap gap-2`,
-                    children: [0, 1, 2, 3, 4].map(idx => (0, P.jsx)(`button`, {
+                    children: [0].map(idx => (0, P.jsx)(`button`, {
                         type: `button`,
                         onClick: () => toggleLitePreset(idx),
                         className: `rounded-full px-3 py-1.5 font-display text-[10px] font-bold uppercase tracking-[0.15em] transition ${litePresets.includes(idx) ? `bg-accent text-accent-foreground` : `border border-border text-muted-foreground hover:text-foreground`}`,

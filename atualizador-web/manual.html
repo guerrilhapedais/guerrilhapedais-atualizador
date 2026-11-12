@@ -1224,6 +1224,12 @@
       font-weight: 700;
     }
 
+    @media (max-width: 600px) {
+      .custom-table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+      .step-content { min-width: 0; }
+      .feature-grid { grid-template-columns: minmax(0, 1fr); }
+      .step-content p, .feature-item { overflow-wrap: anywhere; }
+    }
   </style>
 </head>
 <body>
@@ -1263,12 +1269,12 @@
       <a href="#galeria-icones" class="nav-link"><span class="nav-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg></span> Biblioteca de Ícones</a>
 
       <div class="nav-group-title">Modo Stomp & Hardware</div>
-      <a href="#modo-stomp" class="nav-link"><span class="nav-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="20" x="5" y="2" rx="2"/><circle cx="12" cy="14" r="3"/><line x1="9" y1="6" x2="15" y2="6"/></svg></span> Modo Stomp & Dicionário CC</a>
+      <a href="#modo-stomp" class="nav-link"><span class="nav-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="20" x="5" y="2" rx="2"/><circle cx="12" cy="14" r="3"/><line x1="9" y1="6" x2="15" y2="6"/></svg></span> Modo Stomp & Dicionário MIDI</a>
       <a href="#aba-global" class="nav-link"><span class="nav-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span> Global, LEDs & Bancos</a>
       <a href="#calibracao-exp" class="nav-link"><span class="nav-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12A10 10 0 0 0 12 2v10z"/><path d="M12 12 2.1 7.1A10 10 0 0 0 12 22v-10z"/></svg></span> Calibração de Expressão</a>
       <a href="#sistema-conexoes" class="nav-link"><span class="nav-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h.01"/><path d="M2 8.82a15 15 0 0 1 20 0"/><path d="M5 12.859a10 10 0 0 1 14 0"/><path d="M8.5 16.429a5 5 0 0 1 7 0"/></svg></span> Sistema: Conexões</a>
       <a href="#sistema-tela" class="nav-link"><span class="nav-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></span> Sistema: Estilos & Tela</a>
-      <a href="#modo-custom" class="nav-link"><span class="nav-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg></span> Modo Custom & Wallpapers</a>
+      <a href="#fundo-display" class="nav-link"><span class="nav-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg></span> Fundo do Display</a>
 
       <div class="nav-group-title">Emergência & Palco</div>
       <a href="#menu-tft" class="nav-link"><span class="nav-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="15" x="2" y="4" rx="2"/><polyline points="8 9 10 11 8 13"/><line x1="12" y1="13" x2="16" y2="13"/></svg></span> Menu On-Device (No Pedal)</a>
@@ -1301,7 +1307,7 @@
 
       <!-- Hero Banner -->
       <section class="hero-banner" id="inicio">
-        <div class="hero-tag">Manual Oficial do Usuário</div>
+        <div class="hero-tag">Manual Oficial do Usuário · revisão de novembro de 2026 · firmware MX 1.0.1</div>
         <h1 class="hero-title">Guerrilha MX Series</h1>
         <p class="hero-desc">
           O controlador MIDI definitivo para guitarristas, baixistas e produtores. Desenvolvido para oferecer máxima velocidade no palco e total facilidade de programação através de qualquer celular, tablet ou computador.
@@ -2165,8 +2171,51 @@
                   <td>Comando interno de navegação.</td>
                   <td>Muda para o próximo banco ou banco anterior sem enviar MIDI.</td>
                 </tr>
+                <tr>
+                  <td><strong>Tap</strong></td>
+                  <td>Fica sempre no Hold. Segurar a chave entra no tap; os cliques seguintes batem o tempo; segurar de novo sai.</td>
+                  <td>Ter tap tempo numa chave que normalmente troca de preset.</td>
+                </tr>
+                <tr>
+                  <td><strong>Tuner (afinador)</strong></td>
+                  <td>Fica no Hold e envia um CC com um valor para ligar e outro para desligar. Segurar liga ou desliga; com o afinador ligado, um clique na mesma chave só desliga.</td>
+                  <td>Abrir o afinador da pedaleira sem gastar uma chave só para ele.</td>
+                </tr>
               </tbody>
             </table>
+          </div>
+        </div>
+      
+        <div class="ui-showcase-card crucial">
+          <div class="ui-img-container" onclick="openLightbox('Imagens do aplicativo/renomear-chave-nomes-fase.png')">
+            <img src="Imagens do aplicativo/renomear-chave-nomes-fase.png" alt="Janela de renomear a chave com nomes por fase e ícone do Quad">
+            <div class="ui-zoom-hint">🔍 Clique para ampliar</div>
+          </div>
+          <div class="ui-info-content">
+            <span class="crucial-badge">Novo</span>
+            <div class="ui-card-title">Nomes por Fase: Um Nome para Cada Estado da Chave</div>
+            <p class="ui-card-desc">
+              Toque no <strong>lápis</strong> ao lado do nome da chave e abra <strong>Nomes por fase</strong>. Você pode dar até 4 nomes curtos (16 caracteres), e a tela do pedal troca o nome conforme o estado da chave:
+            </p>
+            <table class="custom-table">
+              <thead><tr><th>Campo</th><th>Quando aparece</th></tr></thead>
+              <tbody>
+                <tr><td><strong>ON</strong></td><td>Clique com a chave ligada. No Momentâneo, enquanto o pé está na chave.</td></tr>
+                <tr><td><strong>OFF</strong></td><td>Clique com a chave desligada. No Momentâneo, depois de soltar.</td></tr>
+                <tr><td><strong>HOLD ON</strong></td><td>Depois de um Hold que ligou a função.</td></tr>
+                <tr><td><strong>HOLD OFF</strong></td><td>Depois de um Hold que desligou a função.</td></tr>
+              </tbody>
+            </table>
+            <p class="ui-card-desc">
+              Campo vazio usa o nome normal da chave, e um Hold sem nome usa o nome do clique. Quando a tela mostra nomes vindos do <strong>ToneX</strong> ou do <strong>Kemper</strong>, ficam os nomes da pedaleira. Na mesma janela, <strong>Ícone no estilo Quad</strong> escolhe o desenho pequeno que a chave mostra no estilo Quad (veja a seção 22).
+            </p>
+            <div class="callout tip">
+              <div class="callout-icon">✂️</div>
+              <div class="callout-body">
+                <h5>Nomes que cortam na tela</h5>
+                <p>No MX-4 e no MX-6, no estilo Ícones, nomes longos são cortados. Use os nomes por fase para mostrar textos curtos, como “CLEAN” e “SOLO”, em vez de um nome comprido que tenta descrever as duas coisas.</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -2240,6 +2289,21 @@
                 <p>Protocolo serial exclusivo de alta velocidade compatível com as pedaleiras da linha Hotone Ampero.</p>
               </div>
             </div>
+          </div>
+        </div>
+      
+        <div class="callout tip">
+          <div class="callout-icon">🥁</div>
+          <div class="callout-body">
+            <h5>O que a chave de Tap envia a cada pisada</h5>
+            <p>A cada batida saem os comandos de clique da chave marcados como <strong>ON</strong> ou <strong>On/Off</strong>; os marcados como <strong>OFF</strong> ficam de fora. Para ligar o afinador na mesma chave, adicione um comando <strong>Tuner</strong> no Hold: segurar a chave de Tap liga ou desliga o afinador sem contar como batida.</p>
+          </div>
+        </div>
+        <div class="callout tip">
+          <div class="callout-icon">💡</div>
+          <div class="callout-body">
+            <h5>Tap numa chave em Modo Normal</h5>
+            <p>Se você não quer dedicar a chave ao Tap, deixe-a em Modo Normal e adicione um comando <strong>Tap</strong>: segurar a chave entra no tap, os cliques seguintes batem o tempo e segurar de novo volta ao normal.</p>
           </div>
         </div>
       </section>
@@ -2392,10 +2456,10 @@
       <section class="section-block" id="modo-stomp">
         <div class="section-header">
           <div class="section-badge-num">18</div>
-          <h2 class="section-title">Modo STOMP & Dicionário MIDI Integrado</h2>
+          <h2 class="section-title">Modo STOMP & Dicionário MIDI por Saída e Canal</h2>
         </div>
         <p class="section-intro">
-          Transforme o controlador em um pedalboard analógico com o acionamento direto de pedais individuais.
+          Transforme o controlador em um pedalboard analógico com o acionamento direto de pedais individuais, e veja o nome de cada efeito ao escolher o CC.
         </p>
 
         <div class="ui-showcase-card">
@@ -2411,18 +2475,63 @@
           </div>
         </div>
 
-        <!-- Dicionário MIDI -->
         <div class="ui-showcase-card crucial">
-          <div class="ui-img-container compact" onclick="openLightbox('Imagens do aplicativo/dicionario-midi.png')">
-            <img src="Imagens do aplicativo/dicionario-midi.png" alt="Dicionário MIDI Integrado">
+          <div class="ui-img-container compact" onclick="openLightbox('Imagens do aplicativo/dicionario-saida-canal.png')">
+            <img src="Imagens do aplicativo/dicionario-saida-canal.png" alt="Dicionário MIDI por saída e canal no modo Hub + ToneX">
             <div class="ui-zoom-hint">🔍 Clique para ampliar</div>
           </div>
           <div class="ui-info-content">
             <span class="crucial-badge">Mais de 400 Pedaleiras Cadastradas</span>
-            <div class="ui-card-title">Dicionário CC: Selecione e Use!</div>
+            <div class="ui-card-title">Dicionário MIDI: um Mapa para Cada Aparelho</div>
             <p class="ui-card-desc">
-              Você não precisa abrir o manual técnico da sua pedaleira para descobrir qual o número do CC do Delay ou do Boost. Basta abrir o <strong>Dicionário MIDI</strong>, escolher a sua pedaleira (ex: <em>Neural DSP Nano Cortex, Quad Cortex, Hotone Ampero, Line 6 Helix, Boss, etc.</em>) e o sistema listará todos os efeitos com os números de CC# corretos prontos para salvar!
+              Você não precisa abrir o manual técnico da sua pedaleira para descobrir o número do CC do Delay ou do Boost. Em <strong>Sistema › Utilitário › Dicionário</strong>, diga ao editor qual pedaleira está em cada saída e canal:
             </p>
+            <ol class="step-sublist">
+              <li>Em <strong>Saída</strong>, escolha por onde o comando sai (lista abaixo).</li>
+              <li>Escolha o <strong>Canal</strong> MIDI da pedaleira (1 a 16).</li>
+              <li>Em <strong>Modelo</strong>, digite para buscar a pedaleira e toque em <strong>Adicionar</strong>.</li>
+            </ol>
+            <table class="custom-table">
+              <thead><tr><th>Modo USB</th><th>Saídas que aparecem</th></tr></thead>
+              <tbody>
+                <tr><td>Normal (USB direto)</td><td>USB, Bluetooth e MIDI Serial</td></tr>
+                <tr><td>Hub MIDI</td><td>USB HUB · Dev 1 a Dev 4, Bluetooth e MIDI Serial</td></tr>
+                <tr><td>Hub + ToneX</td><td>Hub · ToneX, Hub · MIDI, Bluetooth e MIDI Serial</td></tr>
+                <tr><td>Dual ToneX</td><td>ToneX 1, ToneX 2, Bluetooth e MIDI Serial</td></tr>
+              </tbody>
+            </table>
+            <p class="ui-card-desc">
+              Depois disso, ao escolher o <strong>CC#</strong> de um comando, a lista mostra os efeitos daquela pedaleira com os números certos. Um comando cuja saída e canal não têm mapa mostra só o número do CC. Pedaleiras que não estão na lista podem ser adicionadas em <strong>Importar JSON</strong>.
+            </p>
+            <div class="callout tip">
+              <div class="callout-icon">📱</div>
+              <div class="callout-body">
+                <h5>Os mapas ficam no aparelho onde você editou</h5>
+                <p>O dicionário é guardado no navegador ou no app, não no controlador. Se você editar pelo computador e pelo celular, crie os mapas nos dois.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ui-showcase-card">
+          <div class="ui-img-container" onclick="openLightbox('Imagens do aplicativo/comando-destino-usb.png')">
+            <img src="Imagens do aplicativo/comando-destino-usb.png" alt="Comando com Destino USB no modo Hub + ToneX">
+            <div class="ui-zoom-hint">🔍 Clique para ampliar</div>
+          </div>
+          <div class="ui-info-content">
+            <div class="ui-card-title">Destino USB: ToneX, MIDI ou os Dois</div>
+            <p class="ui-card-desc">
+              Nos modos <strong>Hub + ToneX</strong> e <strong>Dual ToneX</strong>, cada comando tem o campo <strong>Destino USB</strong>. Ele decide para qual aparelho do hub o comando vai e, por isso, qual mapa do dicionário dá nome aos CCs:
+            </p>
+            <table class="custom-table">
+              <thead><tr><th>Destino USB</th><th>O comando vai para</th><th>Nomes do CC vêm de</th></tr></thead>
+              <tbody>
+                <tr><td><strong>Apenas ToneX</strong></td><td>ToneX</td><td>Mapa Hub · ToneX</td></tr>
+                <tr><td><strong>Apenas MIDI</strong></td><td>Aparelhos MIDI do hub</td><td>Mapa Hub · MIDI</td></tr>
+                <tr><td><strong>ToneX + MIDI</strong></td><td>Todos</td><td>Mapa Hub · MIDI; sem ele, o do ToneX</td></tr>
+                <tr><td><strong>ToneX 1 / ToneX 2</strong> (Dual)</td><td>Só aquele ToneX</td><td>Mapa ToneX 1 ou ToneX 2</td></tr>
+                <tr><td><strong>Ambos</strong> (Dual)</td><td>Os dois ToneX</td><td>Mapa ToneX 1; sem ele, o do ToneX 2</td></tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </section>
@@ -2537,76 +2646,140 @@
             </div>
           </div>
         </div>
+      
+        <div class="ui-showcase-card crucial">
+          <div class="ui-img-container" onclick="openLightbox('Imagens do aplicativo/modos-usb.png')">
+            <img src="Imagens do aplicativo/modos-usb.png" alt="Lista de modos USB">
+            <div class="ui-zoom-hint">🔍 Clique para ampliar</div>
+          </div>
+          <div class="ui-info-content">
+            <span class="crucial-badge">7 Modos</span>
+            <div class="ui-card-title">Modo USB: Como o Pedal Conversa pela Porta USB</div>
+            <p class="ui-card-desc">
+              Em <strong>Sistema › Conexões › Modo USB</strong>, escolha um modo de acordo com o que está ligado ao pedal. Depois de salvar, o controlador reinicia no modo novo.
+            </p>
+            <table class="custom-table">
+              <thead><tr><th>Modo</th><th>Use quando</th></tr></thead>
+              <tbody>
+                <tr><td><strong>ToneX / Modeller</strong></td><td>Uma ToneX (One, One Plus, Plug ou Pedal) ou outra pedaleira suportada está ligada na porta USB HOST. Escolha o aparelho em <strong>Profile</strong>; o pedal lê nomes e estados dele.</td></tr>
+                <tr><td><strong>MIDI USB Host</strong></td><td>Uma pedaleira MIDI USB comum (class compliant) está ligada na porta USB HOST.</td></tr>
+                <tr><td><strong>MIDI USB PC</strong></td><td>O pedal está ligado ao computador ou ao Kemper Player pela porta USB DVC e funciona como um dispositivo MIDI.</td></tr>
+                <tr><td><strong>Hub MIDI</strong></td><td>Um hub USB com até 4 pedaleiras MIDI na porta USB HOST.</td></tr>
+                <tr><td><strong>MIDI Serial (DIN/UART)</strong></td><td>Você só usa as saídas MIDI DIN/TRS; o USB fica desligado.</td></tr>
+                <tr><td><strong>Hub + ToneX</strong></td><td>Um hub com uma ToneX e pedaleiras MIDI ao mesmo tempo. Cada comando escolhe o <strong>Destino USB</strong> (seção 18).</td></tr>
+                <tr><td><strong>Dual ToneX</strong></td><td>Duas ToneX num hub. Cada comando vai para a ToneX 1, a ToneX 2 ou as duas.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="feature-grid">
+          <div class="feature-item">
+            <h4>🎚️ Pedaleiras SysEx (Boss GT-1)</h4>
+            <p>Algumas pedaleiras não aceitam CC e PC comuns, só mensagens SysEx. Com a <strong>Boss GT-1</strong> ligada por USB (direto ou no hub), o Guerrilha envia sozinho a mensagem de início e traduz os seus comandos CC e PC para o formato dela. Basta programar CC e PC normalmente; o dicionário tem os comandos da GT-1.</p>
+          </div>
+          <div class="feature-item">
+            <h4>🎵 Afinador do ToneX One Plus e ToneX Plug</h4>
+            <p>Quando o afinador do ToneX One Plus ou do ToneX Plug é ligado, a tela do Guerrilha mostra a nota e o desvio em tempo real, como já faz com o Kemper.</p>
+          </div>
+          <div class="feature-item">
+            <h4>🔌 ToneX ligada depois do controlador</h4>
+            <p>No modo Hub + ToneX, se a ToneX for ligada depois do controlador, ela é reconhecida sozinha em alguns segundos, sem precisar reiniciar.</p>
+          </div>
+        </div>
       </section>
 
       <!-- 19. Sistema Tela & Modo Custom -->
       <section class="section-block" id="sistema-tela">
         <div class="section-header">
           <div class="section-badge-num">22</div>
-          <h2 class="section-title">Aba SISTEMA — Estilos de Tela & Layouts</h2>
+          <h2 class="section-title">Aba SISTEMA — Estilos de Tela</h2>
         </div>
         <p class="section-intro">
-          Personalize como as informações e blocos são exibidos no display colorido integrado.
+          Escolha como banco, nomes e chaves aparecem no display colorido. Os estilos mudam conforme o modelo do pedal.
         </p>
-
         <div class="ui-showcase-card">
-          <div class="ui-img-container" onclick="openLightbox('Imagens do aplicativo/Menu-Sistemas-Tela 1.png')">
-            <img src="Imagens do aplicativo/Menu-Sistemas-Tela 1.png" alt="Estilos de Display e Cores">
+          <div class="ui-img-container" onclick="openLightbox('Imagens do aplicativo/tela-estilos-quad.png')">
+            <img src="Imagens do aplicativo/tela-estilos-quad.png" alt="Estilo do display com o Quad selecionado">
             <div class="ui-zoom-hint">🔍 Clique para ampliar</div>
           </div>
           <div class="ui-info-content">
-            <div class="ui-card-title">Estilo do Display & Cores Sólidas</div>
+            <div class="ui-card-title">Estilos Disponíveis</div>
+            <table class="custom-table">
+              <thead><tr><th>Modelo</th><th>Estilo</th><th>Como fica a tela</th></tr></thead>
+              <tbody>
+                <tr><td rowspan="4"><strong>MX-8</strong></td><td><strong>Preset / Stomp</strong></td><td>Banco e chave grandes no centro, com os 8 presets em volta.</td></tr>
+                <tr><td><strong>Ícones</strong></td><td>Grade de 8 blocos com o ícone e o nome de cada chave.</td></tr>
+                <tr><td><strong>Amp</strong></td><td>Cabeçote de amplificador no topo e as 8 chaves embaixo.</td></tr>
+                <tr><td><strong>Quad</strong></td><td>Cabeçalho com banco, nome e BPM, e 8 quadrados coloridos (veja abaixo).</td></tr>
+                <tr><td rowspan="3"><strong>MX-4 / MX-6</strong></td><td><strong>Clássico</strong></td><td>No Preset, banco e nome grandes; no Stomp, os ícones das chaves.</td></tr>
+                <tr><td><strong>Ícones</strong></td><td>Grade de 2×2 (MX-4) ou 2×3 (MX-6), ou uma chave por tela.</td></tr>
+                <tr><td><strong>Amp</strong></td><td>Cabeçote de amplificador e as chaves.</td></tr>
+              </tbody>
+            </table>
             <p class="ui-card-desc">
-              Escolha entre o estilo de <strong>Preset/Stomp</strong> clássico, modo <strong>Ícones</strong>, <strong>Amp</strong> (head valvulado) ou <strong>Custom</strong>. Ajuste as cores de fundo sólidas, cores da fonte do banco e nome do som.
+              Em todos os estilos você escolhe o <strong>Nome no display</strong> (o nome que você deu à chave, ou o nome da ToneX quando ela está ligada), o <strong>Fundo do display</strong> (seção 23) e as cores de <strong>banco</strong>, <strong>foot</strong> e <strong>nome</strong>. Onde aparece, o <strong>Formato do ícone</strong> pode ser Padrão ou Sem contorno.
             </p>
           </div>
         </div>
-
-        <div class="ui-showcase-card">
-          <div class="ui-img-container" onclick="openLightbox('Imagens do aplicativo/Menu-Sistemas-Tela 2.png')">
-            <img src="Imagens do aplicativo/Menu-Sistemas-Tela 2.png" alt="Layouts e Formatos de Botão">
+        <div class="ui-showcase-card crucial">
+          <div class="ui-img-container" onclick="openLightbox('Imagens do aplicativo/tela-quad-simulacao.png')">
+            <img src="Imagens do aplicativo/tela-quad-simulacao.png" alt="Simulação do estilo Quad na tela do MX-8">
             <div class="ui-zoom-hint">🔍 Clique para ampliar</div>
           </div>
           <div class="ui-info-content">
-            <div class="ui-card-title">Variações de Layout & Formato de Ícone</div>
+            <span class="crucial-badge">Novo</span>
+            <div class="ui-card-title">Estilo QUAD (MX-8)</div>
             <p class="ui-card-desc">
-              • <strong>Nenhum (Clássico):</strong> Banco grande centralizado.<br>
-              • <strong>L1 (Split Central):</strong> Barra central com nome + blocos no topo e fundo.<br>
-              • <strong>L2 (Pedalboard):</strong> 8 pedais virtuais preenchendo a tela.<br>
-              • <strong>Formato dos Blocos:</strong> Escolha entre cantos <strong>Padrão</strong> arredondados, <strong>Círculo</strong> ou <strong>Octógono</strong>.
+              O cabeçalho mostra o código do banco e da chave (por exemplo <strong>A1</strong>), o nome do preset e o <strong>BPM</strong> do tap. Os 8 quadrados seguem a posição das chaves no pedal: FS5 a FS8 em cima, FS1 a FS4 embaixo.
+            </p>
+            <ul class="step-sublist">
+              <li>Cada quadrado fica na <strong>cor do LED</strong> da chave. Quando a chave vai para OFF, assume a <strong>cor de OFF</strong>; se a cor de OFF for preta, usa a cor de ON escurecida, para continuar visível.</li>
+              <li>O preset selecionado ganha um <strong>contorno branco</strong>.</li>
+              <li>Em <strong>Cor dos quadrados</strong>, troque para <strong>Cor escolhida</strong> para usar a “Cor foot” em todos os quadrados ligados.</li>
+              <li>O texto fica preto em cores claras e branco nas escuras.</li>
+            </ul>
+            <p class="ui-card-desc">
+              O ícone pequeno de cada quadrado é escolhido pelo nome da chave: DRIVE, DIST ou BOOST mostram um raio; DELAY mostra dois quadrados; REVERB ou AMBIENT, ondas; MOD ou CHORUS, uma onda senoidal; COMP, um pulso; e assim por diante. Para escolher outro, use <strong>Ícone no estilo Quad</strong> na janela de renomear a chave, com 18 símbolos, 6 desenhos de onda ou <strong>SEM</strong> (sem ícone).
             </p>
           </div>
         </div>
       </section>
 
       <!-- 20. Modo Custom & Wallpapers -->
-      <section class="section-block" id="modo-custom">
+      <section class="section-block" id="fundo-display">
         <div class="section-header">
           <div class="section-badge-num">23</div>
-          <h2 class="section-title">Modo Custom & Fotos de Fundo em Alta Resolução</h2>
+          <h2 class="section-title">Fundo do Display: Cores, Gradientes e Texturas</h2>
         </div>
         <p class="section-intro">
-          O modo mais avançado de customização visual: envie fotos personalizadas e posicione cada botão onde quiser!
+          Personalize o fundo que aparece por trás de banco, nomes e chaves em todos os estilos.
         </p>
-
-        <div class="ui-showcase-card crucial">
-          <div class="ui-img-container" onclick="openLightbox('Imagens do aplicativo/Menu-Sistemas-Tela 4.png')">
-            <img src="Imagens do aplicativo/Menu-Sistemas-Tela 4.png" alt="Modo Custom e Fotos de Fundo">
+        <div class="ui-showcase-card">
+          <div class="ui-img-container" onclick="openLightbox('Imagens do aplicativo/fundo-cor-gradientes.png')">
+            <img src="Imagens do aplicativo/fundo-cor-gradientes.png" alt="Paleta de cores com gradientes prontos">
             <div class="ui-zoom-hint">🔍 Clique para ampliar</div>
           </div>
           <div class="ui-info-content">
-            <span class="crucial-badge">16 Slots de Papel de Parede</span>
-            <div class="ui-card-title">Fotos de Fundo Individuais por Preset</div>
+            <div class="ui-card-title">Cor Sólida ou Gradiente</div>
             <p class="ui-card-desc">
-              Você pode carregar até <strong>16 fotos de fundo (bg1 a bg16)</strong> em resolução 480×320. No painel inferior, associe cada footswitch (FS1 a FS8) a uma foto diferente: ao pisar na chave no palco, a tela do pedal troca instantaneamente para a foto correspondente com a barra translúcida de identificação!
+              Em <strong>Sistema › Tela</strong>, deixe <strong>Fundo do display</strong> em <strong>Cor</strong> e toque no campo <strong>Cor</strong>. A paleta mostra as cores sólidas e, logo depois, <strong>16 gradientes prontos</strong>.
             </p>
-            <div class="callout tip">
-              <div class="callout-icon">🖐️</div>
-              <div class="callout-body">
-                <h5>Arrasto Livre dos Footswitches na Tela</h5>
-                <p>No editor de tela Custom, clique e arraste os quadradinhos para qualquer coordenada da tela 480×320. O sistema conta com trava anti-salto, garantindo que o botão permaneça exatamente onde você soltou no mockup e no visor físico do pedal!</p>
-              </div>
-            </div>
+            <ul class="step-sublist">
+              <li>Ao escolher um gradiente, aparecem os campos <strong>Cor 1</strong> e <strong>Cor 2</strong> para ajustar as duas pontas.</li>
+              <li>O botão <strong>Usar cor sólida</strong> volta a uma cor só.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="feature-grid">
+          <div class="feature-item">
+            <h4>🖼️ Textura: biblioteca de fundos</h4>
+            <p>Em <strong>Fundo do display › Textura</strong>, abra a <strong>Biblioteca</strong> e escolha um dos fundos prontos (480×320), ou carregue uma foto sua. A imagem é ajustada para a tela do pedal antes de ser gravada.</p>
+          </div>
+          <div class="feature-item">
+            <h4>🎨 Cores do texto</h4>
+            <p>Depois de escolher o fundo, ajuste as cores de <strong>banco</strong>, <strong>foot</strong> e <strong>nome</strong> para o texto continuar legível. Em fundos claros, prefira texto escuro.</p>
           </div>
         </div>
       </section>
@@ -2661,8 +2834,8 @@
             <tr>
               <td><span class="badge badge-red">FS 1</span></td>
               <td><strong>Modo Atualizador</strong></td>
-              <td>Piscando</td>
-              <td>Atualização de firmware via cabo ou navegador web.</td>
+              <td>Branco fixo</td>
+              <td>Atualização de firmware pelo Atualizador Web. Solte a chave quando os LEDs ficarem brancos.</td>
             </tr>
             <tr>
               <td><span class="badge badge-red">FS 2</span></td>
@@ -2692,7 +2865,7 @@
             Modo de Carregamento de Firmware (Botão BOOT Traseiro)
           </h4>
           <p style="margin: 0 0 10px 0; font-size: 0.92rem; line-height: 1.5; color: var(--text, #e2e8f0);">
-            Se você precisar regravar o sistema, instalar uma atualização de fábrica ou recuperar o pedal caso haja interrupção no processo de gravação, utilize o micro-botão <strong>BOOT</strong> no painel traseiro:
+            Para atualizar normalmente, use a <strong>FS 1</strong> (tabela acima). O micro-botão <strong>BOOT</strong> do painel traseiro é para recuperação: quando a gravação foi interrompida, o pedal não liga mais ou você vai fazer uma restauração de fábrica:
           </p>
           <div style="background: rgba(0,0,0,0.25); border-radius: 6px; padding: 12px 16px; font-size: 0.88rem; line-height: 1.6;">
             <strong>Procedimento Passo a Passo:</strong>
@@ -2732,6 +2905,18 @@
           <div class="feature-item">
             <h4>❓ Como funciona a sincronização com o Kemper Profiler Player?</h4>
             <p>Basta conectar um cabo USB da porta <strong>USB DVC</strong> do Guerrilha diretamente na entrada USB do <strong>Kemper Player</strong>. Eles se comunicam bidirecionalmente: o Guerrilha exibe o nome do Rig ativo, mostra os efeitos ativos/desativados nas chaves e exibe o Afinador em tempo real na tela.</p>
+          </div>
+          <div class="feature-item">
+            <h4>❓ O CC aparece só como número, sem o nome do efeito. Por quê?</h4>
+            <p>Falta um mapa no dicionário para a saída e o canal daquele comando. Em <strong>Sistema › Utilitário › Dicionário</strong>, adicione a pedaleira na mesma saída e canal (seção 18).</p>
+          </div>
+          <div class="feature-item">
+            <h4>❓ Posso usar uma ToneX e outras pedaleiras MIDI juntas?</h4>
+            <p>Sim. Ligue tudo num hub USB, escolha o modo <strong>Hub + ToneX</strong> e, em cada comando, o <strong>Destino USB</strong>: Apenas ToneX, Apenas MIDI ou ToneX + MIDI.</p>
+          </div>
+          <div class="feature-item">
+            <h4>❓ Atualizei o firmware e o editor está estranho.</h4>
+            <p>O navegador pode estar usando a versão antiga do editor guardada no cache. Abra o editor e pressione <strong>CTRL + F5</strong> (no Mac, <strong>Cmd + Shift + R</strong>).</p>
           </div>
         </div>
       </section>

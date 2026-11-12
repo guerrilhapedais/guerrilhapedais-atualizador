@@ -13037,16 +13037,10 @@ var hr = [`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`],
         stgLoopCc: 0,
         stgLoopCcValueOn: 127,
         stgLoopCcValueOff: 0,
-        stompCommands: [{
-            id: mr(),
-            type: `CC`,
-            channel: 1,
-            cc: 20 + e,
-            value: 127,
-            output: `USB+MIDI`,
-            trigger: `Click`,
-            state: `On`
-        }],
+        /* 11/2026: sem comando de Stomp por chave. Antes vinha CC (20+FS) USB+MIDI
+         * escondido — a tela Stomp nao mostra mais e o firmware enviava (CC21..24
+         * a mais no modo Stomp). Comandos de Stomp agora so em Global / Stomp. */
+        stompCommands: [],
         presetCommands: []
     }),
     buildCustomFxCmdDefault = (idx = 0) => ({
@@ -13751,6 +13745,9 @@ async function usbRouteJson(e, t = {}, n = 15e3) {
     }
     if (i === `/api/system-status`) return usbRouteNormalizeResponse(await usbTransportRequest(`system_status`, {}, n), `system_status`);
     if (i === `/api/active-key`) return usbRouteNormalizeResponse(await usbTransportRequest(`active_key`, {}, n), `active_key`);
+    if (i === `/api/tx-log`) return usbRouteNormalizeResponse(await usbTransportRequest(`tx_log`, {
+        since: Number(r.searchParams.get(`since`) || 0)
+    }, n), `tx_log`);
     if (i === `/api/exp-status`) return usbRouteNormalizeResponse(await usbTransportRequest(`exp_status`, {}, n), `exp_status`);
     if (i === `/api/valeton-chain`) {
         if (a === `POST`) return usbRouteNormalizeResponse(await usbTransportRequest(`valeton_chain`, {
@@ -15389,6 +15386,93 @@ function displayIconInvalidateThumb(key, directUrl) {
             });
         }
     }
+}
+
+/* ===== Backup das IMAGENS do controlador (11/2026) =====
+ * Icones enviados, cabecotes/amps, slots e fundo de tela gravados no LittleFS.
+ * Le cada imagem no tamanho REAL (thumb=480: o firmware limita ao maximo de
+ * cada tipo) em RGB565 e guarda tal e qual — restaurar devolve o mesmo pixel.
+ * Os icones do pacote branco nao entram (o editor ja os reenvia sozinho). */
+async function displayImagesBackupCollect(onStep) {
+    let cat = await displayIconFetchCatalog(),
+        items = (cat?.items || []).filter(it => it && it.key && !displayIconIsPack(it.key)),
+        out = [],
+        failed = [];
+    for (let i = 0; i < items.length; i++) {
+        let k = items[i].key;
+        onStep && onStep(i + 1, items.length, k);
+        let body = null;
+        for (let attempt = 0; attempt < 3 && !body; attempt++) {
+            try {
+                if (attempt > 0) await new Promise(ok => setTimeout(ok, 400 * attempt));
+                if (typeof gboxSoftApQuiet === 'function') gboxSoftApQuiet(6e4);
+                let r = await zr(`/api/display-icon?key=${encodeURIComponent(k)}&thumb=480&_t=${Date.now()}`, {}, 6e4),
+                    b = r?.data && r.data.data ? r.data : r;
+                if (b?.data) body = b;
+                else if (r?.not_found || r?.ok === !1) break;
+            } catch {}
+        }
+        if (!body) {
+            failed.push(k);
+            continue;
+        }
+        out.push({
+            key: displayIconSanitizeKey(body.key || k) || k,
+            w: Number(body.w) || 0,
+            h: Number(body.h) || 0,
+            data: body.data
+        });
+        await new Promise(ok => setTimeout(ok, 60));
+    }
+    return {
+        images: out,
+        failed
+    };
+}
+
+async function displayImagesRestoreFile(file, onStep) {
+    let js;
+    try {
+        js = JSON.parse(await file.text())
+    } catch {
+        throw Error(`JSON inválido (arquivo corrompido ou incompleto)`)
+    }
+    let list = js && js.type === `guerrilha-imagens` && Array.isArray(js.images) ? js.images : null;
+    if (!list) throw Error(`Este arquivo não é um backup de imagens`);
+    let ok = 0,
+        failed = [];
+    for (let i = 0; i < list.length; i++) {
+        let it = list[i] || {},
+            k = displayIconSanitizeKey(it.key || ``),
+            w = Number(it.w) || 0,
+            h = Number(it.h) || 0,
+            u8 = null;
+        try {
+            u8 = displayIconB64ToU8(String(it.data || ``))
+        } catch {}
+        if (!k || !w || !h || !u8 || u8.length !== w * h * 2) {
+            failed.push(k || `?`);
+            continue;
+        }
+        onStep && onStep(i + 1, list.length, k);
+        try {
+            await displayIconUploadRgb(k, u8, w, h);
+            displayIconsKnownOnDevice.add(k);
+            displayIconInvalidateThumb(k);
+            ok++;
+        } catch {
+            failed.push(k);
+        }
+    }
+    return {
+        ok,
+        failed
+    };
+}
+
+if (typeof window !== 'undefined') {
+    window.displayImagesBackupCollect = displayImagesBackupCollect;
+    window.displayImagesRestoreFile = displayImagesRestoreFile;
 }
 
 async function displayIconFetchFullUrl(key) {
@@ -17559,7 +17643,7 @@ function Jr(e, usbCfg) {
         c = r.filter(e => e.type !== `PC Up` && e.type !== `PC Down` && e.type !== `CC Up` && e.type !== `CC Down`),
         toggleClickCommands = e.mode === `Momentâneo` ? s : s,
         toggleHoldCommands = e.mode === `Momentâneo` ? [] : c,
-        l = Array.isArray(e.stompCommands) ? e.stompCommands : [],
+        l = [], /* comandos de Stomp por chave descontinuados: sempre grava vazio (limpa os escondidos) */
         u = Nr(e.stompLed?.on || yr.on),
         d = Nr(e.stompLed?.off || yr.off);
     let rawFsLabel = String(e.label || ``).replace(/[^\x20-\x7E]/g, ``).trim().toUpperCase().slice(0, 24);
@@ -17590,7 +17674,10 @@ function Jr(e, usbCfg) {
     f.extraHold = [...toggleHoldCommands, ...stompTap].map(e => Kr(e, usbCfg));
     f.extraStompClick = l.filter(e => e.type !== `Tap` && (e.trigger ?? `Click`) === `Click`).map(e => Kr(e, usbCfg));
     f.stompLed = [u.r, u.g, u.b, d.r, d.g, d.b];
-    if (!f.scene || !f.scene.some(e => e)) delete f.scene;
+    /* Scene: so omite se o editor nao carregou mascara (scenes desligadas). Antes
+     * omitia tambem quando todos os FX estavam desligados -> o ESP (modo patch)
+     * mantinha a scene antiga e desligar FX da scene nunca gravava. */
+    if (!f.scene || !f.scene.length) delete f.scene;
     /* Sempre enviar arrays (mesmo vazios) para limpar extras antigos no ESP */
     if (!Array.isArray(f.extraHold)) f.extraHold = [];
     if (!Array.isArray(f.extraStompClick)) f.extraStompClick = [];
@@ -18718,7 +18805,8 @@ function Xr() {
                     fsN = Math.max(1, Math.min(8, Number(usbCfg?.fsCount) || d)),
                     includeUsb = opts?.includeUsb !== !1,
                     includeLeds = opts?.includeLeds !== !1,
-                    presetList = Array.isArray(opts?.presets) ? opts.presets.map(e => Math.max(0, Math.min(4, Number(e)))).filter((e, t, n) => n.indexOf(e) === t) : mode === `full` ? [0, 1, 2, 3, 4] : [T],
+                    /* PRESET UNICO (11/2026): o controlador so usa o Preset 1 — backup so dele. */
+                    presetList = [0],
                     snap = {
                         version: 3,
                         createdAt: new Date().toISOString(),
@@ -18738,7 +18826,7 @@ function Xr() {
                     modeByPreset = Array(5).fill(null),
                     presetByPreset = Array(5).fill(null);
                 for (let pi of presetList) {
-                    rt.info?.(mode === `full` ? `A ler preset ${pi + 1}/5…` : `A ler preset ${pi + 1}…`);
+                    rt.info?.(`A ler bancos…`);
                     let entry = await collectPresetBackup(pi, fsN, mode === `full` || presetList.length > 1, includeLeds);
                     try {
                         let live = await zr(`/api/usb-config`, {
@@ -18911,7 +18999,8 @@ function Xr() {
                 if (!t?.config?.banks && !t?.presets) throw new Error(`Backup inválido (falta presets/config.banks)`);
                 gboxSoftApQuiet(12e4);
                 let r = Math.max(1, Math.min(8, Number(t?.fsCount) || Number(t?.usb?.fsCount) || Number(c?.fsCount) || d)),
-                    i = typeof t?.activePreset == `number` ? Math.max(0, Math.min(4, t.activePreset)) : T,
+                    bkActive = typeof t?.activePreset == `number` ? Math.max(0, Math.min(4, t.activePreset)) : 0,
+                    i = 0, /* PRESET UNICO: sempre grava no Preset 1 */
                     usb = {
                         ...(t.usb || {})
                     };
@@ -18949,16 +19038,18 @@ function Xr() {
                     await applyUsbBackupPayload(globalsOnly, r, null)
                 }
                 if (t?.presets && isPlainBackupObject(t.presets)) {
-                    for (let presetIdx = 0; presetIdx < 5; presetIdx++) {
-                        let n = t.presets[String(presetIdx)] || t.presets[presetIdx];
-                        if (!isPlainBackupObject(n)) continue;
-                        rt.info?.(`A restaurar preset ${presetIdx + 1}/5...`);
+                    /* PRESET UNICO: backup antigo pode trazer 5 presets. Usa o Preset 1
+                     * dele (se nao existir, o que estava ativo, ou o 1.o que existir)
+                     * e grava no Preset 1. Os outros presets do arquivo sao ignorados. */
+                    let srcIdx = [0, bkActive, 1, 2, 3, 4].find(k => isPlainBackupObject(t.presets[String(k)] || t.presets[k]));
+                    let n = srcIdx === void 0 ? null : (t.presets[String(srcIdx)] || t.presets[srcIdx]);
+                    if (n) {
+                        rt.info?.(`A restaurar bancos…`);
                         try {
-                            await restorePresetEntry(presetIdx, n, r, usb)
+                            await restorePresetEntry(0, n, r, usb)
                         } catch (err) {
-                            throw new Error(`Preset ${presetIdx}: ${String(err?.message || err)}`)
+                            throw new Error(`Preset 1: ${String(err?.message || err)}`)
                         }
-                        await new Promise(ok => setTimeout(ok, 250))
                     }
                 } else {
                     await restorePresetEntry(i, {
@@ -24584,7 +24675,7 @@ function compactFsForSave(e) {
     let t = compactFsForBackup(e) || {};
     t.extraClick = Array.isArray(e?.extraClick) ? e.extraClick : [];
     t.extraHold = Array.isArray(e?.extraHold) ? e.extraHold : [];
-    t.extraStompClick = Array.isArray(e?.extraStompClick) ? e.extraStompClick : [];
+    t.extraStompClick = []; /* sempre vazio: apaga comandos de Stomp por chave escondidos */
     /* Fonte de verdade do modo — nunca omitir (compact apagava holdToggle=false → Tap sticky). */
     let mode = typeof e?.fsMode == `string` && br.includes(e.fsMode) ? e.fsMode : typeof e?.mode == `string` && br.includes(e.mode) ? e.mode : void 0;
     if (mode) t.fsMode = mode;
@@ -24716,7 +24807,13 @@ function normalizeFsForRestore(e) {
         if (Number(t[k]) === 0) t[k] = 1
     });
     isZeroStompLed(t.stompLed) && delete t.stompLed;
-    return compactFsForBackup(t)
+    /* Comandos de Stomp por chave (CC 20+FS escondidos de backups antigos) nao
+     * voltam; e se havia, manda [] para o controlador apagar. */
+    let hadStomp = Array.isArray(t.extraStompClick) && t.extraStompClick.length > 0;
+    delete t.extraStompClick;
+    let out = compactFsForBackup(t) || {};
+    (hadStomp || Object.keys(out).length) && (out.extraStompClick = []);
+    return out
 }
 
 function isNoiseOnlyFs(e) {
@@ -24936,6 +25033,155 @@ function midiDictPedalPicker({
             className: `px-1 font-mono text-[9px] text-muted-foreground`,
             children: [filtered.length, ` resultados — role a lista ou refine a busca.`]
         }) : null]
+    })
+}
+
+/* ===== Monitor de comandos (11/2026) =====
+ * Sistema > Utilitario: mostra os comandos MIDI que o controlador ENVIOU (USB
+ * Host, USB Device, Bluetooth, DIN, Hub, pedal USB nativo) e qual chave os
+ * gerou. Le /api/tx-log (firmware guarda os ultimos 64). So consulta enquanto
+ * estiver ligado e com esta tela aberta. */
+var CMD_MON_EV = {
+    1: `clique`,
+    3: `hold`,
+    4: `pisou`,
+    5: `soltou`
+};
+var CMD_MON_OUT = {
+    USB_HOST: `USB Host`,
+    USB_DEV: `USB Device`,
+    BT: `Bluetooth`,
+    SERIAL: `DIN 5 pinos`,
+    HUB: `Hub USB`,
+    NATIVO: `Pedal USB (nativo)`
+};
+
+function cmdMonitorFmt(it) {
+    let ch = Number(it.ch) || 1,
+        a = Number(it.a) || 0,
+        b = Number(it.b) || 0,
+        h2 = v => (Number(v) & 255).toString(16).toUpperCase().padStart(2, `0`);
+    if (it.ty === `CC`) return {
+        msg: `CC ${a} = ${b}`,
+        hex: `B${(ch - 1).toString(16).toUpperCase()} ${h2(a)} ${h2(b)}`
+    };
+    if (it.ty === `PC`) return {
+        msg: `PC ${a}`,
+        hex: `C${(ch - 1).toString(16).toUpperCase()} ${h2(a)}`
+    };
+    if (it.ty === `SYSEX`) return {
+        msg: `SysEx ${Number(it.n) || 0} bytes`,
+        hex: `${it.hx || ``}${Number(it.n) > 8 ? ` …` : ``}`
+    };
+    return {
+        msg: String(it.ty || `?`),
+        hex: ``
+    }
+}
+
+function cmdMonitorPanel() {
+    let [on, setOn] = (0, N.useState)(!1),
+        [rows, setRows] = (0, N.useState)([]),
+        [err, setErr] = (0, N.useState)(``),
+        seqRef = (0, N.useRef)(0);
+    (0, N.useEffect)(() => {
+        if (!on) return;
+        let alive = !0,
+            timer = null;
+        let tick = async () => {
+            if (!alive) return;
+            try {
+                let r = await zr(`/api/tx-log?since=${seqRef.current}`, {}, 8e3),
+                    d = r?.data && Array.isArray(r.data.items) ? r.data : r,
+                    items = Array.isArray(d?.items) ? d.items : [];
+                if (items.length) {
+                    let nowMs = Number(d?.now) || 0,
+                        wall = Date.now();
+                    seqRef.current = Math.max(seqRef.current, ...items.map(it => Number(it.s) || 0));
+                    let add = items.map(it => ({
+                        ...it,
+                        wall: wall - Math.max(0, nowMs - (Number(it.t) || nowMs))
+                    })).reverse();
+                    alive && setRows(prev => [...add, ...prev].slice(0, 300))
+                } else if (Number(d?.seq) < seqRef.current) {
+                    seqRef.current = 0  /* controlador reiniciou */
+                }
+                alive && setErr(``)
+            } catch (e) {
+                alive && setErr(String(e?.message || e))
+            }
+            let slow = typeof window !== `undefined` && window.guerrilhaBle && window.guerrilhaBle.isConnected;
+            alive && (timer = setTimeout(tick, slow ? 900 : 400))
+        };
+        tick();
+        return () => {
+            alive = !1, timer && clearTimeout(timer)
+        }
+    }, [on]);
+    let fmtTime = ms => {
+        let dt = new Date(ms),
+            p = (v, n = 2) => String(v).padStart(n, `0`);
+        return `${p(dt.getHours())}:${p(dt.getMinutes())}:${p(dt.getSeconds())}.${p(dt.getMilliseconds(), 3)}`
+    };
+    let btn = `rounded-xl border px-3 py-2 font-display text-[10px] font-black uppercase tracking-[0.2em] transition`;
+    return (0, P.jsxs)(I, {
+        title: `Monitor de comandos`,
+        subtitle: `O que as chaves enviaram`,
+        className: `lg:col-span-2`,
+        children: [(0, P.jsxs)(`div`, {
+            className: `flex flex-wrap items-center gap-2`,
+            children: [(0, P.jsx)(`button`, {
+                type: `button`,
+                onClick: () => setOn(v => !v),
+                className: `${btn} ${on ? `border-accent/60 bg-accent text-accent-foreground` : `border-border bg-panel text-foreground hover:border-accent/40 hover:text-accent`}`,
+                children: on ? `Pausar` : `Ligar`
+            }), (0, P.jsx)(`button`, {
+                type: `button`,
+                onClick: () => setRows([]),
+                className: `${btn} border-border bg-panel text-muted-foreground hover:text-foreground`,
+                children: `Limpar`
+            }), (0, P.jsx)(`span`, {
+                className: `font-mono text-[10px] uppercase tracking-widest ${err ? `text-accent` : `text-muted-foreground`}`,
+                children: err ? `Erro: ${err}` : on ? `A escutar… pise nas chaves` : `Desligado`
+            })]
+        }), (0, P.jsx)(`div`, {
+            className: `max-h-80 overflow-auto rounded-xl border border-border bg-canvas`,
+            children: rows.length ? (0, P.jsx)(`table`, {
+                className: `w-full font-mono text-[11px] text-foreground`,
+                children: (0, P.jsx)(`tbody`, {
+                    children: rows.map(it => {
+                        let f = cmdMonitorFmt(it),
+                            fs = Number(it.fs) || 0,
+                            bk = Number(it.bk);
+                        return (0, P.jsxs)(`tr`, {
+                            className: `border-b border-border/40 align-top`,
+                            children: [(0, P.jsx)(`td`, {
+                                className: `whitespace-nowrap px-2 py-1 text-muted-foreground`,
+                                children: fmtTime(it.wall)
+                            }), (0, P.jsx)(`td`, {
+                                className: `whitespace-nowrap px-2 py-1`,
+                                children: fs ? `${bk >= 0 && bk < 9 ? String.fromCharCode(65 + bk) + ` · ` : ``}FS${fs} ${CMD_MON_EV[Number(it.ev)] || ``}` : `—`
+                            }), (0, P.jsx)(`td`, {
+                                className: `whitespace-nowrap px-2 py-1 text-accent`,
+                                children: CMD_MON_OUT[it.o] || it.o
+                            }), (0, P.jsx)(`td`, {
+                                className: `whitespace-nowrap px-2 py-1`,
+                                children: `${f.msg}${it.ty === `SYSEX` ? `` : ` · ch ${Number(it.ch) || 1}`}`
+                            }), (0, P.jsx)(`td`, {
+                                className: `whitespace-nowrap px-2 py-1 text-muted-foreground`,
+                                children: f.hex
+                            })]
+                        }, `tx-${it.s}`)
+                    })
+                })
+            }) : (0, P.jsx)(`div`, {
+                className: `px-4 py-6 text-center font-mono text-[11px] text-muted-foreground`,
+                children: on ? `Nenhum comando ainda.` : `Toque em Ligar e pise nas chaves para ver o que sai em cada saída (USB, DIN, Bluetooth, Hub).`
+            })
+        }), (0, P.jsx)(`p`, {
+            className: `font-mono text-[10px] leading-relaxed text-muted-foreground`,
+            children: `“Pedal USB (nativo)” = comando traduzido para ToneX/Valeton. “—” = enviado sem chave (MIDI IN, EXP, troca de banco…). Mostra os últimos 64 do controlador.`
+        })]
     })
 }
 
@@ -25211,6 +25457,46 @@ function systemSettingsPanel({
     onSave: onSaveProp
 }) {
     let o = (0, N.useRef)(null),
+        imgInputRef = (0, N.useRef)(null),
+        [imgBusy, setImgBusy] = (0, N.useState)(!1),
+        runImagesBackup = async () => {
+            if (imgBusy || a) return;
+            setImgBusy(!0);
+            try {
+                rt.info?.(`A ler imagens do controlador…`);
+                let res = await displayImagesBackupCollect((n, tot, k) => rt.info?.(`Imagem ${n}/${tot} (${k})…`));
+                if (!res.images.length) throw Error(res.failed.length ? `nenhuma imagem pôde ser lida` : `o controlador não tem imagens enviadas`);
+                let snap = {
+                        type: `guerrilha-imagens`,
+                        version: 1,
+                        createdAt: new Date().toISOString(),
+                        images: res.images
+                    },
+                    blob = new Blob([JSON.stringify(snap)], {
+                        type: `application/json`
+                    }),
+                    url = URL.createObjectURL(blob),
+                    link = document.createElement(`a`);
+                link.href = url, link.download = `guerrilha-imagens-${snap.createdAt.replace(/[:.]/g, `-`)}.json`, document.body.appendChild(link), link.click(), link.remove(), URL.revokeObjectURL(url);
+                res.failed.length ? rt.error(`Backup de imagens baixado, mas ${res.failed.length} falharam: ${res.failed.join(`, `)}`) : rt.success(`Backup de imagens baixado (${res.images.length})`)
+            } catch (err) {
+                rt.error(`Falha no backup de imagens: ${String(err?.message || err)}`)
+            } finally {
+                setImgBusy(!1)
+            }
+        },
+        runImagesRestore = async file => {
+            if (!file || imgBusy || a) return;
+            setImgBusy(!0);
+            try {
+                let res = await displayImagesRestoreFile(file, (n, tot, k) => rt.info?.(`A enviar imagem ${n}/${tot} (${k})…`));
+                res.failed.length ? rt.error(`Imagens restauradas: ${res.ok}. Falharam: ${res.failed.join(`, `)}`) : rt.success(`Imagens restauradas (${res.ok})`)
+            } catch (err) {
+                rt.error(`Falha ao restaurar imagens: ${String(err?.message || err)}`)
+            } finally {
+                setImgBusy(!1)
+            }
+        },
         activePresetIdx = Math.max(0, Math.min(4, Number(e?.activePreset) || 0)),
         [liteOpen, setLiteOpen] = (0, N.useState)(!1),
         [litePresets, setLitePresets] = (0, N.useState)(() => [activePresetIdx]),
@@ -25464,7 +25750,7 @@ function systemSettingsPanel({
         })
     }), sysTab === `utilitario` && (0, P.jsxs)(`div`, {
         className: `grid gap-4 lg:grid-cols-2`,
-        children: [(0, P.jsx)(midiDictSlotsPanel, {
+        children: [(0, P.jsx)(cmdMonitorPanel, {}), (0, P.jsx)(midiDictSlotsPanel, {
             usbmode: s,
             midiEnable: v
         }), (0, P.jsxs)(`div`, {
@@ -25502,6 +25788,31 @@ function systemSettingsPanel({
                     className: `rounded-xl border border-accent/40 bg-accent/10 px-3 py-2.5 font-display text-[11px] font-black uppercase tracking-[0.2em] text-accent transition hover:bg-accent/20 disabled:opacity-50`,
                     children: `Restaurar`
                 })]
+            }), (0, P.jsx)(`input`, {
+                ref: imgInputRef,
+                type: `file`,
+                accept: `.json,application/json`,
+                className: `hidden`,
+                onChange: ev => {
+                    let f = ev.target.files?.[0];
+                    ev.target.value = ``;
+                    f && runImagesRestore(f)
+                }
+            }), (0, P.jsxs)(`div`, {
+                className: `grid gap-2 sm:grid-cols-2`,
+                children: [(0, P.jsx)(`button`, {
+                    type: `button`,
+                    disabled: !!a || imgBusy,
+                    onClick: runImagesBackup,
+                    className: `rounded-xl border border-border bg-panel px-3 py-2.5 font-display text-[11px] font-black uppercase tracking-[0.2em] text-foreground transition hover:border-accent/40 hover:text-accent disabled:opacity-50`,
+                    children: imgBusy ? `Imagens…` : `Backup imagens`
+                }), (0, P.jsx)(`button`, {
+                    type: `button`,
+                    disabled: !!a || imgBusy,
+                    onClick: () => imgInputRef.current?.click(),
+                    className: `rounded-xl border border-accent/40 bg-accent/10 px-3 py-2.5 font-display text-[11px] font-black uppercase tracking-[0.2em] text-accent transition hover:bg-accent/20 disabled:opacity-50`,
+                    children: `Restaurar imagens`
+                })]
             }), liteOpen && (0, P.jsxs)(`div`, {
                 className: `grid gap-3 rounded-xl border border-border bg-canvas p-3`,
                 children: [(0, P.jsx)(`div`, {
@@ -25509,7 +25820,7 @@ function systemSettingsPanel({
                     children: `O que incluir`
                 }), (0, P.jsx)(`div`, {
                     className: `flex flex-wrap gap-2`,
-                    children: [0, 1, 2, 3, 4].map(idx => (0, P.jsx)(`button`, {
+                    children: [0].map(idx => (0, P.jsx)(`button`, {
                         type: `button`,
                         onClick: () => toggleLitePreset(idx),
                         className: `rounded-full px-3 py-1.5 font-display text-[10px] font-bold uppercase tracking-[0.15em] transition ${litePresets.includes(idx) ? `bg-accent text-accent-foreground` : `border border-border text-muted-foreground hover:text-foreground`}`,

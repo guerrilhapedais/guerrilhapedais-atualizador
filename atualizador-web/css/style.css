@@ -1670,3 +1670,77 @@ html.product-mts progress::-webkit-progress-value {
 html.product-mts progress::-moz-progress-bar {
   background: linear-gradient(90deg, #c9a227, #f0d36a);
 }
+
+/* ----- Página inicial: grupos (firmware / editores e manual) ----- */
+.home-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin-bottom: 1.6rem;
+}
+
+.home-group__title {
+  margin: 0;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.product-picker--three {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-bottom: 0;
+}
+
+.product-picker--tools {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-bottom: 0;
+}
+
+.product-card__version {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.product-card--tool {
+  min-height: 0;
+  padding: 1.1rem 1.15rem 1.05rem;
+}
+
+.product-card--tool .product-card__title {
+  font-size: clamp(1.15rem, 2.6vw, 1.45rem);
+  color: #d7d2c6;
+}
+
+.product-card--manual {
+  border-color: rgba(220, 38, 38, 0.45);
+}
+
+.product-card--tool::after {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .product-picker--tools {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  .product-picker--three {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .product-picker--three .product-card {
+    min-height: 0;
+  }
+}
+
+@media (max-width: 420px) {
+  .product-picker--tools {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
