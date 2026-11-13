@@ -25315,6 +25315,80 @@ function cmdMonitorFmt(it) {
     }
 }
 
+function cmdMonitorExportText(rows) {
+    let p = (v, n = 2) => String(v).padStart(n, `0`),
+        hm = ms => {
+            let dt = new Date(ms);
+            return `${p(dt.getHours())}:${p(dt.getMinutes())}:${p(dt.getSeconds())}.${p(dt.getMilliseconds(), 3)}`
+        },
+        lines = [`Guerrilha - Monitor de comandos`, `Exportado: ${new Date().toLocaleString()}`, `Linhas: ${rows.length}`, ``, [`Hora`, `Chave`, `Saida`, `Mensagem`, `Hex`].join(`\t`)];
+    [...rows].reverse().forEach(it => {
+        let f = cmdMonitorFmt(it),
+            fs = Number(it.fs) || 0,
+            bk = Number(it.bk),
+            key = fs ? `${bk >= 0 && bk < 9 ? String.fromCharCode(65 + bk) + ` · ` : ``}FS${fs} ${CMD_MON_EV[Number(it.ev)] || ``}`.trim() : `-`,
+            msg = `${f.msg}${it.ty === `SYSEX` ? `` : ` · ch ${Number(it.ch) || 1}`}`;
+        lines.push([hm(it.wall), key, CMD_MON_OUT[it.o] || it.o, msg, f.hex].join(`\t`))
+    });
+    return lines.join(`\n`) + `\n`
+}
+
+async function cmdMonitorCopyText(txt) {
+    try {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            await navigator.clipboard.writeText(txt);
+            return !0
+        }
+    } catch {}
+    try {
+        let ta = document.createElement(`textarea`);
+        ta.value = txt, ta.setAttribute(`readonly`, ``), ta.style.position = `fixed`, ta.style.opacity = `0`, document.body.appendChild(ta), ta.select(), ta.setSelectionRange(0, txt.length);
+        let ok = document.execCommand(`copy`);
+        return ta.remove(), !!ok
+    } catch {
+        return !1
+    }
+}
+
+async function cmdMonitorExport(rows, how) {
+    let toast = typeof rt < `u` ? rt : null;
+    if (!rows || !rows.length) {
+        toast?.error?.(`Nada para exportar — ligue o monitor e pise nas chaves`);
+        return
+    }
+    let txt = cmdMonitorExportText(rows),
+        name = `monitor-comandos-${new Date().toISOString().replace(/[:.]/g, `-`)}.txt`,
+        plat = typeof window < `u` && window.Capacitor && window.Capacitor.getPlatform ? window.Capacitor.getPlatform() : `web`;
+    if (how === `file`) {
+        try {
+            let file = new File([txt], name, {
+                type: `text/plain`
+            });
+            if (navigator.canShare && navigator.canShare({
+                    files: [file]
+                })) {
+                await navigator.share({
+                    files: [file],
+                    title: `Monitor de comandos`
+                });
+                return
+            }
+        } catch (e) {
+            if (String(e?.name) === `AbortError`) return
+        }
+        if (plat !== `android`) {
+            let url = URL.createObjectURL(new Blob([txt], {
+                    type: `text/plain;charset=utf-8`
+                })),
+                a = document.createElement(`a`);
+            a.href = url, a.download = name, document.body.appendChild(a), a.click(), a.remove(), setTimeout(() => URL.revokeObjectURL(url), 4e3), toast?.success?.(`Log exportado: ${name}`);
+            return
+        }
+    }
+    /* Copiar (e Android, onde o WebView nao baixa ficheiros): area de transferencia. */
+    (await cmdMonitorCopyText(txt)) ? toast?.success?.(`Log copiado (${rows.length} linhas) — cole no WhatsApp/chat`) : toast?.error?.(`Não foi possível copiar o log`)
+}
+
 function cmdMonitorPanel() {
     let [on, setOn] = (0, N.useState)(!1),
         [rows, setRows] = (0, N.useState)([]),
@@ -25376,6 +25450,16 @@ function cmdMonitorPanel() {
                 onClick: () => setRows([]),
                 className: `${btn} border-border bg-panel text-muted-foreground hover:text-foreground`,
                 children: `Limpar`
+            }), (0, P.jsx)(`button`, {
+                type: `button`,
+                onClick: () => cmdMonitorExport(rows, `copy`),
+                className: `${btn} border-border bg-panel text-muted-foreground hover:text-foreground`,
+                children: `Copiar log`
+            }), (0, P.jsx)(`button`, {
+                type: `button`,
+                onClick: () => cmdMonitorExport(rows, `file`),
+                className: `${btn} border-border bg-panel text-muted-foreground hover:text-foreground`,
+                children: `Exportar .txt`
             }), (0, P.jsx)(`span`, {
                 className: `font-mono text-[10px] uppercase tracking-widest ${err ? `text-accent` : `text-muted-foreground`}`,
                 children: err ? `Erro: ${err}` : on ? `A escutar… pise nas chaves` : `Desligado`
@@ -25936,6 +26020,13 @@ function systemSettingsPanel({
                     if (Number(nextPreset) === 3) patch.usbmode = 1;
                     t(patch)
                 }
+            }), pathCustom && s === 2 && (0, P.jsx)(L, {
+                label: `Equipamento conectado`,
+                options: [`Outro (MIDI genérico)`, `Kemper Player`],
+                value: Number(l) === 28 ? `Kemper Player` : `Outro (MIDI genérico)`,
+                onChange: e => t({
+                    usbpreset: e === `Kemper Player` ? 28 : 8
+                })
             }), null]
         }), s === 2 && Number(l) === 28 && (0, P.jsx)(kemperTunerCard, {
             usbCfg: e
