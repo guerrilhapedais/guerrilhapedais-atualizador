@@ -12527,14 +12527,85 @@ function loadMidiDictSlots() {
     }
 }
 
-function saveMidiDictSlots(cfg) {
+function saveMidiDictSlots(cfg, fromController) {
     if (typeof window > `u`) return;
     let data = {
         slots: cfg?.slots && typeof cfg.slots == `object` ? cfg.slots : {},
         fallbackPedalId: cfg?.fallbackPedalId ? String(cfg.fallbackPedalId).trim().toLowerCase() : null
     };
     window.localStorage.setItem(MIDI_DICT_SLOTS_KEY, JSON.stringify(data));
-    window.dispatchEvent(new CustomEvent(MIDI_DICT_SLOTS_EVT))
+    window.dispatchEvent(new CustomEvent(MIDI_DICT_SLOTS_EVT));
+    /* Guarda tambem no controlador (nao precisa configurar de novo noutro PC/celular). */
+    fromController || editorPrefsPushSoon()
+}
+
+/* ===== Preferencias do editor guardadas no controlador (11/2026) =====
+ * Hoje: o mapa do dicionario MIDI (saida + canal -> equipamento).
+ * Firmware: cmd "editor_prefs" (USB/BLE) -> /spiffs/editor_prefs.json.
+ * Ao carregar um banco le o que esta no controlador (o controlador manda);
+ * se o controlador ainda nao tem nada, envia o que este editor ja tinha. */
+var editorPrefsPushTimer = null,
+    editorPrefsLastPull = 0,
+    editorPrefsBusy = !1;
+
+function editorPrefsPushSoon() {
+    if (typeof window > `u`) return;
+    editorPrefsPushTimer && clearTimeout(editorPrefsPushTimer);
+    editorPrefsPushTimer = setTimeout(editorPrefsPush, 800)
+}
+
+async function editorPrefsPush() {
+    editorPrefsPushTimer = null;
+    editorPrefsBusy = !0;
+    try {
+        let cfg = loadMidiDictSlots();
+        await zr(`/api/editor-prefs`, {
+            method: `POST`,
+            headers: {
+                "Content-Type": `application/json`
+            },
+            body: JSON.stringify({
+                prefs: {
+                    v: 1,
+                    midiDictSlots: {
+                        slots: cfg.slots || {},
+                        fallbackPedalId: cfg.fallbackPedalId || null
+                    }
+                }
+            })
+        }, 8e3);
+        editorPrefsLastPull = Date.now()
+    } catch {} finally {
+        editorPrefsBusy = !1
+    }
+}
+
+async function editorPrefsPull(force) {
+    if (editorPrefsBusy || editorPrefsPushTimer) return;
+    if (!force && Date.now() - editorPrefsLastPull < 6e4) return;
+    editorPrefsLastPull = Date.now();
+    editorPrefsBusy = !0;
+    let pushLocal = !1;
+    try {
+        let r = await zr(`/api/editor-prefs`, {
+                method: `GET`
+            }, 8e3),
+            d = r?.data !== void 0 ? r.data : r,
+            p = d?.prefs,
+            m = p && typeof p == `object` ? p.midiDictSlots : null;
+        if (m && typeof m == `object` && m.slots && typeof m.slots == `object`) {
+            let cur = loadMidiDictSlots();
+            JSON.stringify(cur.slots || {}) === JSON.stringify(m.slots) && (cur.fallbackPedalId || null) === (m.fallbackPedalId || null) || saveMidiDictSlots(m, !0)
+        } else {
+            let cur = loadMidiDictSlots();
+            pushLocal = Object.keys(cur.slots || {}).length > 0
+        }
+    } catch {
+        editorPrefsLastPull = 0
+    } finally {
+        editorPrefsBusy = !1
+    }
+    pushLocal && editorPrefsPushSoon()
 }
 
 function setMidiDictSlot(bus, deviceIndex, channel, pedalId) {
@@ -13782,6 +13853,13 @@ async function usbRouteJson(e, t = {}, n = 15e3) {
     }
     if (i === `/api/system-status`) return usbRouteNormalizeResponse(await usbTransportRequest(`system_status`, {}, n), `system_status`);
     if (i === `/api/active-key`) return usbRouteNormalizeResponse(await usbTransportRequest(`active_key`, {}, n), `active_key`);
+    if (i === `/api/editor-prefs`) {
+        if (a === `POST`) return usbRouteNormalizeResponse(await usbTransportRequest(`editor_prefs`, {
+            __method: `POST`,
+            prefs: o?.prefs || {}
+        }, n), `editor_prefs`);
+        return usbRouteNormalizeResponse(await usbTransportRequest(`editor_prefs`, {}, n), `editor_prefs`)
+    }
     if (i === `/api/tx-log`) return usbRouteNormalizeResponse(await usbTransportRequest(`tx_log`, {
         since: Number(r.searchParams.get(`since`) || 0)
     }, n), `tx_log`);
@@ -18783,6 +18861,7 @@ function Xr() {
                     method: `GET`
                 }, 2e4);
                 if (e) return;
+                editorPrefsPull();
                 F(`A`, `bank.load.ok`, {
                     bank: n,
                     activePreset: T,
@@ -25991,7 +26070,7 @@ function systemSettingsPanel({
                 }
             }), (0, P.jsx)(L, {
                 label: `Modo USB`,
-                options: si,
+                options: si.filter((x, i) => i !== 4 || s === 4), /* MIDI SERIAL (4) fora da lista; DIN funciona em todos os modos */
                 value: si[s],
                 onChange: e => {
                     let nextMode = Math.max(0, si.indexOf(e)),
